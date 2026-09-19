@@ -59,7 +59,7 @@ function SliderControl({ label, value, min, max, step, onChange }: { label: stri
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="h-1.5 w-full appearance-none rounded-full bg-white/10 accent-[#d4ff4f] [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#d4ff4f] [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(212,255,79,0.5)]"
+        className="h-1.5 w-full appearance-none rounded-full bg-white/10 accent-[#d4ff4f] [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#d4ff4f]"
       />
     </div>
   );

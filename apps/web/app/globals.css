@@ -75,20 +75,19 @@ body {
   }
 
   .shadow-glow {
-    box-shadow: 0 0 40px -10px rgba(212, 255, 79, 0.5);
+    box-shadow: none;
   }
 
   .shadow-glow-sm {
-    box-shadow: 0 0 20px -5px rgba(212, 255, 79, 0.3);
+    box-shadow: none;
   }
 
   .shadow-iris {
-    box-shadow: 0 0 40px -10px rgba(157, 140, 255, 0.4);
+    box-shadow: none;
   }
 
   .shadow-spotlight {
-    box-shadow: 0 0 60px -15px rgba(212, 255, 79, 0.3),
-                0 0 100px -30px rgba(157, 140, 255, 0.2);
+    box-shadow: none;
   }
 }
 

@@ -69,7 +69,7 @@ function SpotlightCard({
       onMouseMove={handleMouseMove}
       className={cn(
         "group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 transition-all duration-500",
-        "hover:border-[#d4ff4f]/30 hover:shadow-[0_0_40px_-15px_rgba(212,255,79,0.3)]",
+        "hover:border-[#d4ff4f]/30",
         className
       )}
       style={
@@ -330,7 +330,7 @@ export default function Home() {
           >
             <div className="flex-1 space-y-8">
               <motion.div variants={itemVariants}>
-                <span className="inline-flex items-center gap-2.5 rounded-full border border-[#d4ff4f]/20 bg-[#d4ff4f]/[0.05] px-4 py-1.5 font-mono text-[11px] tracking-[0.15em] text-[#d4ff4f] shadow-glow-sm">
+                <span className="inline-flex items-center gap-2.5 rounded-full border border-[#d4ff4f]/20 bg-[#d4ff4f]/[0.05] px-4 py-1.5 font-mono text-[11px] tracking-[0.15em] text-[#d4ff4f]">
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#d4ff4f] opacity-75" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-[#d4ff4f]" />
@@ -361,7 +361,7 @@ export default function Home() {
 
               <motion.div variants={itemVariants} className="flex flex-wrap gap-3">
                 <Link href="/components">
-                  <MagneticButton className="shadow-glow-sm">
+                  <MagneticButton>
                     Explore Components
                     <svg
                       className="ml-1.5 h-4 w-4"
@@ -409,7 +409,7 @@ export default function Home() {
                   <SpotlightCard className="p-5">
                     <p className="b-section-label mb-3">Live Demo</p>
                     <div className="flex flex-wrap gap-2">
-                      <MagneticButton strength={0.4} className="shadow-glow-sm">
+                      <MagneticButton strength={0.4}>
                         Ship it
                       </MagneticButton>
                       <MagneticButton strength={0.4} variant="ghost">
@@ -600,7 +600,7 @@ export default function Home() {
                   className={cn(
                     "mt-5 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all duration-300",
                     item.featured
-                      ? "bg-[#d4ff4f] text-black hover:shadow-glow-sm active:scale-95"
+                      ? "bg-[#d4ff4f] text-black active:scale-95"
                       : "border border-white/15 hover:bg-white/10 hover:border-[#d4ff4f]/30"
                   )}
                 >
