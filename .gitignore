@@ -8,4 +8,9 @@ build
 .env*.local
 coverage
 apps/web/.next
+.vercel
 # NOTE: registry/generated IS committed — it is the GitHub-hosted shadcn registry.
+# NOTE: apps/web/lib/registry-data.generated.ts IS committed — bundled registry data for serverless.
+
+.vercel
+.env*

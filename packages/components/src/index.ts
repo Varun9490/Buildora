@@ -12,7 +12,7 @@ export {
   MorphingTypography,
   HolographicCard,
   Interactive3DCard,
-  TactileLoader
+  TactileLoader,
 } from "./creative-atmosphere";
 export { StreamingChat, TokenMeter, ModelSelector, ToolCallViz } from "./streaming-chat";
 export { AdvancedTable, JSONViewer, LogViewer } from "./advanced-table";
@@ -20,3 +20,32 @@ export { Terminal, FileTree, CodeEditorLite } from "./terminal";
 export { PricingTable, TeamSwitcher, OnboardingChecklist, UsageDashboard } from "./pricing-table";
 export { Kanban, Calendar } from "./kanban";
 export { MarkdownEditor, MentionInput, CommentThread } from "./markdown-editor";
+export {
+  Button,
+  Chip,
+  Badge,
+  Input,
+  Textarea,
+  type ButtonProps,
+  type ButtonVariant,
+  type ButtonSize,
+  type BadgeProps,
+  type BadgeVariant,
+  type ChipProps,
+  type InputProps,
+  type TextareaProps,
+  type InputVariant,
+  type InputSize,
+} from "./primitives";
+export {
+  Typewriter,
+  ScrambledText,
+  BlurText,
+  GradientText,
+  GlitchText,
+  type TypewriterProps,
+  type ScrambledTextProps,
+  type BlurTextProps,
+  type GradientTextProps,
+  type GlitchTextProps,
+} from "./text-effects";

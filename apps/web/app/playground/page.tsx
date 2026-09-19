@@ -14,7 +14,7 @@ export default function PlaygroundPage() {
     <div className="mx-auto max-w-7xl px-4 py-8">
       <h1 className="font-display text-3xl font-black">Playground</h1>
       <p className="text-sm text-white/55">A creative laboratory. Pick a component, tune physics, inspect {framework} code.</p>
-      <div className="mt-4 grid gap-4 lg:grid-cols-[280px_1fr]">
+      <div className="mt-4 grid gap-4 lg:grid-cols-[280px_1fr] [&>*]:min-w-0">
         <div className="h-fit rounded-2xl border border-white/10 bg-white/[0.02] p-3 lg:sticky lg:top-20">
           <input aria-label="Filter playground components" placeholder="Filter…" className="mb-2 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm outline-none" onChange={(e) => { const q = e.target.value.toLowerCase(); document.querySelectorAll("[data-pg]").forEach((el) => { (el as HTMLElement).style.display = (el as HTMLElement).dataset.pg!.includes(q) ? "" : "none"; }); }} />
           <ul className="b-scroll max-h-[60vh] space-y-1 overflow-auto">
@@ -31,7 +31,7 @@ export default function PlaygroundPage() {
               <p className="font-mono text-xs text-white/50">{slug} · {framework}</p>
               <Link href={`/components/${slug}`} className="rounded-lg bg-white/10 px-2 py-1 text-xs hover:bg-white/15">Open component page →</Link>
             </div>
-            <div className="b-grid-bg bg-[#0b0d13] p-8"><ComponentRenderer slug={slug} controls={controls} /></div>
+            <div className="b-grid-bg overflow-hidden bg-[#0b0d13] p-4 sm:p-8"><ComponentRenderer slug={slug} controls={controls} /></div>
           </div>
           <div className="mt-3 grid gap-2 rounded-2xl border border-white/10 p-4 sm:grid-cols-3">
             {(["strength", "radius", "intensity", "speed", "scale"] as const).map((k) => (

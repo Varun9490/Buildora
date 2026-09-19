@@ -35,8 +35,8 @@ export function StreamingChat({ seed, className }: { seed?: string; className?: 
   React.useEffect(() => { stream(); }, [stream]);
 
   return (
-    <div className={cn("flex flex-col rounded-2xl border border-white/10 bg-[#0d0f16]", className)}>
-      <div className="space-y-3 p-4" role="log" aria-live="polite" aria-label="Chat messages">
+    <div className={cn("flex flex-col h-[400px] rounded-2xl border border-white/10 bg-[#0d0f16]", className)}>
+      <div className="flex-1 overflow-y-auto space-y-3 p-4 b-scroll" role="log" aria-live="polite" aria-label="Chat messages">
         {messages.map((m) => (
           <div key={m.id} className={cn("max-w-[85%] rounded-xl px-3 py-2 text-sm", m.role === "user" ? "ml-auto bg-[#d4ff4f] text-black" : "bg-white/[0.06] text-white/90")}>
             <p>{m.text}</p>

@@ -38,7 +38,7 @@ export function CodeViewer({ files, defaultFile, className }: { files: { path: s
 
   return (
     <div className={cn("overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c11]", className)}>
-      <div className="flex flex-wrap items-center gap-1 border-b border-white/10 p-1.5" role="tablist" aria-label="Files">
+      <div className="code-scroll flex flex-wrap items-center gap-1 overflow-x-auto border-b border-white/10 p-1.5" role="tablist" aria-label="Files">
         {files.map((f, i) => (
           <button key={f.path} role="tab" aria-selected={i === idx} onClick={() => setIdx(i)} className={cn("rounded-lg px-2.5 py-1 font-mono text-xs", i === idx ? "bg-white/10 text-white" : "text-white/50 hover:bg-white/5")}>{f.path}</button>
         ))}
@@ -48,7 +48,7 @@ export function CodeViewer({ files, defaultFile, className }: { files: { path: s
           <button onClick={copy} className="rounded-lg bg-[#d4ff4f] px-2.5 py-1 text-[11px] font-bold text-black">{copied ? "Copied" : "Copy"}</button>
         </div>
       </div>
-      <div className="code-scroll max-h-[420px] overflow-auto" tabIndex={0} aria-label={`Code for ${file.path}`}>
+      <div className={cn("code-scroll overflow-auto", expanded ? "max-h-none" : "max-h-[420px]")} tabIndex={0} aria-label={`Code for ${file.path}`}>
         <pre className="p-0 font-mono text-[12px] leading-[1.7]">
           {shown.map((line, i) => {
             const hit = q && line.toLowerCase().includes(q.toLowerCase());

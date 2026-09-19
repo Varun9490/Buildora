@@ -51,12 +51,8 @@ export const allComponents: ComponentSummary[] = (registryIndex as { components:
 export const totalComponents = (registryIndex as { total: number }).total;
 
 export async function getComponent(slug: string): Promise<RegistryItem | null> {
-  try {
-    const mod = await import(`../../../registry/components/${slug}.json`);
-    return (mod as { default: RegistryItem }).default ?? (mod as unknown as RegistryItem);
-  } catch {
-    return null;
-  }
+  const { registryComponents } = await import("./registry-data.generated");
+  return ((registryComponents as Record<string, RegistryItem>)[slug] ?? null);
 }
 
 export function getComponentSync(slug: string): RegistryItem | null {
@@ -80,7 +76,7 @@ export function getComponentSync(slug: string): RegistryItem | null {
     dependencies: [],
     registryDependencies: [],
     files: [`packages/components/src/${found.slug}/index.tsx`],
-    github: `https://github.com/buildora/buildora/tree/main/packages/components/src/${found.slug}`,
+    github: `https://github.com/Varun9490/Buildora/tree/main/packages/components/src/${found.slug}`,
     docs: `/components/${found.slug}`,
     install: `pnpm dlx shadcn@latest add @buildora/${found.slug}`
   };

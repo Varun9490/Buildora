@@ -26,9 +26,9 @@ module.exports = {
         ember: { 400: "#ffb86b", 500: "#ff8a3d" }
       },
       fontFamily: {
-        display: ["\"Space Grotesk\"", "system-ui", "sans-serif"],
-        mono: ["\"JetBrains Mono\"", "ui-monospace", "monospace"],
-        sans: ["Inter", "system-ui", "sans-serif"]
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"]
       },
       boxShadow: {
         tactile: "0 1px 0 rgba(255,255,255,.08) inset, 0 12px 32px -12px rgba(0,0,0,.6)",

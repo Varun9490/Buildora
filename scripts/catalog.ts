@@ -199,3 +199,24 @@ export function buildAll(outDir: string) {
   fs.writeFileSync(path.join(outDir, "registry.json"), JSON.stringify(index, null, 2));
   return index;
 }
+
+/**
+ * Emit a bundled TS barrel for apps/web so API routes can serve registry
+ * data without runtime filesystem access (required on Vercel serverless).
+ * Writes to apps/web/lib/registry-data.generated.ts (committed).
+ */
+export function buildWebBarrel(repoRoot: string) {
+  const comps: Record<string, unknown> = {};
+  const shadcn: Record<string, unknown> = {};
+  for (const item of catalog) {
+    comps[item.slug] = toRegistryJson(item);
+    shadcn[item.slug] = toShadcnJson(item);
+  }
+  const src =
+    `// GENERATED — do not edit. Built by \`pnpm registry:build\`.\n` +
+    `export const registryComponents: Record<string, unknown> = ${JSON.stringify(comps)};\n` +
+    `export const registryShadcn: Record<string, unknown> = ${JSON.stringify(shadcn)};\n`;
+  const dir = path.join(repoRoot, "apps", "web", "lib");
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "registry-data.generated.ts"), src);
+}

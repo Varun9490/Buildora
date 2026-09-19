@@ -44,7 +44,7 @@ export function Kanban({ initial, className }: { initial?: ColT[]; className?: s
           onDragOver={(e) => { e.preventDefault(); setOver(col.id); }}
           onDragLeave={() => setOver((o) => (o === col.id ? null : o))}
           onDrop={(e) => { e.preventDefault(); if (drag) move(drag.card, drag.from, col.id); setDrag(null); setOver(null); }}
-          className={cn("min-h-48 rounded-2xl border p-2 transition-all", over === col.id ? "border-[#d4ff4f] bg-[#d4ff4f]/[0.06] scale-[1.01]" : "border-white/10 bg-white/[0.02]")}>
+          className={cn("min-h-[12rem] rounded-2xl border p-2 transition-all", over === col.id ? "border-[#d4ff4f] bg-[#d4ff4f]/[0.06] scale-[1.01]" : "border-white/10 bg-white/[0.02]")}>
           <p className="px-2 py-1 text-xs font-bold uppercase tracking-wider text-white/50">{col.title} · {col.cards.length}</p>
           <ul className="space-y-2">
             {col.cards.map((card, ki) => (

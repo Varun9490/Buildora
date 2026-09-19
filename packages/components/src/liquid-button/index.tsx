@@ -31,7 +31,7 @@ export function LiquidButton({ intensity = 0.6, color, className, children, ...r
       ref={ref}
       onPointerMove={onMove}
       className={cn(
-        "group relative overflow-hidden rounded-full border border-white/12 bg-white/[0.04] px-6 py-2.5 text-sm font-semibold text-white",
+        "group relative overflow-hidden rounded-full border border-white/10 bg-white/[0.04] px-6 py-2.5 text-sm font-semibold text-white",
         "transition-colors hover:border-white/25",
         className
       )}
