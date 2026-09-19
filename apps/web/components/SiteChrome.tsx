@@ -12,7 +12,6 @@ import { SpatialCommandPalette } from "@buildora/components";
 const links = [
   { href: "/", label: "Home" },
   { href: "/components", label: "Components" },
-  { href: "/categories", label: "Categories" },
   { href: "/playground", label: "Playground" },
   { href: "/templates", label: "Templates" },
   { href: "/docs", label: "Docs" },
