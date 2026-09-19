@@ -1,0 +1,90 @@
+"use client";
+
+import * as React from "react";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
+
+export type SkeletonVariant = "default" | "circular" | "rounded";
+
+export type SkeletonProps = React.HTMLAttributes<HTMLDivElement> & {
+  width?: number | string;
+  height?: number | string;
+  variant?: SkeletonVariant;
+  animate?: boolean;
+};
+
+const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
+  ({
+    className,
+    width,
+    height,
+    variant = "default",
+    animate = true,
+    style,
+    ...props
+  }, ref) => {
+    const reducedMotion = useReducedMotion();
+
+    const variantStyles: Record<SkeletonVariant, string> = {
+      default: "rounded-lg",
+      circular: "rounded-full",
+      rounded: "rounded-xl",
+    };
+
+    return (
+      <div
+        ref={ref}
+        role="presentation"
+        aria-hidden="true"
+        className={cn(
+          "relative overflow-hidden bg-white/5 border border-white/5",
+          variantStyles[variant],
+          animate && !reducedMotion && "shimmer",
+          className
+        )}
+        style={{
+          width: width,
+          height: height,
+          ...style,
+        }}
+        {...props}
+      >
+        {animate && !reducedMotion && (
+          <div
+            className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite]"
+            style={{
+              background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)",
+            }}
+          />
+        )}
+      </div>
+    );
+  }
+);
+
+Skeleton.displayName = "Skeleton";
+
+export type SkeletonTextProps = React.HTMLAttributes<HTMLDivElement> & {
+  lines?: number;
+  lastLineWidth?: string;
+};
+
+const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(
+  ({ className, lines = 3, lastLineWidth = "60%", ...props }, ref) => {
+    return (
+      <div ref={ref} className={cn("space-y-2", className)} {...props}>
+        {Array.from({ length: lines }).map((_, i) => (
+          <Skeleton
+            key={i}
+            height={12}
+            width={i === lines - 1 ? lastLineWidth : "100%"}
+          />
+        ))}
+      </div>
+    );
+  }
+);
+
+SkeletonText.displayName = "SkeletonText";
+
+export { Skeleton, SkeletonText };
