@@ -1,0 +1,24 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "example-slug",
+  "name": "Example Component",
+  "slug": "example-slug",
+  "description": "What real UI problem + what creative interaction.",
+  "categories": ["creative"],
+  "tags": ["tag1"],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": { "status": "Full", "files": ["packages/components/src/example-slug/index.tsx"] },
+    "javascript": { "status": "Full", "files": [] },
+    "html": { "status": "Full", "files": [] },
+    "vue": { "status": "Partial", "notes": "Composition API port." },
+    "reactNative": { "status": "Partial", "notes": "No hover; use press + haptics." }
+  },
+  "accessibility": { "keyboard": true, "screenReader": true, "reducedMotion": true },
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": ["packages/components/src/example-slug/index.tsx"]
+}

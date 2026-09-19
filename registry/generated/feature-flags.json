@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-feature-flags",
+  "type": "registry:component",
+  "title": "Feature Flags",
+  "description": "Flag toggles with switch semantics.",
+  "categories": [
+    "saas",
+    "developer"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/pricing-table/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/pricing-table/index.tsx"
+}

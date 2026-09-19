@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-env-manager",
+  "type": "registry:component",
+  "title": "Environment Manager",
+  "description": "Masked env-var table with reveal + copy.",
+  "categories": [
+    "developer"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/advanced-table/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/advanced-table/index.tsx"
+}

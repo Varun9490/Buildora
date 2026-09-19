@@ -1,0 +1,25 @@
+name: Component proposal
+description: Propose a new Buildora component
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Component name
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What real UI problem does it solve?
+    validations:
+      required: true
+  - type: textarea
+    id: interaction
+    attributes:
+      label: What is the distinctive creative interaction?
+    validations:
+      required: true
+  - type: textarea
+    id: a11y
+    attributes:
+      label: Accessibility plan (keyboard, SR, reduced motion)

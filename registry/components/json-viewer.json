@@ -1,0 +1,100 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "json-viewer",
+  "name": "JSON Viewer",
+  "slug": "json-viewer",
+  "description": "Collapsible JSON viewer with mono styling.",
+  "categories": [
+    "data",
+    "developer"
+  ],
+  "tags": [
+    "json",
+    "viewer"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/advanced-table/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/advanced-table/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/advanced-table/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/advanced-table/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/advanced-table/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/advanced-table/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/advanced-table/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/advanced-table/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/advanced-table/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/advanced-table/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/advanced-table/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "packages/components/src/advanced-table/index.tsx"
+  ],
+  "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/json-viewer",
+  "docs": "/components/json-viewer",
+  "install": "pnpm dlx shadcn@latest add @buildora/json-viewer"
+}

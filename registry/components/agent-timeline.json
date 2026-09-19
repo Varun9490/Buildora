@@ -1,0 +1,99 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "agent-timeline",
+  "name": "Agent Timeline",
+  "slug": "agent-timeline",
+  "description": "Agent activity timeline (plan → act → observe). Shares Tool Call Viz patterns.",
+  "categories": [
+    "ai-llm"
+  ],
+  "tags": [
+    "agent",
+    "timeline"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/streaming-chat/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/streaming-chat/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/streaming-chat/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/streaming-chat/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/streaming-chat/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/streaming-chat/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/streaming-chat/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/streaming-chat/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/streaming-chat/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/streaming-chat/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/streaming-chat/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "packages/components/src/streaming-chat/index.tsx"
+  ],
+  "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/agent-timeline",
+  "docs": "/components/agent-timeline",
+  "install": "pnpm dlx shadcn@latest add @buildora/agent-timeline"
+}

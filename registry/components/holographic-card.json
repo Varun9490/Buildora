@@ -1,0 +1,100 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "holographic-card",
+  "name": "Holographic Card",
+  "slug": "holographic-card",
+  "description": "Holographic sheen that tracks the pointer.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "card",
+    "holographic",
+    "hover"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/holographic-card/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/holographic-card/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/holographic-card/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/holographic-card/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/holographic-card/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/holographic-card/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/holographic-card/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/holographic-card/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/holographic-card/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/holographic-card/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/holographic-card/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "packages/components/src/holographic-card/index.tsx"
+  ],
+  "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/holographic-card",
+  "docs": "/components/holographic-card",
+  "install": "pnpm dlx shadcn@latest add @buildora/holographic-card"
+}

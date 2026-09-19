@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-holographic-card",
+  "type": "registry:component",
+  "title": "Holographic Card",
+  "description": "Holographic sheen that tracks the pointer.",
+  "categories": [
+    "creative"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/holographic-card/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/holographic-card/index.tsx"
+}

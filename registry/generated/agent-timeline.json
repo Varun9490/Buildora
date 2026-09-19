@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-agent-timeline",
+  "type": "registry:component",
+  "title": "Agent Timeline",
+  "description": "Agent activity timeline (plan → act → observe). Shares Tool Call Viz patterns.",
+  "categories": [
+    "ai-llm"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/streaming-chat/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/streaming-chat/index.tsx"
+}

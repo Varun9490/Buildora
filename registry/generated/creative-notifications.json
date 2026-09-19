@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-creative-notifications",
+  "type": "registry:component",
+  "title": "Creative Notifications",
+  "description": "Stacked toast system with tones and live-region announcements.",
+  "categories": [
+    "creative"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/creative-notifications/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/creative-notifications/index.tsx"
+}

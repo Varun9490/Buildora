@@ -1,0 +1,100 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "liquid-button",
+  "name": "Liquid Button",
+  "slug": "liquid-button",
+  "description": "Gooey blob fill that follows the pointer inside a real button.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "button",
+    "gooey",
+    "hover"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/liquid-button/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/liquid-button/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/liquid-button/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/liquid-button/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/liquid-button/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/liquid-button/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/liquid-button/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/liquid-button/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/liquid-button/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/liquid-button/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/liquid-button/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "packages/components/src/liquid-button/index.tsx"
+  ],
+  "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/liquid-button",
+  "docs": "/components/liquid-button",
+  "install": "pnpm dlx shadcn@latest add @buildora/liquid-button"
+}

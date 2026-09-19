@@ -1,0 +1,99 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "attachment-prompt",
+  "name": "Attachment Prompt",
+  "slug": "attachment-prompt",
+  "description": "Prompt input with attachment chips. Pairs with Streaming Chat + Dropzone.",
+  "categories": [
+    "ai-llm"
+  ],
+  "tags": [
+    "prompt",
+    "attachments"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/interactive-dropzone/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/interactive-dropzone/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/interactive-dropzone/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/interactive-dropzone/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/interactive-dropzone/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/interactive-dropzone/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/interactive-dropzone/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/interactive-dropzone/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/interactive-dropzone/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/interactive-dropzone/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/interactive-dropzone/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "packages/components/src/interactive-dropzone/index.tsx"
+  ],
+  "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/attachment-prompt",
+  "docs": "/components/attachment-prompt",
+  "install": "pnpm dlx shadcn@latest add @buildora/attachment-prompt"
+}

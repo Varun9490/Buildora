@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-tool-call-viz",
+  "type": "registry:component",
+  "title": "Tool Call Visualization",
+  "description": "Timeline of agent tool calls with running/done states.",
+  "categories": [
+    "ai-llm"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/tool-call-viz/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/tool-call-viz/index.tsx"
+}

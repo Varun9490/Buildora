@@ -1,0 +1,15 @@
+{
+  "name": "@buildora/utils",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "echo ok",
+    "test": "echo ok"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.6.1"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-api-request-builder",
+  "type": "registry:component",
+  "title": "API Request Builder",
+  "description": "Method + URL + headers + body inspector patterns.",
+  "categories": [
+    "developer"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/terminal/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/terminal/index.tsx"
+}

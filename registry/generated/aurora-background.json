@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-aurora-background",
+  "type": "registry:component",
+  "title": "Aurora Background",
+  "description": "Slow-drifting aurora blobs. Reduced-motion safe, pure CSS.",
+  "categories": [
+    "creative"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/aurora-background/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/aurora-background/index.tsx"
+}

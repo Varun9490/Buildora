@@ -1,0 +1,17 @@
+{
+  "name": "@buildora/hooks",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "scripts": {
+    "build": "echo ok",
+    "test": "echo ok"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31"
+  }
+}

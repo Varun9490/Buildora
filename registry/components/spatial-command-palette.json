@@ -1,0 +1,102 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "spatial-command-palette",
+  "name": "Spatial Command Palette",
+  "slug": "spatial-command-palette",
+  "description": "Keyboard-first palette with animated selection, grouped results, recents, and depth presentation.",
+  "categories": [
+    "creative",
+    "complex"
+  ],
+  "tags": [
+    "command",
+    "palette",
+    "keyboard",
+    "spatial"
+  ],
+  "difficulty": "advanced",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/spatial-command-palette/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/spatial-command-palette/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/spatial-command-palette/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/spatial-command-palette/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/spatial-command-palette/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/spatial-command-palette/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/spatial-command-palette/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/spatial-command-palette/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/spatial-command-palette/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/spatial-command-palette/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/spatial-command-palette/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "packages/components/src/spatial-command-palette/index.tsx"
+  ],
+  "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/spatial-command-palette",
+  "docs": "/components/spatial-command-palette",
+  "install": "pnpm dlx shadcn@latest add @buildora/spatial-command-palette"
+}

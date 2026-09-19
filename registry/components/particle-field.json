@@ -1,0 +1,102 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "particle-field",
+  "name": "Particle Field",
+  "slug": "particle-field",
+  "description": "Lightweight canvas particle field with DPR scaling. No Three.js needed.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "particles",
+    "canvas"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/particle-field/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/particle-field/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/particle-field/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/particle-field/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/particle-field/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/particle-field/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/particle-field/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Experimental",
+      "notes": "Use react-native-skia or SVG; canvas not available.",
+      "files": [
+        "packages/components/src/particle-field/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Use CustomPainter.",
+      "files": [
+        "packages/components/src/particle-field/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Use Canvas + TimelineView.",
+      "files": [
+        "packages/components/src/particle-field/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/particle-field/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "packages/components/src/particle-field/index.tsx"
+  ],
+  "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/particle-field",
+  "docs": "/components/particle-field",
+  "install": "pnpm dlx shadcn@latest add @buildora/particle-field"
+}

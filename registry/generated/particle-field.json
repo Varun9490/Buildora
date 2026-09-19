@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-particle-field",
+  "type": "registry:component",
+  "title": "Particle Field",
+  "description": "Lightweight canvas particle field with DPR scaling. No Three.js needed.",
+  "categories": [
+    "creative"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/particle-field/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/particle-field/index.tsx"
+}

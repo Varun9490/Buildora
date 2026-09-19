@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-timeline-editor",
+  "type": "registry:component",
+  "title": "Timeline Editor",
+  "description": "Track-based timeline editor patterns.",
+  "categories": [
+    "complex",
+    "content"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/kanban/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/kanban/index.tsx"
+}

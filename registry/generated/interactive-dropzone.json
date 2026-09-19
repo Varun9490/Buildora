@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-interactive-dropzone",
+  "type": "registry:component",
+  "title": "Interactive Dropzone",
+  "description": "Proximity-reactive dropzone with progress visualization and error recovery.",
+  "categories": [
+    "creative"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/interactive-dropzone/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/interactive-dropzone/index.tsx"
+}

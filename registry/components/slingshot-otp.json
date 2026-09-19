@@ -1,0 +1,105 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "slingshot-otp",
+  "name": "Slingshot OTP",
+  "slug": "slingshot-otp",
+  "description": "Signature gamified OTP — pull digits like a slingshot. Real inputs, paste, SR fallback underneath.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "otp",
+    "slingshot",
+    "spring",
+    "signature"
+  ],
+  "difficulty": "advanced",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [
+    "empty",
+    "filled",
+    "error"
+  ],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/slingshot-otp/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/slingshot-otp/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/slingshot-otp/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/slingshot-otp/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/slingshot-otp/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/slingshot-otp/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/slingshot-otp/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/slingshot-otp/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/slingshot-otp/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/slingshot-otp/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/slingshot-otp/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "packages/components/src/slingshot-otp/index.tsx"
+  ],
+  "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/slingshot-otp",
+  "docs": "/components/slingshot-otp",
+  "install": "pnpm dlx shadcn@latest add @buildora/slingshot-otp"
+}

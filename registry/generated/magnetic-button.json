@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-magnetic-button",
+  "type": "registry:component",
+  "title": "Magnetic Button",
+  "description": "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.",
+  "categories": [
+    "creative"
+  ],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/magnetic-button/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/magnetic-button/index.tsx"
+}

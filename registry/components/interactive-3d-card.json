@@ -1,0 +1,103 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "interactive-3d-card",
+  "name": "Interactive 3D Card",
+  "slug": "interactive-3d-card",
+  "description": "Lightweight CSS 3D flip card. Lazy-safe; no Three.js on this page.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "3d",
+    "flip",
+    "card"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/interactive-3d-card/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/interactive-3d-card/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/interactive-3d-card/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/interactive-3d-card/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "files": [
+        "packages/components/src/interactive-3d-card/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/interactive-3d-card/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/interactive-3d-card/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "Use Animated + rotateY interpolation.",
+      "files": [
+        "packages/components/src/interactive-3d-card/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Use Transform with Matrix4.",
+      "files": [
+        "packages/components/src/interactive-3d-card/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Use rotation3DEffect.",
+      "files": [
+        "packages/components/src/interactive-3d-card/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "files": [
+        "packages/components/src/interactive-3d-card/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "packages/components/src/interactive-3d-card/index.tsx"
+  ],
+  "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/interactive-3d-card",
+  "docs": "/components/interactive-3d-card",
+  "install": "pnpm dlx shadcn@latest add @buildora/interactive-3d-card"
+}

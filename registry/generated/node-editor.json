@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-node-editor",
+  "type": "registry:component",
+  "title": "Node Editor",
+  "description": "Node/edge diagram primitives (Kanban drag + zoom patterns).",
+  "categories": [
+    "complex"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/kanban/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/kanban/index.tsx"
+}

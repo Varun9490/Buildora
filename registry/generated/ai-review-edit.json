@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-ai-review-edit",
+  "type": "registry:component",
+  "title": "AI Review & Edit",
+  "description": "Diff-style review UI for AI-generated content (accept / edit / reject).",
+  "categories": [
+    "ai-llm",
+    "content"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/markdown-editor/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/buildora/buildora/tree/main/packages/components/src/markdown-editor/index.tsx"
+}

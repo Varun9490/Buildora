@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+dist
+build
+*.log
+.DS_Store
+.env*.local
+coverage
+apps/web/.next
+# NOTE: registry/generated IS committed — it is the GitHub-hosted shadcn registry.
