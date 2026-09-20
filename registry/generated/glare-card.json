@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Glare Card",
   "description": "Specular glare sweeping with pointer angle.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

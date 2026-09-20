@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Primitive Textarea",
   "description": "Multiline text field sharing Input styling and semantics.",
+  "status": "beta",
   "categories": [
     "forms"
   ],

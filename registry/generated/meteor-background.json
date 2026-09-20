@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Meteor Background",
   "description": "Streaking meteor shower backdrop.",
+  "status": "experimental",
   "categories": [
     "backgrounds"
   ],

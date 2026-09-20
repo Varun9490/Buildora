@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Comment Thread",
   "description": "Resolve/reopen comment thread.",
+  "status": "beta",
   "categories": [
     "editor"
   ],

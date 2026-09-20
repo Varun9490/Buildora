@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Spatial Command Palette",
   "description": "Keyboard-first palette with animated selection, grouped results, recents, and depth presentation.",
+  "status": "experimental",
   "categories": [
     "canvas"
   ],

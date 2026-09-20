@@ -1,6 +1,11 @@
 export { MagneticButton } from "./magnetic-button";
 export { LiquidButton } from "./liquid-button";
 export { MagneticCard } from "./magnetic-card";
+export { Backdrop, type BackdropProps, type BackdropVariant } from "./backdrop";
+export { CursorFx, type CursorFxProps, type CursorFxMode } from "./cursor-fx";
+export { TextFx, type TextFxProps, type TextFxKind } from "./text-fx";
+export { FxCard, type FxCardProps, type FxCardEffect } from "./fx-card";
+export { FxButton, type FxButtonProps, type FxButtonEffect } from "./fx-button";
 export {
   RippleButton,
   ShimmerButton,

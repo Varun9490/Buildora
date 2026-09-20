@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Shimmer Button",
   "description": "Light sweep shimmer across the label.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

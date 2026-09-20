@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Blob Cursor",
   "description": "Organic blob trailing the pointer. Pointer-only.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

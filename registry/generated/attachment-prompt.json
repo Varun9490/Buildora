@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Attachment Prompt",
   "description": "Prompt input with removable attachment chips and send.",
+  "status": "experimental",
   "categories": [
     "ai-llm"
   ],

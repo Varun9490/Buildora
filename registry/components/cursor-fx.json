@@ -1,0 +1,116 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "cursor-fx",
+  "name": "CursorFx",
+  "slug": "cursor-fx",
+  "description": "Pointer-following glow in four modes (glow, spotlight, trail, blob). One rAF loop, pointer-fine only, silent under reduced motion.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "cursor",
+    "pointer"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/cursor-fx/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/cursor-fx/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cursor-fx/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cursor-fx/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cursor-fx/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/cursor-fx/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/cursor-fx/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Unsupported",
+      "notes": "No cursor on touch devices.",
+      "files": []
+    },
+    "flutter": {
+      "status": "Unsupported",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": []
+    },
+    "swiftUI": {
+      "status": "Unsupported",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": []
+    },
+    "compose": {
+      "status": "Unsupported",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": []
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "utils",
+    "tokens"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/cursor-fx/index.tsx",
+      "target": "components/buildora/cursor-fx.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\n\nexport type CursorFxMode = \"glow\" | \"spotlight\" | \"trail\" | \"blob\";\n\nexport type CursorFxProps = {\n  mode?: CursorFxMode;\n  color?: string;\n  size?: number;\n  className?: string;\n};\n\nconst TRAIL_COUNT = 10;\n\n/**\n * CursorFx — one pointer-following glow with four modes.\n * Decorative (aria-hidden, pointer-events-none), pointer-fine only,\n * renders nothing under prefers-reduced-motion. A single rAF loop writes\n * transforms to refs — no re-render per pointer move.\n * Replaces: glow/blob/trail/ghost/spotlight cursors.\n */\nexport function CursorFx({ mode = \"glow\", color = \"var(--b-accent)\", size = 320, className }: CursorFxProps) {\n  const [enabled, setEnabled] = React.useState(false);\n  const [visible, setVisible] = React.useState(false);\n  const head = React.useRef<HTMLDivElement | null>(null);\n  const dots = React.useRef<Array<HTMLDivElement | null>>([]);\n  const target = React.useRef({ x: -9999, y: -9999 });\n  const trail = React.useRef<Array<{ x: number; y: number }>>(\n    Array.from({ length: TRAIL_COUNT }, () => ({ x: -9999, y: -9999 }))\n  );\n\n  React.useEffect(() => {\n    if (typeof window === \"undefined\") return;\n    if (window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches) return;\n    if (window.matchMedia(\"(hover: none), (pointer: coarse)\").matches) return;\n    setEnabled(true);\n  }, []);\n\n  React.useEffect(() => {\n    if (!enabled) return;\n    let raf = 0;\n    const onMove = (e: PointerEvent) => {\n      target.current = { x: e.clientX, y: e.clientY };\n      setVisible((v) => (v ? v : true));\n    };\n    const onLeave = () => setVisible(false);\n    const tick = () => {\n      raf = requestAnimationFrame(tick);\n      const t = target.current;\n      if (mode === \"trail\" || mode === \"blob\") {\n        const pts = trail.current;\n        const head0 = pts[0];\n        const ease = mode === \"blob\" ? 0.18 : 0.35;\n        head0.x += (t.x - head0.x) * ease;\n        head0.y += (t.y - head0.y) * ease;\n        for (let i = 1; i < pts.length; i++) {\n          pts[i].x += (pts[i - 1].x - pts[i].x) * ease;\n          pts[i].y += (pts[i - 1].y - pts[i].y) * ease;\n        }\n        dots.current.forEach((el, i) => {\n          if (!el) return;\n          const p = pts[Math.min(i, pts.length - 1)];\n          el.style.transform = `translate(${p.x}px, ${p.y}px) translate(-50%, -50%)`;\n        });\n        if (head.current) {\n          head.current.style.transform = `translate(${head0.x}px, ${head0.y}px) translate(-50%, -50%)`;\n        }\n      } else if (head.current) {\n        head.current.style.transform = `translate(${t.x}px, ${t.y}px) translate(-50%, -50%)`;\n      }\n    };\n    raf = requestAnimationFrame(tick);\n    window.addEventListener(\"pointermove\", onMove, { passive: true });\n    document.documentElement.addEventListener(\"pointerleave\", onLeave);\n    return () => {\n      cancelAnimationFrame(raf);\n      window.removeEventListener(\"pointermove\", onMove);\n      document.documentElement.removeEventListener(\"pointerleave\", onLeave);\n    };\n  }, [enabled, mode]);\n\n  if (!enabled) return null;\n\n  return (\n    <div\n      aria-hidden\n      className={cn(\n        \"pointer-events-none fixed inset-0 transition-opacity duration-300\",\n        visible ? \"opacity-100\" : \"opacity-0\",\n        className\n      )}\n      style={{ zIndex: \"var(--z-cursor, 200)\" }}\n    >\n      {(mode === \"glow\" || mode === \"spotlight\") && (\n        <div\n          ref={head}\n          className=\"absolute left-0 top-0 rounded-full\"\n          style={{\n            width: size,\n            height: size,\n            background:\n              mode === \"glow\"\n                ? `radial-gradient(circle, ${color}55 0%, transparent 70%)`\n                : `radial-gradient(circle, ${color}33 0%, ${color}11 45%, transparent 68%)`,\n            filter: mode === \"glow\" ? \"blur(60px)\" : undefined,\n            transform: \"translate(-9999px, -9999px)\",\n          }}\n        />\n      )}\n      {(mode === \"trail\" || mode === \"blob\") && (\n        <>\n          {Array.from({ length: TRAIL_COUNT }).map((_, i) => (\n            <div\n              key={i}\n              ref={(el) => {\n                dots.current[i] = el;\n              }}\n              className=\"absolute left-0 top-0 rounded-full\"\n              style={{\n                width: Math.max(4, size / 24 - i * 1.6),\n                height: Math.max(4, size / 24 - i * 1.6),\n                background: color,\n                opacity: mode === \"blob\" ? 0.12 + (i === 0 ? 0.25 : 0) : 0.7 - (i / TRAIL_COUNT) * 0.6,\n                filter: mode === \"blob\" ? `blur(${2 + i}px)` : undefined,\n                boxShadow: i === 0 && mode === \"blob\" ? `0 0 24px ${color}` : undefined,\n                transform: \"translate(-9999px, -9999px)\",\n              }}\n            />\n          ))}\n          {mode === \"blob\" && <div ref={head} className=\"absolute hidden\" />}\n        </>\n      )}\n    </div>\n  );\n}\n\nexport default CursorFx;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/cursor-fx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/cursor-fx/index.tsx",
+  "sourceDir": "cursor-fx",
+  "docs": "/components/cursor-fx",
+  "install": "pnpm dlx shadcn@latest add @buildora/cursor-fx"
+}

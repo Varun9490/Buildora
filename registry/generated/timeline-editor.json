@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Timeline Editor",
   "description": "Track-based timeline with selectable clips.",
+  "status": "experimental",
   "categories": [
     "canvas"
   ],

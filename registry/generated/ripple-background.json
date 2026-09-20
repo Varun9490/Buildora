@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Ripple Background",
   "description": "Pointer-reactive ripple field.",
+  "status": "experimental",
   "categories": [
     "backgrounds"
   ],

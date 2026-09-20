@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Tree",
   "description": "Expandable terminal tree with selection callbacks.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

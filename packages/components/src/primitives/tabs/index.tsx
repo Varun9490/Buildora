@@ -3,8 +3,10 @@
 import * as React from "react";
 import { cn } from "@buildora/utils";
 import { useReducedMotion } from "@buildora/hooks";
+import { motion, AnimatePresence } from "framer-motion";
 
 const TabsContext = React.createContext<{
+  id: string;
   selectedTab: string;
   setSelectedTab: (value: string) => void;
 } | null>(null);
@@ -17,6 +19,7 @@ export type TabsProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
   ({ className, defaultValue, value, onValueChange, children, ...props }, ref) => {
+    const id = React.useId();
     const [selectedTab, setSelectedTab] = React.useState(value || defaultValue || "");
 
     React.useEffect(() => {
@@ -31,7 +34,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     };
 
     return (
-      <TabsContext.Provider value={{ selectedTab, setSelectedTab: handleChange }}>
+      <TabsContext.Provider value={{ id, selectedTab, setSelectedTab: handleChange }}>
         <div ref={ref} className={cn("w-full", className)} {...props}>
           {children}
         </div>
@@ -75,6 +78,7 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
 
     const reducedMotion = useReducedMotion();
     const isSelected = context.selectedTab === value;
+    const layoutId = `${context.id}-tabs-active`;
 
     return (
       <button
@@ -84,16 +88,25 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
         data-state={isSelected ? "active" : "inactive"}
         className={cn(
           "relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent]/50",
           isSelected ? "text-white" : "text-white/50 hover:text-white/80",
           className
         )}
         onClick={() => context.setSelectedTab(value)}
         {...props}
       >
-        {!reducedMotion && isSelected && (
-          <div className="absolute inset-0 rounded-lg bg-[#d4ff4f]/10 border border-[#d4ff4f]/20" />
-        )}
+        <AnimatePresence>
+          {!reducedMotion && isSelected && (
+            <motion.div
+              layoutId={layoutId}
+              className="absolute inset-0 rounded-lg bg-white/10 shadow-sm border border-white/20"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+            />
+          )}
+        </AnimatePresence>
         <span className="relative z-10">{children}</span>
       </button>
     );

@@ -3,7 +3,8 @@
   "name": "streaming-chat",
   "type": "registry:component",
   "title": "Streaming Chat",
-  "description": "Token-streaming chat UI with citations. Frontend only — bring your own LLM backend.",
+  "description": "Demo chat UI with simulated token streaming and citations. No transport yet — do not point at production. Transport-agnostic rebuild planned.",
+  "status": "experimental",
   "categories": [
     "ai-llm"
   ],

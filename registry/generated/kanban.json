@@ -2,8 +2,9 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "kanban",
   "type": "registry:component",
-  "title": "Physics Kanban",
-  "description": "Spring drag board with snap zones + Alt+Arrow keyboard movement.",
+  "title": "Kanban",
+  "description": "Simple drag board with keyboard movement. HTML5 drag today — spring physics, touch, and reorder land in the rebuild.",
+  "status": "beta",
   "categories": [
     "canvas"
   ],

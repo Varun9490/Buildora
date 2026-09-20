@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Creative Notifications",
   "description": "Stacked toast system with tones and live-region announcements.",
+  "status": "experimental",
   "categories": [
     "feedback"
   ],

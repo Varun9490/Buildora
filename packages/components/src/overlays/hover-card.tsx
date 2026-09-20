@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@buildora/utils";
+import { createPortal } from "react-dom";
 import { useReducedMotion } from "@buildora/hooks";
 
 export type HoverCardProps = {
@@ -28,6 +29,11 @@ export function HoverCard({
   const cardRef = React.useRef<HTMLDivElement>(null);
   const openTimeout = React.useRef<number | null>(null);
   const closeTimeout = React.useRef<number | null>(null);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const calculatePosition = React.useCallback(() => {
     if (!triggerRef.current || !cardRef.current) return;
@@ -93,6 +99,30 @@ export function HoverCard({
     };
   }, []);
 
+  const content = open && mounted ? createPortal(
+    <div
+      ref={cardRef}
+      className={cn(
+        "fixed z-[150] rounded-xl border border-white/10 bg-[#0d0f16] p-4 shadow-2xl backdrop-blur-xl",
+        className
+      )}
+      role="dialog"
+      aria-modal="false"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        top: position.top,
+        left: position.left,
+        animation: reducedMotion
+          ? undefined
+          : "hoverCardFadeIn 150ms ease-out",
+      }}
+    >
+      {children}
+    </div>,
+    document.body
+  ) : null;
+
   return (
     <>
       <div
@@ -103,28 +133,7 @@ export function HoverCard({
       >
         {trigger}
       </div>
-      {open && (
-        <div
-          ref={cardRef}
-          className={cn(
-            "fixed z-[150] rounded-xl border border-white/10 bg-[#0d0f16] p-4 shadow-2xl backdrop-blur-xl",
-            className
-          )}
-          role="dialog"
-          aria-modal="false"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          style={{
-            top: position.top,
-            left: position.left,
-            animation: reducedMotion
-              ? undefined
-              : "hoverCardFadeIn 150ms ease-out",
-          }}
-        >
-          {children}
-        </div>
-      )}
+      {content}
       <style jsx global>{`
         @keyframes hoverCardFadeIn {
           from {

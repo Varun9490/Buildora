@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Separator",
   "description": "Thematic break and divider rules for grouping content.",
+  "status": "beta",
   "categories": [
     "primitives"
   ],

@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "File Tree",
   "description": "Accessible tree with expand/collapse and keyboard support.",
+  "status": "beta",
   "categories": [
     "developer"
   ],

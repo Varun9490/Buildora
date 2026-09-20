@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Token Meter",
   "description": "Token usage meter with role=meter semantics.",
+  "status": "experimental",
   "categories": [
     "ai-llm"
   ],

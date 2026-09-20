@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@buildora/utils";
+import { createPortal } from "react-dom";
 import { useReducedMotion } from "@buildora/hooks";
 
 export type DropdownMenuProps = {
@@ -61,6 +62,11 @@ export function DropdownMenuContent({ children, className, align = "start" }: {
   const { open, setOpen, triggerRef } = context;
 
   const [position, setPosition] = React.useState({ top: 0, left: 0 });
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   React.useEffect(() => {
     if (open && triggerRef.current && contentRef.current) {
@@ -107,7 +113,7 @@ export function DropdownMenuContent({ children, className, align = "start" }: {
 
   if (!open) return null;
 
-  return (
+  const content = (
     <>
       <div
         ref={contentRef}
@@ -140,6 +146,8 @@ export function DropdownMenuContent({ children, className, align = "start" }: {
       `}</style>
     </>
   );
+
+  return mounted ? createPortal(content, document.body) : null;
 }
 
 export function DropdownMenuItem({

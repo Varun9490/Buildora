@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Magnetic Button",
   "description": "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.",
+  "status": "beta",
   "categories": [
     "motion"
   ],

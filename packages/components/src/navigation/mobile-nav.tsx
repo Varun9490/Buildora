@@ -3,8 +3,10 @@
 import * as React from "react";
 import { cn } from "@buildora/utils";
 import { useReducedMotion } from "@buildora/hooks";
+import { motion, AnimatePresence } from "framer-motion";
 
 const MobileNavContext = React.createContext<{
+  id: string;
   activeItem: string;
   setActiveItem: (value: string) => void;
 } | null>(null);
@@ -17,6 +19,7 @@ export type MobileNavProps = React.HTMLAttributes<HTMLElement> & {
 
 const MobileNav = React.forwardRef<HTMLElement, MobileNavProps>(
   ({ className, defaultActiveItem, activeItem: controlledActiveItem, onActiveItemChange, children, ...props }, ref) => {
+    const id = React.useId();
     const [activeItem, setActiveItem] = React.useState(controlledActiveItem ?? defaultActiveItem ?? "");
 
     React.useEffect(() => {
@@ -31,7 +34,7 @@ const MobileNav = React.forwardRef<HTMLElement, MobileNavProps>(
     };
 
     return (
-      <MobileNavContext.Provider value={{ activeItem, setActiveItem: handleChange }}>
+      <MobileNavContext.Provider value={{ id, activeItem, setActiveItem: handleChange }}>
         <nav
           ref={ref}
           role="navigation"
@@ -67,28 +70,53 @@ const MobileNavItem = React.forwardRef<HTMLAnchorElement, MobileNavItemProps>(
     if (!context) throw new Error("MobileNavItem must be used within MobileNav");
     const reducedMotion = useReducedMotion();
     const isActive = context.activeItem === value;
+    const layoutId = `${context.id}-mobile-nav-active`;
 
     return (
-      <li role="none">
+      <li role="none" className="relative flex-1">
+        <AnimatePresence>
+          {!reducedMotion && isActive && (
+            <motion.div
+              layoutId={layoutId}
+              className="absolute inset-x-2 inset-y-1 rounded-xl bg-white/10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+            />
+          )}
+        </AnimatePresence>
         <a
           ref={ref}
           role="menuitem"
           aria-current={isActive ? "page" : undefined}
           onClick={() => context.setActiveItem(value)}
           className={cn(
-            "flex flex-col items-center justify-center gap-1 rounded-lg px-3 py-2",
+            "relative z-10 flex flex-col items-center justify-center gap-1 rounded-lg px-3 py-2",
             "text-xs font-medium transition-colors",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent]/50",
             isActive
-              ? "text-[--b-accent]"
+              ? "text-white"
               : "text-white/50 hover:text-white",
             !reducedMotion && "duration-200",
             className
           )}
           {...props}
         >
-          {icon && <span className={cn("h-6 w-6", isActive && "text-[--b-accent]")}>{icon}</span>}
-          <span>{label}</span>
+          {icon && (
+            <motion.span 
+              className={cn("h-6 w-6")}
+              animate={{ y: isActive ? -2 : 0, scale: isActive ? 1.1 : 1 }}
+              transition={{ type: "spring", bounce: 0.4, duration: 0.5 }}
+            >
+              {icon}
+            </motion.span>
+          )}
+          <motion.span
+            animate={{ opacity: isActive ? 1 : 0.7 }}
+          >
+            {label}
+          </motion.span>
         </a>
       </li>
     );

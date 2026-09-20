@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Primitive Button",
   "description": "Base button with variants and sizes. Foundation for everything clickable.",
+  "status": "beta",
   "categories": [
     "primitives"
   ],

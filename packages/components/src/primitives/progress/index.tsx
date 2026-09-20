@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn, clamp } from "@buildora/utils";
 import { useReducedMotion } from "@buildora/hooks";
+import { motion } from "framer-motion";
 
 export type ProgressVariant = "default" | "accent" | "success" | "warning" | "danger";
 export type ProgressSize = "default" | "sm" | "lg";
@@ -48,7 +49,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     };
 
     return (
-      <div className={cn("w-full", className)} ref={ref} {...props}>
+      <div className={cn("w-full max-w-sm", className)} ref={ref} {...props}>
         <div
           role="progressbar"
           aria-valuemin={0}
@@ -59,17 +60,26 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
             sizeStyles[size]
           )}
         >
-          <div
-            className={cn(
-              "h-full rounded-full transition-all",
-              !reducedMotion && "duration-300",
-              variantStyles[variant],
-              indeterminate && !reducedMotion && "animate-pulse animate-[loading_1.5s_ease-in-out_infinite]"
-            )}
-            style={{
-              width: indeterminate ? "30%" : `${clampedPercentage}%`,
-            }}
-          />
+          {indeterminate ? (
+            <motion.div
+              className={cn(
+                "h-full rounded-full",
+                variantStyles[variant]
+              )}
+              initial={{ x: "-100%", width: "30%" }}
+              animate={{ x: "300%" }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+            />
+          ) : (
+            <motion.div
+              className={cn(
+                "h-full rounded-full",
+                variantStyles[variant]
+              )}
+              animate={{ width: `${clampedPercentage}%` }}
+              transition={{ type: "spring", bounce: 0, duration: 0.8 }}
+            />
+          )}
         </div>
         {showValue && !indeterminate && (
           <div className="mt-1.5 text-xs text-white/50 text-right">

@@ -31,6 +31,7 @@ export type ComponentSummary = {
   tags: string[];
   difficulty: string;
   version: string;
+  status?: "stable" | "beta" | "experimental";
 };
 
 export const allComponents: ComponentSummary[] = (registryIndex as { components: ComponentSummary[] }).components;
@@ -76,13 +77,14 @@ export type SearchFilters = {
   framework: string;
   tag: string;
   difficulty: string;
+  status: "all" | "stable" | "beta" | "experimental";
   sort: "featured" | "newest" | "az";
 };
 
 // Featured: signature components rank first; everything else sorts alphabetically.
 // No fake popularity scores — the label matches the behavior.
 function featuredRank(slug: string) {
-  return ["slingshot-otp", "magnetic-button", "spatial-command-palette", "kanban", "streaming-chat"].includes(slug)
+  return ["slingshot-otp", "magnetic-button", "kanban", "backdrop", "command-palette"].includes(slug)
     ? 1
     : 0;
 }
@@ -90,6 +92,10 @@ function featuredRank(slug: string) {
 export function searchComponents(items: ComponentSummary[], f: SearchFilters): ComponentSummary[] {
   const q = f.query.trim().toLowerCase();
   let out = items.filter((c) => {
+    const status = c.status ?? "beta";
+    if (f.status === "all") {
+      if (status === "experimental") return false;
+    } else if (status !== f.status) return false;
     if (f.category !== "all" && !c.categories.includes(f.category)) return false;
     if (f.difficulty !== "all" && c.difficulty !== f.difficulty) return false;
     if (f.tag !== "all" && !c.tags.includes(f.tag)) return false;

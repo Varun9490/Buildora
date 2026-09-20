@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Beam Background",
   "description": "Light-beam sweep backdrop.",
+  "status": "experimental",
   "categories": [
     "backgrounds"
   ],

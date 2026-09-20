@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Glow Button",
   "description": "Luminous halo button for primary actions.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

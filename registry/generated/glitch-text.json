@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Glitch Text",
   "description": "RGB-split glitch effect for display type.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

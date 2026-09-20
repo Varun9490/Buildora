@@ -5,7 +5,7 @@
   "slug": "approval-workflow",
   "description": "Multi-step approval chain with approve/reject and progress status.",
   "categories": [
-    "saas"
+    "blocks"
   ],
   "tags": [
     "approval",
@@ -14,6 +14,7 @@
   "difficulty": "advanced",
   "version": "0.1.0",
   "license": "MIT",
+  "status": "beta",
   "states": [],
   "implementations": {
     "react": {

@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Holographic Card",
   "description": "Holographic sheen that tracks the pointer.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

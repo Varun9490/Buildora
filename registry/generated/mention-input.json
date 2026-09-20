@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Mention Input",
   "description": "@mention autocomplete with listbox suggestions.",
+  "status": "beta",
   "categories": [
     "editor"
   ],

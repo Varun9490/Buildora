@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Expandable Sidebar",
   "description": "Hover-expanding rail sidebar with delayed reveal.",
+  "status": "experimental",
   "categories": [
     "navigation"
   ],

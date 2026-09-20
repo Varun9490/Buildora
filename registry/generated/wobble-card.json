@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Wobble Card",
   "description": "Spring wobble response to pointer enter.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

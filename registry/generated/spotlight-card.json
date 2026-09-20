@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Spotlight Card",
   "description": "Cursor spotlight card, calmer sibling of Magnetic Card.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

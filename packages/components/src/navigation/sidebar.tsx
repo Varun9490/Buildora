@@ -3,8 +3,10 @@
 import * as React from "react";
 import { cn } from "@buildora/utils";
 import { useReducedMotion } from "@buildora/hooks";
+import { motion, AnimatePresence } from "framer-motion";
 
 const SidebarContext = React.createContext<{
+  id: string;
   collapsed: boolean;
   setCollapsed: (value: boolean) => void;
   activeItem: string | null;
@@ -20,6 +22,7 @@ export type SidebarProps = React.HTMLAttributes<HTMLElement> & {
 
 const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
   ({ className, defaultCollapsed, collapsed: controlledCollapsed, onCollapsedChange, defaultActiveItem, children, ...props }, ref) => {
+    const id = React.useId();
     const [collapsed, setCollapsed] = React.useState(controlledCollapsed ?? defaultCollapsed ?? false);
     const [activeItem, setActiveItem] = React.useState<string | null>(defaultActiveItem ?? null);
 
@@ -35,7 +38,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
     };
 
     return (
-      <SidebarContext.Provider value={{ collapsed, setCollapsed: handleSetCollapsed, activeItem, setActiveItem }}>
+      <SidebarContext.Provider value={{ id, collapsed, setCollapsed: handleSetCollapsed, activeItem, setActiveItem }}>
         <aside
           ref={ref}
           role="navigation"
@@ -161,6 +164,7 @@ const SidebarItem = React.forwardRef<HTMLAnchorElement, SidebarItemProps>(
     if (!context) throw new Error("SidebarItem must be used within Sidebar");
     const reducedMotion = useReducedMotion();
     const isActive = context.activeItem === value;
+    const layoutId = `${context.id}-sidebar-active`;
 
     return (
       <a
@@ -169,19 +173,31 @@ const SidebarItem = React.forwardRef<HTMLAnchorElement, SidebarItemProps>(
         aria-current={isActive ? "page" : undefined}
         onClick={() => context.setActiveItem(value)}
         className={cn(
-          "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50",
+          "relative flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium transition-colors",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent]/50",
           context.collapsed && "justify-center px-2",
           isActive
-            ? "bg-[#d4ff4f]/10 text-[--b-accent] border border-[#d4ff4f]/20"
+            ? "text-white"
             : "text-white/60 hover:text-white hover:bg-white/5",
           !reducedMotion && "duration-200",
           className
         )}
         {...props}
       >
-        {icon && <span className="h-5 w-5 shrink-0">{icon}</span>}
-        {!context.collapsed && <span className="truncate">{children}</span>}
+        <AnimatePresence>
+          {!reducedMotion && isActive && (
+            <motion.div
+              layoutId={layoutId}
+              className="absolute inset-0 rounded-xl bg-white/10 border border-white/20"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+            />
+          )}
+        </AnimatePresence>
+        {icon && <span className="relative z-10 h-5 w-5 shrink-0">{icon}</span>}
+        {!context.collapsed && <span className="relative z-10 truncate">{children}</span>}
       </a>
     );
   }

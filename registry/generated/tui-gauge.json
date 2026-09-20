@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Gauge",
   "description": "Capacity gauge with value, unit, and size options.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

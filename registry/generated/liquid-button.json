@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Liquid Button",
   "description": "Gooey blob fill that follows the pointer inside a real button.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

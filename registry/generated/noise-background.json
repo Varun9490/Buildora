@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Noise Background",
   "description": "Film-grain texture overlay for tactile surfaces.",
+  "status": "experimental",
   "categories": [
     "backgrounds"
   ],

@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Spreadsheet Grid",
   "description": "Editable spreadsheet grid with labeled cells and keyboard-native inputs.",
+  "status": "experimental",
   "categories": [
     "data"
   ],

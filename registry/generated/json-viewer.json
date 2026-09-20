@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "JSON Viewer",
   "description": "Collapsible JSON viewer with mono styling.",
+  "status": "beta",
   "categories": [
     "data",
     "developer"

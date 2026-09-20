@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Scrambled Text",
   "description": "Decode-style scramble reveal for headings.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

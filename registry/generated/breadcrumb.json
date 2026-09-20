@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Breadcrumb",
   "description": "Ancestor trail with current-page semantics.",
+  "status": "beta",
   "categories": [
     "navigation"
   ],

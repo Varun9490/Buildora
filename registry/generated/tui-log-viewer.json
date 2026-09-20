@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Log Viewer",
   "description": "Leveled terminal log stream with filtering.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

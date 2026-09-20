@@ -19,6 +19,7 @@ for (const f of fs.readdirSync(dir)) {
     if (raw[k] === undefined) errs.push(`missing ${k}`);
   }
   if (!["beginner", "intermediate", "advanced"].includes(raw.difficulty)) errs.push("bad difficulty");
+  if (raw.status !== undefined && !["stable", "beta", "experimental"].includes(raw.status)) errs.push(`bad status ${raw.status}`);
   const impl = raw.implementations ?? {};
   for (const [fw, v] of Object.entries(impl) as [string, { status?: string }][]) {
     if (!["Full", "Partial", "Experimental", "Unsupported"].includes(v.status ?? "")) errs.push(`bad status ${fw}=${v.status}`);

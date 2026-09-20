@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Blur Text",
   "description": "Blur-to-sharp text entrance.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

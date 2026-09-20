@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Form",
   "description": "Terminal form renderer with submit handling.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

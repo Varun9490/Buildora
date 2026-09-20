@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Feature Grid",
   "description": "Three-up feature grid with tags and copy.",
+  "status": "beta",
   "categories": [
     "blocks"
   ],

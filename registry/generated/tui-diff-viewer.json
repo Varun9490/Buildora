@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Diff Viewer",
   "description": "Hunk-based terminal diff with line numbers.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

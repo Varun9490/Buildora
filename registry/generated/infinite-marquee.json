@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Infinite Marquee",
   "description": "Seamless looping marquee row.",
+  "status": "beta",
   "categories": [
     "motion"
   ],

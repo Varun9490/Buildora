@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Gradient Text",
   "description": "Gradient-ink display text.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

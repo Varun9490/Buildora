@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Checkbox",
   "description": "Accessible checkbox with label and indeterminate support.",
+  "status": "beta",
   "categories": [
     "forms"
   ],

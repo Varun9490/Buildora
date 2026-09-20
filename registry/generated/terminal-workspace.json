@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Terminal Workspace",
   "description": "Full terminal workspace: tabs, panes, sidebar, themes, command input.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

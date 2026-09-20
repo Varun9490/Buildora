@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Glow Cursor",
   "description": "Soft glow following the pointer. Null under reduced motion; pointer-only.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

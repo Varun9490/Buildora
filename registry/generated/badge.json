@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Badge & Chip",
   "description": "Status badges and removable chips with variant tones.",
+  "status": "beta",
   "categories": [
     "primitives"
   ],

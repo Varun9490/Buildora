@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Floating Navbar",
   "description": "Scroll-aware floating navigation pill.",
+  "status": "experimental",
   "categories": [
     "navigation"
   ],

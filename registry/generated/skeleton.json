@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Skeleton",
   "description": "Content placeholder matching final layout shape.",
+  "status": "beta",
   "categories": [
     "feedback"
   ],

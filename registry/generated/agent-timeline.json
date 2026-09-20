@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Agent Timeline",
   "description": "Agent activity timeline (plan → act → observe) with status semantics.",
+  "status": "experimental",
   "categories": [
     "ai-llm"
   ],

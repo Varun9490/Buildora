@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Cursor Spotlight",
   "description": "Cursor-tracked spotlight container for any content.",
+  "status": "beta",
   "categories": [
     "motion"
   ],

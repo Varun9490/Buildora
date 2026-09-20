@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Slash Commands",
   "description": "Notion-style slash menu with fuzzy filtering.",
+  "status": "beta",
   "categories": [
     "editor"
   ],

@@ -1,20 +1,20 @@
 {
   "$schema": "https://buildora.dev/schema/registry-item.json",
   "id": "kanban",
-  "name": "Physics Kanban",
+  "name": "Kanban",
   "slug": "kanban",
-  "description": "Spring drag board with snap zones + Alt+Arrow keyboard movement.",
+  "description": "Simple drag board with keyboard movement. HTML5 drag today — spring physics, touch, and reorder land in the rebuild.",
   "categories": [
     "canvas"
   ],
   "tags": [
     "kanban",
-    "drag",
-    "physics"
+    "drag"
   ],
   "difficulty": "advanced",
   "version": "0.1.0",
   "license": "MIT",
+  "status": "beta",
   "states": [],
   "implementations": {
     "react": {

@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Logo Cloud",
   "description": "Customer logo row with label. Logos only, no taglines.",
+  "status": "beta",
   "categories": [
     "blocks"
   ],

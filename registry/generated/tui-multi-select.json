@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Multi Select",
   "description": "Terminal multi-select with visible-count control.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

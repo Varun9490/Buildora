@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Log Viewer",
   "description": "Filterable log stream with role=log semantics.",
+  "status": "beta",
   "categories": [
     "data",
     "developer"

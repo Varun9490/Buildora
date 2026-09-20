@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Accordion",
   "description": "Disclosure stack with expanded-state semantics.",
+  "status": "beta",
   "categories": [
     "primitives"
   ],

@@ -33,6 +33,7 @@
   --z-dropdown: 50;
   --z-overlay: 100;
   --z-toast: 150;
+  --z-cursor: 200;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 140ms;
   --dur-base: 220ms;
@@ -138,6 +139,46 @@
   0% { transform: translate(0, 0) rotate(-45deg); opacity: 0; }
   10% { opacity: 1; }
   100% { transform: translate(-40vw, 40vh) rotate(-45deg); opacity: 0; }
+}
+@keyframes buildora-drift-a {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(8%, 12%) scale(1.08); }
+}
+@keyframes buildora-beam-sweep {
+  from { transform: translateX(-70%); }
+  to { transform: translateX(70%); }
+}
+@keyframes buildora-beam-rise {
+  0% { transform: translateY(15%); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateY(-260%); opacity: 0; }
+}
+@keyframes buildora-ripple-expand {
+  from { transform: scale(0.4); opacity: 0.7; }
+  to { transform: scale(1.6); opacity: 0; }
+}
+@keyframes buildora-gradient-pan {
+  from { background-position: 0% 50%; }
+  to { background-position: 200% 50%; }
+}
+@keyframes buildora-ripple-dot {
+  from { transform: translate(-50%, -50%) scale(0); opacity: 0.9; }
+  to { transform: translate(-50%, -50%) scale(18); opacity: 0; }
+}
+@keyframes buildora-glitch-a {
+  0%, 100% { clip-path: inset(40% 0 60% 0); opacity: 0.5; }
+  20% { clip-path: inset(92% 0 1% 0); opacity: 0.7; }
+  40% { clip-path: inset(43% 0 1% 0); opacity: 0.3; }
+  60% { clip-path: inset(25% 0 58% 0); opacity: 0.6; }
+  80% { clip-path: inset(54% 0 7% 0); opacity: 0.4; }
+}
+@keyframes buildora-glitch-b {
+  0%, 100% { clip-path: inset(50% 0 30% 0); opacity: 0.6; }
+  20% { clip-path: inset(7% 0 85% 0); opacity: 0.4; }
+  40% { clip-path: inset(89% 0 3% 0); opacity: 0.7; }
+  60% { clip-path: inset(23% 0 69% 0); opacity: 0.5; }
+  80% { clip-path: inset(2% 0 91% 0); opacity: 0.3; }
 }
 
 @media (prefers-reduced-motion: reduce) {

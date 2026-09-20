@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Kbd",
   "description": "Keyboard shortcut glyphs with chord composition.",
+  "status": "beta",
   "categories": [
     "primitives"
   ],

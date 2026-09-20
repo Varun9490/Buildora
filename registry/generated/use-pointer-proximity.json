@@ -4,6 +4,7 @@
   "type": "registry:hook",
   "title": "usePointerProximity",
   "description": "Window-level pointer proximity with rAF throttle. Attracts from radius away; fine-pointer only; zero cost under reduced motion.",
+  "status": "stable",
   "categories": [
     "motion"
   ],

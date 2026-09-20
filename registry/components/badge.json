@@ -14,6 +14,7 @@
   "difficulty": "beginner",
   "version": "0.1.0",
   "license": "MIT",
+  "status": "beta",
   "states": [],
   "implementations": {
     "react": {

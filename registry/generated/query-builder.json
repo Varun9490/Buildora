@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Query Builder",
   "description": "Composable filter rows with field/operator/value and removable chips.",
+  "status": "experimental",
   "categories": [
     "data"
   ],

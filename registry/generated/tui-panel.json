@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Panel",
   "description": "Bordered terminal panel with title and focus state.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

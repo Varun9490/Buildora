@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@buildora/utils";
+import { createPortal } from "react-dom";
 import { useReducedMotion } from "@buildora/hooks";
 
 export type PopoverProps = {
@@ -33,6 +34,11 @@ export function Popover({
   const anchorRef = React.useRef<HTMLDivElement>(null);
   const popoverRef = React.useRef<HTMLDivElement>(null);
   const [position, setPosition] = React.useState({ top: 0, left: 0 });
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   React.useEffect(() => {
     if (open && anchorRef.current) {
@@ -114,31 +120,34 @@ export function Popover({
     return () => window.removeEventListener("click", handleClickOutside);
   }, [open, onOpenChange]);
 
+  const content = open && mounted ? createPortal(
+    <div
+      ref={popoverRef}
+      className={cn(
+        "fixed z-[200] overflow-auto rounded-xl border border-white/10 bg-[#0d0f16] p-4 shadow-2xl backdrop-blur-xl",
+        className
+      )}
+      role="dialog"
+      aria-modal="true"
+      style={{
+        top: position.top,
+        left: position.left,
+        animation: reducedMotion
+          ? undefined
+          : "popoverFadeIn 150ms ease-out",
+      }}
+    >
+      {children}
+    </div>,
+    document.body
+  ) : null;
+
   return (
     <>
       <div ref={anchorRef} onClick={() => onOpenChange(!open)}>
         {anchor}
       </div>
-      {open && (
-        <div
-          ref={popoverRef}
-          className={cn(
-            "fixed z-[200] overflow-auto rounded-xl border border-white/10 bg-[#0d0f16] p-4 shadow-2xl backdrop-blur-xl",
-            className
-          )}
-          role="dialog"
-          aria-modal="true"
-          style={{
-            top: position.top,
-            left: position.left,
-            animation: reducedMotion
-              ? undefined
-              : "popoverFadeIn 150ms ease-out",
-          }}
-        >
-          {children}
-        </div>
-      )}
+      {content}
       <style jsx global>{`
         @keyframes popoverFadeIn {
           from {

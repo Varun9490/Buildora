@@ -6,6 +6,11 @@ import {
   MagneticButton,
   LiquidButton,
   MagneticCard,
+  Backdrop,
+  CursorFx,
+  TextFx,
+  FxCard,
+  FxButton,
   SlingshotOTP,
   InteractiveDropzone,
   SpatialCommandPalette,
@@ -266,24 +271,72 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
   switch (slug) {
     case "magnetic-button":
       return wrap(
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-4 items-center">
           <MagneticButton
             strength={controls.strength}
             radius={controls.radius}
             variant={(controls.variant as "accent" | "ghost" | "iris") ?? "accent"}
           >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
             Ship it
           </MagneticButton>
           <MagneticButton variant="ghost" strength={controls.strength} radius={controls.radius}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+               <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+               <path d="M12 12v9" />
+               <path d="m8 17 4 4 4-4" />
+            </svg>
             Ghost
           </MagneticButton>
           <MagneticButton variant="iris" strength={controls.strength} radius={controls.radius}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+               <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+            </svg>
             Iris
           </MagneticButton>
         </div>
       );
     case "liquid-button":
       return wrap(<LiquidButton intensity={controls.intensity}>Liquid action</LiquidButton>);
+    case "backdrop":
+      return wrap(
+        <Backdrop variant="aurora" className="w-full rounded-xl p-10 text-center">
+          <p className="font-display text-xl font-bold">Backdrop · aurora</p>
+          <p className="mt-1 text-sm text-[--b-muted]">Nine variants, one component.</p>
+        </Backdrop>
+      );
+    case "cursor-fx":
+      return wrap(
+        <div className="w-full rounded-xl border border-[--b-border] p-10 text-center">
+          <CursorFx mode="glow" />
+          <p className="font-display text-xl font-bold">Move your pointer</p>
+          <p className="mt-1 text-sm text-[--b-muted]">Glow · spotlight · trail · blob. Pointer-fine only.</p>
+        </div>
+      );
+    case "text-fx":
+      return wrap(
+        <div className="flex flex-col items-center gap-3 p-6 text-center">
+          <TextFx kind="typewriter" text={["Build", "Remix", "Ship"]} className="font-display text-3xl font-black" />
+          <TextFx kind="glitch" text="No fake support" className="font-display text-xl font-bold" />
+        </div>
+      );
+    case "fx-card":
+      return wrap(
+        <FxCard effect="spotlight" className="w-80">
+          <p className="font-display text-lg font-bold">FxCard</p>
+          <p className="mt-2 text-sm text-[--b-muted]">Six effects. Move your pointer across this card.</p>
+        </FxCard>
+      );
+    case "fx-button":
+      return wrap(
+        <div className="flex flex-wrap gap-3">
+          <FxButton effect="shimmer">Shimmer</FxButton>
+          <FxButton effect="ripple">Ripple</FxButton>
+          <FxButton effect="liquid">Liquid</FxButton>
+        </div>
+      );
     case "magnetic-card":
       return wrap(
         <MagneticCard tilt={controls.tilt} className="w-80">
@@ -598,14 +651,14 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     case "slider":
       return wrap(
-        <div className="w-full max-w-sm">
+        <div className="w-full max-w-xl">
           <span id="prim-slider-label" className="mb-1 block text-xs text-[--b-text-secondary]">Strength</span>
           <Slider defaultValue={35} showValue aria-labelledby="prim-slider-label" />
         </div>
       );
     case "progress":
       return wrap(
-        <div className="w-full max-w-sm space-y-3">
+        <div className="w-full max-w-xl space-y-3">
           <Progress value={65} showValue />
           <Progress value={30} variant="warning" />
         </div>
@@ -619,7 +672,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     case "skeleton":
       return wrap(
-        <div className="w-full max-w-sm space-y-2">
+        <div className="w-full max-w-xl space-y-2">
           <Skeleton className="h-10 w-full" />
           <Skeleton className="h-4 w-3/4" />
           <Skeleton className="h-4 w-1/2" />

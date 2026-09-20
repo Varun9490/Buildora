@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Morphing Typography",
   "description": "Cycling display words with gradient + motion. aria-live polite.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

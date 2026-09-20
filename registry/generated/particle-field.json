@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Particle Field",
   "description": "Lightweight canvas particle field with DPR scaling. No Three.js needed.",
+  "status": "beta",
   "categories": [
     "motion"
   ],

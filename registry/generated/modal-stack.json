@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Modal Stack",
   "description": "Stacked modal manager with push/pop/replace semantics.",
+  "status": "experimental",
   "categories": [
     "overlays"
   ],

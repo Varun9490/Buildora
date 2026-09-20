@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Bento Grid",
   "description": "Tile grid with configurable columns and spans.",
+  "status": "beta",
   "categories": [
     "primitives"
   ],

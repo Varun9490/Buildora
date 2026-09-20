@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Toast",
   "description": "Transient notifications via provider and toast API.",
+  "status": "beta",
   "categories": [
     "feedback"
   ],

@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Model Selector",
   "description": "Accessible model picker with status dot.",
+  "status": "experimental",
   "categories": [
     "ai-llm"
   ],

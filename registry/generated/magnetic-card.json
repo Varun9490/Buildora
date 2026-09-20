@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Magnetic Card",
   "description": "Pointer tilt + spotlight card with keyboard focus support.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

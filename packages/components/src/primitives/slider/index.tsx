@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn, clamp } from "@buildora/utils";
 import { useReducedMotion } from "@buildora/hooks";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
 export type SliderProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "onChange" | "defaultValue"> & {
   min?: number;
@@ -40,15 +41,13 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
     };
 
     return (
-      <div className={cn("w-full", className)}>
-        <div className="relative w-full h-2 flex items-center">
-          <div className="absolute inset-0 rounded-full bg-white/10 border border-white/5" />
-          <div
-            className={cn(
-              "absolute left-0 top-0 h-full rounded-full bg-[#d4ff4f]/30 transition-all",
-              !reducedMotion && "duration-100"
-            )}
-            style={{ width: `${percentage}%` }}
+      <div className={cn("w-full max-w-sm", className)}>
+        <div className="relative w-full h-3 flex items-center group">
+          <div className="absolute inset-0 rounded-full bg-white/10 border border-white/5 transition-colors group-hover:bg-white/15" />
+          <motion.div
+            className="absolute left-0 top-0 h-full rounded-full bg-[--b-accent]/40"
+            animate={{ width: `${percentage}%` }}
+            transition={{ type: "spring", bounce: 0, duration: 0.2 }}
           />
           <input
             ref={ref}
@@ -60,20 +59,18 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
             onChange={handleChange}
             disabled={disabled}
             className={cn(
-              "absolute inset-0 w-full h-full opacity-0 cursor-pointer",
+              "absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10",
               disabled && "cursor-not-allowed opacity-50"
             )}
             {...props}
           />
-          <div
+          <motion.div
             className={cn(
-              "absolute w-4 h-4 rounded-full bg-[--b-accent] shadow-lg shadow-[#d4ff4f]/30 transition-all pointer-events-none",
-              !reducedMotion && "duration-100",
+              "absolute w-5 h-5 rounded-full bg-white shadow-xl shadow-[--b-accent]/30 border border-white/20 pointer-events-none z-0",
               disabled && "opacity-50"
             )}
-            style={{
-              left: `calc(${percentage}% - 8px)`,
-            }}
+            animate={{ left: `calc(${percentage}% - 10px)` }}
+            transition={{ type: "spring", bounce: 0, duration: 0.2 }}
           />
         </div>
         {showValue && (

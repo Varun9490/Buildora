@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Table",
   "description": "Monospace data table with selection support.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

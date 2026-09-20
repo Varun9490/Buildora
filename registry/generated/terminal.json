@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Terminal",
   "description": "Terminal emulator UI with scrollback + command input.",
+  "status": "beta",
   "categories": [
     "developer"
   ],

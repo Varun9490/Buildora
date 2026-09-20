@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Avatar",
   "description": "Identity avatar with fallback initials and group stacking.",
+  "status": "beta",
   "categories": [
     "primitives"
   ],

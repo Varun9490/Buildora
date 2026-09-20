@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Command Bar",
   "description": "Keyboard-triggered command bar with trigger and items.",
+  "status": "experimental",
   "categories": [
     "navigation"
   ],

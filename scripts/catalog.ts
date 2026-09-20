@@ -17,6 +17,8 @@ export type RegistryType =
   | "registry:style"
   | "registry:block";
 
+export type Status = "stable" | "beta" | "experimental";
+
 export type CatalogItem = {
   id: string;
   name: string;
@@ -36,6 +38,8 @@ export type CatalogItem = {
   /** Consumer install paths parallel to files. Defaults derived from slug. */
   targets?: string[];
   registryType?: RegistryType;
+  /** beta default; experimental hides from the default listing. */
+  status?: Status;
   cssVars?: { light: Record<string, string>; dark: Record<string, string> };
   css?: string;
   demoProps?: Record<string, unknown>;
@@ -87,6 +91,7 @@ const R = (slug: string, compat: Partial<Record<string, Compat>>, extra: Partial
   files: extra.files ?? [`packages/components/src/${slug}/index.tsx`],
   targets: extra.targets,
   registryType: extra.registryType,
+  status: extra.status ?? "beta",
   cssVars: extra.cssVars,
   css: extra.css,
   demoProps: extra.demoProps
@@ -99,7 +104,7 @@ export const catalog: CatalogItem[] = [
   R("magnetic-button", fullWeb, { name: "Magnetic Button", description: "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.", categories: ["motion"], tags: ["button", "magnetic", "spring", "cursor"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"], demoProps: { strength: 0.35, radius: 120 } }),
   R("liquid-button", fullWeb, { name: "Liquid Button", description: "Gooey blob fill that follows the pointer inside a real button.", categories: ["motion"], tags: ["button", "gooey", "hover"], difficulty: "beginner" }),
   R("magnetic-card", fullWeb, { name: "Magnetic Card", description: "Pointer tilt + spotlight card with keyboard focus support.", categories: ["motion"], tags: ["card", "tilt", "spotlight"], difficulty: "beginner" }),
-  R("slingshot-otp", fullWeb, { name: "Slingshot OTP", description: "Signature gamified OTP — pull digits like a slingshot. Real inputs, paste, SR fallback underneath.", categories: ["motion"], tags: ["otp", "slingshot", "spring", "signature"], difficulty: "advanced", states: ["empty", "filled", "error"], dependencies: ["framer-motion"] }),
+  R("slingshot-otp", fullWeb, { name: "Slingshot OTP", description: "OTP with real inputs, paste, and SR support. Standard mode by default; slingshot game is opt-in delight.", categories: ["motion"], tags: ["otp", "slingshot", "spring", "signature"], difficulty: "advanced", states: ["empty", "filled", "error"], dependencies: ["framer-motion"] }),
   R("interactive-dropzone", fullWeb, { name: "Interactive Dropzone", description: "Proximity-reactive dropzone with progress visualization and error recovery.", categories: ["motion"], tags: ["upload", "dropzone", "magnetic"], difficulty: "intermediate" }),
   R("spatial-command-palette", fullWeb, { name: "Spatial Command Palette", description: "Keyboard-first palette with animated selection, grouped results, recents, and depth presentation.", categories: ["canvas"], tags: ["command", "palette", "keyboard", "spatial"], difficulty: "advanced" }),
   R("cursor-spotlight", fullWeb, { name: "Cursor Spotlight", description: "Cursor-tracked spotlight container for any content.", categories: ["motion"], tags: ["cursor", "spotlight"], difficulty: "beginner", files: ["packages/components/src/creative-atmosphere/index.tsx"] }),
@@ -111,7 +116,7 @@ export const catalog: CatalogItem[] = [
   R("tactile-loader", fullWeb, { name: "Tactile Loader", description: "Bouncy dot loader with role=status and SR label.", categories: ["feedback"], tags: ["loader", "feedback"], difficulty: "beginner", files: ["packages/components/src/creative-atmosphere/index.tsx"] }),
   R("creative-notifications", fullWeb, { name: "Creative Notifications", description: "Stacked toast system with tones and live-region announcements.", categories: ["feedback"], tags: ["toast", "notifications"], difficulty: "intermediate" }),
 
-  R("streaming-chat", fullWeb, { name: "Streaming Chat", description: "Token-streaming chat UI with citations. Frontend only — bring your own LLM backend.", categories: ["ai-llm"], tags: ["chat", "streaming", "llm"], difficulty: "intermediate" }),
+  R("streaming-chat", fullWeb, { name: "Streaming Chat", description: "Demo chat UI with simulated token streaming and citations. No transport yet — do not point at production. Transport-agnostic rebuild planned.", categories: ["ai-llm"], tags: ["chat", "demo", "llm"], difficulty: "intermediate" }),
   R("model-selector", fullWeb, { name: "Model Selector", description: "Accessible model picker with status dot.", categories: ["ai-llm"], tags: ["model", "selector"], difficulty: "beginner", files: ["packages/components/src/streaming-chat/index.tsx"] }),
   R("token-meter", fullWeb, { name: "Token Meter", description: "Token usage meter with role=meter semantics.", categories: ["ai-llm"], tags: ["tokens", "usage", "meter"], difficulty: "beginner", files: ["packages/components/src/streaming-chat/index.tsx"] }),
   R("tool-call-viz", fullWeb, { name: "Tool Call Visualization", description: "Timeline of agent tool calls with running/done states.", categories: ["ai-llm"], tags: ["tools", "agent", "timeline"], difficulty: "intermediate", files: ["packages/components/src/streaming-chat/index.tsx"] }),
@@ -144,7 +149,7 @@ export const catalog: CatalogItem[] = [
   R("feature-flags", fullWeb, { name: "Feature Flags", description: "Flag toggles with switch semantics and rollout labels.", categories: ["saas", "developer"], tags: ["flags", "toggles"], difficulty: "intermediate" }),
 
   R("command-palette", fullWeb, { name: "Command Palette", description: "Base fuzzy command palette with keyboard navigation (see Spatial variant for depth).", categories: ["navigation"], tags: ["command", "keyboard"], difficulty: "intermediate" }),
-  R("kanban", fullWeb, { name: "Physics Kanban", description: "Spring drag board with snap zones + Alt+Arrow keyboard movement.", categories: ["canvas"], tags: ["kanban", "drag", "physics"], difficulty: "advanced" }),
+  R("kanban", fullWeb, { name: "Kanban", description: "Simple drag board with keyboard movement. HTML5 drag today — spring physics, touch, and reorder land in the rebuild.", categories: ["canvas"], tags: ["kanban", "drag"], difficulty: "advanced" }),
   R("node-editor", fullWeb, { name: "Node Editor", description: "SVG node/edge diagram with zoom and accessible node list.", categories: ["canvas"], tags: ["nodes", "diagram"], difficulty: "advanced" }),
   R("timeline-editor", fullWeb, { name: "Timeline Editor", description: "Track-based timeline with selectable clips.", categories: ["canvas"], tags: ["timeline"], difficulty: "advanced" }),
   R("calendar", fullWeb, { name: "Calendar", description: "Scheduling grid with gridcell semantics.", categories: ["canvas"], tags: ["calendar", "scheduling"], difficulty: "intermediate", files: ["packages/components/src/kanban/index.tsx"] }),
@@ -257,6 +262,29 @@ export const catalog: CatalogItem[] = [
   R("logo-cloud", fullWeb, { name: "Logo Cloud", description: "Customer logo row with label. Logos only, no taglines.", categories: ["blocks"], tags: ["logos", "social-proof"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"] }),
   R("site-footer", fullWeb, { name: "Site Footer", description: "Footer with brand, link columns, and status line.", categories: ["blocks"], tags: ["footer", "navigation"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"] }),
 
+  // ── Phase 1 merged replacements (one honest component per effect family) ──
+  R("backdrop", fullWeb, {
+    name: "Backdrop", description: "One ambient background, nine variants (aurora, grid, dots, noise, mesh, beams, rise, meteors, ripple). CSS-first, decorative, deterministic layout.",
+    categories: ["backgrounds"], tags: ["background", "ambient"], difficulty: "beginner", files: ["packages/components/src/backdrop/index.tsx"],
+  }),
+  R("cursor-fx", { ...noMobile3D, reactNative: "Unsupported", flutter: "Unsupported", swiftUI: "Unsupported", compose: "Unsupported" }, {
+    name: "CursorFx", description: "Pointer-following glow in four modes (glow, spotlight, trail, blob). One rAF loop, pointer-fine only, silent under reduced motion.",
+    categories: ["motion"], tags: ["cursor", "pointer"], difficulty: "intermediate", files: ["packages/components/src/cursor-fx/index.tsx"],
+    notes: { reactNative: "No cursor on touch devices." },
+  }),
+  R("text-fx", fullWeb, {
+    name: "TextFx", description: "Kinetic text in six kinds (typewriter, scramble, blur, gradient, glitch, morph). Screen readers hear the final text once.",
+    categories: ["motion"], tags: ["text", "animated"], difficulty: "beginner", files: ["packages/components/src/text-fx/index.tsx"],
+  }),
+  R("fx-card", fullWeb, {
+    name: "FxCard", description: "Card shell with six pointer effects (tilt, spotlight, glare, holographic, wobble, glass). Ref-driven, no re-render per move.",
+    categories: ["motion"], tags: ["card", "hover"], difficulty: "beginner", files: ["packages/components/src/fx-card/index.tsx"],
+  }),
+  R("fx-button", fullWeb, {
+    name: "FxButton", description: "Real button with six finishes (none, shimmer, glow, ripple, gradient-border, liquid). Native semantics throughout.",
+    categories: ["motion"], tags: ["button", "effects"], difficulty: "beginner", files: ["packages/components/src/fx-button/index.tsx"],
+  }),
+
   // ── Shared foundations (Phase 0.2). Zero @buildora/* in generated output:
   // components import these via @/… paths and declare registryDependencies. ──
   R("utils", { react: "Full", javascript: "Full", vue: "Full", svelte: "Full", angular: "Full", html: "Full", tailwind: "Full", reactNative: "Unsupported", flutter: "Unsupported", swiftUI: "Unsupported", compose: "Unsupported" }, {
@@ -283,13 +311,69 @@ export const catalog: CatalogItem[] = [
   R("tokens", { react: "Full", javascript: "Full", vue: "Full", svelte: "Full", angular: "Full", html: "Full", tailwind: "Full", reactNative: "Partial", flutter: "Partial", swiftUI: "Partial", compose: "Partial" }, {
     name: "Tokens", description: "Light + dark CSS vars + shared keyframes. Import once so components are styled on first paint.",
     categories: ["primitives"], tags: ["tokens", "theme", "css"], difficulty: "beginner",
-    files: ["registry/shared/tokens.css"], targets: ["styles/buildora/tokens.css"], registryType: "registry:theme",
+    files: ["registry/shared/tokens.css"], targets: ["styles/buildora/tokens.css"], registryType: "registry:theme", status: "stable",
     cssVars: {
       light: { "--b-bg": "#faf9f7", "--b-panel": "#ffffff", "--b-text": "#131316", "--b-border": "rgba(19,19,22,0.08)", "--b-accent": "#4d7c0f", "--b-accent-foreground": "#ffffff" },
       dark: { "--b-bg": "#0e0e0c", "--b-panel": "#161614", "--b-text": "#ededec", "--b-border": "rgba(255,255,255,0.08)", "--b-accent": "#d4ff4f", "--b-accent-foreground": "#131305" },
     },
   }),
 ];
+
+// ── Phase 1 truth pass ─────────────────────────────────────────────
+// EXPERIMENTAL = fails the Bar today; hidden from the default listing,
+// kept installed via direct URL until its merge/rebuild lands (or deletion).
+const EXPERIMENTAL = new Set([
+  // 19 tui + workspace → one xterm.js Terminal + terminal skin (3.10)
+  "tui-panel", "tui-status-bar", "tui-header", "tui-footer", "tui-table", "tui-tree",
+  "tui-list", "tui-form", "tui-select", "tui-multi-select", "tui-progress", "tui-spinner",
+  "tui-gauge", "tui-sparkline", "tui-log-viewer", "tui-help-overlay", "tui-diff-viewer",
+  "terminal-workspace",
+  // 8 backgrounds (+aurora) → Backdrop
+  "aurora-background", "noise-background", "grid-background", "dot-grid-background",
+  "gradient-mesh-background", "aurora-beam-background", "ripple-background", "meteor-background",
+  "beam-background",
+  // 5 cursors → CursorFx
+  "glow-cursor", "blob-cursor", "trail-cursor", "ghost-cursor", "spotlight-cursor",
+  // 5 fx-buttons → FxButton (HoldButton stays: real behavior)
+  "liquid-button", "ripple-button", "shimmer-button", "glow-button", "gradient-border-button",
+  // 7 fx-cards → FxCard
+  "magnetic-card", "holographic-card", "interactive-3d-card", "glare-card",
+  "spotlight-card", "wobble-card", "glass-card",
+  // 6 text fx → TextFx
+  "typewriter", "scrambled-text", "blur-text", "gradient-text", "glitch-text", "morphing-typography",
+  // 2 command dupes → command-palette until the Command rebuild (3.5)
+  "command-bar", "spatial-command-palette",
+  // 1 toast dupe → toast until NotificationCenter
+  "creative-notifications",
+  // 1 sidebar + 1 navbar variant → base keeps, variants merge in AppShell work
+  "expandable-sidebar", "floating-navbar",
+  // engines → rebuild on real engines (3.10) or delete
+  "code-editor", "markdown-editor", "spreadsheet-grid", "node-editor", "timeline-editor", "workflow-builder",
+  // honesty gaps → rebuilds
+  "query-builder", "calendar", "rich-text-editor", "modal-stack",
+  "streaming-chat", "model-selector", "token-meter", "tool-call-viz",
+  "agent-timeline", "attachment-prompt", "ai-review-edit",
+  "advanced-table",
+]);
+
+// Demos, not components → Blocks category (compositions of real primitives).
+const BLOCKS = new Set([
+  "pricing-table", "usage-dashboard", "team-switcher", "invite-flow", "onboarding-checklist",
+  "approval-workflow", "audit-log", "feature-flags", "env-manager", "cron-builder",
+  "webhook-viewer", "api-request-builder",
+]);
+
+const STABLE = new Set(["utils", "use-reduced-motion", "spring", "use-pointer-proximity", "tokens"]);
+
+for (const item of catalog) {
+  if (EXPERIMENTAL.has(item.slug)) item.status = "experimental";
+  else if (STABLE.has(item.slug)) item.status = "stable";
+  else item.status = "beta";
+  if (BLOCKS.has(item.slug)) {
+    item.categories = ["blocks"];
+    item.registryType = "registry:block";
+  }
+}
 
 const CANONICAL_REPO = "https://github.com/Varun9490/Buildora";
 
@@ -366,6 +450,7 @@ export function toRegistryJson(item: CatalogItem) {
     difficulty: item.difficulty,
     version: item.version,
     license: item.license,
+    status: item.status ?? "beta",
     states: item.states ?? [],
     implementations: Object.fromEntries(
       Object.entries(item.compat).map(([fw, status]) => [
@@ -406,6 +491,7 @@ export function toShadcnJson(item: CatalogItem) {
     type,
     title: item.name,
     description: item.description,
+    status: item.status ?? "beta",
     categories: item.categories,
     dependencies: item.dependencies ?? [],
     registryDependencies: inferRegistryDeps(item),
@@ -447,6 +533,7 @@ export function toAgentCatalog(item: CatalogItem) {
     ),
     dependencies: item.dependencies ?? [],
     registryDependencies: inferRegistryDeps(item),
+    status: item.status ?? "beta",
     provenance: (reg as { provenance?: unknown }).provenance ?? { origin: "original" },
     targets: consumerTargets(item),
     workflow: ["find", "inspect", "install", "customize", "validate"],
@@ -468,7 +555,7 @@ export function buildAll(outDir: string) {
     version: "0.1.0",
     total: comps.length,
     installBase: "pnpm dlx shadcn@latest add @buildora/{component}",
-    components: comps.map((c) => ({ slug: c.slug, name: c.name, description: c.description, categories: c.categories, tags: c.tags, difficulty: c.difficulty, version: c.version })),
+    components: comps.map((c) => ({ slug: c.slug, name: c.name, description: c.description, categories: c.categories, tags: c.tags, difficulty: c.difficulty, version: c.version, status: (c as { status?: string }).status ?? "beta" })),
     shadcn: "Compatible — install via shadcn with the @buildora registry pointing at https://buildora.dev/r/{component}.json, or the local /r/{component}.json endpoint."
   };
   fs.writeFileSync(path.join(outDir, "registry.json"), JSON.stringify(index, null, 2));

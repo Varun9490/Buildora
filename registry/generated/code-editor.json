@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Code Editor (Lite)",
   "description": "Editable code pane with live preview. No heavy editor dep.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

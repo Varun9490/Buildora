@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Dot Grid Background",
   "description": "Dotted lattice backdrop for technical layouts.",
+  "status": "experimental",
   "categories": [
     "backgrounds"
   ],

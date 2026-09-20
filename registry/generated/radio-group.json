@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Radio Group",
   "description": "Single-select radio set with keyboard arrow navigation.",
+  "status": "beta",
   "categories": [
     "forms"
   ],

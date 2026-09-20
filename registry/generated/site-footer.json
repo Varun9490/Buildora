@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Site Footer",
   "description": "Footer with brand, link columns, and status line.",
+  "status": "beta",
   "categories": [
     "blocks"
   ],

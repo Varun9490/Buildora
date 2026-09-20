@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Interactive Dropzone",
   "description": "Proximity-reactive dropzone with progress visualization and error recovery.",
+  "status": "beta",
   "categories": [
     "motion"
   ],

@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Status Bar",
   "description": "Status strip with labeled values and tone colors.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

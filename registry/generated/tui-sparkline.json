@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Sparkline",
   "description": "Inline data sparkline with min/max readout.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

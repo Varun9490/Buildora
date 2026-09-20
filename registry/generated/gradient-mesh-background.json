@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Gradient Mesh Background",
   "description": "Layered mesh gradient field.",
+  "status": "experimental",
   "categories": [
     "backgrounds"
   ],

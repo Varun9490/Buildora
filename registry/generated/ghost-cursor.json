@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Ghost Cursor",
   "description": "Delayed ghost echo of pointer movement.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

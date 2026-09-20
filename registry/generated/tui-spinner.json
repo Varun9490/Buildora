@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Spinner",
   "description": "Terminal activity indicator with label.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

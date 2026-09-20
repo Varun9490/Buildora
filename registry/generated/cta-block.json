@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "CTA Block",
   "description": "Centered call-to-action with actions and optional stats.",
+  "status": "beta",
   "categories": [
     "blocks"
   ],

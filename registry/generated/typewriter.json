@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Typewriter",
   "description": "Typing loop with configurable speed and cursor.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

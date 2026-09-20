@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@buildora/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function PricingTable({ className }: { className?: string }) {
   const [yearly, setYearly] = React.useState(true);
@@ -60,14 +61,46 @@ export function OnboardingChecklist({ className }: { className?: string }) {
   const pct = Math.round((done.filter(Boolean).length / steps.length) * 100);
   return (
     <div className={cn("rounded-2xl border border-white/10 bg-white/[0.03] p-4", className)}>
-      <div className="flex justify-between text-sm"><span className="font-bold">Getting started</span><span className="font-mono text-white/60">{pct}%</span></div>
-      <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Onboarding progress"><div className="h-full bg-[--b-accent]" style={{ width: `${pct}%` }} /></div>
+      <div className="flex justify-between text-sm"><span className="font-bold">Getting started</span><motion.span className="font-mono text-white/60">{pct}%</motion.span></div>
+      <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Onboarding progress">
+        <motion.div 
+          className="h-full bg-[--b-accent]" 
+          animate={{ width: `${pct}%` }} 
+          transition={{ type: "spring", bounce: 0, duration: 0.8 }} 
+        />
+      </div>
       <ul className="mt-3 space-y-1">
         {steps.map((s, i) => (
-          <li key={s}><label className="flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1.5 text-sm hover:bg-white/5">
-            <input type="checkbox" checked={done[i]} onChange={() => setDone((d) => d.map((v, j) => (j === i ? !v : v)))} className="h-4 w-4 accent-[--b-accent]" />
-            <span className={done[i] ? "text-white/40 line-through" : ""}>{s}</span>
-          </label></li>
+          <li key={s}>
+            <label className="flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1.5 text-sm hover:bg-white/5">
+              <input type="checkbox" checked={done[i]} onChange={() => setDone((d) => d.map((v, j) => (j === i ? !v : v)))} className="h-4 w-4 accent-[--b-accent] opacity-0 absolute" />
+              <div className={cn(
+                "flex h-4 w-4 items-center justify-center rounded border transition-colors",
+                done[i] ? "border-[--b-accent] bg-[--b-accent]" : "border-white/20"
+              )}>
+                <AnimatePresence>
+                  {done[i] && (
+                    <motion.svg 
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.5 }}
+                      className="h-3 w-3 text-[--b-accent-foreground]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <motion.path 
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 0.2 }}
+                        strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" 
+                      />
+                    </motion.svg>
+                  )}
+                </AnimatePresence>
+              </div>
+              <motion.span 
+                animate={{ opacity: done[i] ? 0.4 : 1 }}
+                className={cn("transition-colors", done[i] && "line-through")}
+              >{s}</motion.span>
+            </label>
+          </li>
         ))}
       </ul>
     </div>

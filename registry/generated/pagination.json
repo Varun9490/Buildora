@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Pagination",
   "description": "Page controls with prev/next and numbered buttons.",
+  "status": "beta",
   "categories": [
     "navigation"
   ],

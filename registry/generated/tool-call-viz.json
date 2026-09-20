@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Tool Call Visualization",
   "description": "Timeline of agent tool calls with running/done states.",
+  "status": "experimental",
   "categories": [
     "ai-llm"
   ],

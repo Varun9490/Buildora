@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Version History",
   "description": "Document version list with restore action.",
+  "status": "beta",
   "categories": [
     "editor"
   ],

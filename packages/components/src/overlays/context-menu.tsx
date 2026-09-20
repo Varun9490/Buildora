@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@buildora/utils";
+import { createPortal } from "react-dom";
 
 export type ContextMenuProps = {
   children: React.ReactNode;
@@ -52,6 +53,11 @@ export function ContextMenuTrigger({ children }: { children: React.ReactNode }) 
 export function ContextMenuContent({ children, className }: { children: React.ReactNode; className?: string }) {
   const contentRef = React.useRef<HTMLDivElement>(null);
   const context = React.useContext(ContextMenuContext);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
   
   if (!context) return null;
   const { open, setOpen, position } = context;
@@ -83,7 +89,7 @@ export function ContextMenuContent({ children, className }: { children: React.Re
 
   if (!open) return null;
 
-  return (
+  const content = (
     <div
       ref={contentRef}
       className={cn(
@@ -112,6 +118,8 @@ export function ContextMenuContent({ children, className }: { children: React.Re
       `}</style>
     </div>
   );
+
+  return mounted ? createPortal(content, document.body) : null;
 }
 
 export function ContextMenuItem({

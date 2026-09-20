@@ -20,7 +20,7 @@ type Rock = {
   y: number;
   vx: number;
   vy: number;
-  state: "ground" | "loaded" | "shot" | "done";
+  state: "ground" | "loaded" | "shot" | "done" | "falling";
   el?: HTMLDivElement | null;
   baseX: number;
   baseY: number;
@@ -32,7 +32,8 @@ export function SlingshotOTP({ length = 6, value, onChange, onComplete, label = 
   const val = controlled ? value : internal;
   const digits = val.padEnd(length, " ").split("").slice(0, length);
 
-  const [mode, setMode] = React.useState<"standard" | "game">("game");
+  // Standard input is the default: game mode is opt-in delight, never the auth gate.
+  const [mode, setMode] = React.useState<"standard" | "game">("standard");
 
   const commit = (next: string) => {
     if (!controlled) setInternal(next);
@@ -136,18 +137,16 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
   React.useEffect(() => {
     const rocks: Rock[] = [];
     for (let i = 0; i <= 9; i++) {
-      const row = i < 5 ? 0 : 1;
-      const col = i % 5;
-      const baseX = 80 + col * 45;
-      const baseY = 240 + row * 40;
+      const baseX = 40 + Math.random() * 280;
+      const baseY = 280 + Math.random() * 40;
       rocks.push({
         id: i,
         digit: i.toString(),
         x: baseX,
-        y: baseY,
-        vx: 0,
+        y: -50 - Math.random() * 200,
+        vx: (Math.random() - 0.5) * 2,
         vy: 0,
-        state: "ground",
+        state: "falling",
         baseX,
         baseY,
       });
@@ -182,10 +181,36 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
       }
 
       rocksRef.current.forEach((rock) => {
+        if (rock.state === "falling") {
+          rock.x += rock.vx;
+          rock.y += rock.vy;
+          rock.vy += 0.5;
+          if (rock.x < 10 || rock.x > width - 10) {
+            rock.vx *= -0.8;
+            rock.x = rock.x < 10 ? 10 : width - 10;
+          }
+          if (rock.y > rock.baseY) {
+             rock.y = rock.baseY;
+             rock.vy = -rock.vy * 0.4;
+             rock.vx *= 0.8;
+             if (Math.abs(rock.vy) < 1) {
+               rock.state = "ground";
+               rock.vy = 0;
+               rock.vx = 0;
+             }
+          }
+          changed = true;
+        }
+
         if (rock.state === "shot") {
           rock.x += rock.vx;
           rock.y += rock.vy;
           rock.vy += 0.5;
+
+          if (rock.x < 10 || rock.x > width - 10) {
+            rock.vx *= -0.8;
+            rock.x = rock.x < 10 ? 10 : width - 10;
+          }
 
           for (let i = 0; i < length; i++) {
             if (digits[i] !== " ") continue;
@@ -205,7 +230,7 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
             }
           }
 
-          if (rock.y > rock.baseY && rock.vy > 0) {
+          if (rock.state !== "done" && rock.y > rock.baseY && rock.vy > 0) {
              rock.y = rock.baseY;
              rock.vy = -rock.vy * 0.4;
              rock.vx *= 0.8;

@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Ripple Button",
   "description": "Material-style expanding ripple on press.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

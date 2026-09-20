@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Tactile Loader",
   "description": "Bouncy dot loader with role=status and SR label.",
+  "status": "beta",
   "categories": [
     "feedback"
   ],

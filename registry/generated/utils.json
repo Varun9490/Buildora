@@ -4,6 +4,7 @@
   "type": "registry:lib",
   "title": "Utils",
   "description": "cn + clamp + fuzzyScore + formatBytes. Shared class-name helper for every component.",
+  "status": "stable",
   "categories": [
     "primitives"
   ],

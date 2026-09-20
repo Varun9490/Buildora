@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 147,
+  "total": 152,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -20,7 +20,8 @@
         "cursor"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "liquid-button",
@@ -35,7 +36,8 @@
         "hover"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "magnetic-card",
@@ -50,12 +52,13 @@
         "spotlight"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "slingshot-otp",
       "name": "Slingshot OTP",
-      "description": "Signature gamified OTP — pull digits like a slingshot. Real inputs, paste, SR fallback underneath.",
+      "description": "OTP with real inputs, paste, and SR support. Standard mode by default; slingshot game is opt-in delight.",
       "categories": [
         "motion"
       ],
@@ -66,7 +69,8 @@
         "signature"
       ],
       "difficulty": "advanced",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "interactive-dropzone",
@@ -81,7 +85,8 @@
         "magnetic"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "spatial-command-palette",
@@ -97,7 +102,8 @@
         "spatial"
       ],
       "difficulty": "advanced",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "cursor-spotlight",
@@ -111,7 +117,8 @@
         "spotlight"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "aurora-background",
@@ -126,7 +133,8 @@
         "gradient"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "particle-field",
@@ -140,7 +148,8 @@
         "canvas"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "morphing-typography",
@@ -154,7 +163,8 @@
         "animated"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "holographic-card",
@@ -169,7 +179,8 @@
         "hover"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "interactive-3d-card",
@@ -184,7 +195,8 @@
         "card"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tactile-loader",
@@ -198,7 +210,8 @@
         "feedback"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "creative-notifications",
@@ -212,22 +225,24 @@
         "notifications"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "streaming-chat",
       "name": "Streaming Chat",
-      "description": "Token-streaming chat UI with citations. Frontend only — bring your own LLM backend.",
+      "description": "Demo chat UI with simulated token streaming and citations. No transport yet — do not point at production. Transport-agnostic rebuild planned.",
       "categories": [
         "ai-llm"
       ],
       "tags": [
         "chat",
-        "streaming",
+        "demo",
         "llm"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "model-selector",
@@ -241,7 +256,8 @@
         "selector"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "token-meter",
@@ -256,7 +272,8 @@
         "meter"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tool-call-viz",
@@ -271,7 +288,8 @@
         "timeline"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "agent-timeline",
@@ -285,7 +303,8 @@
         "timeline"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "attachment-prompt",
@@ -299,7 +318,8 @@
         "attachments"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "ai-review-edit",
@@ -315,7 +335,8 @@
         "ai"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "advanced-table",
@@ -330,7 +351,8 @@
         "filter"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "spreadsheet-grid",
@@ -344,7 +366,8 @@
         "spreadsheet"
       ],
       "difficulty": "advanced",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "json-viewer",
@@ -359,7 +382,8 @@
         "viewer"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "log-viewer",
@@ -374,7 +398,8 @@
         "viewer"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "query-builder",
@@ -388,7 +413,8 @@
         "query"
       ],
       "difficulty": "advanced",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "diff-viewer",
@@ -403,7 +429,8 @@
         "compare"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "terminal",
@@ -417,7 +444,8 @@
         "cli"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "code-editor",
@@ -431,7 +459,8 @@
         "code"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "file-tree",
@@ -445,178 +474,188 @@
         "tree"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "api-request-builder",
       "name": "API Request Builder",
       "description": "Method + URL + body editor with live response preview.",
       "categories": [
-        "developer"
+        "blocks"
       ],
       "tags": [
         "api",
         "http"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "webhook-viewer",
       "name": "Webhook Viewer",
       "description": "Webhook event list with payload inspector.",
       "categories": [
-        "developer"
+        "blocks"
       ],
       "tags": [
         "webhooks",
         "events"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "env-manager",
       "name": "Environment Manager",
       "description": "Masked env-var table with reveal + copy.",
       "categories": [
-        "developer"
+        "blocks"
       ],
       "tags": [
         "env",
         "secrets"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "cron-builder",
       "name": "Cron Builder",
       "description": "Human-friendly cron expression builder with presets.",
       "categories": [
-        "developer"
+        "blocks"
       ],
       "tags": [
         "cron",
         "scheduler"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "pricing-table",
       "name": "Pricing Table",
       "description": "Billing toggle + featured tier. Demo only — Buildora has no payments.",
       "categories": [
-        "saas"
+        "blocks"
       ],
       "tags": [
         "pricing",
         "billing"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "usage-dashboard",
       "name": "Usage Dashboard",
       "description": "Usage bars with accessible img fallback text.",
       "categories": [
-        "saas",
-        "data"
+        "blocks"
       ],
       "tags": [
         "usage",
         "dashboard"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "team-switcher",
       "name": "Team Switcher",
       "description": "Org/team switcher with listbox semantics.",
       "categories": [
-        "saas"
+        "blocks"
       ],
       "tags": [
         "team",
         "org"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "invite-flow",
       "name": "Invite Flow",
       "description": "Validated invite form with email + role and success status.",
       "categories": [
-        "saas"
+        "blocks"
       ],
       "tags": [
         "invite",
         "team"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "onboarding-checklist",
       "name": "Onboarding Checklist",
       "description": "Progress-tracked checklist with real checkboxes.",
       "categories": [
-        "saas"
+        "blocks"
       ],
       "tags": [
         "onboarding",
         "checklist"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "approval-workflow",
       "name": "Approval Workflow",
       "description": "Multi-step approval chain with approve/reject and progress status.",
       "categories": [
-        "saas"
+        "blocks"
       ],
       "tags": [
         "approval",
         "workflow"
       ],
       "difficulty": "advanced",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "audit-log",
       "name": "Audit Log",
       "description": "Filterable immutable event log with severity semantics.",
       "categories": [
-        "saas",
-        "data"
+        "blocks"
       ],
       "tags": [
         "audit",
         "log"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "feature-flags",
       "name": "Feature Flags",
       "description": "Flag toggles with switch semantics and rollout labels.",
       "categories": [
-        "saas",
-        "developer"
+        "blocks"
       ],
       "tags": [
         "flags",
         "toggles"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "command-palette",
@@ -630,22 +669,23 @@
         "keyboard"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "kanban",
-      "name": "Physics Kanban",
-      "description": "Spring drag board with snap zones + Alt+Arrow keyboard movement.",
+      "name": "Kanban",
+      "description": "Simple drag board with keyboard movement. HTML5 drag today — spring physics, touch, and reorder land in the rebuild.",
       "categories": [
         "canvas"
       ],
       "tags": [
         "kanban",
-        "drag",
-        "physics"
+        "drag"
       ],
       "difficulty": "advanced",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "node-editor",
@@ -659,7 +699,8 @@
         "diagram"
       ],
       "difficulty": "advanced",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "timeline-editor",
@@ -672,7 +713,8 @@
         "timeline"
       ],
       "difficulty": "advanced",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "calendar",
@@ -686,7 +728,8 @@
         "scheduling"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "workflow-builder",
@@ -700,7 +743,8 @@
         "steps"
       ],
       "difficulty": "advanced",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "markdown-editor",
@@ -714,7 +758,8 @@
         "editor"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "mention-input",
@@ -727,7 +772,8 @@
         "mentions"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "comment-thread",
@@ -740,7 +786,8 @@
         "comments"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "rich-text-editor",
@@ -753,7 +800,8 @@
         "rich-text"
       ],
       "difficulty": "advanced",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "slash-commands",
@@ -767,7 +815,8 @@
         "blocks"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "version-history",
@@ -781,7 +830,8 @@
         "history"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "button",
@@ -795,7 +845,8 @@
         "foundation"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "input",
@@ -809,7 +860,8 @@
         "field"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "textarea",
@@ -823,7 +875,8 @@
         "field"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "badge",
@@ -837,7 +890,8 @@
         "chip"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "switch",
@@ -851,7 +905,8 @@
         "toggle"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "checkbox",
@@ -864,7 +919,8 @@
         "checkbox"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "radio-group",
@@ -877,7 +933,8 @@
         "radio"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "slider",
@@ -891,7 +948,8 @@
         "range"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "progress",
@@ -904,7 +962,8 @@
         "progress"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "spinner",
@@ -918,7 +977,8 @@
         "loading"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "skeleton",
@@ -932,7 +992,8 @@
         "loading"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "avatar",
@@ -945,7 +1006,8 @@
         "avatar"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "kbd",
@@ -959,7 +1021,8 @@
         "kbd"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "separator",
@@ -973,7 +1036,8 @@
         "divider"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "tabs",
@@ -986,7 +1050,8 @@
         "tabs"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "accordion",
@@ -999,7 +1064,8 @@
         "accordion"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "toast",
@@ -1012,7 +1078,8 @@
         "toast"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "tooltip",
@@ -1025,7 +1092,8 @@
         "tooltip"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "dialog",
@@ -1039,7 +1107,8 @@
         "modal"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "alert-dialog",
@@ -1053,7 +1122,8 @@
         "dialog"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "sheet",
@@ -1067,7 +1137,8 @@
         "side"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "drawer",
@@ -1081,7 +1152,8 @@
         "drawer"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "popover",
@@ -1094,7 +1166,8 @@
         "popover"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "dropdown-menu",
@@ -1108,7 +1181,8 @@
         "dropdown"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "context-menu",
@@ -1122,7 +1196,8 @@
         "context"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "hover-card",
@@ -1136,7 +1211,8 @@
         "hover"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "modal-stack",
@@ -1150,7 +1226,8 @@
         "modal"
       ],
       "difficulty": "advanced",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "navbar",
@@ -1164,7 +1241,8 @@
         "navbar"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "floating-navbar",
@@ -1178,7 +1256,8 @@
         "navbar"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "sidebar",
@@ -1191,7 +1270,8 @@
         "sidebar"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "expandable-sidebar",
@@ -1205,7 +1285,8 @@
         "hover"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "mobile-nav",
@@ -1219,7 +1300,8 @@
         "bottom"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "breadcrumb",
@@ -1233,7 +1315,8 @@
         "breadcrumb"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "step-nav",
@@ -1247,7 +1330,8 @@
         "steps"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "pagination",
@@ -1261,7 +1345,8 @@
         "pagination"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "command-bar",
@@ -1275,7 +1360,8 @@
         "palette"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-panel",
@@ -1289,7 +1375,8 @@
         "panel"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-status-bar",
@@ -1303,7 +1390,8 @@
         "status"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-header",
@@ -1317,7 +1405,8 @@
         "header"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-footer",
@@ -1331,7 +1420,8 @@
         "footer"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-table",
@@ -1345,7 +1435,8 @@
         "table"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-tree",
@@ -1359,7 +1450,8 @@
         "tree"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-list",
@@ -1373,7 +1465,8 @@
         "list"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-form",
@@ -1387,7 +1480,8 @@
         "form"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-select",
@@ -1401,7 +1495,8 @@
         "select"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-multi-select",
@@ -1415,7 +1510,8 @@
         "select"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-progress",
@@ -1429,7 +1525,8 @@
         "progress"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-spinner",
@@ -1443,7 +1540,8 @@
         "spinner"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-gauge",
@@ -1457,7 +1555,8 @@
         "gauge"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-sparkline",
@@ -1471,7 +1570,8 @@
         "chart"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-log-viewer",
@@ -1485,7 +1585,8 @@
         "logs"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-help-overlay",
@@ -1499,7 +1600,8 @@
         "help"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "tui-diff-viewer",
@@ -1513,7 +1615,8 @@
         "diff"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "terminal-workspace",
@@ -1527,7 +1630,8 @@
         "workspace"
       ],
       "difficulty": "advanced",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "noise-background",
@@ -1541,7 +1645,8 @@
         "noise"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "grid-background",
@@ -1555,7 +1660,8 @@
         "grid"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "dot-grid-background",
@@ -1569,7 +1675,8 @@
         "dots"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "gradient-mesh-background",
@@ -1583,7 +1690,8 @@
         "mesh"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "aurora-beam-background",
@@ -1597,7 +1705,8 @@
         "aurora"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "ripple-background",
@@ -1611,7 +1720,8 @@
         "ripple"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "meteor-background",
@@ -1625,7 +1735,8 @@
         "meteor"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "beam-background",
@@ -1639,7 +1750,8 @@
         "beam"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "glow-cursor",
@@ -1653,7 +1765,8 @@
         "glow"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "blob-cursor",
@@ -1667,7 +1780,8 @@
         "blob"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "trail-cursor",
@@ -1681,7 +1795,8 @@
         "trail"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "ghost-cursor",
@@ -1695,7 +1810,8 @@
         "ghost"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "spotlight-cursor",
@@ -1709,7 +1825,8 @@
         "spotlight"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "typewriter",
@@ -1723,7 +1840,8 @@
         "typewriter"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "scrambled-text",
@@ -1737,7 +1855,8 @@
         "scramble"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "blur-text",
@@ -1751,7 +1870,8 @@
         "blur"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "gradient-text",
@@ -1765,7 +1885,8 @@
         "gradient"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "glitch-text",
@@ -1779,7 +1900,8 @@
         "glitch"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "ripple-button",
@@ -1793,7 +1915,8 @@
         "ripple"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "shimmer-button",
@@ -1807,7 +1930,8 @@
         "shimmer"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "glow-button",
@@ -1821,7 +1945,8 @@
         "glow"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "gradient-border-button",
@@ -1835,7 +1960,8 @@
         "gradient"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "hold-button",
@@ -1850,7 +1976,8 @@
         "confirm"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "glare-card",
@@ -1864,7 +1991,8 @@
         "glare"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "spotlight-card",
@@ -1878,7 +2006,8 @@
         "spotlight"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "wobble-card",
@@ -1892,7 +2021,8 @@
         "spring"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "glass-card",
@@ -1906,7 +2036,8 @@
         "glass"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "experimental"
     },
     {
       "slug": "bento-grid",
@@ -1921,7 +2052,8 @@
         "grid"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "infinite-marquee",
@@ -1935,7 +2067,8 @@
         "marquee"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "masonry-layout",
@@ -1949,7 +2082,8 @@
         "masonry"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "cta-block",
@@ -1963,7 +2097,8 @@
         "marketing"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "feature-grid",
@@ -1977,7 +2112,8 @@
         "marketing"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "logo-cloud",
@@ -1991,7 +2127,8 @@
         "social-proof"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "site-footer",
@@ -2005,7 +2142,83 @@
         "navigation"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "backdrop",
+      "name": "Backdrop",
+      "description": "One ambient background, nine variants (aurora, grid, dots, noise, mesh, beams, rise, meteors, ripple). CSS-first, decorative, deterministic layout.",
+      "categories": [
+        "backgrounds"
+      ],
+      "tags": [
+        "background",
+        "ambient"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "cursor-fx",
+      "name": "CursorFx",
+      "description": "Pointer-following glow in four modes (glow, spotlight, trail, blob). One rAF loop, pointer-fine only, silent under reduced motion.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "cursor",
+        "pointer"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "text-fx",
+      "name": "TextFx",
+      "description": "Kinetic text in six kinds (typewriter, scramble, blur, gradient, glitch, morph). Screen readers hear the final text once.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "text",
+        "animated"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "fx-card",
+      "name": "FxCard",
+      "description": "Card shell with six pointer effects (tilt, spotlight, glare, holographic, wobble, glass). Ref-driven, no re-render per move.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "card",
+        "hover"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "fx-button",
+      "name": "FxButton",
+      "description": "Real button with six finishes (none, shimmer, glow, ripple, gradient-border, liquid). Native semantics throughout.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "button",
+        "effects"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
     },
     {
       "slug": "utils",
@@ -2020,7 +2233,8 @@
         "foundation"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "stable"
     },
     {
       "slug": "use-reduced-motion",
@@ -2035,7 +2249,8 @@
         "hook"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "stable"
     },
     {
       "slug": "spring",
@@ -2050,7 +2265,8 @@
         "animation"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "stable"
     },
     {
       "slug": "use-pointer-proximity",
@@ -2066,7 +2282,8 @@
         "hook"
       ],
       "difficulty": "intermediate",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "stable"
     },
     {
       "slug": "tokens",
@@ -2081,7 +2298,8 @@
         "css"
       ],
       "difficulty": "beginner",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "status": "stable"
     }
   ],
   "shadcn": "Compatible — install via shadcn with the @buildora registry pointing at https://buildora.dev/r/{component}.json, or the local /r/{component}.json endpoint."

@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Node Editor",
   "description": "SVG node/edge diagram with zoom and accessible node list.",
+  "status": "experimental",
   "categories": [
     "canvas"
   ],

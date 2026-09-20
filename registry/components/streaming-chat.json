@@ -3,18 +3,19 @@
   "id": "streaming-chat",
   "name": "Streaming Chat",
   "slug": "streaming-chat",
-  "description": "Token-streaming chat UI with citations. Frontend only — bring your own LLM backend.",
+  "description": "Demo chat UI with simulated token streaming and citations. No transport yet — do not point at production. Transport-agnostic rebuild planned.",
   "categories": [
     "ai-llm"
   ],
   "tags": [
     "chat",
-    "streaming",
+    "demo",
     "llm"
   ],
   "difficulty": "intermediate",
   "version": "0.1.0",
   "license": "MIT",
+  "status": "experimental",
   "states": [],
   "implementations": {
     "react": {

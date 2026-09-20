@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI List",
   "description": "Selectable terminal list with shortcuts and icons.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

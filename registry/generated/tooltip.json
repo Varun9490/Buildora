@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Tooltip",
   "description": "Hover/focus description bubble for controls.",
+  "status": "beta",
   "categories": [
     "primitives"
   ],

@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Help Overlay",
   "description": "Keybinding reference overlay with columns.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

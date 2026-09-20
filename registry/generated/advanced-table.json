@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Advanced Table",
   "description": "Sortable, filterable, paginated table with semantic <table> markup.",
+  "status": "experimental",
   "categories": [
     "data"
   ],

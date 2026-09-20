@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Calendar",
   "description": "Scheduling grid with gridcell semantics.",
+  "status": "experimental",
   "categories": [
     "canvas"
   ],

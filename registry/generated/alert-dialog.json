@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Alert Dialog",
   "description": "Confirm/cancel dialog with destructive variant.",
+  "status": "beta",
   "categories": [
     "overlays"
   ],

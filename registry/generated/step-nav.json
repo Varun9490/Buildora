@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Step Nav",
   "description": "Stepper navigation with current-step state.",
+  "status": "beta",
   "categories": [
     "navigation"
   ],

@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Markdown Editor",
   "description": "Split markdown editor with live preview.",
+  "status": "experimental",
   "categories": [
     "editor"
   ],

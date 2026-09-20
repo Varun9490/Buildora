@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Spinner",
   "description": "Activity spinner with sizes and live-region label.",
+  "status": "beta",
   "categories": [
     "feedback"
   ],

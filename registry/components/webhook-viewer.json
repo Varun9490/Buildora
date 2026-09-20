@@ -5,7 +5,7 @@
   "slug": "webhook-viewer",
   "description": "Webhook event list with payload inspector.",
   "categories": [
-    "developer"
+    "blocks"
   ],
   "tags": [
     "webhooks",
@@ -14,6 +14,7 @@
   "difficulty": "intermediate",
   "version": "0.1.0",
   "license": "MIT",
+  "status": "beta",
   "states": [],
   "implementations": {
     "react": {

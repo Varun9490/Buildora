@@ -4,6 +4,7 @@
   "type": "registry:lib",
   "title": "Spring",
   "description": "dt-based springStep + magnet + rafLoop. The physics behind magnetic effects.",
+  "status": "stable",
   "categories": [
     "motion"
   ],

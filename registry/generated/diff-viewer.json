@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Diff Viewer",
   "description": "Side-by-side line comparison with added/removed semantics.",
+  "status": "beta",
   "categories": [
     "data",
     "editor"

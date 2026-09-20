@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Header",
   "description": "Terminal header with title, subtitle, and slots.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

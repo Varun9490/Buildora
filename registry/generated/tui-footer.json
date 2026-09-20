@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Footer",
   "description": "Shortcut hints and message line for terminal UIs.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Aurora Beam Background",
   "description": "Sweeping aurora beams over content.",
+  "status": "experimental",
   "categories": [
     "backgrounds"
   ],

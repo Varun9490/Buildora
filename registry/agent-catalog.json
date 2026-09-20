@@ -2,7 +2,7 @@
   "$schema": "https://buildora.dev/schema/agent-catalog.json",
   "name": "buildora",
   "version": "0.1.0",
-  "total": 147,
+  "total": 152,
   "workflow": [
     "find component",
     "inspect metadata",
@@ -87,6 +87,7 @@
         "spring",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -174,6 +175,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -261,6 +263,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -280,7 +283,7 @@
     {
       "slug": "slingshot-otp",
       "name": "Slingshot OTP",
-      "description": "Signature gamified OTP — pull digits like a slingshot. Real inputs, paste, SR fallback underneath.",
+      "description": "OTP with real inputs, paste, and SR support. Standard mode by default; slingshot game is opt-in delight.",
       "categories": [
         "motion"
       ],
@@ -350,6 +353,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -436,6 +440,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -523,6 +528,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -608,6 +614,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -694,6 +701,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -779,6 +787,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -864,6 +873,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -950,6 +960,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1036,6 +1047,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1121,6 +1133,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1206,6 +1219,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1225,13 +1239,13 @@
     {
       "slug": "streaming-chat",
       "name": "Streaming Chat",
-      "description": "Token-streaming chat UI with citations. Frontend only — bring your own LLM backend.",
+      "description": "Demo chat UI with simulated token streaming and citations. No transport yet — do not point at production. Transport-agnostic rebuild planned.",
       "categories": [
         "ai-llm"
       ],
       "tags": [
         "chat",
-        "streaming",
+        "demo",
         "llm"
       ],
       "difficulty": "intermediate",
@@ -1292,6 +1306,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1377,6 +1392,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1463,6 +1479,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1549,6 +1566,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1634,6 +1652,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1719,6 +1738,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1806,6 +1826,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1892,6 +1913,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1977,6 +1999,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2063,6 +2086,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2149,6 +2173,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2234,6 +2259,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2320,6 +2346,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2405,6 +2432,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2490,6 +2518,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2575,6 +2604,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2596,7 +2626,7 @@
       "name": "API Request Builder",
       "description": "Method + URL + body editor with live response preview.",
       "categories": [
-        "developer"
+        "blocks"
       ],
       "tags": [
         "api",
@@ -2660,6 +2690,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2681,7 +2712,7 @@
       "name": "Webhook Viewer",
       "description": "Webhook event list with payload inspector.",
       "categories": [
-        "developer"
+        "blocks"
       ],
       "tags": [
         "webhooks",
@@ -2745,6 +2776,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2766,7 +2798,7 @@
       "name": "Environment Manager",
       "description": "Masked env-var table with reveal + copy.",
       "categories": [
-        "developer"
+        "blocks"
       ],
       "tags": [
         "env",
@@ -2830,6 +2862,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2851,7 +2884,7 @@
       "name": "Cron Builder",
       "description": "Human-friendly cron expression builder with presets.",
       "categories": [
-        "developer"
+        "blocks"
       ],
       "tags": [
         "cron",
@@ -2915,6 +2948,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2936,7 +2970,7 @@
       "name": "Pricing Table",
       "description": "Billing toggle + featured tier. Demo only — Buildora has no payments.",
       "categories": [
-        "saas"
+        "blocks"
       ],
       "tags": [
         "pricing",
@@ -3000,6 +3034,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3021,8 +3056,7 @@
       "name": "Usage Dashboard",
       "description": "Usage bars with accessible img fallback text.",
       "categories": [
-        "saas",
-        "data"
+        "blocks"
       ],
       "tags": [
         "usage",
@@ -3086,6 +3120,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3107,7 +3142,7 @@
       "name": "Team Switcher",
       "description": "Org/team switcher with listbox semantics.",
       "categories": [
-        "saas"
+        "blocks"
       ],
       "tags": [
         "team",
@@ -3171,6 +3206,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3192,7 +3228,7 @@
       "name": "Invite Flow",
       "description": "Validated invite form with email + role and success status.",
       "categories": [
-        "saas"
+        "blocks"
       ],
       "tags": [
         "invite",
@@ -3256,6 +3292,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3277,7 +3314,7 @@
       "name": "Onboarding Checklist",
       "description": "Progress-tracked checklist with real checkboxes.",
       "categories": [
-        "saas"
+        "blocks"
       ],
       "tags": [
         "onboarding",
@@ -3341,6 +3378,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3362,7 +3400,7 @@
       "name": "Approval Workflow",
       "description": "Multi-step approval chain with approve/reject and progress status.",
       "categories": [
-        "saas"
+        "blocks"
       ],
       "tags": [
         "approval",
@@ -3426,6 +3464,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3447,8 +3486,7 @@
       "name": "Audit Log",
       "description": "Filterable immutable event log with severity semantics.",
       "categories": [
-        "saas",
-        "data"
+        "blocks"
       ],
       "tags": [
         "audit",
@@ -3512,6 +3550,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3533,8 +3572,7 @@
       "name": "Feature Flags",
       "description": "Flag toggles with switch semantics and rollout labels.",
       "categories": [
-        "saas",
-        "developer"
+        "blocks"
       ],
       "tags": [
         "flags",
@@ -3598,6 +3636,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3683,6 +3722,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3701,15 +3741,14 @@
     },
     {
       "slug": "kanban",
-      "name": "Physics Kanban",
-      "description": "Spring drag board with snap zones + Alt+Arrow keyboard movement.",
+      "name": "Kanban",
+      "description": "Simple drag board with keyboard movement. HTML5 drag today — spring physics, touch, and reorder land in the rebuild.",
       "categories": [
         "canvas"
       ],
       "tags": [
         "kanban",
-        "drag",
-        "physics"
+        "drag"
       ],
       "difficulty": "advanced",
       "version": "0.1.0",
@@ -3769,6 +3808,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3854,6 +3894,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3938,6 +3979,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4023,6 +4065,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4108,6 +4151,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4193,6 +4237,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4277,6 +4322,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4361,6 +4407,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4445,6 +4492,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4530,6 +4578,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4615,6 +4664,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4701,6 +4751,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4786,6 +4837,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4871,6 +4923,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4956,6 +5009,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5042,6 +5096,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5127,6 +5182,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5212,6 +5268,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5298,6 +5355,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5383,6 +5441,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5468,6 +5527,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5554,6 +5614,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5638,6 +5699,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5723,6 +5785,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5808,6 +5871,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5893,6 +5957,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5978,6 +6043,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6062,6 +6128,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6146,6 +6213,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6232,6 +6300,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6317,6 +6386,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6403,6 +6473,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6489,6 +6560,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6574,6 +6646,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6660,6 +6733,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6745,6 +6819,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6831,6 +6906,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6916,6 +6992,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7002,6 +7079,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7088,6 +7166,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7173,6 +7252,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7259,6 +7339,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7345,6 +7426,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7430,6 +7512,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7516,6 +7599,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7602,6 +7686,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7688,6 +7773,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7773,6 +7859,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7858,6 +7945,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7943,6 +8031,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8028,6 +8117,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8113,6 +8203,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8198,6 +8289,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8283,6 +8375,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8368,6 +8461,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8453,6 +8547,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8538,6 +8633,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8623,6 +8719,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8708,6 +8805,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8793,6 +8891,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8878,6 +8977,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8963,6 +9063,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9048,6 +9149,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9133,6 +9235,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9224,6 +9327,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9315,6 +9419,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9400,6 +9505,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9485,6 +9591,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9571,6 +9678,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9657,6 +9765,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9743,6 +9852,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9829,6 +9939,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9915,6 +10026,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10001,6 +10113,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10087,6 +10200,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10173,6 +10287,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10259,6 +10374,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10345,6 +10461,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10430,6 +10547,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10515,6 +10633,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10600,6 +10719,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10685,6 +10805,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10770,6 +10891,7 @@
         "utils",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10856,6 +10978,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10942,6 +11065,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -11028,6 +11152,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -11114,6 +11239,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -11201,6 +11327,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -11287,6 +11414,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -11373,6 +11501,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -11459,6 +11588,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -11545,6 +11675,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "experimental",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -11631,6 +11762,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -11717,6 +11849,7 @@
         "use-reduced-motion",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -11802,6 +11935,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -11890,6 +12024,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -11978,6 +12113,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -12066,6 +12202,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -12154,6 +12291,7 @@
         "utils",
         "tokens"
       ],
+      "status": "beta",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -12161,6 +12299,440 @@
       },
       "targets": [
         "components/buildora/site-footer.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "backdrop",
+      "name": "Backdrop",
+      "description": "One ambient background, nine variants (aurora, grid, dots, noise, mesh, beams, rise, meteors, ripple). CSS-first, decorative, deterministic layout.",
+      "categories": [
+        "backgrounds"
+      ],
+      "tags": [
+        "background",
+        "ambient"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/backdrop",
+      "docs": "/components/backdrop",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/backdrop",
+      "files": [
+        "packages/components/src/backdrop/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "use-reduced-motion",
+        "tokens"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/backdrop.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "cursor-fx",
+      "name": "CursorFx",
+      "description": "Pointer-following glow in four modes (glow, spotlight, trail, blob). One rAF loop, pointer-fine only, silent under reduced motion.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "cursor",
+        "pointer"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/cursor-fx",
+      "docs": "/components/cursor-fx",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/cursor-fx",
+      "files": [
+        "packages/components/src/cursor-fx/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Unsupported",
+          "note": "No cursor on touch devices."
+        },
+        "flutter": {
+          "status": "Unsupported",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Unsupported",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Unsupported",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/cursor-fx.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "text-fx",
+      "name": "TextFx",
+      "description": "Kinetic text in six kinds (typewriter, scramble, blur, gradient, glitch, morph). Screen readers hear the final text once.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "text",
+        "animated"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/text-fx",
+      "docs": "/components/text-fx",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/text-fx",
+      "files": [
+        "packages/components/src/text-fx/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "use-reduced-motion",
+        "tokens"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/text-fx.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "fx-card",
+      "name": "FxCard",
+      "description": "Card shell with six pointer effects (tilt, spotlight, glare, holographic, wobble, glass). Ref-driven, no re-render per move.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "card",
+        "hover"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/fx-card",
+      "docs": "/components/fx-card",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/fx-card",
+      "files": [
+        "packages/components/src/fx-card/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "use-reduced-motion",
+        "tokens"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/fx-card.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "fx-button",
+      "name": "FxButton",
+      "description": "Real button with six finishes (none, shimmer, glow, ripple, gradient-border, liquid). Native semantics throughout.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "button",
+        "effects"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/fx-button",
+      "docs": "/components/fx-button",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/fx-button",
+      "files": [
+        "packages/components/src/fx-button/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "use-reduced-motion",
+        "tokens"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/fx-button.tsx"
       ],
       "workflow": [
         "find",
@@ -12240,6 +12812,7 @@
         "tailwind-merge"
       ],
       "registryDependencies": [],
+      "status": "stable",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -12323,6 +12896,7 @@
       },
       "dependencies": [],
       "registryDependencies": [],
+      "status": "stable",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -12406,6 +12980,7 @@
       },
       "dependencies": [],
       "registryDependencies": [],
+      "status": "stable",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -12490,6 +13065,7 @@
       },
       "dependencies": [],
       "registryDependencies": [],
+      "status": "stable",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -12573,6 +13149,7 @@
       },
       "dependencies": [],
       "registryDependencies": [],
+      "status": "stable",
       "provenance": {
         "origin": "original",
         "license": "MIT",

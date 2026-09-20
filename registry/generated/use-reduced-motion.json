@@ -4,6 +4,7 @@
   "type": "registry:hook",
   "title": "useReducedMotion",
   "description": "SSR-safe prefers-reduced-motion via useSyncExternalStore. No hydration flash.",
+  "status": "stable",
   "categories": [
     "primitives"
   ],

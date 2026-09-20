@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Trail Cursor",
   "description": "Fading particle trail behind the pointer.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

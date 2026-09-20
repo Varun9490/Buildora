@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Switch",
   "description": "Labeled toggle switch built on a native checkbox.",
+  "status": "beta",
   "categories": [
     "forms"
   ],

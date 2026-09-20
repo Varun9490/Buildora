@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Grid Background",
   "description": "Perspective grid with fade control.",
+  "status": "experimental",
   "categories": [
     "backgrounds"
   ],

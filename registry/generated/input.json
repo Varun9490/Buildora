@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Primitive Input",
   "description": "Labeled text input with variants, sizes, and error states.",
+  "status": "beta",
   "categories": [
     "forms"
   ],

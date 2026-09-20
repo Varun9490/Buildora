@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn, fuzzyScore } from "@buildora/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export type Command = { id: string; label: string; hint?: string; group?: string };
 
@@ -20,6 +21,7 @@ export function CommandPalette({
     { id: "c3", label: "Validate registry", hint: "run", group: "Actions" },
     { id: "c4", label: "Toggle theme", hint: "dark/light", group: "Actions" },
   ];
+  const id = React.useId();
   const [q, setQ] = React.useState("");
   const [active, setActive] = React.useState(0);
   const view = seed
@@ -49,19 +51,31 @@ export function CommandPalette({
           className="w-full rounded-xl bg-transparent px-3 py-2 text-sm outline-none placeholder:text-white/30"
         />
       </div>
-      <ul id="cmd-list" role="listbox" aria-label="Commands" className="max-h-56 overflow-auto p-1.5">
+      <ul id="cmd-list" role="listbox" aria-label="Commands" className="max-h-56 overflow-auto p-1.5 space-y-0.5">
         {view.map((c, i) => (
-          <li key={c.id} id={`cmd-${c.id}`} role="option" aria-selected={i === active}>
+          <li key={c.id} id={`cmd-${c.id}`} role="option" aria-selected={i === active} className="relative">
+            <AnimatePresence>
+              {i === active && (
+                <motion.div
+                  layoutId={`${id}-active-cmd`}
+                  className="absolute inset-0 rounded-lg bg-white/10 border border-white/10"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                />
+              )}
+            </AnimatePresence>
             <button
               onClick={() => onSelect?.(c.id)}
               onMouseEnter={() => setActive(i)}
               className={cn(
-                "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm",
-                i === active ? "bg-[--b-accent] font-semibold text-[--b-accent-foreground]" : "text-white/75 hover:bg-white/5"
+                "relative z-10 flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors duration-200",
+                i === active ? "font-semibold text-white" : "text-white/75"
               )}
             >
               <span>{c.label}</span>
-              {c.hint && <span className={cn("ml-auto font-mono text-[11px]", i === active ? "text-black/60" : "text-white/35")}>{c.hint}</span>}
+              {c.hint && <span className={cn("ml-auto font-mono text-[11px] transition-colors", i === active ? "text-white/60" : "text-white/35")}>{c.hint}</span>}
             </button>
           </li>
         ))}

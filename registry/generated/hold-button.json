@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Hold Button",
   "description": "Press-and-hold confirm with progress feedback.",
+  "status": "beta",
   "categories": [
     "motion"
   ],

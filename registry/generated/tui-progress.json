@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Progress",
   "description": "Block-character progress bar with tone colors.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

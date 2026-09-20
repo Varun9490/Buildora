@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "TUI Select",
   "description": "Terminal single-select with search support.",
+  "status": "experimental",
   "categories": [
     "developer"
   ],

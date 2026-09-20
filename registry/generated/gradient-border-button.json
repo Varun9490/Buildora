@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Gradient Border Button",
   "description": "Animated gradient frame around a solid label.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

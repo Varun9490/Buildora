@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Glass Card",
   "description": "Frosted-glass panel card with solid fallback.",
+  "status": "experimental",
   "categories": [
     "motion"
   ],

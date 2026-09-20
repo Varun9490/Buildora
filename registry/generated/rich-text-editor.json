@@ -4,6 +4,7 @@
   "type": "registry:component",
   "title": "Rich Text Editor",
   "description": "Toolbar + contentEditable editor with word count.",
+  "status": "experimental",
   "categories": [
     "editor"
   ],

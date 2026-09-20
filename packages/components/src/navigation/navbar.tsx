@@ -3,26 +3,32 @@
 import * as React from "react";
 import { cn } from "@buildora/utils";
 import { useReducedMotion } from "@buildora/hooks";
+import { motion, AnimatePresence } from "framer-motion";
+
+const NavbarContext = React.createContext<{ id: string } | null>(null);
 
 export type NavbarProps = React.HTMLAttributes<HTMLElement>;
 
 const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
   ({ className, children, ...props }, ref) => {
+    const id = React.useId();
     return (
-      <header
-        ref={ref}
-        role="banner"
-        className={cn(
-          "sticky top-0 z-50 w-full border-b border-white/10 bg-[#0d0f16]/80 backdrop-blur-xl",
-          "supports-[backdrop-filter]:bg-[#0d0f16]/60",
-          className
-        )}
-        {...props}
-      >
-        <div className="flex h-16 items-center justify-between px-4 md:px-6">
-          {children}
-        </div>
-      </header>
+      <NavbarContext.Provider value={{ id }}>
+        <header
+          ref={ref}
+          role="banner"
+          className={cn(
+            "sticky top-0 z-50 w-full border-b border-white/10 bg-[#0d0f16]/80 backdrop-blur-xl",
+            "supports-[backdrop-filter]:bg-[#0d0f16]/60",
+            className
+          )}
+          {...props}
+        >
+          <div className="flex h-16 items-center justify-between px-4 md:px-6">
+            {children}
+          </div>
+        </header>
+      </NavbarContext.Provider>
     );
   }
 );
@@ -78,6 +84,8 @@ export type NavbarItemProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 const NavbarItem = React.forwardRef<HTMLAnchorElement, NavbarItemProps>(
   ({ className, active, children, ...props }, ref) => {
     const reducedMotion = useReducedMotion();
+    const ctx = React.useContext(NavbarContext);
+    const layoutId = ctx ? `${ctx.id}-navbar-active` : "navbar-active";
 
     return (
       <a
@@ -85,18 +93,27 @@ const NavbarItem = React.forwardRef<HTMLAnchorElement, NavbarItemProps>(
         role="menuitem"
         aria-current={active ? "page" : undefined}
         className={cn(
-          "relative px-3 py-2 text-sm font-medium transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0f16]",
-          "rounded-lg",
+          "relative px-4 py-2 text-sm font-medium transition-colors",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[--b-background]",
+          "rounded-full",
           active ? "text-white" : "text-white/60 hover:text-white",
           !reducedMotion && "duration-200",
           className
         )}
         {...props}
       >
-        {!reducedMotion && active && (
-          <div className="absolute inset-0 rounded-lg bg-[#d4ff4f]/10 border border-[#d4ff4f]/20" />
-        )}
+        <AnimatePresence>
+          {!reducedMotion && active && (
+            <motion.div
+              layoutId={layoutId}
+              className="absolute inset-0 rounded-full bg-white/10 border border-white/20"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+            />
+          )}
+        </AnimatePresence>
         <span className="relative z-10">{children}</span>
       </a>
     );
