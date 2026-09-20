@@ -168,7 +168,6 @@ function ComponentCard({ c, reduce }: { c: ComponentSummary; reduce: boolean }) 
     <motion.div
       variants={reduce ? undefined : item}
       layout={reduce ? false : true}
-      layoutId={reduce ? undefined : `card-${c.slug}`}
       initial={reduce ? { opacity: 1 } : undefined}
       animate={reduce ? { opacity: 1 } : undefined}
       exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, transition: { duration: 0.2 } }}
@@ -424,12 +423,11 @@ export default function ComponentsPage() {
           <motion.div
             variants={reduce ? undefined : container}
             initial={reduce ? { opacity: 1 } : "hidden"}
-            whileInView={reduce ? { opacity: 1 } : "show"}
-            viewport={{ once: true, amount: 0.2 }}
+            animate={reduce ? { opacity: 1 } : "show"}
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3"
             id="catalog-grid"
           >
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence mode="sync">
               {results.map((c) => (
                 <ComponentCard key={c.slug} c={c} reduce={Boolean(reduce)} />
               ))}
