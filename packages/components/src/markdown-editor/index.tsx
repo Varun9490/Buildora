@@ -3,9 +3,14 @@
 import * as React from "react";
 import { cn } from "@buildora/utils";
 
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
 export function MarkdownEditor({ className }: { className?: string }) {
   const [md, setMd] = React.useState("# Magnetic Button\n\nInstall with `pnpm dlx shadcn@latest add @buildora/magnetic-button`.\n\n- Spring physics\n- Keyboard accessible\n- Reduced-motion safe");
-  const html = React.useMemo(() => md
+  // Escape first so raw HTML typed by users renders as text, never as elements.
+  const html = React.useMemo(() => escapeHtml(md)
     .replace(/^# (.*)$/gm, "<h1>$1</h1>")
     .replace(/^## (.*)$/gm, "<h2>$1</h2>")
     .replace(/`([^`]+)`/g, "<code>$1</code>")

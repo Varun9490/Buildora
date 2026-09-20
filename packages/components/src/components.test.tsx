@@ -25,6 +25,7 @@ import { WorkflowBuilder } from "./workflow-builder";
 import { RichTextEditor } from "./rich-text-editor";
 import { SlashCommands } from "./slash-commands";
 import { VersionHistory } from "./version-history";
+import { MarkdownEditor } from "./markdown-editor";
 
 describe("MagneticButton", () => {
   it("renders as a real button with accessible name", () => {
@@ -200,5 +201,15 @@ describe("Dedicated implementations", () => {
     render(<VersionHistory onRestore={fn} />);
     fireEvent.click(screen.getAllByRole("button", { name: "Restore" })[0]);
     expect(fn).toHaveBeenCalled();
+  });
+});
+
+describe("Security", () => {
+  it("MarkdownEditor escapes raw HTML in preview", () => {
+    render(<MarkdownEditor />);
+    fireEvent.change(screen.getByLabelText("markdown"), {
+      target: { value: "<img src=x onerror=alert(1)>" },
+    });
+    expect(document.querySelector("img")).toBeNull();
   });
 });
