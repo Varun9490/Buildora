@@ -106,6 +106,7 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
             <span className="b-badge-accent">{summary.categories[0]}</span>
             <span className="b-badge">v{summary.version}</span>
             <span className="b-badge">{summary.difficulty}</span>
+            <span className="b-badge">{summary.status ?? "beta"}</span>
             {isShared && <span className="b-badge">pattern · shares {sourceDir}</span>}
           </div>            {isShared && primaryPath && (
             <p className="mt-4 max-w-2xl rounded-xl border border-[--b-border] bg-[--b-surface] p-4 font-mono text-[11px] leading-relaxed text-[--b-muted]">
@@ -113,6 +114,12 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
               <span className="text-[--b-text]">{primaryPath}</span>. Dedicated{" "}
               <span className="text-[--b-text]">{slug}</span> implementation planned; install gives
               the shared pattern source today.
+            </p>
+          )}
+          {(summary.status ?? "beta") === "experimental" && (
+            <p className="mt-4 max-w-2xl rounded-xl border border-[--b-warning]/40 bg-[--b-surface] p-4 text-[13px] leading-relaxed text-[--b-text-secondary]">
+              Experimental — this item fails the bar today and is hidden from the default listing.
+              Install by direct URL only; the API may change or the item may be removed or merged.
             </p>
           )}
         </div>
@@ -245,20 +252,7 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
                               <span className="font-bold text-[--b-text-secondary]">{frameworkLabels[framework]} · {ex.status}.</span> {ex.notes}
                             </p>
                           )}
-                         <motion.button
-                           whileTap={{ scale: 0.95 }}
-                           transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                           onClick={() => copy(ex.files[0]?.code ?? "", "code")}
-                           aria-label={copied === "code" ? "Code copied" : "Copy code"}
-                           title="Copy code"
-                           className="absolute right-6 top-6 rounded-md border border-[--b-border] bg-[--b-surface] p-2 text-[--b-text-secondary] transition-colors hover:text-[--b-text] z-10"
-                         >
-                           {copied === "code" ? (
-                             <svg className="h-4 w-4 text-[--b-success]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                           ) : (
-                             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" /></svg>
-                            )}
-                         </motion.button>
+
                          <CodeViewer files={ex.files} />
                      </div>
                    </motion.div>
