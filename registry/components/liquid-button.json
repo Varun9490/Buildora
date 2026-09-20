@@ -91,13 +91,20 @@
   },
   "dependencies": [],
   "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
   "files": [
     {
       "path": "packages/components/src/liquid-button/index.tsx",
       "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type LiquidButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {\n  intensity?: number; // goo wobble 0..1\n  color?: string;\n};\n\n/** LiquidButton — gooey blob fill that follows the pointer. Real button underneath. */\nexport function LiquidButton({ intensity = 0.6, color, className, children, ...rest }: LiquidButtonProps) {\n  const ref = React.useRef<HTMLButtonElement | null>(null);\n  const blob = React.useRef<HTMLSpanElement | null>(null);\n  const reduced = useReducedMotion();\n\n  const onMove = (e: React.PointerEvent) => {\n    if (reduced) return;\n    const el = ref.current;\n    const b = blob.current;\n    if (!el || !b) return;\n    const r = el.getBoundingClientRect();\n    const x = ((e.clientX - r.left) / r.width) * 100;\n    const y = ((e.clientY - r.top) / r.height) * 100;\n    b.style.transform = `translate(${x - 50}%, ${y - 50}%) scale(${1 + intensity})`;\n  };\n\n  return (\n    <button\n      ref={ref}\n      onPointerMove={onMove}\n      className={cn(\n        \"group relative overflow-hidden rounded-full border border-white/10 bg-white/[0.04] px-6 py-2.5 text-sm font-semibold text-white\",\n        \"transition-colors hover:border-white/25\",\n        className\n      )}\n      {...rest}\n    >\n      <span\n        ref={blob}\n        aria-hidden\n        className=\"absolute left-1/2 top-1/2 h-[220%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full opacity-80 blur-md transition-transform duration-300 ease-out group-hover:opacity-100\"\n        style={{ background: color ?? \"linear-gradient(135deg,#9d8cff,#5f4de8 60%,#d4ff4f 130%)\" }}\n      />\n      <span className=\"relative z-10\">{children}</span>\n      <style>{`@media (prefers-reduced-motion: reduce){.group span{transition:none!important}}`}</style>\n    </button>\n  );\n}\n\nexport default LiquidButton;\n"
     }
   ],
-  "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/liquid-button",
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/liquid-button",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/liquid-button/index.tsx",
+  "sourceDir": "liquid-button",
   "docs": "/components/liquid-button",
   "install": "pnpm dlx shadcn@latest add @buildora/liquid-button"
 }

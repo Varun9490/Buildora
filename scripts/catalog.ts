@@ -70,19 +70,19 @@ export const catalog: CatalogItem[] = [
   R("slingshot-otp", fullWeb, { name: "Slingshot OTP", description: "Signature gamified OTP — pull digits like a slingshot. Real inputs, paste, SR fallback underneath.", categories: ["creative"], tags: ["otp", "slingshot", "spring", "signature"], difficulty: "advanced", states: ["empty", "filled", "error"] }),
   R("interactive-dropzone", fullWeb, { name: "Interactive Dropzone", description: "Proximity-reactive dropzone with progress visualization and error recovery.", categories: ["creative"], tags: ["upload", "dropzone", "magnetic"], difficulty: "intermediate" }),
   R("spatial-command-palette", fullWeb, { name: "Spatial Command Palette", description: "Keyboard-first palette with animated selection, grouped results, recents, and depth presentation.", categories: ["creative", "complex"], tags: ["command", "palette", "keyboard", "spatial"], difficulty: "advanced" }),
-  R("cursor-spotlight", fullWeb, { name: "Cursor Spotlight", description: "Cursor-tracked spotlight container for any content.", categories: ["creative"], tags: ["cursor", "spotlight"], difficulty: "beginner" }),
-  R("aurora-background", fullWeb, { name: "Aurora Background", description: "Slow-drifting aurora blobs. Reduced-motion safe, pure CSS.", categories: ["creative"], tags: ["background", "aurora", "gradient"], difficulty: "beginner", compat: { react: "Full", javascript: "Full", html: "Full", tailwind: "Full", vue: "Full", svelte: "Full", angular: "Full", reactNative: "Partial", flutter: "Partial", swiftUI: "Partial", compose: "Partial" }, notes: { reactNative: "Use LinearGradient + Animated instead of blur.", flutter: "Use BackdropFilter + CustomPaint.", swiftUI: "Use LinearGradient + blur modifiers." } }),
-  R("particle-field", { ...noMobile3D, reactNative: "Experimental" }, { name: "Particle Field", description: "Lightweight canvas particle field with DPR scaling. No Three.js needed.", categories: ["creative"], tags: ["particles", "canvas"], difficulty: "intermediate", notes: { reactNative: "Use react-native-skia or SVG; canvas not available.", flutter: "Use CustomPainter.", swiftUI: "Use Canvas + TimelineView." } }),
-  R("morphing-typography", fullWeb, { name: "Morphing Typography", description: "Cycling display words with gradient + motion. aria-live polite.", categories: ["creative"], tags: ["typography", "animated"], difficulty: "beginner" }),
-  R("holographic-card", fullWeb, { name: "Holographic Card", description: "Holographic sheen that tracks the pointer.", categories: ["creative"], tags: ["card", "holographic", "hover"], difficulty: "intermediate" }),
-  R("interactive-3d-card", { ...noMobile3D }, { name: "Interactive 3D Card", description: "Lightweight CSS 3D flip card. Lazy-safe; no Three.js on this page.", categories: ["creative"], tags: ["3d", "flip", "card"], difficulty: "intermediate", notes: { reactNative: "Use Animated + rotateY interpolation.", flutter: "Use Transform with Matrix4.", swiftUI: "Use rotation3DEffect." } }),
-  R("tactile-loader", fullWeb, { name: "Tactile Loader", description: "Bouncy dot loader with role=status and SR label.", categories: ["creative"], tags: ["loader", "feedback"], difficulty: "beginner" }),
+  R("cursor-spotlight", fullWeb, { name: "Cursor Spotlight", description: "Cursor-tracked spotlight container for any content.", categories: ["creative"], tags: ["cursor", "spotlight"], difficulty: "beginner", files: ["packages/components/src/creative-atmosphere/index.tsx"] }),
+  R("aurora-background", fullWeb, { name: "Aurora Background", description: "Slow-drifting aurora blobs. Reduced-motion safe, pure CSS.", categories: ["creative"], tags: ["background", "aurora", "gradient"], difficulty: "beginner", files: ["packages/components/src/creative-atmosphere/index.tsx"], compat: { react: "Full", javascript: "Full", html: "Full", tailwind: "Full", vue: "Full", svelte: "Full", angular: "Full", reactNative: "Partial", flutter: "Partial", swiftUI: "Partial", compose: "Partial" }, notes: { reactNative: "Use LinearGradient + Animated instead of blur.", flutter: "Use BackdropFilter + CustomPaint.", swiftUI: "Use LinearGradient + blur modifiers." } }),
+  R("particle-field", { ...noMobile3D, reactNative: "Experimental" }, { name: "Particle Field", description: "Lightweight canvas particle field with DPR scaling. No Three.js needed.", categories: ["creative"], tags: ["particles", "canvas"], difficulty: "intermediate", files: ["packages/components/src/creative-atmosphere/index.tsx"], notes: { reactNative: "Use react-native-skia or SVG; canvas not available.", flutter: "Use CustomPainter.", swiftUI: "Use Canvas + TimelineView." } }),
+  R("morphing-typography", fullWeb, { name: "Morphing Typography", description: "Cycling display words with gradient + motion. aria-live polite.", categories: ["creative"], tags: ["typography", "animated"], difficulty: "beginner", files: ["packages/components/src/creative-atmosphere/index.tsx"] }),
+  R("holographic-card", fullWeb, { name: "Holographic Card", description: "Holographic sheen that tracks the pointer.", categories: ["creative"], tags: ["card", "holographic", "hover"], difficulty: "intermediate", files: ["packages/components/src/creative-atmosphere/index.tsx"] }),
+  R("interactive-3d-card", { ...noMobile3D }, { name: "Interactive 3D Card", description: "Lightweight CSS 3D flip card. Lazy-safe; no Three.js on this page.", categories: ["creative"], tags: ["3d", "flip", "card"], difficulty: "intermediate", files: ["packages/components/src/creative-atmosphere/index.tsx"], notes: { reactNative: "Use Animated + rotateY interpolation.", flutter: "Use Transform with Matrix4.", swiftUI: "Use rotation3DEffect." } }),
+  R("tactile-loader", fullWeb, { name: "Tactile Loader", description: "Bouncy dot loader with role=status and SR label.", categories: ["creative"], tags: ["loader", "feedback"], difficulty: "beginner", files: ["packages/components/src/creative-atmosphere/index.tsx"] }),
   R("creative-notifications", fullWeb, { name: "Creative Notifications", description: "Stacked toast system with tones and live-region announcements.", categories: ["creative"], tags: ["toast", "notifications"], difficulty: "intermediate" }),
 
   R("streaming-chat", fullWeb, { name: "Streaming Chat", description: "Token-streaming chat UI with citations. Frontend only — bring your own LLM backend.", categories: ["ai-llm"], tags: ["chat", "streaming", "llm"], difficulty: "intermediate" }),
-  R("model-selector", fullWeb, { name: "Model Selector", description: "Accessible model picker with status dot.", categories: ["ai-llm"], tags: ["model", "selector"], difficulty: "beginner" }),
-  R("token-meter", fullWeb, { name: "Token Meter", description: "Token usage meter with role=meter semantics.", categories: ["ai-llm"], tags: ["tokens", "usage", "meter"], difficulty: "beginner" }),
-  R("tool-call-viz", fullWeb, { name: "Tool Call Visualization", description: "Timeline of agent tool calls with running/done states.", categories: ["ai-llm"], tags: ["tools", "agent", "timeline"], difficulty: "intermediate" }),
+  R("model-selector", fullWeb, { name: "Model Selector", description: "Accessible model picker with status dot.", categories: ["ai-llm"], tags: ["model", "selector"], difficulty: "beginner", files: ["packages/components/src/streaming-chat/index.tsx"] }),
+  R("token-meter", fullWeb, { name: "Token Meter", description: "Token usage meter with role=meter semantics.", categories: ["ai-llm"], tags: ["tokens", "usage", "meter"], difficulty: "beginner", files: ["packages/components/src/streaming-chat/index.tsx"] }),
+  R("tool-call-viz", fullWeb, { name: "Tool Call Visualization", description: "Timeline of agent tool calls with running/done states.", categories: ["ai-llm"], tags: ["tools", "agent", "timeline"], difficulty: "intermediate", files: ["packages/components/src/streaming-chat/index.tsx"] }),
   R("agent-timeline", fullWeb, { name: "Agent Timeline", description: "Agent activity timeline (plan → act → observe). Shares Tool Call Viz patterns.", categories: ["ai-llm"], tags: ["agent", "timeline"], difficulty: "intermediate", files: ["packages/components/src/streaming-chat/index.tsx"] }),
   R("attachment-prompt", fullWeb, { name: "Attachment Prompt", description: "Prompt input with attachment chips. Pairs with Streaming Chat + Dropzone.", categories: ["ai-llm"], tags: ["prompt", "attachments"], difficulty: "intermediate", files: ["packages/components/src/interactive-dropzone/index.tsx"] }),
   R("ai-review-edit", fullWeb, { name: "AI Review & Edit", description: "Diff-style review UI for AI-generated content (accept / edit / reject).", categories: ["ai-llm", "content"], tags: ["review", "diff", "ai"], difficulty: "intermediate", files: ["packages/components/src/markdown-editor/index.tsx"] }),
@@ -126,7 +126,16 @@ export const catalog: CatalogItem[] = [
   R("version-history", fullWeb, { name: "Version History", description: "Document version list with restore.", categories: ["content"], tags: ["versions", "history"], difficulty: "intermediate", files: ["packages/components/src/advanced-table/index.tsx"] })
 ];
 
+const CANONICAL_REPO = "https://github.com/Varun9490/Buildora";
+
 export function toRegistryJson(item: CatalogItem) {
+  // Resolve the real source dir: catalog `files[0]` may point at a shared
+  // implementation (e.g. agent-timeline lives inside streaming-chat).
+  // GitHub links must point at the actual file, not a non-existent slug dir.
+  const primaryFile = item.files[0] ?? `packages/components/src/${item.slug}/index.tsx`;
+  const githubDir = primaryFile
+    .replace(/^packages\/components\/src\//, "")
+    .replace(/\/index\.tsx$/, "");
   return {
     $schema: "https://buildora.dev/schema/registry-item.json",
     id: item.id,
@@ -152,6 +161,7 @@ export function toRegistryJson(item: CatalogItem) {
     accessibility: { keyboard: true, screenReader: true, reducedMotion: true },
     dependencies: item.dependencies ?? [],
     registryDependencies: item.registryDependencies ?? [],
+    provenance: { origin: "original", license: "MIT", adapted: false },
     files: item.files.map((f) => {
       try {
         const content = fs.readFileSync(path.join(process.cwd(), f), "utf8");
@@ -160,7 +170,9 @@ export function toRegistryJson(item: CatalogItem) {
         return { path: f, content: `// Could not read file: ${f}` };
       }
     }),
-    github: `https://github.com/buildora/buildora/tree/main/packages/components/src/${item.slug}`,
+    github: `${CANONICAL_REPO}/tree/main/${primaryFile.replace(/\/index\.tsx$/, "")}`,
+    githubFile: `${CANONICAL_REPO}/blob/main/${primaryFile}`,
+    sourceDir: githubDir,
     docs: `/components/${item.slug}`,
     install: `pnpm dlx shadcn@latest add @buildora/${item.slug}`
   };
@@ -184,7 +196,7 @@ export function toShadcnJson(item: CatalogItem) {
         return { path: f, content: `// Could not read file: ${f}`, type: "registry:component" as const };
       }
     }),
-    docs: `https://github.com/buildora/buildora/tree/main/${f2(item)}`
+    docs: `https://github.com/Varun9490/Buildora/tree/main/${f2(item)}`
   };
 }
 

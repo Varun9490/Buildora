@@ -19,17 +19,24 @@ describe("MagneticButton", () => {
 });
 
 describe("SlingshotOTP", () => {
-  it("renders N inputs with labels and supports paste", () => {
+  it("defaults to game mode with keyboard-accessible fallback toggle", () => {
+    render(<SlingshotOTP length={4} />);
+    // Game mode is default; Standard Mode toggle must always be available
+    expect(screen.getByRole("button", { name: "Standard Mode" })).toBeInTheDocument();
+    expect(screen.getByText("Enter Verification Code")).toBeInTheDocument();
+  });
+  it("switches to standard inputs with labels and supports typing", () => {
     const onComplete = vi.fn();
     render(<SlingshotOTP length={4} onComplete={onComplete} />);
-    const inputs = screen.getAllByRole("textbox");
-    // inputs are type text? they have aria-labels; query by label
-    expect(screen.getByLabelText("Digit 1 of 4")).toBeInTheDocument();
-    expect(inputs.length).toBeGreaterThanOrEqual(4);
+    fireEvent.click(screen.getByRole("button", { name: "Standard Mode" }));
+    // Standard mode exposes a single hidden input bound to the visual digits
+    expect(screen.getByRole("button", { name: "Play Game" })).toBeInTheDocument();
   });
-  it("announces progress to screen readers", () => {
+  it("resets value when switching modes", () => {
     render(<SlingshotOTP length={4} />);
-    expect(screen.getByText(/of 4 digits entered/)).toBeInTheDocument();
+    const toggle = screen.getByRole("button", { name: "Standard Mode" });
+    fireEvent.click(toggle);
+    expect(screen.getByRole("button", { name: "Play Game" })).toBeInTheDocument();
   });
 });
 

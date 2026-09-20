@@ -90,13 +90,20 @@
   },
   "dependencies": [],
   "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
   "files": [
     {
       "path": "packages/components/src/creative-notifications/index.tsx",
       "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport type Toast = { id: string; title: string; body?: string; tone?: \"accent\" | \"iris\" | \"danger\"; };\n\nexport function CreativeNotifications({ seed }: { seed?: Toast[] }) {\n  const [toasts, setToasts] = React.useState<Toast[]>(seed ?? [\n    { id: \"1\", title: \"Component installed\", body: \"@buildora/magnetic-button added\", tone: \"accent\" }\n  ]);\n  const push = (tone: Toast[\"tone\"] = \"accent\") => {\n    const id = `${Date.now()}`;\n    setToasts((t) => [{ id, title: tone === \"danger\" ? \"Upload failed — retry?\" : \"Shipped to playground\", body: new Date().toLocaleTimeString(), tone }, ...t].slice(0, 4));\n    setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), 4200);\n  };\n  return (\n    <div>\n      <div className=\"flex gap-2\">\n        <button onClick={() => push(\"accent\")} className=\"rounded-lg bg-[#d4ff4f] px-3 py-1.5 text-xs font-bold text-black\">Push success</button>\n        <button onClick={() => push(\"iris\")} className=\"rounded-lg border border-white/15 px-3 py-1.5 text-xs text-white\">Push info</button>\n        <button onClick={() => push(\"danger\")} className=\"rounded-lg border border-red-400/30 px-3 py-1.5 text-xs text-red-200\">Push error</button>\n      </div>\n      <div className=\"mt-3 space-y-2\" role=\"status\" aria-live=\"polite\">\n        {toasts.map((t, i) => (\n          <div key={t.id} className={cn(\"rounded-xl border p-3 backdrop-blur transition-all\",\n            t.tone === \"danger\" ? \"border-red-400/30 bg-red-500/10\" : t.tone === \"iris\" ? \"border-[#9d8cff]/30 bg-[#9d8cff]/10\" : \"border-[#d4ff4f]/30 bg-[#d4ff4f]/10\")}\n            style={{ transform: `translateY(${i * 2}px) scale(${1 - i * 0.02})`, opacity: 1 - i * 0.18 }}>\n            <p className=\"text-sm font-semibold\">{t.title}</p>\n            {t.body && <p className=\"text-xs text-white/60\">{t.body}</p>}\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default CreativeNotifications;\n"
     }
   ],
-  "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/creative-notifications",
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/creative-notifications",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/creative-notifications/index.tsx",
+  "sourceDir": "creative-notifications",
   "docs": "/components/creative-notifications",
   "install": "pnpm dlx shadcn@latest add @buildora/creative-notifications"
 }

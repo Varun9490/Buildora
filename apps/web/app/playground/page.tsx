@@ -5,40 +5,44 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense } from "react";
 import { allComponents, frameworks, frameworkLabels, getComponentSync } from "@/lib/registry";
-import { ComponentRenderer, type Controls } from "@/components/ComponentRenderer";
+import { ComponentRenderer, DEFAULT_RENDER_CONTROLS, type Controls } from "@/components/ComponentRenderer";
 import { CodeViewer } from "@/components/CodeViewer";
 import { frameworkExample } from "@/lib/framework-code";
 import { useBuildora } from "@/lib/store";
+import { controlsFor } from "@/lib/controls";
 import { cn, copyToClipboard } from "@buildora/utils";
 
 type Preset = { label: string; controls: Partial<Controls> };
 
 const componentPresets: Record<string, Preset[]> = {
   "magnetic-button": [
-    { label: "Subtle", controls: { strength: 0.2, radius: 80, glow: false } },
-    { label: "Strong", controls: { strength: 0.6, radius: 180, glow: true } },
-    { label: "Minimal", controls: { strength: 0.15, radius: 60, glow: false } },
-  ],
-  "aurora-background": [
-    { label: "Calm", controls: { speed: 0.4, intensity: 0.3 } },
-    { label: "Vibrant", controls: { speed: 1.2, intensity: 0.9 } },
-    { label: "Slow Drift", controls: { speed: 0.25, intensity: 0.5 } },
+    { label: "Subtle", controls: { strength: 0.2, radius: 80 } },
+    { label: "Strong", controls: { strength: 0.6, radius: 180, variant: "accent" } },
+    { label: "Ghost", controls: { strength: 0.35, radius: 120, variant: "ghost" } },
   ],
   "particle-field": [
-    { label: "Sparse", controls: { intensity: 0.2, speed: 0.5 } },
-    { label: "Dense", controls: { intensity: 0.9, speed: 1 } },
-    { label: "Slow Float", controls: { intensity: 0.5, speed: 0.3 } },
+    { label: "Sparse", controls: { count: 25 } },
+    { label: "Dense", controls: { count: 150 } },
+    { label: "Default", controls: { count: 70 } },
   ],
   "liquid-button": [
-    { label: "Gentle", controls: { intensity: 0.3, speed: 0.6 } },
-    { label: "Aggressive", controls: { intensity: 1, speed: 1.5 } },
-    { label: "Organic", controls: { intensity: 0.7, speed: 0.8 } },
+    { label: "Gentle", controls: { intensity: 0.3 } },
+    { label: "Aggressive", controls: { intensity: 1 } },
+    { label: "Organic", controls: { intensity: 0.7 } },
   ],
-  default: [
-    { label: "Default", controls: { strength: 0.35, radius: 120, intensity: 0.6, speed: 1, glow: true, scale: 1 } },
-    { label: "Subtle", controls: { strength: 0.2, radius: 80, intensity: 0.4, speed: 0.8, glow: false, scale: 1 } },
-    { label: "Intense", controls: { strength: 0.7, radius: 200, intensity: 0.9, speed: 1.3, glow: true, scale: 1.1 } },
+  "magnetic-card": [
+    { label: "Subtle", controls: { tilt: 4 } },
+    { label: "Dramatic", controls: { tilt: 14 } },
   ],
+  "slingshot-otp": [
+    { label: "4-digit", controls: { length: 4 } },
+    { label: "6-digit", controls: { length: 6 } },
+  ],
+  "advanced-table": [
+    { label: "Compact", controls: { pageSize: 4 } },
+    { label: "Default", controls: { pageSize: 6 } },
+  ],
+  default: [{ label: "Default", controls: {} }],
 };
 
 function getPresets(slug: string): Preset[] {
@@ -105,14 +109,7 @@ function PlaygroundContent() {
   const [previewWidth, setPreviewWidth] = React.useState<"desktop" | "tablet" | "mobile">(
     initialWidth as "desktop" | "tablet" | "mobile"
   );
-  const [controls, setControls] = React.useState<Controls>({
-    strength: 0.35,
-    radius: 120,
-    intensity: 0.6,
-    speed: 1,
-    glow: true,
-    scale: 1,
-  });
+  const [controls, setControls] = React.useState<Controls>({ ...DEFAULT_RENDER_CONTROLS });
   const [searchQuery, setSearchQuery] = React.useState("");
   const [copiedUrl, setCopiedUrl] = React.useState(false);
   const [copiedInstall, setCopiedInstall] = React.useState(false);
@@ -155,7 +152,7 @@ function PlaygroundContent() {
 
   const handleSlugChange = (newSlug: string) => {
     setSlug(newSlug);
-    setControls({ strength: 0.35, radius: 120, intensity: 0.6, speed: 1, glow: true, scale: 1 });
+    setControls({ ...DEFAULT_RENDER_CONTROLS });
     updateUrl(newSlug, framework, theme, previewWidth);
   };
 
@@ -198,7 +195,12 @@ function PlaygroundContent() {
   };
 
   const copyAiPrompt = async () => {
-    const prompt = `Create a ${component.name} component similar to Buildora's ${slug}. It should have:\n- Props: strength (${controls.strength}), radius (${controls.radius}px), intensity (${controls.intensity}), speed (${controls.speed}x)\n- Features: ${controls.glow ? "glow effect" : "no glow"}, ${controls.scale !== 1 ? `scale transform (${controls.scale}x)` : "normal scale"}\n- Category: ${component.categories.join(", ")}\n- Framework: ${frameworkLabels[framework]}`;
+    const defs = controlsFor(slug);
+    const propLines =
+      defs.length > 0
+        ? defs.map((d) => `- ${d.prop}: ${String(controls[d.key as keyof Controls])}`).join("\n")
+        : "- default props (no tunable props)";
+    const prompt = `Create a ${component.name} component similar to Buildora's ${slug}.\n${propLines}\n- Category: ${component.categories.join(", ")}\n- Framework: ${frameworkLabels[framework]}`;
     await copyToClipboard(prompt);
     setCopiedPrompt(true);
     setTimeout(() => setCopiedPrompt(false), 1500);
@@ -357,54 +359,57 @@ function PlaygroundContent() {
         <aside className="flex w-72 flex-shrink-0 flex-col gap-3 overflow-hidden">
           <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4">
             <h2 className="mb-3 text-xs font-bold uppercase tracking-wider text-white/40">
-              Controls
+              Controls · {controlsFor(slug).length > 0 ? "component-specific" : "no tunable props"}
             </h2>
             <div className="space-y-4">
-              <SliderControl
-                label="Strength"
-                value={controls.strength}
-                min={0}
-                max={1}
-                step={0.05}
-                onChange={(v) => setControls((c) => ({ ...c, strength: v }))}
-              />
-              <SliderControl
-                label="Radius"
-                value={controls.radius}
-                min={40}
-                max={260}
-                step={5}
-                onChange={(v) => setControls((c) => ({ ...c, radius: v }))}
-              />
-              <SliderControl
-                label="Speed"
-                value={controls.speed}
-                min={0.1}
-                max={2}
-                step={0.1}
-                onChange={(v) => setControls((c) => ({ ...c, speed: v }))}
-              />
-              <SliderControl
-                label="Intensity"
-                value={controls.intensity}
-                min={0}
-                max={1}
-                step={0.05}
-                onChange={(v) => setControls((c) => ({ ...c, intensity: v }))}
-              />
-              <SliderControl
-                label="Scale"
-                value={controls.scale}
-                min={0.5}
-                max={1.5}
-                step={0.05}
-                onChange={(v) => setControls((c) => ({ ...c, scale: v }))}
-              />
-              <ToggleControl
-                label="Glow"
-                checked={controls.glow}
-                onChange={(v) => setControls((c) => ({ ...c, glow: v }))}
-              />
+              {controlsFor(slug).length === 0 && (
+                <p className="rounded-lg border border-white/10 bg-white/[0.02] p-3 text-xs leading-relaxed text-white/50">
+                  This component exposes no tunable numeric props. Preview shows the real default.
+                </p>
+              )}
+              {controlsFor(slug).map((d) => {
+                if (d.kind === "slider") {
+                  return (
+                    <SliderControl
+                      key={d.key}
+                      label={`${d.label} · ${d.prop}`}
+                      value={Number(controls[d.key as keyof Controls])}
+                      min={d.min}
+                      max={d.max}
+                      step={d.step}
+                      onChange={(v) => setControls((c) => ({ ...c, [d.key]: v }))}
+                    />
+                  );
+                }
+                if (d.kind === "toggle") {
+                  return (
+                    <ToggleControl
+                      key={d.key}
+                      label={`${d.label} · ${d.prop}`}
+                      checked={Boolean(controls[d.key as keyof Controls])}
+                      onChange={(v) => setControls((c) => ({ ...c, [d.key]: v }))}
+                    />
+                  );
+                }
+                return (
+                  <label key={d.key} className="block">
+                    <span className="mb-1.5 block text-xs font-medium text-white/60">
+                      {d.label} · {d.prop}
+                    </span>
+                    <select
+                      value={String(controls[d.key as keyof Controls])}
+                      onChange={(e) => setControls((c) => ({ ...c, [d.key]: e.target.value }))}
+                      className="w-full rounded-lg border border-white/10 bg-white/[0.03] px-2 py-1.5 text-xs text-white"
+                    >
+                      {d.options.map((o) => (
+                        <option key={o} value={o} className="bg-black">
+                          {o}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                );
+              })}
             </div>
           </div>
 

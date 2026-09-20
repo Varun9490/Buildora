@@ -9,20 +9,14 @@ import { allComponents, frameworkLabels, frameworks } from "@/lib/registry";
 import type { RegistryItem } from "@/lib/registry";
 import { frameworkExample } from "@/lib/framework-code";
 import { CodeViewer } from "@/components/CodeViewer";
-import { ComponentRenderer } from "@/components/ComponentRenderer";
+import { ComponentRenderer, DEFAULT_RENDER_CONTROLS, type Controls } from "@/components/ComponentRenderer";
+import { controlsFor, type ControlDef } from "@/lib/controls";
 
 export function ComponentDetail({ slug }: { slug: string }) {
   const [item, setItem] = React.useState<RegistryItem | null>(null);
   const { framework, setFramework, pushRecent } = useBuildora();
   const [activeTab, setActiveTab] = React.useState<"preview" | "code">("preview");
-  const [controls, setControls] = React.useState({
-    strength: 0.35,
-    radius: 120,
-    intensity: 0.6,
-    speed: 1,
-    glow: true,
-    scale: 1,
-  });
+  const [controls, setControls] = React.useState<Controls>({ ...DEFAULT_RENDER_CONTROLS });
   const [copied, setCopied] = React.useState<string | null>(null);
 
   React.useEffect(() => {
@@ -47,25 +41,17 @@ export function ComponentDetail({ slug }: { slug: string }) {
     setTimeout(() => setCopied(null), 1400);
   };
 
-  const set = (k: keyof typeof controls) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const v = e.target.type === "checkbox" ? (e.target as HTMLInputElement).checked : Number(e.target.value);
-    setControls((c) => ({ ...c, [k]: v }));
-  };
+  const allowed: ControlDef[] = controlsFor(slug);
 
-  const controlMap: Record<string, string[]> = {
-    "magnetic-button": ["strength", "radius", "intensity", "scale", "glow"],
-    "slingshot-otp": ["strength", "radius", "intensity"],
-    "creative-notifications": ["scale", "glow"],
-    "streaming-chat": ["scale", "speed"],
-    "advanced-table": ["scale"],
-    kanban: ["scale", "glow"],
-    "aurora-background": ["speed", "intensity", "glow"],
-    "particle-field": ["speed", "radius", "intensity"],
-    "cursor-spotlight": ["radius", "intensity", "glow"],
-    terminal: ["scale", "glow"],
-    "file-tree": ["scale"],
+  const setNum = (k: keyof Controls) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    setControls((c) => ({ ...c, [k]: Number(e.target.value) }));
   };
-  const allowed = controlMap[slug] || ["strength", "radius", "intensity", "speed", "scale", "glow"];
+  const setToggle = (k: keyof Controls) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    setControls((c) => ({ ...c, [k]: e.target.checked }));
+  };
+  const setSelect = (k: keyof Controls) => (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setControls((c) => ({ ...c, [k]: e.target.value }));
+  };
 
   return (
     <div className="relative mx-auto max-w-[1400px] px-4 py-8 sm:py-16 font-sans">
@@ -256,32 +242,73 @@ export function ComponentDetail({ slug }: { slug: string }) {
         >
            {/* Interactive Controls */}
            <div className="rounded-2xl border border-[--b-border] bg-white/[0.01] p-6 shadow-xl">
-             <div className="mb-6 flex items-center justify-between">
+              <div className="mb-6 flex items-center justify-between">
                 <h3 className="font-mono text-[12px] font-bold uppercase tracking-widest text-[--b-text]">Component Controls</h3>
                 <button
-                  onClick={() => setControls({ strength: 0.35, radius: 120, intensity: 0.6, speed: 1, glow: true, scale: 1 })}
+                  onClick={() => setControls({ ...DEFAULT_RENDER_CONTROLS })}
                   className="font-mono text-[10px] uppercase text-[--b-muted] hover:text-[--b-accent]"
                 >
                   Reset
                 </button>
-             </div>
-             
-             <div className="space-y-6">
-                {allowed.includes("strength") && <Knob label="Magnetic Strength" min={0} max={1} step={0.05} value={controls.strength} onChange={set("strength")} />}
-                {allowed.includes("radius") && <Knob label="Effect Radius" min={40} max={260} step={5} value={controls.radius} onChange={set("radius")} />}
-                {allowed.includes("intensity") && <Knob label="Intensity" min={0} max={1} step={0.05} value={controls.intensity} onChange={set("intensity")} />}
-                {allowed.includes("speed") && <Knob label="Animation Speed" min={0.25} max={2.5} step={0.25} value={controls.speed} onChange={set("speed")} />}
-                {allowed.includes("scale") && <Knob label="Overall Scale" min={0.5} max={1.5} step={0.05} value={controls.scale} onChange={set("scale")} />}
-                {allowed.includes("glow") && (
-                  <label className="flex cursor-pointer items-center justify-between rounded-lg border border-[--b-border] bg-white/[0.02] p-3 transition-colors hover:bg-white/[0.04]">
-                    <span className="font-mono text-[11px] font-medium text-[--b-text]">Glow Effect</span>
-                    <div className={cn("relative h-4 w-8 rounded-full transition-colors", controls.glow ? "bg-[--b-accent]" : "bg-white/20")}>
-                       <div className={cn("absolute top-0.5 h-3 w-3 rounded-full bg-white transition-transform", controls.glow ? "left-0 translate-x-4" : "translate-x-0.5")} />
-                    </div>
-                    <input type="checkbox" className="sr-only" checked={controls.glow} onChange={set("glow")} />
-                  </label>
+              </div>
+
+              <div className="space-y-6">
+                {allowed.length === 0 && (
+                  <p className="rounded-lg border border-[--b-border] bg-white/[0.02] p-3 font-mono text-[11px] leading-relaxed text-[--b-muted]">
+                    No tunable props for this component. The preview shows the real default implementation.
+                  </p>
                 )}
-             </div>
+                {allowed.map((c) => {
+                  if (c.kind === "slider") {
+                    return (
+                      <Knob
+                        key={c.key}
+                        label={`${c.label} · ${c.prop}`}
+                        min={c.min}
+                        max={c.max}
+                        step={c.step}
+                        value={Number(controls[c.key as keyof Controls])}
+                        onChange={setNum(c.key as keyof Controls)}
+                      />
+                    );
+                  }
+                  if (c.kind === "toggle") {
+                    const on = Boolean(controls[c.key as keyof Controls]);
+                    return (
+                      <label
+                        key={c.key}
+                        className="flex cursor-pointer items-center justify-between rounded-lg border border-[--b-border] bg-white/[0.02] p-3 transition-colors hover:bg-white/[0.04]"
+                      >
+                        <span className="font-mono text-[11px] font-medium text-[--b-text]">
+                          {c.label} · {c.prop}
+                        </span>
+                        <div className={cn("relative h-4 w-8 rounded-full transition-colors", on ? "bg-[--b-accent]" : "bg-white/20")}>
+                          <div className={cn("absolute top-0.5 h-3 w-3 rounded-full bg-white transition-transform", on ? "left-0 translate-x-4" : "translate-x-0.5")} />
+                        </div>
+                        <input type="checkbox" className="sr-only" checked={on} onChange={setToggle(c.key as keyof Controls)} />
+                      </label>
+                    );
+                  }
+                  return (
+                    <label key={c.key} className="block">
+                      <span className="mb-2 block font-mono text-[11px] font-medium text-[--b-text-secondary]">
+                        {c.label} · {c.prop}
+                      </span>
+                      <select
+                        value={String(controls[c.key as keyof Controls])}
+                        onChange={setSelect(c.key as keyof Controls)}
+                        className="w-full rounded-lg border border-[--b-border] bg-white/[0.03] px-3 py-2 font-mono text-[12px] text-[--b-text]"
+                      >
+                        {c.options.map((o) => (
+                          <option key={o} value={o}>
+                            {o}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  );
+                })}
+              </div>
            </div>
 
            {/* Metadata & Dependencies */}

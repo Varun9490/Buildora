@@ -44,6 +44,26 @@ export type Controls = {
   speed: number;
   glow: boolean;
   scale: number;
+  /** Real component props (component-specific controls). */
+  count: number;
+  length: number;
+  pageSize: number;
+  tilt: number;
+  variant: string;
+};
+
+export const DEFAULT_RENDER_CONTROLS: Controls = {
+  strength: 0.35,
+  radius: 120,
+  intensity: 0.6,
+  speed: 1,
+  glow: true,
+  scale: 1,
+  count: 70,
+  length: 6,
+  pageSize: 6,
+  tilt: 8,
+  variant: "accent",
 };
 
 class RenderBoundary extends React.Component<
@@ -121,7 +141,11 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
     case "magnetic-button":
       return wrap(
         <div className="flex flex-wrap gap-3">
-          <MagneticButton strength={controls.strength} radius={controls.radius} className={controls.glow ? "shadow-glow-sm" : ""}>
+          <MagneticButton
+            strength={controls.strength}
+            radius={controls.radius}
+            variant={(controls.variant as "accent" | "ghost" | "iris") ?? "accent"}
+          >
             Ship it
           </MagneticButton>
           <MagneticButton variant="ghost" strength={controls.strength} radius={controls.radius}>
@@ -136,13 +160,13 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(<LiquidButton intensity={controls.intensity}>Liquid action</LiquidButton>);
     case "magnetic-card":
       return wrap(
-        <MagneticCard tilt={8 * controls.intensity + 2} className="w-80">
+        <MagneticCard tilt={controls.tilt} className="w-80">
           <p className="font-display text-lg font-bold">Magnetic card</p>
           <p className="mt-2 text-sm text-[--b-muted]">Tilt + spotlight. Focus with Tab.</p>
         </MagneticCard>
       );
     case "slingshot-otp":
-      return wrap(<SlingshotOTP length={6} onComplete={() => undefined} />);
+      return wrap(<SlingshotOTP length={Math.round(controls.length)} onComplete={() => undefined} />);
     case "interactive-dropzone":
     case "attachment-prompt":
       return wrap(<InteractiveDropzone />);
@@ -164,7 +188,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
         </AuroraBackground>
       );
     case "particle-field":
-      return wrap(<ParticleField count={Math.round(40 + controls.intensity * 80)} />);
+      return wrap(<ParticleField count={Math.round(controls.count)} />);
     case "morphing-typography":
       return wrap(<MorphingTypography />);
     case "holographic-card":
@@ -233,7 +257,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
     case "version-history":
       return wrap(
         <div className="max-h-[440px] w-full max-w-4xl overflow-auto rounded-xl shadow-lg">
-          <AdvancedTable className="w-full" />
+          <AdvancedTable className="w-full" pageSize={Math.round(controls.pageSize)} />
         </div>
       );
     case "json-viewer":
