@@ -36,6 +36,9 @@ jobs:
       - name: Registry smoke (install-clean)
         run: pnpm registry:smoke
 
+      - name: Registry compile-e2e (generated source)
+        run: pnpm registry:e2e
+
       - name: Typecheck (web)
         run: pnpm --filter @buildora/web exec tsc --noEmit
 
