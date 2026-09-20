@@ -25,7 +25,7 @@ function reactCode(slug: string, name: string, item?: RegistryItem | null): stri
     return `import { SlingshotOTP } from "@/components/buildora/slingshot-otp";\n\nexport function Verify() {\n  return (\n    <SlingshotOTP\n      length={6}\n      onComplete={(code) => verify(code)}\n    />\n  );\n}`;
   }
   if (slug === "kanban") {
-    return `import { Kanban } from "@/components/buildora/kanban";\n\nexport function Board() {\n  return <Kanban />; // drag, Alt+Arrow keyboard move included\n}`;
+    return `import { Kanban } from "@/components/buildora/kanban";\n\nexport function Board() {\n  return <Kanban />; // drag + keyboard move included\n}`;
   }
   if (slug === "streaming-chat") {
     return `import { StreamingChat } from "@/components/buildora/streaming-chat";\n\nexport function Support() {\n  // Frontend only — connect your LLM endpoint for real tokens.\n  return <StreamingChat />;\n}`;

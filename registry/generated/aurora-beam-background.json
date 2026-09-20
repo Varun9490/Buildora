@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "buildora-aurora-beam-background",
+  "name": "aurora-beam-background",
   "type": "registry:component",
   "title": "Aurora Beam Background",
   "description": "Sweeping aurora beams over content.",
@@ -8,11 +8,16 @@
     "backgrounds"
   ],
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "utils",
+    "use-reduced-motion",
+    "tokens"
+  ],
   "files": [
     {
       "path": "packages/components/src/backgrounds/aurora-beam-background.tsx",
-      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type AuroraBeamBackgroundProps = {\n  colors?: string[];\n  beamCount?: number;\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function AuroraBeamBackground({\n  colors = [\"#5f4de8\", \"#d4ff4f\", \"#ff8a3d\"],\n  beamCount = 5,\n  className,\n  children,\n}: AuroraBeamBackgroundProps) {\n  const reduced = useReducedMotion();\n  const beams = React.useMemo(() => {\n    return Array.from({ length: beamCount }, (_, i) => ({\n      color: colors[i % colors.length],\n      width: 200 + Math.random() * 300,\n      top: Math.random() * 100,\n      delay: i * 3,\n      duration: 30 + Math.random() * 20,\n      direction: i % 2 === 0 ? 1 : -1,\n    }));\n  }, [beamCount, colors]);\n\n  return (\n    <div className={cn(\"relative overflow-hidden\", className)}>\n      <div aria-hidden className=\"pointer-events-none absolute inset-0\">\n        {beams.map((beam, i) => (\n          <div\n            key={i}\n            className=\"absolute\"\n            style={{\n              width: beam.width,\n              height: \"100%\",\n              top: `${beam.top}%`,\n              background: `linear-gradient(${90 * beam.direction}deg, transparent, ${beam.color}40, transparent)`,\n              filter: \"blur(60px) saturate(1.5)\",\n              transform: `translateX(${-beam.direction * 100}%)`,\n              animation: reduced\n                ? undefined\n                : `auroraDrift${beam.direction > 0 ? \"\" : \"Reverse\"} ${beam.duration}s linear infinite`,\n              animationDelay: `${beam.delay}s`,\n            }}\n          />\n        ))}\n      </div>\n      <style>{`\n        @keyframes auroraDrift {\n          from { transform: translateX(-100%); }\n          to { transform: translateX(calc(100vw + 100%)); }\n        }\n        @keyframes auroraDriftReverse {\n          from { transform: translateX(calc(100vw + 100%)); }\n          to { transform: translateX(-100%); }\n        }\n      `}</style>\n      <div className=\"relative z-10\">{children}</div>\n    </div>\n  );\n}\n\nexport default AuroraBeamBackground;\n",
+      "target": "components/buildora/aurora-beam-background.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type AuroraBeamBackgroundProps = {\n  colors?: string[];\n  beamCount?: number;\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function AuroraBeamBackground({\n  colors = [\"#5f4de8\", \"#d4ff4f\", \"#ff8a3d\"],\n  beamCount = 5,\n  className,\n  children,\n}: AuroraBeamBackgroundProps) {\n  const reduced = useReducedMotion();\n  const beams = React.useMemo(() => {\n    return Array.from({ length: beamCount }, (_, i) => ({\n      color: colors[i % colors.length],\n      width: 200 + Math.random() * 300,\n      top: Math.random() * 100,\n      delay: i * 3,\n      duration: 30 + Math.random() * 20,\n      direction: i % 2 === 0 ? 1 : -1,\n    }));\n  }, [beamCount, colors]);\n\n  return (\n    <div className={cn(\"relative overflow-hidden\", className)}>\n      <div aria-hidden className=\"pointer-events-none absolute inset-0\">\n        {beams.map((beam, i) => (\n          <div\n            key={i}\n            className=\"absolute\"\n            style={{\n              width: beam.width,\n              height: \"100%\",\n              top: `${beam.top}%`,\n              background: `linear-gradient(${90 * beam.direction}deg, transparent, ${beam.color}40, transparent)`,\n              filter: \"blur(60px) saturate(1.5)\",\n              transform: `translateX(${-beam.direction * 100}%)`,\n              animation: reduced\n                ? undefined\n                : `auroraDrift${beam.direction > 0 ? \"\" : \"Reverse\"} ${beam.duration}s linear infinite`,\n              animationDelay: `${beam.delay}s`,\n            }}\n          />\n        ))}\n      </div>\n      <style>{`\n        @keyframes auroraDrift {\n          from { transform: translateX(-100%); }\n          to { transform: translateX(calc(100vw + 100%)); }\n        }\n        @keyframes auroraDriftReverse {\n          from { transform: translateX(calc(100vw + 100%)); }\n          to { transform: translateX(-100%); }\n        }\n      `}</style>\n      <div className=\"relative z-10\">{children}</div>\n    </div>\n  );\n}\n\nexport default AuroraBeamBackground;\n",
       "type": "registry:component"
     }
   ],

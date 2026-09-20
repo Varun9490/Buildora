@@ -14,7 +14,9 @@
     "registry:build": "tsx scripts/build-registry.ts",
     "registry:validate": "tsx scripts/validate-registry.ts",
     "registry:smoke": "tsx scripts/smoke-registry.ts",
-    "registry:e2e": "tsx scripts/compile-e2e.ts"
+    "registry:e2e": "tsx scripts/compile-e2e.ts",
+    "registry:verify-install": "tsx scripts/verify-install.ts",
+    "registry:verify-install:matrix": "tsx scripts/verify-install.ts --matrix"
   },
   "devDependencies": {
     "next": "^14.2.35",

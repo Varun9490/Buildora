@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-reduced-motion",
+  "type": "registry:hook",
+  "title": "useReducedMotion",
+  "description": "SSR-safe prefers-reduced-motion via useSyncExternalStore. No hydration flash.",
+  "categories": [
+    "primitives"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/shared/use-reduced-motion.ts",
+      "target": "hooks/buildora/use-reduced-motion.ts",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\n\nfunction subscribe(cb: () => void) {\n  const mq = window.matchMedia(\"(prefers-reduced-motion: reduce)\");\n  mq.addEventListener(\"change\", cb);\n  return () => mq.removeEventListener(\"change\", cb);\n}\n\nfunction getSnapshot() {\n  return window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches;\n}\n\nfunction getServerSnapshot() {\n  return false;\n}\n\n/**\n * SSR-safe prefers-reduced-motion.\n * Uses useSyncExternalStore so server and first client render agree (no hydration mismatch),\n * unlike a useState(false) + useEffect Shoot that flashes motion before measuring.\n */\nexport function useReducedMotion() {\n  return React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/registry/shared/use-reduced-motion.ts"
+}

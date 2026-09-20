@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "buildora-spinner",
+  "name": "spinner",
   "type": "registry:component",
   "title": "Spinner",
   "description": "Activity spinner with sizes and live-region label.",
@@ -8,11 +8,15 @@
     "feedback"
   ],
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "utils",
+    "tokens"
+  ],
   "files": [
     {
       "path": "packages/components/src/primitives/spinner/index.tsx",
-      "content": "\"use client\";\r\n\r\nimport * as React from \"react\";\r\nimport { cn } from \"@buildora/utils\";\r\n\r\nexport type SpinnerSize = \"default\" | \"sm\" | \"lg\" | \"xl\";\r\nexport type SpinnerVariant = \"default\" | \"accent\" | \"light\";\r\n\r\nexport type SpinnerProps = React.HTMLAttributes<HTMLDivElement> & {\r\n  size?: SpinnerSize;\r\n  variant?: SpinnerVariant;\r\n  label?: string;\r\n};\r\n\r\nconst Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(\r\n  ({ className, size = \"default\", variant = \"default\", label = \"Loading...\", ...props }, ref) => {\r\n    const sizeStyles: Record<SpinnerSize, string> = {\r\n      default: \"h-8 w-8\",\r\n      sm: \"h-4 w-4\",\r\n      lg: \"h-12 w-12\",\r\n      xl: \"h-16 w-16\",\r\n    };\r\n\r\n    const variantStyles: Record<SpinnerVariant, string> = {\r\n      default: \"text-[--b-accent]\",\r\n      accent: \"text-[--b-accent] drop-shadow-[0_0_8px_rgba(212,255,79,0.5))]\",\r\n      light: \"text-white/50\",\r\n    };\r\n\r\n    return (\r\n      <div\r\n        ref={ref}\r\n        role=\"status\"\r\n        aria-label={label}\r\n        className=\"inline-flex items-center\"\r\n        {...props}\r\n      >\r\n        <svg\r\n          className={cn(\r\n            \"animate-spin\",\r\n            sizeStyles[size],\r\n            variantStyles[variant],\r\n            className\r\n          )}\r\n          xmlns=\"http://www.w3.org/2000/svg\"\r\n          fill=\"none\"\r\n          viewBox=\"0 0 24 24\"\r\n        >\r\n          <circle\r\n            className=\"opacity-25\"\r\n            cx=\"12\"\r\n            cy=\"12\"\r\n            r=\"10\"\r\n            stroke=\"currentColor\"\r\n            strokeWidth=\"4\"\r\n          />\r\n          <path\r\n            className=\"opacity-75\"\r\n            fill=\"currentColor\"\r\n            d=\"M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z\"\r\n          />\r\n        </svg>\r\n        <span className=\"sr-only\">{label}</span>\r\n      </div>\r\n    );\r\n  }\r\n);\r\n\r\nSpinner.displayName = \"Spinner\";\r\n\r\nexport { Spinner };\r\n",
+      "target": "components/buildora/spinner.tsx",
+      "content": "\"use client\";\r\n\r\nimport * as React from \"react\";\r\nimport { cn } from \"@/lib/buildora/utils\";\r\n\r\nexport type SpinnerSize = \"default\" | \"sm\" | \"lg\" | \"xl\";\r\nexport type SpinnerVariant = \"default\" | \"accent\" | \"light\";\r\n\r\nexport type SpinnerProps = React.HTMLAttributes<HTMLDivElement> & {\r\n  size?: SpinnerSize;\r\n  variant?: SpinnerVariant;\r\n  label?: string;\r\n};\r\n\r\nconst Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(\r\n  ({ className, size = \"default\", variant = \"default\", label = \"Loading...\", ...props }, ref) => {\r\n    const sizeStyles: Record<SpinnerSize, string> = {\r\n      default: \"h-8 w-8\",\r\n      sm: \"h-4 w-4\",\r\n      lg: \"h-12 w-12\",\r\n      xl: \"h-16 w-16\",\r\n    };\r\n\r\n    const variantStyles: Record<SpinnerVariant, string> = {\r\n      default: \"text-[--b-accent]\",\r\n      accent: \"text-[--b-accent] drop-shadow-[0_0_8px_rgba(212,255,79,0.5))]\",\r\n      light: \"text-white/50\",\r\n    };\r\n\r\n    return (\r\n      <div\r\n        ref={ref}\r\n        role=\"status\"\r\n        aria-label={label}\r\n        className=\"inline-flex items-center\"\r\n        {...props}\r\n      >\r\n        <svg\r\n          className={cn(\r\n            \"animate-spin\",\r\n            sizeStyles[size],\r\n            variantStyles[variant],\r\n            className\r\n          )}\r\n          xmlns=\"http://www.w3.org/2000/svg\"\r\n          fill=\"none\"\r\n          viewBox=\"0 0 24 24\"\r\n        >\r\n          <circle\r\n            className=\"opacity-25\"\r\n            cx=\"12\"\r\n            cy=\"12\"\r\n            r=\"10\"\r\n            stroke=\"currentColor\"\r\n            strokeWidth=\"4\"\r\n          />\r\n          <path\r\n            className=\"opacity-75\"\r\n            fill=\"currentColor\"\r\n            d=\"M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z\"\r\n          />\r\n        </svg>\r\n        <span className=\"sr-only\">{label}</span>\r\n      </div>\r\n    );\r\n  }\r\n);\r\n\r\nSpinner.displayName = \"Spinner\";\r\n\r\nexport { Spinner };\r\n",
       "type": "registry:component"
     }
   ],

@@ -242,7 +242,7 @@ export function SiteHeader() {
 
           {/* GitHub */}
           <a
-            href="https://github.com/buildora/buildora"
+            href="https://github.com/Varun9490/Buildora"
             target="_blank"
             rel="noreferrer"
             className="hidden items-center gap-2 rounded-md border border-[--b-border] px-3 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:bg-[--b-surface] sm:flex"
@@ -321,7 +321,7 @@ export function SiteHeader() {
               ))}
               <div className="mt-3 flex gap-2 pt-2">
                 <a
-                  href="https://github.com/buildora/buildora"
+                  href="https://github.com/Varun9490/Buildora"
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 rounded-md border border-[--b-border] py-2 text-center text-sm text-[--b-text-secondary]"
@@ -377,8 +377,11 @@ export function SiteFooter() {
             <div className="mt-4 b-code-block text-[11px]">
               <span className="text-[--b-muted]">$</span>{" "}
               <code className="text-[--b-accent]">
-                pnpm dlx shadcn@latest add @buildora/magnetic-button
+                pnpm dlx shadcn@latest add @buildora/{"{component}"}
               </code>
+              <p className="mt-2 font-mono text-[10px] text-[--b-muted]">
+                Example: @buildora/magnetic-button — see /registry for all 147.
+              </p>
             </div>
           </div>
 
@@ -415,7 +418,7 @@ export function SiteFooter() {
                 { label: "Docs", href: "/docs" },
                 {
                   label: "GitHub",
-                  href: "https://github.com/buildora/buildora",
+                  href: "https://github.com/Varun9490/Buildora",
                   external: true,
                 },
               ].map((link) => (

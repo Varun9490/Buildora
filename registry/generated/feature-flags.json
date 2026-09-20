@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "buildora-feature-flags",
+  "name": "feature-flags",
   "type": "registry:component",
   "title": "Feature Flags",
   "description": "Flag toggles with switch semantics and rollout labels.",
@@ -9,11 +9,15 @@
     "developer"
   ],
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "utils",
+    "tokens"
+  ],
   "files": [
     {
       "path": "packages/components/src/feature-flags/index.tsx",
-      "content": "\"use client\";\r\n\r\nimport * as React from \"react\";\r\nimport { cn } from \"@buildora/utils\";\r\n\r\nexport type Flag = { id: string; name: string; on: boolean; rollout: string };\r\n\r\nexport function FeatureFlags({\r\n  initial = [\r\n    { id: \"f1\", name: \"magnetic-v2\", on: true, rollout: \"50%\" },\r\n    { id: \"f2\", name: \"otp-slingshot\", on: false, rollout: \"0%\" },\r\n    { id: \"f3\", name: \"pattern-notices\", on: true, rollout: \"100%\" },\r\n  ],\r\n  className,\r\n}: {\r\n  initial?: Flag[];\r\n  className?: string;\r\n}) {\r\n  const [flags, setFlags] = React.useState(initial);\r\n  return (\r\n    <ul className={cn(\"space-y-1.5\", className)} aria-label=\"Feature flags\">\r\n      {flags.map((f) => (\r\n        <li key={f.id} className=\"flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-3 py-2\">\r\n          <button\r\n            role=\"switch\"\r\n            aria-checked={f.on}\r\n            aria-label={f.name}\r\n            onClick={() => setFlags((fs) => fs.map((x) => (x.id === f.id ? { ...x, on: !x.on } : x)))}\r\n            className={cn(\"relative h-6 w-11 shrink-0 rounded-full transition-colors\", f.on ? \"bg-[--b-accent]\" : \"bg-white/15\")}\r\n          >\r\n            <span className={cn(\"absolute top-0.5 h-5 w-5 rounded-full transition-all\", f.on ? \"left-[22px] bg-black\" : \"left-0.5 bg-white\")} />\r\n          </button>\r\n          <span className=\"min-w-0 flex-1 truncate font-mono text-sm text-white/85\">{f.name}</span>\r\n          <span className=\"font-mono text-[11px] text-white/40\">{f.rollout}</span>\r\n        </li>\r\n      ))}\r\n    </ul>\r\n  );\r\n}\r\n\r\nexport default FeatureFlags;\r\n",
+      "target": "components/buildora/feature-flags.tsx",
+      "content": "\"use client\";\r\n\r\nimport * as React from \"react\";\r\nimport { cn } from \"@/lib/buildora/utils\";\r\n\r\nexport type Flag = { id: string; name: string; on: boolean; rollout: string };\r\n\r\nexport function FeatureFlags({\r\n  initial = [\r\n    { id: \"f1\", name: \"magnetic-v2\", on: true, rollout: \"50%\" },\r\n    { id: \"f2\", name: \"otp-slingshot\", on: false, rollout: \"0%\" },\r\n    { id: \"f3\", name: \"pattern-notices\", on: true, rollout: \"100%\" },\r\n  ],\r\n  className,\r\n}: {\r\n  initial?: Flag[];\r\n  className?: string;\r\n}) {\r\n  const [flags, setFlags] = React.useState(initial);\r\n  return (\r\n    <ul className={cn(\"space-y-1.5\", className)} aria-label=\"Feature flags\">\r\n      {flags.map((f) => (\r\n        <li key={f.id} className=\"flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-3 py-2\">\r\n          <button\r\n            role=\"switch\"\r\n            aria-checked={f.on}\r\n            aria-label={f.name}\r\n            onClick={() => setFlags((fs) => fs.map((x) => (x.id === f.id ? { ...x, on: !x.on } : x)))}\r\n            className={cn(\"relative h-6 w-11 shrink-0 rounded-full transition-colors\", f.on ? \"bg-[--b-accent]\" : \"bg-white/15\")}\r\n          >\r\n            <span className={cn(\"absolute top-0.5 h-5 w-5 rounded-full transition-all\", f.on ? \"left-[22px] bg-black\" : \"left-0.5 bg-white\")} />\r\n          </button>\r\n          <span className=\"min-w-0 flex-1 truncate font-mono text-sm text-white/85\">{f.name}</span>\r\n          <span className=\"font-mono text-[11px] text-white/40\">{f.rollout}</span>\r\n        </li>\r\n      ))}\r\n    </ul>\r\n  );\r\n}\r\n\r\nexport default FeatureFlags;\r\n",
       "type": "registry:component"
     }
   ],

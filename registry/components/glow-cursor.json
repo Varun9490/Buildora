@@ -91,7 +91,11 @@
     "reducedMotion": true
   },
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "utils",
+    "use-reduced-motion",
+    "tokens"
+  ],
   "provenance": {
     "origin": "original",
     "license": "MIT",
@@ -100,7 +104,8 @@
   "files": [
     {
       "path": "packages/components/src/cursor-effects/glow-cursor.tsx",
-      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type GlowCursorProps = {\n  color?: string;\n  size?: number;\n  blur?: number;\n  opacity?: number;\n  className?: string;\n};\n\nexport function GlowCursor({\n  color = \"#d4ff4f\",\n  size = 400,\n  blur = 150,\n  opacity = 0.15,\n  className,\n}: GlowCursorProps) {\n  const ref = React.useRef<HTMLDivElement | null>(null);\n  const [pos, setPos] = React.useState({ x: 0, y: 0 });\n  const [visible, setVisible] = React.useState(false);\n  const reduced = useReducedMotion();\n\n  React.useEffect(() => {\n    if (reduced) return;\n    const handleMove = (e: MouseEvent) => {\n      setPos({ x: e.clientX, y: e.clientY });\n      setVisible(true);\n    };\n    const handleLeave = () => setVisible(false);\n    window.addEventListener(\"mousemove\", handleMove);\n    document.addEventListener(\"mouseleave\", handleLeave);\n    return () => {\n      window.removeEventListener(\"mousemove\", handleMove);\n      document.removeEventListener(\"mouseleave\", handleLeave);\n    };\n  }, [reduced]);\n\n  if (reduced) return null;\n\n  return (\n    <div\n      ref={ref}\n      aria-hidden\n      className={cn(\n        \"pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300\",\n        visible ? \"opacity-100\" : \"opacity-0\",\n        className\n      )}\n    >\n      <div\n        className=\"absolute\"\n        style={{\n          width: size,\n          height: size,\n          left: pos.x - size / 2,\n          top: pos.y - size / 2,\n          background: `radial-gradient(circle, ${color}${opacity < 16 ? \"0\" : \"\"}${Math.round(opacity * 255).toString(16)} 0%, transparent 70%)`,\n          filter: `blur(${blur}px)`,\n          transform: \"translateZ(0)\",\n        }}\n      />\n    </div>\n  );\n}\n\nexport default GlowCursor;\n"
+      "target": "components/buildora/glow-cursor.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type GlowCursorProps = {\n  color?: string;\n  size?: number;\n  blur?: number;\n  opacity?: number;\n  className?: string;\n};\n\nexport function GlowCursor({\n  color = \"#d4ff4f\",\n  size = 400,\n  blur = 150,\n  opacity = 0.15,\n  className,\n}: GlowCursorProps) {\n  const ref = React.useRef<HTMLDivElement | null>(null);\n  const [pos, setPos] = React.useState({ x: 0, y: 0 });\n  const [visible, setVisible] = React.useState(false);\n  const reduced = useReducedMotion();\n\n  React.useEffect(() => {\n    if (reduced) return;\n    const handleMove = (e: MouseEvent) => {\n      setPos({ x: e.clientX, y: e.clientY });\n      setVisible(true);\n    };\n    const handleLeave = () => setVisible(false);\n    window.addEventListener(\"mousemove\", handleMove);\n    document.addEventListener(\"mouseleave\", handleLeave);\n    return () => {\n      window.removeEventListener(\"mousemove\", handleMove);\n      document.removeEventListener(\"mouseleave\", handleLeave);\n    };\n  }, [reduced]);\n\n  if (reduced) return null;\n\n  return (\n    <div\n      ref={ref}\n      aria-hidden\n      className={cn(\n        \"pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300\",\n        visible ? \"opacity-100\" : \"opacity-0\",\n        className\n      )}\n    >\n      <div\n        className=\"absolute\"\n        style={{\n          width: size,\n          height: size,\n          left: pos.x - size / 2,\n          top: pos.y - size / 2,\n          background: `radial-gradient(circle, ${color}${opacity < 16 ? \"0\" : \"\"}${Math.round(opacity * 255).toString(16)} 0%, transparent 70%)`,\n          filter: `blur(${blur}px)`,\n          transform: \"translateZ(0)\",\n        }}\n      />\n    </div>\n  );\n}\n\nexport default GlowCursor;\n"
     }
   ],
   "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/cursor-effects/glow-cursor.tsx",

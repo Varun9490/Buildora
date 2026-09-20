@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "utils",
+  "type": "registry:lib",
+  "title": "Utils",
+  "description": "cn + clamp + fuzzyScore + formatBytes. Shared class-name helper for every component.",
+  "categories": [
+    "primitives"
+  ],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/shared/utils.ts",
+      "target": "lib/buildora/utils.ts",
+      "content": "import { clsx, type ClassValue } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\n/** Merge class names. Installs to lib/buildora/utils.ts */\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}\n\nexport function clamp(n: number, min: number, max: number) {\n  return Math.min(max, Math.max(min, n));\n}\n\n/** Simple fuzzy match for command-palette / search ranking */\nexport function fuzzyScore(query: string, target: string): number {\n  const q = query.toLowerCase().trim();\n  const s = target.toLowerCase();\n  if (!q) return 1;\n  if (s.includes(q)) return 2 + q.length / Math.max(s.length, 1);\n  let qi = 0;\n  let score = 0;\n  for (let i = 0; i < s.length && qi < q.length; i++) {\n    if (s[i] === q[qi]) {\n      score += 1;\n      qi++;\n    }\n  }\n  return qi === q.length ? score / s.length : 0;\n}\n\nexport function formatBytes(bytes: number) {\n  if (bytes <= 0) return \"0 B\";\n  const k = 1024;\n  const sizes = [\"B\", \"KB\", \"MB\", \"GB\"];\n  const i = Math.min(sizes.length - 1, Math.floor(Math.log(bytes) / Math.log(k)));\n  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(1))} ${sizes[i]}`;\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/registry/shared/utils.ts"
+}

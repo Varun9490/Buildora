@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-pointer-proximity",
+  "type": "registry:hook",
+  "title": "usePointerProximity",
+  "description": "Window-level pointer proximity with rAF throttle. Attracts from radius away; fine-pointer only; zero cost under reduced motion.",
+  "categories": [
+    "motion"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/shared/use-pointer-proximity.ts",
+      "target": "hooks/buildora/use-pointer-proximity.ts",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\n\nexport type Proximity = { dx: number; dy: number; t: number; active: boolean };\n\n/**\n * usePointerProximity — attraction starts BEFORE the pointer reaches the element.\n *\n * A single window pointermove listener (one per hook instance, shared via rAF throttle)\n * measures the pointer against the referenced element's rect expanded by `radius`.\n * - Active only for `(hover: hover) and (pointer: fine)`; touch/keyboard unaffected.\n * - rAF-throttled: at most one state update per frame, only on meaningful change.\n * - Returns zero + inactive under prefers-reduced-motion (zero cost).\n * - Cleans up listener + rAF on unmount (StrictMode-safe).\n *\n * This is what `radius` was always supposed to mean. Wiring onPointerMove on the\n * element itself can never attract from a distance — events only fire on hover.\n */\nexport function usePointerProximity<T extends HTMLElement>(radius = 120) {\n  const ref = React.useRef<T | null>(null);\n  const [prox, setProx] = React.useState<Proximity>({ dx: 0, dy: 0, t: 0, active: false });\n  const raf = React.useRef(0);\n  const last = React.useRef<Proximity>({ dx: 0, dy: 0, t: 0, active: false });\n\n  React.useEffect(() => {\n    if (typeof window === \"undefined\") return;\n    if (window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches) return;\n    if (window.matchMedia(\"(hover: none), (pointer: coarse)\").matches) return;\n\n    let pending: PointerEvent | null = null;\n\n    const apply = () => {\n      raf.current = 0;\n      const el = ref.current;\n      const e = pending;\n      pending = null;\n      if (!el || !e) return;\n      const r = el.getBoundingClientRect();\n      const cx = r.left + r.width / 2;\n      const cy = r.top + r.height / 2;\n      const dx = e.clientX - cx;\n      const dy = e.clientY - cy;\n      const dist = Math.hypot(dx, dy) || 1;\n      const t = Math.max(0, 1 - dist / radius);\n      const next: Proximity = t > 0 ? { dx, dy, t, active: true } : { dx: 0, dy: 0, t: 0, active: false };\n      const p = last.current;\n      if (\n        Math.abs(next.dx - p.dx) < 0.5 &&\n        Math.abs(next.dy - p.dy) < 0.5 &&\n        Math.abs(next.t - p.t) < 0.01 &&\n        next.active === p.active\n      ) {\n        return;\n      }\n      last.current = next;\n      setProx(next);\n    };\n\n    const onMove = (e: PointerEvent) => {\n      pending = e;\n      if (!raf.current) raf.current = requestAnimationFrame(apply);\n    };\n    const onLeave = () => {\n      pending = null;\n      if (raf.current) {\n        cancelAnimationFrame(raf.current);\n        raf.current = 0;\n      }\n      last.current = { dx: 0, dy: 0, t: 0, active: false };\n      setProx(last.current);\n    };\n\n    window.addEventListener(\"pointermove\", onMove, { passive: true });\n    document.documentElement.addEventListener(\"pointerleave\", onLeave);\n    return () => {\n      window.removeEventListener(\"pointermove\", onMove);\n      document.documentElement.removeEventListener(\"pointerleave\", onLeave);\n      if (raf.current) cancelAnimationFrame(raf.current);\n    };\n  }, [radius]);\n\n  return { ref, proximity: prox };\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/registry/shared/use-pointer-proximity.ts"
+}

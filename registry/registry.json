@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 142,
+  "total": 147,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -2006,7 +2006,83 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0"
+    },
+    {
+      "slug": "utils",
+      "name": "Utils",
+      "description": "cn + clamp + fuzzyScore + formatBytes. Shared class-name helper for every component.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "utils",
+        "cn",
+        "foundation"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "use-reduced-motion",
+      "name": "useReducedMotion",
+      "description": "SSR-safe prefers-reduced-motion via useSyncExternalStore. No hydration flash.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "a11y",
+        "motion",
+        "hook"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "spring",
+      "name": "Spring",
+      "description": "dt-based springStep + magnet + rafLoop. The physics behind magnetic effects.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "spring",
+        "physics",
+        "animation"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "use-pointer-proximity",
+      "name": "usePointerProximity",
+      "description": "Window-level pointer proximity with rAF throttle. Attracts from radius away; fine-pointer only; zero cost under reduced motion.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "pointer",
+        "proximity",
+        "magnetic",
+        "hook"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tokens",
+      "name": "Tokens",
+      "description": "Light + dark CSS vars + shared keyframes. Import once so components are styled on first paint.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "tokens",
+        "theme",
+        "css"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
     }
   ],
-  "shadcn": "Compatible — see generated/*.json or /r/{component}.json. GitHub-hosted, no custom domain required."
+  "shadcn": "Compatible — install via shadcn with the @buildora registry pointing at https://buildora.dev/r/{component}.json, or the local /r/{component}.json endpoint."
 }

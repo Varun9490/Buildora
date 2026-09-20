@@ -99,7 +99,10 @@
     "reducedMotion": true
   },
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "utils",
+    "tokens"
+  ],
   "provenance": {
     "origin": "original",
     "license": "MIT",
@@ -108,7 +111,8 @@
   "files": [
     {
       "path": "packages/components/src/tui/tui-header.tsx",
-      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport interface TUIHeaderProps {\n  title: string;\n  subtitle?: string;\n  leftContent?: React.ReactNode;\n  rightContent?: React.ReactNode;\n  className?: string;\n  color?: \"default\" | \"accent\" | \"success\" | \"warning\" | \"error\";\n}\n\nconst headerColors = {\n  default: \"bg-[#0a0c10] border-white/10\",\n  accent: \"bg-[#0a1520] border-cyan-500/20\",\n  success: \"bg-[#0a1510] border-green-500/20\",\n  warning: \"bg-[#15100a] border-yellow-500/20\",\n  error: \"bg-[#150a0a] border-red-500/20\",\n};\n\nconst titleColors = {\n  default: \"text-white/90\",\n  accent: \"text-cyan-400\",\n  success: \"text-green-400\",\n  warning: \"text-yellow-400\",\n  error: \"text-red-400\",\n};\n\nexport function TUIHeader({\n  title,\n  subtitle,\n  leftContent,\n  rightContent,\n  className,\n  color = \"default\",\n}: TUIHeaderProps) {\n  return (\n    <header\n      className={cn(\n        \"flex items-center justify-between px-3 py-2 border-b font-mono\",\n        headerColors[color],\n        className\n      )}\n      role=\"banner\"\n    >\n      <div className=\"flex items-center gap-3\">\n        {leftContent}\n        <div className=\"flex items-center gap-2\">\n          <h1 className={cn(\"text-sm font-medium tracking-wide\", titleColors[color])}>\n            {title}\n          </h1>\n          {subtitle && (\n            <span className=\"text-[11px] text-white/40\">{subtitle}</span>\n          )}\n        </div>\n      </div>\n      <div className=\"flex items-center gap-2\">{rightContent}</div>\n    </header>\n  );\n}\n"
+      "target": "components/buildora/tui-header.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\n\nexport interface TUIHeaderProps {\n  title: string;\n  subtitle?: string;\n  leftContent?: React.ReactNode;\n  rightContent?: React.ReactNode;\n  className?: string;\n  color?: \"default\" | \"accent\" | \"success\" | \"warning\" | \"error\";\n}\n\nconst headerColors = {\n  default: \"bg-[#0a0c10] border-white/10\",\n  accent: \"bg-[#0a1520] border-cyan-500/20\",\n  success: \"bg-[#0a1510] border-green-500/20\",\n  warning: \"bg-[#15100a] border-yellow-500/20\",\n  error: \"bg-[#150a0a] border-red-500/20\",\n};\n\nconst titleColors = {\n  default: \"text-white/90\",\n  accent: \"text-cyan-400\",\n  success: \"text-green-400\",\n  warning: \"text-yellow-400\",\n  error: \"text-red-400\",\n};\n\nexport function TUIHeader({\n  title,\n  subtitle,\n  leftContent,\n  rightContent,\n  className,\n  color = \"default\",\n}: TUIHeaderProps) {\n  return (\n    <header\n      className={cn(\n        \"flex items-center justify-between px-3 py-2 border-b font-mono\",\n        headerColors[color],\n        className\n      )}\n      role=\"banner\"\n    >\n      <div className=\"flex items-center gap-3\">\n        {leftContent}\n        <div className=\"flex items-center gap-2\">\n          <h1 className={cn(\"text-sm font-medium tracking-wide\", titleColors[color])}>\n            {title}\n          </h1>\n          {subtitle && (\n            <span className=\"text-[11px] text-white/40\">{subtitle}</span>\n          )}\n        </div>\n      </div>\n      <div className=\"flex items-center gap-2\">{rightContent}</div>\n    </header>\n  );\n}\n"
     }
   ],
   "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/tui/tui-header.tsx",

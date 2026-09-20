@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spring",
+  "type": "registry:lib",
+  "title": "Spring",
+  "description": "dt-based springStep + magnet + rafLoop. The physics behind magnetic effects.",
+  "categories": [
+    "motion"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/shared/spring.ts",
+      "target": "lib/buildora/spring.ts",
+      "content": "/**\n * Tiny dt-based spring + attraction helpers. No heavy animation dependency.\n * Installs to lib/buildora/spring.ts\n */\n\nexport type SpringOpts = { stiffness?: number; damping?: number; mass?: number };\n\nexport function springStep(\n  x: number,\n  v: number,\n  target: number,\n  opts: SpringOpts = {},\n  dt = 1 / 60\n) {\n  const { stiffness = 220, damping = 24, mass = 1 } = opts;\n  const F = -stiffness * (x - target) - damping * v;\n  const a = F / mass;\n  const nv = v + a * dt;\n  const nx = x + nv * dt;\n  return { x: nx, v: nv };\n}\n\n/** Magnetic attraction: pull point toward anchor, scaled by proximity */\nexport function magnet(\n  px: number,\n  py: number,\n  ax: number,\n  ay: number,\n  radius: number,\n  strength: number\n) {\n  const dx = ax - px;\n  const dy = ay - py;\n  const dist = Math.hypot(dx, dy) || 0.0001;\n  if (dist > radius) return { x: 0, y: 0, t: 0 };\n  const t = 1 - dist / radius; // 0..1 proximity\n  const eased = t * t * (3 - 2 * t);\n  const mag = eased * strength * dist;\n  return { x: (dx / dist) * mag, y: (dy / dist) * mag, t: eased };\n}\n\nexport function reducedMotionPreferred() {\n  if (typeof window === \"undefined\" || typeof window.matchMedia !== \"function\") return false;\n  return window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches;\n}\n\n/** rAF loop helper with cleanup. Return false from fn to stop. */\nexport function rafLoop(fn: (dt: number, t: number) => void | false) {\n  let raf = 0;\n  let last = performance.now();\n  let alive = true;\n  const tick = (now: number) => {\n    if (!alive) return;\n    const dt = Math.min(0.05, (now - last) / 1000);\n    last = now;\n    const res = fn(dt, now);\n    if (res === false) {\n      alive = false;\n      return;\n    }\n    raf = requestAnimationFrame(tick);\n  };\n  raf = requestAnimationFrame(tick);\n  return () => {\n    alive = false;\n    cancelAnimationFrame(raf);\n  };\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/registry/shared/spring.ts"
+}

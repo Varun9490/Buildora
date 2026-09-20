@@ -9,6 +9,14 @@ import * as path from "node:path";
 export type Compat = "Full" | "Partial" | "Experimental" | "Unsupported";
 export type Difficulty = "beginner" | "intermediate" | "advanced";
 
+export type RegistryType =
+  | "registry:component"
+  | "registry:lib"
+  | "registry:hook"
+  | "registry:theme"
+  | "registry:style"
+  | "registry:block";
+
 export type CatalogItem = {
   id: string;
   name: string;
@@ -25,6 +33,11 @@ export type CatalogItem = {
   dependencies?: string[];
   registryDependencies?: string[];
   files: string[];
+  /** Consumer install paths parallel to files. Defaults derived from slug. */
+  targets?: string[];
+  registryType?: RegistryType;
+  cssVars?: { light: Record<string, string>; dark: Record<string, string> };
+  css?: string;
   demoProps?: Record<string, unknown>;
 };
 
@@ -72,6 +85,10 @@ const R = (slug: string, compat: Partial<Record<string, Compat>>, extra: Partial
   dependencies: extra.dependencies ?? [],
   registryDependencies: extra.registryDependencies,
   files: extra.files ?? [`packages/components/src/${slug}/index.tsx`],
+  targets: extra.targets,
+  registryType: extra.registryType,
+  cssVars: extra.cssVars,
+  css: extra.css,
   demoProps: extra.demoProps
 });
 
@@ -82,7 +99,7 @@ export const catalog: CatalogItem[] = [
   R("magnetic-button", fullWeb, { name: "Magnetic Button", description: "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.", categories: ["motion"], tags: ["button", "magnetic", "spring", "cursor"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"], demoProps: { strength: 0.35, radius: 120 } }),
   R("liquid-button", fullWeb, { name: "Liquid Button", description: "Gooey blob fill that follows the pointer inside a real button.", categories: ["motion"], tags: ["button", "gooey", "hover"], difficulty: "beginner" }),
   R("magnetic-card", fullWeb, { name: "Magnetic Card", description: "Pointer tilt + spotlight card with keyboard focus support.", categories: ["motion"], tags: ["card", "tilt", "spotlight"], difficulty: "beginner" }),
-  R("slingshot-otp", fullWeb, { name: "Slingshot OTP", description: "Signature gamified OTP — pull digits like a slingshot. Real inputs, paste, SR fallback underneath.", categories: ["motion"], tags: ["otp", "slingshot", "spring", "signature"], difficulty: "advanced", states: ["empty", "filled", "error"] }),
+  R("slingshot-otp", fullWeb, { name: "Slingshot OTP", description: "Signature gamified OTP — pull digits like a slingshot. Real inputs, paste, SR fallback underneath.", categories: ["motion"], tags: ["otp", "slingshot", "spring", "signature"], difficulty: "advanced", states: ["empty", "filled", "error"], dependencies: ["framer-motion"] }),
   R("interactive-dropzone", fullWeb, { name: "Interactive Dropzone", description: "Proximity-reactive dropzone with progress visualization and error recovery.", categories: ["motion"], tags: ["upload", "dropzone", "magnetic"], difficulty: "intermediate" }),
   R("spatial-command-palette", fullWeb, { name: "Spatial Command Palette", description: "Keyboard-first palette with animated selection, grouped results, recents, and depth presentation.", categories: ["canvas"], tags: ["command", "palette", "keyboard", "spatial"], difficulty: "advanced" }),
   R("cursor-spotlight", fullWeb, { name: "Cursor Spotlight", description: "Cursor-tracked spotlight container for any content.", categories: ["motion"], tags: ["cursor", "spotlight"], difficulty: "beginner", files: ["packages/components/src/creative-atmosphere/index.tsx"] }),
@@ -238,10 +255,97 @@ export const catalog: CatalogItem[] = [
   R("cta-block", fullWeb, { name: "CTA Block", description: "Centered call-to-action with actions and optional stats.", categories: ["blocks"], tags: ["cta", "marketing"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"] }),
   R("feature-grid", fullWeb, { name: "Feature Grid", description: "Three-up feature grid with tags and copy.", categories: ["blocks"], tags: ["features", "marketing"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"] }),
   R("logo-cloud", fullWeb, { name: "Logo Cloud", description: "Customer logo row with label. Logos only, no taglines.", categories: ["blocks"], tags: ["logos", "social-proof"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"] }),
-  R("site-footer", fullWeb, { name: "Site Footer", description: "Footer with brand, link columns, and status line.", categories: ["blocks"], tags: ["footer", "navigation"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"] })
+  R("site-footer", fullWeb, { name: "Site Footer", description: "Footer with brand, link columns, and status line.", categories: ["blocks"], tags: ["footer", "navigation"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"] }),
+
+  // ── Shared foundations (Phase 0.2). Zero @buildora/* in generated output:
+  // components import these via @/… paths and declare registryDependencies. ──
+  R("utils", { react: "Full", javascript: "Full", vue: "Full", svelte: "Full", angular: "Full", html: "Full", tailwind: "Full", reactNative: "Unsupported", flutter: "Unsupported", swiftUI: "Unsupported", compose: "Unsupported" }, {
+    name: "Utils", description: "cn + clamp + fuzzyScore + formatBytes. Shared class-name helper for every component.",
+    categories: ["primitives"], tags: ["utils", "cn", "foundation"], difficulty: "beginner",
+    dependencies: ["clsx", "tailwind-merge"], files: ["registry/shared/utils.ts"],
+    targets: ["lib/buildora/utils.ts"], registryType: "registry:lib",
+  }),
+  R("use-reduced-motion", { react: "Full", javascript: "Partial", vue: "Partial", svelte: "Partial", angular: "Partial", html: "Partial", tailwind: "Unsupported", reactNative: "Unsupported", flutter: "Unsupported", swiftUI: "Unsupported", compose: "Unsupported" }, {
+    name: "useReducedMotion", description: "SSR-safe prefers-reduced-motion via useSyncExternalStore. No hydration flash.",
+    categories: ["primitives"], tags: ["a11y", "motion", "hook"], difficulty: "beginner",
+    files: ["registry/shared/use-reduced-motion.ts"], targets: ["hooks/buildora/use-reduced-motion.ts"], registryType: "registry:hook",
+  }),
+  R("spring", { react: "Full", javascript: "Full", vue: "Full", svelte: "Full", angular: "Full", html: "Partial", tailwind: "Unsupported", reactNative: "Partial", flutter: "Partial", swiftUI: "Partial", compose: "Partial" }, {
+    name: "Spring", description: "dt-based springStep + magnet + rafLoop. The physics behind magnetic effects.",
+    categories: ["motion"], tags: ["spring", "physics", "animation"], difficulty: "beginner",
+    files: ["registry/shared/spring.ts"], targets: ["lib/buildora/spring.ts"], registryType: "registry:lib",
+  }),
+  R("use-pointer-proximity", { react: "Full", javascript: "Partial", vue: "Partial", svelte: "Partial", angular: "Partial", html: "Partial", tailwind: "Unsupported", reactNative: "Unsupported", flutter: "Unsupported", swiftUI: "Unsupported", compose: "Unsupported" }, {
+    name: "usePointerProximity", description: "Window-level pointer proximity with rAF throttle. Attracts from radius away; fine-pointer only; zero cost under reduced motion.",
+    categories: ["motion"], tags: ["pointer", "proximity", "magnetic", "hook"], difficulty: "intermediate",
+    files: ["registry/shared/use-pointer-proximity.ts"], targets: ["hooks/buildora/use-pointer-proximity.ts"], registryType: "registry:hook",
+  }),
+  R("tokens", { react: "Full", javascript: "Full", vue: "Full", svelte: "Full", angular: "Full", html: "Full", tailwind: "Full", reactNative: "Partial", flutter: "Partial", swiftUI: "Partial", compose: "Partial" }, {
+    name: "Tokens", description: "Light + dark CSS vars + shared keyframes. Import once so components are styled on first paint.",
+    categories: ["primitives"], tags: ["tokens", "theme", "css"], difficulty: "beginner",
+    files: ["registry/shared/tokens.css"], targets: ["styles/buildora/tokens.css"], registryType: "registry:theme",
+    cssVars: {
+      light: { "--b-bg": "#faf9f7", "--b-panel": "#ffffff", "--b-text": "#131316", "--b-border": "rgba(19,19,22,0.08)", "--b-accent": "#4d7c0f", "--b-accent-foreground": "#ffffff" },
+      dark: { "--b-bg": "#0e0e0c", "--b-panel": "#161614", "--b-text": "#ededec", "--b-border": "rgba(255,255,255,0.08)", "--b-accent": "#d4ff4f", "--b-accent-foreground": "#131305" },
+    },
+  }),
 ];
 
 const CANONICAL_REPO = "https://github.com/Varun9490/Buildora";
+
+/** Phase 0.2: generated (consumer) code must contain zero @buildora/* imports.
+ * Repo source uses workspace aliases; the build rewrites them to the
+ * installed locations below so `shadcn add` works in a fresh project. */
+const CONSUMER_IMPORTS: Array<[RegExp, string]> = [
+  [/@buildora\/utils/g, "@/lib/buildora/utils"],
+  [/@buildora\/hooks/g, "@/hooks/buildora/use-reduced-motion"],
+  [/@buildora\/animations/g, "@/lib/buildora/spring"],
+  [/@buildora\/tokens/g, "@/styles/buildora/tokens"],
+  [/@buildora\/magnetic-button/g, "@/components/buildora/magnetic-button"],
+];
+
+export function toConsumerContent(content: string) {
+  let out = content;
+  for (const [re, to] of CONSUMER_IMPORTS) out = out.replace(re, to);
+  return out;
+}
+
+/** Infer registryDependencies from workspace imports in source. */
+export function inferRegistryDeps(item: CatalogItem): string[] {
+  if (["utils", "use-reduced-motion", "spring", "use-pointer-proximity", "tokens"].includes(item.slug)) {
+    return item.slug === "tokens" ? [] : [];
+  }
+  let src = "";
+  for (const f of item.files) {
+    try {
+      src += "\n" + fs.readFileSync(path.join(process.cwd(), f), "utf8");
+    } catch { /* ignore */ }
+  }
+  const deps = new Set<string>(item.registryDependencies ?? []);
+  if (src.includes("@buildora/utils")) deps.add("utils");
+  if (src.includes("@buildora/hooks")) deps.add("use-reduced-motion");
+  if (src.includes("@buildora/animations")) deps.add("spring");
+  // Every visual component needs tokens or it renders unstyled.
+  if (!["utils", "use-reduced-motion", "spring", "use-pointer-proximity", "tokens"].includes(item.slug)) {
+    deps.add("tokens");
+  }
+  return [...deps];
+}
+
+/** Consumer install path per file. Never index.tsx. */
+export function consumerTargets(item: CatalogItem): string[] {
+  if (item.targets) return item.targets;
+  const multi = item.files.length > 1;
+  return item.files.map((f) => {
+    const base = f.split("/").pop() ?? `${item.slug}.tsx`;
+    if (!multi) {
+      if (base === "index.tsx") return `components/buildora/${item.slug}.tsx`;
+      return `components/buildora/${base}`;
+    }
+    if (base === "index.tsx") return `components/buildora/${item.slug}/index.tsx`;
+    return `components/buildora/${item.slug}/${base}`;
+  });
+}
 
 export function toRegistryJson(item: CatalogItem) {
   // Resolve the real source dir: catalog `files[0]` may point at a shared
@@ -275,14 +379,14 @@ export function toRegistryJson(item: CatalogItem) {
     ),
     accessibility: { keyboard: true, screenReader: true, reducedMotion: true },
     dependencies: item.dependencies ?? [],
-    registryDependencies: item.registryDependencies ?? [],
+    registryDependencies: inferRegistryDeps(item),
     provenance: { origin: "original", license: "MIT", adapted: false },
-    files: item.files.map((f) => {
+    files: item.files.map((f, i) => {
       try {
-        const content = fs.readFileSync(path.join(process.cwd(), f), "utf8");
-        return { path: f, content };
+        const raw = fs.readFileSync(path.join(process.cwd(), f), "utf8");
+        return { path: f, target: consumerTargets(item)[i], content: toConsumerContent(raw) };
       } catch (e) {
-        return { path: f, content: `// Could not read file: ${f}` };
+        return { path: f, target: consumerTargets(item)[i], content: `// Could not read file: ${f}` };
       }
     }),
     github: `${CANONICAL_REPO}/tree/main/${primaryFile.replace(/\/index\.tsx$/, "")}`,
@@ -294,25 +398,30 @@ export function toRegistryJson(item: CatalogItem) {
 }
 
 export function toShadcnJson(item: CatalogItem) {
-  return {
+  const type = item.registryType ?? "registry:component";
+  const targets = consumerTargets(item);
+  const base = {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",
-    name: `buildora-${item.slug}`,
-    type: "registry:component" as const,
+    name: item.slug,
+    type,
     title: item.name,
     description: item.description,
     categories: item.categories,
     dependencies: item.dependencies ?? [],
-    registryDependencies: item.registryDependencies ?? [],
-    files: item.files.map((f) => {
+    registryDependencies: inferRegistryDeps(item),
+    files: item.files.map((f, i) => {
       try {
-        const content = fs.readFileSync(path.join(process.cwd(), f), "utf8");
-        return { path: f, content, type: "registry:component" as const };
+        const raw = fs.readFileSync(path.join(process.cwd(), f), "utf8");
+        return { path: f, target: targets[i], content: toConsumerContent(raw), type };
       } catch (e) {
-        return { path: f, content: `// Could not read file: ${f}`, type: "registry:component" as const };
+        return { path: f, target: targets[i], content: `// Could not read file: ${f}`, type };
       }
     }),
     docs: `https://github.com/Varun9490/Buildora/tree/main/${f2(item)}`
-  };
+  } as Record<string, unknown>;
+  if (item.cssVars) base.cssVars = item.cssVars;
+  if (item.css) base.css = item.css;
+  return base;
 }
 
 function f2(item: CatalogItem) {
@@ -337,7 +446,9 @@ export function toAgentCatalog(item: CatalogItem) {
       Object.entries(item.compat).map(([fw, status]) => [fw, { status, note: item.notes?.[fw] }])
     ),
     dependencies: item.dependencies ?? [],
+    registryDependencies: inferRegistryDeps(item),
     provenance: (reg as { provenance?: unknown }).provenance ?? { origin: "original" },
+    targets: consumerTargets(item),
     workflow: ["find", "inspect", "install", "customize", "validate"],
   };
 }
@@ -358,7 +469,7 @@ export function buildAll(outDir: string) {
     total: comps.length,
     installBase: "pnpm dlx shadcn@latest add @buildora/{component}",
     components: comps.map((c) => ({ slug: c.slug, name: c.name, description: c.description, categories: c.categories, tags: c.tags, difficulty: c.difficulty, version: c.version })),
-    shadcn: "Compatible — see generated/*.json or /r/{component}.json. GitHub-hosted, no custom domain required."
+    shadcn: "Compatible — install via shadcn with the @buildora registry pointing at https://buildora.dev/r/{component}.json, or the local /r/{component}.json endpoint."
   };
   fs.writeFileSync(path.join(outDir, "registry.json"), JSON.stringify(index, null, 2));
   const agentCatalog = {

@@ -61,6 +61,11 @@ const EXPECTED: Record<string, string[]> = {
   "tui-log-viewer": ["TUILogViewer"],
   "tui-help-overlay": ["TUIHelpOverlay"],
   "tui-diff-viewer": ["TUIDiffViewer"],
+  utils: ["cn"],
+  "use-reduced-motion": ["useReducedMotion"],
+  spring: ["springStep"],
+  "use-pointer-proximity": ["usePointerProximity"],
+  tokens: ["__css__"],
 };
 
 function pascal(slug: string): string {
@@ -93,7 +98,15 @@ for (const item of catalog) {
     }
   }
   const want = EXPECTED[item.slug] ?? [pascal(item.slug)];
-  if (!want.some((w) => entryExports.has(w))) {
+  if (want.includes("__css__")) {
+    const cssOk = item.files.some((f) => {
+      try {
+        const c = fs.readFileSync(path.join(process.cwd(), f), "utf8");
+        return c.includes(":root") && c.includes("--b-");
+      } catch { return false; }
+    });
+    if (!cssOk) errs.push("tokens css must define :root --b-* vars");
+  } else if (!want.some((w) => entryExports.has(w))) {
     errs.push(`expected export ${want.join("/")} not found (has: ${[...entryExports].slice(0, 8).join(", ")})`);
   }
   const install = `pnpm dlx shadcn@latest add @buildora/${item.slug}`;

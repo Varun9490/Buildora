@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "buildora-gradient-mesh-background",
+  "name": "gradient-mesh-background",
   "type": "registry:component",
   "title": "Gradient Mesh Background",
   "description": "Layered mesh gradient field.",
@@ -8,11 +8,16 @@
     "backgrounds"
   ],
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "utils",
+    "use-reduced-motion",
+    "tokens"
+  ],
   "files": [
     {
       "path": "packages/components/src/backgrounds/gradient-mesh-background.tsx",
-      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type GradientMeshBackgroundProps = {\n  colors?: string[];\n  speed?: number;\n  blur?: number;\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function GradientMeshBackground({\n  colors = [\"#5f4de8\", \"#d4ff4f\", \"#ff8a3d\", \"#3dd4ff\"],\n  speed = 20,\n  blur = 100,\n  className,\n  children,\n}: GradientMeshBackgroundProps) {\n  const reduced = useReducedMotion();\n  const actualSpeed = reduced ? 0 : speed;\n\n  return (\n    <div className={cn(\"relative overflow-hidden\", className)}>\n      <div aria-hidden className=\"pointer-events-none absolute inset-0\">\n        {colors.map((color, i) => (\n          <div\n            key={i}\n            className=\"absolute\"\n            style={{\n              width: \"60%\",\n              height: \"60%\",\n              left: `${(i % 2) * 30}%`,\n              top: `${Math.floor(i / 2) * 30}%`,\n              background: color,\n              opacity: 0.4,\n              filter: `blur(${blur}px)`,\n              borderRadius: \"50%\",\n              mixBlendMode: \"screen\",\n              animation: actualSpeed > 0 ? `meshDrift ${actualSpeed}s ease-in-out infinite alternate` : undefined,\n              animationDelay: `${i * 2}s`,\n            }}\n          />\n        ))}\n      </div>\n      <style>{`\n        @keyframes meshDrift {\n          0% { transform: translate(0, 0) scale(1); }\n          100% { transform: translate(10%, 15%) scale(1.1); }\n        }\n      `}</style>\n      <div className=\"relative z-10\">{children}</div>\n    </div>\n  );\n}\n\nexport default GradientMeshBackground;\n",
+      "target": "components/buildora/gradient-mesh-background.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type GradientMeshBackgroundProps = {\n  colors?: string[];\n  speed?: number;\n  blur?: number;\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function GradientMeshBackground({\n  colors = [\"#5f4de8\", \"#d4ff4f\", \"#ff8a3d\", \"#3dd4ff\"],\n  speed = 20,\n  blur = 100,\n  className,\n  children,\n}: GradientMeshBackgroundProps) {\n  const reduced = useReducedMotion();\n  const actualSpeed = reduced ? 0 : speed;\n\n  return (\n    <div className={cn(\"relative overflow-hidden\", className)}>\n      <div aria-hidden className=\"pointer-events-none absolute inset-0\">\n        {colors.map((color, i) => (\n          <div\n            key={i}\n            className=\"absolute\"\n            style={{\n              width: \"60%\",\n              height: \"60%\",\n              left: `${(i % 2) * 30}%`,\n              top: `${Math.floor(i / 2) * 30}%`,\n              background: color,\n              opacity: 0.4,\n              filter: `blur(${blur}px)`,\n              borderRadius: \"50%\",\n              mixBlendMode: \"screen\",\n              animation: actualSpeed > 0 ? `meshDrift ${actualSpeed}s ease-in-out infinite alternate` : undefined,\n              animationDelay: `${i * 2}s`,\n            }}\n          />\n        ))}\n      </div>\n      <style>{`\n        @keyframes meshDrift {\n          0% { transform: translate(0, 0) scale(1); }\n          100% { transform: translate(10%, 15%) scale(1.1); }\n        }\n      `}</style>\n      <div className=\"relative z-10\">{children}</div>\n    </div>\n  );\n}\n\nexport default GradientMeshBackground;\n",
       "type": "registry:component"
     }
   ],

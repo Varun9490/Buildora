@@ -99,7 +99,10 @@
     "reducedMotion": true
   },
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "utils",
+    "tokens"
+  ],
   "provenance": {
     "origin": "original",
     "license": "MIT",
@@ -108,7 +111,8 @@
   "files": [
     {
       "path": "packages/components/src/backgrounds/dot-grid-background.tsx",
-      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport type DotGridBackgroundProps = {\n  dotColor?: string;\n  dotSize?: number;\n  spacing?: number;\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function DotGridBackground({\n  dotColor = \"rgba(255, 255, 255, 0.15)\",\n  dotSize = 1,\n  spacing = 20,\n  className,\n  children,\n}: DotGridBackgroundProps) {\n  return (\n    <div className={cn(\"relative overflow-hidden\", className)}>\n      <div\n        aria-hidden\n        className=\"pointer-events-none absolute inset-0\"\n        style={{\n          backgroundImage: `radial-gradient(circle, ${dotColor} ${dotSize}px, transparent ${dotSize}px)`,\n          backgroundSize: `${spacing}px ${spacing}px`,\n        }}\n      />\n      <div className=\"relative z-10\">{children}</div>\n    </div>\n  );\n}\n\nexport default DotGridBackground;\n"
+      "target": "components/buildora/dot-grid-background.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\n\nexport type DotGridBackgroundProps = {\n  dotColor?: string;\n  dotSize?: number;\n  spacing?: number;\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function DotGridBackground({\n  dotColor = \"rgba(255, 255, 255, 0.15)\",\n  dotSize = 1,\n  spacing = 20,\n  className,\n  children,\n}: DotGridBackgroundProps) {\n  return (\n    <div className={cn(\"relative overflow-hidden\", className)}>\n      <div\n        aria-hidden\n        className=\"pointer-events-none absolute inset-0\"\n        style={{\n          backgroundImage: `radial-gradient(circle, ${dotColor} ${dotSize}px, transparent ${dotSize}px)`,\n          backgroundSize: `${spacing}px ${spacing}px`,\n        }}\n      />\n      <div className=\"relative z-10\">{children}</div>\n    </div>\n  );\n}\n\nexport default DotGridBackground;\n"
     }
   ],
   "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/backgrounds/dot-grid-background.tsx",

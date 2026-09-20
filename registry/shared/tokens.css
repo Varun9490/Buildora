@@ -1,0 +1,151 @@
+/**
+ * Buildora tokens — ships light + dark CSS vars so installed components
+ * are styled on first paint instead of invisible. Import once in globals.css:
+ *   @import "./styles/buildora/tokens.css";
+ *
+ * Semantic base (shadcn-parity): --background/--foreground/--card/--primary/
+ * --muted/--accent/--border/--ring/--radius map onto --b-* internals.
+ * Effect-only tokens live under --fx-*.
+ */
+
+:root,
+[data-theme="light"] {
+  --b-bg: #faf9f7;
+  --b-panel: #ffffff;
+  --b-surface: #f1efeb;
+  --b-elevated: #ffffff;
+  --b-border: rgba(19, 19, 22, 0.08);
+  --b-border-hover: rgba(19, 19, 22, 0.16);
+  --b-text: #131316;
+  --b-text-secondary: #52525b;
+  --b-muted: #8e8e93;
+  --b-ring: rgba(19, 19, 22, 0.16);
+  --b-success: #047857;
+  --b-warning: #b45309;
+  --b-danger: #be123c;
+  --b-accent: #4d7c0f;
+  --b-accent-foreground: #ffffff;
+  --b-accent-muted: rgba(77, 124, 15, 0.1);
+  --b-iris: #4f46e5;
+  --b-iris-foreground: #ffffff;
+  --b-radius: 12px;
+  --fx-glow: rgba(77, 124, 15, 0.25);
+  --z-dropdown: 50;
+  --z-overlay: 100;
+  --z-toast: 150;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 140ms;
+  --dur-base: 220ms;
+  --dur-slow: 420ms;
+  color-scheme: light;
+
+  /* shadcn-parity aliases so Buildora inherits host theme */
+  --background: var(--b-bg);
+  --foreground: var(--b-text);
+  --card: var(--b-panel);
+  --popover: var(--b-panel);
+  --primary: var(--b-accent);
+  --primary-foreground: var(--b-accent-foreground);
+  --secondary: var(--b-surface);
+  --secondary-foreground: var(--b-text);
+  --muted: var(--b-surface);
+  --muted-foreground: var(--b-muted);
+  --accent: var(--b-surface);
+  --accent-foreground: var(--b-text);
+  --destructive: var(--b-danger);
+  --border: var(--b-border);
+  --input: var(--b-border);
+  --ring: var(--b-ring);
+  --radius: var(--b-radius);
+}
+
+[data-theme="dark"] {
+  --b-bg: #0e0e0c;
+  --b-panel: #161614;
+  --b-surface: #1d1d1a;
+  --b-elevated: #242422;
+  --b-border: rgba(255, 255, 255, 0.08);
+  --b-border-hover: rgba(255, 255, 255, 0.16);
+  --b-text: #ededec;
+  --b-text-secondary: #a1a1aa;
+  --b-muted: #6e6e73;
+  --b-ring: rgba(255, 255, 255, 0.16);
+  --b-success: #34d399;
+  --b-warning: #fbbf24;
+  --b-danger: #f87171;
+  --b-accent: #d4ff4f;
+  --b-accent-foreground: #131305;
+  --b-accent-muted: rgba(212, 255, 79, 0.12);
+  --b-iris: #9d8cff;
+  --b-iris-foreground: #1e1b4b;
+  --fx-glow: rgba(212, 255, 79, 0.25);
+  color-scheme: dark;
+
+  --background: var(--b-bg);
+  --foreground: var(--b-text);
+  --card: var(--b-panel);
+  --popover: var(--b-panel);
+  --primary: var(--b-accent);
+  --primary-foreground: var(--b-accent-foreground);
+  --secondary: var(--b-surface);
+  --secondary-foreground: var(--b-text);
+  --muted: var(--b-surface);
+  --muted-foreground: var(--b-muted);
+  --accent: var(--b-surface);
+  --accent-foreground: var(--b-text);
+  --destructive: var(--b-danger);
+  --border: var(--b-border);
+  --input: var(--b-border);
+  --ring: var(--b-ring);
+}
+
+@media (forced-colors: active) {
+  :root {
+    --b-border: CanvasText;
+    --b-text: CanvasText;
+    --b-bg: Canvas;
+    --b-panel: Canvas;
+    forced-color-adjust: auto;
+  }
+}
+
+/* Shared keyframes (replaces per-component <style jsx> blocks) */
+@keyframes buildora-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes buildora-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes buildora-scale-in {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes buildora-scale-out {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to { opacity: 0; transform: scale(0.95) translateY(10px); }
+}
+@keyframes buildora-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes buildora-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes buildora-meteor {
+  0% { transform: translate(0, 0) rotate(-45deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translate(-40vw, 40vh) rotate(-45deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

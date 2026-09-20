@@ -6,13 +6,13 @@ import { motion } from "framer-motion";
 
 const docs = [
   { slug: "overview", icon: "book", title: "Overview", body: "Buildora is a registry-driven creative component ecosystem. One definition powers website, docs, playground, search, and install." },
-  { slug: "installation", icon: "package", title: "Installation", body: "pnpm dlx shadcn@latest add @buildora/{component}. No custom domain required — GitHub-hosted registry + /r/{component}.json endpoint." },
-  { slug: "usage", icon: "terminal", title: "Usage", body: "Import from @buildora/{component}. Tune props in the playground, copy the framework tab, keep semantic behavior intact." },
-  { slug: "props-api", icon: "gear", title: "Props API", body: "Clean, minimal props: strength, radius, intensity, spring, glow, scale. Every prop is documented on its component page with live controls." },
+  { slug: "installation", icon: "package", title: "Installation", body: "pnpm dlx shadcn@latest add @buildora/{component} with the @buildora registry pointing at https://buildora.dev/r/{name}.json (local /r/{component}.json on this domain). Every component declares dependencies + registryDependencies; shared utils/hooks/spring/tokens install automatically." },
+  { slug: "usage", icon: "terminal", title: "Usage", body: "Import from @/components/buildora/{component} after install (e.g. @/components/buildora/magnetic-button). Tune props in the playground, copy the framework tab, keep semantic behavior intact." },
+  { slug: "props-api", icon: "gear", title: "Props API", body: "Props are per-component and listed on each component page with live controls (e.g. MagneticButton: strength, radius, glow, variant). There is no global prop set — past docs listing intensity/spring/scale were wrong and have been removed." },
   { slug: "frameworks", icon: "code", title: "Framework Implementations", body: "React is Full — the source of truth. JS/HTML/Tailwind get snippet-level starters. Native targets (RN, Flutter, SwiftUI, Compose) are experimental snippets that remap hover/cursor to press and gestures. We label snippets honestly; we never ship a fake port." },
-  { slug: "accessibility", icon: "access", title: "Accessibility", body: "Keyboard + focus + SR + reduced-motion on every component. Creative layers never remove semantic behavior (e.g. Slingshot OTP keeps real inputs)." },
+  { slug: "accessibility", icon: "access", title: "Accessibility", body: "Keyboard + focus + SR + reduced-motion on every component. Creative layers never remove semantic behavior — delight modes ship with a real-input fallback (e.g. OTP standard mode keeps a named input with autocomplete=one-time-code; game mode is opt-in with a Type instead control)." },
   { slug: "responsive", icon: "device", title: "Responsive Behavior", body: "Desktop pointer physics → touch drag/press equivalents → simplified small-screen controls. Larger targets, no hover-only flows." },
-  { slug: "customization", icon: "palette", title: "Customization", body: "CSS vars (--b-accent, --b-iris), Tailwind variants, and tree-shakeable exports. Tokens live in @buildora/tokens." },
+  { slug: "customization", icon: "palette", title: "Customization", body: "CSS vars (--b-accent, --b-iris), Tailwind variants, and tree-shakeable exports. Tokens ship as the tokens registry item (styles/buildora/tokens.css) — import once, components inherit your theme." },
   { slug: "registry", icon: "grid", title: "Registry", body: "Source: registry/components/*.json. Build: pnpm registry:build. Validate: pnpm registry:validate. shadcn items: registry/generated/*.json." }
 ];
 

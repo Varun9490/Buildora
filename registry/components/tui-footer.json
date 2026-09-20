@@ -99,7 +99,10 @@
     "reducedMotion": true
   },
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "utils",
+    "tokens"
+  ],
   "provenance": {
     "origin": "original",
     "license": "MIT",
@@ -108,7 +111,8 @@
   "files": [
     {
       "path": "packages/components/src/tui/tui-footer.tsx",
-      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport interface TUIFooterProps {\n  shortcuts?: Array<{ key: string; label: string }>;\n  message?: { text: string; type?: \"info\" | \"success\" | \"warning\" | \"error\" };\n  className?: string;\n}\n\nconst messageColors = {\n  info: \"text-cyan-400\",\n  success: \"text-green-400\",\n  warning: \"text-yellow-400\",\n  error: \"text-red-400\",\n};\n\nexport function TUIFooter({ shortcuts, message, className }: TUIFooterProps) {\n  return (\n    <footer\n      className={cn(\n        \"flex items-center justify-between px-3 py-1.5 bg-[#0a0c10] border-t border-white/10 font-mono text-[11px]\",\n        className\n      )}\n      role=\"contentinfo\"\n    >\n      <div className=\"flex items-center gap-4\">\n        {shortcuts?.map((s, i) => (\n          <span key={i} className=\"flex items-center gap-1\">\n            <kbd className=\"px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-white/70\">\n              {s.key}\n            </kbd>\n            <span className=\"text-white/40\">{s.label}</span>\n          </span>\n        ))}\n      </div>\n      {message && (\n        <span className={messageColors[message.type || \"info\"]}>\n          {message.text}\n        </span>\n      )}\n    </footer>\n  );\n}\n"
+      "target": "components/buildora/tui-footer.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\n\nexport interface TUIFooterProps {\n  shortcuts?: Array<{ key: string; label: string }>;\n  message?: { text: string; type?: \"info\" | \"success\" | \"warning\" | \"error\" };\n  className?: string;\n}\n\nconst messageColors = {\n  info: \"text-cyan-400\",\n  success: \"text-green-400\",\n  warning: \"text-yellow-400\",\n  error: \"text-red-400\",\n};\n\nexport function TUIFooter({ shortcuts, message, className }: TUIFooterProps) {\n  return (\n    <footer\n      className={cn(\n        \"flex items-center justify-between px-3 py-1.5 bg-[#0a0c10] border-t border-white/10 font-mono text-[11px]\",\n        className\n      )}\n      role=\"contentinfo\"\n    >\n      <div className=\"flex items-center gap-4\">\n        {shortcuts?.map((s, i) => (\n          <span key={i} className=\"flex items-center gap-1\">\n            <kbd className=\"px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-white/70\">\n              {s.key}\n            </kbd>\n            <span className=\"text-white/40\">{s.label}</span>\n          </span>\n        ))}\n      </div>\n      {message && (\n        <span className={messageColors[message.type || \"info\"]}>\n          {message.text}\n        </span>\n      )}\n    </footer>\n  );\n}\n"
     }
   ],
   "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/tui/tui-footer.tsx",

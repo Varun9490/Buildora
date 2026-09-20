@@ -8,7 +8,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const c = allComponents.find((x) => x.slug === params.slug);
-  return { title: c ? `${c.name} — Buildora` : "Component — Buildora", description: c?.description };
+  const title = c ? `${c.name} — Buildora` : "Component — Buildora";
+  const description = c?.description ?? "Buildora component";
+  return {
+    title,
+    description,
+    openGraph: { title, description, type: "website" },
+    twitter: { card: "summary_large_image", title, description },
+  };
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {

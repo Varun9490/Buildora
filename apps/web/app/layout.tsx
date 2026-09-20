@@ -26,6 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://buildora.dev"),
   title: "Buildora — One system. Any product.",
   description:
     "Universal, theme-aware React components. Light + dark, swappable accent, accessible. Build. Remix. Ship.",
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
     description: "Build. Remix. Ship. One system. Any product.",
     type: "website",
   },
+  twitter: { card: "summary_large_image" },
 };
 
 function themeInit() {

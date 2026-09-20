@@ -1,0 +1,116 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "utils",
+  "name": "Utils",
+  "slug": "utils",
+  "description": "cn + clamp + fuzzyScore + formatBytes. Shared class-name helper for every component.",
+  "categories": [
+    "primitives"
+  ],
+  "tags": [
+    "utils",
+    "cn",
+    "foundation"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "registry/shared/utils.ts"
+      ]
+    },
+    "javascript": {
+      "status": "Full",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "registry/shared/utils.ts"
+      ]
+    },
+    "vue": {
+      "status": "Full",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "registry/shared/utils.ts"
+      ]
+    },
+    "svelte": {
+      "status": "Full",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "registry/shared/utils.ts"
+      ]
+    },
+    "angular": {
+      "status": "Full",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "registry/shared/utils.ts"
+      ]
+    },
+    "html": {
+      "status": "Full",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "registry/shared/utils.ts"
+      ]
+    },
+    "tailwind": {
+      "status": "Full",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "registry/shared/utils.ts"
+      ]
+    },
+    "reactNative": {
+      "status": "Unsupported",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": []
+    },
+    "flutter": {
+      "status": "Unsupported",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": []
+    },
+    "swiftUI": {
+      "status": "Unsupported",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": []
+    },
+    "compose": {
+      "status": "Unsupported",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": []
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "registry/shared/utils.ts",
+      "target": "lib/buildora/utils.ts",
+      "content": "import { clsx, type ClassValue } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\n/** Merge class names. Installs to lib/buildora/utils.ts */\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}\n\nexport function clamp(n: number, min: number, max: number) {\n  return Math.min(max, Math.max(min, n));\n}\n\n/** Simple fuzzy match for command-palette / search ranking */\nexport function fuzzyScore(query: string, target: string): number {\n  const q = query.toLowerCase().trim();\n  const s = target.toLowerCase();\n  if (!q) return 1;\n  if (s.includes(q)) return 2 + q.length / Math.max(s.length, 1);\n  let qi = 0;\n  let score = 0;\n  for (let i = 0; i < s.length && qi < q.length; i++) {\n    if (s[i] === q[qi]) {\n      score += 1;\n      qi++;\n    }\n  }\n  return qi === q.length ? score / s.length : 0;\n}\n\nexport function formatBytes(bytes: number) {\n  if (bytes <= 0) return \"0 B\";\n  const k = 1024;\n  const sizes = [\"B\", \"KB\", \"MB\", \"GB\"];\n  const i = Math.min(sizes.length - 1, Math.floor(Math.log(bytes) / Math.log(k)));\n  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(1))} ${sizes[i]}`;\n}\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/registry/shared/utils.ts",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/registry/shared/utils.ts",
+  "sourceDir": "registry/shared/utils.ts",
+  "docs": "/components/utils",
+  "install": "pnpm dlx shadcn@latest add @buildora/utils"
+}

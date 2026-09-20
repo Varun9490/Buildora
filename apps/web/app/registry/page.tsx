@@ -11,7 +11,7 @@ export default function RegistryPage() {
 
   const snippet = `{
   "registries": {
-    "@buildora": "https://github.com/Varun9490/Buildora/tree/main/registry/generated/{name}.json"
+    "@buildora": "https://buildora.dev/r/{name}.json"
   }
 }`;
 
@@ -32,10 +32,9 @@ export default function RegistryPage() {
           Registry <span className="text-[--b-muted]">({totalComponents})</span>
         </h1>
         <p className="mt-2 max-w-lg text-sm text-[--b-text-secondary]">
-          shadcn-compatible. GitHub-hosted — no custom domain required.{" "}
-          <span className="text-[--b-muted]">
-            Future: optionally serve <code className="font-mono text-[--b-accent]">https://buildora.dev/r/{"{component}"}.json</code>.
-          </span>
+          shadcn-compatible. Served as JSON from <code className="font-mono text-[--b-accent]">/r/{"{component}"}.json</code>{" "}
+          on this domain, canonical{" "}
+          <code className="font-mono text-[--b-accent]">https://buildora.dev/r/{"{component}"}.json</code>.
         </p>
       </motion.div>
 
