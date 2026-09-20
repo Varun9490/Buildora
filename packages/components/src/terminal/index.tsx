@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 
 export function Terminal({ lines = ["$ pnpm dlx shadcn@latest add @buildora/magnetic-button", "✔ Added magnetic-button", "$ pnpm dev", "▲ Ready on http://localhost:3000"], className }: { lines?: string[]; className?: string }) {
   const [history, setHistory] = React.useState<string[]>(lines);

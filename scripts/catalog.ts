@@ -86,10 +86,21 @@ const R = (slug: string, compat: Partial<Record<string, Compat>>, extra: Partial
     ...compat
   },
   notes: { ...HONEST_SNIPPET_NOTES, ...extra.notes },
-  dependencies: extra.dependencies ?? [],
-  registryDependencies: extra.registryDependencies,
+  dependencies: [
+    ...(extra.dependencies ?? []),
+    ...(
+      [
+        "command-palette", "mobile-nav", "navbar", "onboarding-checklist",
+        "pricing-table", "progress", "sidebar", "slider", "tabs",
+        "team-switcher", "usage-dashboard", "slingshot-otp"
+      ].includes(slug) && !(extra.dependencies ?? []).includes("framer-motion")
+        ? ["framer-motion"]
+        : []
+    )
+  ],
+  registryDependencies: Array.from(new Set([...(extra.registryDependencies ?? []), "utils", "tokens"])),
   files: extra.files ?? [`packages/components/src/${slug}/index.tsx`],
-  targets: extra.targets,
+  targets: extra.targets ?? extra.files?.map(f => f.endsWith('index.tsx') ? `components/buildora/${slug}.tsx` : `components/buildora/${slug}/${path.basename(f)}`),
   registryType: extra.registryType,
   status: extra.status ?? "beta",
   cssVars: extra.cssVars,
@@ -100,7 +111,17 @@ const R = (slug: string, compat: Partial<Record<string, Compat>>, extra: Partial
 const fullWeb = {};
 const noMobile3D: Partial<Record<string, Compat>> = { reactNative: "Partial", flutter: "Experimental", swiftUI: "Experimental", compose: "Experimental" };
 
+
+const baseItems: CatalogItem[] = [
+  R("utils", {}, { name: "utils", description: "Utility functions", registryType: "registry:lib", files: ["packages/components/src/utils/index.ts"] }),
+  R("use-reduced-motion", {}, { name: "use-reduced-motion", description: "Hook for reduced motion", registryType: "registry:hook", files: ["packages/components/src/hooks/use-reduced-motion.ts"] }),
+  R("use-pointer-proximity", {}, { name: "use-pointer-proximity", description: "Hook for pointer proximity", registryType: "registry:hook", files: ["packages/components/src/hooks/use-pointer-proximity.ts"] }),
+  R("spring", {}, { name: "spring", description: "Spring animation utility", registryType: "registry:lib", files: ["packages/components/src/animations/spring.ts"] }),
+  R("tokens", {}, { name: "tokens", description: "Design tokens", registryType: "registry:theme", files: ["packages/components/src/tokens/index.css"], cssVars: { light: {}, dark: {} } })
+];
+
 export const catalog: CatalogItem[] = [
+  ...baseItems,
   R("magnetic-button", fullWeb, { name: "Magnetic Button", description: "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.", categories: ["motion"], tags: ["button", "magnetic", "spring", "cursor"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"], demoProps: { strength: 0.35, radius: 120 } }),
   R("liquid-button", fullWeb, { name: "Liquid Button", description: "Gooey blob fill that follows the pointer inside a real button.", categories: ["motion"], tags: ["button", "gooey", "hover"], difficulty: "beginner" }),
   R("magnetic-card", fullWeb, { name: "Magnetic Card", description: "Pointer tilt + spotlight card with keyboard focus support.", categories: ["motion"], tags: ["card", "tilt", "spotlight"], difficulty: "beginner" }),

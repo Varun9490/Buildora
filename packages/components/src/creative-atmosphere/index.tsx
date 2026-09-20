@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 
 export function AuroraBackground({ className, children }: { className?: string; children?: React.ReactNode }) {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn, fuzzyScore } from "@buildora/utils";
+import { cn, fuzzyScore } from "../utils";
 
 export type SlashItem = { id: string; cmd: string; desc: string };
 

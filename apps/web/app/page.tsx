@@ -193,7 +193,6 @@ function CopyInstall() {
 function StatsBar() {
   const stats = [
     { value: String(totalComponents), label: "Components", icon: <IconCube className="h-5 w-5" /> },
-    { value: "11", label: "Frameworks", icon: <IconBolt className="h-5 w-5" /> },
     { value: "7", label: "Categories", icon: <IconGrid className="h-5 w-5" /> },
     { value: "MIT", label: "License", icon: <IconShield className="h-5 w-5" /> },
   ];
@@ -227,32 +226,10 @@ function StatsBar() {
   );
 }
 
-/* ─────────────────────────────────────────────────────
-   FRAMEWORK BADGES
-   ───────────────────────────────────────────────────── */
 function FrameworkBadges() {
-  const frameworks = [
-    "React", "JavaScript", "Vue", "Svelte", "Angular",
-    "HTML", "Tailwind", "React Native", "Flutter", "SwiftUI", "Compose",
-  ];
-
-  return (
-    <div className="flex flex-wrap gap-2">
-      {frameworks.map((f, i) => (
-        <motion.span
-          key={f}
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: i * 0.03, duration: 0.3 }}
-          className="rounded-md border border-[--b-border] bg-[--b-surface] px-3 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors duration-200 hover:border-[--b-accent] hover:text-[--b-accent]"
-        >
-          {f}
-        </motion.span>
-      ))}
-    </div>
-  );
+  return null;
 }
+
 
 /* ─────────────────────────────────────────────────────
    CREATIVE STRIP — Atmospheric effects showcase

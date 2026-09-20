@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 
 export type DNode = { id: string; label: string; x: number; y: number };
 export type DEdge = { from: string; to: string };

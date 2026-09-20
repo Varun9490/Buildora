@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 import { createPortal } from "react-dom";
-import { useReducedMotion } from "@buildora/hooks";
+import { useReducedMotion } from "../hooks/use-reduced-motion";
 
 export type SheetSide = "left" | "right" | "top" | "bottom";
 

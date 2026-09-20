@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn, fuzzyScore } from "@buildora/utils";
+import { cn, fuzzyScore } from "../utils";
 import { motion, AnimatePresence } from "framer-motion";
 
 export type Command = { id: string; label: string; hint?: string; group?: string };

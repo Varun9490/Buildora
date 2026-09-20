@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 
 export type DocVersion = { id: string; label: string; at: string; author: string; current?: boolean };
 

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 
 export type ChatMessage = { id: string; role: "user" | "assistant" | "tool"; text: string; citations?: string[]; };
 

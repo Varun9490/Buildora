@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 
 export type WebhookEvent = { id: string; name: string; status: number; at: string; payload: unknown };
 

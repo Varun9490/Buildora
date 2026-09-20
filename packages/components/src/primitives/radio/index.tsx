@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
-import { useReducedMotion } from "@buildora/hooks";
+import { cn } from "../utils";
+import { useReducedMotion } from "../hooks/use-reduced-motion";
 
 export type RadioProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> & {
   label?: string;

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 
 export type AuditEvent = { id: string; at: string; actor: string; action: string; severity: "info" | "warn" | "critical" };
 

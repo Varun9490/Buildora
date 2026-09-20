@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 
 export function RichTextEditor({ initial = "Ship with Buildora.", className }: { initial?: string; className?: string }) {
   const ref = React.useRef<HTMLDivElement | null>(null);

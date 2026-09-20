@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 import { motion, AnimatePresence } from "framer-motion";
 
 export type SlingshotOTPProps = {

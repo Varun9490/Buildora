@@ -2,7 +2,7 @@
   "$schema": "https://buildora.dev/schema/agent-catalog.json",
   "name": "buildora",
   "version": "0.1.0",
-  "total": 152,
+  "total": 157,
   "workflow": [
     "find component",
     "inspect metadata",
@@ -11,6 +11,406 @@
     "validate registry"
   ],
   "components": [
+    {
+      "slug": "utils",
+      "name": "utils",
+      "description": "Utility functions",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/utils",
+      "docs": "/components/utils",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/utils/index.ts",
+      "files": [
+        "packages/components/src/utils/index.ts"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "status": "stable",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/utils/index.ts"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "use-reduced-motion",
+      "name": "use-reduced-motion",
+      "description": "Hook for reduced motion",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/use-reduced-motion",
+      "docs": "/components/use-reduced-motion",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/hooks/use-reduced-motion.ts",
+      "files": [
+        "packages/components/src/hooks/use-reduced-motion.ts"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "status": "stable",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/use-reduced-motion/use-reduced-motion.ts"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "use-pointer-proximity",
+      "name": "use-pointer-proximity",
+      "description": "Hook for pointer proximity",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/use-pointer-proximity",
+      "docs": "/components/use-pointer-proximity",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/hooks/use-pointer-proximity.ts",
+      "files": [
+        "packages/components/src/hooks/use-pointer-proximity.ts"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "status": "stable",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/use-pointer-proximity/use-pointer-proximity.ts"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "spring",
+      "name": "spring",
+      "description": "Spring animation utility",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/spring",
+      "docs": "/components/spring",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/animations/spring.ts",
+      "files": [
+        "packages/components/src/animations/spring.ts"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "status": "stable",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/spring/spring.ts"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "tokens",
+      "name": "tokens",
+      "description": "Design tokens",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/tokens",
+      "docs": "/components/tokens",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/tokens/index.css",
+      "files": [
+        "packages/components/src/tokens/index.css"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "status": "stable",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/tokens/index.css"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
     {
       "slug": "magnetic-button",
       "name": "Magnetic Button",
@@ -83,8 +483,6 @@
       ],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
-        "spring",
         "tokens"
       ],
       "status": "beta",
@@ -172,7 +570,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -260,7 +657,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -3029,7 +3425,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "framer-motion"
+      ],
       "registryDependencies": [
         "utils",
         "tokens"
@@ -3115,7 +3513,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "framer-motion"
+      ],
       "registryDependencies": [
         "utils",
         "tokens"
@@ -3201,7 +3601,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "framer-motion"
+      ],
       "registryDependencies": [
         "utils",
         "tokens"
@@ -3373,7 +3775,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "framer-motion"
+      ],
       "registryDependencies": [
         "utils",
         "tokens"
@@ -3717,7 +4121,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "framer-motion"
+      ],
       "registryDependencies": [
         "utils",
         "tokens"
@@ -4748,7 +5154,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -5093,7 +5498,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -5179,7 +5583,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -5265,7 +5668,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -5349,10 +5751,11 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "framer-motion"
+      ],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -5435,10 +5838,11 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "framer-motion"
+      ],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -5611,7 +6015,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -5951,10 +6354,11 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "framer-motion"
+      ],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -6040,7 +6444,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -6297,7 +6700,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -6307,7 +6709,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/dialog.tsx"
+        "components/buildora/dialog/dialog.tsx"
       ],
       "workflow": [
         "find",
@@ -6393,7 +6795,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/alert-dialog.tsx"
+        "components/buildora/alert-dialog/alert-dialog.tsx"
       ],
       "workflow": [
         "find",
@@ -6470,7 +6872,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -6480,7 +6881,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/sheet.tsx"
+        "components/buildora/sheet/sheet.tsx"
       ],
       "workflow": [
         "find",
@@ -6557,7 +6958,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -6567,7 +6967,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/drawer.tsx"
+        "components/buildora/drawer/drawer.tsx"
       ],
       "workflow": [
         "find",
@@ -6643,7 +7043,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -6653,7 +7052,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/popover.tsx"
+        "components/buildora/popover/popover.tsx"
       ],
       "workflow": [
         "find",
@@ -6730,7 +7129,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -6740,7 +7138,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/dropdown-menu.tsx"
+        "components/buildora/dropdown-menu/dropdown-menu.tsx"
       ],
       "workflow": [
         "find",
@@ -6826,7 +7224,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/context-menu.tsx"
+        "components/buildora/context-menu/context-menu.tsx"
       ],
       "workflow": [
         "find",
@@ -6903,7 +7301,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -6913,7 +7310,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/hover-card.tsx"
+        "components/buildora/hover-card/hover-card.tsx"
       ],
       "workflow": [
         "find",
@@ -6999,7 +7396,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/modal-stack.tsx"
+        "components/buildora/modal-stack/modal-stack.tsx"
       ],
       "workflow": [
         "find",
@@ -7073,10 +7470,11 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "framer-motion"
+      ],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -7086,7 +7484,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/navbar.tsx"
+        "components/buildora/navbar/navbar.tsx"
       ],
       "workflow": [
         "find",
@@ -7163,7 +7561,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -7173,7 +7570,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/floating-navbar.tsx"
+        "components/buildora/floating-navbar/floating-navbar.tsx"
       ],
       "workflow": [
         "find",
@@ -7246,10 +7643,11 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "framer-motion"
+      ],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -7259,7 +7657,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/sidebar.tsx"
+        "components/buildora/sidebar/sidebar.tsx"
       ],
       "workflow": [
         "find",
@@ -7336,7 +7734,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -7346,7 +7743,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/expandable-sidebar.tsx"
+        "components/buildora/expandable-sidebar/expandable-sidebar.tsx"
       ],
       "workflow": [
         "find",
@@ -7420,10 +7817,11 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "framer-motion"
+      ],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -7433,7 +7831,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/mobile-nav.tsx"
+        "components/buildora/mobile-nav/mobile-nav.tsx"
       ],
       "workflow": [
         "find",
@@ -7519,7 +7917,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/breadcrumb-nav.tsx"
+        "components/buildora/breadcrumb/breadcrumb-nav.tsx"
       ],
       "workflow": [
         "find",
@@ -7596,7 +7994,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -7606,7 +8003,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/step-nav.tsx"
+        "components/buildora/step-nav/step-nav.tsx"
       ],
       "workflow": [
         "find",
@@ -7683,7 +8080,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -7693,7 +8089,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/pagination.tsx"
+        "components/buildora/pagination/pagination.tsx"
       ],
       "workflow": [
         "find",
@@ -7770,7 +8166,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -7780,7 +8175,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/command-bar.tsx"
+        "components/buildora/command-bar/command-bar.tsx"
       ],
       "workflow": [
         "find",
@@ -7866,7 +8261,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-panel.tsx"
+        "components/buildora/tui-panel/tui-panel.tsx"
       ],
       "workflow": [
         "find",
@@ -7952,7 +8347,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-status-bar.tsx"
+        "components/buildora/tui-status-bar/tui-status-bar.tsx"
       ],
       "workflow": [
         "find",
@@ -8038,7 +8433,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-header.tsx"
+        "components/buildora/tui-header/tui-header.tsx"
       ],
       "workflow": [
         "find",
@@ -8124,7 +8519,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-footer.tsx"
+        "components/buildora/tui-footer/tui-footer.tsx"
       ],
       "workflow": [
         "find",
@@ -8210,7 +8605,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-table.tsx"
+        "components/buildora/tui-table/tui-table.tsx"
       ],
       "workflow": [
         "find",
@@ -8296,7 +8691,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-tree.tsx"
+        "components/buildora/tui-tree/tui-tree.tsx"
       ],
       "workflow": [
         "find",
@@ -8382,7 +8777,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-list.tsx"
+        "components/buildora/tui-list/tui-list.tsx"
       ],
       "workflow": [
         "find",
@@ -8468,7 +8863,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-form.tsx"
+        "components/buildora/tui-form/tui-form.tsx"
       ],
       "workflow": [
         "find",
@@ -8554,7 +8949,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-select.tsx"
+        "components/buildora/tui-select/tui-select.tsx"
       ],
       "workflow": [
         "find",
@@ -8640,7 +9035,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-multi-select.tsx"
+        "components/buildora/tui-multi-select/tui-multi-select.tsx"
       ],
       "workflow": [
         "find",
@@ -8726,7 +9121,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-progress.tsx"
+        "components/buildora/tui-progress/tui-progress.tsx"
       ],
       "workflow": [
         "find",
@@ -8812,7 +9207,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-spinner.tsx"
+        "components/buildora/tui-spinner/tui-spinner.tsx"
       ],
       "workflow": [
         "find",
@@ -8898,7 +9293,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-gauge.tsx"
+        "components/buildora/tui-gauge/tui-gauge.tsx"
       ],
       "workflow": [
         "find",
@@ -8984,7 +9379,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-sparkline.tsx"
+        "components/buildora/tui-sparkline/tui-sparkline.tsx"
       ],
       "workflow": [
         "find",
@@ -9070,7 +9465,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-log-viewer.tsx"
+        "components/buildora/tui-log-viewer/tui-log-viewer.tsx"
       ],
       "workflow": [
         "find",
@@ -9156,7 +9551,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-help-overlay.tsx"
+        "components/buildora/tui-help-overlay/tui-help-overlay.tsx"
       ],
       "workflow": [
         "find",
@@ -9242,7 +9637,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/tui-diff-viewer.tsx"
+        "components/buildora/tui-diff-viewer/tui-diff-viewer.tsx"
       ],
       "workflow": [
         "find",
@@ -9334,7 +9729,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/terminal-workspace/index.tsx",
+        "components/buildora/terminal-workspace.tsx",
         "components/buildora/terminal-workspace/terminal-pane.tsx",
         "components/buildora/terminal-workspace/terminal-sidebar.tsx",
         "components/buildora/terminal-workspace/terminal-tab-bar.tsx",
@@ -9426,7 +9821,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/noise-background.tsx"
+        "components/buildora/noise-background/noise-background.tsx"
       ],
       "workflow": [
         "find",
@@ -9512,7 +9907,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/grid-background.tsx"
+        "components/buildora/grid-background/grid-background.tsx"
       ],
       "workflow": [
         "find",
@@ -9598,7 +9993,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/dot-grid-background.tsx"
+        "components/buildora/dot-grid-background/dot-grid-background.tsx"
       ],
       "workflow": [
         "find",
@@ -9675,7 +10070,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -9685,7 +10079,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/gradient-mesh-background.tsx"
+        "components/buildora/gradient-mesh-background/gradient-mesh-background.tsx"
       ],
       "workflow": [
         "find",
@@ -9762,7 +10156,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -9772,7 +10165,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/aurora-beam-background.tsx"
+        "components/buildora/aurora-beam-background/aurora-beam-background.tsx"
       ],
       "workflow": [
         "find",
@@ -9849,7 +10242,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -9859,7 +10251,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/ripple-background.tsx"
+        "components/buildora/ripple-background/ripple-background.tsx"
       ],
       "workflow": [
         "find",
@@ -9936,7 +10328,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -9946,7 +10337,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/meteor-background.tsx"
+        "components/buildora/meteor-background/meteor-background.tsx"
       ],
       "workflow": [
         "find",
@@ -10023,7 +10414,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -10033,7 +10423,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/beam-background.tsx"
+        "components/buildora/beam-background/beam-background.tsx"
       ],
       "workflow": [
         "find",
@@ -10110,7 +10500,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -10120,7 +10509,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/glow-cursor.tsx"
+        "components/buildora/glow-cursor/glow-cursor.tsx"
       ],
       "workflow": [
         "find",
@@ -10197,7 +10586,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -10207,7 +10595,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/blob-cursor.tsx"
+        "components/buildora/blob-cursor/blob-cursor.tsx"
       ],
       "workflow": [
         "find",
@@ -10284,7 +10672,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -10294,7 +10681,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/trail-cursor.tsx"
+        "components/buildora/trail-cursor/trail-cursor.tsx"
       ],
       "workflow": [
         "find",
@@ -10371,7 +10758,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -10381,7 +10767,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/ghost-cursor.tsx"
+        "components/buildora/ghost-cursor/ghost-cursor.tsx"
       ],
       "workflow": [
         "find",
@@ -10458,7 +10844,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -10468,7 +10853,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/spotlight-cursor.tsx"
+        "components/buildora/spotlight-cursor/spotlight-cursor.tsx"
       ],
       "workflow": [
         "find",
@@ -10975,7 +11360,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -10985,7 +11369,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/ripple-button.tsx"
+        "components/buildora/ripple-button/ripple-button.tsx"
       ],
       "workflow": [
         "find",
@@ -11062,7 +11446,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -11072,7 +11455,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/shimmer-button.tsx"
+        "components/buildora/shimmer-button/shimmer-button.tsx"
       ],
       "workflow": [
         "find",
@@ -11149,7 +11532,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -11159,7 +11541,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/glow-button.tsx"
+        "components/buildora/glow-button/glow-button.tsx"
       ],
       "workflow": [
         "find",
@@ -11236,7 +11618,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -11246,7 +11627,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/gradient-border-button.tsx"
+        "components/buildora/gradient-border-button/gradient-border-button.tsx"
       ],
       "workflow": [
         "find",
@@ -11324,7 +11705,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -11334,7 +11714,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/hold-button.tsx"
+        "components/buildora/hold-button/hold-button.tsx"
       ],
       "workflow": [
         "find",
@@ -11411,7 +11791,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -11421,7 +11800,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/glare-card.tsx"
+        "components/buildora/glare-card/glare-card.tsx"
       ],
       "workflow": [
         "find",
@@ -11498,7 +11877,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -11508,7 +11886,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/spotlight-card.tsx"
+        "components/buildora/spotlight-card/spotlight-card.tsx"
       ],
       "workflow": [
         "find",
@@ -11585,7 +11963,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -11595,7 +11972,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/wobble-card.tsx"
+        "components/buildora/wobble-card/wobble-card.tsx"
       ],
       "workflow": [
         "find",
@@ -11672,7 +12049,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "experimental",
@@ -11682,7 +12058,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/glass-card.tsx"
+        "components/buildora/glass-card/glass-card.tsx"
       ],
       "workflow": [
         "find",
@@ -11769,7 +12145,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/bento-grid.tsx"
+        "components/buildora/bento-grid/bento-grid.tsx"
       ],
       "workflow": [
         "find",
@@ -11846,7 +12222,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -11856,7 +12231,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/infinite-marquee.tsx"
+        "components/buildora/infinite-marquee/infinite-marquee.tsx"
       ],
       "workflow": [
         "find",
@@ -11942,7 +12317,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/masonry-layout.tsx"
+        "components/buildora/masonry-layout/masonry-layout.tsx"
       ],
       "workflow": [
         "find",
@@ -12375,7 +12750,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -12548,7 +12922,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -12635,7 +13008,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",
@@ -12722,7 +13094,6 @@
       "dependencies": [],
       "registryDependencies": [
         "utils",
-        "use-reduced-motion",
         "tokens"
       ],
       "status": "beta",

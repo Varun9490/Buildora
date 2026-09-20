@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
-import { useReducedMotion } from "@buildora/hooks";
+import { cn } from "../utils";
+import { useReducedMotion } from "../hooks/use-reduced-motion";
 import { motion, AnimatePresence } from "framer-motion";
 
 const TabsContext = React.createContext<{

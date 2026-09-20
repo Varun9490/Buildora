@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn, clamp } from "@buildora/utils";
-import { useReducedMotion } from "@buildora/hooks";
+import { cn, clamp } from "../utils";
+import { useReducedMotion } from "../hooks/use-reduced-motion";
 import { motion } from "framer-motion";
 
 export type ProgressVariant = "default" | "accent" | "success" | "warning" | "danger";

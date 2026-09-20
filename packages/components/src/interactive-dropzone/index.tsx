@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn, formatBytes } from "@buildora/utils";
+import { cn, formatBytes } from "../utils";
 
 export type DropFile = { name: string; size: number; progress: number; status: "queued" | "uploading" | "done" | "error"; };
 

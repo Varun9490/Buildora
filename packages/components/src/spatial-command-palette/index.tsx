@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn, fuzzyScore } from "@buildora/utils";
+import { cn, fuzzyScore } from "../utils";
 
 export type PaletteItem = { id: string; title: string; hint?: string; group: string; action?: () => void; };
 

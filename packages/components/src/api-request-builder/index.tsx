@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 
 const METHODS = ["GET", "POST", "PUT", "DELETE"] as const;
 

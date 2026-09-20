@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 
 export type Approver = { id: string; name: string; state: "pending" | "approved" | "rejected" };
 

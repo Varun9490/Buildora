@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
-import { useReducedMotion } from "@buildora/hooks";
-import { springStep } from "@buildora/animations";
+import { cn } from "../utils";
+import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { springStep } from "../animations/spring";
 
 export type MagneticButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   strength?: number; // 0..1 attraction

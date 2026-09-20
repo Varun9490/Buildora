@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 import { TerminalPane, type TerminalLine, createTerminalLine } from "./terminal-pane";
 import { TerminalSidebar, type FileTreeNode, type TerminalSession } from "./terminal-sidebar";
 import { TerminalTabBar, type TerminalTab, createTerminalTab } from "./terminal-tab-bar";

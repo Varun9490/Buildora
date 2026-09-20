@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 
 export type CardT = { id: string; title: string; tag?: string; };
 export type ColT = { id: string; title: string; cards: CardT[]; };

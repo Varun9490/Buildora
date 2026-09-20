@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@buildora/utils";
+import { cn } from "../utils";
 
 export type Column = { key: string; label: string; sortable?: boolean; };
 export type Row = Record<string, React.ReactNode> & { id: string };

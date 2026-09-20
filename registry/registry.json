@@ -3,9 +3,69 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 152,
+  "total": 157,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
+    {
+      "slug": "utils",
+      "name": "utils",
+      "description": "Utility functions",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "stable"
+    },
+    {
+      "slug": "use-reduced-motion",
+      "name": "use-reduced-motion",
+      "description": "Hook for reduced motion",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "stable"
+    },
+    {
+      "slug": "use-pointer-proximity",
+      "name": "use-pointer-proximity",
+      "description": "Hook for pointer proximity",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "stable"
+    },
+    {
+      "slug": "spring",
+      "name": "spring",
+      "description": "Spring animation utility",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "stable"
+    },
+    {
+      "slug": "tokens",
+      "name": "tokens",
+      "description": "Design tokens",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "stable"
+    },
     {
       "slug": "magnetic-button",
       "name": "Magnetic Button",
