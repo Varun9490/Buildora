@@ -20,13 +20,13 @@ function Badge({
   ...props
 }: BadgeProps) {
   const variantStyles: Record<BadgeVariant, string> = {
-    default: "bg-white/10 text-white/80 border-white/10",
-    secondary: "bg-white/5 text-white/60 border-white/5",
-    success: "bg-[#4fe08a]/15 text-[#4fe08a] border-[#4fe08a]/20",
-    warning: "bg-[#ffb86b]/15 text-[#ffb86b] border-[#ffb86b]/20",
-    danger: "bg-red-500/15 text-red-400 border-red-500/20",
-    outline: "bg-transparent text-white/70 border-white/20",
-    accent: "bg-[#d4ff4f]/15 text-[#d4ff4f] border-[#d4ff4f]/20",
+    default: "bg-[--b-surface] text-[--b-text-secondary] border-[--b-border]",
+    secondary: "bg-[--b-panel] text-[--b-muted] border-[--b-border]",
+    success: "bg-[--b-success]/10 text-[--b-success] border-[--b-success]/25",
+    warning: "bg-[--b-warning]/10 text-[--b-warning] border-[--b-warning]/25",
+    danger: "bg-[--b-danger]/10 text-[--b-danger] border-[--b-danger]/25",
+    outline: "bg-transparent text-[--b-text-secondary] border-[--b-border-hover]",
+    accent: "bg-[--b-accent-muted] text-[--b-accent] border-[--b-accent]/30",
   };
 
   const sizeStyles: Record<"default" | "sm" | "lg", string> = {
@@ -61,26 +61,26 @@ const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(
   ({ className, variant = "default", selected, icon, children, ...props }, ref) => {
     const variantStyles: Record<BadgeVariant, string> = {
       default: selected
-        ? "bg-white/15 text-white border-white/20"
-        : "bg-white/5 text-white/60 border-white/10 hover:bg-white/10 hover:text-white/80",
+        ? "bg-[--b-text]/10 text-[--b-text] border-[--b-border-hover]"
+        : "bg-[--b-surface] text-[--b-text-secondary] border-[--b-border] hover:bg-[--b-elevated]",
       secondary: selected
-        ? "bg-white/10 text-white border-white/15"
-        : "bg-white/[0.03] text-white/50 border-white/5 hover:bg-white/5 hover:text-white/70",
+        ? "bg-[--b-surface] text-[--b-text] border-[--b-border-hover]"
+        : "bg-[--b-panel] text-[--b-muted] border-[--b-border] hover:text-[--b-text-secondary]",
       success: selected
-        ? "bg-[#4fe08a]/25 text-[#4fe08a] border-[#4fe08a]/30"
-        : "bg-[#4fe08a]/10 text-[#4fe08a]/60 border-[#4fe08a]/10 hover:bg-[#4fe08a]/15",
+        ? "bg-[--b-success]/20 text-[--b-success] border-[--b-success]/30"
+        : "bg-[--b-success]/10 text-[--b-success] border-[--b-success]/15 hover:bg-[--b-success]/15",
       warning: selected
-        ? "bg-[#ffb86b]/25 text-[#ffb86b] border-[#ffb86b]/30"
-        : "bg-[#ffb86b]/10 text-[#ffb86b]/60 border-[#ffb86b]/10 hover:bg-[#ffb86b]/15",
+        ? "bg-[--b-warning]/20 text-[--b-warning] border-[--b-warning]/30"
+        : "bg-[--b-warning]/10 text-[--b-warning] border-[--b-warning]/15 hover:bg-[--b-warning]/15",
       danger: selected
-        ? "bg-red-500/25 text-red-400 border-red-500/30"
-        : "bg-red-500/10 text-red-400/60 border-red-500/10 hover:bg-red-500/15",
+        ? "bg-[--b-danger]/20 text-[--b-danger] border-[--b-danger]/30"
+        : "bg-[--b-danger]/10 text-[--b-danger] border-[--b-danger]/15 hover:bg-[--b-danger]/15",
       outline: selected
-        ? "bg-white/10 text-white border-white/30"
-        : "bg-transparent text-white/50 border-white/20 hover:bg-white/5 hover:border-white/30",
+        ? "bg-[--b-surface] text-[--b-text] border-[--b-border-hover]"
+        : "bg-transparent text-[--b-text-secondary] border-[--b-border] hover:bg-[--b-surface]",
       accent: selected
-        ? "bg-[#d4ff4f]/25 text-[#d4ff4f] border-[#d4ff4f]/40"
-        : "bg-[#d4ff4f]/5 text-[#d4ff4f]/60 border-[#d4ff4f]/10 hover:bg-[#d4ff4f]/10",
+        ? "bg-[--b-accent]/25 text-[--b-accent] border-[--b-accent]/40"
+        : "bg-[--b-accent-muted] text-[--b-accent] border-[--b-accent]/20 hover:bg-[--b-accent]/15",
     };
 
     return (

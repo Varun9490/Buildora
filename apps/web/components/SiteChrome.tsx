@@ -55,30 +55,30 @@ export function SiteHeader() {
           <motion.div
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="flex h-8 w-8 items-center justify-center rounded-lg bg-[--b-accent] text-[#0C0C0C]"
+            className="flex h-8 w-8 items-center justify-center rounded-[10px] border border-[--b-border] bg-[--b-panel] text-[--b-text]"
           >
+            {/* Scaffold-B: modular B with open remix joint */}
             <svg
               width="18"
               height="18"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2.5"
+              strokeWidth="2.2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="translate-x-[0.5px]"
+              aria-hidden="true"
             >
-              {/* Geometric 'B' with a cursor/scaffold cut */}
-              <path d="M5 4h8a4 4 0 0 1 4 4v0a4 4 0 0 1-4 4H5z" />
-              <path d="M5 12h9a4 4 0 0 1 4 4v0a4 4 0 0 1-4 4H5z" />
-              <path d="M5 4v16" />
-              <path d="M14 16l4 4" />
+              <path d="M6 4v16" />
+              <path d="M6 4h7.5a3.5 3.5 0 0 1 0 7H6" />
+              <path d="M6 11h8.5a3.5 3.5 0 0 1 0 7H6" />
+              <circle cx="17.5" cy="17.5" r="1.6" fill="var(--b-accent)" stroke="none" />
             </svg>
           </motion.div>
           <span className="font-display text-base font-bold tracking-tight">
-            BUILDORA
+            Buildora
           </span>
-          <span className="hidden rounded-md border border-[--b-border] bg-white/[0.03] px-2 py-0.5 font-mono text-[10px] text-[--b-muted] sm:inline">
+          <span className="hidden rounded-full border border-[--b-border] bg-[--b-surface] px-2 py-0.5 font-mono text-[10px] text-[--b-muted] sm:inline">
             v0.1
           </span>
         </Link>
@@ -129,7 +129,7 @@ export function SiteHeader() {
               onClick={() => setOpen((o) => !o)}
               aria-haspopup="listbox"
               aria-expanded={open}
-              className="flex items-center gap-2 rounded-md border border-[--b-border] bg-white/[0.03] px-3 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:border-[--b-border-hover] hover:bg-white/[0.05]"
+              className="flex items-center gap-2 rounded-md border border-[--b-border] bg-[--b-surface] px-3 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:border-[--b-border-hover] hover:bg-[--b-elevated]"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-[--b-accent]" />
               {frameworkLabels[framework]}
@@ -179,7 +179,7 @@ export function SiteHeader() {
                             "flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left font-mono text-[11px] transition-colors",
                             f === framework
                               ? "bg-[--b-accent]/10 text-[--b-accent]"
-                              : "text-[--b-text-secondary] hover:bg-white/[0.04] hover:text-[--b-text]"
+                              : "text-[--b-text-secondary] hover:bg-[--b-surface] hover:text-[--b-text]"
                           )}
                         >
                           <span
@@ -205,7 +205,7 @@ export function SiteHeader() {
             href="https://github.com/buildora/buildora"
             target="_blank"
             rel="noreferrer"
-            className="hidden items-center gap-2 rounded-md border border-[--b-border] px-3 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:bg-white/[0.03] sm:flex"
+            className="hidden items-center gap-2 rounded-md border border-[--b-border] px-3 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:bg-[--b-surface] sm:flex"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.84 2.8 1.31 3.49 1 .1-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12.01 12.01 0 0024 12c0-6.63-5.37-12-12-12z" />
@@ -216,7 +216,7 @@ export function SiteHeader() {
           {/* Install CTA */}
           <Link
             href="/registry"
-            className="hidden items-center gap-2 rounded-md bg-[--b-accent] px-4 py-1.5 font-mono text-[11px] font-bold text-[#0C0C0C] transition-transform active:scale-[0.97] sm:inline-flex"
+            className="hidden items-center gap-2 rounded-md bg-[--b-accent] px-4 py-1.5 font-mono text-[11px] font-bold text-[--b-accent-foreground] transition-transform active:scale-[0.97] sm:inline-flex"
           >
             Install
           </Link>
@@ -224,7 +224,7 @@ export function SiteHeader() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen((o) => !o)}
-            className="flex h-8 w-8 items-center justify-center rounded-md border border-[--b-border] text-[--b-text-secondary] transition-colors hover:bg-white/[0.03] lg:hidden"
+            className="flex h-8 w-8 items-center justify-center rounded-md border border-[--b-border] text-[--b-text-secondary] transition-colors hover:bg-[--b-surface] lg:hidden"
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
           >
@@ -272,8 +272,8 @@ export function SiteHeader() {
                   className={cn(
                     "block rounded-md px-3 py-2 text-sm transition-colors",
                     path === l.href
-                      ? "bg-white/[0.05] font-medium text-[--b-text]"
-                      : "text-[--b-muted] hover:bg-white/[0.03] hover:text-[--b-text-secondary]"
+                      ? "bg-[--b-surface] font-medium text-[--b-text]"
+                      : "text-[--b-muted] hover:bg-[--b-surface] hover:text-[--b-text-secondary]"
                   )}
                 >
                   {l.label}
@@ -308,31 +308,31 @@ export function SiteFooter() {
           {/* Brand column */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[--b-accent] text-[#0C0C0C]">
+              <span className="flex h-7 w-7 items-center justify-center rounded-[10px] border border-[--b-border] bg-[--b-panel] text-[--b-text]">
                 <svg
                   width="14"
                   height="14"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="3"
+                  strokeWidth="2.4"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="translate-x-[0.5px]"
+                  aria-hidden="true"
                 >
-                  <path d="M5 4h8a4 4 0 0 1 4 4v0a4 4 0 0 1-4 4H5z" />
-                  <path d="M5 12h9a4 4 0 0 1 4 4v0a4 4 0 0 1-4 4H5z" />
-                  <path d="M5 4v16" />
-                  <path d="M14 16l4 4" />
+                  <path d="M6 4v16" />
+                  <path d="M6 4h7.5a3.5 3.5 0 0 1 0 7H6" />
+                  <path d="M6 11h8.5a3.5 3.5 0 0 1 0 7H6" />
+                  <circle cx="17.5" cy="17.5" r="1.6" fill="var(--b-accent)" stroke="none" />
                 </svg>
               </span>
               <p className="font-display text-base font-bold tracking-tight">
-                BUILDORA
+                Buildora
               </p>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[--b-muted]">
-              Creative components for serious developers. MIT-licensed,
-              GitHub-hosted, community-driven.
+              One system. Any product. Universal, theme-aware components. MIT-licensed,
+              GitHub-hosted.
             </p>
             <div className="mt-4 b-code-block text-[11px]">
               <span className="text-[--b-muted]">$</span>{" "}

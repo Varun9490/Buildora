@@ -66,10 +66,10 @@ export function MagneticButton({
 
   const styles =
     variant === "accent"
-      ? "bg-[#d4ff4f] text-black hover:shadow-glow"
+      ? "bg-[--b-accent] text-[--b-accent-foreground]"
       : variant === "iris"
-        ? "bg-[#7c6cf6] text-white hover:brightness-110"
-        : "bg-white/5 text-white border border-white/10 hover:bg-white/10";
+        ? "bg-[--b-surface] text-[--b-text] border border-[--b-border] hover:border-[--b-border-hover]"
+        : "bg-[--b-surface] text-[--b-text-secondary] border border-[--b-border] hover:bg-[--b-elevated] hover:text-[--b-text]";
 
   return (
     <button
@@ -78,9 +78,9 @@ export function MagneticButton({
       onPointerLeave={reset}
       onBlur={reset}
       className={cn(
-        "relative inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold",
-        "transition-[box-shadow,background-color] duration-200 will-change-transform",
-        glow && variant === "accent" && "shadow-glow",
+        "relative inline-flex items-center justify-center gap-2 rounded-[10px] px-5 py-2.5 text-sm font-semibold",
+        "transition-[background-color,border-color] duration-200 will-change-transform",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent] focus-visible:ring-offset-2 focus-visible:ring-offset-[--b-bg]",
         styles,
         className
       )}

@@ -7,76 +7,64 @@ module.exports = {
     "../../packages/components/src/**/*.{ts,tsx}",
     "../../packages/tokens/src/**/*.{ts,tsx}"
   ],
-  darkMode: "class",
+  darkMode: ["class", '[data-theme="dark"]'],
   theme: {
     extend: {
       colors: {
-        ink: {
-          950: "#0C0C0C",
-          900: "#141414",
-          850: "#1A1A1A",
-          800: "#222222",
-          700: "#2F2F2F",
-          600: "#3D3D3D",
-          500: "#525252"
+        // Semantic — always via CSS vars. No hardcoded dark/light in components.
+        background: "var(--b-bg)",
+        panel: "var(--b-panel)",
+        surface: "var(--b-surface)",
+        elevated: "var(--b-elevated)",
+        foreground: "var(--b-text)",
+        muted: "var(--b-muted)",
+        border: "var(--b-border)",
+        accent: {
+          DEFAULT: "var(--b-accent)",
+          foreground: "var(--b-accent-foreground)",
+          muted: "var(--b-accent-muted)",
         },
-        paper: "#F7F6F3",
-        lime: { glow: "#d4ff4f", muted: "#b8e635" },
-        ember: { 400: "#F78C6C", 500: "#ff8a3d" }
+        success: "var(--b-success)",
+        warning: "var(--b-warning)",
+        danger: "var(--b-danger)",
+        ring: "var(--b-ring)",
       },
       fontFamily: {
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
-        sans: ["var(--font-display)", "system-ui", "sans-serif"]
+        display: ["var(--font-display)", "\"Space Grotesk\"", "system-ui", "sans-serif"],
+        sans: ["var(--font-sans)", "Inter", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "\"JetBrains Mono\"", "ui-monospace", "monospace"],
       },
       boxShadow: {
-        tactile: "0 1px 0 rgba(255,255,255,.06) inset, 0 8px 24px -8px rgba(0,0,0,.5)",
-        subtle: "0 2px 8px rgba(0,0,0,0.04)",
-        card: "0 1px 3px rgba(0,0,0,0.08), 0 8px 24px -8px rgba(0,0,0,0.12)",
-        "card-hover": "0 2px 8px rgba(0,0,0,0.12), 0 16px 40px -12px rgba(0,0,0,0.2)"
+        // Restrained — no neon glows. Tint to bg hue.
+        subtle: "0 1px 2px rgba(19,19,22,0.05)",
+        card: "0 1px 3px rgba(19,19,22,0.07), 0 8px 24px -12px rgba(19,19,22,0.12)",
+        "card-hover": "0 2px 8px rgba(19,19,22,0.08), 0 16px 32px -16px rgba(19,19,22,0.16)",
       },
       borderRadius: {
-        DEFAULT: "8px",
+        DEFAULT: "10px",
         lg: "12px",
-        xl: "16px"
-      },
-      spacing: {
-        18: "4.5rem",
-        22: "5.5rem"
-      },
-      letterSpacing: {
-        tighter: "-0.03em",
-        editorial: "-0.04em"
-      },
-      lineHeight: {
-        editorial: "1.1",
-        relaxed: "1.7"
+        xl: "16px",
       },
       keyframes: {
-        drift: {
-          "0%,100%": { transform: "translate3d(0,0,0) scale(1)" },
-          "50%": { transform: "translate3d(2%, -3%, 0) scale(1.02)" }
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" }
-        },
         "fade-up": {
           "0%": { opacity: "0", transform: "translateY(12px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" }
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "scale-in": {
           "0%": { opacity: "0", transform: "scale(0.96)" },
-          "100%": { opacity: "1", transform: "scale(1)" }
-        }
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
       },
       animation: {
-        drift: "drift 20s ease-in-out infinite",
-        shimmer: "shimmer 2.4s linear infinite",
         "fade-up": "fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both",
-        "scale-in": "scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both"
-      }
-    }
+        "scale-in": "scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both",
+        shimmer: "shimmer 2.4s linear infinite",
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };

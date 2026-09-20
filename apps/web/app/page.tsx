@@ -164,9 +164,9 @@ function CopyInstall() {
       transition={{ delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="max-w-xl"
     >
-      <div className="flex items-center gap-3 rounded-lg border border-[--b-border] bg-[--b-surface] px-4 py-3">
+      <div className="flex items-center gap-3 rounded-[10px] border border-[--b-border] bg-[--b-surface] px-4 py-3">
         <span className="font-mono text-sm text-[--b-muted] select-none">$</span>
-        <code className="flex-1 truncate font-mono text-[13px] text-[--b-accent]">
+        <code className="flex-1 truncate font-mono text-[13px] text-[--b-text]">
           {cmd}
         </code>
         <button
@@ -175,7 +175,7 @@ function CopyInstall() {
             setCopied(true);
             setTimeout(() => setCopied(false), 1400);
           }}
-          className="shrink-0 rounded-md bg-[--b-accent] px-3 py-1 font-mono text-[11px] font-bold text-[#0C0C0C] transition-transform active:scale-95"
+          className="shrink-0 rounded-md bg-[--b-accent] px-3 py-1 font-mono text-[11px] font-bold text-[--b-accent-foreground] transition-transform active:scale-95"
         >
           {copied ? "Copied" : "Copy"}
         </button>
@@ -207,12 +207,12 @@ function StatsBar() {
         <motion.div
           key={stat.label}
           variants={fadeUp}
-          className="group rounded-lg border border-[--b-border] bg-white/[0.02] p-5 text-center transition-all duration-300 hover:border-[--b-border-hover]"
+          className="group rounded-[10px] border border-[--b-border] bg-[--b-panel] p-5 text-center transition-all duration-300 hover:border-[--b-border-hover]"
         >
-          <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.04] text-[--b-text-secondary]">
+          <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-[--b-surface] text-[--b-text-secondary]">
             {stat.icon}
           </div>
-          <p className="mt-3 font-display text-2xl font-bold tracking-tight text-gradient">
+          <p className="mt-3 font-display text-2xl font-bold tracking-tight text-[--b-text]">
             {stat.value}
           </p>
           <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-[--b-muted]">
@@ -242,7 +242,7 @@ function FrameworkBadges() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: i * 0.03, duration: 0.3 }}
-          className="rounded-md border border-[--b-border] bg-white/[0.02] px-3 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors duration-200 hover:border-[--b-accent]/20 hover:text-[--b-accent]"
+          className="rounded-md border border-[--b-border] bg-[--b-surface] px-3 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors duration-200 hover:border-[--b-accent] hover:text-[--b-accent]"
         >
           {f}
         </motion.span>
@@ -359,23 +359,20 @@ export default function Home() {
 
               <motion.h1
                 variants={fadeUp}
-                className="max-w-5xl font-display font-black tracking-tighter leading-[1.05]"
-                style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
+                className="max-w-2xl font-display font-bold tracking-tight leading-[1.05] text-[--b-text]"
+                style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
               >
-                <span className="text-gradient-animated">Creative</span>
+                One system.
                 <br />
-                <span className="text-[--b-text]">components for</span>
-                <br />
-                <span className="text-[--b-text]">modern devs.</span>
+                Any product.
               </motion.h1>
 
               <motion.p
                 variants={fadeUp}
-                className="max-w-lg text-base leading-[1.7] text-[--b-muted] sm:text-lg"
+                className="max-w-md text-base leading-relaxed text-[--b-text-secondary]"
               >
-                Production-ready React components with expressive interactions, spring
-                physics, 11 framework ports, and full accessibility.{" "}
-                <span className="text-[--b-text-secondary]">Copy. Paste. Ship.</span>
+                Universal, theme-aware components. Light and dark, swappable accent,
+                accessible by default.
               </motion.p>
 
               <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
@@ -620,7 +617,7 @@ export default function Home() {
                   item.featured && "border-[--b-accent]/15 bg-[--b-accent]/[0.02]"
                 )}
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/[0.04] transition-transform duration-300 group-hover:scale-105">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[--b-surface] transition-transform duration-300 group-hover:scale-105">
                   {item.icon}
                 </div>
                 <h3 className="mt-5 font-display text-base font-bold tracking-tight">
@@ -635,7 +632,7 @@ export default function Home() {
                     "mt-5 inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-medium transition-all duration-200",
                     item.featured
                       ? "bg-[--b-accent] text-[#0C0C0C] active:scale-[0.97]"
-                      : "border border-[--b-border] text-[--b-text-secondary] hover:bg-white/[0.04] hover:border-[--b-border-hover]"
+                      : "border border-[--b-border] text-[--b-text-secondary] hover:bg-[--b-surface] hover:border-[--b-border-hover]"
                   )}
                 >
                   {item.link.label}

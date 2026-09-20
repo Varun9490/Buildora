@@ -99,18 +99,18 @@ export function ComponentDetail({ slug }: { slug: string }) {
         </div>
 
         <div className="flex shrink-0 gap-3">
-           <button
-             onClick={() => copy(item?.install ?? `pnpm dlx shadcn@latest add @buildora/${slug}`, "install")}
-             className="flex h-11 items-center gap-2 rounded-xl bg-[--b-accent] px-6 font-mono text-[12px] font-bold text-[#0C0C0C] transition-transform active:scale-95 shadow-[0_0_20px_rgba(212,255,79,0.2)] hover:shadow-[0_0_30px_rgba(212,255,79,0.4)]"
-           >
+            <button
+              onClick={() => copy(item?.install ?? `pnpm dlx shadcn@latest add @buildora/${slug}`, "install")}
+              className="flex h-11 items-center gap-2 rounded-[10px] bg-[--b-accent] px-6 font-mono text-[12px] font-bold text-[--b-accent-foreground] transition-transform active:scale-95"
+            >
              {copied === "install" ? "Copied" : "Install Component"}
            </button>
-           <a
-             href={`https://github.com/Varun9490/Buildora/tree/main/packages/components/src/${slug}`}
-             target="_blank"
-             rel="noreferrer"
-             className="flex h-11 items-center gap-2 rounded-xl border border-[--b-border] bg-white/[0.02] px-6 font-mono text-[12px] font-bold text-[--b-text] transition-colors hover:bg-white/[0.06]"
-           >
+            <a
+              href={`https://github.com/Varun9490/Buildora/tree/main/packages/components/src/${slug}`}
+              target="_blank"
+              rel="noreferrer"
+              className="flex h-11 items-center gap-2 rounded-[10px] border border-[--b-border] bg-[--b-surface] px-6 font-mono text-[12px] font-bold text-[--b-text] transition-colors hover:border-[--b-border-hover]"
+            >
              Source
            </a>
         </div>
@@ -127,8 +127,10 @@ export function ComponentDetail({ slug }: { slug: string }) {
           {/* Tabs */}
           <div className="mb-4 flex items-center justify-between border-b border-[--b-border] pb-4">
              <div className="flex gap-6">
-                <button
+                <motion.button
                   onClick={() => setActiveTab("preview")}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 100, damping: 20 }}
                   className={cn(
                     "relative pb-4 font-mono text-[12px] font-bold uppercase tracking-widest transition-colors",
                     activeTab === "preview" ? "text-[--b-accent]" : "text-[--b-muted] hover:text-[--b-text]"
@@ -136,11 +138,17 @@ export function ComponentDetail({ slug }: { slug: string }) {
                 >
                   Preview
                   {activeTab === "preview" && (
-                    <motion.div layoutId="activeTab" className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[--b-accent]" />
+                    <motion.div
+                      layoutId="detail-tab-underline"
+                      transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8 }}
+                      className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[--b-accent]"
+                    />
                   )}
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   onClick={() => setActiveTab("code")}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 100, damping: 20 }}
                   className={cn(
                     "relative pb-4 font-mono text-[12px] font-bold uppercase tracking-widest transition-colors",
                     activeTab === "code" ? "text-[--b-accent]" : "text-[--b-muted] hover:text-[--b-text]"
@@ -148,9 +156,13 @@ export function ComponentDetail({ slug }: { slug: string }) {
                 >
                   Code
                   {activeTab === "code" && (
-                    <motion.div layoutId="activeTab" className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[--b-accent]" />
+                    <motion.div
+                      layoutId="detail-tab-underline"
+                      transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8 }}
+                      className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[--b-accent]"
+                    />
                   )}
-                </button>
+                </motion.button>
              </div>
              
              {/* Framework Switcher (only visible in Code tab) */}
@@ -166,12 +178,12 @@ export function ComponentDetail({ slug }: { slug: string }) {
                        <button
                          key={f}
                          onClick={() => setFramework(f)}
-                         className={cn(
-                           "rounded-lg border px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider transition-all",
-                           f === framework
-                             ? "border-[--b-accent] bg-[--b-accent]/10 text-[--b-accent]"
-                             : "border-[--b-border] bg-white/[0.02] text-[--b-muted] hover:border-white/20 hover:text-white"
-                         )}
+                          className={cn(
+                            "rounded-lg border px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider transition-all",
+                            f === framework
+                              ? "border-[--b-accent] bg-[--b-accent-muted] text-[--b-accent]"
+                              : "border-[--b-border] bg-[--b-surface] text-[--b-muted] hover:border-[--b-border-hover] hover:text-[--b-text-secondary]"
+                          )}
                        >
                          {frameworkLabels[f]}
                        </button>
@@ -181,50 +193,52 @@ export function ComponentDetail({ slug }: { slug: string }) {
              </AnimatePresence>
           </div>
 
-          {/* Tab Content */}
-          <div className="relative rounded-2xl border border-[--b-border] bg-[#050505] shadow-2xl overflow-hidden">
-             
-             {/* Mac OS Header for Window Feel */}
-             <div className="flex h-12 items-center gap-2 border-b border-white/10 bg-white/[0.02] px-4">
+          {/* Tab Content — theme-aware preview surface */}
+          <div className="relative rounded-2xl border border-[--b-border] bg-[--b-panel] shadow-card overflow-hidden">
+              
+              {/* Mac OS Header for Window Feel */}
+              <div className="flex h-12 items-center gap-2 border-b border-[--b-border] bg-[--b-surface] px-4">
                 <div className="h-3 w-3 rounded-full bg-red-500/80"></div>
                 <div className="h-3 w-3 rounded-full bg-amber-500/80"></div>
                 <div className="h-3 w-3 rounded-full bg-emerald-500/80"></div>
              </div>
 
-             <div className="relative min-h-[500px] w-full">
-               <AnimatePresence mode="wait">
-                 {activeTab === "preview" ? (
-                   <motion.div
-                     key="preview"
-                     initial={{ opacity: 0 }}
-                     animate={{ opacity: 1 }}
-                     exit={{ opacity: 0 }}
-                     transition={{ duration: 0.3 }}
-                     className="absolute inset-0 flex items-center justify-center p-8 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05)_0%,transparent_100%)]"
-                   >
-                     <ComponentRenderer slug={slug} controls={controls} />
-                   </motion.div>
-                 ) : (
-                   <motion.div
-                     key="code"
-                     initial={{ opacity: 0 }}
-                     animate={{ opacity: 1 }}
-                     exit={{ opacity: 0 }}
-                     transition={{ duration: 0.3 }}
-                     className="absolute inset-0 h-full w-full overflow-auto bg-[#0a0a0a]"
-                   >
-                     <div className="p-4 relative">
-                        <button
-                          onClick={() => copy(ex.files[0]?.code ?? "", "code")}
-                          className="absolute right-6 top-6 rounded-md bg-white/10 p-2 text-white/50 hover:bg-white/20 hover:text-white transition-colors z-10"
-                        >
+              <div className="relative min-h-[500px] w-full">
+                <AnimatePresence mode="wait">
+                  {activeTab === "preview" ? (
+                    <motion.div
+                      key="preview"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="absolute inset-0 flex items-center justify-center p-8 bg-[--b-panel]"
+                    >
+                      <ComponentRenderer slug={slug} controls={controls} />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="code"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="absolute inset-0 h-full w-full overflow-auto bg-[--b-panel]"
+                    >
+                      <div className="p-4 relative">
+                         <motion.button
+                           whileTap={{ scale: 0.95 }}
+                           transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                           onClick={() => copy(ex.files[0]?.code ?? "", "code")}
+                           className="absolute right-6 top-6 rounded-md border border-[--b-border] bg-[--b-surface] p-2 text-[--b-text-secondary] transition-colors hover:text-[--b-text] z-10"
+                         >
                            {copied === "code" ? (
                              <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                            ) : (
                              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" /></svg>
-                           )}
-                        </button>
-                        <CodeViewer files={ex.files} />
+                            )}
+                         </motion.button>
+                         <CodeViewer files={ex.files} />
                      </div>
                    </motion.div>
                  )}

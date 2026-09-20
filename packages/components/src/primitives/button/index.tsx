@@ -35,7 +35,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const baseStyles = cn(
       "relative inline-flex items-center justify-center gap-2 font-medium transition-all duration-200",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08090d]",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent] focus-visible:ring-offset-2 focus-visible:ring-offset-[--b-bg]",
       "disabled:pointer-events-none disabled:opacity-50",
       !reducedMotion && "active:scale-[0.98]",
       className
@@ -43,15 +43,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles: Record<ButtonVariant, string> = {
       default:
-        "rounded-xl bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20",
+        "rounded-[10px] bg-[--b-surface] text-[--b-text] border border-[--b-border] hover:border-[--b-border-hover] hover:bg-[--b-elevated]",
       destructive:
-        "rounded-xl bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20",
+        "rounded-[10px] bg-[--b-danger]/10 text-[--b-danger] border border-[--b-danger]/20 hover:bg-[--b-danger]/15",
       outline:
-        "rounded-xl bg-transparent text-white border border-white/20 hover:bg-white/5 hover:border-white/30",
-      ghost: "rounded-xl bg-transparent text-white/70 hover:bg-white/5 hover:text-white",
-      link: "bg-transparent text-[#d4ff4f] underline-offset-4 hover:underline",
+        "rounded-[10px] bg-transparent text-[--b-text] border border-[--b-border-hover] hover:bg-[--b-surface]",
+      ghost: "rounded-[10px] bg-transparent text-[--b-text-secondary] hover:bg-[--b-surface] hover:text-[--b-text]",
+      link: "bg-transparent text-[--b-accent] underline-offset-4 hover:underline",
       accent:
-        "rounded-xl bg-[#d4ff4f] text-black font-semibold hover:bg-[#d4ff4f]/90 shadow-glow-sm",
+        "rounded-[10px] bg-[--b-accent] text-[--b-accent-foreground] font-semibold hover:brightness-[1.03]",
     };
 
     const sizeStyles: Record<ButtonSize, string> = {

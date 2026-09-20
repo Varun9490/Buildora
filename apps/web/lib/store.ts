@@ -3,6 +3,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+type ThemeMode = "light" | "dark" | "system";
+
 type State = {
   framework: string;
   setFramework: (f: string) => void;
@@ -12,6 +14,8 @@ type State = {
   setThemeAccent: (accent: string) => void;
   themeBase: string;
   setThemeBase: (base: string) => void;
+  themeMode: ThemeMode;
+  setThemeMode: (mode: ThemeMode) => void;
 };
 
 export const useBuildora = create<State>()(
@@ -24,8 +28,10 @@ export const useBuildora = create<State>()(
         set((s) => ({ recent: [slug, ...s.recent.filter((x) => x !== slug)].slice(0, 6) })),
       themeAccent: "acid",
       setThemeAccent: (themeAccent) => set({ themeAccent }),
-      themeBase: "warm",
-      setThemeBase: (themeBase) => set({ themeBase })
+      themeBase: "system",
+      setThemeBase: (themeBase) => set({ themeBase }),
+      themeMode: "system",
+      setThemeMode: (themeMode) => set({ themeMode }),
     }),
     { name: "buildora-store" }
   )

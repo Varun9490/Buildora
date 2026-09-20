@@ -95,7 +95,7 @@ export function CodeViewer({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-lg border border-[--b-border] bg-[#0D0D0D]",
+        "overflow-hidden rounded-lg border border-[--b-border] bg-[--b-panel]",
         className
       )}
     >
@@ -115,7 +115,7 @@ export function CodeViewer({
               "rounded-md px-2.5 py-1 font-mono text-[11px] transition-colors",
               i === idx
                 ? "bg-[--b-surface] text-[--b-text]"
-                : "text-[--b-muted] hover:text-[--b-text-secondary] hover:bg-white/[0.03]"
+                : "text-[--b-muted] hover:text-[--b-text-secondary] hover:bg-[--b-surface]"
             )}
           >
             {f.path}
@@ -127,18 +127,18 @@ export function CodeViewer({
             onChange={(e) => setQ(e.target.value)}
             placeholder="Find..."
             aria-label="Find in code"
-            className="w-24 rounded-md border border-[--b-border] bg-white/[0.03] px-2 py-1 font-mono text-[11px] text-[--b-text-secondary] outline-none placeholder:text-[--b-muted] focus:border-[--b-accent]/30"
+            className="w-24 rounded-md border border-[--b-border] bg-[--b-surface] px-2 py-1 font-mono text-[11px] text-[--b-text-secondary] outline-none placeholder:text-[--b-muted] focus:border-[--b-accent]"
           />
           <button
             onClick={() => setExpanded((e) => !e)}
-            className="rounded-md border border-[--b-border] px-2 py-1 font-mono text-[11px] text-[--b-text-secondary] hover:bg-white/[0.03]"
+            className="rounded-md border border-[--b-border] px-2 py-1 font-mono text-[11px] text-[--b-text-secondary] hover:bg-[--b-surface]"
             aria-expanded={expanded}
           >
             {expanded ? "Collapse" : `Expand (${lines.length})`}
           </button>
           <button
             onClick={copy}
-            className="rounded-md bg-[--b-accent] px-3 py-1 font-mono text-[11px] font-bold text-[#0C0C0C] transition-transform active:scale-95"
+            className="rounded-md bg-[--b-accent] px-3 py-1 font-mono text-[11px] font-bold text-[--b-accent-foreground] transition-transform active:scale-95"
           >
             {copied ? "Copied" : "Copy"}
           </button>
