@@ -40,7 +40,7 @@ export function TeamSwitcher({ teams = ["buildora", "acme", "labs"], className }
   return (
     <div className={cn("relative", className)}>
       <button onClick={() => setOpen((o) => !o)} aria-haspopup="listbox" aria-expanded={open} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">
-        <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#9d8cff] text-xs font-black text-black">{t[0]?.toUpperCase()}</span>
+        <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-[--b-iris] text-xs font-black text-[--b-iris-foreground]">{t[0]?.toUpperCase()}</span>
         <span className="font-semibold">{t}</span><span aria-hidden className="text-white/40">▾</span>
       </button>
       {open && (

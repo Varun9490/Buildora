@@ -47,7 +47,7 @@ export function AuditLog({
               {e.severity}
             </span>
             <span className="truncate text-white/80">
-              <span className="text-[#9d8cff]">{e.actor}</span> — {e.action}
+              <span className="text-[--b-iris]">{e.actor}</span> — {e.action}
             </span>
           </li>
         ))}

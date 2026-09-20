@@ -41,7 +41,7 @@ export function EnvManager({
             const vis = shown.has(r.key);
             return (
               <tr key={r.key} className="border-b border-white/5 font-mono text-xs last:border-0">
-                <td className="px-4 py-2 text-[#9d8cff]">{r.key}</td>
+                <td className="px-4 py-2 text-[--b-iris]">{r.key}</td>
                 <td className="px-4 py-2 text-white/80">{vis ? r.value : mask(r.value)}</td>
                 <td className="px-4 py-2 text-right">
                   <button

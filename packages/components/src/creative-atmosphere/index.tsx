@@ -83,7 +83,7 @@ export function MorphingTypography({ words = ["Build", "Remix", "Ship"], classNa
   }, [words.length]);
   return (
     <div className={cn("font-display text-4xl font-black tracking-tight", className)} aria-live="polite">
-      <span key={i} className="inline-block bg-gradient-to-r from-[--b-accent] via-white to-[#9d8cff] bg-clip-text text-transparent" style={{ animation: "drift 1s ease" }}>{words[i]}</span>
+      <span key={i} className="inline-block bg-gradient-to-r from-[--b-accent] via-white to-[--b-iris] bg-clip-text text-transparent" style={{ animation: "drift 1s ease" }}>{words[i]}</span>
     </div>
   );
 }

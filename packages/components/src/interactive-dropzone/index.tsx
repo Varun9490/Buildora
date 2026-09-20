@@ -75,7 +75,7 @@ export function InteractiveDropzone({ onFiles, simulate = true, accept, classNam
               <div className="min-w-0 flex-1">
                 <div className="flex justify-between text-xs"><span className="truncate font-medium">{f.name}</span><span className="text-white/50">{formatBytes(f.size)} · {Math.round(f.progress)}%</span></div>
                 <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-white/10">
-                  <div className={cn("h-full rounded-full transition-all", f.status === "done" ? "bg-[--b-accent]" : "bg-[#9d8cff]")} style={{ width: `${f.status === "done" ? 100 : f.progress}%` }} />
+                  <div className={cn("h-full rounded-full transition-all", f.status === "done" ? "bg-[--b-accent]" : "bg-[--b-iris]")} style={{ width: `${f.status === "done" ? 100 : f.progress}%` }} />
                 </div>
               </div>
               {f.status === "done" ? <span className="text-xs text-[--b-accent]">Done</span> : (

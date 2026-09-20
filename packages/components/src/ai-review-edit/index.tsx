@@ -28,7 +28,7 @@ export function AIReviewEdit({
             state === "pending" && "bg-white/10 text-white/60",
             state === "accepted" && "bg-[#4fe08a]/20 text-[--b-success]",
             state === "rejected" && "bg-red-500/20 text-red-300",
-            state === "edited" && "bg-[#9d8cff]/20 text-[#9d8cff]"
+            state === "edited" && "bg-[#9d8cff]/20 text-[--b-iris]"
           )}
           role="status"
         >

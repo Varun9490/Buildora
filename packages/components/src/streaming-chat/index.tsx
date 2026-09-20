@@ -68,7 +68,7 @@ export function TokenMeter({ used = 1284, limit = 8000, className }: { used?: nu
   return (
     <div className={cn("rounded-xl border border-white/10 bg-white/[0.03] p-3", className)} role="meter" aria-valuenow={used} aria-valuemin={0} aria-valuemax={limit} aria-label="Token usage">
       <div className="flex justify-between text-xs"><span className="text-white/60">Tokens</span><span className="font-mono">{used.toLocaleString()} / {limit.toLocaleString()}</span></div>
-      <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-gradient-to-r from-[#9d8cff] to-[--b-accent]" style={{ width: `${pct}%` }} /></div>
+      <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-gradient-to-r from-[--b-iris] to-[--b-accent]" style={{ width: `${pct}%` }} /></div>
     </div>
   );
 }
@@ -92,7 +92,7 @@ export function ToolCallViz({ calls = [{ name: "search_registry", args: "{ query
       {calls.map((c) => (
         <li key={c.name} className="flex items-center gap-3 rounded-xl border border-white/10 bg-black/30 px-3 py-2 font-mono text-xs">
           <span className={cn("h-2 w-2 rounded-full", c.status === "done" ? "bg-[--b-success]" : "animate-pulse bg-[#ff8a3d]")} aria-hidden />
-          <span className="font-bold text-[#9d8cff]">{c.name}</span>
+          <span className="font-bold text-[--b-iris]">{c.name}</span>
           <span className="truncate text-white/50">{c.args}</span>
           <span className="ml-auto text-white/40">{c.status}</span>
         </li>

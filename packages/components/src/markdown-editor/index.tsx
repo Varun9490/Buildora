@@ -61,7 +61,7 @@ export function CommentThread({ className }: { className?: string }) {
       <ul className="space-y-2">
         {comments.map((c) => (
           <li key={c.id} className="flex gap-2 rounded-xl border border-white/10 bg-[#12141d] p-2.5 text-sm">
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#9d8cff] text-xs font-black text-black">{c.author[0].toUpperCase()}</span>
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[--b-iris] text-xs font-black text-[--b-iris-foreground]">{c.author[0].toUpperCase()}</span>
             <div className="min-w-0 flex-1">
               <p className="text-xs text-white/50">@{c.author} {c.resolved && <span className="text-[--b-success]">· resolved</span>}</p>
               <p className={c.resolved ? "text-white/40 line-through" : ""}>{c.text}</p>

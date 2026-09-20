@@ -40,7 +40,7 @@ export function FileTree({ tree, className }: { tree?: TreeNode; className?: str
       <li key={p}>
         <button onClick={() => hasKids && toggle(n.name)} aria-expanded={hasKids ? isOpen : undefined} className="flex w-full items-center gap-1.5 rounded px-2 py-1 text-left font-mono text-xs hover:bg-white/5" style={{ paddingLeft: 8 + depth * 14 }}>
           <span aria-hidden className="text-white/40">{hasKids ? (isOpen ? "▾" : "▸") : "·"}</span>
-          <span className={hasKids ? "text-[#9d8cff]" : "text-white/75"}>{n.name}</span>
+          <span className={hasKids ? "text-[--b-iris]" : "text-white/75"}>{n.name}</span>
         </button>
         {hasKids && isOpen && <ul>{n.children!.map((c) => render(c, p, depth + 1))}</ul>}
       </li>

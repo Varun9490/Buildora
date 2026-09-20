@@ -25,6 +25,8 @@
   --b-accent: #4D7C0F;
   --b-accent-foreground: #FFFFFF;
   --b-accent-muted: rgba(77, 124, 15, 0.1);
+  --b-iris: #4F46E5;
+  --b-iris-foreground: #FFFFFF;
   --b-radius: 12px;
   --b-radius-sm: 10px;
   --b-radius-lg: 16px;
@@ -49,6 +51,8 @@
   --b-accent: #D4FF4F;
   --b-accent-foreground: #131305;
   --b-accent-muted: rgba(212, 255, 79, 0.12);
+  --b-iris: #9D8CFF;
+  --b-iris-foreground: #1E1B4B;
   color-scheme: dark;
 }
 

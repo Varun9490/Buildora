@@ -5,15 +5,15 @@
  * Contract (shadcn-parity):
  * - Semantic vars: --b-bg, --b-panel, --b-surface, --b-elevated, --b-border,
  *   --b-text, --b-text-secondary, --b-muted, --b-accent, --b-accent-foreground,
- *   --b-ring, --b-success, --b-warning, --b-danger
+ *   --b-ring, --b-success, --b-warning, --b-danger, --b-iris, --b-iris-foreground
  * - Components MUST use vars, never hardcoded #d4ff4f / white-opacity / #0C0C0C.
  * - Accent swap = change vars only. No sed across components.
  *
  * Known limitations (documented, not silently violated):
  * - Translucent accent washes (e.g. bg accent /10) keep hardcoded hex:
  *   Tailwind v3 cannot apply opacity modifiers to var() colors.
- * - Iris/violet tones (#9d8cff, #5f4de8) have no token yet; a future
- *   --b-iris scale should cover them.
+ * - Violet ramp (#5f4de8) stays hardcoded: decorative gradients + particle
+ *   color arrays, no semantic role.
  * - JS color-math defaults (cursor glow alpha compositing) need hex channels
  *   and intentionally keep hex fallbacks.
  */
@@ -148,6 +148,8 @@ export const cssVars = `
   --b-accent: ${accentPresets.acid.light.accent};
   --b-accent-foreground: ${accentPresets.acid.light.foreground};
   --b-accent-muted: ${accentPresets.acid.light.muted};
+  --b-iris: #4F46E5;
+  --b-iris-foreground: #FFFFFF;
   --b-radius: ${tokens.radius.lg}px;
   color-scheme: light;
 }
@@ -168,6 +170,8 @@ export const cssVars = `
   --b-accent: ${accentPresets.acid.dark.accent};
   --b-accent-foreground: ${accentPresets.acid.dark.foreground};
   --b-accent-muted: ${accentPresets.acid.dark.muted};
+  --b-iris: #9D8CFF;
+  --b-iris-foreground: #1E1B4B;
   color-scheme: dark;
 }
 `;
