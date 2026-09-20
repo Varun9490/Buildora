@@ -52,8 +52,13 @@ export function SpatialCommandPalette({ items, className }: { items?: PaletteIte
 
   return (
     <>
-      <button onClick={() => setOpen(true)} className={cn("inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-white/70 hover:bg-white/[0.08]", className)} aria-haspopup="dialog">
-        <span>Search…</span><kbd className="rounded border border-white/15 bg-black/40 px-1 font-mono text-[10px]">⌘K</kbd>
+      <button onClick={() => setOpen(true)} className={cn("inline-flex items-center justify-between gap-4 rounded-xl border border-[--b-border] bg-[--b-surface] px-3 py-1.5 text-xs text-[--b-muted] hover:bg-[--b-elevated] hover:text-[--b-text]", className)} aria-haspopup="dialog">
+        <span className="hidden sm:inline">Search components…</span>
+        <span className="sm:hidden">Search…</span>
+        <div className="flex items-center gap-1">
+          <kbd className="flex h-5 items-center justify-center rounded border border-[--b-border] bg-[--b-panel] px-1.5 font-sans text-[10px] shadow-sm">⌘</kbd>
+          <kbd className="flex h-5 items-center justify-center rounded border border-[--b-border] bg-[--b-panel] px-1.5 font-sans text-[10px] shadow-sm">K</kbd>
+        </div>
       </button>
       {open && (
         <div className="fixed inset-0 z-[80] flex items-start justify-center bg-black/60 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Command palette" onClick={() => setOpen(false)}>
