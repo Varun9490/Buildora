@@ -52,11 +52,7 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
     setTimeout(() => setCopied(null), 1400);
   };
 
-  const expectedDir = `packages/components/src/${slug}`;
-  const isShared = Boolean(primaryPath && !primaryPath.startsWith(expectedDir + "/"));
-  const sourceHref = sourceDir
-    ? `https://github.com/Varun9490/Buildora/tree/main/packages/components/src/${sourceDir}`
-    : `https://github.com/Varun9490/Buildora/tree/main/packages/components/src/${slug}`;
+  const sourceHref = `https://github.com/Varun9490/Buildora/tree/main/packages/components/src/${slug}`;
 
   return (
     <div className="relative mx-auto max-w-5xl px-4 py-8 sm:py-16 font-sans">
