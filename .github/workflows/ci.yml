@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  buildora:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Registry build (generated artifacts)
+        run: pnpm registry:build
+
+      - name: Generated artifacts committed
+        run: git diff --exit-code -- registry/ apps/web/lib/registry-data.generated.ts
+
+      - name: Registry validate
+        run: pnpm registry:validate
+
+      - name: Registry smoke (install-clean)
+        run: pnpm registry:smoke
+
+      - name: Typecheck (web)
+        run: pnpm --filter @buildora/web exec tsc --noEmit
+
+      - name: Tests (components)
+        run: pnpm --filter @buildora/components test
+
+      - name: Production build (web, 138 routes)
+        run: pnpm build:web
