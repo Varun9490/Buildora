@@ -5,7 +5,7 @@
   "slug": "calendar",
   "description": "Scheduling grid with gridcell semantics.",
   "categories": [
-    "complex"
+    "canvas"
   ],
   "tags": [
     "calendar",

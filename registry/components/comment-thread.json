@@ -5,7 +5,7 @@
   "slug": "comment-thread",
   "description": "Resolve/reopen comment thread.",
   "categories": [
-    "content"
+    "editor"
   ],
   "tags": [
     "comments"

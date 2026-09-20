@@ -15,6 +15,7 @@ import {
 } from "@buildora/components";
 import { copyToClipboard } from "@buildora/utils";
 import { allComponents, totalComponents } from "@/lib/registry";
+import { ComponentPreview } from "@/components/ComponentPreview";
 import { cn } from "@buildora/utils";
 
 /* ─────────────────────────────────────────────────────
@@ -122,26 +123,28 @@ function BentoGrid() {
         >
           <Link
             href={`/components/${item.component}`}
-            className="group block b-card-interactive h-[260px] flex flex-col p-5"
+            className="group flex h-full flex-col overflow-hidden b-card-interactive"
           >
-            <div className="mb-2 flex items-center gap-2">
-              <span className="b-badge-accent">
+            {/* Live preview — the component itself demonstrates itself (§8) */}
+            <ComponentPreview slug={item.component} />
+            <div className="flex flex-1 flex-col p-5">
+              <span className="b-badge-accent self-start">
                 {item.component}
               </span>
-            </div>
-            <h4 className="font-display text-base font-bold tracking-tight group-hover:text-[--b-accent] transition-colors">
-              {item.title}
-            </h4>
-            <p className="mt-1.5 text-sm text-[--b-muted] leading-relaxed">
-              {item.desc}
-            </p>
-            <div className="mt-auto pt-4">
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[--b-accent] opacity-0 group-hover:opacity-100 transition-opacity">
-                View component
-                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </span>
+              <h4 className="mt-3 font-display text-base font-bold tracking-tight group-hover:text-[--b-accent] transition-colors">
+                {item.title}
+              </h4>
+              <p className="mt-1.5 text-sm text-[--b-muted] leading-relaxed">
+                {item.desc}
+              </p>
+              <div className="mt-auto pt-4">
+                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[--b-accent] opacity-0 group-hover:opacity-100 transition-opacity">
+                  View component
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </Link>
         </motion.div>
@@ -614,7 +617,7 @@ export default function Home() {
                 variants={fadeUp}
                 className={cn(
                   "group b-card p-6",
-                  item.featured && "border-[--b-accent]/15 bg-[--b-accent]/[0.02]"
+                  item.featured && "border-accent-wash bg-accent-wash"
                 )}
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[--b-surface] transition-transform duration-300 group-hover:scale-105">
@@ -631,7 +634,7 @@ export default function Home() {
                   className={cn(
                     "mt-5 inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-medium transition-all duration-200",
                     item.featured
-                      ? "bg-[--b-accent] text-[#0C0C0C] active:scale-[0.97]"
+                      ? "bg-[--b-accent] text-[--b-accent-foreground] active:scale-[0.97]"
                       : "border border-[--b-border] text-[--b-text-secondary] hover:bg-[--b-surface] hover:border-[--b-border-hover]"
                   )}
                 >

@@ -23,19 +23,6 @@ export type RegistryItem = {
   install: string;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const req = (typeof require !== "undefined" ? require : null) as unknown as { context?: unknown } | null;
-
-function loadItem(slug: string): RegistryItem | null {
-  try {
-    // Next.js bundles JSON imports statically; use dynamic require via eval-safe path
-    // Fallback: reconstruct from index + conventions if file not importable
-    return null;
-  } catch {
-    return null;
-  }
-}
-
 export type ComponentSummary = {
   slug: string;
   name: string;
@@ -56,7 +43,8 @@ export async function getComponent(slug: string): Promise<RegistryItem | null> {
 }
 
 export function getComponentSync(slug: string): RegistryItem | null {
-  // Used in client components where async is awkward — index-level data only
+  // Client-safe sync accessor: index-level data only. Real source files are
+  // served via the registry API; we never fabricate file contents here.
   const found = allComponents.find((c) => c.slug === slug);
   if (!found) return null;
   return {
@@ -75,7 +63,7 @@ export function getComponentSync(slug: string): RegistryItem | null {
     accessibility: { keyboard: true, screenReader: true, reducedMotion: true },
     dependencies: [],
     registryDependencies: [],
-    files: [{ path: `packages/components/src/${found.slug}/index.tsx`, content: "// Loading source code..." }],
+    files: [],
     github: `https://github.com/Varun9490/Buildora/tree/main/packages/components/src/${found.slug}`,
     docs: `/components/${found.slug}`,
     install: `pnpm dlx shadcn@latest add @buildora/${found.slug}`
@@ -88,16 +76,15 @@ export type SearchFilters = {
   framework: string;
   tag: string;
   difficulty: string;
-  sort: "popular" | "newest" | "az";
+  sort: "featured" | "newest" | "az";
 };
 
-// Deterministic pseudo-popularity from slug hash (stable sort demo)
-function popularity(slug: string) {
-  let h = 0;
-  for (const c of slug) h = (h * 31 + c.charCodeAt(0)) % 1000;
-  // signature components float to top
-  if (["slingshot-otp", "magnetic-button", "spatial-command-palette", "kanban", "streaming-chat"].includes(slug)) h += 2000;
-  return h;
+// Featured: signature components rank first; everything else sorts alphabetically.
+// No fake popularity scores — the label matches the behavior.
+function featuredRank(slug: string) {
+  return ["slingshot-otp", "magnetic-button", "spatial-command-palette", "kanban", "streaming-chat"].includes(slug)
+    ? 1
+    : 0;
 }
 
 export function searchComponents(items: ComponentSummary[], f: SearchFilters): ComponentSummary[] {
@@ -113,15 +100,38 @@ export function searchComponents(items: ComponentSummary[], f: SearchFilters): C
   out = [...out].sort((a, b) => {
     if (f.sort === "az") return a.name.localeCompare(b.name);
     if (f.sort === "newest") return b.slug.localeCompare(a.slug);
+    if (f.sort === "featured") {
+      const fa = featuredRank(a.slug);
+      const fb = featuredRank(b.slug);
+      if (fa !== fb) return fb - fa;
+      return a.name.localeCompare(b.name);
+    }
     const sa = q ? fuzzyScore(q, `${a.name} ${a.slug} ${a.description}`) : 0;
     const sb = q ? fuzzyScore(q, `${b.name} ${b.slug} ${b.description}`) : 0;
     if (q && sa !== sb) return sb - sa;
-    return popularity(b.slug) - popularity(a.slug);
+    return a.name.localeCompare(b.name);
   });
   return out;
 }
 
-export const allCategories = ["creative", "ai-llm", "data", "developer", "saas", "complex", "content", "primitives", "forms", "navigation", "overlays", "feedback", "blocks"];
+export const allCategories = ["primitives", "forms", "feedback", "navigation", "overlays", "motion", "backgrounds", "data", "developer", "ai-llm", "canvas", "editor", "blocks", "saas"];
+
+export const categoryMeta: Record<string, { label: string; blurb: string }> = {
+  primitives: { label: "Primitives", blurb: "Unstyled-able foundations: buttons, badges, tabs, layout." },
+  forms: { label: "Forms", blurb: "Inputs, selects, and controls with real semantics." },
+  feedback: { label: "Feedback", blurb: "Loaders, toasts, and progress that announce state." },
+  navigation: { label: "Navigation", blurb: "Headers, sidebars, trails, and command surfaces." },
+  overlays: { label: "Overlays", blurb: "Dialogs, popovers, and menus with focus management." },
+  motion: { label: "Motion", blurb: "Tactile springs, pointer physics, and kinetic type." },
+  backgrounds: { label: "Backgrounds", blurb: "Ambient surfaces: aurora, grids, particles, beams." },
+  data: { label: "Data", blurb: "Tables, grids, and inspectors with honest semantics." },
+  developer: { label: "Developer", blurb: "Terminals, file trees, and TUI building blocks." },
+  "ai-llm": { label: "AI / LLM", blurb: "Chat, agents, and review flows. Bring your own model." },
+  canvas: { label: "Canvas", blurb: "Boards, diagrams, and timelines you manipulate." },
+  editor: { label: "Editor", blurb: "Markdown, mentions, and versioned writing surfaces." },
+  blocks: { label: "Blocks", blurb: "Copy-paste page sections composed from primitives." },
+  saas: { label: "SaaS", blurb: "Pricing, teams, and product workflows." },
+};
 export const allTags = [...new Set(allComponents.flatMap((c) => c.tags))].sort();
 export const frameworks = ["react", "javascript", "vue", "svelte", "angular", "html", "tailwind", "reactNative", "flutter", "swiftUI", "compose"];
 export const frameworkLabels: Record<string, string> = {

@@ -5,7 +5,7 @@
   "title": "Particle Field",
   "description": "Lightweight canvas particle field with DPR scaling. No Three.js needed.",
   "categories": [
-    "creative"
+    "motion"
   ],
   "dependencies": [],
   "registryDependencies": [],

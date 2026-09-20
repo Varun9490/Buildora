@@ -5,8 +5,7 @@
   "title": "Timeline Editor",
   "description": "Track-based timeline with selectable clips.",
   "categories": [
-    "complex",
-    "content"
+    "canvas"
   ],
   "dependencies": [],
   "registryDependencies": [],

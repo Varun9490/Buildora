@@ -5,7 +5,7 @@
   "slug": "node-editor",
   "description": "SVG node/edge diagram with zoom and accessible node list.",
   "categories": [
-    "complex"
+    "canvas"
   ],
   "tags": [
     "nodes",

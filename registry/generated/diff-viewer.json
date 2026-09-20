@@ -6,7 +6,7 @@
   "description": "Side-by-side line comparison with added/removed semantics.",
   "categories": [
     "data",
-    "content"
+    "editor"
   ],
   "dependencies": [],
   "registryDependencies": [],

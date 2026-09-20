@@ -33,6 +33,7 @@ import { RippleButton, HoldButton } from "./buttons";
 import { GlassCard } from "./cards";
 import { Typewriter } from "./text-effects";
 import { CtaBlock } from "./cta-block";
+import { Skeleton, SkeletonText } from "./primitives/skeleton";
 import { FeatureGrid } from "./feature-grid";
 import { LogoCloud } from "./logo-cloud";
 import { SiteFooter } from "./site-footer";
@@ -305,6 +306,25 @@ describe("Creative additions", () => {
   it("GlassCard and Typewriter render", () => {
     render(<><GlassCard><p>glass</p></GlassCard><Typewriter text="hi" loop={false} /></>);
     expect(screen.getByText("glass")).toBeInTheDocument();
+  });
+});
+
+describe("Skeleton", () => {
+  it("hides from assistive tech and applies dimensions", () => {
+    const { container } = render(<Skeleton width={120} height={16} />);
+    const el = container.firstElementChild as HTMLElement;
+    expect(el).toHaveAttribute("aria-hidden", "true");
+    expect(el.style.width).toBe("120px");
+    expect(el.style.height).toBe("16px");
+  });
+  it("sweep covers 200% so the shimmer keyframes travel", () => {
+    const { container } = render(<Skeleton width="100%" height={12} />);
+    const sweep = container.firstElementChild?.firstElementChild as HTMLElement | null;
+    expect(sweep?.style.backgroundSize).toBe("200% 100%");
+  });
+  it("SkeletonText renders N lines with a shorter last line", () => {
+    const { container } = render(<SkeletonText lines={3} />);
+    expect(container.firstElementChild?.childElementCount).toBe(3);
   });
 });
 

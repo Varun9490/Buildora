@@ -5,7 +5,7 @@
   "slug": "rich-text-editor",
   "description": "Toolbar + contentEditable editor with word count.",
   "categories": [
-    "content"
+    "editor"
   ],
   "tags": [
     "rich-text"

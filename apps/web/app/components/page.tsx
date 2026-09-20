@@ -6,10 +6,12 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   allComponents,
   allCategories,
+  categoryMeta,
   searchComponents,
   type ComponentSummary,
 } from "@/lib/registry";
 import { useBuildora } from "@/lib/store";
+import { ComponentPreview } from "@/components/ComponentPreview";
 import { cn } from "@buildora/utils";
 
 const spring = { type: "spring", stiffness: 100, damping: 20, mass: 0.8 } as const;
@@ -117,6 +119,9 @@ function CategoryNav({
   return (
     <nav aria-label="Catalog categories">
       <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[--b-muted]">Category</p>
+      {value !== "all" && categoryMeta[value] && (
+        <p className="mb-3 text-xs leading-relaxed text-[--b-muted]">{categoryMeta[value].blurb}</p>
+      )}
       <motion.ul
         variants={container}
         initial="hidden"
@@ -179,9 +184,8 @@ function ComponentCard({ c, reduce }: { c: ComponentSummary; reduce: boolean }) 
           className="group flex h-full flex-col overflow-hidden rounded-[14px] border border-[--b-border] bg-[--b-panel] transition-colors hover:border-[--b-accent]"
           aria-label={`${c.name}, ${c.categories[0]}`}
         >
-          <div className="border-b border-[--b-border] bg-[--b-surface] px-5 py-4">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[--b-muted]">{c.categories[0]}</p>
-          </div>
+          {/* Live preview — the component itself is the preview (§8) */}
+          <ComponentPreview slug={c.slug} />
           <div className="flex flex-1 flex-col p-5">
             <div className="flex items-start justify-between gap-3">
               <h2 className="text-balance font-display text-lg font-bold tracking-tight text-[--b-text]">{c.name}</h2>
@@ -341,7 +345,7 @@ export default function ComponentsPage() {
   const [category, setCategory] = React.useState("all");
   const [difficulty, setDifficulty] = React.useState("all");
   const [tag, setTag] = React.useState("all");
-  const [sort, setSort] = React.useState<"popular" | "az">("popular");
+  const [sort, setSort] = React.useState<"featured" | "az">("featured");
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const results = React.useMemo(
@@ -403,7 +407,7 @@ export default function ComponentsPage() {
               {results.length} of {allComponents.length} components
             </p>
             <div className="ml-auto flex gap-1 rounded-[10px] border border-[--b-border] bg-[--b-panel] p-1" role="group" aria-label="Sort">
-              {(["popular", "az"] as const).map((s) => (
+              {(["featured", "az"] as const).map((s) => (
                 <button
                   key={s}
                   type="button"
@@ -414,7 +418,7 @@ export default function ComponentsPage() {
                     sort === s ? "bg-[--b-surface] text-[--b-text]" : "text-[--b-muted] hover:text-[--b-text-secondary]"
                   )}
                 >
-                  {s === "popular" ? "Popular" : "A to Z"}
+                  {s === "featured" ? "Featured" : "A to Z"}
                 </button>
               ))}
             </div>

@@ -2,29 +2,42 @@
 
 import Link from "next/link";
 import * as React from "react";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn, copyToClipboard } from "@buildora/utils";
 import { useBuildora } from "@/lib/store";
 import { allComponents, frameworkLabels, frameworks } from "@/lib/registry";
 import type { RegistryItem } from "@/lib/registry";
 import { frameworkExample } from "@/lib/framework-code";
+import { DEFAULT_RENDER_CONTROLS, type Controls } from "@/lib/render-controls";
 import { CodeViewer } from "@/components/CodeViewer";
-import { ComponentRenderer, DEFAULT_RENDER_CONTROLS, type Controls } from "@/components/ComponentRenderer";
 import { controlsFor, type ControlDef } from "@/lib/controls";
 import { perfFor, relatedFor, a11yFor } from "@/lib/component-meta";
+import { FrameworkSelect, type FrameworkStatus } from "@/components/FrameworkSelect";
 
-export function ComponentDetail({ slug }: { slug: string }) {
-  const [item, setItem] = React.useState<RegistryItem | null>(null);
+// Code-split: the full component library barrel loads only when the preview mounts.
+const ComponentRenderer = dynamic(() => import("@/components/ComponentRenderer"), {
+  ssr: false,
+  loading: () => <PreviewSkeleton />,
+});
+
+function PreviewSkeleton() {
+  return (
+    <div className="flex w-full max-w-md flex-col items-center gap-4">
+      <div className="skeleton h-10 w-40 rounded-[10px]" />
+      <div className="skeleton h-4 w-56 rounded" />
+      <div className="skeleton h-4 w-40 rounded" />
+    </div>
+  );
+}
+
+export function ComponentDetail({ slug, item }: { slug: string; item: RegistryItem }) {
   const { framework, setFramework, pushRecent } = useBuildora();
   const [activeTab, setActiveTab] = React.useState<"preview" | "code">("preview");
   const [controls, setControls] = React.useState<Controls>({ ...DEFAULT_RENDER_CONTROLS });
   const [copied, setCopied] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    fetch(`/api/registry/${slug}`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((j) => setItem(j))
-      .catch(() => setItem(null));
     pushRecent(slug);
   }, [slug, pushRecent]);
 
@@ -33,8 +46,8 @@ export function ComponentDetail({ slug }: { slug: string }) {
     () => frameworkExample(slug, summary?.name ?? slug, framework, item),
     [slug, summary, framework, item]
   );
-  
-  if (!summary) return <div className="p-16">Loading...</div>;
+
+  if (!summary) return null;
 
   const copy = async (text: string, key: string) => {
     await copyToClipboard(text);
@@ -94,9 +107,8 @@ export function ComponentDetail({ slug }: { slug: string }) {
             <span className="b-badge">v{summary.version}</span>
             <span className="b-badge">{summary.difficulty}</span>
             {isShared && <span className="b-badge">pattern · shares {sourceDir}</span>}
-          </div>
-          {isShared && primaryPath && (
-            <p className="mt-4 max-w-2xl rounded-xl border border-[--b-border] bg-white/[0.02] p-4 font-mono text-[11px] leading-relaxed text-[--b-muted]">
+          </div>            {isShared && primaryPath && (
+            <p className="mt-4 max-w-2xl rounded-xl border border-[--b-border] bg-[--b-surface] p-4 font-mono text-[11px] leading-relaxed text-[--b-muted]">
               Pattern preview — this entry shares implementation{" "}
               <span className="text-[--b-text]">{primaryPath}</span>. Dedicated{" "}
               <span className="text-[--b-text]">{slug}</span> implementation planned; install gives
@@ -172,43 +184,38 @@ export function ComponentDetail({ slug }: { slug: string }) {
                 </motion.button>
              </div>
              
-             {/* Framework Switcher (only visible in Code tab) */}
-             <AnimatePresence>
+              {/* Framework Switcher (only visible in Code tab) */}
+              <AnimatePresence>
                 {activeTab === "code" && (
-                   <motion.div
-                     initial={{ opacity: 0, x: 10 }}
-                     animate={{ opacity: 1, x: 0 }}
-                     exit={{ opacity: 0, x: 10 }}
-                     className="flex gap-2"
-                   >
-                     {frameworks.map((f) => (
-                       <button
-                         key={f}
-                         onClick={() => setFramework(f)}
-                          className={cn(
-                            "rounded-lg border px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider transition-all",
-                            f === framework
-                              ? "border-[--b-accent] bg-[--b-accent-muted] text-[--b-accent]"
-                              : "border-[--b-border] bg-[--b-surface] text-[--b-muted] hover:border-[--b-border-hover] hover:text-[--b-text-secondary]"
-                          )}
-                       >
-                         {frameworkLabels[f]}
-                       </button>
-                     ))}
-                   </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 10 }}
+                    className="flex items-center gap-3"
+                  >
+                    <span className="hidden font-mono text-[10px] uppercase tracking-widest text-[--b-muted] sm:inline">
+                      {ex.status}
+                    </span>
+                    <FrameworkSelect
+                      value={framework}
+                      onChange={setFramework}
+                      frameworks={frameworks}
+                      labels={frameworkLabels}
+                      statuses={Object.fromEntries(frameworks.map((f) => [f, (item?.implementations?.[f]?.status ?? ex.status) as FrameworkStatus]))}
+                    />
+                  </motion.div>
                 )}
-             </AnimatePresence>
+              </AnimatePresence>
           </div>
 
           {/* Tab Content — theme-aware preview surface */}
           <div className="relative rounded-2xl border border-[--b-border] bg-[--b-panel] shadow-card overflow-hidden">
               
-              {/* Mac OS Header for Window Feel */}
-              <div className="flex h-12 items-center gap-2 border-b border-[--b-border] bg-[--b-surface] px-4">
-                <div className="h-3 w-3 rounded-full bg-red-500/80"></div>
-                <div className="h-3 w-3 rounded-full bg-amber-500/80"></div>
-                <div className="h-3 w-3 rounded-full bg-emerald-500/80"></div>
-             </div>
+              {/* Window header — real metadata, not decorative traffic lights */}
+          <div className="flex h-12 items-center justify-between border-b border-[--b-border] bg-[--b-surface] px-4">
+            <span className="font-mono text-[11px] text-[--b-muted]">@buildora/{slug}</span>
+            <span className="b-badge">{activeTab === "preview" ? "live preview" : frameworkLabels[framework]}</span>
+          </div>
 
               <div className="relative min-h-[500px] w-full">
                 <AnimatePresence mode="wait">
@@ -230,17 +237,24 @@ export function ComponentDetail({ slug }: { slug: string }) {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.25, ease: "easeOut" }}
-                      className="absolute inset-0 h-full w-full overflow-auto bg-[--b-panel]"
+                      className="absolute inset-0 h-full w-full overflow-auto scroll-sleek bg-[--b-panel]"
                     >
                       <div className="p-4 relative">
+                          {ex.notes && (
+                            <p className="mb-3 rounded-lg border border-[--b-border] bg-[--b-surface] px-3 py-2 font-mono text-[11px] leading-relaxed text-[--b-muted]">
+                              <span className="font-bold text-[--b-text-secondary]">{frameworkLabels[framework]} · {ex.status}.</span> {ex.notes}
+                            </p>
+                          )}
                          <motion.button
                            whileTap={{ scale: 0.95 }}
                            transition={{ type: "spring", stiffness: 100, damping: 20 }}
                            onClick={() => copy(ex.files[0]?.code ?? "", "code")}
+                           aria-label={copied === "code" ? "Code copied" : "Copy code"}
+                           title="Copy code"
                            className="absolute right-6 top-6 rounded-md border border-[--b-border] bg-[--b-surface] p-2 text-[--b-text-secondary] transition-colors hover:text-[--b-text] z-10"
                          >
                            {copied === "code" ? (
-                             <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                             <svg className="h-4 w-4 text-[--b-success]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                            ) : (
                              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" /></svg>
                             )}
@@ -262,7 +276,7 @@ export function ComponentDetail({ slug }: { slug: string }) {
            className="h-fit space-y-8"
         >
            {/* Interactive Controls */}
-           <div className="rounded-2xl border border-[--b-border] bg-white/[0.01] p-6 shadow-xl">
+           <div className="rounded-2xl border border-[--b-border] bg-[--b-panel] p-6 shadow-card">
               <div className="mb-6 flex items-center justify-between">
                 <h3 className="font-mono text-[12px] font-bold uppercase tracking-widest text-[--b-text]">Component Controls</h3>
                 <button
@@ -275,7 +289,7 @@ export function ComponentDetail({ slug }: { slug: string }) {
 
               <div className="space-y-6">
                 {allowed.length === 0 && (
-                  <p className="rounded-lg border border-[--b-border] bg-white/[0.02] p-3 font-mono text-[11px] leading-relaxed text-[--b-muted]">
+                  <p className="rounded-lg border border-[--b-border] bg-[--b-surface] p-3 font-mono text-[11px] leading-relaxed text-[--b-muted]">
                     No tunable props for this component. The preview shows the real default implementation.
                   </p>
                 )}
@@ -298,13 +312,13 @@ export function ComponentDetail({ slug }: { slug: string }) {
                     return (
                       <label
                         key={c.key}
-                        className="flex cursor-pointer items-center justify-between rounded-lg border border-[--b-border] bg-white/[0.02] p-3 transition-colors hover:bg-white/[0.04]"
+                        className="flex cursor-pointer items-center justify-between rounded-lg border border-[--b-border] bg-[--b-surface] p-3 transition-colors hover:border-[--b-border-hover]"
                       >
                         <span className="font-mono text-[11px] font-medium text-[--b-text]">
                           {c.label} · {c.prop}
                         </span>
-                        <div className={cn("relative h-4 w-8 rounded-full transition-colors", on ? "bg-[--b-accent]" : "bg-white/20")}>
-                          <div className={cn("absolute top-0.5 h-3 w-3 rounded-full bg-white transition-transform", on ? "left-0 translate-x-4" : "translate-x-0.5")} />
+                        <div className={cn("relative h-4 w-8 rounded-full transition-colors", on ? "bg-[--b-accent]" : "bg-[--b-border-hover]")}>
+                          <div className={cn("absolute top-0.5 h-3 w-3 rounded-full bg-[--b-elevated] shadow-subtle transition-transform", on ? "left-0 translate-x-4" : "translate-x-0.5")} />
                         </div>
                         <input type="checkbox" className="sr-only" checked={on} onChange={setToggle(c.key as keyof Controls)} />
                       </label>
@@ -318,7 +332,7 @@ export function ComponentDetail({ slug }: { slug: string }) {
                       <select
                         value={String(controls[c.key as keyof Controls])}
                         onChange={setSelect(c.key as keyof Controls)}
-                        className="w-full rounded-lg border border-[--b-border] bg-white/[0.03] px-3 py-2 font-mono text-[12px] text-[--b-text]"
+                        className="w-full rounded-lg border border-[--b-border] bg-[--b-surface] px-3 py-2 font-mono text-[12px] text-[--b-text]"
                       >
                         {c.options.map((o) => (
                           <option key={o} value={o}>
@@ -334,19 +348,19 @@ export function ComponentDetail({ slug }: { slug: string }) {
 
             {/* Metadata & Dependencies */}
             <div className="space-y-4">
-              <div className="rounded-xl border border-[--b-border] bg-white/[0.01] p-5">
+              <div className="rounded-xl border border-[--b-border] bg-[--b-panel] p-5">
                 <h4 className="font-mono text-[10px] uppercase tracking-widest text-[--b-muted]">Dependencies</h4>
                 <div className="mt-3 flex flex-wrap gap-2">
                    {ex.dependencies.length ? (
                      ex.dependencies.map(d => (
-                       <span key={d} className="rounded-md bg-white/[0.04] px-2.5 py-1 font-mono text-[11px] text-[--b-text-secondary]">{d}</span>
+                       <span key={d} className="rounded-md bg-[--b-surface] px-2.5 py-1 font-mono text-[11px] text-[--b-text-secondary]">{d}</span>
                      ))
                    ) : (
                      <span className="font-mono text-[11px] text-[--b-muted]">Zero dependencies</span>
                    )}
                 </div>
               </div>
-              <div className="rounded-xl border border-[--b-border] bg-white/[0.01] p-5">
+              <div className="rounded-xl border border-[--b-border] bg-[--b-panel] p-5">
                 <h4 className="font-mono text-[10px] uppercase tracking-widest text-[--b-muted]">Accessibility</h4>
                 <p className="mt-3 text-[13px] leading-relaxed text-[--b-text-secondary]">{a11yFor(slug)}</p>
                 {item && (
@@ -355,21 +369,21 @@ export function ComponentDetail({ slug }: { slug: string }) {
                   </p>
                 )}
               </div>
-              <div className="rounded-xl border border-[--b-border] bg-white/[0.01] p-5">
+              <div className="rounded-xl border border-[--b-border] bg-[--b-panel] p-5">
                 <h4 className="font-mono text-[10px] uppercase tracking-widest text-[--b-muted]">
                   Performance · {perfFor(slug).level}
                 </h4>
                 <p className="mt-3 text-[13px] leading-relaxed text-[--b-text-secondary]">{perfFor(slug).note}</p>
               </div>
               {relatedFor(slug).length > 0 && (
-                <div className="rounded-xl border border-[--b-border] bg-white/[0.01] p-5">
+                <div className="rounded-xl border border-[--b-border] bg-[--b-panel] p-5">
                   <h4 className="font-mono text-[10px] uppercase tracking-widest text-[--b-muted]">Related</h4>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {relatedFor(slug).map((r) => (
                       <Link
                         key={r}
                         href={`/components/${r}`}
-                        className="rounded-md bg-white/[0.04] px-2.5 py-1 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:text-[--b-accent]"
+                        className="rounded-md bg-[--b-surface] px-2.5 py-1 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:text-[--b-accent]"
                       >
                         {r}
                       </Link>
@@ -395,7 +409,7 @@ function Knob({ label, ...rest }: { label: string } & React.InputHTMLAttributes<
       <input
         type="range"
         {...rest}
-        className="h-1.5 w-full appearance-none rounded-full bg-white/10 accent-[--b-accent] hover:accent-[--b-accent]"
+        className="h-1.5 w-full appearance-none rounded-full bg-[--b-border] accent-[--b-accent] hover:accent-[--b-accent]"
       />
     </label>
   );

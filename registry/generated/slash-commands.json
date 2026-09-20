@@ -5,7 +5,7 @@
   "title": "Slash Commands",
   "description": "Notion-style slash menu with fuzzy filtering.",
   "categories": [
-    "content"
+    "editor"
   ],
   "dependencies": [],
   "registryDependencies": [],

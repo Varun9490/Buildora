@@ -49,12 +49,21 @@ function getPresets(slug: string): Preset[] {
   return componentPresets[slug] || componentPresets.default;
 }
 
+function PlaygroundSkeleton() {
+  return (
+    <div className="flex h-[60vh] items-center justify-center gap-4">
+      <div className="skeleton h-10 w-40 rounded-[10px]" />
+      <div className="skeleton h-4 w-56 rounded" />
+    </div>
+  );
+}
+
 function SliderControl({ label, value, min, max, step, onChange }: { label: string; value: number; min: number; max: number; step: number; onChange: (v: number) => void }) {
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium text-white/60">{label}</span>
-        <span className="font-mono text-xs text-[#d4ff4f]">{value.toFixed(step < 1 ? 2 : 0)}</span>
+        <span className="text-xs font-medium text-[--b-text-secondary]">{label}</span>
+        <span className="font-mono text-xs text-[--b-accent]">{value.toFixed(step < 1 ? 2 : 0)}</span>
       </div>
       <input
         type="range"
@@ -63,7 +72,7 @@ function SliderControl({ label, value, min, max, step, onChange }: { label: stri
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="h-1.5 w-full appearance-none rounded-full bg-white/10 accent-[#d4ff4f] [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#d4ff4f]"
+        className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-[--b-border] accent-[--b-accent] [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[--b-accent]"
       />
     </div>
   );
@@ -72,19 +81,20 @@ function SliderControl({ label, value, min, max, step, onChange }: { label: stri
 function ToggleControl({ label, checked, onChange }: { label: string; checked: boolean; onChange: (v: boolean) => void }) {
   return (
     <label className="flex cursor-pointer items-center justify-between">
-      <span className="text-xs font-medium text-white/60">{label}</span>
+      <span className="text-xs font-medium text-[--b-text-secondary]">{label}</span>
       <button
         role="switch"
         aria-checked={checked}
+        aria-label={label}
         onClick={() => onChange(!checked)}
         className={cn(
           "relative h-5 w-9 rounded-full transition-colors",
-          checked ? "bg-[#d4ff4f]" : "bg-white/10"
+          checked ? "bg-[--b-accent]" : "bg-[--b-border-hover]"
         )}
       >
         <span
           className={cn(
-            "absolute top-0.5 left-0.5 h-4 w-4 rounded-full bg-black transition-transform",
+            "absolute top-0.5 left-0.5 h-4 w-4 rounded-full bg-[--b-accent-foreground] shadow-subtle transition-transform",
             checked && "translate-x-4"
           )}
         />
@@ -217,14 +227,15 @@ function PlaygroundContent() {
   });
 
   return (
-    <div className="flex h-[calc(100vh-80px)] min-h-[600px] flex-col overflow-hidden">
-      <div className="flex flex-1 gap-4 overflow-hidden p-4">
-        <aside className="flex w-64 flex-shrink-0 flex-col gap-3 overflow-hidden">
+    <div className="flex flex-col lg:h-[calc(100vh-80px)] lg:min-h-[600px]">
+      <div className="flex flex-1 flex-col gap-4 p-4 lg:flex-row lg:overflow-hidden">
+        {/* Component list — collapses above the canvas on mobile */}
+        <aside className="flex w-full flex-shrink-0 flex-col gap-3 lg:w-64 lg:overflow-hidden">
           <div className="flex items-center justify-between">
             <h1 className="font-display text-lg font-black">Lab</h1>
             <Link
               href="/components"
-              className="text-xs text-white/50 hover:text-[#d4ff4f]"
+              className="text-xs text-[--b-muted] transition-colors hover:text-[--b-accent]"
             >
               All components
             </Link>
@@ -235,20 +246,20 @@ function PlaygroundContent() {
               placeholder="Search components..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-sm placeholder:text-white/30 outline-none focus:border-[#d4ff4f]/50"
+              className="w-full rounded-xl border border-[--b-border] bg-[--b-panel] px-3 py-2 text-sm text-[--b-text] outline-none transition-colors placeholder:text-[--b-muted] focus:border-[--b-accent]"
               aria-label="Search components"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-[--b-muted] transition-colors hover:text-[--b-text]"
                 aria-label="Clear search"
               >
                 &times;
               </button>
             )}
           </div>
-          <ul className="flex-1 overflow-y-auto rounded-2xl border border-white/[0.06] bg-white/[0.02] p-1">
+          <ul className="scroll-sleek max-h-64 overflow-y-auto rounded-2xl border border-[--b-border] bg-[--b-panel] p-1 lg:max-h-none lg:flex-1">
             {filteredComponents.map((c) => (
               <li key={c.slug}>
                 <button
@@ -256,8 +267,8 @@ function PlaygroundContent() {
                   className={cn(
                     "w-full rounded-xl px-3 py-2 text-left text-sm transition-colors",
                     slug === c.slug
-                      ? "bg-[#d4ff4f] font-bold text-black"
-                      : "text-white/60 hover:bg-white/5 hover:text-white/90"
+                      ? "bg-[--b-accent] font-bold text-[--b-accent-foreground]"
+                      : "text-[--b-text-secondary] hover:bg-[--b-surface] hover:text-[--b-text]"
                   )}
                 >
                   {c.name}
@@ -267,9 +278,9 @@ function PlaygroundContent() {
           </ul>
         </aside>
 
-        <main className="flex flex-1 flex-col gap-3 overflow-hidden">
-          <div className="flex items-center gap-2 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-2">
-            <span className="px-2 text-[11px] font-medium uppercase tracking-wider text-white/40">
+        <main className="flex flex-1 flex-col gap-3">
+          <div className="flex items-center gap-2 rounded-2xl border border-[--b-border] bg-[--b-panel] p-2">
+            <span className="px-2 font-mono text-[11px] font-medium uppercase tracking-wider text-[--b-muted]">
               Preview
             </span>
             <div className="ml-auto flex items-center gap-1.5">
@@ -277,9 +288,10 @@ function PlaygroundContent() {
                 onClick={() => handleThemeChange("dark")}
                 className={cn(
                   "rounded-lg p-1.5 transition-colors",
-                  theme === "dark" ? "bg-white/10 text-white" : "text-white/40 hover:text-white/70"
+                  theme === "dark" ? "bg-[--b-surface] text-[--b-text]" : "text-[--b-muted] hover:text-[--b-text-secondary]"
                 )}
-                aria-label="Dark theme"
+                aria-label="Dark preview"
+                aria-pressed={theme === "dark"}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
@@ -289,24 +301,26 @@ function PlaygroundContent() {
                 onClick={() => handleThemeChange("light")}
                 className={cn(
                   "rounded-lg p-1.5 transition-colors",
-                  theme === "light" ? "bg-white/10 text-white" : "text-white/40 hover:text-white/70"
+                  theme === "light" ? "bg-[--b-surface] text-[--b-text]" : "text-[--b-muted] hover:text-[--b-text-secondary]"
                 )}
-                aria-label="Light theme"
+                aria-label="Light preview"
+                aria-pressed={theme === "light"}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </button>
-              <div className="ml-2 h-4 w-px bg-white/10" />
+              <div className="mx-1 h-4 w-px bg-[--b-border]" />
               {(["desktop", "tablet", "mobile"] as const).map((w) => (
                 <button
                   key={w}
                   onClick={() => handleWidthChange(w)}
+                  aria-pressed={previewWidth === w}
                   className={cn(
                     "rounded-lg px-2.5 py-1 text-xs font-medium transition-colors",
                     previewWidth === w
-                      ? "bg-[#d4ff4f] text-black"
-                      : "text-white/50 hover:bg-white/5 hover:text-white/80"
+                      ? "bg-[--b-accent] text-[--b-accent-foreground]"
+                      : "text-[--b-muted] hover:bg-[--b-surface] hover:text-[--b-text-secondary]"
                   )}
                 >
                   {w.charAt(0).toUpperCase() + w.slice(1)}
@@ -317,10 +331,8 @@ function PlaygroundContent() {
 
           <div
             className={cn(
-              "flex-1 overflow-auto rounded-2xl border border-white/[0.06] p-6",
-              theme === "dark"
-                ? "bg-[#08090d]"
-                : "bg-gradient-to-b from-neutral-50 to-neutral-100"
+              "flex-1 overflow-auto rounded-2xl border border-[--b-border] p-6",
+              theme === "dark" ? "preview-canvas-dark" : "preview-canvas-light"
             )}
           >
             <div
@@ -333,20 +345,21 @@ function PlaygroundContent() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-3">
-            <div className="flex items-center gap-2 overflow-x-auto">
-              <span className="shrink-0 text-[11px] font-medium uppercase tracking-wider text-white/40">
+          <div className="rounded-2xl border border-[--b-border] bg-[--b-panel] p-3">
+            <div className="scroll-sleek flex items-center gap-2 overflow-x-auto">
+              <span className="shrink-0 font-mono text-[11px] font-medium uppercase tracking-wider text-[--b-muted]">
                 Framework
               </span>
               {frameworks.map((fw) => (
                 <button
                   key={fw}
                   onClick={() => handleFrameworkChange(fw)}
+                  aria-pressed={framework === fw}
                   className={cn(
                     "shrink-0 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
                     framework === fw
-                      ? "bg-[#d4ff4f] text-black"
-                      : "text-white/60 hover:bg-white/5 hover:text-white/90"
+                      ? "bg-[--b-accent] text-[--b-accent-foreground]"
+                      : "text-[--b-text-secondary] hover:bg-[--b-surface] hover:text-[--b-text]"
                   )}
                 >
                   {frameworkLabels[fw] || fw}
@@ -356,14 +369,15 @@ function PlaygroundContent() {
           </div>
         </main>
 
-        <aside className="flex w-72 flex-shrink-0 flex-col gap-3 overflow-hidden">
-          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4">
-            <h2 className="mb-3 text-xs font-bold uppercase tracking-wider text-white/40">
+        {/* Controls + export — stacks below the canvas on mobile */}
+        <aside className="flex w-full flex-shrink-0 flex-col gap-3 lg:w-72 lg:overflow-hidden">
+          <div className="rounded-2xl border border-[--b-border] bg-[--b-panel] p-4">
+            <h2 className="mb-3 font-mono text-[11px] font-bold uppercase tracking-wider text-[--b-muted]">
               Controls · {controlsFor(slug).length > 0 ? "component-specific" : "no tunable props"}
             </h2>
             <div className="space-y-4">
               {controlsFor(slug).length === 0 && (
-                <p className="rounded-lg border border-white/10 bg-white/[0.02] p-3 text-xs leading-relaxed text-white/50">
+                <p className="rounded-lg border border-[--b-border] bg-[--b-surface] p-3 text-xs leading-relaxed text-[--b-text-secondary]">
                   This component exposes no tunable numeric props. Preview shows the real default.
                 </p>
               )}
@@ -393,16 +407,16 @@ function PlaygroundContent() {
                 }
                 return (
                   <label key={d.key} className="block">
-                    <span className="mb-1.5 block text-xs font-medium text-white/60">
+                    <span className="mb-1.5 block text-xs font-medium text-[--b-text-secondary]">
                       {d.label} · {d.prop}
                     </span>
                     <select
                       value={String(controls[d.key as keyof Controls])}
                       onChange={(e) => setControls((c) => ({ ...c, [d.key]: e.target.value }))}
-                      className="w-full rounded-lg border border-white/10 bg-white/[0.03] px-2 py-1.5 text-xs text-white"
+                      className="w-full rounded-lg border border-[--b-border] bg-[--b-surface] px-2 py-1.5 text-xs text-[--b-text]"
                     >
                       {d.options.map((o) => (
-                        <option key={o} value={o} className="bg-black">
+                        <option key={o} value={o}>
                           {o}
                         </option>
                       ))}
@@ -413,8 +427,8 @@ function PlaygroundContent() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4">
-            <h2 className="mb-3 text-xs font-bold uppercase tracking-wider text-white/40">
+          <div className="rounded-2xl border border-[--b-border] bg-[--b-panel] p-4">
+            <h2 className="mb-3 font-mono text-[11px] font-bold uppercase tracking-wider text-[--b-muted]">
               Presets
             </h2>
             <div className="flex flex-wrap gap-2">
@@ -422,7 +436,7 @@ function PlaygroundContent() {
                 <button
                   key={preset.label}
                   onClick={() => applyPreset(preset)}
-                  className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/70 transition-colors hover:border-[#d4ff4f]/40 hover:bg-[#d4ff4f]/10 hover:text-white"
+                  className="rounded-lg border border-[--b-border] bg-[--b-surface] px-3 py-1.5 text-xs text-[--b-text-secondary] transition-colors hover:border-accent-soft hover:bg-accent-wash hover:text-[--b-accent]"
                 >
                   {preset.label}
                 </button>
@@ -430,41 +444,41 @@ function PlaygroundContent() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4">
-            <h2 className="mb-3 text-xs font-bold uppercase tracking-wider text-white/40">
+          <div className="rounded-2xl border border-[--b-border] bg-[--b-panel] p-4">
+            <h2 className="mb-3 font-mono text-[11px] font-bold uppercase tracking-wider text-[--b-muted]">
               Export
             </h2>
             <div className="space-y-2">
               <button
                 onClick={copyInstallCommand}
-                className="flex w-full items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-white/70 transition-colors hover:border-[#d4ff4f]/40 hover:text-white"
+                className="flex w-full items-center justify-between rounded-lg border border-[--b-border] bg-[--b-surface] px-3 py-2 text-xs text-[--b-text-secondary] transition-colors hover:border-accent-soft hover:text-[--b-text]"
               >
                 <span>Install command</span>
-                <span className="font-mono text-[#d4ff4f]">
+                <span className="font-mono text-[--b-accent]">
                   {copiedInstall ? "Copied!" : "Copy"}
                 </span>
               </button>
               <button
                 onClick={copyAiPrompt}
-                className="flex w-full items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-white/70 transition-colors hover:border-[#d4ff4f]/40 hover:text-white"
+                className="flex w-full items-center justify-between rounded-lg border border-[--b-border] bg-[--b-surface] px-3 py-2 text-xs text-[--b-text-secondary] transition-colors hover:border-accent-soft hover:text-[--b-text]"
               >
                 <span>AI prompt</span>
-                <span className="font-mono text-[#d4ff4f]">
+                <span className="font-mono text-[--b-accent]">
                   {copiedPrompt ? "Copied!" : "Copy"}
                 </span>
               </button>
               <button
                 onClick={copyShareUrl}
-                className="flex w-full items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-white/70 transition-colors hover:border-[#d4ff4f]/40 hover:text-white"
+                className="flex w-full items-center justify-between rounded-lg border border-[--b-border] bg-[--b-surface] px-3 py-2 text-xs text-[--b-text-secondary] transition-colors hover:border-accent-soft hover:text-[--b-text]"
               >
                 <span>Share URL</span>
-                <span className="font-mono text-[#d4ff4f]">
+                <span className="font-mono text-[--b-accent]">
                   {copiedUrl ? "Copied!" : "Copy"}
                 </span>
               </button>
               <Link
                 href={`/components/${slug}`}
-                className="flex w-full items-center justify-between rounded-lg border border-[#d4ff4f]/30 bg-[#d4ff4f]/10 px-3 py-2 text-xs font-medium text-[#d4ff4f] transition-colors hover:border-[#d4ff4f]/50 hover:bg-[#d4ff4f]/15"
+                className="flex w-full items-center justify-between rounded-lg border border-accent-soft bg-accent-wash px-3 py-2 text-xs font-medium text-[--b-accent] transition-colors hover:border-accent-soft hover:bg-accent-wash"
               >
                 <span>Full docs</span>
                 <span>&rarr;</span>
@@ -474,28 +488,28 @@ function PlaygroundContent() {
         </aside>
       </div>
 
-      <div className="mx-4 mb-4 overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0a0c11]">
-        <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2">
-          <span className="text-xs font-medium text-white/60">{component.name}</span>
-          <span className="font-mono text-[11px] text-white/30">{slug}</span>
+      <div className="mx-4 mb-4 overflow-hidden rounded-2xl border border-[--b-border] bg-[--b-panel]">
+        <div className="flex items-center gap-2 border-b border-[--b-border] px-4 py-2">
+          <span className="text-xs font-medium text-[--b-text-secondary]">{component.name}</span>
+          <span className="font-mono text-[11px] text-[--b-muted]">{slug}</span>
           <span
             className={cn(
-              "ml-auto rounded px-2 py-0.5 text-[10px] font-bold",
+              "ml-auto rounded px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider",
               example.status === "Full"
-                ? "bg-[#d4ff4f]/20 text-[#d4ff4f]"
+                ? "bg-accent-wash text-[--b-accent]"
                 : example.status === "Partial"
-                ? "bg-[#ffb86b]/20 text-[#ffb86b]"
-                : "bg-white/10 text-white/50"
+                ? "bg-warning-wash text-[--b-warning]"
+                : "bg-[--b-surface] text-[--b-muted]"
             )}
           >
             {example.status}
           </span>
         </div>
-        <div className="max-h-[320px] overflow-auto">
+        <div className="scroll-sleek max-h-[320px] overflow-auto">
           {example.files.length > 0 ? (
             <CodeViewer files={example.files} className="border-0 bg-transparent" />
           ) : (
-            <div className="flex h-24 items-center justify-center text-sm text-white/40">
+            <div className="flex h-24 items-center justify-center px-6 text-center text-sm text-[--b-muted]">
               No code for {frameworkLabels[framework]} — {example.notes}
             </div>
           )}
@@ -507,7 +521,7 @@ function PlaygroundContent() {
 
 export default function PlaygroundPage() {
   return (
-    <Suspense fallback={<div className="flex h-[calc(100vh-80px)] items-center justify-center"><div className="text-white/50">Loading...</div></div>}>
+    <Suspense fallback={<PlaygroundSkeleton />}>
       <PlaygroundContent />
     </Suspense>
   );

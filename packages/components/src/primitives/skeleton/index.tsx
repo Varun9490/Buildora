@@ -31,15 +31,15 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
       rounded: "rounded-xl",
     };
 
+    const sweeping = animate && !reducedMotion;
     return (
       <div
         ref={ref}
         role="presentation"
         aria-hidden="true"
         className={cn(
-          "relative overflow-hidden bg-white/5 border border-white/5",
+          "relative overflow-hidden border border-white/5 bg-white/[0.04]",
           variantStyles[variant],
-          animate && !reducedMotion && "shimmer",
           className
         )}
         style={{
@@ -49,11 +49,14 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
         }}
         {...props}
       >
-        {animate && !reducedMotion && (
+        {sweeping && (
           <div
-            className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite]"
+            aria-hidden="true"
+            className="absolute inset-0 animate-[shimmer_1.6s_linear_infinite]"
             style={{
-              background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)",
+              background:
+                "linear-gradient(100deg, transparent 20%, rgba(255,255,255,0.08) 50%, transparent 80%)",
+              backgroundSize: "200% 100%",
             }}
           />
         )}

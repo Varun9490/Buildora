@@ -56,30 +56,36 @@ function htmlCode(slug: string, name: string): string {
 }
 
 function tailwindCode(slug: string): string {
-  return `{/* Tailwind variant for ${slug} */}\n<button className="rounded-xl bg-[#d4ff4f] px-5 py-2.5 text-sm font-bold text-black shadow-glow transition hover:brightness-105 active:scale-[.98]">\n  Ship it\n</button>`;
+  return `{/* Tailwind variant for ${slug} — colors come from Buildora CSS vars */}\n<button className="rounded-xl bg-[var(--b-accent)] px-5 py-2.5 text-sm font-bold text-[var(--b-accent-foreground)] transition hover:brightness-105 active:scale-[.98]">\n  Ship it\n</button>`;
 }
 
 function rnCode(slug: string, name: string): string {
-  return `import { Pressable, Text, Animated } from "react-native";\n\n// ${name} — React Native port\n// No hover/cursor: use press + haptics + Animated.spring instead.\nexport function ${pascal(slug)}({ children }: { children: React.ReactNode }) {\n  return (\n    <Pressable accessibilityRole="button" style={{ borderRadius: 14, backgroundColor: "#d4ff4f", padding: 14 }}>\n      <Text style={{ fontWeight: "700" }}>{children ?? "${name}"}</Text>\n    </Pressable>\n  );\n}`;
+  return `import { Pressable, Text, Animated } from "react-native";\n\n// ${name} — React Native SNIPPET (not a full port; React is the source of truth).\n// No hover/cursor on native: use press + haptics + Animated.spring instead.\n// Wire your own theme tokens where ACCENT appears below.\nconst ACCENT = "#0EA5E9"; // TODO: replace with your design-system accent\nconst ACCENT_FG = "#FFFFFF";\nexport function ${pascal(slug)}({ children }: { children: React.ReactNode }) {\n  return (\n    <Pressable accessibilityRole="button" style={{ borderRadius: 14, backgroundColor: ACCENT, padding: 14 }}>\n      <Text style={{ fontWeight: "700", color: ACCENT_FG }}>{children ?? "${name}"}</Text>\n    </Pressable>\n  );\n}`;
 }
 
 function flutterCode(slug: string, name: string): string {
-  return `import 'package:flutter/material.dart';\n\n// ${name} — Flutter port (Experimental)\n// Pointer hover has no direct equivalent; use GestureDetector + AnimationController.\nclass ${pascal(slug)} extends StatelessWidget {\n  final Widget? child;\n  const ${pascal(slug)}({super.key, this.child});\n  @override\n  Widget build(BuildContext context) {\n    return GestureDetector(\n      child: Container(\n        padding: const EdgeInsets.all(14),\n        decoration: BoxDecoration(color: const Color(0xFFD4FF4F), borderRadius: BorderRadius.circular(14)),\n        child: child ?? const Text('${name}'),\n      ),\n    );\n  }\n}`;
+  return `import 'package:flutter/material.dart';\n\n// ${name} — Flutter SNIPPET (not a full port; React is the source of truth).\n// Pointer hover has no direct equivalent; use GestureDetector + AnimationController.\n// Wire your Theme colorScheme tokens instead of hardcoded colors.\nclass ${pascal(slug)} extends StatelessWidget {\n  final Widget? child;\n  const ${pascal(slug)}({super.key, this.child});\n  @override\n  Widget build(BuildContext context) {\n    return GestureDetector(\n      child: Container(\n        padding: const EdgeInsets.all(14),\n        decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary, borderRadius: BorderRadius.circular(14)),\n        child: child ?? const Text('${name}'),\n      ),\n    );\n  }\n}`;
 }
 
 function swiftCode(slug: string, name: string): string {
-  return `import SwiftUI\n\n// ${name} — SwiftUI port (Experimental)\nstruct ${pascal(slug)}: View {\n    var body: some View {\n        Text("${name}")\n            .padding()\n            .background(Color(red: 0.83, green: 1, blue: 0.31))\n            .clipShape(RoundedRectangle(cornerRadius: 14))\n            .accessibilityAddTraits(.isButton)\n    }\n}`;
+  return `import SwiftUI\n\n// ${name} — SwiftUI SNIPPET (not a full port; React is the source of truth).\nstruct ${pascal(slug)}: View {\n    var body: some View {\n        Text("${name}")\n            .padding()\n            .background(Color.accentColor)\n            .foregroundStyle(Color.white)\n            .clipShape(RoundedRectangle(cornerRadius: 14))\n            .accessibilityAddTraits(.isButton)\n    }\n}`;
 }
 
 function composeCode(slug: string, name: string): string {
-  return `import androidx.compose.material3.*\nimport androidx.compose.runtime.Composable\n\n// ${name} — Jetpack Compose port (Experimental)\n@Composable\nfun ${pascal(slug)}(label: String = "${name}") {\n    Button(onClick = {}) { Text(label) }\n}`;
+  return `import androidx.compose.material3.*\nimport androidx.compose.runtime.Composable\n\n// ${name} — Jetpack Compose SNIPPET (not a full port; React is the source of truth).\n@Composable\nfun ${pascal(slug)}(label: String = "${name}") {\n    Button(onClick = {}) { Text(label) }\n}`;
 }
 
 export function frameworkExample(slug: string, name: string, fw: string, item?: RegistryItem | null): FrameworkExample {
-  // Honest fallback: only React is Full. All snippet ports are Partial/Experimental.
+  // Honest fallback: only React is Full. Everything else is a snippet, never a port.
   const status =
     item?.implementations?.[fw]?.status ?? (fw === "react" ? "Full" : ["flutter", "swiftUI", "compose"].includes(fw) ? "Experimental" : "Partial");
-  const notes = item?.implementations?.[fw]?.notes;
+  const rawNotes = item?.implementations?.[fw]?.notes;
+  const notes =
+    fw === "react"
+      ? rawNotes
+      : rawNotes
+        ? `Snippet preview, not a full port — React is the source of truth. ${rawNotes}`
+        : "Snippet preview, not a full port. React is the source of truth; this is idiomatic starter scaffolding.";
   const deps = fw === "react" ? ["clsx", "tailwind-merge"] : [];
   const install = fw === "react" ? `pnpm dlx shadcn@latest add @buildora/${slug}` : fw === "html" ? `<!-- copy buildora/${slug}.css + buildora/${slug}.js -->` : `// see ${fw} notes for ${slug}`;
   const usage = install;

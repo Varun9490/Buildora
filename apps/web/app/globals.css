@@ -144,6 +144,46 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
 }
 
+/* ── Accent washes — Tailwind v3 can't apply alpha to var() colors, so these are real classes ── */
+.bg-accent-wash { background-color: var(--b-accent-muted); }
+.bg-warning-wash { background-color: color-mix(in srgb, var(--b-warning) 14%, transparent); }
+.border-accent-soft { border-color: color-mix(in srgb, var(--b-accent) 30%, transparent); }
+.border-accent-wash { border-color: color-mix(in srgb, var(--b-accent) 15%, transparent); }
+
+/* ── Code find-highlight ── */
+.code-hit { background: color-mix(in srgb, var(--b-accent) 12%, transparent); }
+
+/* ── Syntax palette — theme-aware (dark: Material-ish, light: GitHub-ish) ── */
+:root,
+[data-theme="light"] {
+  --syn-base: #1F2328;
+  --syn-comment: #6E7781;
+  --syn-string: #0A7D33;
+  --syn-key: #8250DF;
+  --syn-num: #953800;
+  --syn-punct: #57606A;
+}
+
+[data-theme="dark"] {
+  --syn-base: #BFC7D5;
+  --syn-comment: #7D8CA0;
+  --syn-string: #C3E88D;
+  --syn-key: #C792EA;
+  --syn-num: #F78C6C;
+  --syn-punct: #89DDFF;
+}
+
+.syn-base { color: var(--syn-base); }
+.syn-comment { color: var(--syn-comment); font-style: italic; }
+.syn-string { color: var(--syn-string); }
+.syn-key { color: var(--syn-key); }
+.syn-num { color: var(--syn-num); }
+.syn-punct { color: var(--syn-punct); }
+
+/* ── Preview canvases — fixed neutral grounds for the playground preview area ── */
+.preview-canvas-dark { background: #0E0E0C; }
+.preview-canvas-light { background: #FAF9F7; }
+
 /* ── Surface & card — semantic vars, no hardcoded white/black ── */
 .b-card {
   background: var(--b-panel);
@@ -335,6 +375,30 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--b-border-hover);
   border-radius: 99px;
+}
+
+/* ── Sleek scroll surfaces (dropdowns, code viewers) ── */
+.scroll-sleek {
+  scrollbar-width: thin;
+  scrollbar-color: var(--b-border-hover) transparent;
+  scroll-behavior: smooth;
+}
+.scroll-sleek::-webkit-scrollbar { height: 8px; width: 8px; }
+.scroll-sleek::-webkit-scrollbar-track { background: transparent; }
+.scroll-sleek::-webkit-scrollbar-thumb {
+  background: var(--b-border-hover);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.25s ease;
+}
+.scroll-sleek::-webkit-scrollbar-thumb:hover {
+  background: var(--b-accent-muted);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-sleek { scroll-behavior: auto; }
 }
 
 /* ── Focus — theme-aware ring ── */

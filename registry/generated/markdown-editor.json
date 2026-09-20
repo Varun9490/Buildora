@@ -5,7 +5,7 @@
   "title": "Markdown Editor",
   "description": "Split markdown editor with live preview.",
   "categories": [
-    "content"
+    "editor"
   ],
   "dependencies": [],
   "registryDependencies": [],

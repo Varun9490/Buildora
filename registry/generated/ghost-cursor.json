@@ -5,7 +5,7 @@
   "title": "Ghost Cursor",
   "description": "Delayed ghost echo of pointer movement.",
   "categories": [
-    "creative"
+    "motion"
   ],
   "dependencies": [],
   "registryDependencies": [],

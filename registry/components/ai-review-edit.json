@@ -6,7 +6,7 @@
   "description": "Diff-style review UI for AI-generated content (accept / edit / reject).",
   "categories": [
     "ai-llm",
-    "content"
+    "editor"
   ],
   "tags": [
     "review",

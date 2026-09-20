@@ -5,7 +5,7 @@
   "title": "Magnetic Card",
   "description": "Pointer tilt + spotlight card with keyboard focus support.",
   "categories": [
-    "creative"
+    "motion"
   ],
   "dependencies": [],
   "registryDependencies": [],

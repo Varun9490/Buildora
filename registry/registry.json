@@ -11,7 +11,7 @@
       "name": "Magnetic Button",
       "description": "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "button",
@@ -27,7 +27,7 @@
       "name": "Liquid Button",
       "description": "Gooey blob fill that follows the pointer inside a real button.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "button",
@@ -42,7 +42,7 @@
       "name": "Magnetic Card",
       "description": "Pointer tilt + spotlight card with keyboard focus support.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "card",
@@ -57,7 +57,7 @@
       "name": "Slingshot OTP",
       "description": "Signature gamified OTP — pull digits like a slingshot. Real inputs, paste, SR fallback underneath.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "otp",
@@ -73,7 +73,7 @@
       "name": "Interactive Dropzone",
       "description": "Proximity-reactive dropzone with progress visualization and error recovery.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "upload",
@@ -88,8 +88,7 @@
       "name": "Spatial Command Palette",
       "description": "Keyboard-first palette with animated selection, grouped results, recents, and depth presentation.",
       "categories": [
-        "creative",
-        "complex"
+        "canvas"
       ],
       "tags": [
         "command",
@@ -105,7 +104,7 @@
       "name": "Cursor Spotlight",
       "description": "Cursor-tracked spotlight container for any content.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "cursor",
@@ -119,7 +118,7 @@
       "name": "Aurora Background",
       "description": "Slow-drifting aurora blobs. Reduced-motion safe, pure CSS.",
       "categories": [
-        "creative"
+        "backgrounds"
       ],
       "tags": [
         "background",
@@ -134,7 +133,7 @@
       "name": "Particle Field",
       "description": "Lightweight canvas particle field with DPR scaling. No Three.js needed.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "particles",
@@ -148,7 +147,7 @@
       "name": "Morphing Typography",
       "description": "Cycling display words with gradient + motion. aria-live polite.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "typography",
@@ -162,7 +161,7 @@
       "name": "Holographic Card",
       "description": "Holographic sheen that tracks the pointer.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "card",
@@ -177,7 +176,7 @@
       "name": "Interactive 3D Card",
       "description": "Lightweight CSS 3D flip card. Lazy-safe; no Three.js on this page.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "3d",
@@ -192,7 +191,7 @@
       "name": "Tactile Loader",
       "description": "Bouncy dot loader with role=status and SR label.",
       "categories": [
-        "creative"
+        "feedback"
       ],
       "tags": [
         "loader",
@@ -206,7 +205,7 @@
       "name": "Creative Notifications",
       "description": "Stacked toast system with tones and live-region announcements.",
       "categories": [
-        "creative"
+        "feedback"
       ],
       "tags": [
         "toast",
@@ -308,7 +307,7 @@
       "description": "Diff-style review UI for AI-generated content (accept / edit / reject).",
       "categories": [
         "ai-llm",
-        "content"
+        "editor"
       ],
       "tags": [
         "review",
@@ -397,7 +396,7 @@
       "description": "Side-by-side line comparison with added/removed semantics.",
       "categories": [
         "data",
-        "content"
+        "editor"
       ],
       "tags": [
         "diff",
@@ -580,8 +579,7 @@
       "name": "Approval Workflow",
       "description": "Multi-step approval chain with approve/reject and progress status.",
       "categories": [
-        "saas",
-        "complex"
+        "saas"
       ],
       "tags": [
         "approval",
@@ -625,7 +623,7 @@
       "name": "Command Palette",
       "description": "Base fuzzy command palette with keyboard navigation (see Spatial variant for depth).",
       "categories": [
-        "complex"
+        "navigation"
       ],
       "tags": [
         "command",
@@ -639,7 +637,7 @@
       "name": "Physics Kanban",
       "description": "Spring drag board with snap zones + Alt+Arrow keyboard movement.",
       "categories": [
-        "complex"
+        "canvas"
       ],
       "tags": [
         "kanban",
@@ -654,7 +652,7 @@
       "name": "Node Editor",
       "description": "SVG node/edge diagram with zoom and accessible node list.",
       "categories": [
-        "complex"
+        "canvas"
       ],
       "tags": [
         "nodes",
@@ -668,8 +666,7 @@
       "name": "Timeline Editor",
       "description": "Track-based timeline with selectable clips.",
       "categories": [
-        "complex",
-        "content"
+        "canvas"
       ],
       "tags": [
         "timeline"
@@ -682,7 +679,7 @@
       "name": "Calendar",
       "description": "Scheduling grid with gridcell semantics.",
       "categories": [
-        "complex"
+        "canvas"
       ],
       "tags": [
         "calendar",
@@ -696,7 +693,7 @@
       "name": "Workflow Builder",
       "description": "Step composer with active-step state and add/next actions.",
       "categories": [
-        "complex"
+        "canvas"
       ],
       "tags": [
         "workflow",
@@ -710,7 +707,7 @@
       "name": "Markdown Editor",
       "description": "Split markdown editor with live preview.",
       "categories": [
-        "content"
+        "editor"
       ],
       "tags": [
         "markdown",
@@ -724,7 +721,7 @@
       "name": "Mention Input",
       "description": "@mention autocomplete with listbox suggestions.",
       "categories": [
-        "content"
+        "editor"
       ],
       "tags": [
         "mentions"
@@ -737,7 +734,7 @@
       "name": "Comment Thread",
       "description": "Resolve/reopen comment thread.",
       "categories": [
-        "content"
+        "editor"
       ],
       "tags": [
         "comments"
@@ -750,7 +747,7 @@
       "name": "Rich Text Editor",
       "description": "Toolbar + contentEditable editor with word count.",
       "categories": [
-        "content"
+        "editor"
       ],
       "tags": [
         "rich-text"
@@ -763,7 +760,7 @@
       "name": "Slash Commands",
       "description": "Notion-style slash menu with fuzzy filtering.",
       "categories": [
-        "content"
+        "editor"
       ],
       "tags": [
         "slash",
@@ -777,7 +774,7 @@
       "name": "Version History",
       "description": "Document version list with restore action.",
       "categories": [
-        "content"
+        "editor"
       ],
       "tags": [
         "versions",
@@ -1537,7 +1534,7 @@
       "name": "Noise Background",
       "description": "Film-grain texture overlay for tactile surfaces.",
       "categories": [
-        "creative"
+        "backgrounds"
       ],
       "tags": [
         "background",
@@ -1551,7 +1548,7 @@
       "name": "Grid Background",
       "description": "Perspective grid with fade control.",
       "categories": [
-        "creative"
+        "backgrounds"
       ],
       "tags": [
         "background",
@@ -1565,7 +1562,7 @@
       "name": "Dot Grid Background",
       "description": "Dotted lattice backdrop for technical layouts.",
       "categories": [
-        "creative"
+        "backgrounds"
       ],
       "tags": [
         "background",
@@ -1579,7 +1576,7 @@
       "name": "Gradient Mesh Background",
       "description": "Layered mesh gradient field.",
       "categories": [
-        "creative"
+        "backgrounds"
       ],
       "tags": [
         "background",
@@ -1593,7 +1590,7 @@
       "name": "Aurora Beam Background",
       "description": "Sweeping aurora beams over content.",
       "categories": [
-        "creative"
+        "backgrounds"
       ],
       "tags": [
         "background",
@@ -1607,7 +1604,7 @@
       "name": "Ripple Background",
       "description": "Pointer-reactive ripple field.",
       "categories": [
-        "creative"
+        "backgrounds"
       ],
       "tags": [
         "background",
@@ -1621,7 +1618,7 @@
       "name": "Meteor Background",
       "description": "Streaking meteor shower backdrop.",
       "categories": [
-        "creative"
+        "backgrounds"
       ],
       "tags": [
         "background",
@@ -1635,7 +1632,7 @@
       "name": "Beam Background",
       "description": "Light-beam sweep backdrop.",
       "categories": [
-        "creative"
+        "backgrounds"
       ],
       "tags": [
         "background",
@@ -1649,7 +1646,7 @@
       "name": "Glow Cursor",
       "description": "Soft glow following the pointer. Null under reduced motion; pointer-only.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "cursor",
@@ -1663,7 +1660,7 @@
       "name": "Blob Cursor",
       "description": "Organic blob trailing the pointer. Pointer-only.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "cursor",
@@ -1677,7 +1674,7 @@
       "name": "Trail Cursor",
       "description": "Fading particle trail behind the pointer.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "cursor",
@@ -1691,7 +1688,7 @@
       "name": "Ghost Cursor",
       "description": "Delayed ghost echo of pointer movement.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "cursor",
@@ -1705,7 +1702,7 @@
       "name": "Spotlight Cursor",
       "description": "Hard-edged spotlight tracking the pointer.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "cursor",
@@ -1719,7 +1716,7 @@
       "name": "Typewriter",
       "description": "Typing loop with configurable speed and cursor.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "text",
@@ -1733,7 +1730,7 @@
       "name": "Scrambled Text",
       "description": "Decode-style scramble reveal for headings.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "text",
@@ -1747,7 +1744,7 @@
       "name": "Blur Text",
       "description": "Blur-to-sharp text entrance.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "text",
@@ -1761,7 +1758,7 @@
       "name": "Gradient Text",
       "description": "Gradient-ink display text.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "text",
@@ -1775,7 +1772,7 @@
       "name": "Glitch Text",
       "description": "RGB-split glitch effect for display type.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "text",
@@ -1789,7 +1786,7 @@
       "name": "Ripple Button",
       "description": "Material-style expanding ripple on press.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "button",
@@ -1803,7 +1800,7 @@
       "name": "Shimmer Button",
       "description": "Light sweep shimmer across the label.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "button",
@@ -1817,7 +1814,7 @@
       "name": "Glow Button",
       "description": "Luminous halo button for primary actions.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "button",
@@ -1831,7 +1828,7 @@
       "name": "Gradient Border Button",
       "description": "Animated gradient frame around a solid label.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "button",
@@ -1845,7 +1842,7 @@
       "name": "Hold Button",
       "description": "Press-and-hold confirm with progress feedback.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "button",
@@ -1860,7 +1857,7 @@
       "name": "Glare Card",
       "description": "Specular glare sweeping with pointer angle.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "card",
@@ -1874,7 +1871,7 @@
       "name": "Spotlight Card",
       "description": "Cursor spotlight card, calmer sibling of Magnetic Card.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "card",
@@ -1888,7 +1885,7 @@
       "name": "Wobble Card",
       "description": "Spring wobble response to pointer enter.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "card",
@@ -1902,7 +1899,7 @@
       "name": "Glass Card",
       "description": "Frosted-glass panel card with solid fallback.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "card",
@@ -1916,7 +1913,7 @@
       "name": "Bento Grid",
       "description": "Tile grid with configurable columns and spans.",
       "categories": [
-        "creative"
+        "primitives"
       ],
       "tags": [
         "layout",
@@ -1931,7 +1928,7 @@
       "name": "Infinite Marquee",
       "description": "Seamless looping marquee row.",
       "categories": [
-        "creative"
+        "motion"
       ],
       "tags": [
         "layout",
@@ -1945,7 +1942,7 @@
       "name": "Masonry Layout",
       "description": "Pinterest-style masonry columns.",
       "categories": [
-        "creative"
+        "primitives"
       ],
       "tags": [
         "layout",

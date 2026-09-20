@@ -5,7 +5,7 @@
   "slug": "version-history",
   "description": "Document version list with restore action.",
   "categories": [
-    "content"
+    "editor"
   ],
   "tags": [
     "versions",

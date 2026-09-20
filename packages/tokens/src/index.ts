@@ -178,19 +178,20 @@ export const cssVars = `
 
 export const difficulties = ["beginner", "intermediate", "advanced"] as const;
 export const categories = [
-  "creative",
-  "ai-llm",
-  "data",
-  "developer",
-  "saas",
-  "complex",
-  "content",
   "primitives",
   "forms",
+  "feedback",
   "navigation",
   "overlays",
-  "feedback",
+  "motion",
+  "backgrounds",
+  "data",
+  "developer",
+  "ai-llm",
+  "canvas",
+  "editor",
   "blocks",
+  "saas",
 ] as const;
 
 export type Category = (typeof categories)[number];

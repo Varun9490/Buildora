@@ -26,12 +26,20 @@ export function SiteHeader() {
   const [open, setOpen] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const triggerRef = React.useRef<HTMLButtonElement | null>(null);
+  const optionRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
 
   React.useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const focusFrameworkOption = (i: number) => {
+    const n = frameworks.length;
+    const next = ((i % n) + n) % n;
+    optionRefs.current[next]?.focus();
+  };
 
   return (
     <motion.header
@@ -126,9 +134,19 @@ export function SiteHeader() {
           {/* Framework selector */}
           <div className="relative">
             <button
+              ref={triggerRef}
               onClick={() => setOpen((o) => !o)}
               aria-haspopup="listbox"
               aria-expanded={open}
+              onKeyDown={(e) => {
+                if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+                  e.preventDefault();
+                  setOpen(true);
+                  requestAnimationFrame(() => focusFrameworkOption(frameworks.indexOf(framework)));
+                } else if (e.key === "Escape" && open) {
+                  setOpen(false);
+                }
+              }}
               className="flex items-center gap-2 rounded-md border border-[--b-border] bg-[--b-surface] px-3 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:border-[--b-border-hover] hover:bg-[--b-elevated]"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-[--b-accent]" />
@@ -166,19 +184,41 @@ export function SiteHeader() {
                     aria-label="Framework"
                     className="absolute right-0 z-50 mt-2 max-h-72 w-44 overflow-auto rounded-lg border border-[--b-border] bg-[--b-panel]/95 p-1 shadow-card backdrop-blur-xl"
                   >
-                    {frameworks.map((f) => (
+                    {frameworks.map((f, i) => (
                       <li key={f}>
                         <button
+                          ref={(el) => {
+                            optionRefs.current[i] = el;
+                          }}
                           role="option"
                           aria-selected={f === framework}
                           onClick={() => {
                             setFramework(f);
                             setOpen(false);
+                            triggerRef.current?.focus();
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "ArrowDown") {
+                              e.preventDefault();
+                              focusFrameworkOption(i + 1);
+                            } else if (e.key === "ArrowUp") {
+                              e.preventDefault();
+                              focusFrameworkOption(i - 1);
+                            } else if (e.key === "Home") {
+                              e.preventDefault();
+                              focusFrameworkOption(0);
+                            } else if (e.key === "End") {
+                              e.preventDefault();
+                              focusFrameworkOption(frameworks.length - 1);
+                            } else if (e.key === "Escape") {
+                              setOpen(false);
+                              triggerRef.current?.focus();
+                            }
                           }}
                           className={cn(
                             "flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left font-mono text-[11px] transition-colors",
                             f === framework
-                              ? "bg-[--b-accent]/10 text-[--b-accent]"
+                              ? "bg-accent-wash text-[--b-accent]"
                               : "text-[--b-text-secondary] hover:bg-[--b-surface] hover:text-[--b-text]"
                           )}
                         >
@@ -187,7 +227,7 @@ export function SiteHeader() {
                               "h-1.5 w-1.5 rounded-full",
                               f === framework
                                 ? "bg-[--b-accent]"
-                                : "bg-white/15"
+                                : "bg-[--b-border-hover]"
                             )}
                           />
                           {frameworkLabels[f]}
@@ -350,7 +390,7 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-3">
               {[
                 { label: "All components", href: "/components" },
-                { label: "Categories", href: "/categories" },
+                { label: "Playground", href: "/playground" },
                 { label: "Templates", href: "/templates" },
               ].map((link) => (
                 <li key={link.href}>

@@ -5,8 +5,7 @@
   "title": "Approval Workflow",
   "description": "Multi-step approval chain with approve/reject and progress status.",
   "categories": [
-    "saas",
-    "complex"
+    "saas"
   ],
   "dependencies": [],
   "registryDependencies": [],

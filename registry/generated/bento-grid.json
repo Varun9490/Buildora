@@ -5,7 +5,7 @@
   "title": "Bento Grid",
   "description": "Tile grid with configurable columns and spans.",
   "categories": [
-    "creative"
+    "primitives"
   ],
   "dependencies": [],
   "registryDependencies": [],

@@ -5,7 +5,7 @@
   "title": "Magnetic Button",
   "description": "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.",
   "categories": [
-    "creative"
+    "motion"
   ],
   "dependencies": [
     "clsx",

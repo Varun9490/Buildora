@@ -5,7 +5,7 @@
   "title": "Workflow Builder",
   "description": "Step composer with active-step state and add/next actions.",
   "categories": [
-    "complex"
+    "canvas"
   ],
   "dependencies": [],
   "registryDependencies": [],

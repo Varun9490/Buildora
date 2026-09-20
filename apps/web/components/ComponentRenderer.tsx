@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { DEFAULT_RENDER_CONTROLS, type Controls } from "@/lib/render-controls";
 import {
   MagneticButton,
   LiquidButton,
@@ -189,34 +190,8 @@ import {
   SiteFooter,
 } from "@buildora/components";
 
-export type Controls = {
-  strength: number;
-  radius: number;
-  intensity: number;
-  speed: number;
-  glow: boolean;
-  scale: number;
-  /** Real component props (component-specific controls). */
-  count: number;
-  length: number;
-  pageSize: number;
-  tilt: number;
-  variant: string;
-};
-
-export const DEFAULT_RENDER_CONTROLS: Controls = {
-  strength: 0.35,
-  radius: 120,
-  intensity: 0.6,
-  speed: 1,
-  glow: true,
-  scale: 1,
-  count: 70,
-  length: 6,
-  pageSize: 6,
-  tilt: 8,
-  variant: "accent",
-};
+export type { Controls } from "@/lib/render-controls";
+export { DEFAULT_RENDER_CONTROLS } from "@/lib/render-controls";
 
 class RenderBoundary extends React.Component<
   { fallback: string; children: React.ReactNode },
@@ -232,17 +207,16 @@ class RenderBoundary extends React.Component<
   render() {
     if (this.state.error) {
       return (
-        <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-red-400/20 bg-red-500/[0.06] p-8 text-center">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-500/10">
-            <svg className="h-5 w-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-[--b-danger]/40 bg-[--b-danger]/10 p-8 text-center">            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[--b-danger]/15">
+              <svg className="h-5 w-5 text-[--b-danger]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
           </div>
-          <p className="text-sm font-medium text-red-300/80">Component failed to render</p>
+          <p className="text-sm font-medium text-[--b-danger]">Component failed to render</p>
           <p className="font-mono text-[11px] text-[--b-muted]">{this.props.fallback}</p>
           <button
             onClick={() => this.setState({ error: false })}
-            className="mt-2 rounded-md bg-white/[0.06] px-4 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:bg-white/[0.1]"
+            className="mt-2 rounded-md border border-[--b-border] bg-[--b-surface] px-4 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:bg-[--b-elevated]"
           >
             Retry
           </button>
@@ -575,11 +549,11 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <div className="w-full max-w-sm space-y-3">
           <div>
-            <label htmlFor="prim-name" className="mb-1 block text-xs text-white/60">Name</label>
+            <label htmlFor="prim-name" className="mb-1 block text-xs text-[--b-text-secondary]">Name</label>
             <Input id="prim-name" placeholder="Ada Lovelace" />
           </div>
           <div>
-            <label htmlFor="prim-email" className="mb-1 block text-xs text-white/60">Email</label>
+            <label htmlFor="prim-email" className="mb-1 block text-xs text-[--b-text-secondary]">Email</label>
             <Input id="prim-email" type="email" placeholder="ada@example.com" />
           </div>
         </div>
@@ -587,7 +561,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
     case "textarea":
       return wrap(
         <div className="w-full max-w-sm">
-          <label htmlFor="prim-notes" className="mb-1 block text-xs text-white/60">Notes</label>
+          <label htmlFor="prim-notes" className="mb-1 block text-xs text-[--b-text-secondary]">Notes</label>
           <Textarea id="prim-notes" placeholder="Ship notes…" rows={4} />
         </div>
       );
@@ -625,7 +599,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
     case "slider":
       return wrap(
         <div className="w-full max-w-sm">
-          <span id="prim-slider-label" className="mb-1 block text-xs text-white/60">Strength</span>
+          <span id="prim-slider-label" className="mb-1 block text-xs text-[--b-text-secondary]">Strength</span>
           <Slider defaultValue={35} showValue aria-labelledby="prim-slider-label" />
         </div>
       );
@@ -743,7 +717,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <ContextMenu>
           <ContextMenuTrigger>
-            <div className="rounded-xl border border-dashed border-white/20 p-8 text-center text-sm text-white/60">
+            <div className="rounded-xl border border-dashed border-[--b-border-hover] p-8 text-center text-sm text-[--b-text-secondary]">
               Right-click here
             </div>
           </ContextMenuTrigger>
@@ -757,7 +731,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <HoverCard trigger={<Button variant="outline">Hover for preview</Button>}>
           <p className="text-sm font-bold">Magnetic Button</p>
-          <p className="text-xs text-white/60">Spring magnetic attraction.</p>
+          <p className="text-xs text-[--b-text-secondary]">Spring magnetic attraction.</p>
         </HoverCard>
       );
     case "modal-stack":
@@ -793,7 +767,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     case "sidebar":
       return wrap(
-        <div className="h-72 w-64 overflow-hidden rounded-xl border border-white/10">
+        <div className="h-72 w-64 overflow-hidden rounded-xl border border-[--b-border]">
           <Sidebar>
             <SidebarHeader>Workspace</SidebarHeader>
             <SidebarContent>
@@ -805,7 +779,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     case "expandable-sidebar":
       return wrap(
-        <div className="h-72 w-64 overflow-hidden rounded-xl border border-white/10">
+        <div className="h-72 w-64 overflow-hidden rounded-xl border border-[--b-border]">
           <ExpandableSidebar>
             <ExpandableSidebarItem value="components">Components</ExpandableSidebarItem>
             <ExpandableSidebarItem value="playground">Playground</ExpandableSidebarItem>
@@ -814,7 +788,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     case "mobile-nav":
       return wrap(
-        <div className="w-full max-w-sm overflow-hidden rounded-xl border border-white/10">
+        <div className="w-full max-w-sm overflow-hidden rounded-xl border border-[--b-border]">
           <MobileNav defaultActiveItem="home">
             <MobileNavItem value="home" label="Home">Home</MobileNavItem>
             <MobileNavItem value="search" label="Search">Search</MobileNavItem>
@@ -862,7 +836,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <div className="w-full max-w-md">
           <TUIPanel title="registry" focused>
-            <p className="font-mono text-xs text-white/70">54 components · valid</p>
+            <p className="font-mono text-xs text-[--b-text-secondary]">54 components · valid</p>
           </TUIPanel>
         </div>
       );
@@ -1011,35 +985,35 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <div className="relative">
           <GlowCursor />
-          <div className="rounded-2xl border border-white/10 p-8 text-center text-sm text-white/60">Move to see glow</div>
+          <div className="rounded-2xl border border-[--b-border] p-8 text-center text-sm text-[--b-text-secondary]">Move to see glow</div>
         </div>
       );
     case "blob-cursor":
       return wrap(
         <div className="relative">
           <BlobCursor />
-          <div className="rounded-2xl border border-white/10 p-8 text-center text-sm text-white/60">Move to see blob</div>
+          <div className="rounded-2xl border border-[--b-border] p-8 text-center text-sm text-[--b-text-secondary]">Move to see blob</div>
         </div>
       );
     case "trail-cursor":
       return wrap(
         <div className="relative">
           <TrailCursor />
-          <div className="rounded-2xl border border-white/10 p-8 text-center text-sm text-white/60">Move to see trail</div>
+          <div className="rounded-2xl border border-[--b-border] p-8 text-center text-sm text-[--b-text-secondary]">Move to see trail</div>
         </div>
       );
     case "ghost-cursor":
       return wrap(
         <div className="relative">
           <GhostCursor />
-          <div className="rounded-2xl border border-white/10 p-8 text-center text-sm text-white/60">Move to see ghost</div>
+          <div className="rounded-2xl border border-[--b-border] p-8 text-center text-sm text-[--b-text-secondary]">Move to see ghost</div>
         </div>
       );
     case "spotlight-cursor":
       return wrap(
         <div className="relative">
           <SpotlightCursor />
-          <div className="rounded-2xl border border-white/10 p-8 text-center text-sm text-white/60">Move to see spotlight</div>
+          <div className="rounded-2xl border border-[--b-border] p-8 text-center text-sm text-[--b-text-secondary]">Move to see spotlight</div>
         </div>
       );
     case "typewriter":
@@ -1255,9 +1229,9 @@ function ModalStackTrigger() {
       onClick={() =>
         stack.push(
           <div className="flex h-full items-center justify-center bg-black/60 p-8">
-            <div className="rounded-2xl border border-white/10 bg-[#12141d] p-6">
+            <div className="rounded-2xl border border-[--b-border] bg-[--b-elevated] p-6">
               <p className="text-sm font-bold">Stacked modal</p>
-              <p className="mt-1 text-xs text-white/60">Pushed via modal-stack API.</p>
+              <p className="mt-1 text-xs text-[--b-text-secondary]">Pushed via modal-stack API.</p>
             </div>
           </div>
         )

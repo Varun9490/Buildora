@@ -5,7 +5,7 @@
   "slug": "bento-grid",
   "description": "Tile grid with configurable columns and spans.",
   "categories": [
-    "creative"
+    "primitives"
   ],
   "tags": [
     "layout",

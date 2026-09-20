@@ -113,7 +113,7 @@ export default function CreativePortfolioTemplate() {
          <div className="grid md:grid-cols-2 gap-12">
             <div>
                <h2 className="font-display text-[8vw] leading-none font-black uppercase tracking-tighter mb-8">Let's Talk.</h2>
-               <MagneticButton className="bg-[#d4ff4f] text-black px-10 py-5 rounded-full text-xs uppercase tracking-widest font-bold">
+               <MagneticButton className="bg-[var(--b-accent)] text-[var(--b-accent-foreground)] px-10 py-5 rounded-full text-xs uppercase tracking-widest font-bold">
                   hello@bstudio.com
                </MagneticButton>
             </div>

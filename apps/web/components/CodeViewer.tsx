@@ -4,55 +4,55 @@ import * as React from "react";
 import { cn, copyToClipboard } from "@buildora/utils";
 
 /**
- * Syntax tinting — higher contrast palette.
- * Designed for dark backgrounds with WCAG AA+ contrast ratios.
+ * Syntax tinting — theme-aware via --syn-* CSS vars (globals.css).
+ * Dark: Material Ocean-ish. Light: GitHub-ish. Both AA on their surfaces.
  */
-function tint(line: string, lang: string): React.ReactNode[] {
-  const re = /(\/\/.*$|#.*$|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`|\b(?:import|from|export|const|let|var|function|return|if|else|for|while|new|class|extends|interface|type|struct|fun|val|var|override|package|Widget|final|super|const|def|require|include)\b|\b\d[\d_]*(?:\.\d+)?\b|<[^>]+>|[{}\(\)\[\];,.:])/g;
+function tint(line: string, _lang: string): React.ReactNode[] {
+  const re = /(\/\/.*$|#.*$|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`|\b(?:import|from|export|const|let|var|function|return|if|else|for|while|new|class|extends|interface|type|struct|fun|val|override|package|Widget|final|super|def|require|include)\b|\b\d[\d_]*(?:\.\d+)?\b|<[^>]+>|[{}\(\)\[\];,.:])/g;
   const parts = line.split(re).filter((p) => p !== "");
   return parts.map((p, i) => {
     if (/^(\/\/|#)/.test(p))
       return (
-        <span key={i} className="text-[#546E7A] italic">
+        <span key={i} className="syn-comment">
           {p}
         </span>
       );
     if (/^["'`]/.test(p))
       return (
-        <span key={i} className="text-[#C3E88D]">
+        <span key={i} className="syn-string">
           {p}
         </span>
       );
     if (
-      /^\b(import|from|export|const|let|function|return|struct|class|fun|package|import)\b/.test(
+      /^\b(import|from|export|const|let|function|return|struct|class|fun|package)\b/.test(
         p
       )
     )
       return (
-        <span key={i} className="text-[#C792EA]">
+        <span key={i} className="syn-key">
           {p}
         </span>
       );
     if (/^\d/.test(p))
       return (
-        <span key={i} className="text-[#F78C6C]">
+        <span key={i} className="syn-num">
           {p}
         </span>
       );
     if (/^[<>{}()\[\];,.:]/.test(p))
       return (
-        <span key={i} className="text-[#89DDFF]">
+        <span key={i} className="syn-punct">
           {p}
         </span>
       );
     if (/^(true|false|null|nil|None)$/.test(p))
       return (
-        <span key={i} className="text-[#F78C6C]">
+        <span key={i} className="syn-num">
           {p}
         </span>
       );
     return (
-      <span key={i} className="text-[#BFC7D5]">
+      <span key={i} className="syn-base">
         {p}
       </span>
     );
@@ -101,7 +101,7 @@ export function CodeViewer({
     >
       {/* Tab Bar */}
       <div
-        className="flex flex-wrap items-center gap-1 overflow-x-auto border-b border-[--b-border] bg-[--b-panel] px-2 py-1.5"
+        className="scroll-sleek flex flex-wrap items-center gap-1 overflow-x-auto border-b border-[--b-border] bg-[--b-panel] px-2 py-1.5"
         role="tablist"
         aria-label="Files"
       >
@@ -148,7 +148,7 @@ export function CodeViewer({
       {/* Code Area */}
       <div
         className={cn(
-          "overflow-auto",
+          "scroll-sleek overflow-auto",
           expanded ? "max-h-none" : "max-h-[480px]"
         )}
         tabIndex={0}
@@ -162,7 +162,7 @@ export function CodeViewer({
                 key={i}
                 className={cn(
                   "flex",
-                  hit && "bg-[--b-accent]/8"
+                  hit && "code-hit"
                 )}
               >
                 {/* Line number gutter */}

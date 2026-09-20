@@ -5,8 +5,7 @@
   "title": "Spatial Command Palette",
   "description": "Keyboard-first palette with animated selection, grouped results, recents, and depth presentation.",
   "categories": [
-    "creative",
-    "complex"
+    "canvas"
   ],
   "dependencies": [],
   "registryDependencies": [],

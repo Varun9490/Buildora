@@ -5,8 +5,7 @@
   "slug": "timeline-editor",
   "description": "Track-based timeline with selectable clips.",
   "categories": [
-    "complex",
-    "content"
+    "canvas"
   ],
   "tags": [
     "timeline"

@@ -1,4 +1,5 @@
-import { allComponents } from "@/lib/registry";
+import { notFound } from "next/navigation";
+import { allComponents, getComponent } from "@/lib/registry";
 import { ComponentDetail } from "./detail";
 
 export function generateStaticParams() {
@@ -10,6 +11,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return { title: c ? `${c.name} — Buildora` : "Component — Buildora", description: c?.description };
 }
 
-export default function Page({ params }: { params: { slug: string } }) {
-  return <ComponentDetail slug={params.slug} />;
+export default async function Page({ params }: { params: { slug: string } }) {
+  const item = await getComponent(params.slug);
+  if (!item) notFound();
+  return <ComponentDetail slug={params.slug} item={item} />;
 }

@@ -5,7 +5,7 @@
   "title": "Interactive 3D Card",
   "description": "Lightweight CSS 3D flip card. Lazy-safe; no Three.js on this page.",
   "categories": [
-    "creative"
+    "motion"
   ],
   "dependencies": [],
   "registryDependencies": [],

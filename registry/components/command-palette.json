@@ -5,7 +5,7 @@
   "slug": "command-palette",
   "description": "Base fuzzy command palette with keyboard navigation (see Spatial variant for depth).",
   "categories": [
-    "complex"
+    "navigation"
   ],
   "tags": [
     "command",

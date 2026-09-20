@@ -5,7 +5,7 @@
   "slug": "glow-cursor",
   "description": "Soft glow following the pointer. Null under reduced motion; pointer-only.",
   "categories": [
-    "creative"
+    "motion"
   ],
   "tags": [
     "cursor",

@@ -5,7 +5,7 @@
   "title": "Calendar",
   "description": "Scheduling grid with gridcell semantics.",
   "categories": [
-    "complex"
+    "canvas"
   ],
   "dependencies": [],
   "registryDependencies": [],

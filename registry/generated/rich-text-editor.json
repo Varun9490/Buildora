@@ -5,7 +5,7 @@
   "title": "Rich Text Editor",
   "description": "Toolbar + contentEditable editor with word count.",
   "categories": [
-    "content"
+    "editor"
   ],
   "dependencies": [],
   "registryDependencies": [],

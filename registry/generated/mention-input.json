@@ -5,7 +5,7 @@
   "title": "Mention Input",
   "description": "@mention autocomplete with listbox suggestions.",
   "categories": [
-    "content"
+    "editor"
   ],
   "dependencies": [],
   "registryDependencies": [],

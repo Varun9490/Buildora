@@ -5,7 +5,7 @@
   "slug": "mention-input",
   "description": "@mention autocomplete with listbox suggestions.",
   "categories": [
-    "content"
+    "editor"
   ],
   "tags": [
     "mentions"

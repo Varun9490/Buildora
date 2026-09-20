@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useBuildora } from "@/lib/store";
 import { cn } from "@buildora/utils";
 import { accentPresets } from "@buildora/tokens";
-import { premiumBasePresets } from "./ThemeProvider";
+import { totalComponents } from "@/lib/registry";
 
 const modeOptions = [
   { key: "light", label: "Light" },
@@ -51,7 +51,7 @@ export function ThemeCustomizer() {
               <div className="mb-4">
                 <p className="font-display text-sm font-bold tracking-tight text-[--b-text]">Theme</p>
                 <p className="mt-1 text-[11px] leading-relaxed text-[--b-muted]">
-                  Light or dark, one accent. All 54 components follow these vars.
+                  Light or dark, one accent. All {totalComponents} components follow these vars.
                 </p>
               </div>
 
@@ -108,30 +108,6 @@ export function ThemeCustomizer() {
                   <p className="mt-2 text-[11px] text-[--b-muted]">
                     {(accentPresets as Record<string, { label: string }>)[themeAccent]?.label ?? themeAccent} · AA-tested in both modes
                   </p>
-                </div>
-
-                <div>
-                  <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-[--b-text-secondary]">
-                    Base
-                  </p>
-                  <div className="grid grid-cols-1 gap-1.5">
-                    {(["system", "light", "dark"] as const).map((key) => (
-                      <div
-                        key={key}
-                        className={cn(
-                          "flex items-center justify-between rounded-lg border px-2.5 py-2 text-xs",
-                          (premiumBasePresets as Record<string, { label: string }>)[key] && themeMode === key
-                            ? "border-[--b-accent]"
-                            : "border-[--b-border]"
-                        )}
-                      >
-                        <span className="text-[--b-text-secondary]">
-                          {(premiumBasePresets as Record<string, { label: string }>)[key]?.label ?? key}
-                        </span>
-                        <span className="font-mono text-[10px] text-[--b-muted]">{key}</span>
-                      </div>
-                    ))}
-                  </div>
                 </div>
               </div>
             </motion.div>
