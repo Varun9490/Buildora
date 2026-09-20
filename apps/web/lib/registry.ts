@@ -17,7 +17,7 @@ export type RegistryItem = {
   accessibility: { keyboard: boolean; screenReader: boolean; reducedMotion: boolean };
   dependencies: string[];
   registryDependencies: string[];
-  files: string[];
+  files: { path: string; content: string }[];
   github: string;
   docs: string;
   install: string;
@@ -75,7 +75,7 @@ export function getComponentSync(slug: string): RegistryItem | null {
     accessibility: { keyboard: true, screenReader: true, reducedMotion: true },
     dependencies: [],
     registryDependencies: [],
-    files: [`packages/components/src/${found.slug}/index.tsx`],
+    files: [{ path: `packages/components/src/${found.slug}/index.tsx`, content: "// Loading source code..." }],
     github: `https://github.com/Varun9490/Buildora/tree/main/packages/components/src/${found.slug}`,
     docs: `/components/${found.slug}`,
     install: `pnpm dlx shadcn@latest add @buildora/${found.slug}`

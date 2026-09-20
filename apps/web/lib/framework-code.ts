@@ -13,7 +13,11 @@ function pascal(slug: string) {
   return slug.split("-").map((p) => p[0].toUpperCase() + p.slice(1)).join("");
 }
 
-function reactCode(slug: string, name: string): string {
+function reactCode(slug: string, name: string, item?: RegistryItem | null): string {
+  if (item?.files?.[0]?.content) {
+    return item.files[0].content;
+  }
+  // Fallback if content isn't loaded yet
   if (slug === "magnetic-button") {
     return `import { MagneticButton } from "@/components/buildora/magnetic-button";\n\nexport function Demo() {\n  return (\n    <MagneticButton strength={0.35} radius={120}>\n      Ship it\n    </MagneticButton>\n  );\n}`;
   }
@@ -79,7 +83,7 @@ export function frameworkExample(slug: string, name: string, fw: string, item?: 
   const usage = install;
   const pick = (): FrameworkFile[] => {
     switch (fw) {
-      case "react": return [{ path: `component/${pascal(slug)}.tsx`, code: reactCode(slug, name), language: "tsx" }];
+      case "react": return [{ path: `component/${pascal(slug)}.tsx`, code: reactCode(slug, name, item), language: "tsx" }];
       case "javascript": return [{ path: `component/${slug}.js`, code: jsCode(slug, name), language: "javascript" }];
       case "vue": return [{ path: `component/${pascal(slug)}.vue`, code: vueCode(slug, name), language: "vue" }];
       case "svelte": return [{ path: `component/${pascal(slug)}.svelte`, code: svelteCode(slug, name), language: "svelte" }];

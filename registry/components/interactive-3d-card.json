@@ -95,7 +95,10 @@
   "dependencies": [],
   "registryDependencies": [],
   "files": [
-    "packages/components/src/interactive-3d-card/index.tsx"
+    {
+      "path": "packages/components/src/interactive-3d-card/index.tsx",
+      "content": "// Could not read file: packages/components/src/interactive-3d-card/index.tsx"
+    }
   ],
   "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/interactive-3d-card",
   "docs": "/components/interactive-3d-card",

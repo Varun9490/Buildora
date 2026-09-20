@@ -2,191 +2,202 @@
 
 import Link from "next/link";
 import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   MagneticButton,
   LiquidButton,
   MagneticCard,
   SlingshotOTP,
-  AuroraBackground,
-  ParticleField,
   CursorSpotlight,
   MorphingTypography,
   HolographicCard,
   Interactive3DCard,
-  StreamingChat,
-  Kanban,
-  AdvancedTable,
-  Terminal,
-  TactileLoader,
 } from "@buildora/components";
 import { copyToClipboard } from "@buildora/utils";
 import { allComponents, totalComponents } from "@/lib/registry";
 import { cn } from "@buildora/utils";
 
-const containerVariants = {
+/* ─────────────────────────────────────────────────────
+   ANIMATION VARIANTS
+   ───────────────────────────────────────────────────── */
+const sectionReveal = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.06, delayChildren: 0.1 },
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
-function SpotlightCard({
-  children,
-  className,
-  href,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  href?: string;
-}) {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-  const [position, setPosition] = React.useState({ x: 50, y: 50 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    setPosition({
-      x: ((e.clientX - rect.left) / rect.width) * 100,
-      y: ((e.clientY - rect.top) / rect.height) * 100,
-    });
-  };
-
-  const Card = (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      className={cn(
-        "group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 transition-all duration-500",
-        "hover:border-[#d4ff4f]/30",
-        className
-      )}
-      style={
-        {
-          "--mouse-x": `${position.x}%`,
-          "--mouse-y": `${position.y}%`,
-        } as React.CSSProperties
-      }
-      whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-    >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(400px circle at ${position.x}% ${position.y}%, rgba(212, 255, 79, 0.12), transparent 50%)`,
-        }}
-      />
-      <div className="relative z-10">{children}</div>
-    </motion.div>
+/* ─────────────────────────────────────────────────────
+   SVG ICON PRIMITIVES (replacing emojis)
+   ───────────────────────────────────────────────────── */
+function IconCube({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+      <line x1="12" y1="22.08" x2="12" y2="12" />
+    </svg>
   );
-
-  if (href) {
-    return <Link href={href}>{Card}</Link>;
-  }
-  return Card;
 }
 
+function IconBolt({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+  );
+}
+
+function IconGrid({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="14" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+    </svg>
+  );
+}
+
+function IconShield({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </svg>
+  );
+}
+
+function IconCode({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+    </svg>
+  );
+}
+
+function IconBeaker({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M4.5 3h15M6 3v7.5a6 6 0 0 0 12 0V3M9 3v4.5a3 3 0 0 0 6 0V3" />
+      <path d="M6 10.5c0 4 2.69 7.5 6 7.5s6-3.5 6-7.5" />
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────────────
+   BENTO GRID — Asymmetric showcase
+   ───────────────────────────────────────────────────── */
 function BentoGrid() {
   const showcaseItems = [
-    { title: "Magnetic Button", desc: "Spring physics in your UI", component: "magnetic-button", size: "default" },
-    { title: "Slingshot OTP", desc: "Gamified verification", component: "slingshot-otp", size: "lg" },
-    { title: "Particle Field", desc: "Canvas-based animations", component: "particle-field", size: "default" },
-    { title: "Physics Kanban", desc: "Drag with spring snap", component: "kanban", size: "lg" },
-    { title: "Streaming Chat", desc: "Token-by-token LLM UI", component: "streaming-chat", size: "default" },
-    { title: "Terminal", desc: "Developer-first CLI UI", component: "terminal", size: "default" },
+    { title: "Magnetic Button", desc: "Spring physics cursor attraction", component: "magnetic-button" },
+    { title: "Slingshot OTP", desc: "Gamified verification with pull-to-place", component: "slingshot-otp" },
+    { title: "Particle Field", desc: "Lightweight canvas particle system", component: "particle-field" },
+    { title: "Physics Kanban", desc: "Drag with spring-physics snap zones", component: "kanban" },
+    { title: "Streaming Chat", desc: "Token-by-token LLM streaming UI", component: "streaming-chat" },
   ];
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" style={{ gridAutoFlow: "dense" }}>
       {showcaseItems.map((item, i) => (
         <motion.div
           key={item.component}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: i * 0.08, duration: 0.5 }}
+          transition={{ delay: i * 0.06, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className={cn(
             i === 1 && "sm:col-span-2 lg:col-span-1",
-            i === 3 && "sm:col-span-2 lg:col-span-1"
           )}
         >
-          <SpotlightCard
+          <Link
             href={`/components/${item.component}`}
-            className="h-[280px] flex flex-col"
+            className="group block b-card-interactive h-[260px] flex flex-col p-5"
           >
             <div className="mb-2 flex items-center gap-2">
-              <span className="rounded-full bg-[#d4ff4f]/15 px-2.5 py-0.5 font-mono text-[10px] font-medium text-[#d4ff4f]">
+              <span className="b-badge-accent">
                 {item.component}
               </span>
-              <span className="rounded-full bg-white/5 px-2 py-0.5 font-mono text-[10px] text-white/40">
-                interactive
+            </div>
+            <h4 className="font-display text-base font-bold tracking-tight group-hover:text-[--b-accent] transition-colors">
+              {item.title}
+            </h4>
+            <p className="mt-1.5 text-sm text-[--b-muted] leading-relaxed">
+              {item.desc}
+            </p>
+            <div className="mt-auto pt-4">
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[--b-accent] opacity-0 group-hover:opacity-100 transition-opacity">
+                View component
+                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
               </span>
             </div>
-            <h4 className="font-display text-lg font-bold tracking-tight">{item.title}</h4>
-            <p className="mt-1 text-sm text-white/50">{item.desc}</p>
-            <div className="mt-auto pt-4">
-              <MagneticButton variant="ghost" strength={0.3} className="text-[#d4ff4f]">
-                View component →
-              </MagneticButton>
-            </div>
-          </SpotlightCard>
+          </Link>
         </motion.div>
       ))}
     </div>
   );
 }
 
+/* ─────────────────────────────────────────────────────
+   COPY INSTALL — High-contrast command block
+   ───────────────────────────────────────────────────── */
 function CopyInstall() {
   const [copied, setCopied] = React.useState(false);
   const cmd = "pnpm dlx shadcn@latest add @buildora/magnetic-button";
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6 }}
-      className="group relative max-w-xl"
+      transition={{ delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="max-w-xl"
     >
-      <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-[#d4ff4f]/20 via-[#9d8cff]/20 to-[#d4ff4f]/20 opacity-0 blur transition duration-500 group-hover:opacity-100" />
-      <div className="relative flex items-center gap-3 rounded-xl border border-white/10 bg-[#0d0f16] px-5 py-4">
-        <span className="font-mono text-sm text-white/40 select-none">$</span>
-        <code className="flex-1 truncate font-mono text-sm text-[#d4ff4f]">{cmd}</code>
+      <div className="flex items-center gap-3 rounded-lg border border-[--b-border] bg-[--b-surface] px-4 py-3">
+        <span className="font-mono text-sm text-[--b-muted] select-none">$</span>
+        <code className="flex-1 truncate font-mono text-[13px] text-[--b-accent]">
+          {cmd}
+        </code>
         <button
           onClick={async () => {
             await copyToClipboard(cmd);
             setCopied(true);
             setTimeout(() => setCopied(false), 1400);
           }}
-          className="shrink-0 rounded-lg bg-white/10 px-3 py-1.5 font-mono text-xs font-medium text-white/80 transition-all hover:bg-white/20 active:scale-95"
+          className="shrink-0 rounded-md bg-[--b-accent] px-3 py-1 font-mono text-[11px] font-bold text-[#0C0C0C] transition-transform active:scale-95"
         >
-          {copied ? "✓ Copied" : "Copy"}
+          {copied ? "Copied" : "Copy"}
         </button>
       </div>
     </motion.div>
   );
 }
 
+/* ─────────────────────────────────────────────────────
+   STATS BAR — Clean SVG icons, no emojis
+   ───────────────────────────────────────────────────── */
 function StatsBar() {
   const stats = [
-    { value: String(totalComponents), label: "Components", icon: "📦" },
-    { value: "11", label: "Frameworks", icon: "⚡" },
-    { value: "7", label: "Categories", icon: "📂" },
-    { value: "MIT", label: "License", icon: "📜" },
+    { value: String(totalComponents), label: "Components", icon: <IconCube className="h-5 w-5" /> },
+    { value: "11", label: "Frameworks", icon: <IconBolt className="h-5 w-5" /> },
+    { value: "7", label: "Categories", icon: <IconGrid className="h-5 w-5" /> },
+    { value: "MIT", label: "License", icon: <IconShield className="h-5 w-5" /> },
   ];
 
   return (
     <motion.div
-      variants={containerVariants}
+      variants={sectionReveal}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
@@ -195,15 +206,16 @@ function StatsBar() {
       {stats.map((stat) => (
         <motion.div
           key={stat.label}
-          variants={itemVariants}
-          className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent p-6 text-center transition-all duration-300 hover:border-[#d4ff4f]/20"
+          variants={fadeUp}
+          className="group rounded-lg border border-[--b-border] bg-white/[0.02] p-5 text-center transition-all duration-300 hover:border-[--b-border-hover]"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#d4ff4f]/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          <span className="text-2xl">{stat.icon}</span>
-          <p className="mt-2 font-display text-3xl font-black tracking-tight text-gradient">
+          <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.04] text-[--b-text-secondary]">
+            {stat.icon}
+          </div>
+          <p className="mt-3 font-display text-2xl font-bold tracking-tight text-gradient">
             {stat.value}
           </p>
-          <p className="mt-1 font-mono text-[11px] uppercase tracking-widest text-white/40">
+          <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-[--b-muted]">
             {stat.label}
           </p>
         </motion.div>
@@ -212,19 +224,13 @@ function StatsBar() {
   );
 }
 
+/* ─────────────────────────────────────────────────────
+   FRAMEWORK BADGES
+   ───────────────────────────────────────────────────── */
 function FrameworkBadges() {
   const frameworks = [
-    "React",
-    "JavaScript",
-    "Vue",
-    "Svelte",
-    "Angular",
-    "HTML",
-    "Tailwind",
-    "React Native",
-    "Flutter",
-    "SwiftUI",
-    "Compose",
+    "React", "JavaScript", "Vue", "Svelte", "Angular",
+    "HTML", "Tailwind", "React Native", "Flutter", "SwiftUI", "Compose",
   ];
 
   return (
@@ -232,11 +238,11 @@ function FrameworkBadges() {
       {frameworks.map((f, i) => (
         <motion.span
           key={f}
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: i * 0.04 }}
-          className="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 font-mono text-xs text-white/60 transition-all duration-300 hover:border-[#d4ff4f]/30 hover:bg-[#d4ff4f]/5 hover:text-[#d4ff4f]"
+          transition={{ delay: i * 0.03, duration: 0.3 }}
+          className="rounded-md border border-[--b-border] bg-white/[0.02] px-3 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors duration-200 hover:border-[--b-accent]/20 hover:text-[--b-accent]"
         >
           {f}
         </motion.span>
@@ -245,65 +251,69 @@ function FrameworkBadges() {
   );
 }
 
+/* ─────────────────────────────────────────────────────
+   CREATIVE STRIP — Atmospheric effects showcase
+   ───────────────────────────────────────────────────── */
 function CreativeStrip() {
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      variants={containerVariants}
-      className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+      variants={sectionReveal}
+      className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
     >
-      <motion.div variants={itemVariants}>
+      <motion.div variants={fadeUp}>
         <CursorSpotlight>
-          <div className="p-6">
+          <div className="p-5">
             <p className="b-section-label">Creative Effects</p>
-            <p className="mt-3 font-display text-xl font-bold">Cursor Spotlight</p>
-            <p className="mt-2 text-sm text-white/50">
+            <p className="mt-3 font-display text-base font-bold tracking-tight">
+              Cursor Spotlight
+            </p>
+            <p className="mt-2 text-sm text-[--b-muted]">
               Spotlight follows your mouse with smooth transitions
             </p>
-            <div className="mt-4">
-              <MagneticButton strength={0.3} variant="ghost" className="text-[#d4ff4f]">
-                Try it
-              </MagneticButton>
-            </div>
           </div>
         </CursorSpotlight>
       </motion.div>
 
-      <motion.div variants={itemVariants}>
+      <motion.div variants={fadeUp}>
         <MagneticCard className="h-full">
-          <div className="p-6">
+          <div className="p-5">
             <p className="b-section-label">3D Perspective</p>
-            <p className="mt-3 font-display text-xl font-bold">Magnetic Card</p>
-            <p className="mt-2 text-sm text-white/50">
+            <p className="mt-3 font-display text-base font-bold tracking-tight">
+              Magnetic Card
+            </p>
+            <p className="mt-2 text-sm text-[--b-muted]">
               Tilt and spotlight effects on hover
             </p>
           </div>
         </MagneticCard>
       </motion.div>
 
-      <motion.div variants={itemVariants}>
+      <motion.div variants={fadeUp}>
         <HolographicCard>
-          <div className="p-6">
+          <div className="p-5">
             <p className="b-section-label">Holographic</p>
             <MorphingTypography
               words={["Build", "Remix", "Ship"]}
-              className="mt-3 font-display text-xl font-bold"
+              className="mt-3 font-display text-base font-bold"
             />
-            <p className="mt-2 text-sm text-white/50">
+            <p className="mt-2 text-sm text-[--b-muted]">
               Rainbow sheen that tracks the pointer
             </p>
           </div>
         </HolographicCard>
       </motion.div>
 
-      <motion.div variants={itemVariants}>
+      <motion.div variants={fadeUp}>
         <Interactive3DCard>
-          <div className="p-6">
+          <div className="p-5">
             <p className="b-section-label">Interactive 3D</p>
-            <p className="mt-3 font-display text-xl font-bold">Flip Card</p>
-            <p className="mt-2 text-sm text-white/50">
+            <p className="mt-3 font-display text-base font-bold tracking-tight">
+              Flip Card
+            </p>
+            <p className="mt-2 text-sm text-[--b-muted]">
               Click to flip and reveal more info
             </p>
           </div>
@@ -313,53 +323,62 @@ function CreativeStrip() {
   );
 }
 
+/* ─────────────────────────────────────────────────────
+   HOME PAGE — AIDA Structure
+   A = Attention (Hero)
+   I = Interest (Bento Grid + Creative Strip)
+   D = Desire (Framework showcase)
+   A = Action (Developer CTA)
+   ───────────────────────────────────────────────────── */
 export default function Home() {
   return (
-    <div className="relative overflow-hidden">
-      <section className="relative">
+    <div className="relative">
+      {/* ── ATTENTION: Hero Section ────────────────────── */}
+      <section className="relative min-h-[100dvh] flex items-center">
         <div className="absolute inset-0 bg-gradient-radial" />
-        <div className="absolute inset-0 bg-grid-scan opacity-50" />
-        <div className="absolute inset-0 bg-dots opacity-30" />
+        <div className="absolute inset-0 bg-grid-scan opacity-40" />
 
-        <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-8 sm:pb-24 sm:pt-12 lg:pb-32 lg:pt-20">
+        <div className="relative mx-auto w-full max-w-7xl px-4 py-16 sm:py-24 lg:py-32">
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={containerVariants}
-            className="flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:gap-12"
+            variants={sectionReveal}
+            className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16"
           >
+            {/* Left: Copy */}
             <div className="flex-1 space-y-8">
-              <motion.div variants={itemVariants}>
-                <span className="inline-flex items-center gap-2.5 rounded-full border border-[#d4ff4f]/20 bg-[#d4ff4f]/[0.05] px-4 py-1.5 font-mono text-[11px] tracking-[0.15em] text-[#d4ff4f]">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#d4ff4f] opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[#d4ff4f]" />
+              <motion.div variants={fadeUp}>
+                <span className="b-badge-accent">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[--b-accent] opacity-75" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[--b-accent]" />
                   </span>
                   <span>OPEN SOURCE · {totalComponents} COMPONENTS</span>
                 </span>
               </motion.div>
 
               <motion.h1
-                variants={itemVariants}
-                className="font-display text-4xl font-black leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
+                variants={fadeUp}
+                className="max-w-5xl font-display font-black tracking-tighter leading-[1.05]"
+                style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
               >
                 <span className="text-gradient-animated">Creative</span>
                 <br />
-                <span className="text-white">components for</span>
+                <span className="text-[--b-text]">components for</span>
                 <br />
-                <span className="text-white">modern devs.</span>
+                <span className="text-[--b-text]">modern devs.</span>
               </motion.h1>
 
               <motion.p
-                variants={itemVariants}
-                className="max-w-lg text-base leading-relaxed text-white/50 sm:text-lg"
+                variants={fadeUp}
+                className="max-w-lg text-base leading-[1.7] text-[--b-muted] sm:text-lg"
               >
                 Production-ready React components with expressive interactions, spring
                 physics, 11 framework ports, and full accessibility.{" "}
-                <span className="text-white/70">Copy. Paste. Ship.</span>
+                <span className="text-[--b-text-secondary]">Copy. Paste. Ship.</span>
               </motion.p>
 
-              <motion.div variants={itemVariants} className="flex flex-wrap gap-3">
+              <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
                 <Link href="/components">
                   <MagneticButton>
                     Explore Components
@@ -397,42 +416,36 @@ export default function Home() {
               <CopyInstall />
             </div>
 
+            {/* Right: Live showcase */}
             <motion.div
-              initial={{ opacity: 0, x: 40, rotateY: -15 }}
-              animate={{ opacity: 1, x: 0, rotateY: 0 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="hidden w-full max-w-md lg:block"
             >
-              <div className="relative">
-                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-[#d4ff4f]/20 via-[#9d8cff]/20 to-[#d4ff4f]/20 opacity-20 blur-xl" />
-                <div className="relative space-y-4">
-                  <SpotlightCard className="p-5">
-                    <p className="b-section-label mb-3">Live Demo</p>
-                    <div className="flex flex-wrap gap-2">
-                      <MagneticButton strength={0.4}>
-                        Ship it
-                      </MagneticButton>
-                      <MagneticButton strength={0.4} variant="ghost">
-                        Ghost
-                      </MagneticButton>
-                      <MagneticButton strength={0.4} variant="iris">
-                        Iris
-                      </MagneticButton>
-                    </div>
-                  </SpotlightCard>
+              <div className="space-y-3">
+                {/* Preview card 1 */}
+                <div className="b-card p-5">
+                  <p className="b-section-label mb-3">Live Demo</p>
+                  <div className="flex flex-wrap gap-2">
+                    <MagneticButton strength={0.4}>Ship it</MagneticButton>
+                    <MagneticButton strength={0.4} variant="ghost">Ghost</MagneticButton>
+                  </div>
+                </div>
 
-                  <SpotlightCard className="p-5">
-                    <p className="b-section-label mb-3">Signature · OTP</p>
-                    <SlingshotOTP length={4} />
-                  </SpotlightCard>
+                {/* Preview card 2 */}
+                <div className="b-card p-5">
+                  <p className="b-section-label mb-3">Signature OTP</p>
+                  <SlingshotOTP length={4} />
+                </div>
 
-                  <SpotlightCard className="p-5">
-                    <p className="b-section-label mb-3">Morphing Text</p>
-                    <MorphingTypography
-                      words={["Build", "Remix", "Ship", "Create"]}
-                      className="text-2xl font-bold"
-                    />
-                  </SpotlightCard>
+                {/* Preview card 3 */}
+                <div className="b-card p-5">
+                  <p className="b-section-label mb-3">Morphing Text</p>
+                  <MorphingTypography
+                    words={["Build", "Remix", "Ship", "Create"]}
+                    className="text-xl font-bold"
+                  />
                 </div>
               </div>
             </motion.div>
@@ -440,53 +453,60 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Divider ──────────────────────────────────── */}
       <div className="b-gradient-line" />
 
-      <section className="bg-[#0a0c12]">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
+      {/* ── Stats Section ─────────────────────────────── */}
+      <section className="bg-[--b-panel]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:py-16">
           <StatsBar />
         </div>
       </section>
 
       <div className="b-gradient-line" />
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
+      {/* ── INTEREST: Interactive Bento ────────────────── */}
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:py-32">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={containerVariants}
-          className="mb-10"
+          variants={sectionReveal}
+          className="mb-12"
         >
-          <motion.div variants={itemVariants} className="flex items-center gap-4">
-            <span className="font-mono text-sm text-[#d4ff4f]/60">01</span>
-            <h2 className="font-display text-2xl font-black sm:text-3xl lg:text-4xl">
-              Interactive component showcase
-            </h2>
-          </motion.div>
-          <motion.p variants={itemVariants} className="mt-3 max-w-2xl text-sm text-white/50 sm:text-base">
+          <motion.h2
+            variants={fadeUp}
+            className="font-display text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Interactive component showcase
+          </motion.h2>
+          <motion.p
+            variants={fadeUp}
+            className="mt-3 max-w-2xl text-sm text-[--b-muted] sm:text-base leading-relaxed"
+          >
             Every component below is a real, live React implementation. Hover, click,
-            drag, type — they're all interactive.
+            drag, type — they are all interactive.
           </motion.p>
         </motion.div>
 
         <BentoGrid />
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
+      {/* ── Creative atmosphere effects ────────────────── */}
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:py-32">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={containerVariants}
-          className="mb-10"
+          variants={sectionReveal}
+          className="mb-12"
         >
-          <motion.div variants={itemVariants} className="flex items-center gap-4">
-            <span className="font-mono text-sm text-[#d4ff4f]/60">02</span>
-            <h2 className="font-display text-2xl font-black sm:text-3xl lg:text-4xl">
-              Creative atmosphere effects
-            </h2>
-          </motion.div>
+          <motion.h2
+            variants={fadeUp}
+            className="font-display text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Creative atmosphere effects
+          </motion.h2>
         </motion.div>
 
         <CreativeStrip />
@@ -494,45 +514,54 @@ export default function Home() {
 
       <div className="b-gradient-line" />
 
-      <section className="bg-[#0a0c12]">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
+      {/* ── DESIRE: Framework showcase ─────────────────── */}
+      <section className="bg-[--b-panel]">
+        <div className="mx-auto max-w-7xl px-4 py-24 sm:py-32">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={containerVariants}
+            variants={sectionReveal}
           >
-            <motion.div variants={itemVariants} className="flex items-center gap-4">
-              <span className="font-mono text-sm text-[#d4ff4f]/60">03</span>
-              <h2 className="font-display text-2xl font-black sm:text-3xl lg:text-4xl">
-                One intent, eleven idioms
-              </h2>
-            </motion.div>
-            <motion.p variants={itemVariants} className="mt-3 max-w-2xl text-sm text-white/50 sm:text-base">
+            <motion.h2
+              variants={fadeUp}
+              className="font-display text-2xl font-bold tracking-tight sm:text-3xl"
+            >
+              One intent, eleven idioms
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="mt-3 max-w-2xl text-sm text-[--b-muted] sm:text-base leading-relaxed"
+            >
               React is the source of truth. Every other framework gets an idiomatic
-              port — honest status badges tell you exactly what's production-ready.
+              port — honest status badges tell you exactly what is production-ready.
             </motion.p>
 
-            <motion.div variants={itemVariants} className="mt-8">
+            <motion.div variants={fadeUp} className="mt-8">
               <FrameworkBadges />
             </motion.div>
 
-            <motion.div variants={itemVariants} className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {allComponents.slice(0, 8).map((c) => (
-                <Link
-                  key={c.slug}
-                  href={`/components/${c.slug}`}
-                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#d4ff4f]/30"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4ff4f]/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <div className="relative">
-                    <p className="font-mono text-[10px] text-[#d4ff4f]">{c.categories[0]}</p>
-                    <p className="mt-1 font-display font-bold group-hover:text-[#d4ff4f] transition-colors">
+            <motion.div
+              variants={sectionReveal}
+              className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+            >
+              {allComponents.slice(0, 8).map((c, i) => (
+                <motion.div key={c.slug} variants={fadeUp}>
+                  <Link
+                    href={`/components/${c.slug}`}
+                    className="group block b-card-interactive p-5"
+                  >
+                    <p className="font-mono text-[10px] text-[--b-accent]">
+                      {c.categories[0]}
+                    </p>
+                    <p className="mt-1.5 font-display text-sm font-bold tracking-tight group-hover:text-[--b-accent] transition-colors">
                       {c.name}
                     </p>
-                    <p className="mt-1 line-clamp-2 text-xs text-white/45">{c.description}</p>
-                  </div>
-                </Link>
+                    <p className="mt-1.5 line-clamp-2 text-[13px] text-[--b-muted] leading-relaxed">
+                      {c.description}
+                    </p>
+                  </Link>
+                </motion.div>
               ))}
             </motion.div>
           </motion.div>
@@ -541,70 +570,78 @@ export default function Home() {
 
       <div className="b-gradient-line" />
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
+      {/* ── ACTION: Developer CTA ─────────────────────── */}
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:py-32">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={containerVariants}
+          variants={sectionReveal}
         >
-          <motion.div variants={itemVariants} className="mb-10 flex items-center gap-4">
-            <span className="font-mono text-sm text-[#d4ff4f]/60">04</span>
-            <h2 className="font-display text-2xl font-black sm:text-3xl lg:text-4xl">
-              Built for developers
-            </h2>
-          </motion.div>
+          <motion.h2
+            variants={fadeUp}
+            className="mb-12 font-display text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Built for developers
+          </motion.h2>
 
-          <motion.div variants={containerVariants} className="grid gap-5 md:grid-cols-3">
+          <motion.div
+            variants={sectionReveal}
+            className="grid gap-3 md:grid-cols-3"
+          >
             {[
               {
-                icon: "⚡",
+                icon: <IconCode className="h-5 w-5 text-[--b-accent]" />,
                 title: "Open source",
                 desc: "MIT components, hooks, tokens, and tests. GitHub is the source of truth; this site is the polished playground.",
                 link: { label: "Contribute", href: "https://github.com/buildora/buildora" },
-                accent: "#d4ff4f",
+                featured: false,
               },
               {
-                icon: "📦",
+                icon: <IconCube className="h-5 w-5 text-[--b-accent]" />,
                 title: "shadcn registry",
                 desc: "Drop-in components via the shadcn CLI. No custom domain needed — GitHub-hosted registry.",
-                link: { label: "Open registry →", href: "/registry" },
-                accent: "#d4ff4f",
+                link: { label: "Open registry", href: "/registry" },
                 featured: true,
               },
               {
-                icon: "🧪",
+                icon: <IconBeaker className="h-5 w-5 text-[--b-accent]" />,
                 title: "Creative lab",
                 desc: "Tune spring physics, magnetism, glow intensity in the live playground — then copy the exact production code.",
-                link: { label: "Open playground →", href: "/playground" },
-                accent: "#9d8cff",
+                link: { label: "Open playground", href: "/playground" },
+                featured: false,
               },
             ].map((item) => (
               <motion.div
                 key={item.title}
-                variants={itemVariants}
+                variants={fadeUp}
                 className={cn(
-                  "group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent p-7 transition-all duration-500",
-                  item.featured
-                    ? "border-[#d4ff4f]/20 bg-[#d4ff4f]/[0.03]"
-                    : "hover:border-[#d4ff4f]/20 hover:bg-[#d4ff4f]/[0.02]"
+                  "group b-card p-6",
+                  item.featured && "border-[--b-accent]/15 bg-[--b-accent]/[0.02]"
                 )}
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-xl transition-transform duration-300 group-hover:scale-110">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/[0.04] transition-transform duration-300 group-hover:scale-105">
                   {item.icon}
                 </div>
-                <h3 className="mt-5 font-display text-xl font-bold">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/50">{item.desc}</p>
+                <h3 className="mt-5 font-display text-base font-bold tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-[--b-muted]">
+                  {item.desc}
+                </p>
                 <Link
                   href={item.link.href}
                   className={cn(
-                    "mt-5 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all duration-300",
+                    "mt-5 inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-medium transition-all duration-200",
                     item.featured
-                      ? "bg-[#d4ff4f] text-black active:scale-95"
-                      : "border border-white/15 hover:bg-white/10 hover:border-[#d4ff4f]/30"
+                      ? "bg-[--b-accent] text-[#0C0C0C] active:scale-[0.97]"
+                      : "border border-[--b-border] text-[--b-text-secondary] hover:bg-white/[0.04] hover:border-[--b-border-hover]"
                   )}
                 >
                   {item.link.label}
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
                 </Link>
               </motion.div>
             ))}

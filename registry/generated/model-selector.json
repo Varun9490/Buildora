@@ -12,6 +12,7 @@
   "files": [
     {
       "path": "packages/components/src/model-selector/index.tsx",
+      "content": "// Could not read file: packages/components/src/model-selector/index.tsx",
       "type": "registry:component"
     }
   ],

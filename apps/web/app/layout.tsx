@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
-const spaceGrotesk = Space_Grotesk({
+const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -42,20 +37,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`dark ${outfit.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen bg-[#08090d] font-sans text-[#f2f1ea] antialiased">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-[100] focus:rounded-lg focus:bg-[#d4ff4f] focus:px-3 focus:py-1 focus:text-black"
-        >
-          Skip to content
-        </a>
-        <SiteHeader />
-        <main id="main" className="min-h-[70vh]">
-          {children}
-        </main>
-        <SiteFooter />
+      <body className="min-h-screen bg-[--b-bg] font-sans text-[--b-text] antialiased">
+        <ThemeProvider>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-[100] focus:rounded-lg focus:bg-[--b-accent] focus:px-3 focus:py-1 focus:text-black"
+          >
+            Skip to content
+          </a>
+          <SiteHeader />
+          <main id="main" className="min-h-[70vh]">
+            {children}
+          </main>
+          <SiteFooter />
+        </ThemeProvider>
       </body>
     </html>
   );

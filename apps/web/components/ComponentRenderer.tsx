@@ -60,17 +60,17 @@ class RenderBoundary extends React.Component<
   render() {
     if (this.state.error) {
       return (
-        <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-red-400/20 bg-red-500/[0.06] p-8 text-center">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10">
-            <svg className="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-red-400/20 bg-red-500/[0.06] p-8 text-center">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-500/10">
+            <svg className="h-5 w-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
           </div>
-          <p className="text-sm font-medium text-red-200/80">Component failed to render</p>
-          <p className="font-mono text-xs text-white/40">{this.props.fallback}</p>
+          <p className="text-sm font-medium text-red-300/80">Component failed to render</p>
+          <p className="font-mono text-[11px] text-[--b-muted]">{this.props.fallback}</p>
           <button
             onClick={() => this.setState({ error: false })}
-            className="mt-2 rounded-lg bg-white/10 px-4 py-2 text-xs text-white/70 transition-colors hover:bg-white/20"
+            className="mt-2 rounded-md bg-white/[0.06] px-4 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:bg-white/[0.1]"
           >
             Retry
           </button>
@@ -83,18 +83,18 @@ class RenderBoundary extends React.Component<
 
 function ComponentSkeleton() {
   return (
-    <div className="w-full space-y-4 rounded-2xl p-6">
+    <div className="w-full space-y-4 rounded-lg p-6">
       <div className="flex items-center gap-3">
-        <div className="skeleton h-10 w-24 rounded-lg" />
-        <div className="skeleton h-10 w-20 rounded-lg" />
+        <div className="skeleton h-10 w-24 rounded-md" />
+        <div className="skeleton h-10 w-20 rounded-md" />
       </div>
       <div className="space-y-2">
         <div className="skeleton h-4 w-3/4 rounded" />
         <div className="skeleton h-4 w-1/2 rounded" />
       </div>
       <div className="flex gap-2">
-        <div className="skeleton h-6 w-16 rounded-full" />
-        <div className="skeleton h-6 w-20 rounded-full" />
+        <div className="skeleton h-6 w-16 rounded-md" />
+        <div className="skeleton h-6 w-20 rounded-md" />
       </div>
     </div>
   );
@@ -138,7 +138,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <MagneticCard tilt={8 * controls.intensity + 2} className="w-80">
           <p className="font-display text-lg font-bold">Magnetic card</p>
-          <p className="mt-2 text-sm text-white/60">Tilt + spotlight. Focus with Tab.</p>
+          <p className="mt-2 text-sm text-[--b-muted]">Tilt + spotlight. Focus with Tab.</p>
         </MagneticCard>
       );
     case "slingshot-otp":
@@ -153,14 +153,14 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <CursorSpotlight className="w-80 rounded-2xl p-6">
           <p className="font-display text-lg font-bold">Move inside me</p>
-          <p className="mt-2 text-sm text-white/60">Spotlight follows the cursor.</p>
+          <p className="mt-2 text-sm text-[--b-muted]">Spotlight follows the cursor.</p>
         </CursorSpotlight>
       );
     case "aurora-background":
       return wrap(
         <AuroraBackground className="w-96 rounded-2xl p-8">
           <p className="font-display text-xl font-black">Aurora</p>
-          <p className="mt-2 text-sm text-white/60">Pure CSS drift. Reduced-motion safe.</p>
+          <p className="mt-2 text-sm text-[--b-muted]">Pure CSS drift. Reduced-motion safe.</p>
         </AuroraBackground>
       );
     case "particle-field":
@@ -171,14 +171,14 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <HolographicCard className="w-80">
           <p className="font-display text-lg font-bold">Holographic</p>
-          <p className="mt-2 text-sm text-white/60">Sheen tracks pointer.</p>
+          <p className="mt-2 text-sm text-[--b-muted]">Sheen tracks pointer.</p>
         </HolographicCard>
       );
     case "interactive-3d-card":
       return wrap(
         <Interactive3DCard className="w-80 h-48">
           <p className="font-display text-lg font-bold">Front</p>
-          <p className="mt-2 text-sm text-white/60">Click to flip.</p>
+          <p className="mt-2 text-sm text-[--b-muted]">Click to flip.</p>
         </Interactive3DCard>
       );
     case "tactile-loader":
@@ -312,7 +312,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <MagneticCard className="w-80">
           <p className="font-display text-lg font-bold">{slug}</p>
-          <p className="mt-2 text-sm text-white/60">
+          <p className="mt-2 text-sm text-[--b-muted]">
             Live React implementation shares patterns with the components above. Open the framework tabs
             for code.
           </p>

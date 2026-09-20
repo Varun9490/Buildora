@@ -91,7 +91,10 @@
   "dependencies": [],
   "registryDependencies": [],
   "files": [
-    "packages/components/src/model-selector/index.tsx"
+    {
+      "path": "packages/components/src/model-selector/index.tsx",
+      "content": "// Could not read file: packages/components/src/model-selector/index.tsx"
+    }
   ],
   "github": "https://github.com/buildora/buildora/tree/main/packages/components/src/model-selector",
   "docs": "/components/model-selector",

@@ -152,7 +152,14 @@ export function toRegistryJson(item: CatalogItem) {
     accessibility: { keyboard: true, screenReader: true, reducedMotion: true },
     dependencies: item.dependencies ?? [],
     registryDependencies: item.registryDependencies ?? [],
-    files: item.files,
+    files: item.files.map((f) => {
+      try {
+        const content = fs.readFileSync(path.join(process.cwd(), f), "utf8");
+        return { path: f, content };
+      } catch (e) {
+        return { path: f, content: `// Could not read file: ${f}` };
+      }
+    }),
     github: `https://github.com/buildora/buildora/tree/main/packages/components/src/${item.slug}`,
     docs: `/components/${item.slug}`,
     install: `pnpm dlx shadcn@latest add @buildora/${item.slug}`
@@ -169,7 +176,14 @@ export function toShadcnJson(item: CatalogItem) {
     categories: item.categories,
     dependencies: item.dependencies ?? [],
     registryDependencies: item.registryDependencies ?? [],
-    files: item.files.map((f) => ({ path: f, type: "registry:component" as const })),
+    files: item.files.map((f) => {
+      try {
+        const content = fs.readFileSync(path.join(process.cwd(), f), "utf8");
+        return { path: f, content, type: "registry:component" as const };
+      } catch (e) {
+        return { path: f, content: `// Could not read file: ${f}`, type: "registry:component" as const };
+      }
+    }),
     docs: `https://github.com/buildora/buildora/tree/main/${f2(item)}`
   };
 }

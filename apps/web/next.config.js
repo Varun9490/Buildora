@@ -8,9 +8,6 @@ const nextConfig = {
     "@buildora/animations",
     "@buildora/components"
   ],
-  experimental: {
-    optimizePackageImports: ["framer-motion"]
-  }
 };
 
 module.exports = nextConfig;

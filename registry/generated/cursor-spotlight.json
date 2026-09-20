@@ -12,6 +12,7 @@
   "files": [
     {
       "path": "packages/components/src/cursor-spotlight/index.tsx",
+      "content": "// Could not read file: packages/components/src/cursor-spotlight/index.tsx",
       "type": "registry:component"
     }
   ],

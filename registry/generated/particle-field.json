@@ -12,6 +12,7 @@
   "files": [
     {
       "path": "packages/components/src/particle-field/index.tsx",
+      "content": "// Could not read file: packages/components/src/particle-field/index.tsx",
       "type": "registry:component"
     }
   ],

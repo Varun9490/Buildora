@@ -6,7 +6,6 @@ import {
   MagneticButton,
   SlingshotOTP,
   MorphingTypography,
-  ParticleField,
   StreamingChat,
   Terminal,
   Kanban,
@@ -28,7 +27,7 @@ function ShowcaseRenderer({ id }: { id: string }) {
     case "magnetic":
       return (
         <div className="flex flex-wrap items-center justify-center gap-3">
-          <MagneticButton strength={0.4} className="shadow-glow-sm">
+          <MagneticButton strength={0.4}>
             Ship it
             <svg className="ml-1.5 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -55,19 +54,19 @@ function ShowcaseRenderer({ id }: { id: string }) {
       );
     case "terminal":
       return (
-        <div className="w-full max-w-md overflow-hidden rounded-xl">
+        <div className="w-full max-w-md overflow-hidden rounded-lg">
           <Terminal />
         </div>
       );
     case "ai":
       return (
-        <div className="w-full max-w-sm overflow-hidden rounded-xl">
+        <div className="w-full max-w-sm overflow-hidden rounded-lg">
           <StreamingChat />
         </div>
       );
     case "kanban":
       return (
-        <div className="w-full max-w-sm overflow-hidden rounded-xl">
+        <div className="w-full max-w-sm overflow-hidden rounded-lg">
           <Kanban />
         </div>
       );
@@ -100,27 +99,43 @@ export function DynamicHeroShowcase() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <motion.div
-        key={activeComponent.id}
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.96 }}
-        transition={{ duration: 0.4 }}
-        className="relative flex min-h-[320px] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent p-8"
-      >
-        <ShowcaseRenderer id={activeComponent.id} />
-      </motion.div>
+      {/* macOS-style window chrome */}
+      <div className="overflow-hidden rounded-lg border border-[--b-border] bg-[--b-panel]">
+        <div className="flex items-center gap-2 border-b border-[--b-border] px-4 py-2.5">
+          <div className="flex gap-1.5">
+            <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
+            <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
+            <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
+          </div>
+          <p className="ml-2 font-mono text-[10px] text-[--b-muted]">
+            {activeComponent.title}
+          </p>
+        </div>
 
-      <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-        <p className="mr-3 font-mono text-xs text-white/50">{activeComponent.title}</p>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeComponent.id}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="flex min-h-[280px] items-center justify-center p-8"
+          >
+            <ShowcaseRenderer id={activeComponent.id} />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Navigation dots */}
+      <div className="mt-3 flex items-center justify-center gap-1.5">
         {showcaseComponents.map((c, i) => (
           <button
             key={c.id}
             onClick={() => setActiveIndex(i)}
-            className={`h-1.5 w-8 rounded-full transition-all duration-300 ${
+            className={`h-1 rounded-full transition-all duration-300 ${
               i === activeIndex
-                ? "bg-[#d4ff4f]"
-                : "bg-white/10 hover:bg-white/20"
+                ? "w-6 bg-[--b-accent]"
+                : "w-1.5 bg-white/10 hover:bg-white/20"
             }`}
             aria-label={`Show ${c.title}`}
           />
@@ -143,32 +158,49 @@ export function FeatureCard({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent p-6 transition-all duration-300 hover:border-white/20"
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="group b-card p-6"
     >
       <div
-        className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl transition-transform group-hover:scale-110"
-        style={{ backgroundColor: color || "rgba(212, 255, 79, 0.1)" }}
+        className="mb-4 flex h-9 w-9 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-105"
+        style={{ backgroundColor: color || "var(--b-accent-muted)" }}
       >
         {icon}
       </div>
-      <h4 className="font-display text-lg font-bold">{title}</h4>
-      <p className="mt-2 text-sm leading-relaxed text-white/50">{description}</p>
+      <h4 className="font-display text-base font-bold tracking-tight">
+        {title}
+      </h4>
+      <p className="mt-2 text-sm leading-relaxed text-[--b-muted]">
+        {description}
+      </p>
     </motion.div>
   );
 }
 
-export function StatsCounter({ value, label, icon }: { value: string; label: string; icon: React.ReactNode }) {
+export function StatsCounter({
+  value,
+  label,
+  icon,
+}: {
+  value: string;
+  label: string;
+  icon: React.ReactNode;
+}) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
-      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-xl">
+    <div className="flex items-center gap-3 rounded-lg border border-[--b-border] bg-white/[0.02] px-4 py-3">
+      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.04] text-[--b-text-secondary]">
         {icon}
       </div>
       <div>
-        <p className="font-display text-xl font-black text-gradient">{value}</p>
-        <p className="font-mono text-[10px] uppercase tracking-wider text-white/40">{label}</p>
+        <p className="font-display text-xl font-bold tracking-tight text-gradient">
+          {value}
+        </p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[--b-muted]">
+          {label}
+        </p>
       </div>
     </div>
   );

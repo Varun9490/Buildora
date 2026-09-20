@@ -6,36 +6,30 @@ import { motion } from "framer-motion";
 
 const templates = [
   {
+    slug: "ai-agent",
+    name: "AI Agent Console",
+    icon: "🤖",
+    image: "/previews/ai-agent.png",
+    gradient: "from-[#9d8cff]/15 via-transparent to-[#d4ff4f]/10",
+    uses: ["streaming-chat", "spatial-command-palette"],
+    blurb: "Token-by-token streaming, tool call transparency, and spatial commands — all frontend-only.",
+  },
+  {
+    slug: "creative-portfolio",
+    name: "Creative Portfolio",
+    icon: "✨",
+    image: "/previews/creative-portfolio.png",
+    gradient: "from-[#d4ff4f]/15 via-transparent to-[#ffb86b]/10",
+    uses: ["magnetic-button", "morphing-typography"],
+    blurb: "Premium editorial layouts, magnetic CTAs, smooth scrolling. Visually stunning and minimal.",
+  },
+  {
     slug: "dev-dashboard",
     name: "Developer Dashboard",
     icon: "⚡",
     gradient: "from-[#ffb86b]/15 via-transparent to-[#9d8cff]/10",
     uses: ["advanced-table", "terminal", "log-viewer", "usage-dashboard"],
     blurb: "Internal tools: sortable tables, live terminal, structured logs, usage charts. Everything keyboard-navigable.",
-  },
-  {
-    slug: "ai-support",
-    name: "AI Support Console",
-    icon: "🤖",
-    gradient: "from-[#9d8cff]/15 via-transparent to-[#d4ff4f]/10",
-    uses: ["streaming-chat", "tool-call-viz", "token-meter", "comment-thread"],
-    blurb: "Token-by-token streaming, tool call transparency, usage metering, and threaded review — all frontend-only.",
-  },
-  {
-    slug: "onboarding",
-    name: "Team Onboarding",
-    icon: "👋",
-    gradient: "from-[#4fe08a]/15 via-transparent to-[#ffb86b]/10",
-    uses: ["onboarding-checklist", "team-switcher", "invite-flow", "pricing-table"],
-    blurb: "Invite members, switch teams, track setup progress, display pricing. Complete SaaS onboarding flow.",
-  },
-  {
-    slug: "creative-landing",
-    name: "Creative Landing",
-    icon: "✨",
-    gradient: "from-[#d4ff4f]/15 via-transparent to-[#9d8cff]/10",
-    uses: ["aurora-background", "morphing-typography", "magnetic-button", "particle-field"],
-    blurb: "Aurora gradients, morphing headlines, magnetic CTAs, particle canvas. Visually stunning landing pages.",
   },
 ];
 
@@ -56,21 +50,32 @@ export default function TemplatesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.08, duration: 0.4 }}
-            className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all hover:border-[#d4ff4f]/25`}
+            className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all hover:border-[#d4ff4f]/25`}
           >
             {/* Background gradient */}
             <div className={`absolute inset-0 bg-gradient-to-br ${t.gradient} opacity-0 transition-opacity group-hover:opacity-100`} />
 
-            <div className="relative">
+            <div className="relative flex h-full flex-col">
+              {t.image ? (
+                <Link href={`/templates/${t.slug}`} className="block overflow-hidden rounded-xl border border-white/5 mb-6 group-hover:border-[#d4ff4f]/20 transition-colors aspect-video w-full">
+                  <img src={t.image} alt={t.name} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all group-hover:scale-[1.02] duration-500" />
+                </Link>
+              ) : (
+                <div className="mb-6 aspect-video w-full rounded-xl border border-white/5 bg-white/[0.02] flex items-center justify-center opacity-80 group-hover:opacity-100 transition-all">
+                   <span className="text-white/20 font-mono text-[10px] uppercase">Coming Soon</span>
+                </div>
+              )}
               <div className="flex items-start gap-3">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-xl">{t.icon}</span>
                 <div>
-                  <h2 className="font-display text-xl font-black">{t.name}</h2>
+                  <Link href={`/templates/${t.slug}`} className="hover:underline">
+                    <h2 className="font-display text-xl font-black">{t.name}</h2>
+                  </Link>
                   <p className="mt-1 text-sm leading-relaxed text-white/50">{t.blurb}</p>
                 </div>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-1.5">
+              <div className="mt-auto pt-6 flex flex-wrap gap-1.5">
                 {t.uses.map((u) => (
                   <Link
                     key={u}

@@ -12,6 +12,7 @@
   "files": [
     {
       "path": "packages/components/src/holographic-card/index.tsx",
+      "content": "// Could not read file: packages/components/src/holographic-card/index.tsx",
       "type": "registry:component"
     }
   ],
