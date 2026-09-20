@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@buildora/utils";
@@ -23,8 +23,10 @@ const links = [
    ───────────────────────────────────────────────────── */
 export function SiteHeader() {
   const path = usePathname();
+  const router = useRouter();
   const { framework, setFramework } = useBuildora();
   const [open, setOpen] = React.useState(false);
+  const [cmdOpen, setCmdOpen] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const triggerRef = React.useRef<HTMLButtonElement | null>(null);
@@ -34,6 +36,19 @@ export function SiteHeader() {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setCmdOpen((prev) => !prev);
+      } else if (e.key === "Escape") {
+        setCmdOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   const focusFrameworkOption = (i: number) => {
@@ -128,9 +143,17 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <ThemeCustomizer />
           
-          <div className="hidden md:block">
-            <CommandPalette />
-          </div>
+          <button
+            onClick={() => setCmdOpen(true)}
+            className="hidden items-center gap-2 rounded-full border border-[--b-border] bg-[--b-surface]/80 px-3 py-1 font-mono text-[11px] text-[--b-text-secondary] transition-all hover:border-[--b-border-hover] hover:text-[--b-text] hover:bg-[--b-elevated] md:flex"
+            aria-label="Open command palette"
+          >
+            <svg className="h-3 w-3 text-[--b-muted]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <span>Search</span>
+            <kbd className="rounded border border-[--b-border] bg-[--b-bg] px-1 py-0.2 text-[9px] text-[--b-muted]">⌘K</kbd>
+          </button>
 
           {/* Framework selector */}
           <div className="relative">
@@ -332,6 +355,43 @@ export function SiteHeader() {
               </div>
             </nav>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Command Palette Modal */}
+      <AnimatePresence>
+        {cmdOpen && (
+          <div className="fixed inset-0 z-[100] flex items-start justify-center pt-24 px-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setCmdOpen(false)}
+              className="fixed inset-0 bg-black/70 backdrop-blur-md"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -12 }}
+              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-10 w-full max-w-lg overflow-hidden rounded-2xl border border-[--b-border] bg-[--b-panel] shadow-2xl"
+            >
+              <CommandPalette
+                onSelect={(id) => {
+                  setCmdOpen(false);
+                  if (id === "c1") router.push("/components/magnetic-button");
+                  else if (id === "c2") router.push("/playground");
+                  else if (id === "c3") router.push("/registry");
+                  else if (id === "c4") {
+                    const current = document.documentElement.getAttribute("data-theme");
+                    const next = current === "dark" ? "light" : "dark";
+                    document.documentElement.setAttribute("data-theme", next);
+                    document.documentElement.classList.toggle("dark", next === "dark");
+                  }
+                }}
+              />
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </motion.header>
