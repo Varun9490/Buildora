@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@buildora/utils";
+import { CommandPalette } from "@buildora/components";
 import { useBuildora } from "@/lib/store";
 import { frameworkLabels, frameworks } from "@/lib/registry";
 
@@ -128,7 +129,7 @@ export function SiteHeader() {
           <ThemeCustomizer />
           
           <div className="hidden md:block">
-            <div className="border border-red-500 p-4">Missing Component: SpatialCommandPalette</div>
+            <CommandPalette />
           </div>
 
           {/* Framework selector */}

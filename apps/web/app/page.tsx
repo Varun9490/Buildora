@@ -5,13 +5,11 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import {
   MagneticButton,
-  
-  
   SlingshotOTP,
-  CursorSpotlight,
-  MorphingTypography,
-  HolographicCard,
-  Interactive3DCard,
+  FxCard,
+  FxButton,
+  CursorFx,
+  TextFx,
 } from "@buildora/components";
 import { copyToClipboard } from "@buildora/utils";
 import { allComponents, totalComponents } from "@/lib/registry";
@@ -244,50 +242,19 @@ function CreativeStrip() {
       className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
     >
       <motion.div variants={fadeUp}>
-        <CursorSpotlight>
-          <div className="p-5">
-            <p className="b-section-label">Creative Effects</p>
-            <p className="mt-3 font-display text-base font-bold tracking-tight">
-              Cursor Spotlight
-            </p>
-            <p className="mt-2 text-sm text-[--b-muted]">
-              Spotlight follows your mouse with smooth transitions
-            </p>
-          </div>
-        </CursorSpotlight>
+        <CursorFx mode="spotlight" />
       </motion.div>
 
       <motion.div variants={fadeUp}>
-        <div className="border border-red-500 p-4">Missing Component: MagneticCard</div>
+        <FxCard effect="tilt" className="w-64 aspect-[3/4] p-4"><div className="h-full rounded-lg bg-[--b-surface]/50" /></FxCard>
       </motion.div>
 
       <motion.div variants={fadeUp}>
-        <HolographicCard>
-          <div className="p-5">
-            <p className="b-section-label">Holographic</p>
-            <MorphingTypography
-              words={["Build", "Remix", "Ship"]}
-              className="mt-3 font-display text-base font-bold"
-            />
-            <p className="mt-2 text-sm text-[--b-muted]">
-              Rainbow sheen that tracks the pointer
-            </p>
-          </div>
-        </HolographicCard>
+        <FxCard effect="holographic" className="w-64 aspect-[3/4] p-4"><div className="h-full rounded-lg bg-[--b-surface]/50" /></FxCard>
       </motion.div>
 
       <motion.div variants={fadeUp}>
-        <Interactive3DCard>
-          <div className="p-5">
-            <p className="b-section-label">Interactive 3D</p>
-            <p className="mt-3 font-display text-base font-bold tracking-tight">
-              Flip Card
-            </p>
-            <p className="mt-2 text-sm text-[--b-muted]">
-              Click to flip and reveal more info
-            </p>
-          </div>
-        </Interactive3DCard>
+        <FxCard effect="tilt" className="w-64 aspect-[3/4] p-4"><div className="h-full rounded-lg bg-[--b-surface]/50" /></FxCard>
       </motion.div>
     </motion.div>
   );
@@ -369,7 +336,7 @@ export default function Home() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <div className="border border-red-500 p-4">Missing Component: LiquidButton</div>
+                  <FxButton effect="liquid">Explore</FxButton>
                 </a>
               </motion.div>
 
@@ -402,10 +369,7 @@ export default function Home() {
                 {/* Preview card 3 */}
                 <div className="b-card p-5">
                   <p className="b-section-label mb-3">Morphing Text</p>
-                  <MorphingTypography
-                    words={["Build", "Remix", "Ship", "Create"]}
-                    className="text-xl font-bold"
-                  />
+                  <TextFx kind="morph" text={["Morphing", "Typography"]} />
                 </div>
               </div>
             </motion.div>

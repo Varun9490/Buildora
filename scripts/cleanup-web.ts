@@ -7,11 +7,11 @@ const validComponents = new Set();
 // We need to map slugs to Component names. Usually it's PascalCase.
 // We can just rely on TS to tell us what's exported.
 const indexTs = fs.readFileSync(path.join(process.cwd(), "packages/components/src/index.ts"), "utf8");
-const exports = Array.from(indexTs.matchAll(/export\s+\{([^}]+)\}/g))
-  .flatMap(m => m[1].split(",").map(s => s.trim().split(/\s+/)[0]))
+const exportsList = Array.from(indexTs.matchAll(/export\s+\{([^}]+)\}/g))
+  .flatMap(m => m[1].split(",").map((s: string) => s.trim().split(/\s+/)[0]))
   .filter(Boolean);
 
-const validExports = new Set(exports);
+const validExports = new Set(exportsList);
 
 // 1. Cleanup ComponentRenderer.tsx
 const rendererPath = path.join(process.cwd(), "apps/web/components/ComponentRenderer.tsx");
@@ -19,8 +19,8 @@ let rendererContent = fs.readFileSync(rendererPath, "utf8");
 
 // Remove invalid imports
 rendererContent = rendererContent.replace(/import\s+\{([^}]+)\}\s+from\s+["']@buildora\/components["'];/, (match, group1) => {
-  const imports = group1.split(",").map(s => s.trim()).filter(Boolean);
-  const valid = imports.filter(i => validExports.has(i));
+  const imports = group1.split(",").map((s: string) => s.trim()).filter(Boolean);
+  const valid = imports.filter((i: string) => validExports.has(i));
   return `import {\n  ${valid.join(",\n  ")}\n} from "@buildora/components";`;
 });
 
