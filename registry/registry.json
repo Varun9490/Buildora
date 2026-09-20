@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 138,
+  "total": 142,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -1952,6 +1952,62 @@
         "masonry"
       ],
       "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "cta-block",
+      "name": "CTA Block",
+      "description": "Centered call-to-action with actions and optional stats.",
+      "categories": [
+        "blocks"
+      ],
+      "tags": [
+        "cta",
+        "marketing"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "feature-grid",
+      "name": "Feature Grid",
+      "description": "Three-up feature grid with tags and copy.",
+      "categories": [
+        "blocks"
+      ],
+      "tags": [
+        "features",
+        "marketing"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "logo-cloud",
+      "name": "Logo Cloud",
+      "description": "Customer logo row with label. Logos only, no taglines.",
+      "categories": [
+        "blocks"
+      ],
+      "tags": [
+        "logos",
+        "social-proof"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "site-footer",
+      "name": "Site Footer",
+      "description": "Footer with brand, link columns, and status line.",
+      "categories": [
+        "blocks"
+      ],
+      "tags": [
+        "footer",
+        "navigation"
+      ],
+      "difficulty": "beginner",
       "version": "0.1.0"
     }
   ],

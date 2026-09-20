@@ -1,0 +1,122 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "cta-block",
+  "name": "CTA Block",
+  "slug": "cta-block",
+  "description": "Centered call-to-action with actions and optional stats.",
+  "categories": [
+    "blocks"
+  ],
+  "tags": [
+    "cta",
+    "marketing"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/cta-block/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/cta-block/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cta-block/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cta-block/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cta-block/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/cta-block/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/cta-block/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/cta-block/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/cta-block/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/cta-block/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/cta-block/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/cta-block/index.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport type CtaStat = { value: string; label: string };\n\nexport function CtaBlock({\n  eyebrow = \"Registry-driven\",\n  title = \"Ship your next interface with Buildora\",\n  body = \"One component definition powers docs, playground, search, and install. Copy it, remix it, ship it.\",\n  primaryLabel = \"Browse components\",\n  secondaryLabel = \"Read the docs\",\n  onPrimary,\n  onSecondary,\n  stats,\n  className,\n}: {\n  eyebrow?: string;\n  title?: string;\n  body?: string;\n  primaryLabel?: string;\n  secondaryLabel?: string;\n  onPrimary?: () => void;\n  onSecondary?: () => void;\n  stats?: CtaStat[];\n  className?: string;\n}) {\n  return (\n    <section\n      aria-labelledby=\"cta-block-title\"\n      className={cn(\"overflow-hidden rounded-2xl border border-white/10 bg-[#0d0f16] p-8 text-center md:p-12\", className)}\n    >\n      <span className=\"inline-block rounded-full bg-white/10 px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider text-white/70\">{eyebrow}</span>\n      <h2 id=\"cta-block-title\" className=\"mx-auto mt-4 max-w-2xl font-display text-3xl font-black tracking-tight md:text-4xl\">\n        {title}\n      </h2>\n      <p className=\"mx-auto mt-3 max-w-xl text-sm leading-relaxed text-white/60\">{body}</p>\n      <div className=\"mt-6 flex flex-wrap items-center justify-center gap-3\">\n        <button onClick={onPrimary} className=\"rounded-[10px] bg-[--b-accent] px-5 py-2.5 text-sm font-semibold text-[--b-accent-foreground] transition-transform active:scale-95\">\n          {primaryLabel}\n        </button>\n        <button onClick={onSecondary} className=\"rounded-[10px] border border-white/15 px-5 py-2.5 text-sm font-semibold text-white/80 transition-colors hover:bg-white/5\">\n          {secondaryLabel}\n        </button>\n      </div>\n      {stats && stats.length > 0 && (\n        <dl className=\"mx-auto mt-8 grid max-w-lg grid-cols-3 gap-4 border-t border-white/10 pt-6\">\n          {stats.map((s) => (\n            <div key={s.label} className=\"flex flex-col\">\n              <dt className=\"order-2 mt-1 font-mono text-[11px] uppercase tracking-wider text-white/40\">{s.label}</dt>\n              <dd className=\"order-1 font-display text-2xl font-black\">{s.value}</dd>\n            </div>\n          ))}\n        </dl>\n      )}\n    </section>\n  );\n}\n\nexport default CtaBlock;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/cta-block",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/cta-block/index.tsx",
+  "sourceDir": "cta-block",
+  "docs": "/components/cta-block",
+  "install": "pnpm dlx shadcn@latest add @buildora/cta-block"
+}

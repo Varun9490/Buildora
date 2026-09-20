@@ -75,6 +75,10 @@ export { MarkdownEditor, MentionInput, CommentThread } from "./markdown-editor";
 export { RichTextEditor } from "./rich-text-editor";
 export { SlashCommands, type SlashItem } from "./slash-commands";
 export { VersionHistory, type DocVersion } from "./version-history";
+export { CtaBlock, type CtaStat } from "./cta-block";
+export { FeatureGrid, type Feature } from "./feature-grid";
+export { LogoCloud } from "./logo-cloud";
+export { SiteFooter, type FooterColumn } from "./site-footer";
 export {
   Button,
   Chip,

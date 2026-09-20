@@ -190,6 +190,7 @@ export const categories = [
   "navigation",
   "overlays",
   "feedback",
+  "blocks",
 ] as const;
 
 export type Category = (typeof categories)[number];

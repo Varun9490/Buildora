@@ -2,7 +2,7 @@
   "$schema": "https://buildora.dev/schema/agent-catalog.json",
   "name": "buildora",
   "version": "0.1.0",
-  "total": 138,
+  "total": 142,
   "workflow": [
     "find component",
     "inspect metadata",
@@ -10787,6 +10787,330 @@
         }
       },
       "dependencies": [],
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "cta-block",
+      "name": "CTA Block",
+      "description": "Centered call-to-action with actions and optional stats.",
+      "categories": [
+        "blocks"
+      ],
+      "tags": [
+        "cta",
+        "marketing"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/cta-block",
+      "docs": "/components/cta-block",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/cta-block",
+      "files": [
+        "packages/components/src/cta-block/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "feature-grid",
+      "name": "Feature Grid",
+      "description": "Three-up feature grid with tags and copy.",
+      "categories": [
+        "blocks"
+      ],
+      "tags": [
+        "features",
+        "marketing"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/feature-grid",
+      "docs": "/components/feature-grid",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/feature-grid",
+      "files": [
+        "packages/components/src/feature-grid/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "logo-cloud",
+      "name": "Logo Cloud",
+      "description": "Customer logo row with label. Logos only, no taglines.",
+      "categories": [
+        "blocks"
+      ],
+      "tags": [
+        "logos",
+        "social-proof"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/logo-cloud",
+      "docs": "/components/logo-cloud",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/logo-cloud",
+      "files": [
+        "packages/components/src/logo-cloud/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "site-footer",
+      "name": "Site Footer",
+      "description": "Footer with brand, link columns, and status line.",
+      "categories": [
+        "blocks"
+      ],
+      "tags": [
+        "footer",
+        "navigation"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/site-footer",
+      "docs": "/components/site-footer",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/site-footer",
+      "files": [
+        "packages/components/src/site-footer/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "provenance": {
         "origin": "original",
         "license": "MIT",

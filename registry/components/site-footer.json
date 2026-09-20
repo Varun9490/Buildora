@@ -1,0 +1,122 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "site-footer",
+  "name": "Site Footer",
+  "slug": "site-footer",
+  "description": "Footer with brand, link columns, and status line.",
+  "categories": [
+    "blocks"
+  ],
+  "tags": [
+    "footer",
+    "navigation"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/site-footer/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/site-footer/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/site-footer/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/site-footer/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/site-footer/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/site-footer/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/site-footer/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/site-footer/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/site-footer/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/site-footer/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/site-footer/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/site-footer/index.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport type FooterColumn = { heading: string; links: { label: string; href: string }[] };\n\nexport function SiteFooter({\n  brand = \"Buildora\",\n  tagline = \"Build. Remix. Ship.\",\n  columns,\n  status = \"All systems normal\",\n  className,\n}: {\n  brand?: string;\n  tagline?: string;\n  columns?: FooterColumn[];\n  status?: string;\n  className?: string;\n}) {\n  const seed: FooterColumn[] = columns ?? [\n    { heading: \"Library\", links: [{ label: \"Components\", href: \"#\" }, { label: \"Playground\", href: \"#\" }, { label: \"Registry\", href: \"#\" }] },\n    { heading: \"Resources\", links: [{ label: \"Docs\", href: \"#\" }, { label: \"Templates\", href: \"#\" }, { label: \"Changelog\", href: \"#\" }] },\n  ];\n  return (\n    <footer className={cn(\"rounded-2xl border border-white/10 bg-[#0d0f16] p-6 md:p-8\", className)}>\n      <div className=\"grid gap-8 md:grid-cols-[1.2fr_2fr]\">\n        <div>\n          <p className=\"font-display text-xl font-black\">{brand}</p>\n          <p className=\"mt-1 font-mono text-xs text-white/40\">{tagline}</p>\n          <p className=\"mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 px-2.5 py-1 font-mono text-[11px] text-white/60\" role=\"status\">\n            <span aria-hidden className=\"h-2 w-2 rounded-full bg-[#4fe08a]\" />\n            {status}\n          </p>\n        </div>\n        <nav className=\"grid grid-cols-2 gap-6\" aria-label=\"Footer\">\n          {seed.map((c) => (\n            <div key={c.heading}>\n              <p className=\"font-mono text-[11px] uppercase tracking-wider text-white/40\">{c.heading}</p>\n              <ul className=\"mt-3 space-y-2\">\n                {c.links.map((l) => (\n                  <li key={l.label}>\n                    <a href={l.href} className=\"text-sm text-white/70 transition-colors hover:text-white\">\n                      {l.label}\n                    </a>\n                  </li>\n                ))}\n              </ul>\n            </div>\n          ))}\n        </nav>\n      </div>\n      <hr className=\"my-6 border-white/10\" />\n      <p className=\"font-mono text-[11px] text-white/35\">MIT licensed. Registry-driven, always.</p>\n    </footer>\n  );\n}\n\nexport default SiteFooter;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/site-footer",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/site-footer/index.tsx",
+  "sourceDir": "site-footer",
+  "docs": "/components/site-footer",
+  "install": "pnpm dlx shadcn@latest add @buildora/site-footer"
+}

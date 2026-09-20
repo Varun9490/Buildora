@@ -205,6 +205,10 @@ export const COMPONENT_CONTROLS: Record<string, ControlDef[]> = {
   "bento-grid": [],
   "infinite-marquee": [],
   "masonry-layout": [],
+  "cta-block": [],
+  "feature-grid": [],
+  "logo-cloud": [],
+  "site-footer": [],
 };
 
 export function controlsFor(slug: string): ControlDef[] {

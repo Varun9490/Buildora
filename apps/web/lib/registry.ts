@@ -121,7 +121,7 @@ export function searchComponents(items: ComponentSummary[], f: SearchFilters): C
   return out;
 }
 
-export const allCategories = ["creative", "ai-llm", "data", "developer", "saas", "complex", "content", "primitives", "forms", "navigation", "overlays", "feedback"];
+export const allCategories = ["creative", "ai-llm", "data", "developer", "saas", "complex", "content", "primitives", "forms", "navigation", "overlays", "feedback", "blocks"];
 export const allTags = [...new Set(allComponents.flatMap((c) => c.tags))].sort();
 export const frameworks = ["react", "javascript", "vue", "svelte", "angular", "html", "tailwind", "reactNative", "flutter", "swiftUI", "compose"];
 export const frameworkLabels: Record<string, string> = {

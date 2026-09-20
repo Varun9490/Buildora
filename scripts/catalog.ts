@@ -233,7 +233,12 @@ export const catalog: CatalogItem[] = [
 
   R("bento-grid", fullWeb, { name: "Bento Grid", description: "Tile grid with configurable columns and spans.", categories: ["creative"], tags: ["layout", "bento", "grid"], difficulty: "beginner", files: ["packages/components/src/layouts/bento-grid.tsx"] }),
   R("infinite-marquee", fullWeb, { name: "Infinite Marquee", description: "Seamless looping marquee row.", categories: ["creative"], tags: ["layout", "marquee"], difficulty: "beginner", files: ["packages/components/src/layouts/infinite-marquee.tsx"] }),
-  R("masonry-layout", fullWeb, { name: "Masonry Layout", description: "Pinterest-style masonry columns.", categories: ["creative"], tags: ["layout", "masonry"], difficulty: "intermediate", files: ["packages/components/src/layouts/masonry-layout.tsx"] })
+  R("masonry-layout", fullWeb, { name: "Masonry Layout", description: "Pinterest-style masonry columns.", categories: ["creative"], tags: ["layout", "masonry"], difficulty: "intermediate", files: ["packages/components/src/layouts/masonry-layout.tsx"] }),
+
+  R("cta-block", fullWeb, { name: "CTA Block", description: "Centered call-to-action with actions and optional stats.", categories: ["blocks"], tags: ["cta", "marketing"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"] }),
+  R("feature-grid", fullWeb, { name: "Feature Grid", description: "Three-up feature grid with tags and copy.", categories: ["blocks"], tags: ["features", "marketing"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"] }),
+  R("logo-cloud", fullWeb, { name: "Logo Cloud", description: "Customer logo row with label. Logos only, no taglines.", categories: ["blocks"], tags: ["logos", "social-proof"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"] }),
+  R("site-footer", fullWeb, { name: "Site Footer", description: "Footer with brand, link columns, and status line.", categories: ["blocks"], tags: ["footer", "navigation"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"] })
 ];
 
 const CANONICAL_REPO = "https://github.com/Varun9490/Buildora";

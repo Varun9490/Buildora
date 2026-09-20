@@ -140,7 +140,11 @@ export const RELATED: Record<string, string[]> = {
   "spotlight-card": ["magnetic-card", "glare-card", "glass-card"],
   "wobble-card": ["magnetic-card", "glare-card"],
   "glass-card": ["spotlight-card", "magnetic-card"],
-  "bento-grid": ["masonry-layout", "spotlight-card"],
+  "bento-grid": ["masonry-layout", "spotlight-card", "feature-grid"],
+  "cta-block": ["feature-grid", "logo-cloud", "site-footer", "magnetic-button"],
+  "feature-grid": ["bento-grid", "cta-block", "logo-cloud"],
+  "logo-cloud": ["feature-grid", "cta-block"],
+  "site-footer": ["navbar", "cta-block", "breadcrumb"],
   "infinite-marquee": ["masonry-layout", "particle-field"],
   "masonry-layout": ["bento-grid", "infinite-marquee"],
   "pricing-table": ["usage-dashboard", "team-switcher", "onboarding-checklist"],
@@ -191,6 +195,10 @@ export const A11Y_NOTES: Record<string, string> = {
   "tui-form": "Labeled terminal fields with submit action.",
   "terminal-workspace": "Tabbed terminal with labeled panes and command input.",
   "hold-button": "Press-and-hold has a keyboard-operable equivalent; progress announced.",
+  "cta-block": "Landmark section with labeled heading; actions are native buttons.",
+  "feature-grid": "List semantics with a labeled section heading.",
+  "logo-cloud": "Logos only, no category labels; section labeled for screen readers.",
+  "site-footer": "Contentinfo landmark with labeled footer navigation.",
   "glow-cursor": "Pointer-only effect; null under reduced motion. Never the sole interaction.",
 };
 

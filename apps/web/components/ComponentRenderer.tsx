@@ -183,6 +183,10 @@ import {
   InfiniteMarquee,
   MasonryLayout,
   MasonryItem,
+  CtaBlock,
+  FeatureGrid,
+  LogoCloud,
+  SiteFooter,
 } from "@buildora/components";
 
 export type Controls = {
@@ -1114,6 +1118,30 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
             <MasonryItem>Taller content block with more text inside the column.</MasonryItem>
             <MasonryItem>Medium block</MasonryItem>
           </MasonryLayout>
+        </div>
+      );
+    case "cta-block":
+      return wrap(
+        <div className="w-full max-w-3xl">
+          <CtaBlock stats={[{ value: "138", label: "components" }, { value: "46", label: "tests" }, { value: "13", label: "categories" }]} />
+        </div>
+      );
+    case "feature-grid":
+      return wrap(
+        <div className="w-full max-w-4xl">
+          <FeatureGrid />
+        </div>
+      );
+    case "logo-cloud":
+      return wrap(
+        <div className="w-full max-w-3xl">
+          <LogoCloud />
+        </div>
+      );
+    case "site-footer":
+      return wrap(
+        <div className="w-full max-w-4xl">
+          <SiteFooter />
         </div>
       );
     default:

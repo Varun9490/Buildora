@@ -32,6 +32,10 @@ import { TUIPanel, TUIStatusBar, TUIHeader, TUITable, TUIProgress, TUIGauge, TUI
 import { RippleButton, HoldButton } from "./buttons";
 import { GlassCard } from "./cards";
 import { Typewriter } from "./text-effects";
+import { CtaBlock } from "./cta-block";
+import { FeatureGrid } from "./feature-grid";
+import { LogoCloud } from "./logo-cloud";
+import { SiteFooter } from "./site-footer";
 
 describe("MagneticButton", () => {
   it("renders as a real button with accessible name", () => {
@@ -301,6 +305,30 @@ describe("Creative additions", () => {
   it("GlassCard and Typewriter render", () => {
     render(<><GlassCard><p>glass</p></GlassCard><Typewriter text="hi" loop={false} /></>);
     expect(screen.getByText("glass")).toBeInTheDocument();
+  });
+});
+
+describe("Blocks", () => {
+  it("CtaBlock fires actions and shows stats", () => {
+    const fn = vi.fn();
+    render(<CtaBlock onPrimary={fn} stats={[{ value: "138", label: "components" }]} />);
+    fireEvent.click(screen.getByRole("button", { name: "Browse components" }));
+    expect(fn).toHaveBeenCalled();
+    expect(screen.getByText("138")).toBeInTheDocument();
+  });
+  it("FeatureGrid lists features", () => {
+    render(<FeatureGrid items={[{ title: "Fast", body: "So fast." }]} />);
+    expect(screen.getByText("Fast")).toBeInTheDocument();
+  });
+  it("LogoCloud renders logos only", () => {
+    render(<LogoCloud brands={["Acme", "Globex"]} />);
+    expect(screen.getByRole("list", { name: "Customer logos" })).toBeInTheDocument();
+    expect(screen.queryByText("hosting")).toBeNull();
+  });
+  it("SiteFooter exposes footer navigation", () => {
+    render(<SiteFooter />);
+    expect(screen.getByRole("navigation", { name: "Footer" })).toBeInTheDocument();
+    expect(screen.getByRole("status")).toHaveTextContent("normal");
   });
 });
 
