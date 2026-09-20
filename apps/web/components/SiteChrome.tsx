@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@buildora/utils";
 import { useBuildora } from "@/lib/store";
 import { frameworkLabels, frameworks } from "@/lib/registry";
-import { SpatialCommandPalette } from "@buildora/components";
+
 import { ThemeCustomizer } from "@/components/ThemeCustomizer";
 
 const links = [
@@ -128,7 +128,7 @@ export function SiteHeader() {
           <ThemeCustomizer />
           
           <div className="hidden md:block">
-            <SpatialCommandPalette />
+            <div className="border border-red-500 p-4">Missing Component: SpatialCommandPalette</div>
           </div>
 
           {/* Framework selector */}

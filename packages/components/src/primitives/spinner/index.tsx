@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "../../utils";
 
 export type SpinnerSize = "default" | "sm" | "lg" | "xl";
 export type SpinnerVariant = "default" | "accent" | "light";

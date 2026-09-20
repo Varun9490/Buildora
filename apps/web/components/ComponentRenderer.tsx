@@ -4,8 +4,6 @@ import * as React from "react";
 import { DEFAULT_RENDER_CONTROLS, type Controls } from "@/lib/render-controls";
 import {
   MagneticButton,
-  LiquidButton,
-  MagneticCard,
   Backdrop,
   CursorFx,
   TextFx,
@@ -13,7 +11,6 @@ import {
   FxButton,
   SlingshotOTP,
   InteractiveDropzone,
-  SpatialCommandPalette,
   CreativeNotifications,
   AuroraBackground,
   ParticleField,
@@ -30,7 +27,6 @@ import {
   AttachmentPrompt,
   AIReviewEdit,
   AdvancedTable,
-  SpreadsheetGrid,
   QueryBuilder,
   DiffViewer,
   JSONViewer,
@@ -38,27 +34,9 @@ import {
   Terminal,
   FileTree,
   CodeEditorLite,
-  ApiRequestBuilder,
-  WebhookViewer,
-  EnvManager,
-  CronBuilder,
-  PricingTable,
-  TeamSwitcher,
-  OnboardingChecklist,
-  UsageDashboard,
-  InviteFlow,
-  ApprovalWorkflow,
-  AuditLog,
-  FeatureFlags,
   Kanban,
   Calendar,
   CommandPalette,
-  NodeEditor,
-  TimelineEditor,
-  WorkflowBuilder,
-  MarkdownEditor,
-  MentionInput,
-  CommentThread,
   RichTextEditor,
   SlashCommands,
   VersionHistory,
@@ -192,7 +170,7 @@ import {
   CtaBlock,
   FeatureGrid,
   LogoCloud,
-  SiteFooter,
+  SiteFooter
 } from "@buildora/components";
 
 export type { Controls } from "@/lib/render-controls";
@@ -298,8 +276,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
           </MagneticButton>
         </div>
       );
-    case "liquid-button":
-      return wrap(<LiquidButton intensity={controls.intensity}>Liquid action</LiquidButton>);
+    // removed liquid-button
     case "backdrop":
       return wrap(
         <Backdrop variant="aurora" className="w-full rounded-xl p-10 text-center">
@@ -337,13 +314,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
           <FxButton effect="liquid">Liquid</FxButton>
         </div>
       );
-    case "magnetic-card":
-      return wrap(
-        <MagneticCard tilt={controls.tilt} className="w-80">
-          <p className="font-display text-lg font-bold">Magnetic card</p>
-          <p className="mt-2 text-sm text-[--b-muted]">Tilt + spotlight. Focus with Tab.</p>
-        </MagneticCard>
-      );
+    // removed magnetic-card
     case "slingshot-otp":
       return wrap(<SlingshotOTP length={Math.round(controls.length)} onComplete={() => undefined} />);
     case "interactive-dropzone":
@@ -354,54 +325,16 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
           <AttachmentPrompt />
         </div>
       );
-    case "spatial-command-palette":
-      return wrap(<SpatialCommandPalette />);
-    case "command-palette":
-      return wrap(
-        <div className="w-full max-w-md">
-          <CommandPalette />
-        </div>
-      );
-    case "cursor-spotlight":
-      return wrap(
-        <CursorSpotlight className="w-80 rounded-2xl p-6">
-          <p className="font-display text-lg font-bold">Move inside me</p>
-          <p className="mt-2 text-sm text-[--b-muted]">Spotlight follows the cursor.</p>
-        </CursorSpotlight>
-      );
-    case "aurora-background":
-      return wrap(
-        <AuroraBackground className="w-96 rounded-2xl p-8">
-          <p className="font-display text-xl font-black">Aurora</p>
-          <p className="mt-2 text-sm text-[--b-muted]">Pure CSS drift. Reduced-motion safe.</p>
-        </AuroraBackground>
-      );
-    case "particle-field":
-      return wrap(<ParticleField count={Math.round(controls.count)} />);
-    case "morphing-typography":
-      return wrap(<MorphingTypography />);
-    case "holographic-card":
-      return wrap(
-        <HolographicCard className="w-80">
-          <p className="font-display text-lg font-bold">Holographic</p>
-          <p className="mt-2 text-sm text-[--b-muted]">Sheen tracks pointer.</p>
-        </HolographicCard>
-      );
-    case "interactive-3d-card":
-      return wrap(
-        <Interactive3DCard className="w-80 h-48">
-          <p className="font-display text-lg font-bold">Front</p>
-          <p className="mt-2 text-sm text-[--b-muted]">Click to flip.</p>
-        </Interactive3DCard>
-      );
-    case "tactile-loader":
-      return wrap(<TactileLoader />);
-    case "creative-notifications":
-      return wrap(
-        <div className="flex min-h-[280px] w-full max-w-sm flex-col items-center justify-start pt-4">
-          <CreativeNotifications />
-        </div>
-      );
+    // removed spatial-command-palette
+    // removed command-palette
+    // removed cursor-spotlight
+    // removed aurora-background
+    // removed particle-field
+    // removed morphing-typography
+    // removed holographic-card
+    // removed interactive-3d-card
+    // removed tactile-loader
+    // removed creative-notifications
     case "streaming-chat":
       return wrap(
         <div className="w-full max-w-2xl">
@@ -454,24 +387,14 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
           <AdvancedTable className="w-full" pageSize={Math.round(controls.pageSize)} />
         </div>
       );
-    case "spreadsheet-grid":
-      return wrap(
-        <div className="w-full max-w-4xl overflow-auto">
-          <SpreadsheetGrid />
-        </div>
-      );
+    // removed spreadsheet-grid
     case "query-builder":
       return wrap(
         <div className="w-full max-w-2xl">
           <QueryBuilder />
         </div>
       );
-    case "audit-log":
-      return wrap(
-        <div className="w-full max-w-2xl">
-          <AuditLog />
-        </div>
-      );
+    // removed audit-log
     case "version-history":
       return wrap(
         <div className="w-full max-w-xl">
@@ -490,24 +413,13 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
           <LogViewer />
         </div>
       );
-    case "webhook-viewer":
-      return wrap(
-        <div className="w-full max-w-3xl">
-          <WebhookViewer />
-        </div>
-      );
+    // removed webhook-viewer
     case "terminal":
       return wrap(<Terminal />);
-    case "api-request-builder":
-      return wrap(
-        <div className="w-full max-w-3xl">
-          <ApiRequestBuilder />
-        </div>
-      );
+    // removed api-request-builder
     case "file-tree":
       return wrap(<FileTree />);
-    case "code-editor":
-      return wrap(<CodeEditorLite />);
+    // removed code-editor
     case "rich-text-editor":
       return wrap(
         <div className="w-full max-w-2xl">
@@ -520,76 +432,24 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
           <SlashCommands />
         </div>
       );
-    case "env-manager":
-      return wrap(
-        <div className="w-full max-w-3xl">
-          <EnvManager />
-        </div>
-      );
-    case "feature-flags":
-      return wrap(
-        <div className="w-full max-w-xl">
-          <FeatureFlags />
-        </div>
-      );
-    case "cron-builder":
-      return wrap(
-        <div className="w-full max-w-xl">
-          <CronBuilder />
-        </div>
-      );
-    case "timeline-editor":
-      return wrap(
-        <div className="w-full max-w-3xl">
-          <TimelineEditor />
-        </div>
-      );
-    case "workflow-builder":
-      return wrap(
-        <div className="w-full max-w-3xl">
-          <WorkflowBuilder />
-        </div>
-      );
-    case "node-editor":
-      return wrap(
-        <div className="w-full max-w-2xl">
-          <NodeEditor />
-        </div>
-      );
-    case "pricing-table":
-      return wrap(<PricingTable />);
-    case "usage-dashboard":
-      return wrap(<UsageDashboard />);
-    case "team-switcher":
-      return wrap(<TeamSwitcher />);
-    case "invite-flow":
-      return wrap(
-        <div className="w-full max-w-md">
-          <InviteFlow />
-        </div>
-      );
-    case "onboarding-checklist":
-      return wrap(<OnboardingChecklist />);
-    case "approval-workflow":
-      return wrap(
-        <div className="w-full max-w-xl">
-          <ApprovalWorkflow />
-        </div>
-      );
-    case "kanban":
-      return wrap(
-        <div className="max-h-[400px] overflow-auto rounded-xl">
-          <Kanban />
-        </div>
-      );
+    // removed env-manager
+    // removed feature-flags
+    // removed cron-builder
+    // removed timeline-editor
+    // removed workflow-builder
+    // removed node-editor
+    // removed pricing-table
+    // removed usage-dashboard
+    // removed team-switcher
+    // removed invite-flow
+    // removed onboarding-checklist
+    // removed approval-workflow
+    // removed kanban
     case "calendar":
       return wrap(<Calendar />);
-    case "markdown-editor":
-      return wrap(<MarkdownEditor />);
-    case "mention-input":
-      return wrap(<MentionInput />);
-    case "comment-thread":
-      return wrap(<CommentThread />);
+    // removed markdown-editor
+    // removed mention-input
+    // removed comment-thread
     case "button":
       return wrap(
         <div className="flex flex-wrap gap-3">
@@ -877,266 +737,54 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
           <PaginationNext />
         </Pagination>
       );
-    case "command-bar":
-      return wrap(
-        <CommandBar defaultOpen>
-          <CommandBarTrigger>Open commands</CommandBarTrigger>
-          <CommandBarItem shortcut="⌘P">Open playground</CommandBarItem>
-          <CommandBarItem shortcut="⌘K">Search components</CommandBarItem>
-        </CommandBar>
-      );
-    case "tui-panel":
-      return wrap(
-        <div className="w-full max-w-md">
-          <TUIPanel title="registry" focused>
-            <p className="font-mono text-xs text-[--b-text-secondary]">54 components · valid</p>
-          </TUIPanel>
-        </div>
-      );
-    case "tui-status-bar":
-      return wrap(
-        <div className="w-full max-w-xl">
-          <TUIStatusBar items={[{ label: "branch", value: "main", color: "success" }, { label: "tests", value: "30 pass", color: "accent" }]} />
-        </div>
-      );
-    case "tui-header":
-      return wrap(
-        <div className="w-full max-w-xl">
-          <TUIHeader title="buildora" subtitle="registry console" />
-        </div>
-      );
-    case "tui-footer":
-      return wrap(
-        <div className="w-full max-w-xl">
-          <TUIFooter shortcuts={[{ key: "q", label: "quit" }, { key: "?", label: "help" }]} />
-        </div>
-      );
-    case "tui-table":
-      return wrap(
-        <div className="w-full max-w-2xl">
-          <TUITable
-            columns={[{ key: "name", header: "Component" }, { key: "status", header: "Status" }]}
-            rows={[{ id: "1", name: "magnetic-button", status: "Full" }, { id: "2", name: "kanban", status: "Full" }]}
-          />
-        </div>
-      );
-    case "tui-tree":
-      return wrap(
-        <div className="w-full max-w-sm">
-          <TUITree nodes={[{ id: "r", label: "registry", expanded: true, children: [{ id: "c1", label: "magnetic-button.json" }, { id: "c2", label: "kanban.json" }] }]} />
-        </div>
-      );
-    case "tui-list":
-      return wrap(
-        <div className="w-full max-w-sm">
-          <TUIList items={[{ id: "1", label: "magnetic-button" }, { id: "2", label: "streaming-chat" }, { id: "3", label: "kanban" }]} />
-        </div>
-      );
-    case "tui-form":
-      return wrap(
-        <div className="w-full max-w-sm">
-          <TUIForm fields={[{ name: "component", label: "Component", type: "text", value: "", placeholder: "magnetic-button" }, { name: "stable", label: "Mark stable", type: "checkbox", value: false }]} />
-        </div>
-      );
-    case "tui-select":
-      return wrap(
-        <div className="w-full max-w-sm">
-          <TUISelect options={[{ value: "react", label: "React" }, { value: "vue", label: "Vue" }, { value: "svelte", label: "Svelte" }]} placeholder="Pick framework" />
-        </div>
-      );
-    case "tui-multi-select":
-      return wrap(
-        <div className="w-full max-w-sm">
-          <TUIMultiSelect options={[{ value: "a11y", label: "Accessibility" }, { value: "perf", label: "Performance" }, { value: "docs", label: "Docs" }]} selected={["a11y"]} />
-        </div>
-      );
-    case "tui-progress":
-      return wrap(
-        <div className="w-full max-w-sm">
-          <TUIProgress value={68} label="registry build" showValue />
-        </div>
-      );
-    case "tui-spinner":
-      return wrap(<TUISpinner text="validating registry" />);
-    case "tui-gauge":
-      return wrap(<TUIGauge value={72} max={100} label="coverage" unit="%" showValue />);
-    case "tui-sparkline":
-      return wrap(<TUISparkline data={[4, 7, 5, 9, 6, 11, 8]} label="installs" showMinMax />);
-    case "tui-log-viewer":
-      return wrap(
-        <div className="w-full max-w-xl">
-          <TUILogViewer entries={[{ level: "info", message: "registry valid", source: "ci" }, { level: "warn", message: "large prop table", source: "docs" }, { level: "success", message: "30 tests pass", source: "ci" }]} />
-        </div>
-      );
-    case "tui-help-overlay":
-      return wrap(
-        <div className="w-full max-w-md">
-          <TUIHelpOverlay bindings={[{ key: "q", label: "Quit" }, { key: "?", label: "Help" }, { key: "j/k", label: "Navigate" }]} visible />
-        </div>
-      );
-    case "tui-diff-viewer":
-      return wrap(
-        <div className="w-full max-w-2xl">
-          <TUIDiffViewer hunks={[{ type: "header", content: "magnetic-button.tsx" }, { type: "delete", oldLine: 12, content: "strength={0.2}" }, { type: "add", newLine: 12, content: "strength={0.35}" }]} />
-        </div>
-      );
-    case "terminal-workspace":
-      return wrap(
-        <div className="h-[420px] w-full max-w-4xl overflow-hidden rounded-xl">
-          <TerminalUI />
-        </div>
-      );
-    case "noise-background":
-      return wrap(
-        <NoiseBackground className="w-96 rounded-2xl p-8">
-          <p className="font-display text-lg font-bold">Grain surface</p>
-        </NoiseBackground>
-      );
-    case "grid-background":
-      return wrap(
-        <GridBackground className="w-96 rounded-2xl p-8">
-          <p className="font-display text-lg font-bold">Grid surface</p>
-        </GridBackground>
-      );
-    case "dot-grid-background":
-      return wrap(
-        <DotGridBackground className="w-96 rounded-2xl p-8">
-          <p className="font-display text-lg font-bold">Dot lattice</p>
-        </DotGridBackground>
-      );
-    case "gradient-mesh-background":
-      return wrap(
-        <GradientMeshBackground className="w-96 rounded-2xl p-8">
-          <p className="font-display text-lg font-bold">Mesh field</p>
-        </GradientMeshBackground>
-      );
-    case "aurora-beam-background":
-      return wrap(
-        <AuroraBeamBackground className="w-96 rounded-2xl p-8">
-          <p className="font-display text-lg font-bold">Aurora beams</p>
-        </AuroraBeamBackground>
-      );
-    case "ripple-background":
-      return wrap(
-        <RippleBackground className="w-96 rounded-2xl p-8">
-          <p className="font-display text-lg font-bold">Ripple field</p>
-        </RippleBackground>
-      );
-    case "meteor-background":
-      return wrap(
-        <MeteorBackground className="w-96 rounded-2xl p-8">
-          <p className="font-display text-lg font-bold">Meteor shower</p>
-        </MeteorBackground>
-      );
-    case "beam-background":
-      return wrap(
-        <BeamBackground className="w-96 rounded-2xl p-8">
-          <p className="font-display text-lg font-bold">Light beams</p>
-        </BeamBackground>
-      );
-    case "glow-cursor":
-      return wrap(
-        <div className="relative">
-          <GlowCursor />
-          <div className="rounded-2xl border border-[--b-border] p-8 text-center text-sm text-[--b-text-secondary]">Move to see glow</div>
-        </div>
-      );
-    case "blob-cursor":
-      return wrap(
-        <div className="relative">
-          <BlobCursor />
-          <div className="rounded-2xl border border-[--b-border] p-8 text-center text-sm text-[--b-text-secondary]">Move to see blob</div>
-        </div>
-      );
-    case "trail-cursor":
-      return wrap(
-        <div className="relative">
-          <TrailCursor />
-          <div className="rounded-2xl border border-[--b-border] p-8 text-center text-sm text-[--b-text-secondary]">Move to see trail</div>
-        </div>
-      );
-    case "ghost-cursor":
-      return wrap(
-        <div className="relative">
-          <GhostCursor />
-          <div className="rounded-2xl border border-[--b-border] p-8 text-center text-sm text-[--b-text-secondary]">Move to see ghost</div>
-        </div>
-      );
-    case "spotlight-cursor":
-      return wrap(
-        <div className="relative">
-          <SpotlightCursor />
-          <div className="rounded-2xl border border-[--b-border] p-8 text-center text-sm text-[--b-text-secondary]">Move to see spotlight</div>
-        </div>
-      );
-    case "typewriter":
-      return wrap(<Typewriter text={["Build.", "Remix.", "Ship."]} />);
-    case "scrambled-text":
-      return wrap(<ScrambledText text="registry-driven" />);
-    case "blur-text":
-      return wrap(<BlurText text="Clarity on entry" />);
-    case "gradient-text":
-      return wrap(<GradientText>Buildora</GradientText>);
-    case "glitch-text":
-      return wrap(<GlitchText text="SHIP IT" />);
-    case "ripple-button":
-      return wrap(<RippleButton>Ripple action</RippleButton>);
-    case "shimmer-button":
-      return wrap(<ShimmerButton>Shimmer action</ShimmerButton>);
-    case "glow-button":
-      return wrap(<GlowButton>Glow action</GlowButton>);
-    case "gradient-border-button":
-      return wrap(<GradientBorderButton>Gradient frame</GradientBorderButton>);
-    case "hold-button":
-      return wrap(<HoldButton>Hold to confirm</HoldButton>);
-    case "glare-card":
-      return wrap(
-        <GlareCard className="w-80">
-          <p className="font-display text-lg font-bold">Glare card</p>
-          <p className="mt-2 text-sm text-[--b-muted]">Specular sweep on pointer.</p>
-        </GlareCard>
-      );
-    case "spotlight-card":
-      return wrap(
-        <SpotlightCard className="w-80">
-          <p className="font-display text-lg font-bold">Spotlight card</p>
-          <p className="mt-2 text-sm text-[--b-muted]">Calm cursor light.</p>
-        </SpotlightCard>
-      );
-    case "wobble-card":
-      return wrap(
-        <WobbleCard className="w-80">
-          <p className="font-display text-lg font-bold">Wobble card</p>
-          <p className="mt-2 text-sm text-[--b-muted]">Spring response on enter.</p>
-        </WobbleCard>
-      );
-    case "glass-card":
-      return wrap(
-        <GlassCard className="w-80">
-          <p className="font-display text-lg font-bold">Glass card</p>
-          <p className="mt-2 text-sm text-[--b-muted]">Frosted surface.</p>
-        </GlassCard>
-      );
-    case "bento-grid":
-      return wrap(
-        <div className="w-full max-w-3xl">
-          <BentoGrid>
-            <BentoItem colSpan={2}>Wide tile</BentoItem>
-            <BentoItem>Tile</BentoItem>
-            <BentoItem>Tile</BentoItem>
-          </BentoGrid>
-        </div>
-      );
-    case "infinite-marquee":
-      return wrap(
-        <div className="w-full max-w-3xl overflow-hidden">
-          <InfiniteMarquee>
-            <span className="mx-4 font-mono text-sm">magnetic-button</span>
-            <span className="mx-4 font-mono text-sm">kanban</span>
-            <span className="mx-4 font-mono text-sm">terminal</span>
-          </InfiniteMarquee>
-        </div>
-      );
+    // removed command-bar
+    // removed tui-panel
+    // removed tui-status-bar
+    // removed tui-header
+    // removed tui-footer
+    // removed tui-table
+    // removed tui-tree
+    // removed tui-list
+    // removed tui-form
+    // removed tui-select
+    // removed tui-multi-select
+    // removed tui-progress
+    // removed tui-spinner
+    // removed tui-gauge
+    // removed tui-sparkline
+    // removed tui-log-viewer
+    // removed tui-help-overlay
+    // removed tui-diff-viewer
+    // removed terminal-workspace
+    // removed noise-background
+    // removed grid-background
+    // removed dot-grid-background
+    // removed gradient-mesh-background
+    // removed aurora-beam-background
+    // removed ripple-background
+    // removed meteor-background
+    // removed beam-background
+    // removed glow-cursor
+    // removed blob-cursor
+    // removed trail-cursor
+    // removed ghost-cursor
+    // removed spotlight-cursor
+    // removed typewriter
+    // removed scrambled-text
+    // removed blur-text
+    // removed gradient-text
+    // removed glitch-text
+    // removed ripple-button
+    // removed shimmer-button
+    // removed glow-button
+    // removed gradient-border-button
+    // removed hold-button
+    // removed glare-card
+    // removed spotlight-card
+    // removed wobble-card
+    // removed glass-card
+    // removed bento-grid
+    // removed infinite-marquee
     case "masonry-layout":
       return wrap(
         <div className="w-full max-w-3xl">
@@ -1173,16 +821,13 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     default:
       return wrap(
-        <MagneticCard className="w-80">
+        <div className="w-80 rounded-xl border border-[--b-border] bg-[--b-surface] p-6 shadow-card">
           <p className="font-display text-lg font-bold">{slug}</p>
           <p className="mt-2 text-sm text-[--b-muted]">
             Live React implementation shares patterns with the components above. Open the framework tabs
-            for code.
+            to see the code.
           </p>
-          <div className="mt-4">
-            <MagneticButton>Interact</MagneticButton>
-          </div>
-        </MagneticCard>
+        </div>
       );
   }
 }

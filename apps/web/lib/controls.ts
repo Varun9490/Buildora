@@ -48,42 +48,32 @@ export const COMPONENT_CONTROLS: Record<string, ControlDef[]> = {
     { kind: "select", key: "variant", label: "Variant", options: ["accent", "ghost", "iris"], prop: "variant" },
     { kind: "toggle", key: "glow", label: "Glow", prop: "glow" },
   ],
-  "liquid-button": [
-    { kind: "slider", key: "intensity", label: "Goo intensity", min: 0, max: 1, step: 0.05, prop: "intensity" },
-  ],
-  "magnetic-card": [
-    { kind: "slider", key: "tilt", label: "Tilt (deg)", min: 0, max: 20, step: 1, prop: "tilt" },
-  ],
+  // removed liquid-button
+  // removed magnetic-card
   "slingshot-otp": [
     { kind: "slider", key: "length", label: "Code length", min: 4, max: 8, step: 1, prop: "length" },
   ],
-  "particle-field": [
-    { kind: "slider", key: "count", label: "Particle count", min: 10, max: 200, step: 5, prop: "count" },
-  ],
+  // removed particle-field
   "advanced-table": [
     { kind: "slider", key: "pageSize", label: "Rows per page", min: 3, max: 12, step: 1, prop: "pageSize" },
   ],
-  "spreadsheet-grid": [
-    { kind: "slider", key: "pageSize", label: "Rows per page", min: 3, max: 12, step: 1, prop: "pageSize" },
-  ],
+  // removed spreadsheet-grid
   "query-builder": [
     { kind: "slider", key: "pageSize", label: "Rows per page", min: 3, max: 12, step: 1, prop: "pageSize" },
   ],
-  "audit-log": [
-    { kind: "slider", key: "pageSize", label: "Rows per page", min: 3, max: 12, step: 1, prop: "pageSize" },
-  ],
+  // removed audit-log
   "version-history": [
     { kind: "slider", key: "pageSize", label: "Rows per page", min: 3, max: 12, step: 1, prop: "pageSize" },
   ],
   // Components with no tunable numeric props expose zero controls.
   // The UI then shows an honest "no tunable props" state.
-  "cursor-spotlight": [],
-  "aurora-background": [],
-  "morphing-typography": [],
-  "holographic-card": [],
-  "interactive-3d-card": [],
-  "tactile-loader": [],
-  "creative-notifications": [],
+  // removed cursor-spotlight
+  // removed aurora-background
+  // removed morphing-typography
+  // removed holographic-card
+  // removed interactive-3d-card
+  // removed tactile-loader
+  // removed creative-notifications
   "streaming-chat": [],
   "token-meter": [],
   "model-selector": [],
@@ -95,31 +85,31 @@ export const COMPONENT_CONTROLS: Record<string, ControlDef[]> = {
   "diff-viewer": [],
   "json-viewer": [],
   "log-viewer": [],
-  "webhook-viewer": [],
+  // removed webhook-viewer
   terminal: [],
-  "api-request-builder": [],
+  // removed api-request-builder
   "file-tree": [],
-  "code-editor": [],
+  // removed code-editor
   "rich-text-editor": [],
   "slash-commands": [],
-  "env-manager": [],
-  "feature-flags": [],
-  "cron-builder": [],
-  "timeline-editor": [],
-  "workflow-builder": [],
-  "node-editor": [],
-  "pricing-table": [],
-  "usage-dashboard": [],
-  "team-switcher": [],
-  "invite-flow": [],
-  "onboarding-checklist": [],
-  "approval-workflow": [],
-  "command-palette": [],
-  "spatial-command-palette": [],
-  kanban: [],
+  // removed env-manager
+  // removed feature-flags
+  // removed cron-builder
+  // removed timeline-editor
+  // removed workflow-builder
+  // removed node-editor
+  // removed pricing-table
+  // removed usage-dashboard
+  // removed team-switcher
+  // removed invite-flow
+  // removed onboarding-checklist
+  // removed approval-workflow
+  // removed command-palette
+  // removed spatial-command-palette
+  // removed kanban
   calendar: [],
-  "markdown-editor": [],
-  "mention-input": [],
+  // removed markdown-editor
+  // removed mention-input
   "comment-thread": [],
   button: [],
   input: [],
@@ -156,54 +146,54 @@ export const COMPONENT_CONTROLS: Record<string, ControlDef[]> = {
   breadcrumb: [],
   "step-nav": [],
   pagination: [],
-  "command-bar": [],
-  "tui-panel": [],
-  "tui-status-bar": [],
-  "tui-header": [],
-  "tui-footer": [],
-  "tui-table": [],
-  "tui-tree": [],
-  "tui-list": [],
-  "tui-form": [],
-  "tui-select": [],
-  "tui-multi-select": [],
-  "tui-progress": [],
-  "tui-spinner": [],
-  "tui-gauge": [],
-  "tui-sparkline": [],
-  "tui-log-viewer": [],
-  "tui-help-overlay": [],
-  "tui-diff-viewer": [],
-  "terminal-workspace": [],
-  "noise-background": [],
-  "grid-background": [],
-  "dot-grid-background": [],
-  "gradient-mesh-background": [],
-  "aurora-beam-background": [],
-  "ripple-background": [],
-  "meteor-background": [],
-  "beam-background": [],
-  "glow-cursor": [],
-  "blob-cursor": [],
-  "trail-cursor": [],
-  "ghost-cursor": [],
-  "spotlight-cursor": [],
-  typewriter: [],
-  "scrambled-text": [],
-  "blur-text": [],
-  "gradient-text": [],
-  "glitch-text": [],
-  "ripple-button": [],
-  "shimmer-button": [],
-  "glow-button": [],
-  "gradient-border-button": [],
-  "hold-button": [],
-  "glare-card": [],
-  "spotlight-card": [],
-  "wobble-card": [],
-  "glass-card": [],
-  "bento-grid": [],
-  "infinite-marquee": [],
+  // removed command-bar
+  // removed tui-panel
+  // removed tui-status-bar
+  // removed tui-header
+  // removed tui-footer
+  // removed tui-table
+  // removed tui-tree
+  // removed tui-list
+  // removed tui-form
+  // removed tui-select
+  // removed tui-multi-select
+  // removed tui-progress
+  // removed tui-spinner
+  // removed tui-gauge
+  // removed tui-sparkline
+  // removed tui-log-viewer
+  // removed tui-help-overlay
+  // removed tui-diff-viewer
+  // removed terminal-workspace
+  // removed noise-background
+  // removed grid-background
+  // removed dot-grid-background
+  // removed gradient-mesh-background
+  // removed aurora-beam-background
+  // removed ripple-background
+  // removed meteor-background
+  // removed beam-background
+  // removed glow-cursor
+  // removed blob-cursor
+  // removed trail-cursor
+  // removed ghost-cursor
+  // removed spotlight-cursor
+  // removed typewriter
+  // removed scrambled-text
+  // removed blur-text
+  // removed gradient-text
+  // removed glitch-text
+  // removed ripple-button
+  // removed shimmer-button
+  // removed glow-button
+  // removed gradient-border-button
+  // removed hold-button
+  // removed glare-card
+  // removed spotlight-card
+  // removed wobble-card
+  // removed glass-card
+  // removed bento-grid
+  // removed infinite-marquee
   "masonry-layout": [],
   "cta-block": [],
   "feature-grid": [],

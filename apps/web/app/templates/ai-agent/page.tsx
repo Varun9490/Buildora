@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { SpatialCommandPalette, StreamingChat } from "@buildora/components";
+import {  StreamingChat } from "@buildora/components";
 import { ThemeCustomizer } from "@/components/ThemeCustomizer";
 import { cn } from "@buildora/utils";
 
@@ -92,7 +92,7 @@ export default function AIAgentTemplate() {
         </aside>
       </main>
 
-      <SpatialCommandPalette />
+      <div className="border border-red-500 p-4">Missing Component: SpatialCommandPalette</div>
     </div>
   );
 }

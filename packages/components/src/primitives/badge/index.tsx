@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "../../utils";
 
 export type BadgeVariant = "default" | "secondary" | "success" | "warning" | "danger" | "outline" | "accent";
 

@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "../../utils";
+import { useReducedMotion } from "../../hooks/use-reduced-motion";
 
 export type SkeletonVariant = "default" | "circular" | "rounded";
 

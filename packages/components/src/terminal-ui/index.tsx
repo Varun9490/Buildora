@@ -51,7 +51,7 @@ const defaultFiles: FileTreeNode[] = [
         type: "folder",
         children: [
           { name: "components", path: "/buildora/packages/components", type: "folder" },
-          { name: "utils", path: "/buildora/packages/utils", type: "folder" },
+          { name: "../utils", path: "../utils", type: "folder" },
           { name: "hooks", path: "/buildora/packages/hooks", type: "folder" },
           { name: "tokens", path: "/buildora/packages/tokens", type: "folder" },
         ],

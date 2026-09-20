@@ -1,6 +1,4 @@
 export { MagneticButton } from "./magnetic-button";
-export { LiquidButton } from "./liquid-button";
-export { MagneticCard } from "./magnetic-card";
 export { Backdrop, type BackdropProps, type BackdropVariant } from "./backdrop";
 export { CursorFx, type CursorFxProps, type CursorFxMode } from "./cursor-fx";
 export { TextFx, type TextFxProps, type TextFxKind } from "./text-fx";
@@ -42,7 +40,6 @@ export {
 } from "./layouts";
 export { SlingshotOTP } from "./slingshot-otp";
 export { InteractiveDropzone } from "./interactive-dropzone";
-export { SpatialCommandPalette } from "./spatial-command-palette";
 export { CreativeNotifications } from "./creative-notifications";
 export {
   AuroraBackground,
@@ -58,25 +55,11 @@ export { AgentTimeline, type AgentStep } from "./agent-timeline";
 export { AttachmentPrompt, type Attachment } from "./attachment-prompt";
 export { AIReviewEdit } from "./ai-review-edit";
 export { AdvancedTable, JSONViewer, LogViewer } from "./advanced-table";
-export { SpreadsheetGrid } from "./spreadsheet-grid";
 export { QueryBuilder, type Filter } from "./query-builder";
 export { DiffViewer, type DiffLine } from "./diff-viewer";
 export { Terminal, FileTree, CodeEditorLite } from "./terminal";
-export { ApiRequestBuilder } from "./api-request-builder";
-export { WebhookViewer, type WebhookEvent } from "./webhook-viewer";
-export { EnvManager, type EnvVar } from "./env-manager";
-export { CronBuilder } from "./cron-builder";
-export { PricingTable, TeamSwitcher, OnboardingChecklist, UsageDashboard } from "./pricing-table";
-export { InviteFlow } from "./invite-flow";
-export { ApprovalWorkflow, type Approver } from "./approval-workflow";
-export { AuditLog, type AuditEvent } from "./audit-log";
-export { FeatureFlags, type Flag } from "./feature-flags";
 export { Kanban, Calendar } from "./kanban";
 export { CommandPalette, type Command } from "./command-palette";
-export { NodeEditor, type DNode, type DEdge } from "./node-editor";
-export { TimelineEditor, type Clip } from "./timeline-editor";
-export { WorkflowBuilder, type WFStep } from "./workflow-builder";
-export { MarkdownEditor, MentionInput, CommentThread } from "./markdown-editor";
 export { RichTextEditor } from "./rich-text-editor";
 export { SlashCommands, type SlashItem } from "./slash-commands";
 export { VersionHistory, type DocVersion } from "./version-history";
