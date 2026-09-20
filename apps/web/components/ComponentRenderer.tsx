@@ -20,21 +20,42 @@ import {
   TokenMeter,
   ModelSelector,
   ToolCallViz,
+  AgentTimeline,
+  AttachmentPrompt,
+  AIReviewEdit,
   AdvancedTable,
+  SpreadsheetGrid,
+  QueryBuilder,
+  DiffViewer,
   JSONViewer,
   LogViewer,
   Terminal,
   FileTree,
   CodeEditorLite,
+  ApiRequestBuilder,
+  WebhookViewer,
+  EnvManager,
+  CronBuilder,
   PricingTable,
   TeamSwitcher,
   OnboardingChecklist,
   UsageDashboard,
+  InviteFlow,
+  ApprovalWorkflow,
+  AuditLog,
+  FeatureFlags,
   Kanban,
   Calendar,
+  CommandPalette,
+  NodeEditor,
+  TimelineEditor,
+  WorkflowBuilder,
   MarkdownEditor,
   MentionInput,
   CommentThread,
+  RichTextEditor,
+  SlashCommands,
+  VersionHistory,
 } from "@buildora/components";
 
 export type Controls = {
@@ -168,11 +189,21 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
     case "slingshot-otp":
       return wrap(<SlingshotOTP length={Math.round(controls.length)} onComplete={() => undefined} />);
     case "interactive-dropzone":
-    case "attachment-prompt":
       return wrap(<InteractiveDropzone />);
+    case "attachment-prompt":
+      return wrap(
+        <div className="w-full max-w-xl">
+          <AttachmentPrompt />
+        </div>
+      );
     case "spatial-command-palette":
-    case "command-palette":
       return wrap(<SpatialCommandPalette />);
+    case "command-palette":
+      return wrap(
+        <div className="w-full max-w-md">
+          <CommandPalette />
+        </div>
+      );
     case "cursor-spotlight":
       return wrap(
         <CursorSpotlight className="w-80 rounded-2xl p-6">
@@ -236,28 +267,57 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
         </div>
       );
     case "tool-call-viz":
-    case "agent-timeline":
       return wrap(
         <div className="w-full max-w-2xl">
           <ToolCallViz />
         </div>
       );
+    case "agent-timeline":
+      return wrap(
+        <div className="w-full max-w-2xl">
+          <AgentTimeline />
+        </div>
+      );
     case "ai-review-edit":
+      return wrap(
+        <div className="w-full max-w-2xl">
+          <AIReviewEdit />
+        </div>
+      );
     case "diff-viewer":
       return wrap(
-        <div className="grid w-full max-w-2xl gap-3 md:grid-cols-2">
-          <div className="rounded-xl border border-red-400/30 bg-red-500/10 p-4 text-sm">− old: radius={"{80}"}</div>
-          <div className="rounded-xl border border-[#4fe08a]/30 bg-[#4fe08a]/10 p-4 text-sm">+ new: radius={"{120}"}</div>
+        <div className="w-full max-w-3xl">
+          <DiffViewer />
         </div>
       );
     case "advanced-table":
-    case "spreadsheet-grid":
-    case "query-builder":
-    case "audit-log":
-    case "version-history":
       return wrap(
         <div className="max-h-[440px] w-full max-w-4xl overflow-auto rounded-xl shadow-lg">
           <AdvancedTable className="w-full" pageSize={Math.round(controls.pageSize)} />
+        </div>
+      );
+    case "spreadsheet-grid":
+      return wrap(
+        <div className="w-full max-w-4xl overflow-auto">
+          <SpreadsheetGrid />
+        </div>
+      );
+    case "query-builder":
+      return wrap(
+        <div className="w-full max-w-2xl">
+          <QueryBuilder />
+        </div>
+      );
+    case "audit-log":
+      return wrap(
+        <div className="w-full max-w-2xl">
+          <AuditLog />
+        </div>
+      );
+    case "version-history":
+      return wrap(
+        <div className="w-full max-w-xl">
+          <VersionHistory />
         </div>
       );
     case "json-viewer":
@@ -267,57 +327,97 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
         </div>
       );
     case "log-viewer":
-    case "webhook-viewer":
       return wrap(
         <div className="w-full max-w-xl">
           <LogViewer />
         </div>
       );
+    case "webhook-viewer":
+      return wrap(
+        <div className="w-full max-w-3xl">
+          <WebhookViewer />
+        </div>
+      );
     case "terminal":
-    case "api-request-builder":
       return wrap(<Terminal />);
+    case "api-request-builder":
+      return wrap(
+        <div className="w-full max-w-3xl">
+          <ApiRequestBuilder />
+        </div>
+      );
     case "file-tree":
       return wrap(<FileTree />);
     case "code-editor":
-    case "rich-text-editor":
-    case "slash-commands":
       return wrap(<CodeEditorLite />);
+    case "rich-text-editor":
+      return wrap(
+        <div className="w-full max-w-2xl">
+          <RichTextEditor />
+        </div>
+      );
+    case "slash-commands":
+      return wrap(
+        <div className="w-full max-w-md">
+          <SlashCommands />
+        </div>
+      );
     case "env-manager":
+      return wrap(
+        <div className="w-full max-w-3xl">
+          <EnvManager />
+        </div>
+      );
     case "feature-flags":
       return wrap(
-        <AdvancedTable
-          columns={[
-            { key: "component", label: "Flag" },
-            { key: "category", label: "State" },
-            { key: "framework", label: "Rollout" },
-            { key: "difficulty", label: "Owner" },
-          ]}
-          rows={[
-            { id: "1", component: "magnetic-v2", category: "on", framework: "50%", difficulty: "you" },
-            { id: "2", component: "otp-slingshot", category: "off", framework: "0%", difficulty: "ada" },
-          ]}
-        />
+        <div className="w-full max-w-xl">
+          <FeatureFlags />
+        </div>
       );
     case "cron-builder":
+      return wrap(
+        <div className="w-full max-w-xl">
+          <CronBuilder />
+        </div>
+      );
     case "timeline-editor":
+      return wrap(
+        <div className="w-full max-w-3xl">
+          <TimelineEditor />
+        </div>
+      );
     case "workflow-builder":
+      return wrap(
+        <div className="w-full max-w-3xl">
+          <WorkflowBuilder />
+        </div>
+      );
     case "node-editor":
-      return wrap(<Kanban />);
+      return wrap(
+        <div className="w-full max-w-2xl">
+          <NodeEditor />
+        </div>
+      );
     case "pricing-table":
       return wrap(<PricingTable />);
     case "usage-dashboard":
       return wrap(<UsageDashboard />);
     case "team-switcher":
+      return wrap(<TeamSwitcher />);
     case "invite-flow":
       return wrap(
-        <div className="flex gap-3">
-          <TeamSwitcher />
-          <ModelSelector models={["owner", "admin", "member"]} />
+        <div className="w-full max-w-md">
+          <InviteFlow />
         </div>
       );
     case "onboarding-checklist":
-    case "approval-workflow":
       return wrap(<OnboardingChecklist />);
+    case "approval-workflow":
+      return wrap(
+        <div className="w-full max-w-xl">
+          <ApprovalWorkflow />
+        </div>
+      );
     case "kanban":
       return wrap(
         <div className="max-h-[400px] overflow-auto rounded-xl">

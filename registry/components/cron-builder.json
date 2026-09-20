@@ -3,7 +3,7 @@
   "id": "cron-builder",
   "name": "Cron Builder",
   "slug": "cron-builder",
-  "description": "Human-friendly cron expression builder.",
+  "description": "Human-friendly cron expression builder with presets.",
   "categories": [
     "developer"
   ],
@@ -19,77 +19,77 @@
     "react": {
       "status": "Full",
       "files": [
-        "packages/components/src/kanban/index.tsx"
+        "packages/components/src/cron-builder/index.tsx"
       ]
     },
     "javascript": {
       "status": "Partial",
       "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
       "files": [
-        "packages/components/src/kanban/index.tsx"
+        "packages/components/src/cron-builder/index.tsx"
       ]
     },
     "vue": {
       "status": "Partial",
       "notes": "Composition API snippet port. React is the source of truth.",
       "files": [
-        "packages/components/src/kanban/index.tsx"
+        "packages/components/src/cron-builder/index.tsx"
       ]
     },
     "svelte": {
       "status": "Partial",
       "notes": "Svelte runes snippet port. React is the source of truth.",
       "files": [
-        "packages/components/src/kanban/index.tsx"
+        "packages/components/src/cron-builder/index.tsx"
       ]
     },
     "angular": {
       "status": "Partial",
       "notes": "Angular @Input snippet port. React is the source of truth.",
       "files": [
-        "packages/components/src/kanban/index.tsx"
+        "packages/components/src/cron-builder/index.tsx"
       ]
     },
     "html": {
       "status": "Partial",
       "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
       "files": [
-        "packages/components/src/kanban/index.tsx"
+        "packages/components/src/cron-builder/index.tsx"
       ]
     },
     "tailwind": {
       "status": "Partial",
       "notes": "Tailwind variant snippet, not a standalone component.",
       "files": [
-        "packages/components/src/kanban/index.tsx"
+        "packages/components/src/cron-builder/index.tsx"
       ]
     },
     "reactNative": {
       "status": "Partial",
       "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
       "files": [
-        "packages/components/src/kanban/index.tsx"
+        "packages/components/src/cron-builder/index.tsx"
       ]
     },
     "flutter": {
       "status": "Experimental",
       "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
       "files": [
-        "packages/components/src/kanban/index.tsx"
+        "packages/components/src/cron-builder/index.tsx"
       ]
     },
     "swiftUI": {
       "status": "Experimental",
       "notes": "Experimental snippet port; pointer interactions remapped.",
       "files": [
-        "packages/components/src/kanban/index.tsx"
+        "packages/components/src/cron-builder/index.tsx"
       ]
     },
     "compose": {
       "status": "Experimental",
       "notes": "Experimental snippet port; pointer interactions remapped.",
       "files": [
-        "packages/components/src/kanban/index.tsx"
+        "packages/components/src/cron-builder/index.tsx"
       ]
     }
   },
@@ -107,13 +107,13 @@
   },
   "files": [
     {
-      "path": "packages/components/src/kanban/index.tsx",
-      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport type CardT = { id: string; title: string; tag?: string; };\nexport type ColT = { id: string; title: string; cards: CardT[]; };\n\nexport function Kanban({ initial, className }: { initial?: ColT[]; className?: string }) {\n  const [cols, setCols] = React.useState<ColT[]>(initial ?? [\n    { id: \"todo\", title: \"To do\", cards: [{ id: \"a\", title: \"Slingshot OTP a11y pass\", tag: \"a11y\" }, { id: \"b\", title: \"Registry JSON schema\", tag: \"registry\" }] },\n    { id: \"doing\", title: \"Doing\", cards: [{ id: \"c\", title: \"Kanban spring tuning\", tag: \"motion\" }] },\n    { id: \"done\", title: \"Done\", cards: [{ id: \"d\", title: \"Magnetic button\", tag: \"creative\" }] }\n  ]);\n  const [drag, setDrag] = React.useState<{ card: string; from: string } | null>(null);\n  const [over, setOver] = React.useState<string | null>(null);\n\n  const move = (cardId: string, from: string, to: string) => {\n    if (from === to) return;\n    setCols((cs) => {\n      const next = cs.map((c) => ({ ...c, cards: [...c.cards] }));\n      const s = next.find((c) => c.id === from);\n      const d = next.find((c) => c.id === to);\n      if (!s || !d) return cs;\n      const idx = s.cards.findIndex((c) => c.id === cardId);\n      if (idx < 0) return cs;\n      const [card] = s.cards.splice(idx, 1);\n      d.cards.push(card);\n      return next;\n    });\n  };\n\n  const moveKeyboard = (colIdx: number, cardIdx: number, dir: -1 | 1) => {\n    const target = colIdx + dir;\n    if (target < 0 || target >= cols.length) return;\n    const card = cols[colIdx].cards[cardIdx];\n    move(card.id, cols[colIdx].id, cols[target].id);\n  };\n\n  return (\n    <div className={cn(\"grid gap-3 md:grid-cols-3\", className)} role=\"group\" aria-label=\"Kanban board\">\n      {cols.map((col, ci) => (\n        <div key={col.id}\n          onDragOver={(e) => { e.preventDefault(); setOver(col.id); }}\n          onDragLeave={() => setOver((o) => (o === col.id ? null : o))}\n          onDrop={(e) => { e.preventDefault(); if (drag) move(drag.card, drag.from, col.id); setDrag(null); setOver(null); }}\n          className={cn(\"min-h-[12rem] rounded-2xl border p-2 transition-all\", over === col.id ? \"border-[#d4ff4f] bg-[#d4ff4f]/[0.06] scale-[1.01]\" : \"border-white/10 bg-white/[0.02]\")}>\n          <p className=\"px-2 py-1 text-xs font-bold uppercase tracking-wider text-white/50\">{col.title} · {col.cards.length}</p>\n          <ul className=\"space-y-2\">\n            {col.cards.map((card, ki) => (\n              <li key={card.id}\n                draggable\n                onDragStart={() => setDrag({ card: card.id, from: col.id })}\n                onDragEnd={() => { setDrag(null); setOver(null); }}\n                tabIndex={0}\n                aria-label={`${card.title} in ${col.title}. Arrow keys with Alt move columns.`}\n                onKeyDown={(e) => {\n                  if (e.altKey && e.key === \"ArrowRight\") moveKeyboard(ci, ki, 1);\n                  if (e.altKey && e.key === \"ArrowLeft\") moveKeyboard(ci, ki, -1);\n                }}\n                className=\"cursor-grab rounded-xl border border-white/10 bg-[#141726] p-3 text-sm shadow transition-transform active:cursor-grabbing active:scale-[1.02]\">\n                <p className=\"font-medium\">{card.title}</p>\n                {card.tag && <span className=\"mt-1 inline-block rounded bg-white/10 px-1.5 py-0.5 font-mono text-[10px] text-white/60\">{card.tag}</span>}\n                <span className=\"sr-only\">Press Alt plus arrow keys to move.</span>\n              </li>\n            ))}\n          </ul>\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport function Calendar({ className }: { className?: string }) {\n  const [day, setDay] = React.useState(14);\n  const days = Array.from({ length: 28 }, (_, i) => i + 1);\n  return (\n    <div className={cn(\"rounded-2xl border border-white/10 bg-[#0d0f16] p-4\", className)}>\n      <p className=\"mb-2 text-sm font-bold\">February <span className=\"text-white/40\">— scheduling demo</span></p>\n      <div className=\"grid grid-cols-7 gap-1\" role=\"grid\" aria-label=\"Calendar\">\n        {days.map((d) => (\n          <button key={d} role=\"gridcell\" aria-selected={d === day} onClick={() => setDay(d)}\n            className={cn(\"aspect-square rounded-lg text-sm transition-all\", d === day ? \"bg-[#d4ff4f] font-bold text-black scale-105\" : \"text-white/70 hover:bg-white/10\")}>{d}</button>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default Kanban;\n"
+      "path": "packages/components/src/cron-builder/index.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nconst PRESETS: Record<string, string> = {\n  \"Every 5 min\": \"*/5 * * * *\",\n  Hourly: \"0 * * * *\",\n  \"Daily 09:00\": \"0 9 * * *\",\n  \"Weekly Mon\": \"0 9 * * 1\",\n};\n\nexport function CronBuilder({\n  initial = \"0 9 * * *\",\n  onChange,\n  className,\n}: {\n  initial?: string;\n  onChange?: (expr: string) => void;\n  className?: string;\n}) {\n  const [expr, setExpr] = React.useState(initial);\n  const parts = expr.trim().split(/\\s+/);\n  const human =\n    expr === \"*/5 * * * *\" ? \"Every 5 minutes\" :\n    expr === \"0 * * * *\" ? \"Every hour\" :\n    expr === \"0 9 * * *\" ? \"Daily at 09:00\" :\n    expr === \"0 9 * * 1\" ? \"Weekly on Monday at 09:00\" :\n    parts.length === 5 ? `Custom schedule (${parts.join(\" \")})` : \"Invalid cron — need 5 fields\";\n  return (\n    <div className={cn(\"rounded-2xl border border-white/10 bg-[#0d0f16] p-4\", className)}>\n      <div className=\"flex flex-wrap gap-1.5\" aria-label=\"Presets\">\n        {Object.entries(PRESETS).map(([label, e]) => (\n          <button\n            key={label}\n            onClick={() => {\n              setExpr(e);\n              onChange?.(e);\n            }}\n            aria-pressed={expr === e}\n            className={cn(\n              \"rounded-lg border px-2.5 py-1 font-mono text-[11px]\",\n              expr === e ? \"border-[#d4ff4f] bg-[#d4ff4f]/10 text-[#d4ff4f]\" : \"border-white/10 text-white/60 hover:bg-white/5\"\n            )}\n          >\n            {label}\n          </button>\n        ))}\n      </div>\n      <label htmlFor=\"cron-expr\" className=\"mb-1 mt-3 block font-mono text-[11px] text-white/40\">Cron expression</label>\n      <input\n        id=\"cron-expr\"\n        value={expr}\n        onChange={(e) => {\n          setExpr(e.target.value);\n          onChange?.(e.target.value);\n        }}\n        spellCheck={false}\n        placeholder=\"0 9 * * *\"\n        className=\"w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2 font-mono text-sm outline-none focus:border-[#d4ff4f]/60\"\n      />\n      <p className=\"mt-2 font-mono text-xs text-[#4fe08a]\" role=\"status\">{human}</p>\n    </div>\n  );\n}\n\nexport default CronBuilder;\n"
     }
   ],
-  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/kanban",
-  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/kanban/index.tsx",
-  "sourceDir": "kanban",
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/cron-builder",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/cron-builder/index.tsx",
+  "sourceDir": "cron-builder",
   "docs": "/components/cron-builder",
   "install": "pnpm dlx shadcn@latest add @buildora/cron-builder"
 }
