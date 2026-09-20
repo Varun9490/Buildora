@@ -37,7 +37,7 @@ export function VersionHistory({
             <span className="font-mono text-[11px] text-white/40">{v.at} · {v.author}</span>
           </span>
           {v.current ? (
-            <span className="rounded bg-[#d4ff4f]/20 px-2 py-0.5 font-mono text-[11px] text-[#d4ff4f]">current</span>
+            <span className="rounded bg-[#d4ff4f]/20 px-2 py-0.5 font-mono text-[11px] text-[--b-accent]">current</span>
           ) : (
             <button
               onClick={() => {

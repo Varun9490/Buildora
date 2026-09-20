@@ -76,7 +76,7 @@ export function SpatialCommandPalette({ items, className }: { items?: PaletteIte
                     const idx = flat.indexOf(item);
                     return (
                       <button key={item.id} onMouseEnter={() => setSel(idx)} onClick={() => choose(item.id)}
-                        className={cn("flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition-all", idx === sel ? "translate-x-1 bg-[#d4ff4f] text-black" : "text-white/80 hover:bg-white/5")}>
+                        className={cn("flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition-all", idx === sel ? "translate-x-1 bg-[--b-accent] text-[--b-accent-foreground]" : "text-white/80 hover:bg-white/5")}>
                         <span className="font-medium">{item.title}</span>
                         {item.hint && <span className={cn("text-[11px]", idx === sel ? "text-black/60" : "text-white/40")}>{item.hint}</span>}
                       </button>

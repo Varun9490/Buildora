@@ -55,7 +55,7 @@ export function SlashCommands({
               onMouseEnter={() => setActive(i)}
               className={cn(
                 "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left",
-                i === active ? "bg-[#d4ff4f] text-black" : "hover:bg-white/5"
+                i === active ? "bg-[--b-accent] text-[--b-accent-foreground]" : "hover:bg-white/5"
               )}
             >
               <span className="font-mono text-sm font-bold">{x.cmd}</span>

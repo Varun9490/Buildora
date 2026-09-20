@@ -46,7 +46,7 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
             className={cn(
               "absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white/80 shadow-lg transition-all",
               !reducedMotion && "duration-200",
-              "peer-checked:translate-x-5 peer-checked:bg-[#d4ff4f]"
+              "peer-checked:translate-x-5 peer-checked:bg-[--b-accent]"
             )}
           />
         </div>

@@ -321,7 +321,7 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
           onPointerDown={(e) => onPointerDown(e, rock.id)}
           className={cn(
             "absolute left-0 top-0 flex h-10 w-10 touch-none select-none items-center justify-center rounded-full border border-white/10 bg-[#111] font-mono text-lg font-bold text-white shadow-lg transition-colors",
-            rock.state === "loaded" ? "cursor-grabbing border-[--b-accent] bg-[--b-accent] text-black shadow-[0_0_20px_rgba(212,255,79,0.3)]" : "cursor-grab hover:bg-white/10"
+            rock.state === "loaded" ? "cursor-grabbing border-[--b-accent] bg-[--b-accent] text-[--b-accent-foreground] shadow-[0_0_20px_rgba(212,255,79,0.3)]" : "cursor-grab hover:bg-white/10"
           )}
           style={{ transform: `translate(${rock.x}px, ${rock.y}px) translate(-50%, -50%)` }}
         >

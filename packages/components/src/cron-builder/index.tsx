@@ -40,7 +40,7 @@ export function CronBuilder({
             aria-pressed={expr === e}
             className={cn(
               "rounded-lg border px-2.5 py-1 font-mono text-[11px]",
-              expr === e ? "border-[#d4ff4f] bg-[#d4ff4f]/10 text-[#d4ff4f]" : "border-white/10 text-white/60 hover:bg-white/5"
+              expr === e ? "border-[--b-accent] bg-[#d4ff4f]/10 text-[--b-accent]" : "border-white/10 text-white/60 hover:bg-white/5"
             )}
           >
             {label}
@@ -59,7 +59,7 @@ export function CronBuilder({
         placeholder="0 9 * * *"
         className="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2 font-mono text-sm outline-none focus:border-[#d4ff4f]/60"
       />
-      <p className="mt-2 font-mono text-xs text-[#4fe08a]" role="status">{human}</p>
+      <p className="mt-2 font-mono text-xs text-[--b-success]" role="status">{human}</p>
     </div>
   );
 }

@@ -11,14 +11,14 @@ export function Terminal({ lines = ["$ pnpm dlx shadcn@latest add @buildora/magn
   return (
     <div className={cn("overflow-hidden rounded-2xl border border-white/10 bg-[#07080c]", className)}>
       <div className="flex items-center gap-1.5 border-b border-white/10 px-3 py-2" aria-hidden>
-        <span className="h-2.5 w-2.5 rounded-full bg-[#ff5d5d]" /><span className="h-2.5 w-2.5 rounded-full bg-[#ff8a3d]" /><span className="h-2.5 w-2.5 rounded-full bg-[#4fe08a]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#ff5d5d]" /><span className="h-2.5 w-2.5 rounded-full bg-[#ff8a3d]" /><span className="h-2.5 w-2.5 rounded-full bg-[--b-success]" />
         <span className="ml-2 font-mono text-[11px] text-white/40">buildora — zsh</span>
       </div>
       <div ref={bodyRef} className="code-scroll h-48 overflow-auto p-3 font-mono text-xs" role="log" aria-label="Terminal output">
-        {history.map((l, i) => <p key={i} className={cn(l.startsWith("$") ? "text-[#d4ff4f]" : "text-white/70")}>{l}</p>)}
+        {history.map((l, i) => <p key={i} className={cn(l.startsWith("$") ? "text-[--b-accent]" : "text-white/70")}>{l}</p>)}
       </div>
       <form className="flex items-center gap-2 border-t border-white/10 p-2" onSubmit={(e) => { e.preventDefault(); if (!cmd.trim()) return; setHistory((h) => [...h, `$ ${cmd}`, `→ (demo) ran: ${cmd}`]); setCmd(""); }}>
-        <span className="pl-1 font-mono text-xs text-[#d4ff4f]" aria-hidden>$</span>
+        <span className="pl-1 font-mono text-xs text-[--b-accent]" aria-hidden>$</span>
         <label htmlFor="term-input" className="sr-only">Terminal command</label>
         <input id="term-input" value={cmd} onChange={(e) => setCmd(e.target.value)} placeholder="type a command…" className="w-full bg-transparent font-mono text-xs outline-none placeholder:text-white/25" />
       </form>

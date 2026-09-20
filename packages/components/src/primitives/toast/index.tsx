@@ -87,10 +87,10 @@ const Toast = React.forwardRef<HTMLDivElement, ToastData>(
 
     const variantStyles: Record<ToastVariant, string> = {
       default: "bg-white/10 border-white/10 text-white",
-      success: "bg-[#4fe08a]/10 border-[#4fe08a]/20 text-[#4fe08a]",
+      success: "bg-[#4fe08a]/10 border-[#4fe08a]/20 text-[--b-success]",
       warning: "bg-[#ffb86b]/10 border-[#ffb86b]/20 text-[#ffb86b]",
       danger: "bg-red-500/10 border-red-500/20 text-red-400",
-      accent: "bg-[#d4ff4f]/10 border-[#d4ff4f]/20 text-[#d4ff4f]",
+      accent: "bg-[#d4ff4f]/10 border-[#d4ff4f]/20 text-[--b-accent]",
     };
 
     return (

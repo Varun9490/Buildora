@@ -59,7 +59,7 @@ export function InteractiveDropzone({ onFiles, simulate = true, accept, classNam
         onPointerLeave={() => setNear(0)}
         className={cn(
           "relative cursor-pointer overflow-hidden rounded-2xl border border-dashed p-8 text-center transition-all duration-200",
-          drag ? "border-[#d4ff4f] bg-[#d4ff4f]/10 scale-[1.01]" : "border-white/15 bg-white/[0.03] hover:border-white/30"
+          drag ? "border-[--b-accent] bg-[#d4ff4f]/10 scale-[1.01]" : "border-white/15 bg-white/[0.03] hover:border-white/30"
         )}
         style={{ boxShadow: near > 0 ? `0 0 ${40 * near}px rgba(157,140,255,${0.35 * near})` : undefined }}
       >
@@ -75,17 +75,17 @@ export function InteractiveDropzone({ onFiles, simulate = true, accept, classNam
               <div className="min-w-0 flex-1">
                 <div className="flex justify-between text-xs"><span className="truncate font-medium">{f.name}</span><span className="text-white/50">{formatBytes(f.size)} · {Math.round(f.progress)}%</span></div>
                 <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-white/10">
-                  <div className={cn("h-full rounded-full transition-all", f.status === "done" ? "bg-[#d4ff4f]" : "bg-[#9d8cff]")} style={{ width: `${f.status === "done" ? 100 : f.progress}%` }} />
+                  <div className={cn("h-full rounded-full transition-all", f.status === "done" ? "bg-[--b-accent]" : "bg-[#9d8cff]")} style={{ width: `${f.status === "done" ? 100 : f.progress}%` }} />
                 </div>
               </div>
-              {f.status === "done" ? <span className="text-xs text-[#d4ff4f]">Done</span> : (
+              {f.status === "done" ? <span className="text-xs text-[--b-accent]">Done</span> : (
                 <button
                   className="rounded-lg border border-white/10 px-2 py-1 text-[11px] text-white/70 hover:bg-white/10"
                   onClick={(e) => { e.stopPropagation(); setFiles((p) => p.map((x) => (x.name === f.name ? { ...x, status: "error" as const, progress: 0 } : x))); }}
                 >Simulate error</button>
               )}
               {f.status === "error" && (
-                <button className="rounded-lg bg-[#d4ff4f] px-2 py-1 text-[11px] font-bold text-black" onClick={(e) => { e.stopPropagation(); setFiles((p) => p.map((x) => (x.name === f.name ? { ...x, status: "uploading" as const, progress: 10 } : x))); }}>Retry</button>
+                <button className="rounded-lg bg-[--b-accent] px-2 py-1 text-[11px] font-bold text-[--b-accent-foreground]" onClick={(e) => { e.stopPropagation(); setFiles((p) => p.map((x) => (x.name === f.name ? { ...x, status: "uploading" as const, progress: 10 } : x))); }}>Retry</button>
               )}
             </li>
           ))}

@@ -32,7 +32,7 @@ export function WebhookViewer({
                 e.id === sel ? "border-[#d4ff4f]/50 bg-[#d4ff4f]/[0.06]" : "border-white/10 bg-white/[0.02] hover:bg-white/[0.05]"
               )}
             >
-              <span className={cn("rounded px-1.5 py-0.5", e.status < 300 ? "bg-[#4fe08a]/20 text-[#4fe08a]" : "bg-red-500/20 text-red-300")}>
+              <span className={cn("rounded px-1.5 py-0.5", e.status < 300 ? "bg-[#4fe08a]/20 text-[--b-success]" : "bg-red-500/20 text-red-300")}>
                 {e.status}
               </span>
               <span className="truncate text-white/85">{e.name}</span>

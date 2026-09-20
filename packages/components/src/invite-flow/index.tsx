@@ -60,8 +60,8 @@ export function InviteFlow({
           ))}
         </select>
       </div>
-      <button className="w-full rounded-xl bg-[#d4ff4f] px-3 py-2 text-sm font-bold text-black">Send invite</button>
-      {done && <p role="status" className="text-xs text-[#4fe08a]">{done}</p>}
+      <button className="w-full rounded-xl bg-[--b-accent] px-3 py-2 text-sm font-bold text-[--b-accent-foreground]">Send invite</button>
+      {done && <p role="status" className="text-xs text-[--b-success]">{done}</p>}
     </form>
   );
 }

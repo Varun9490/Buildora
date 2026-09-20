@@ -35,8 +35,8 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
 
     const variantStyles: Record<ProgressVariant, string> = {
       default: "bg-white/20",
-      accent: "bg-[#d4ff4f]",
-      success: "bg-[#4fe08a]",
+      accent: "bg-[--b-accent]",
+      success: "bg-[--b-success]",
       warning: "bg-[#ffb86b]",
       danger: "bg-red-500",
     };

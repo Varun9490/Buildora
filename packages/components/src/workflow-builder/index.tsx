@@ -31,9 +31,9 @@ export function WorkflowBuilder({
               className={cn(
                 "flex h-8 items-center gap-2 rounded-full border px-3 font-mono text-xs",
                 i === active
-                  ? "border-[#d4ff4f] bg-[#d4ff4f] font-bold text-black"
+                  ? "border-[--b-accent] bg-[--b-accent] font-bold text-[--b-accent-foreground]"
                   : i < active
-                    ? "border-[#4fe08a]/40 bg-[#4fe08a]/10 text-[#4fe08a]"
+                    ? "border-[#4fe08a]/40 bg-[#4fe08a]/10 text-[--b-success]"
                     : "border-white/15 text-white/60 hover:bg-white/5"
               )}
             >
@@ -53,7 +53,7 @@ export function WorkflowBuilder({
         <button
           onClick={() => setActive((a) => Math.min(steps.length - 1, a + 1))}
           disabled={active >= steps.length - 1}
-          className="rounded-lg bg-[#d4ff4f] px-3 py-1.5 text-xs font-bold text-black disabled:opacity-40"
+          className="rounded-lg bg-[--b-accent] px-3 py-1.5 text-xs font-bold text-[--b-accent-foreground] disabled:opacity-40"
         >
           Next
         </button>

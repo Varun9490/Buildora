@@ -80,14 +80,14 @@ const MobileNavItem = React.forwardRef<HTMLAnchorElement, MobileNavItemProps>(
             "text-xs font-medium transition-colors",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50",
             isActive
-              ? "text-[#d4ff4f]"
+              ? "text-[--b-accent]"
               : "text-white/50 hover:text-white",
             !reducedMotion && "duration-200",
             className
           )}
           {...props}
         >
-          {icon && <span className={cn("h-6 w-6", isActive && "text-[#d4ff4f]")}>{icon}</span>}
+          {icon && <span className={cn("h-6 w-6", isActive && "text-[--b-accent]")}>{icon}</span>}
           <span>{label}</span>
         </a>
       </li>

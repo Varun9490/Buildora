@@ -67,7 +67,7 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
           />
           <div
             className={cn(
-              "absolute w-4 h-4 rounded-full bg-[#d4ff4f] shadow-lg shadow-[#d4ff4f]/30 transition-all pointer-events-none",
+              "absolute w-4 h-4 rounded-full bg-[--b-accent] shadow-lg shadow-[#d4ff4f]/30 transition-all pointer-events-none",
               !reducedMotion && "duration-100",
               disabled && "opacity-50"
             )}
@@ -79,7 +79,7 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
         {showValue && (
           <div className="mt-2 flex justify-between text-xs text-white/50">
             <span>{formatValue ? formatValue(min) : min}</span>
-            <span className="text-[#d4ff4f] font-medium">
+            <span className="text-[--b-accent] font-medium">
               {formatValue ? formatValue(currentValue) : currentValue}
             </span>
             <span>{formatValue ? formatValue(max) : max}</span>

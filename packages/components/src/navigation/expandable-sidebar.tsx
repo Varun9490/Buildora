@@ -127,7 +127,7 @@ const ExpandableSidebarItem = React.forwardRef<HTMLAnchorElement, ExpandableSide
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50",
           !context.expanded && "justify-center px-2 mx-1",
           isActive
-            ? "bg-[#d4ff4f]/10 text-[#d4ff4f] border border-[#d4ff4f]/20"
+            ? "bg-[#d4ff4f]/10 text-[--b-accent] border border-[#d4ff4f]/20"
             : "text-white/60 hover:text-white hover:bg-white/5",
           !reducedMotion && "duration-200",
           className

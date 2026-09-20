@@ -38,13 +38,13 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
               "h-5 w-5 rounded-full border border-white/20 bg-white/5 transition-all",
               !reducedMotion && "duration-200",
               "peer-focus-visible:ring-2 peer-focus-visible:ring-[#d4ff4f]/50 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-[#08090d]",
-              "peer-checked:border-[#d4ff4f] peer-checked:border-opacity-100",
+              "peer-checked:border-[--b-accent] peer-checked:border-opacity-100",
               className
             )}
           >
             <div
               className={cn(
-                "absolute inset-1 rounded-full bg-[#d4ff4f] transition-transform origin-center",
+                "absolute inset-1 rounded-full bg-[--b-accent] transition-transform origin-center",
                 !reducedMotion && "duration-200",
                 checked ? "scale-100 opacity-100" : "scale-0 opacity-0"
               )}

@@ -83,7 +83,7 @@ export function MorphingTypography({ words = ["Build", "Remix", "Ship"], classNa
   }, [words.length]);
   return (
     <div className={cn("font-display text-4xl font-black tracking-tight", className)} aria-live="polite">
-      <span key={i} className="inline-block bg-gradient-to-r from-[#d4ff4f] via-white to-[#9d8cff] bg-clip-text text-transparent" style={{ animation: "drift 1s ease" }}>{words[i]}</span>
+      <span key={i} className="inline-block bg-gradient-to-r from-[--b-accent] via-white to-[#9d8cff] bg-clip-text text-transparent" style={{ animation: "drift 1s ease" }}>{words[i]}</span>
     </div>
   );
 }
@@ -117,7 +117,7 @@ export function Interactive3DCard({ className, children }: { className?: string;
         <div className="relative h-44 transition-transform duration-500 [transform-style:preserve-3d]" style={{ transform: flip ? "rotateY(180deg)" : undefined }}>
           <div className="absolute inset-0 rounded-2xl border border-white/10 bg-[#141726] p-5 [backface-visibility:hidden]">{children ?? <p className="text-sm text-white/70">Front — click to flip</p>}</div>
           <div className="absolute inset-0 rounded-2xl border border-[#d4ff4f]/30 bg-[#10130a] p-5 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-            <p className="text-sm text-[#d4ff4f]">Back — specs, tokens, install. Lightweight CSS 3D, lazy-safe, no Three.js needed.</p>
+            <p className="text-sm text-[--b-accent]">Back — specs, tokens, install. Lightweight CSS 3D, lazy-safe, no Three.js needed.</p>
           </div>
         </div>
       </button>
@@ -129,7 +129,7 @@ export function TactileLoader({ label = "Loading", className }: { label?: string
   return (
     <div className={cn("inline-flex items-center gap-2", className)} role="status" aria-label={label}>
       {[0, 1, 2].map((i) => (
-        <span key={i} className="h-2 w-2 rounded-full bg-[#d4ff4f] animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
+        <span key={i} className="h-2 w-2 rounded-full bg-[--b-accent] animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
       ))}
       <span className="sr-only">{label}</span>
     </div>

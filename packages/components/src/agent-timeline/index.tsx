@@ -41,7 +41,7 @@ export function AgentTimeline({
             aria-hidden
             className={cn(
               "mt-1.5 h-3.5 w-3.5 shrink-0 rounded-full border-2",
-              s.status === "done" && "border-[#4fe08a] bg-[#4fe08a]/30",
+              s.status === "done" && "border-[--b-success] bg-[#4fe08a]/30",
               s.status === "running" && "motion-safe:animate-pulse border-[#ff8a3d] bg-[#ff8a3d]/30",
               s.status === "queued" && "border-white/20 bg-transparent"
             )}

@@ -42,7 +42,7 @@ export function ApiRequestBuilder({
         />
         <button
           onClick={() => setSent(true)}
-          className="rounded-lg bg-[#d4ff4f] px-4 py-1.5 font-mono text-xs font-bold text-black"
+          className="rounded-lg bg-[--b-accent] px-4 py-1.5 font-mono text-xs font-bold text-[--b-accent-foreground]"
         >
           Send
         </button>

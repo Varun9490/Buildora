@@ -25,7 +25,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     };
 
     const statusColors: Record<string, string> = {
-      online: "bg-[#4fe08a]",
+      online: "bg-[--b-success]",
       offline: "bg-white/30",
       busy: "bg-red-500",
       away: "bg-[#ffb86b]",

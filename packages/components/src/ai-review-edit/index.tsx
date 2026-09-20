@@ -26,7 +26,7 @@ export function AIReviewEdit({
           className={cn(
             "rounded px-2 py-0.5 font-mono text-[11px]",
             state === "pending" && "bg-white/10 text-white/60",
-            state === "accepted" && "bg-[#4fe08a]/20 text-[#4fe08a]",
+            state === "accepted" && "bg-[#4fe08a]/20 text-[--b-success]",
             state === "rejected" && "bg-red-500/20 text-red-300",
             state === "edited" && "bg-[#9d8cff]/20 text-[#9d8cff]"
           )}
@@ -63,7 +63,7 @@ export function AIReviewEdit({
             setState("accepted");
             onAccept?.();
           }}
-          className="flex-1 rounded-lg bg-[#4fe08a] px-3 py-1.5 text-xs font-bold text-black"
+          className="flex-1 rounded-lg bg-[--b-success] px-3 py-1.5 text-xs font-bold text-black"
         >
           Accept
         </button>

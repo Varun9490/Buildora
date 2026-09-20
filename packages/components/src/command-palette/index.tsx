@@ -57,7 +57,7 @@ export function CommandPalette({
               onMouseEnter={() => setActive(i)}
               className={cn(
                 "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm",
-                i === active ? "bg-[#d4ff4f] font-semibold text-black" : "text-white/75 hover:bg-white/5"
+                i === active ? "bg-[--b-accent] font-semibold text-[--b-accent-foreground]" : "text-white/75 hover:bg-white/5"
               )}
             >
               <span>{c.label}</span>

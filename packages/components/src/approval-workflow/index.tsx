@@ -31,7 +31,7 @@ export function ApprovalWorkflow({
               aria-hidden
               className={cn(
                 "h-2.5 w-2.5 rounded-full",
-                s.state === "approved" && "bg-[#4fe08a]",
+                s.state === "approved" && "bg-[--b-success]",
                 s.state === "rejected" && "bg-red-400",
                 s.state === "pending" && "bg-white/20"
               )}
@@ -42,7 +42,7 @@ export function ApprovalWorkflow({
               <span className="flex gap-1.5">
                 <button
                   onClick={() => setSteps((xs) => xs.map((x) => (x.id === s.id ? { ...x, state: "approved" } : x)))}
-                  className="rounded-lg bg-[#4fe08a] px-2.5 py-1 font-mono text-[11px] font-bold text-black"
+                  className="rounded-lg bg-[--b-success] px-2.5 py-1 font-mono text-[11px] font-bold text-black"
                 >
                   Approve
                 </button>

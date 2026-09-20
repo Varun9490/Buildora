@@ -8,6 +8,14 @@
  *   --b-ring, --b-success, --b-warning, --b-danger
  * - Components MUST use vars, never hardcoded #d4ff4f / white-opacity / #0C0C0C.
  * - Accent swap = change vars only. No sed across components.
+ *
+ * Known limitations (documented, not silently violated):
+ * - Translucent accent washes (e.g. bg accent /10) keep hardcoded hex:
+ *   Tailwind v3 cannot apply opacity modifiers to var() colors.
+ * - Iris/violet tones (#9d8cff, #5f4de8) have no token yet; a future
+ *   --b-iris scale should cover them.
+ * - JS color-math defaults (cursor glow alpha compositing) need hex channels
+ *   and intentionally keep hex fallbacks.
  */
 
 export const accentPresets = {

@@ -36,7 +36,7 @@ export function TimelineEditor({
                     className={cn(
                       "absolute top-1.5 h-7 rounded-md border px-2 font-mono text-[11px]",
                       sel === c.id
-                        ? "border-[#d4ff4f] bg-[#d4ff4f]/20 text-[#d4ff4f]"
+                        ? "border-[--b-accent] bg-[#d4ff4f]/20 text-[--b-accent]"
                         : "border-white/15 bg-[#9d8cff]/20 text-white/80 hover:bg-[#9d8cff]/30"
                     )}
                     style={{ left: `${c.start}%`, width: `${c.len}%` }}

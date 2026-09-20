@@ -22,8 +22,8 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
     };
 
     const variantStyles: Record<SpinnerVariant, string> = {
-      default: "text-[#d4ff4f]",
-      accent: "text-[#d4ff4f] drop-shadow-[0_0_8px_rgba(212,255,79,0.5))]",
+      default: "text-[--b-accent]",
+      accent: "text-[--b-accent] drop-shadow-[0_0_8px_rgba(212,255,79,0.5))]",
       light: "text-white/50",
     };
 

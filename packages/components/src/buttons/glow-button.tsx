@@ -49,8 +49,8 @@ export function GlowButton({
         "focus:outline-none focus:ring-2 focus:ring-offset-2",
         "disabled:opacity-50 disabled:pointer-events-none",
         variant === "solid"
-          ? "bg-[#d4ff4f] text-black hover:brightness-110 focus:ring-[#d4ff4f]/50"
-          : "border-2 border-[#d4ff4f] bg-transparent text-[#d4ff4f] hover:bg-[#d4ff4f]/10 focus:ring-[#d4ff4f]/50",
+          ? "bg-[--b-accent] text-[--b-accent-foreground] hover:brightness-110 focus:ring-[#d4ff4f]/50"
+          : "border-2 border-[--b-accent] bg-transparent text-[--b-accent] hover:bg-[#d4ff4f]/10 focus:ring-[#d4ff4f]/50",
         className
       )}
       {...rest}

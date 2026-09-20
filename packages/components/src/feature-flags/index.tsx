@@ -26,7 +26,7 @@ export function FeatureFlags({
             aria-checked={f.on}
             aria-label={f.name}
             onClick={() => setFlags((fs) => fs.map((x) => (x.id === f.id ? { ...x, on: !x.on } : x)))}
-            className={cn("relative h-6 w-11 shrink-0 rounded-full transition-colors", f.on ? "bg-[#d4ff4f]" : "bg-white/15")}
+            className={cn("relative h-6 w-11 shrink-0 rounded-full transition-colors", f.on ? "bg-[--b-accent]" : "bg-white/15")}
           >
             <span className={cn("absolute top-0.5 h-5 w-5 rounded-full transition-all", f.on ? "left-[22px] bg-black" : "left-0.5 bg-white")} />
           </button>

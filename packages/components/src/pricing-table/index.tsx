@@ -14,7 +14,7 @@ export function PricingTable({ className }: { className?: string }) {
     <div className={cn(className)}>
       <div className="mb-4 flex items-center justify-center gap-2 text-sm">
         <span className={cn(!yearly && "text-white", "text-white/50")}>Monthly</span>
-        <button role="switch" aria-checked={yearly} onClick={() => setYearly((y) => !y)} className={cn("relative h-6 w-11 rounded-full transition-colors", yearly ? "bg-[#d4ff4f]" : "bg-white/15")} aria-label="Toggle yearly billing">
+        <button role="switch" aria-checked={yearly} onClick={() => setYearly((y) => !y)} className={cn("relative h-6 w-11 rounded-full transition-colors", yearly ? "bg-[--b-accent]" : "bg-white/15")} aria-label="Toggle yearly billing">
           <span className={cn("absolute top-0.5 h-5 w-5 rounded-full bg-black transition-all", yearly ? "left-[22px]" : "left-0.5 bg-white")} />
         </button>
         <span className={cn(yearly && "text-white", "text-white/50")}>Yearly</span>
@@ -25,7 +25,7 @@ export function PricingTable({ className }: { className?: string }) {
             <p className="text-sm font-bold">{t.name}</p>
             <p className="mt-1 font-display text-3xl font-black">{t.price}</p>
             <p className="mt-1 text-xs text-white/55">{t.blurb}</p>
-            <button className={cn("mt-4 w-full rounded-xl px-3 py-2 text-sm font-bold", t.featured ? "bg-[#d4ff4f] text-black" : "border border-white/15 text-white hover:bg-white/10")}>{t.cta}</button>
+            <button className={cn("mt-4 w-full rounded-xl px-3 py-2 text-sm font-bold", t.featured ? "bg-[--b-accent] text-[--b-accent-foreground]" : "border border-white/15 text-white hover:bg-white/10")}>{t.cta}</button>
           </div>
         ))}
       </div>
@@ -61,11 +61,11 @@ export function OnboardingChecklist({ className }: { className?: string }) {
   return (
     <div className={cn("rounded-2xl border border-white/10 bg-white/[0.03] p-4", className)}>
       <div className="flex justify-between text-sm"><span className="font-bold">Getting started</span><span className="font-mono text-white/60">{pct}%</span></div>
-      <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Onboarding progress"><div className="h-full bg-[#d4ff4f]" style={{ width: `${pct}%` }} /></div>
+      <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Onboarding progress"><div className="h-full bg-[--b-accent]" style={{ width: `${pct}%` }} /></div>
       <ul className="mt-3 space-y-1">
         {steps.map((s, i) => (
           <li key={s}><label className="flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1.5 text-sm hover:bg-white/5">
-            <input type="checkbox" checked={done[i]} onChange={() => setDone((d) => d.map((v, j) => (j === i ? !v : v)))} className="h-4 w-4 accent-[#d4ff4f]" />
+            <input type="checkbox" checked={done[i]} onChange={() => setDone((d) => d.map((v, j) => (j === i ? !v : v)))} className="h-4 w-4 accent-[--b-accent]" />
             <span className={done[i] ? "text-white/40 line-through" : ""}>{s}</span>
           </label></li>
         ))}
@@ -81,7 +81,7 @@ export function UsageDashboard({ className }: { className?: string }) {
       <p className="text-sm font-bold">Usage</p>
       <p className="font-display text-3xl font-black">18.2k <span className="text-sm font-medium text-white/40">installs</span></p>
       <div className="mt-3 flex h-20 items-end gap-1.5" role="img" aria-label="Weekly installs trending up">
-        {bars.map((b, i) => <div key={i} className="flex-1 rounded-t bg-gradient-to-t from-[#5f4de8] to-[#d4ff4f]" style={{ height: `${b}%` }} />)}
+        {bars.map((b, i) => <div key={i} className="flex-1 rounded-t bg-gradient-to-t from-[#5f4de8] to-[--b-accent]" style={{ height: `${b}%` }} />)}
       </div>
     </div>
   );

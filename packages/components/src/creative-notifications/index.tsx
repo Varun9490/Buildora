@@ -17,7 +17,7 @@ export function CreativeNotifications({ seed }: { seed?: Toast[] }) {
   return (
     <div>
       <div className="flex gap-2">
-        <button onClick={() => push("accent")} className="rounded-lg bg-[#d4ff4f] px-3 py-1.5 text-xs font-bold text-black">Push success</button>
+        <button onClick={() => push("accent")} className="rounded-lg bg-[--b-accent] px-3 py-1.5 text-xs font-bold text-[--b-accent-foreground]">Push success</button>
         <button onClick={() => push("iris")} className="rounded-lg border border-white/15 px-3 py-1.5 text-xs text-white">Push info</button>
         <button onClick={() => push("danger")} className="rounded-lg border border-red-400/30 px-3 py-1.5 text-xs text-red-200">Push error</button>
       </div>

@@ -36,7 +36,7 @@ export function AdvancedTable({ columns, rows: initial, className, pageSize = 6 
     <div className={cn("overflow-hidden rounded-2xl border border-white/10 bg-[#0d0f16]", className)}>
       <div className="flex items-center gap-2 border-b border-white/10 p-3">
         <label htmlFor="tbl-search" className="sr-only">Filter table</label>
-        <input id="tbl-search" value={q} onChange={(e) => { setQ(e.target.value); setPage(0); }} placeholder="Filter…" className="w-full max-w-xs rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm outline-none focus:border-[#d4ff4f]" />
+        <input id="tbl-search" value={q} onChange={(e) => { setQ(e.target.value); setPage(0); }} placeholder="Filter…" className="w-full max-w-xs rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm outline-none focus:border-[--b-accent]" />
         <span className="ml-auto text-xs text-white/40">{filtered.length} rows</span>
       </div>
       <div className="overflow-x-auto">
@@ -96,7 +96,7 @@ export function LogViewer({ lines, className }: { lines?: string[]; className?: 
     <div className={cn("rounded-2xl border border-white/10 bg-black/50", className)} role="log" aria-label="Logs">
       <div className="border-b border-white/10 p-2"><input value={filter} onChange={(e) => setFilter(e.target.value)} placeholder="Filter logs…" aria-label="Filter logs" className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-2 py-1 font-mono text-xs outline-none" /></div>
       <div className="code-scroll max-h-44 overflow-auto p-3 font-mono text-xs">
-        {view.map((l, i) => <p key={i} className={cn(l.includes("WARN") ? "text-[#ff8a3d]" : l.includes("passed") || l.includes("ok") ? "text-[#4fe08a]" : "text-white/70")}>{l}</p>)}
+        {view.map((l, i) => <p key={i} className={cn(l.includes("WARN") ? "text-[#ff8a3d]" : l.includes("passed") || l.includes("ok") ? "text-[--b-success]" : "text-white/70")}>{l}</p>)}
         {view.length === 0 && <p className="text-white/40">No lines.</p>}
       </div>
     </div>

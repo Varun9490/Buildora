@@ -41,7 +41,7 @@ export function MentionInput({ users = ["ada", "grace", "linus", "maya"], classN
       <textarea id="mention" value={v} rows={3}
         onChange={(e) => { setV(e.target.value); setOpen(e.target.value.includes("@")); }}
         onKeyDown={(e) => { if (e.key === "Escape") setOpen(false); }}
-        className="w-full rounded-xl border border-white/10 bg-white/[0.04] p-3 text-sm outline-none focus:border-[#d4ff4f]" />
+        className="w-full rounded-xl border border-white/10 bg-white/[0.04] p-3 text-sm outline-none focus:border-[--b-accent]" />
       {open && matches.length > 0 && (
         <ul role="listbox" aria-label="Mention suggestions" className="absolute z-10 mt-1 w-48 rounded-xl border border-white/10 bg-[#12141d] p-1 shadow-card">
           {matches.map((u) => (
@@ -63,7 +63,7 @@ export function CommentThread({ className }: { className?: string }) {
           <li key={c.id} className="flex gap-2 rounded-xl border border-white/10 bg-[#12141d] p-2.5 text-sm">
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#9d8cff] text-xs font-black text-black">{c.author[0].toUpperCase()}</span>
             <div className="min-w-0 flex-1">
-              <p className="text-xs text-white/50">@{c.author} {c.resolved && <span className="text-[#4fe08a]">· resolved</span>}</p>
+              <p className="text-xs text-white/50">@{c.author} {c.resolved && <span className="text-[--b-success]">· resolved</span>}</p>
               <p className={c.resolved ? "text-white/40 line-through" : ""}>{c.text}</p>
               <button onClick={() => setComments((cs) => cs.map((x) => (x.id === c.id ? { ...x, resolved: !x.resolved } : x)))} className="mt-1 text-[11px] text-white/50 underline">{c.resolved ? "Reopen" : "Resolve"}</button>
             </div>

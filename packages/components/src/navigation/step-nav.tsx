@@ -117,9 +117,9 @@ const StepNavItem = React.forwardRef<HTMLDivElement, StepNavItemProps>(
               "flex h-8 w-8 items-center justify-center rounded-full border-2 text-sm font-semibold transition-colors",
               !reducedMotion && "duration-200",
               isCompleted
-                ? "border-[#d4ff4f] bg-[#d4ff4f] text-black"
+                ? "border-[--b-accent] bg-[--b-accent] text-[--b-accent-foreground]"
                 : isActive
-                  ? "border-[#d4ff4f] bg-[#d4ff4f]/10 text-[#d4ff4f]"
+                  ? "border-[--b-accent] bg-[#d4ff4f]/10 text-[--b-accent]"
                   : "border-white/20 bg-transparent text-white/40"
             )}
           >
@@ -148,7 +148,7 @@ const StepNavItem = React.forwardRef<HTMLDivElement, StepNavItemProps>(
             className={cn(
               "mx-2 h-0.5 w-8 transition-colors",
               !reducedMotion && "duration-200",
-              isCompleted ? "bg-[#d4ff4f]" : "bg-white/10"
+              isCompleted ? "bg-[--b-accent]" : "bg-white/10"
             )}
           />
         )}

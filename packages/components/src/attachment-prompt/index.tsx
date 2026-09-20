@@ -64,7 +64,7 @@ export function AttachmentPrompt({
             setText("");
           }}
           disabled={!text.trim() && files.length === 0}
-          className="ml-auto rounded-lg bg-[#d4ff4f] px-4 py-1.5 text-xs font-bold text-black disabled:opacity-40"
+          className="ml-auto rounded-lg bg-[--b-accent] px-4 py-1.5 text-xs font-bold text-[--b-accent-foreground] disabled:opacity-40"
         >
           Send
         </button>
