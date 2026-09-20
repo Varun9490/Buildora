@@ -65,7 +65,7 @@ function SearchField({
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder="Filter blocks"
+          placeholder="Filter components"
           className="w-full rounded-[10px] border border-[--b-border] bg-[--b-panel] py-2.5 pl-10 pr-9 text-sm text-[--b-text] outline-none transition-colors placeholder:text-[--b-muted] focus:border-[--b-accent]"
         />
         <svg
@@ -99,7 +99,7 @@ function SearchField({
           )}
         </AnimatePresence>
       </div>
-      <p className="text-xs leading-relaxed text-[--b-muted]">Filters combine. 54 blocks total.</p>
+      <p className="text-xs leading-relaxed text-[--b-muted]">Filters combine. {allComponents.length} components total.</p>
     </div>
   );
 }
@@ -151,7 +151,7 @@ function CategoryNav({
                   />
                 )}
                 <span className="relative truncate font-medium">
-                  {cat === "all" ? "All blocks" : cat}
+                  {cat === "all" ? "All components" : cat}
                 </span>
                 <span className="relative font-mono text-[11px] tabular-nums text-[--b-muted]">{count}</span>
               </button>
@@ -201,7 +201,7 @@ function ComponentCard({ c, reduce }: { c: ComponentSummary; reduce: boolean }) 
               ))}
             </div>
             <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[--b-accent]">
-              Open block
+              Open component
               <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
@@ -400,7 +400,7 @@ export default function ComponentsPage() {
               Filters
             </button>
             <p role="status" className="font-mono text-xs tabular-nums text-[--b-muted]">
-              {results.length} of {allComponents.length} blocks
+              {results.length} of {allComponents.length} components
             </p>
             <div className="ml-auto flex gap-1 rounded-[10px] border border-[--b-border] bg-[--b-panel] p-1" role="group" aria-label="Sort">
               {(["popular", "az"] as const).map((s) => (
@@ -495,7 +495,7 @@ export default function ComponentsPage() {
                 onClick={() => setMobileOpen(false)}
                 className="mt-6 w-full rounded-[10px] bg-[--b-accent] py-2.5 text-sm font-semibold text-[--b-accent-foreground] transition-transform active:scale-[0.98]"
               >
-                Show {results.length} blocks
+                Show {results.length} components
               </button>
             </motion.aside>
           </>
