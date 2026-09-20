@@ -12,7 +12,8 @@
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",
     "registry:build": "tsx scripts/build-registry.ts",
-    "registry:validate": "tsx scripts/validate-registry.ts"
+    "registry:validate": "tsx scripts/validate-registry.ts",
+    "registry:smoke": "tsx scripts/smoke-registry.ts"
   },
   "devDependencies": {
     "next": "^14.2.35",

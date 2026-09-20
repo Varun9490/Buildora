@@ -277,7 +277,7 @@
     {
       "slug": "agent-timeline",
       "name": "Agent Timeline",
-      "description": "Agent activity timeline (plan → act → observe). Shares Tool Call Viz patterns.",
+      "description": "Agent activity timeline (plan → act → observe) with status semantics.",
       "categories": [
         "ai-llm"
       ],
@@ -291,7 +291,7 @@
     {
       "slug": "attachment-prompt",
       "name": "Attachment Prompt",
-      "description": "Prompt input with attachment chips. Pairs with Streaming Chat + Dropzone.",
+      "description": "Prompt input with removable attachment chips and send.",
       "categories": [
         "ai-llm"
       ],
@@ -336,7 +336,7 @@
     {
       "slug": "spreadsheet-grid",
       "name": "Spreadsheet Grid",
-      "description": "Spreadsheet-like grid patterns (built on Advanced Table + Inline Editor).",
+      "description": "Editable spreadsheet grid with labeled cells and keyboard-native inputs.",
       "categories": [
         "data"
       ],
@@ -380,7 +380,7 @@
     {
       "slug": "query-builder",
       "name": "Query Builder",
-      "description": "Filter/query builder chips (uses Advanced Table filter patterns).",
+      "description": "Composable filter rows with field/operator/value and removable chips.",
       "categories": [
         "data"
       ],
@@ -394,7 +394,7 @@
     {
       "slug": "diff-viewer",
       "name": "Diff Viewer",
-      "description": "Side-by-side data comparison view.",
+      "description": "Side-by-side line comparison with added/removed semantics.",
       "categories": [
         "data",
         "content"
@@ -451,7 +451,7 @@
     {
       "slug": "api-request-builder",
       "name": "API Request Builder",
-      "description": "Method + URL + headers + body inspector patterns.",
+      "description": "Method + URL + body editor with live response preview.",
       "categories": [
         "developer"
       ],
@@ -465,7 +465,7 @@
     {
       "slug": "webhook-viewer",
       "name": "Webhook Viewer",
-      "description": "Webhook event list with payload inspector (Log Viewer patterns).",
+      "description": "Webhook event list with payload inspector.",
       "categories": [
         "developer"
       ],
@@ -493,7 +493,7 @@
     {
       "slug": "cron-builder",
       "name": "Cron Builder",
-      "description": "Human-friendly cron expression builder.",
+      "description": "Human-friendly cron expression builder with presets.",
       "categories": [
         "developer"
       ],
@@ -550,7 +550,7 @@
     {
       "slug": "invite-flow",
       "name": "Invite Flow",
-      "description": "Invite-member dialog patterns (Team Switcher + Mention Input).",
+      "description": "Validated invite form with email + role and success status.",
       "categories": [
         "saas"
       ],
@@ -578,7 +578,7 @@
     {
       "slug": "approval-workflow",
       "name": "Approval Workflow",
-      "description": "Multi-step approval chain (Kanban + Checklist patterns).",
+      "description": "Multi-step approval chain with approve/reject and progress status.",
       "categories": [
         "saas",
         "complex"
@@ -593,7 +593,7 @@
     {
       "slug": "audit-log",
       "name": "Audit Log",
-      "description": "Immutable event log (Log Viewer patterns).",
+      "description": "Filterable immutable event log with severity semantics.",
       "categories": [
         "saas",
         "data"
@@ -608,7 +608,7 @@
     {
       "slug": "feature-flags",
       "name": "Feature Flags",
-      "description": "Flag toggles with switch semantics.",
+      "description": "Flag toggles with switch semantics and rollout labels.",
       "categories": [
         "saas",
         "developer"
@@ -623,7 +623,7 @@
     {
       "slug": "command-palette",
       "name": "Command Palette",
-      "description": "Base command palette (see Spatial variant for depth presentation).",
+      "description": "Base fuzzy command palette with keyboard navigation (see Spatial variant for depth).",
       "categories": [
         "complex"
       ],
@@ -652,7 +652,7 @@
     {
       "slug": "node-editor",
       "name": "Node Editor",
-      "description": "Node/edge diagram primitives (Kanban drag + zoom patterns).",
+      "description": "SVG node/edge diagram with zoom and accessible node list.",
       "categories": [
         "complex"
       ],
@@ -666,7 +666,7 @@
     {
       "slug": "timeline-editor",
       "name": "Timeline Editor",
-      "description": "Track-based timeline editor patterns.",
+      "description": "Track-based timeline with selectable clips.",
       "categories": [
         "complex",
         "content"
@@ -694,7 +694,7 @@
     {
       "slug": "workflow-builder",
       "name": "Workflow Builder",
-      "description": "Multi-step workflow composer.",
+      "description": "Step composer with active-step state and add/next actions.",
       "categories": [
         "complex"
       ],
@@ -748,7 +748,7 @@
     {
       "slug": "rich-text-editor",
       "name": "Rich Text Editor",
-      "description": "Toolbar + contentEditable patterns (Markdown Editor + Slash Commands).",
+      "description": "Toolbar + contentEditable editor with word count.",
       "categories": [
         "content"
       ],
@@ -761,7 +761,7 @@
     {
       "slug": "slash-commands",
       "name": "Slash Commands",
-      "description": "Notion-style / command menu (Mention Input patterns).",
+      "description": "Notion-style slash menu with fuzzy filtering.",
       "categories": [
         "content"
       ],
@@ -775,7 +775,7 @@
     {
       "slug": "version-history",
       "name": "Version History",
-      "description": "Document version list with restore.",
+      "description": "Document version list with restore action.",
       "categories": [
         "content"
       ],

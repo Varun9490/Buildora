@@ -219,6 +219,29 @@ function f2(item: CatalogItem) {
   return item.files[0] ?? "";
 }
 
+export function toAgentCatalog(item: CatalogItem) {
+  const reg = toRegistryJson(item);
+  return {
+    slug: item.slug,
+    name: item.name,
+    description: item.description,
+    categories: item.categories,
+    tags: item.tags,
+    difficulty: item.difficulty,
+    version: item.version,
+    install: reg.install,
+    docs: reg.docs,
+    github: reg.github,
+    files: item.files,
+    frameworks: Object.fromEntries(
+      Object.entries(item.compat).map(([fw, status]) => [fw, { status, note: item.notes?.[fw] }])
+    ),
+    dependencies: item.dependencies ?? [],
+    provenance: (reg as { provenance?: unknown }).provenance ?? { origin: "original" },
+    workflow: ["find", "inspect", "install", "customize", "validate"],
+  };
+}
+
 export function buildAll(outDir: string) {
   const comps = catalog.map(toRegistryJson);
   fs.mkdirSync(path.join(outDir, "components"), { recursive: true });
@@ -238,6 +261,15 @@ export function buildAll(outDir: string) {
     shadcn: "Compatible — see generated/*.json or /r/{component}.json. GitHub-hosted, no custom domain required."
   };
   fs.writeFileSync(path.join(outDir, "registry.json"), JSON.stringify(index, null, 2));
+  const agentCatalog = {
+    $schema: "https://buildora.dev/schema/agent-catalog.json",
+    name: "buildora",
+    version: "0.1.0",
+    total: catalog.length,
+    workflow: ["find component", "inspect metadata", "install via shadcn", "customize props", "validate registry"],
+    components: catalog.map(toAgentCatalog),
+  };
+  fs.writeFileSync(path.join(outDir, "agent-catalog.json"), JSON.stringify(agentCatalog, null, 2));
   return index;
 }
 

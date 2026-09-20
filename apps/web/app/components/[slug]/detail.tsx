@@ -11,6 +11,7 @@ import { frameworkExample } from "@/lib/framework-code";
 import { CodeViewer } from "@/components/CodeViewer";
 import { ComponentRenderer, DEFAULT_RENDER_CONTROLS, type Controls } from "@/components/ComponentRenderer";
 import { controlsFor, type ControlDef } from "@/lib/controls";
+import { perfFor, relatedFor, a11yFor } from "@/lib/component-meta";
 
 export function ComponentDetail({ slug }: { slug: string }) {
   const [item, setItem] = React.useState<RegistryItem | null>(null);
@@ -331,8 +332,8 @@ export function ComponentDetail({ slug }: { slug: string }) {
               </div>
            </div>
 
-           {/* Metadata & Dependencies */}
-           <div className="space-y-4">
+            {/* Metadata & Dependencies */}
+            <div className="space-y-4">
               <div className="rounded-xl border border-[--b-border] bg-white/[0.01] p-5">
                 <h4 className="font-mono text-[10px] uppercase tracking-widest text-[--b-muted]">Dependencies</h4>
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -345,7 +346,38 @@ export function ComponentDetail({ slug }: { slug: string }) {
                    )}
                 </div>
               </div>
-           </div>
+              <div className="rounded-xl border border-[--b-border] bg-white/[0.01] p-5">
+                <h4 className="font-mono text-[10px] uppercase tracking-widest text-[--b-muted]">Accessibility</h4>
+                <p className="mt-3 text-[13px] leading-relaxed text-[--b-text-secondary]">{a11yFor(slug)}</p>
+                {item && (
+                  <p className="mt-2 font-mono text-[11px] text-[--b-muted]">
+                    keyboard · screen-reader · reduced-motion documented in registry
+                  </p>
+                )}
+              </div>
+              <div className="rounded-xl border border-[--b-border] bg-white/[0.01] p-5">
+                <h4 className="font-mono text-[10px] uppercase tracking-widest text-[--b-muted]">
+                  Performance · {perfFor(slug).level}
+                </h4>
+                <p className="mt-3 text-[13px] leading-relaxed text-[--b-text-secondary]">{perfFor(slug).note}</p>
+              </div>
+              {relatedFor(slug).length > 0 && (
+                <div className="rounded-xl border border-[--b-border] bg-white/[0.01] p-5">
+                  <h4 className="font-mono text-[10px] uppercase tracking-widest text-[--b-muted]">Related</h4>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {relatedFor(slug).map((r) => (
+                      <Link
+                        key={r}
+                        href={`/components/${r}`}
+                        className="rounded-md bg-white/[0.04] px-2.5 py-1 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:text-[--b-accent]"
+                      >
+                        {r}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
 
         </motion.aside>
       </div>
