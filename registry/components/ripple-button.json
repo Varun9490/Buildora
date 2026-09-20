@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "ripple-button",
+  "name": "Ripple Button",
+  "slug": "ripple-button",
+  "description": "Material-style expanding ripple on press.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "button",
+    "ripple"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/buttons/ripple-button.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/buttons/ripple-button.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/buttons/ripple-button.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/buttons/ripple-button.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/buttons/ripple-button.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/buttons/ripple-button.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/buttons/ripple-button.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/buttons/ripple-button.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/buttons/ripple-button.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/buttons/ripple-button.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/buttons/ripple-button.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/buttons/ripple-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type RippleButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {\n  rippleColor?: string;\n  duration?: number;\n};\n\nexport function RippleButton({\n  rippleColor = \"rgba(255, 255, 255, 0.35)\",\n  duration = 600,\n  className,\n  children,\n  onClick,\n  ...rest\n}: RippleButtonProps) {\n  const ref = React.useRef<HTMLButtonElement | null>(null);\n  const [ripples, setRipples] = React.useState<Array<{ x: number; y: number; id: number }>>([]);\n  const reduced = useReducedMotion();\n  const idCounter = React.useRef(0);\n\n  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {\n    if (reduced) {\n      onClick?.(e);\n      return;\n    }\n\n    const button = ref.current;\n    if (!button) {\n      onClick?.(e);\n      return;\n    }\n\n    const rect = button.getBoundingClientRect();\n    const x = e.clientX - rect.left;\n    const y = e.clientY - rect.top;\n    const id = idCounter.current++;\n\n    setRipples((prev) => [...prev, { x, y, id }]);\n\n    setTimeout(() => {\n      setRipples((prev) => prev.filter((r) => r.id !== id));\n    }, duration);\n\n    onClick?.(e);\n  };\n\n  return (\n    <button\n      ref={ref}\n      onClick={handleClick}\n      className={cn(\n        \"relative overflow-hidden rounded-xl bg-gradient-to-br from-[#7c6cf6] to-[#5a4ad1] px-6 py-2.5 text-sm font-semibold text-white\",\n        \"transition-all duration-200 hover:brightness-110 active:scale-95\",\n        \"focus:outline-none focus:ring-2 focus:ring-[#7c6cf6]/50 focus:ring-offset-2 focus:ring-offset-[#0a0b10]\",\n        \"disabled:opacity-50 disabled:pointer-events-none\",\n        className\n      )}\n      {...rest}\n    >\n      <span className=\"relative z-10\">{children}</span>\n      {ripples.map((ripple) => (\n        <span\n          key={ripple.id}\n          aria-hidden\n          className=\"absolute rounded-full animate-ripple pointer-events-none\"\n          style={{\n            left: ripple.x,\n            top: ripple.y,\n            width: \"10px\",\n            height: \"10px\",\n            marginLeft: \"-5px\",\n            marginTop: \"-5px\",\n            background: rippleColor,\n            animationDuration: `${duration}ms`,\n          }}\n        />\n      ))}\n      <style jsx global>{`\n        @keyframes ripple {\n          0% {\n            transform: scale(0);\n            opacity: 1;\n          }\n          100% {\n            transform: scale(20);\n            opacity: 0;\n          }\n        }\n        .animate-ripple {\n          animation: ripple ease-out forwards;\n        }\n      `}</style>\n    </button>\n  );\n}\n\nexport default RippleButton;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/buttons/ripple-button.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/buttons/ripple-button.tsx",
+  "sourceDir": "buttons/ripple-button.tsx",
+  "docs": "/components/ripple-button",
+  "install": "pnpm dlx shadcn@latest add @buildora/ripple-button"
+}

@@ -173,6 +173,11 @@ export const categories = [
   "saas",
   "complex",
   "content",
+  "primitives",
+  "forms",
+  "navigation",
+  "overlays",
+  "feedback",
 ] as const;
 
 export type Category = (typeof categories)[number];

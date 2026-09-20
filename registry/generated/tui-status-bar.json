@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-tui-status-bar",
+  "type": "registry:component",
+  "title": "TUI Status Bar",
+  "description": "Status strip with labeled values and tone colors.",
+  "categories": [
+    "developer"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/tui/tui-status-bar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport interface TUIStatusBarProps {\n  items: Array<{\n    label?: string;\n    value: string;\n    color?: \"default\" | \"success\" | \"warning\" | \"error\" | \"accent\";\n  }>;\n  className?: string;\n}\n\nconst valueColors = {\n  default: \"text-white/90\",\n  success: \"text-green-400\",\n  warning: \"text-yellow-400\",\n  error: \"text-red-400\",\n  accent: \"text-cyan-400\",\n};\n\nexport function TUIStatusBar({ items, className }: TUIStatusBarProps) {\n  return (\n    <div\n      className={cn(\n        \"flex items-center gap-4 px-3 py-1 bg-[#0a0c10] border-t border-white/10 font-mono text-[11px]\",\n        className\n      )}\n      role=\"status\"\n      aria-label=\"Status bar\"\n    >\n      {items.map((item, i) => (\n        <React.Fragment key={i}>\n          {i > 0 && (\n            <span className=\"text-white/20\" aria-hidden>\n              │\n            </span>\n          )}\n          <span className=\"flex items-center gap-1\">\n            {item.label && (\n              <span className=\"text-white/40\">{item.label}:</span>\n            )}\n            <span className={valueColors[item.color || \"default\"]}>\n              {item.value}\n            </span>\n          </span>\n        </React.Fragment>\n      ))}\n      <span className=\"flex-1\" />\n      <span className=\"text-white/30\">Press ? for help</span>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/tui/tui-status-bar.tsx"
+}

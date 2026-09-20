@@ -1,0 +1,118 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "checkbox",
+  "name": "Checkbox",
+  "slug": "checkbox",
+  "description": "Accessible checkbox with label and indeterminate support.",
+  "categories": [
+    "forms"
+  ],
+  "tags": [
+    "checkbox"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/primitives/checkbox/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/primitives/checkbox/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/checkbox/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/checkbox/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/checkbox/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/primitives/checkbox/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/primitives/checkbox/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/primitives/checkbox/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/primitives/checkbox/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/checkbox/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/checkbox/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/primitives/checkbox/index.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type CheckboxProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, \"type\"> & {\n  label?: string;\n  indeterminate?: boolean;\n};\n\nconst Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(\n  ({ className, label, disabled, checked, indeterminate, onChange, ...props }, ref) => {\n    const reducedMotion = useReducedMotion();\n    const id = React.useId();\n    const innerRef = React.useRef<HTMLInputElement>(null);\n    React.useImperativeHandle(ref, () => innerRef.current!);\n\n    React.useEffect(() => {\n      if (innerRef.current) {\n        innerRef.current.indeterminate = indeterminate || false;\n      }\n    }, [indeterminate]);\n\n    return (\n      <label\n        htmlFor={id}\n        className={cn(\n          \"inline-flex items-center gap-3 cursor-pointer select-none\",\n          disabled && \"cursor-not-allowed opacity-50\"\n        )}\n      >\n        <div className=\"relative\">\n          <input\n            ref={innerRef}\n            id={id}\n            type=\"checkbox\"\n            disabled={disabled}\n            checked={checked}\n            onChange={onChange}\n            className=\"sr-only peer\"\n            aria-checked={indeterminate ? \"mixed\" : checked}\n            {...props}\n          />\n          <div\n            className={cn(\n              \"h-5 w-5 rounded-md border border-white/20 bg-white/5 transition-all\",\n              !reducedMotion && \"duration-200\",\n              \"peer-focus-visible:ring-2 peer-focus-visible:ring-[#d4ff4f]/50 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-[#08090d]\",\n              \"peer-checked:bg-[#d4ff4f] peer-checked:border-[#d4ff4f] peer-checked:bg-opacity-100\",\n              className\n            )}\n          >\n            <svg\n              className={cn(\n                \"h-full w-full text-black opacity-0 scale-50 transition-transform\",\n                !reducedMotion && \"duration-200\",\n                (checked || indeterminate) && \"opacity-100 scale-100\"\n              )}\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              stroke=\"currentColor\"\n              strokeWidth=\"3\"\n              strokeLinecap=\"round\"\n              strokeLinejoin=\"round\"\n            >\n              {indeterminate ? (\n                <line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\" />\n              ) : (\n                <polyline points=\"20 6 9 17 4 12\" />\n              )}\n            </svg>\n          </div>\n        </div>\n        {label && (\n          <span className=\"text-sm text-white/70\">{label}</span>\n        )}\n      </label>\n    );\n  }\n);\n\nCheckbox.displayName = \"Checkbox\";\n\nexport { Checkbox };\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/primitives/checkbox",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/primitives/checkbox/index.tsx",
+  "sourceDir": "primitives/checkbox",
+  "docs": "/components/checkbox",
+  "install": "pnpm dlx shadcn@latest add @buildora/checkbox"
+}

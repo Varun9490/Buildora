@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-tui-panel",
+  "type": "registry:component",
+  "title": "TUI Panel",
+  "description": "Bordered terminal panel with title and focus state.",
+  "categories": [
+    "developer"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/tui/tui-panel.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport interface TUIPanelProps {\n  title?: string;\n  children: React.ReactNode;\n  className?: string;\n  focused?: boolean;\n  bordered?: boolean;\n  borderColor?: \"default\" | \"accent\" | \"success\" | \"warning\" | \"error\";\n  padding?: \"none\" | \"sm\" | \"md\" | \"lg\";\n}\n\nconst borderColors = {\n  default: \"border-white/20\",\n  accent: \"border-cyan-500/50\",\n  success: \"border-green-500/50\",\n  warning: \"border-yellow-500/50\",\n  error: \"border-red-500/50\",\n};\n\nconst focusBorders = {\n  default: \"focus-within:border-cyan-400\",\n  accent: \"focus-within:border-cyan-300\",\n  success: \"focus-within:border-green-300\",\n  warning: \"focus-within:border-yellow-300\",\n  error: \"focus-within:border-red-300\",\n};\n\nconst paddingSizes = {\n  none: \"\",\n  sm: \"p-1\",\n  md: \"p-2\",\n  lg: \"p-3\",\n};\n\nexport function TUIPanel({\n  title,\n  children,\n  className,\n  focused = false,\n  bordered = true,\n  borderColor = \"default\",\n  padding = \"md\",\n}: TUIPanelProps) {\n  return (\n    <div\n      className={cn(\n        \"font-mono text-xs bg-[#0a0c10] overflow-hidden\",\n        bordered && \"border\",\n        focused ? focusBorders[borderColor] : borderColors[borderColor],\n        paddingSizes[padding],\n        className\n      )}\n      tabIndex={focused ? 0 : -1}\n      role=\"region\"\n      aria-label={title}\n    >\n      {title && (\n        <div className=\"flex items-center gap-2 px-2 py-1 border-b border-white/10 mb-2\">\n          {focused && <span className=\"text-cyan-400\">●</span>}\n          <span className=\"text-white/60 text-[11px] uppercase tracking-wider\">\n            {title}\n          </span>\n        </div>\n      )}\n      <div className={cn(title && \"px-1\")}>{children}</div>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/tui/tui-panel.tsx"
+}

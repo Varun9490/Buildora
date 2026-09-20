@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-noise-background",
+  "type": "registry:component",
+  "title": "Noise Background",
+  "description": "Film-grain texture overlay for tactile surfaces.",
+  "categories": [
+    "creative"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/backgrounds/noise-background.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport type NoiseBackgroundProps = {\n  opacity?: number;\n  color?: string;\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function NoiseBackground({\n  opacity = 0.05,\n  color = \"white\",\n  className,\n  children,\n}: NoiseBackgroundProps) {\n  return (\n    <div className={cn(\"relative\", className)}>\n      <div\n        aria-hidden\n        className=\"pointer-events-none absolute inset-0 z-10\"\n        style={{\n          backgroundImage: `url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")`,\n          opacity,\n        }}\n      />\n      <div className=\"relative\">{children}</div>\n    </div>\n  );\n}\n\nexport default NoiseBackground;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/backgrounds/noise-background.tsx"
+}

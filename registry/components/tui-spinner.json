@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "tui-spinner",
+  "name": "TUI Spinner",
+  "slug": "tui-spinner",
+  "description": "Terminal activity indicator with label.",
+  "categories": [
+    "developer"
+  ],
+  "tags": [
+    "tui",
+    "spinner"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/tui/tui-spinner.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/tui/tui-spinner.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/tui/tui-spinner.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/tui/tui-spinner.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/tui/tui-spinner.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/tui/tui-spinner.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/tui/tui-spinner.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/tui/tui-spinner.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/tui/tui-spinner.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/tui/tui-spinner.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/tui/tui-spinner.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/tui/tui-spinner.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport interface TUISpinnerProps {\n  size?: \"sm\" | \"md\" | \"lg\";\n  text?: string;\n  className?: string;\n  color?: \"default\" | \"accent\" | \"success\" | \"warning\" | \"error\";\n}\n\nconst spinnerColors = {\n  default: \"text-cyan-400\",\n  accent: \"text-cyan-300\",\n  success: \"text-green-400\",\n  warning: \"text-yellow-400\",\n  error: \"text-red-400\",\n};\n\nconst spinnerSizes = {\n  sm: \"text-xs\",\n  md: \"text-sm\",\n  lg: \"text-base\",\n};\n\nconst frames = [\"⠋\", \"⠙\", \"⠹\", \"⠸\", \"⢼\", \"⣴\", \"⣦\", \"⣶\", \"⣷\", \"⣯\", \"⣟\", \"⡿\"];\n\nconst dotFrames = [\n  [\".  \", \".. \", \"...\"],\n  [\"⠁ \", \"⠃ \", \"⠇ \"],\n];\n\nexport function TUISpinner({\n  size = \"md\",\n  text,\n  className,\n  color = \"default\",\n}: TUISpinnerProps) {\n  const [frame, setFrame] = React.useState(0);\n  const [dotFrame, setDotFrame] = React.useState(0);\n\n  React.useEffect(() => {\n    const interval = setInterval(() => {\n      setFrame((f) => (f + 1) % frames.length);\n    }, 80);\n    return () => clearInterval(interval);\n  }, []);\n\n  React.useEffect(() => {\n    const interval = setInterval(() => {\n      setDotFrame((f) => (f + 1) % 3);\n    }, 300);\n    return () => clearInterval(interval);\n  }, []);\n\n  return (\n    <div\n      className={cn(\n        \"inline-flex items-center gap-2 font-mono\",\n        spinnerSizes[size],\n        spinnerColors[color],\n        className\n      )}\n      role=\"status\"\n      aria-label={text || \"Loading\"}\n    >\n      <span className=\"animate-pulse\">{frames[frame]}</span>\n      {text && (\n        <span className=\"text-white/70\">\n          {text}\n          <span className=\"text-white/30\">{dotFrames[0][dotFrame]}</span>\n        </span>\n      )}\n    </div>\n  );\n}\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/tui/tui-spinner.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/tui/tui-spinner.tsx",
+  "sourceDir": "tui/tui-spinner.tsx",
+  "docs": "/components/tui-spinner",
+  "install": "pnpm dlx shadcn@latest add @buildora/tui-spinner"
+}

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "skeleton",
+  "name": "Skeleton",
+  "slug": "skeleton",
+  "description": "Content placeholder matching final layout shape.",
+  "categories": [
+    "feedback"
+  ],
+  "tags": [
+    "skeleton",
+    "loading"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/primitives/skeleton/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/primitives/skeleton/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/skeleton/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/skeleton/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/skeleton/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/primitives/skeleton/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/primitives/skeleton/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/primitives/skeleton/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/primitives/skeleton/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/skeleton/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/skeleton/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/primitives/skeleton/index.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type SkeletonVariant = \"default\" | \"circular\" | \"rounded\";\n\nexport type SkeletonProps = React.HTMLAttributes<HTMLDivElement> & {\n  width?: number | string;\n  height?: number | string;\n  variant?: SkeletonVariant;\n  animate?: boolean;\n};\n\nconst Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(\n  ({\n    className,\n    width,\n    height,\n    variant = \"default\",\n    animate = true,\n    style,\n    ...props\n  }, ref) => {\n    const reducedMotion = useReducedMotion();\n\n    const variantStyles: Record<SkeletonVariant, string> = {\n      default: \"rounded-lg\",\n      circular: \"rounded-full\",\n      rounded: \"rounded-xl\",\n    };\n\n    return (\n      <div\n        ref={ref}\n        role=\"presentation\"\n        aria-hidden=\"true\"\n        className={cn(\n          \"relative overflow-hidden bg-white/5 border border-white/5\",\n          variantStyles[variant],\n          animate && !reducedMotion && \"shimmer\",\n          className\n        )}\n        style={{\n          width: width,\n          height: height,\n          ...style,\n        }}\n        {...props}\n      >\n        {animate && !reducedMotion && (\n          <div\n            className=\"absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite]\"\n            style={{\n              background: \"linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)\",\n            }}\n          />\n        )}\n      </div>\n    );\n  }\n);\n\nSkeleton.displayName = \"Skeleton\";\n\nexport type SkeletonTextProps = React.HTMLAttributes<HTMLDivElement> & {\n  lines?: number;\n  lastLineWidth?: string;\n};\n\nconst SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(\n  ({ className, lines = 3, lastLineWidth = \"60%\", ...props }, ref) => {\n    return (\n      <div ref={ref} className={cn(\"space-y-2\", className)} {...props}>\n        {Array.from({ length: lines }).map((_, i) => (\n          <Skeleton\n            key={i}\n            height={12}\n            width={i === lines - 1 ? lastLineWidth : \"100%\"}\n          />\n        ))}\n      </div>\n    );\n  }\n);\n\nSkeletonText.displayName = \"SkeletonText\";\n\nexport { Skeleton, SkeletonText };\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/primitives/skeleton",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/primitives/skeleton/index.tsx",
+  "sourceDir": "primitives/skeleton",
+  "docs": "/components/skeleton",
+  "install": "pnpm dlx shadcn@latest add @buildora/skeleton"
+}

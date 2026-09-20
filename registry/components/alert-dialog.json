@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "alert-dialog",
+  "name": "Alert Dialog",
+  "slug": "alert-dialog",
+  "description": "Confirm/cancel dialog with destructive variant.",
+  "categories": [
+    "overlays"
+  ],
+  "tags": [
+    "confirm",
+    "dialog"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/overlays/alert-dialog.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/overlays/alert-dialog.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/overlays/alert-dialog.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/overlays/alert-dialog.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/overlays/alert-dialog.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/overlays/alert-dialog.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/overlays/alert-dialog.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/overlays/alert-dialog.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/overlays/alert-dialog.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/overlays/alert-dialog.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/overlays/alert-dialog.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/overlays/alert-dialog.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { Dialog } from \"./dialog\";\n\nexport type AlertDialogProps = {\n  open: boolean;\n  onOpenChange: (open: boolean) => void;\n  title: string;\n  description?: string;\n  confirmLabel?: string;\n  cancelLabel?: string;\n  onConfirm?: () => void;\n  variant?: \"default\" | \"destructive\";\n  children?: React.ReactNode;\n  className?: string;\n};\n\nexport function AlertDialog({\n  open,\n  onOpenChange,\n  title,\n  description,\n  confirmLabel = \"Confirm\",\n  cancelLabel = \"Cancel\",\n  onConfirm,\n  variant = \"default\",\n  children,\n  className,\n}: AlertDialogProps) {\n  const handleConfirm = () => {\n    onConfirm?.();\n    onOpenChange(false);\n  };\n\n  return (\n    <Dialog open={open} onOpenChange={onOpenChange} className={cn(\"max-w-md\", className)}>\n      <div className=\"space-y-4\">\n        <div>\n          <h2 className={cn(\n            \"text-lg font-semibold\",\n            variant === \"destructive\" ? \"text-red-400\" : \"text-white\"\n          )}>\n            {title}\n          </h2>\n          {description && (\n            <p className=\"mt-2 text-sm text-white/60\">\n              {description}\n            </p>\n          )}\n        </div>\n        {children}\n        <div className=\"flex gap-3 pt-2\">\n          <button\n            onClick={() => onOpenChange(false)}\n            className=\"flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10\"\n          >\n            {cancelLabel}\n          </button>\n          <button\n            onClick={handleConfirm}\n            className={cn(\n              \"flex-1 rounded-xl px-4 py-2 text-sm font-semibold transition-colors\",\n              variant === \"destructive\"\n                ? \"bg-red-500 text-white hover:bg-red-600\"\n                : \"bg-[#d4ff4f] text-black hover:bg-[#d4ff4f]/90\"\n            )}\n          >\n            {confirmLabel}\n          </button>\n        </div>\n      </div>\n    </Dialog>\n  );\n}\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/overlays/alert-dialog.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/overlays/alert-dialog.tsx",
+  "sourceDir": "overlays/alert-dialog.tsx",
+  "docs": "/components/alert-dialog",
+  "install": "pnpm dlx shadcn@latest add @buildora/alert-dialog"
+}

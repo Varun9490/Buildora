@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "switch",
+  "name": "Switch",
+  "slug": "switch",
+  "description": "Labeled toggle switch built on a native checkbox.",
+  "categories": [
+    "forms"
+  ],
+  "tags": [
+    "switch",
+    "toggle"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/primitives/switch/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/primitives/switch/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/switch/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/switch/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/switch/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/primitives/switch/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/primitives/switch/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/primitives/switch/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/primitives/switch/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/switch/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/switch/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/primitives/switch/index.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, \"type\"> & {\n  label?: string;\n};\n\nconst Switch = React.forwardRef<HTMLInputElement, SwitchProps>(\n  ({ className, label, disabled, checked, onChange, ...props }, ref) => {\n    const reducedMotion = useReducedMotion();\n    const id = React.useId();\n\n    return (\n      <label\n        htmlFor={id}\n        className={cn(\n          \"inline-flex items-center gap-3 cursor-pointer\",\n          disabled && \"cursor-not-allowed opacity-50\"\n        )}\n      >\n        <div className=\"relative\">\n          <input\n            ref={ref}\n            id={id}\n            type=\"checkbox\"\n            role=\"switch\"\n            aria-checked={checked}\n            disabled={disabled}\n            checked={checked}\n            onChange={onChange}\n            className=\"sr-only peer\"\n            {...props}\n          />\n          <div\n            className={cn(\n              \"h-6 w-11 rounded-full bg-white/10 border border-white/10 transition-colors\",\n              \"peer-focus-visible:ring-2 peer-focus-visible:ring-[#d4ff4f]/50 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-[#08090d]\",\n              \"peer-checked:bg-[#d4ff4f]/20 peer-checked:border-[#d4ff4f]/30\",\n              className\n            )}\n          />\n          <div\n            className={cn(\n              \"absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white/80 shadow-lg transition-all\",\n              !reducedMotion && \"duration-200\",\n              \"peer-checked:translate-x-5 peer-checked:bg-[#d4ff4f]\"\n            )}\n          />\n        </div>\n        {label && (\n          <span className=\"text-sm text-white/70\">{label}</span>\n        )}\n      </label>\n    );\n  }\n);\n\nSwitch.displayName = \"Switch\";\n\nexport { Switch };\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/primitives/switch",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/primitives/switch/index.tsx",
+  "sourceDir": "primitives/switch",
+  "docs": "/components/switch",
+  "install": "pnpm dlx shadcn@latest add @buildora/switch"
+}

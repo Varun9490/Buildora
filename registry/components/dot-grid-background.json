@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "dot-grid-background",
+  "name": "Dot Grid Background",
+  "slug": "dot-grid-background",
+  "description": "Dotted lattice backdrop for technical layouts.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "background",
+    "dots"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/backgrounds/dot-grid-background.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/backgrounds/dot-grid-background.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/backgrounds/dot-grid-background.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/backgrounds/dot-grid-background.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/backgrounds/dot-grid-background.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/backgrounds/dot-grid-background.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/backgrounds/dot-grid-background.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/backgrounds/dot-grid-background.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/backgrounds/dot-grid-background.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/backgrounds/dot-grid-background.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/backgrounds/dot-grid-background.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/backgrounds/dot-grid-background.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport type DotGridBackgroundProps = {\n  dotColor?: string;\n  dotSize?: number;\n  spacing?: number;\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function DotGridBackground({\n  dotColor = \"rgba(255, 255, 255, 0.15)\",\n  dotSize = 1,\n  spacing = 20,\n  className,\n  children,\n}: DotGridBackgroundProps) {\n  return (\n    <div className={cn(\"relative overflow-hidden\", className)}>\n      <div\n        aria-hidden\n        className=\"pointer-events-none absolute inset-0\"\n        style={{\n          backgroundImage: `radial-gradient(circle, ${dotColor} ${dotSize}px, transparent ${dotSize}px)`,\n          backgroundSize: `${spacing}px ${spacing}px`,\n        }}\n      />\n      <div className=\"relative z-10\">{children}</div>\n    </div>\n  );\n}\n\nexport default DotGridBackground;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/backgrounds/dot-grid-background.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/backgrounds/dot-grid-background.tsx",
+  "sourceDir": "backgrounds/dot-grid-background.tsx",
+  "docs": "/components/dot-grid-background",
+  "install": "pnpm dlx shadcn@latest add @buildora/dot-grid-background"
+}

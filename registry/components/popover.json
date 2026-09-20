@@ -1,0 +1,118 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "popover",
+  "name": "Popover",
+  "slug": "popover",
+  "description": "Anchored floating panel with placement control.",
+  "categories": [
+    "overlays"
+  ],
+  "tags": [
+    "popover"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/overlays/popover.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/overlays/popover.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/overlays/popover.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/overlays/popover.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/overlays/popover.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/overlays/popover.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/overlays/popover.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/overlays/popover.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/overlays/popover.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/overlays/popover.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/overlays/popover.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/overlays/popover.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type PopoverProps = {\n  open: boolean;\n  onOpenChange: (open: boolean) => void;\n  children: React.ReactNode;\n  anchor?: React.ReactNode;\n  className?: string;\n  side?: \"top\" | \"bottom\" | \"left\" | \"right\";\n  align?: \"start\" | \"center\" | \"end\";\n  sideOffset?: number;\n  alignOffset?: number;\n  closeOnEscape?: boolean;\n};\n\nexport function Popover({\n  open,\n  onOpenChange,\n  children,\n  anchor,\n  className,\n  side = \"bottom\",\n  align = \"center\",\n  sideOffset = 4,\n  alignOffset = 0,\n  closeOnEscape = true,\n}: PopoverProps) {\n  const reducedMotion = useReducedMotion();\n  const anchorRef = React.useRef<HTMLDivElement>(null);\n  const popoverRef = React.useRef<HTMLDivElement>(null);\n  const [position, setPosition] = React.useState({ top: 0, left: 0 });\n\n  React.useEffect(() => {\n    if (open && anchorRef.current) {\n      const anchorRect = anchorRef.current.getBoundingClientRect();\n      const popoverEl = popoverRef.current;\n      \n      if (popoverEl) {\n        let top = 0;\n        let left = 0;\n\n        switch (side) {\n          case \"top\":\n            top = anchorRect.top - popoverEl.offsetHeight - sideOffset;\n            break;\n          case \"bottom\":\n            top = anchorRect.bottom + sideOffset;\n            break;\n          case \"left\":\n            left = anchorRect.left - popoverEl.offsetWidth - sideOffset;\n            break;\n          case \"right\":\n            left = anchorRect.right + sideOffset;\n            break;\n        }\n\n        switch (align) {\n          case \"start\":\n            if (side === \"top\" || side === \"bottom\") {\n              left = anchorRect.left + alignOffset;\n            } else {\n              top = anchorRect.top + alignOffset;\n            }\n            break;\n          case \"center\":\n            if (side === \"top\" || side === \"bottom\") {\n              left = anchorRect.left + anchorRect.width / 2 - popoverEl.offsetWidth / 2 + alignOffset;\n            } else {\n              top = anchorRect.top + anchorRect.height / 2 - popoverEl.offsetHeight / 2 + alignOffset;\n            }\n            break;\n          case \"end\":\n            if (side === \"top\" || side === \"bottom\") {\n              left = anchorRect.right - popoverEl.offsetWidth - alignOffset;\n            } else {\n              top = anchorRect.bottom - popoverEl.offsetHeight - alignOffset;\n            }\n            break;\n        }\n\n        setPosition({ top, left });\n      }\n    }\n  }, [open, side, align, sideOffset, alignOffset]);\n\n  React.useEffect(() => {\n    if (!closeOnEscape || !open) return;\n    const handleEscape = (e: KeyboardEvent) => {\n      if (e.key === \"Escape\") {\n        onOpenChange(false);\n      }\n    };\n    window.addEventListener(\"keydown\", handleEscape);\n    return () => window.removeEventListener(\"keydown\", handleEscape);\n  }, [open, closeOnEscape, onOpenChange]);\n\n  React.useEffect(() => {\n    if (!open) return;\n    const handleClickOutside = (e: MouseEvent) => {\n      if (\n        popoverRef.current &&\n        !popoverRef.current.contains(e.target as Node) &&\n        anchorRef.current &&\n        !anchorRef.current.contains(e.target as Node)\n      ) {\n        onOpenChange(false);\n      }\n    };\n    window.addEventListener(\"click\", handleClickOutside);\n    return () => window.removeEventListener(\"click\", handleClickOutside);\n  }, [open, onOpenChange]);\n\n  return (\n    <>\n      <div ref={anchorRef} onClick={() => onOpenChange(!open)}>\n        {anchor}\n      </div>\n      {open && (\n        <div\n          ref={popoverRef}\n          className={cn(\n            \"fixed z-[200] overflow-auto rounded-xl border border-white/10 bg-[#0d0f16] p-4 shadow-2xl backdrop-blur-xl\",\n            className\n          )}\n          role=\"dialog\"\n          aria-modal=\"true\"\n          style={{\n            top: position.top,\n            left: position.left,\n            animation: reducedMotion\n              ? undefined\n              : \"popoverFadeIn 150ms ease-out\",\n          }}\n        >\n          {children}\n        </div>\n      )}\n      <style jsx global>{`\n        @keyframes popoverFadeIn {\n          from {\n            opacity: 0;\n            transform: scale(0.95);\n          }\n          to {\n            opacity: 1;\n            transform: scale(1);\n          }\n        }\n      `}</style>\n    </>\n  );\n}\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/overlays/popover.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/overlays/popover.tsx",
+  "sourceDir": "overlays/popover.tsx",
+  "docs": "/components/popover",
+  "install": "pnpm dlx shadcn@latest add @buildora/popover"
+}

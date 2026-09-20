@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "glow-button",
+  "name": "Glow Button",
+  "slug": "glow-button",
+  "description": "Luminous halo button for primary actions.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "button",
+    "glow"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/buttons/glow-button.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/buttons/glow-button.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/buttons/glow-button.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/buttons/glow-button.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/buttons/glow-button.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/buttons/glow-button.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/buttons/glow-button.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/buttons/glow-button.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/buttons/glow-button.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/buttons/glow-button.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/buttons/glow-button.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/buttons/glow-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type GlowButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {\n  glowColor?: string;\n  glowIntensity?: \"subtle\" | \"medium\" | \"strong\";\n  variant?: \"solid\" | \"outline\";\n};\n\nexport function GlowButton({\n  glowColor = \"#d4ff4f\",\n  glowIntensity = \"medium\",\n  variant = \"solid\",\n  className,\n  children,\n  ...rest\n}: GlowButtonProps) {\n  const ref = React.useRef<HTMLButtonElement | null>(null);\n  const [mousePos, setMousePos] = React.useState({ x: 0.5, y: 0.5 });\n  const reduced = useReducedMotion();\n\n  const intensityValues = {\n    subtle: { blur: 20, spread: 30, opacity: 0.4 },\n    medium: { blur: 35, spread: 50, opacity: 0.6 },\n    strong: { blur: 50, spread: 70, opacity: 0.8 },\n  };\n\n  const { blur, spread, opacity } = intensityValues[glowIntensity];\n\n  const handleMove = (e: React.PointerEvent<HTMLButtonElement>) => {\n    if (reduced || !ref.current) return;\n    const rect = ref.current.getBoundingClientRect();\n    setMousePos({\n      x: (e.clientX - rect.left) / rect.width,\n      y: (e.clientY - rect.top) / rect.height,\n    });\n  };\n\n  return (\n    <button\n      ref={ref}\n      onPointerMove={handleMove}\n      className={cn(\n        \"relative rounded-xl px-6 py-2.5 text-sm font-semibold\",\n        \"transition-all duration-200\",\n        \"focus:outline-none focus:ring-2 focus:ring-offset-2\",\n        \"disabled:opacity-50 disabled:pointer-events-none\",\n        variant === \"solid\"\n          ? \"bg-[#d4ff4f] text-black hover:brightness-110 focus:ring-[#d4ff4f]/50\"\n          : \"border-2 border-[#d4ff4f] bg-transparent text-[#d4ff4f] hover:bg-[#d4ff4f]/10 focus:ring-[#d4ff4f]/50\",\n        className\n      )}\n      {...rest}\n    >\n      <span className=\"relative z-10\">{children}</span>\n      {!reduced && (\n        <span\n          aria-hidden\n          className=\"pointer-events-none absolute inset-0 rounded-xl transition-opacity duration-300 group-hover:opacity-100\"\n          style={{\n            opacity,\n            background: `radial-gradient(${spread}px circle at ${mousePos.x * 100}% ${mousePos.y * 100}%, ${glowColor}, transparent ${blur}%)`,\n          }}\n        />\n      )}\n    </button>\n  );\n}\n\nexport default GlowButton;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/buttons/glow-button.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/buttons/glow-button.tsx",
+  "sourceDir": "buttons/glow-button.tsx",
+  "docs": "/components/glow-button",
+  "install": "pnpm dlx shadcn@latest add @buildora/glow-button"
+}

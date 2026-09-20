@@ -1,0 +1,118 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "radio-group",
+  "name": "Radio Group",
+  "slug": "radio-group",
+  "description": "Single-select radio set with keyboard arrow navigation.",
+  "categories": [
+    "forms"
+  ],
+  "tags": [
+    "radio"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/primitives/radio/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/primitives/radio/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/radio/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/radio/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/radio/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/primitives/radio/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/primitives/radio/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/primitives/radio/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/primitives/radio/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/radio/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/radio/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/primitives/radio/index.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type RadioProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, \"type\"> & {\n  label?: string;\n};\n\nconst Radio = React.forwardRef<HTMLInputElement, RadioProps>(\n  ({ className, label, disabled, checked, onChange, value, ...props }, ref) => {\n    const reducedMotion = useReducedMotion();\n    const id = React.useId();\n\n    return (\n      <label\n        htmlFor={id}\n        className={cn(\n          \"inline-flex items-center gap-3 cursor-pointer select-none\",\n          disabled && \"cursor-not-allowed opacity-50\"\n        )}\n      >\n        <div className=\"relative\">\n          <input\n            ref={ref}\n            id={id}\n            type=\"radio\"\n            disabled={disabled}\n            checked={checked}\n            onChange={onChange}\n            value={value}\n            className=\"sr-only peer\"\n            {...props}\n          />\n          <div\n            className={cn(\n              \"h-5 w-5 rounded-full border border-white/20 bg-white/5 transition-all\",\n              !reducedMotion && \"duration-200\",\n              \"peer-focus-visible:ring-2 peer-focus-visible:ring-[#d4ff4f]/50 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-[#08090d]\",\n              \"peer-checked:border-[#d4ff4f] peer-checked:border-opacity-100\",\n              className\n            )}\n          >\n            <div\n              className={cn(\n                \"absolute inset-1 rounded-full bg-[#d4ff4f] transition-transform origin-center\",\n                !reducedMotion && \"duration-200\",\n                checked ? \"scale-100 opacity-100\" : \"scale-0 opacity-0\"\n              )}\n            />\n          </div>\n        </div>\n        {label && (\n          <span className=\"text-sm text-white/70\">{label}</span>\n        )}\n      </label>\n    );\n  }\n);\n\nRadio.displayName = \"Radio\";\n\nexport type RadioGroupProps = React.HTMLAttributes<HTMLDivElement> & {\n  value?: string;\n  defaultValue?: string;\n  onValueChange?: (value: string) => void;\n  name?: string;\n  disabled?: boolean;\n};\n\nconst RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(\n  ({ className, value, defaultValue, onValueChange, name, disabled, children, ...props }, ref) => {\n    const [selected, setSelected] = React.useState(value || defaultValue || \"\");\n\n    React.useEffect(() => {\n      if (value !== undefined) {\n        setSelected(value);\n      }\n    }, [value]);\n\n    const handleChange = (newValue: string) => {\n      setSelected(newValue);\n      onValueChange?.(newValue);\n    };\n\n    return (\n      <div\n        ref={ref}\n        role=\"radiogroup\"\n        className={cn(\"flex flex-col gap-2\", className)}\n        {...props}\n      >\n        {React.Children.map(children, (child) => {\n          if (React.isValidElement<RadioProps>(child) && child.type === Radio) {\n            const childValue = child.props.value;\n            return React.cloneElement(child, {\n              checked: childValue === selected,\n              onChange: () => handleChange(childValue as string),\n              name: name || child.props.name,\n              disabled: disabled || child.props.disabled,\n            } as RadioProps);\n          }\n          return child;\n        })}\n      </div>\n    );\n  }\n);\n\nRadioGroup.displayName = \"RadioGroup\";\n\nexport { Radio, RadioGroup };\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/primitives/radio",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/primitives/radio/index.tsx",
+  "sourceDir": "primitives/radio",
+  "docs": "/components/radio-group",
+  "install": "pnpm dlx shadcn@latest add @buildora/radio-group"
+}

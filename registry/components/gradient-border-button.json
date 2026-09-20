@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "gradient-border-button",
+  "name": "Gradient Border Button",
+  "slug": "gradient-border-button",
+  "description": "Animated gradient frame around a solid label.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "button",
+    "gradient"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/buttons/gradient-border-button.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/buttons/gradient-border-button.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/buttons/gradient-border-button.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/buttons/gradient-border-button.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/buttons/gradient-border-button.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/buttons/gradient-border-button.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/buttons/gradient-border-button.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/buttons/gradient-border-button.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/buttons/gradient-border-button.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/buttons/gradient-border-button.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/buttons/gradient-border-button.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/buttons/gradient-border-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type GradientBorderButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {\n  gradientColors?: string[];\n  borderWidth?: number;\n  animationDuration?: number;\n};\n\nexport function GradientBorderButton({\n  gradientColors = [\"#d4ff4f\", \"#7c6cf6\", \"#9d8cff\", \"#d4ff4f\"],\n  borderWidth = 2,\n  animationDuration = 3,\n  className,\n  children,\n  ...rest\n}: GradientBorderButtonProps) {\n  const reduced = useReducedMotion();\n\n  return (\n    <button\n      className={cn(\n        \"group relative overflow-hidden rounded-xl px-6 py-2.5 text-sm font-semibold text-white\",\n        \"transition-transform active:scale-95\",\n        \"focus:outline-none focus:ring-2 focus:ring-[#d4ff4f]/50\",\n        \"disabled:opacity-50 disabled:pointer-events-none\",\n        className\n      )}\n      {...rest}\n    >\n      <span\n        aria-hidden\n        className={cn(\n          \"absolute inset-0 rounded-xl\",\n          !reduced && \"animate-gradient-border\"\n        )}\n        style={{\n          background: `linear-gradient(90deg, ${gradientColors.join(\", \")})`,\n          backgroundSize: \"300% 300%\",\n          padding: borderWidth,\n          animationDuration: `${animationDuration}s`,\n        }}\n      >\n        <span\n          className=\"flex h-full w-full items-center justify-center rounded-[calc(0.75rem-2px)] bg-[#12141d]\"\n          style={{ borderRadius: `calc(0.75rem - ${borderWidth}px)` }}\n        />\n      </span>\n      <span className=\"relative z-10\">{children}</span>\n      <style jsx global>{`\n        @keyframes gradient-border {\n          0% { background-position: 0% 50%; }\n          50% { background-position: 100% 50%; }\n          100% { background-position: 0% 50%; }\n        }\n        .animate-gradient-border {\n          animation: gradient-border ease infinite;\n        }\n      `}</style>\n    </button>\n  );\n}\n\nexport default GradientBorderButton;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/buttons/gradient-border-button.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/buttons/gradient-border-button.tsx",
+  "sourceDir": "buttons/gradient-border-button.tsx",
+  "docs": "/components/gradient-border-button",
+  "install": "pnpm dlx shadcn@latest add @buildora/gradient-border-button"
+}

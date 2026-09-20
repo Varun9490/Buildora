@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "spotlight-card",
+  "name": "Spotlight Card",
+  "slug": "spotlight-card",
+  "description": "Cursor spotlight card, calmer sibling of Magnetic Card.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "card",
+    "spotlight"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/cards/spotlight-card.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/cards/spotlight-card.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cards/spotlight-card.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cards/spotlight-card.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cards/spotlight-card.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/cards/spotlight-card.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/cards/spotlight-card.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/cards/spotlight-card.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/cards/spotlight-card.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/cards/spotlight-card.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/cards/spotlight-card.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/cards/spotlight-card.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type SpotlightCardProps = React.HTMLAttributes<HTMLDivElement> & {\n  spotlightColor?: string;\n  spotlightSize?: number;\n  borderStyle?: \"none\" | \"subtle\" | \"glow\";\n};\n\nexport function SpotlightCard({\n  spotlightColor = \"rgba(212, 255, 79, 0.18)\",\n  spotlightSize = 280,\n  borderStyle = \"subtle\",\n  className,\n  children,\n  ...rest\n}: SpotlightCardProps) {\n  const ref = React.useRef<HTMLDivElement | null>(null);\n  const [pos, setPos] = React.useState({ x: 0, y: 0, active: false });\n  const reduced = useReducedMotion();\n\n  const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {\n    if (reduced || !ref.current) return;\n    const rect = ref.current.getBoundingClientRect();\n    setPos({\n      x: e.clientX - rect.left,\n      y: e.clientY - rect.top,\n      active: true,\n    });\n  };\n\n  const handleLeave = () => setPos((p) => ({ ...p, active: false }));\n\n  return (\n    <div\n      ref={ref}\n      onPointerMove={handleMove}\n      onPointerLeave={handleLeave}\n      className={cn(\n        \"group relative rounded-2xl bg-[#12141d] p-6\",\n        \"transition-all duration-200\",\n        borderStyle === \"none\" && \"border-0\",\n        borderStyle === \"subtle\" && \"border border-white/10\",\n        borderStyle === \"glow\" && \"border border-[#d4ff4f]/20\",\n        \"focus-within:ring-2 focus-within:ring-[#d4ff4f]/50\",\n        className\n      )}\n      {...rest}\n    >\n      {!reduced && (\n        <div\n          aria-hidden\n          className=\"pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-300\"\n          style={{\n            background: pos.active\n              ? `radial-gradient(${spotlightSize}px circle at ${pos.x}px ${pos.y}px, ${spotlightColor}, transparent 40%)`\n              : \"none\",\n            opacity: pos.active ? 1 : 0,\n          }}\n        />\n      )}\n      <div className=\"relative\">{children}</div>\n    </div>\n  );\n}\n\nexport default SpotlightCard;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/cards/spotlight-card.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/cards/spotlight-card.tsx",
+  "sourceDir": "cards/spotlight-card.tsx",
+  "docs": "/components/spotlight-card",
+  "install": "pnpm dlx shadcn@latest add @buildora/spotlight-card"
+}

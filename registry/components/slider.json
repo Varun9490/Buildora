@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "slider",
+  "name": "Slider",
+  "slug": "slider",
+  "description": "Range slider with value display and keyboard support.",
+  "categories": [
+    "forms"
+  ],
+  "tags": [
+    "slider",
+    "range"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/primitives/slider/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/primitives/slider/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/slider/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/slider/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/slider/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/primitives/slider/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/primitives/slider/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/primitives/slider/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/primitives/slider/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/slider/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/slider/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/primitives/slider/index.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn, clamp } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type SliderProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, \"type\" | \"onChange\" | \"defaultValue\"> & {\n  min?: number;\n  max?: number;\n  step?: number;\n  showValue?: boolean;\n  formatValue?: (value: number) => string;\n  onChange?: (value: number) => void;\n  defaultValue?: number;\n};\n\nconst Slider = React.forwardRef<HTMLInputElement, SliderProps>(\n  ({\n    className,\n    min = 0,\n    max = 100,\n    step = 1,\n    value,\n    defaultValue = 0,\n    showValue = false,\n    formatValue,\n    onChange,\n    disabled,\n    ...props\n  }, ref) => {\n    const reducedMotion = useReducedMotion();\n    const [internalValue, setInternalValue] = React.useState<number>(defaultValue);\n    const currentValue = value !== undefined ? Number(value) : internalValue;\n    const percentage = ((clamp(currentValue, min, max) - min) / (max - min)) * 100;\n\n    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {\n      const newValue = parseFloat(e.target.value);\n      setInternalValue(newValue);\n      onChange?.(newValue);\n    };\n\n    return (\n      <div className={cn(\"w-full\", className)}>\n        <div className=\"relative w-full h-2 flex items-center\">\n          <div className=\"absolute inset-0 rounded-full bg-white/10 border border-white/5\" />\n          <div\n            className={cn(\n              \"absolute left-0 top-0 h-full rounded-full bg-[#d4ff4f]/30 transition-all\",\n              !reducedMotion && \"duration-100\"\n            )}\n            style={{ width: `${percentage}%` }}\n          />\n          <input\n            ref={ref}\n            type=\"range\"\n            min={min}\n            max={max}\n            step={step}\n            value={currentValue}\n            onChange={handleChange}\n            disabled={disabled}\n            className={cn(\n              \"absolute inset-0 w-full h-full opacity-0 cursor-pointer\",\n              disabled && \"cursor-not-allowed opacity-50\"\n            )}\n            {...props}\n          />\n          <div\n            className={cn(\n              \"absolute w-4 h-4 rounded-full bg-[#d4ff4f] shadow-lg shadow-[#d4ff4f]/30 transition-all pointer-events-none\",\n              !reducedMotion && \"duration-100\",\n              disabled && \"opacity-50\"\n            )}\n            style={{\n              left: `calc(${percentage}% - 8px)`,\n            }}\n          />\n        </div>\n        {showValue && (\n          <div className=\"mt-2 flex justify-between text-xs text-white/50\">\n            <span>{formatValue ? formatValue(min) : min}</span>\n            <span className=\"text-[#d4ff4f] font-medium\">\n              {formatValue ? formatValue(currentValue) : currentValue}\n            </span>\n            <span>{formatValue ? formatValue(max) : max}</span>\n          </div>\n        )}\n      </div>\n    );\n  }\n);\n\nSlider.displayName = \"Slider\";\n\nexport { Slider };\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/primitives/slider",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/primitives/slider/index.tsx",
+  "sourceDir": "primitives/slider",
+  "docs": "/components/slider",
+  "install": "pnpm dlx shadcn@latest add @buildora/slider"
+}

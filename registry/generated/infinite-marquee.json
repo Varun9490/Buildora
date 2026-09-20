@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-infinite-marquee",
+  "type": "registry:component",
+  "title": "Infinite Marquee",
+  "description": "Seamless looping marquee row.",
+  "categories": [
+    "creative"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/layouts/infinite-marquee.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type InfiniteMarqueeProps = React.HTMLAttributes<HTMLDivElement> & {\n  direction?: \"left\" | \"right\";\n  speed?: \"slow\" | \"normal\" | \"fast\";\n  pauseOnHover?: boolean;\n  gap?: number;\n};\n\nexport function InfiniteMarquee({\n  direction = \"left\",\n  speed = \"normal\",\n  pauseOnHover = true,\n  gap = 48,\n  className,\n  children,\n  ...rest\n}: InfiniteMarqueeProps) {\n  const reduced = useReducedMotion();\n\n  const speedValues = {\n    slow: 50,\n    normal: 30,\n    fast: 15,\n  };\n\n  const duration = speedValues[speed];\n\n  return (\n    <div\n      className={cn(\n        \"group relative overflow-hidden\",\n        pauseOnHover && \"hover:[animation-play-state:paused]\",\n        className\n      )}\n      {...rest}\n    >\n      <div\n        className={cn(\n          \"flex\",\n          !reduced && \"animate-marquee\"\n        )}\n        style={{\n          gap: `${gap}px`,\n          animationDuration: `${duration}s`,\n          animationDirection: direction === \"right\" ? \"reverse\" : \"normal\",\n        }}\n      >\n        {children}\n        {!reduced && React.cloneElement(children as React.ReactElement, {\n          \"aria-hidden\": true,\n        })}\n      </div>\n      <div\n        aria-hidden\n        className=\"pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0a0b10] to-transparent\"\n      />\n      <div\n        aria-hidden\n        className=\"pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0a0b10] to-transparent\"\n      />\n      <style jsx global>{`\n        @keyframes marquee {\n          0% { transform: translateX(0); }\n          100% { transform: translateX(-50%); }\n        }\n        .animate-marquee {\n          animation: marquee linear infinite;\n        }\n      `}</style>\n    </div>\n  );\n}\n\nexport default InfiniteMarquee;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/layouts/infinite-marquee.tsx"
+}

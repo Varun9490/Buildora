@@ -1,0 +1,111 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "ghost-cursor",
+  "name": "Ghost Cursor",
+  "slug": "ghost-cursor",
+  "description": "Delayed ghost echo of pointer movement.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "cursor",
+    "ghost"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/cursor-effects/ghost-cursor.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/cursor-effects/ghost-cursor.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cursor-effects/ghost-cursor.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cursor-effects/ghost-cursor.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cursor-effects/ghost-cursor.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/cursor-effects/ghost-cursor.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/cursor-effects/ghost-cursor.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Unsupported",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": []
+    },
+    "flutter": {
+      "status": "Unsupported",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": []
+    },
+    "swiftUI": {
+      "status": "Unsupported",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": []
+    },
+    "compose": {
+      "status": "Unsupported",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": []
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/cursor-effects/ghost-cursor.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type GhostCursorProps = {\n  color?: string;\n  size?: number;\n  delay?: number;\n  ghostCount?: number;\n  className?: string;\n};\n\nexport function GhostCursor({\n  color = \"#d4ff4f\",\n  size = 20,\n  delay = 100,\n  ghostCount = 3,\n  className,\n}: GhostCursorProps) {\n  const [currentPos, setCurrentPos] = React.useState({ x: 0, y: 0 });\n  const [ghosts, setGhosts] = React.useState<{ x: number; y: number }[]>(\n    Array.from({ length: ghostCount }, () => ({ x: 0, y: 0 }))\n  );\n  const [visible, setVisible] = React.useState(false);\n  const reduced = useReducedMotion();\n  const historyRef = React.useRef<{ x: number; y: number; t: number }[]>([]);\n\n  React.useEffect(() => {\n    if (reduced) return;\n    const handleMove = (e: MouseEvent) => {\n      setCurrentPos({ x: e.clientX, y: e.clientY });\n      historyRef.current.push({ x: e.clientX, y: e.clientY, t: Date.now() });\n      if (historyRef.current.length > 50) {\n        historyRef.current.shift();\n      }\n      setVisible(true);\n    };\n    const handleLeave = () => setVisible(false);\n    window.addEventListener(\"mousemove\", handleMove);\n    document.addEventListener(\"mouseleave\", handleLeave);\n    return () => {\n      window.removeEventListener(\"mousemove\", handleMove);\n      document.removeEventListener(\"mouseleave\", handleLeave);\n    };\n  }, [reduced]);\n\n  React.useEffect(() => {\n    if (reduced) return;\n    const interval = setInterval(() => {\n      const now = Date.now();\n      const newGhosts = Array.from({ length: ghostCount }, (_, i) => {\n        const targetTime = now - delay * (i + 1);\n        const history = historyRef.current;\n        for (let j = history.length - 1; j >= 0; j--) {\n          if (history[j].t <= targetTime) {\n            return history[j];\n          }\n        }\n        return history[0] || { x: 0, y: 0 };\n      });\n      setGhosts(newGhosts);\n    }, 16);\n    return () => clearInterval(interval);\n  }, [delay, ghostCount, reduced]);\n\n  if (reduced) return null;\n\n  return (\n    <div\n      aria-hidden\n      className={cn(\n        \"pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300\",\n        visible ? \"opacity-100\" : \"opacity-0\",\n        className\n      )}\n    >\n      {ghosts.map((ghost, i) => (\n        <div\n          key={i}\n          className=\"absolute rounded-full\"\n          style={{\n            width: size * (1 - i * 0.15),\n            height: size * (1 - i * 0.15),\n            left: ghost.x,\n            top: ghost.y,\n            transform: \"translate(-50%, -50%)\",\n            background: color,\n            opacity: 0.5 - i * 0.1,\n            filter: `blur(${i * 2}px)`,\n          }}\n        />\n      ))}\n      <div\n        className=\"absolute rounded-full\"\n        style={{\n          width: size,\n          height: size,\n          left: currentPos.x,\n          top: currentPos.y,\n          transform: \"translate(-50%, -50%)\",\n          background: color,\n          boxShadow: `0 0 ${size / 2}px ${color}`,\n        }}\n      />\n    </div>\n  );\n}\n\nexport default GhostCursor;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/cursor-effects/ghost-cursor.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/cursor-effects/ghost-cursor.tsx",
+  "sourceDir": "cursor-effects/ghost-cursor.tsx",
+  "docs": "/components/ghost-cursor",
+  "install": "pnpm dlx shadcn@latest add @buildora/ghost-cursor"
+}

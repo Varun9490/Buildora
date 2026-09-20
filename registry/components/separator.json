@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "separator",
+  "name": "Separator",
+  "slug": "separator",
+  "description": "Thematic break and divider rules for grouping content.",
+  "categories": [
+    "primitives"
+  ],
+  "tags": [
+    "separator",
+    "divider"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/primitives/separator/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/primitives/separator/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/separator/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/separator/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/separator/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/primitives/separator/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/primitives/separator/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/primitives/separator/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/primitives/separator/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/separator/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/separator/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/primitives/separator/index.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport type SeparatorProps = React.HTMLAttributes<HTMLDivElement> & {\n  orientation?: \"horizontal\" | \"vertical\";\n  decorative?: boolean;\n};\n\nconst Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(\n  ({ className, orientation = \"horizontal\", decorative = true, ...props }, ref) => {\n    const semanticProps = decorative\n      ? { role: \"none\" as const }\n      : { role: \"separator\" as const, \"aria-orientation\": orientation };\n\n    return (\n      <div\n        ref={ref}\n        {...semanticProps}\n        className={cn(\n          \"shrink-0 bg-white/10 border-0\",\n          orientation === \"horizontal\" ? \"h-px w-full\" : \"w-px h-full\",\n          className\n        )}\n        {...props}\n      />\n    );\n  }\n);\n\nSeparator.displayName = \"Separator\";\n\nexport type DividerProps = React.HTMLAttributes<HTMLDivElement> & {\n  label?: string;\n};\n\nconst Divider = React.forwardRef<HTMLDivElement, DividerProps>(\n  ({ className, label, children, ...props }, ref) => {\n    return (\n      <div\n        ref={ref}\n        role=\"separator\"\n        className={cn(\"flex items-center gap-4\", className)}\n        {...props}\n      >\n        <div className=\"flex-1 h-px bg-white/10\" />\n        {(label || children) && (\n          <span className=\"text-xs font-mono text-white/40 uppercase tracking-wider\">\n            {label || children}\n          </span>\n        )}\n        <div className=\"flex-1 h-px bg-white/10\" />\n      </div>\n    );\n  }\n);\n\nDivider.displayName = \"Divider\";\n\nexport { Separator, Divider };\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/primitives/separator",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/primitives/separator/index.tsx",
+  "sourceDir": "primitives/separator",
+  "docs": "/components/separator",
+  "install": "pnpm dlx shadcn@latest add @buildora/separator"
+}

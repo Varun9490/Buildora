@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-blob-cursor",
+  "type": "registry:component",
+  "title": "Blob Cursor",
+  "description": "Organic blob trailing the pointer. Pointer-only.",
+  "categories": [
+    "creative"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/cursor-effects/blob-cursor.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type BlobCursorProps = {\n  color?: string;\n  size?: number;\n  trailLength?: number;\n  className?: string;\n};\n\nexport function BlobCursor({\n  color = \"#d4ff4f\",\n  size = 20,\n  trailLength = 8,\n  className,\n}: BlobCursorProps) {\n  const [pos, setPos] = React.useState({ x: 0, y: 0 });\n  const [visible, setVisible] = React.useState(false);\n  const [targets, setTargets] = React.useState<{ x: number; y: number }[]>([]);\n  const rafRef = React.useRef<number>(0);\n  const posRef = React.useRef({ x: 0, y: 0 });\n  const reduced = useReducedMotion();\n\n  React.useEffect(() => {\n    if (reduced) return;\n    const handleMove = (e: MouseEvent) => {\n      posRef.current = { x: e.clientX, y: e.clientY };\n      setVisible(true);\n    };\n    const handleLeave = () => setVisible(false);\n    window.addEventListener(\"mousemove\", handleMove);\n    document.addEventListener(\"mouseleave\", handleLeave);\n    return () => {\n      window.removeEventListener(\"mousemove\", handleMove);\n      document.removeEventListener(\"mouseleave\", handleLeave);\n    };\n  }, [reduced]);\n\n  React.useEffect(() => {\n    if (reduced) return;\n    const animate = () => {\n      setPos((prev) => {\n        const dx = posRef.current.x - prev.x;\n        const dy = posRef.current.y - prev.y;\n        return {\n          x: prev.x + dx * 0.15,\n          y: prev.y + dy * 0.15,\n        };\n      });\n      rafRef.current = requestAnimationFrame(animate);\n    };\n    rafRef.current = requestAnimationFrame(animate);\n    return () => cancelAnimationFrame(rafRef.current);\n  }, [reduced]);\n\n  React.useEffect(() => {\n    if (reduced) return;\n    const interval = setInterval(() => {\n      setTargets((prev) => {\n        const next = [...prev, { x: pos.x, y: pos.y }];\n        return next.slice(-trailLength);\n      });\n    }, 16);\n    return () => clearInterval(interval);\n  }, [pos.x, pos.y, trailLength, reduced]);\n\n  if (reduced) return null;\n\n  return (\n    <div\n      aria-hidden\n      className={cn(\n        \"pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300\",\n        visible ? \"opacity-100\" : \"opacity-0\",\n        className\n      )}\n    >\n      {targets.map((t, i) => (\n        <div\n          key={i}\n          className=\"absolute rounded-full transition-transform duration-100\"\n          style={{\n            width: size * (0.3 + (i / targets.length) * 0.7),\n            height: size * (0.3 + (i / targets.length) * 0.7),\n            left: t.x,\n            top: t.y,\n            transform: \"translate(-50%, -50%)\",\n            background: color,\n            opacity: 0.1 + (i / targets.length) * 0.2,\n            filter: `blur(${2 + i}px)`,\n          }}\n        />\n      ))}\n      <div\n        className=\"absolute rounded-full\"\n        style={{\n          width: size,\n          height: size,\n          left: pos.x,\n          top: pos.y,\n          transform: \"translate(-50%, -50%)\",\n          background: color,\n          boxShadow: `0 0 ${size}px ${color}`,\n        }}\n      />\n    </div>\n  );\n}\n\nexport default BlobCursor;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/cursor-effects/blob-cursor.tsx"
+}

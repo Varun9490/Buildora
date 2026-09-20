@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "ripple-background",
+  "name": "Ripple Background",
+  "slug": "ripple-background",
+  "description": "Pointer-reactive ripple field.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "background",
+    "ripple"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/backgrounds/ripple-background.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/backgrounds/ripple-background.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/backgrounds/ripple-background.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/backgrounds/ripple-background.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/backgrounds/ripple-background.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/backgrounds/ripple-background.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/backgrounds/ripple-background.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/backgrounds/ripple-background.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/backgrounds/ripple-background.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/backgrounds/ripple-background.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/backgrounds/ripple-background.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/backgrounds/ripple-background.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type RippleBackgroundProps = {\n  color?: string;\n  count?: number;\n  size?: number;\n  speed?: number;\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function RippleBackground({\n  color = \"#d4ff4f\",\n  count = 4,\n  size = 300,\n  speed = 4,\n  className,\n  children,\n}: RippleBackgroundProps) {\n  const reduced = useReducedMotion();\n  const actualSpeed = reduced ? 0 : speed;\n\n  return (\n    <div className={cn(\"relative overflow-hidden\", className)}>\n      <div aria-hidden className=\"pointer-events-none absolute inset-0 flex items-center justify-center\">\n        {Array.from({ length: count }).map((_, i) => (\n          <div\n            key={i}\n            className=\"absolute rounded-full\"\n            style={{\n              width: size,\n              height: size,\n              border: `2px solid ${color}20`,\n              animation: actualSpeed > 0 ? `rippleExpand ${actualSpeed}s ease-out infinite` : undefined,\n              animationDelay: `${i * (actualSpeed / count)}s`,\n            }}\n          />\n        ))}\n      </div>\n      <style>{`\n        @keyframes rippleExpand {\n          0% { transform: scale(0.5); opacity: 0.8; }\n          100% { transform: scale(2); opacity: 0; }\n        }\n      `}</style>\n      <div className=\"relative z-10\">{children}</div>\n    </div>\n  );\n}\n\nexport default RippleBackground;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/backgrounds/ripple-background.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/backgrounds/ripple-background.tsx",
+  "sourceDir": "backgrounds/ripple-background.tsx",
+  "docs": "/components/ripple-background",
+  "install": "pnpm dlx shadcn@latest add @buildora/ripple-background"
+}

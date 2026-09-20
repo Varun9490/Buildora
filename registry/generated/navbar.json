@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-navbar",
+  "type": "registry:component",
+  "title": "Navbar",
+  "description": "Sticky header bar with logo, center, and actions slots.",
+  "categories": [
+    "navigation"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/navigation/navbar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type NavbarProps = React.HTMLAttributes<HTMLElement>;\n\nconst Navbar = React.forwardRef<HTMLElement, NavbarProps>(\n  ({ className, children, ...props }, ref) => {\n    return (\n      <header\n        ref={ref}\n        role=\"banner\"\n        className={cn(\n          \"sticky top-0 z-50 w-full border-b border-white/10 bg-[#0d0f16]/80 backdrop-blur-xl\",\n          \"supports-[backdrop-filter]:bg-[#0d0f16]/60\",\n          className\n        )}\n        {...props}\n      >\n        <div className=\"flex h-16 items-center justify-between px-4 md:px-6\">\n          {children}\n        </div>\n      </header>\n    );\n  }\n);\n\nNavbar.displayName = \"Navbar\";\n\nexport type NavbarLogoProps = React.HTMLAttributes<HTMLDivElement>;\n\nconst NavbarLogo = React.forwardRef<HTMLDivElement, NavbarLogoProps>(\n  ({ className, children, ...props }, ref) => {\n    return (\n      <div ref={ref} className={cn(\"flex items-center gap-2\", className)} {...props}>\n        {children}\n      </div>\n    );\n  }\n);\n\nNavbarLogo.displayName = \"NavbarLogo\";\n\nexport type NavbarCenterProps = React.HTMLAttributes<HTMLDivElement>;\n\nconst NavbarCenter = React.forwardRef<HTMLDivElement, NavbarCenterProps>(\n  ({ className, children, ...props }, ref) => {\n    return (\n      <div ref={ref} className={cn(\"flex flex-1 items-center justify-center gap-1\", className)} {...props}>\n        {children}\n      </div>\n    );\n  }\n);\n\nNavbarCenter.displayName = \"NavbarCenter\";\n\nexport type NavbarRightProps = React.HTMLAttributes<HTMLDivElement>;\n\nconst NavbarRight = React.forwardRef<HTMLDivElement, NavbarRightProps>(\n  ({ className, children, ...props }, ref) => {\n    return (\n      <div ref={ref} className={cn(\"flex items-center gap-2\", className)} {...props}>\n        {children}\n      </div>\n    );\n  }\n);\n\nNavbarRight.displayName = \"NavbarRight\";\n\nexport type NavbarItemProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {\n  active?: boolean;\n};\n\nconst NavbarItem = React.forwardRef<HTMLAnchorElement, NavbarItemProps>(\n  ({ className, active, children, ...props }, ref) => {\n    const reducedMotion = useReducedMotion();\n\n    return (\n      <a\n        ref={ref}\n        role=\"menuitem\"\n        aria-current={active ? \"page\" : undefined}\n        className={cn(\n          \"relative px-3 py-2 text-sm font-medium transition-colors\",\n          \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0f16]\",\n          \"rounded-lg\",\n          active ? \"text-white\" : \"text-white/60 hover:text-white\",\n          !reducedMotion && \"duration-200\",\n          className\n        )}\n        {...props}\n      >\n        {!reducedMotion && active && (\n          <div className=\"absolute inset-0 rounded-lg bg-[#d4ff4f]/10 border border-[#d4ff4f]/20\" />\n        )}\n        <span className=\"relative z-10\">{children}</span>\n      </a>\n    );\n  }\n);\n\nNavbarItem.displayName = \"NavbarItem\";\n\nexport { Navbar, NavbarLogo, NavbarCenter, NavbarRight, NavbarItem };\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/navigation/navbar.tsx"
+}

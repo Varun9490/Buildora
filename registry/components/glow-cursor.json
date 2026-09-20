@@ -1,0 +1,111 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "glow-cursor",
+  "name": "Glow Cursor",
+  "slug": "glow-cursor",
+  "description": "Soft glow following the pointer. Null under reduced motion; pointer-only.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "cursor",
+    "glow"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/cursor-effects/glow-cursor.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/cursor-effects/glow-cursor.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cursor-effects/glow-cursor.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cursor-effects/glow-cursor.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cursor-effects/glow-cursor.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Pointer-only; provide non-cursor interaction.",
+      "files": [
+        "packages/components/src/cursor-effects/glow-cursor.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/cursor-effects/glow-cursor.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Unsupported",
+      "notes": "No cursor on touch devices.",
+      "files": []
+    },
+    "flutter": {
+      "status": "Unsupported",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": []
+    },
+    "swiftUI": {
+      "status": "Unsupported",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": []
+    },
+    "compose": {
+      "status": "Unsupported",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": []
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/cursor-effects/glow-cursor.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type GlowCursorProps = {\n  color?: string;\n  size?: number;\n  blur?: number;\n  opacity?: number;\n  className?: string;\n};\n\nexport function GlowCursor({\n  color = \"#d4ff4f\",\n  size = 400,\n  blur = 150,\n  opacity = 0.15,\n  className,\n}: GlowCursorProps) {\n  const ref = React.useRef<HTMLDivElement | null>(null);\n  const [pos, setPos] = React.useState({ x: 0, y: 0 });\n  const [visible, setVisible] = React.useState(false);\n  const reduced = useReducedMotion();\n\n  React.useEffect(() => {\n    if (reduced) return;\n    const handleMove = (e: MouseEvent) => {\n      setPos({ x: e.clientX, y: e.clientY });\n      setVisible(true);\n    };\n    const handleLeave = () => setVisible(false);\n    window.addEventListener(\"mousemove\", handleMove);\n    document.addEventListener(\"mouseleave\", handleLeave);\n    return () => {\n      window.removeEventListener(\"mousemove\", handleMove);\n      document.removeEventListener(\"mouseleave\", handleLeave);\n    };\n  }, [reduced]);\n\n  if (reduced) return null;\n\n  return (\n    <div\n      ref={ref}\n      aria-hidden\n      className={cn(\n        \"pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300\",\n        visible ? \"opacity-100\" : \"opacity-0\",\n        className\n      )}\n    >\n      <div\n        className=\"absolute\"\n        style={{\n          width: size,\n          height: size,\n          left: pos.x - size / 2,\n          top: pos.y - size / 2,\n          background: `radial-gradient(circle, ${color}${opacity < 16 ? \"0\" : \"\"}${Math.round(opacity * 255).toString(16)} 0%, transparent 70%)`,\n          filter: `blur(${blur}px)`,\n          transform: \"translateZ(0)\",\n        }}\n      />\n    </div>\n  );\n}\n\nexport default GlowCursor;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/cursor-effects/glow-cursor.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/cursor-effects/glow-cursor.tsx",
+  "sourceDir": "cursor-effects/glow-cursor.tsx",
+  "docs": "/components/glow-cursor",
+  "install": "pnpm dlx shadcn@latest add @buildora/glow-cursor"
+}

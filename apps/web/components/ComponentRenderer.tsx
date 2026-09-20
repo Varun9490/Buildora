@@ -56,6 +56,133 @@ import {
   RichTextEditor,
   SlashCommands,
   VersionHistory,
+  Button,
+  Input,
+  Textarea,
+  Badge,
+  Chip,
+  Switch,
+  Checkbox,
+  Radio,
+  RadioGroup,
+  Slider,
+  Progress,
+  Spinner,
+  Skeleton,
+  Avatar,
+  AvatarGroup,
+  Kbd,
+  Separator,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+  ToastProvider,
+  useToast,
+  Tooltip,
+  Dialog,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  AlertDialog,
+  Sheet,
+  Drawer,
+  Popover,
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+  ModalStack,
+  ModalStackProvider,
+  useModalStack,
+  Navbar,
+  NavbarLogo,
+  NavbarCenter,
+  NavbarRight,
+  NavbarItem,
+  FloatingNavbar,
+  FloatingNavbarItem,
+  Sidebar,
+  SidebarHeader,
+  SidebarContent,
+  SidebarItem,
+  ExpandableSidebar,
+  ExpandableSidebarItem,
+  MobileNav,
+  MobileNavItem,
+  BreadcrumbNav,
+  BreadcrumbItem,
+  StepNav,
+  StepNavItem,
+  Pagination,
+  PaginationButton,
+  PaginationPrev,
+  PaginationNext,
+  CommandBar,
+  CommandBarItem,
+  CommandBarTrigger,
+  TUIPanel,
+  TUIStatusBar,
+  TUIHeader,
+  TUIFooter,
+  TUITable,
+  TUITree,
+  TUIList,
+  TUIForm,
+  TUISelect,
+  TUIMultiSelect,
+  TUIProgress,
+  TUISpinner,
+  TUIGauge,
+  TUISparkline,
+  TUILogViewer,
+  TUIHelpOverlay,
+  TUIDiffViewer,
+  TerminalUI,
+  NoiseBackground,
+  GridBackground,
+  DotGridBackground,
+  GradientMeshBackground,
+  AuroraBeamBackground,
+  RippleBackground,
+  MeteorBackground,
+  BeamBackground,
+  GlowCursor,
+  BlobCursor,
+  TrailCursor,
+  GhostCursor,
+  SpotlightCursor,
+  Typewriter,
+  ScrambledText,
+  BlurText,
+  GradientText,
+  GlitchText,
+  RippleButton,
+  ShimmerButton,
+  GlowButton,
+  GradientBorderButton,
+  HoldButton,
+  GlareCard,
+  SpotlightCard,
+  WobbleCard,
+  GlassCard,
+  BentoGrid,
+  BentoItem,
+  InfiniteMarquee,
+  MasonryLayout,
+  MasonryItem,
 } from "@buildora/components";
 
 export type Controls = {
@@ -432,6 +559,563 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(<MentionInput />);
     case "comment-thread":
       return wrap(<CommentThread />);
+    case "button":
+      return wrap(
+        <div className="flex flex-wrap gap-3">
+          <Button>Primary</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="ghost">Ghost</Button>
+        </div>
+      );
+    case "input":
+      return wrap(
+        <div className="w-full max-w-sm space-y-3">
+          <div>
+            <label htmlFor="prim-name" className="mb-1 block text-xs text-white/60">Name</label>
+            <Input id="prim-name" placeholder="Ada Lovelace" />
+          </div>
+          <div>
+            <label htmlFor="prim-email" className="mb-1 block text-xs text-white/60">Email</label>
+            <Input id="prim-email" type="email" placeholder="ada@example.com" />
+          </div>
+        </div>
+      );
+    case "textarea":
+      return wrap(
+        <div className="w-full max-w-sm">
+          <label htmlFor="prim-notes" className="mb-1 block text-xs text-white/60">Notes</label>
+          <Textarea id="prim-notes" placeholder="Ship notes…" rows={4} />
+        </div>
+      );
+    case "badge":
+      return wrap(
+        <div className="flex flex-wrap gap-2">
+          <Badge>default</Badge>
+          <Badge variant="success">stable</Badge>
+          <Badge variant="warning">beta</Badge>
+          <Chip>removable</Chip>
+        </div>
+      );
+    case "switch":
+      return wrap(
+        <div className="flex flex-col gap-3">
+          <Switch label="Enable notifications" defaultChecked />
+          <Switch label="Reduced motion" />
+        </div>
+      );
+    case "checkbox":
+      return wrap(
+        <div className="flex flex-col gap-2">
+          <Checkbox label="I agree to the review" defaultChecked />
+          <Checkbox label="Subscribe to changelog" />
+        </div>
+      );
+    case "radio-group":
+      return wrap(
+        <RadioGroup defaultValue="react" name="framework">
+          <Radio value="react" label="React" />
+          <Radio value="vue" label="Vue" />
+          <Radio value="svelte" label="Svelte" />
+        </RadioGroup>
+      );
+    case "slider":
+      return wrap(
+        <div className="w-full max-w-sm">
+          <span id="prim-slider-label" className="mb-1 block text-xs text-white/60">Strength</span>
+          <Slider defaultValue={35} showValue aria-labelledby="prim-slider-label" />
+        </div>
+      );
+    case "progress":
+      return wrap(
+        <div className="w-full max-w-sm space-y-3">
+          <Progress value={65} showValue />
+          <Progress value={30} variant="warning" />
+        </div>
+      );
+    case "spinner":
+      return wrap(
+        <div className="flex items-center gap-4">
+          <Spinner label="Loading components" />
+          <Spinner size="lg" variant="accent" />
+        </div>
+      );
+    case "skeleton":
+      return wrap(
+        <div className="w-full max-w-sm space-y-2">
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-4 w-3/4" />
+          <Skeleton className="h-4 w-1/2" />
+        </div>
+      );
+    case "avatar":
+      return wrap(
+        <div className="flex items-center gap-3">
+          <Avatar fallback="AL" alt="Ada Lovelace" status="online" />
+          <Avatar fallback="GH" alt="Grace Hopper" />
+          <AvatarGroup max={3}>
+            <Avatar fallback="AL" alt="Ada Lovelace" />
+            <Avatar fallback="GH" alt="Grace Hopper" />
+            <Avatar fallback="LT" alt="Linus Torvalds" />
+            <Avatar fallback="MA" alt="Maya Angelou" />
+          </AvatarGroup>
+        </div>
+      );
+    case "kbd":
+      return wrap(
+        <div className="flex items-center gap-2">
+          <Kbd>⌘</Kbd>
+          <Kbd>P</Kbd>
+        </div>
+      );
+    case "separator":
+      return wrap(
+        <div className="w-full max-w-sm space-y-4">
+          <p className="text-sm">Above</p>
+          <Separator />
+          <p className="text-sm">Below</p>
+        </div>
+      );
+    case "tabs":
+      return wrap(
+        <div className="w-full max-w-md">
+          <Tabs defaultValue="preview">
+            <TabsList>
+              <TabsTrigger value="preview">Preview</TabsTrigger>
+              <TabsTrigger value="code">Code</TabsTrigger>
+            </TabsList>
+            <TabsContent value="preview">Live component preview.</TabsContent>
+            <TabsContent value="code">Source code viewer.</TabsContent>
+          </Tabs>
+        </div>
+      );
+    case "accordion":
+      return wrap(
+        <div className="w-full max-w-md">
+          <Accordion>
+            <AccordionItem value="a">
+              <AccordionTrigger>What is Buildora?</AccordionTrigger>
+              <AccordionContent>A registry-driven component ecosystem.</AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="b">
+              <AccordionTrigger>How do I install?</AccordionTrigger>
+              <AccordionContent>Via the shadcn CLI from the component page.</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      );
+    case "toast":
+      return wrap(
+        <div className="w-full max-w-sm">
+          <ToastDemo />
+        </div>
+      );
+    case "tooltip":
+      return wrap(
+        <Tooltip content="Installs via shadcn CLI">
+          <Button variant="outline">Hover me</Button>
+        </Tooltip>
+      );
+    case "dialog":
+      return wrap(<DialogDemo />);
+    case "alert-dialog":
+      return wrap(<AlertDialogDemo />);
+    case "sheet":
+      return wrap(<SheetDemo />);
+    case "drawer":
+      return wrap(<DrawerDemo />);
+    case "popover":
+      return wrap(<PopoverDemo />);
+    case "dropdown-menu":
+      return wrap(
+        <DropdownMenu>
+          <DropdownMenuTrigger>Open menu</DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>Install</DropdownMenuItem>
+            <DropdownMenuItem>Copy code</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    case "context-menu":
+      return wrap(
+        <ContextMenu>
+          <ContextMenuTrigger>
+            <div className="rounded-xl border border-dashed border-white/20 p-8 text-center text-sm text-white/60">
+              Right-click here
+            </div>
+          </ContextMenuTrigger>
+          <ContextMenuContent>
+            <ContextMenuItem>Copy</ContextMenuItem>
+            <ContextMenuItem>Inspect</ContextMenuItem>
+          </ContextMenuContent>
+        </ContextMenu>
+      );
+    case "hover-card":
+      return wrap(
+        <HoverCard trigger={<Button variant="outline">Hover for preview</Button>}>
+          <p className="text-sm font-bold">Magnetic Button</p>
+          <p className="text-xs text-white/60">Spring magnetic attraction.</p>
+        </HoverCard>
+      );
+    case "modal-stack":
+      return wrap(
+        <div className="w-full max-w-sm">
+          <ModalStackDemo />
+        </div>
+      );
+    case "navbar":
+      return wrap(
+        <div className="w-full max-w-3xl">
+          <Navbar>
+            <NavbarLogo>Buildora</NavbarLogo>
+            <NavbarCenter>
+              <NavbarItem href="#">Components</NavbarItem>
+              <NavbarItem href="#">Docs</NavbarItem>
+            </NavbarCenter>
+            <NavbarRight>
+              <Button variant="accent">Install</Button>
+            </NavbarRight>
+          </Navbar>
+        </div>
+      );
+    case "floating-navbar":
+      return wrap(
+        <div className="w-full max-w-2xl">
+          <FloatingNavbar visible>
+            <FloatingNavbarItem href="#" active>Home</FloatingNavbarItem>
+            <FloatingNavbarItem href="#">Components</FloatingNavbarItem>
+            <FloatingNavbarItem href="#">Docs</FloatingNavbarItem>
+          </FloatingNavbar>
+        </div>
+      );
+    case "sidebar":
+      return wrap(
+        <div className="h-72 w-64 overflow-hidden rounded-xl border border-white/10">
+          <Sidebar>
+            <SidebarHeader>Workspace</SidebarHeader>
+            <SidebarContent>
+              <SidebarItem value="components">Components</SidebarItem>
+              <SidebarItem value="docs">Docs</SidebarItem>
+            </SidebarContent>
+          </Sidebar>
+        </div>
+      );
+    case "expandable-sidebar":
+      return wrap(
+        <div className="h-72 w-64 overflow-hidden rounded-xl border border-white/10">
+          <ExpandableSidebar>
+            <ExpandableSidebarItem value="components">Components</ExpandableSidebarItem>
+            <ExpandableSidebarItem value="playground">Playground</ExpandableSidebarItem>
+          </ExpandableSidebar>
+        </div>
+      );
+    case "mobile-nav":
+      return wrap(
+        <div className="w-full max-w-sm overflow-hidden rounded-xl border border-white/10">
+          <MobileNav defaultActiveItem="home">
+            <MobileNavItem value="home" label="Home">Home</MobileNavItem>
+            <MobileNavItem value="search" label="Search">Search</MobileNavItem>
+            <MobileNavItem value="settings" label="Settings">Settings</MobileNavItem>
+          </MobileNav>
+        </div>
+      );
+    case "breadcrumb":
+      return wrap(
+        <BreadcrumbNav>
+          <BreadcrumbItem href="#">Components</BreadcrumbItem>
+          <BreadcrumbItem href="#">Creative</BreadcrumbItem>
+          <BreadcrumbItem isCurrentPage>Magnetic Button</BreadcrumbItem>
+        </BreadcrumbNav>
+      );
+    case "step-nav":
+      return wrap(
+        <div className="w-full max-w-xl">
+          <StepNav totalSteps={3} defaultStep={1}>
+            <StepNavItem step={0} title="Audit" />
+            <StepNavItem step={1} title="Build" />
+            <StepNavItem step={2} title="Ship" />
+          </StepNav>
+        </div>
+      );
+    case "pagination":
+      return wrap(
+        <Pagination totalPages={10} defaultPage={3}>
+          <PaginationPrev />
+          <PaginationButton page={2} />
+          <PaginationButton page={3} />
+          <PaginationButton page={4} />
+          <PaginationNext />
+        </Pagination>
+      );
+    case "command-bar":
+      return wrap(
+        <CommandBar defaultOpen>
+          <CommandBarTrigger>Open commands</CommandBarTrigger>
+          <CommandBarItem shortcut="⌘P">Open playground</CommandBarItem>
+          <CommandBarItem shortcut="⌘K">Search components</CommandBarItem>
+        </CommandBar>
+      );
+    case "tui-panel":
+      return wrap(
+        <div className="w-full max-w-md">
+          <TUIPanel title="registry" focused>
+            <p className="font-mono text-xs text-white/70">54 components · valid</p>
+          </TUIPanel>
+        </div>
+      );
+    case "tui-status-bar":
+      return wrap(
+        <div className="w-full max-w-xl">
+          <TUIStatusBar items={[{ label: "branch", value: "main", color: "success" }, { label: "tests", value: "30 pass", color: "accent" }]} />
+        </div>
+      );
+    case "tui-header":
+      return wrap(
+        <div className="w-full max-w-xl">
+          <TUIHeader title="buildora" subtitle="registry console" />
+        </div>
+      );
+    case "tui-footer":
+      return wrap(
+        <div className="w-full max-w-xl">
+          <TUIFooter shortcuts={[{ key: "q", label: "quit" }, { key: "?", label: "help" }]} />
+        </div>
+      );
+    case "tui-table":
+      return wrap(
+        <div className="w-full max-w-2xl">
+          <TUITable
+            columns={[{ key: "name", header: "Component" }, { key: "status", header: "Status" }]}
+            rows={[{ id: "1", name: "magnetic-button", status: "Full" }, { id: "2", name: "kanban", status: "Full" }]}
+          />
+        </div>
+      );
+    case "tui-tree":
+      return wrap(
+        <div className="w-full max-w-sm">
+          <TUITree nodes={[{ id: "r", label: "registry", expanded: true, children: [{ id: "c1", label: "magnetic-button.json" }, { id: "c2", label: "kanban.json" }] }]} />
+        </div>
+      );
+    case "tui-list":
+      return wrap(
+        <div className="w-full max-w-sm">
+          <TUIList items={[{ id: "1", label: "magnetic-button" }, { id: "2", label: "streaming-chat" }, { id: "3", label: "kanban" }]} />
+        </div>
+      );
+    case "tui-form":
+      return wrap(
+        <div className="w-full max-w-sm">
+          <TUIForm fields={[{ name: "component", label: "Component", type: "text", value: "", placeholder: "magnetic-button" }, { name: "stable", label: "Mark stable", type: "checkbox", value: false }]} />
+        </div>
+      );
+    case "tui-select":
+      return wrap(
+        <div className="w-full max-w-sm">
+          <TUISelect options={[{ value: "react", label: "React" }, { value: "vue", label: "Vue" }, { value: "svelte", label: "Svelte" }]} placeholder="Pick framework" />
+        </div>
+      );
+    case "tui-multi-select":
+      return wrap(
+        <div className="w-full max-w-sm">
+          <TUIMultiSelect options={[{ value: "a11y", label: "Accessibility" }, { value: "perf", label: "Performance" }, { value: "docs", label: "Docs" }]} selected={["a11y"]} />
+        </div>
+      );
+    case "tui-progress":
+      return wrap(
+        <div className="w-full max-w-sm">
+          <TUIProgress value={68} label="registry build" showValue />
+        </div>
+      );
+    case "tui-spinner":
+      return wrap(<TUISpinner text="validating registry" />);
+    case "tui-gauge":
+      return wrap(<TUIGauge value={72} max={100} label="coverage" unit="%" showValue />);
+    case "tui-sparkline":
+      return wrap(<TUISparkline data={[4, 7, 5, 9, 6, 11, 8]} label="installs" showMinMax />);
+    case "tui-log-viewer":
+      return wrap(
+        <div className="w-full max-w-xl">
+          <TUILogViewer entries={[{ level: "info", message: "registry valid", source: "ci" }, { level: "warn", message: "large prop table", source: "docs" }, { level: "success", message: "30 tests pass", source: "ci" }]} />
+        </div>
+      );
+    case "tui-help-overlay":
+      return wrap(
+        <div className="w-full max-w-md">
+          <TUIHelpOverlay bindings={[{ key: "q", label: "Quit" }, { key: "?", label: "Help" }, { key: "j/k", label: "Navigate" }]} visible />
+        </div>
+      );
+    case "tui-diff-viewer":
+      return wrap(
+        <div className="w-full max-w-2xl">
+          <TUIDiffViewer hunks={[{ type: "header", content: "magnetic-button.tsx" }, { type: "delete", oldLine: 12, content: "strength={0.2}" }, { type: "add", newLine: 12, content: "strength={0.35}" }]} />
+        </div>
+      );
+    case "terminal-workspace":
+      return wrap(
+        <div className="h-[420px] w-full max-w-4xl overflow-hidden rounded-xl">
+          <TerminalUI />
+        </div>
+      );
+    case "noise-background":
+      return wrap(
+        <NoiseBackground className="w-96 rounded-2xl p-8">
+          <p className="font-display text-lg font-bold">Grain surface</p>
+        </NoiseBackground>
+      );
+    case "grid-background":
+      return wrap(
+        <GridBackground className="w-96 rounded-2xl p-8">
+          <p className="font-display text-lg font-bold">Grid surface</p>
+        </GridBackground>
+      );
+    case "dot-grid-background":
+      return wrap(
+        <DotGridBackground className="w-96 rounded-2xl p-8">
+          <p className="font-display text-lg font-bold">Dot lattice</p>
+        </DotGridBackground>
+      );
+    case "gradient-mesh-background":
+      return wrap(
+        <GradientMeshBackground className="w-96 rounded-2xl p-8">
+          <p className="font-display text-lg font-bold">Mesh field</p>
+        </GradientMeshBackground>
+      );
+    case "aurora-beam-background":
+      return wrap(
+        <AuroraBeamBackground className="w-96 rounded-2xl p-8">
+          <p className="font-display text-lg font-bold">Aurora beams</p>
+        </AuroraBeamBackground>
+      );
+    case "ripple-background":
+      return wrap(
+        <RippleBackground className="w-96 rounded-2xl p-8">
+          <p className="font-display text-lg font-bold">Ripple field</p>
+        </RippleBackground>
+      );
+    case "meteor-background":
+      return wrap(
+        <MeteorBackground className="w-96 rounded-2xl p-8">
+          <p className="font-display text-lg font-bold">Meteor shower</p>
+        </MeteorBackground>
+      );
+    case "beam-background":
+      return wrap(
+        <BeamBackground className="w-96 rounded-2xl p-8">
+          <p className="font-display text-lg font-bold">Light beams</p>
+        </BeamBackground>
+      );
+    case "glow-cursor":
+      return wrap(
+        <div className="relative">
+          <GlowCursor />
+          <div className="rounded-2xl border border-white/10 p-8 text-center text-sm text-white/60">Move to see glow</div>
+        </div>
+      );
+    case "blob-cursor":
+      return wrap(
+        <div className="relative">
+          <BlobCursor />
+          <div className="rounded-2xl border border-white/10 p-8 text-center text-sm text-white/60">Move to see blob</div>
+        </div>
+      );
+    case "trail-cursor":
+      return wrap(
+        <div className="relative">
+          <TrailCursor />
+          <div className="rounded-2xl border border-white/10 p-8 text-center text-sm text-white/60">Move to see trail</div>
+        </div>
+      );
+    case "ghost-cursor":
+      return wrap(
+        <div className="relative">
+          <GhostCursor />
+          <div className="rounded-2xl border border-white/10 p-8 text-center text-sm text-white/60">Move to see ghost</div>
+        </div>
+      );
+    case "spotlight-cursor":
+      return wrap(
+        <div className="relative">
+          <SpotlightCursor />
+          <div className="rounded-2xl border border-white/10 p-8 text-center text-sm text-white/60">Move to see spotlight</div>
+        </div>
+      );
+    case "typewriter":
+      return wrap(<Typewriter text={["Build.", "Remix.", "Ship."]} />);
+    case "scrambled-text":
+      return wrap(<ScrambledText text="registry-driven" />);
+    case "blur-text":
+      return wrap(<BlurText text="Clarity on entry" />);
+    case "gradient-text":
+      return wrap(<GradientText>Buildora</GradientText>);
+    case "glitch-text":
+      return wrap(<GlitchText text="SHIP IT" />);
+    case "ripple-button":
+      return wrap(<RippleButton>Ripple action</RippleButton>);
+    case "shimmer-button":
+      return wrap(<ShimmerButton>Shimmer action</ShimmerButton>);
+    case "glow-button":
+      return wrap(<GlowButton>Glow action</GlowButton>);
+    case "gradient-border-button":
+      return wrap(<GradientBorderButton>Gradient frame</GradientBorderButton>);
+    case "hold-button":
+      return wrap(<HoldButton>Hold to confirm</HoldButton>);
+    case "glare-card":
+      return wrap(
+        <GlareCard className="w-80">
+          <p className="font-display text-lg font-bold">Glare card</p>
+          <p className="mt-2 text-sm text-[--b-muted]">Specular sweep on pointer.</p>
+        </GlareCard>
+      );
+    case "spotlight-card":
+      return wrap(
+        <SpotlightCard className="w-80">
+          <p className="font-display text-lg font-bold">Spotlight card</p>
+          <p className="mt-2 text-sm text-[--b-muted]">Calm cursor light.</p>
+        </SpotlightCard>
+      );
+    case "wobble-card":
+      return wrap(
+        <WobbleCard className="w-80">
+          <p className="font-display text-lg font-bold">Wobble card</p>
+          <p className="mt-2 text-sm text-[--b-muted]">Spring response on enter.</p>
+        </WobbleCard>
+      );
+    case "glass-card":
+      return wrap(
+        <GlassCard className="w-80">
+          <p className="font-display text-lg font-bold">Glass card</p>
+          <p className="mt-2 text-sm text-[--b-muted]">Frosted surface.</p>
+        </GlassCard>
+      );
+    case "bento-grid":
+      return wrap(
+        <div className="w-full max-w-3xl">
+          <BentoGrid>
+            <BentoItem colSpan={2}>Wide tile</BentoItem>
+            <BentoItem>Tile</BentoItem>
+            <BentoItem>Tile</BentoItem>
+          </BentoGrid>
+        </div>
+      );
+    case "infinite-marquee":
+      return wrap(
+        <div className="w-full max-w-3xl overflow-hidden">
+          <InfiniteMarquee>
+            <span className="mx-4 font-mono text-sm">magnetic-button</span>
+            <span className="mx-4 font-mono text-sm">kanban</span>
+            <span className="mx-4 font-mono text-sm">terminal</span>
+          </InfiniteMarquee>
+        </div>
+      );
+    case "masonry-layout":
+      return wrap(
+        <div className="w-full max-w-3xl">
+          <MasonryLayout>
+            <MasonryItem>Short</MasonryItem>
+            <MasonryItem>Taller content block with more text inside the column.</MasonryItem>
+            <MasonryItem>Medium block</MasonryItem>
+          </MasonryLayout>
+        </div>
+      );
     default:
       return wrap(
         <MagneticCard className="w-80">
@@ -446,6 +1130,114 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
         </MagneticCard>
       );
   }
+}
+
+function ToastDemo() {
+  return (
+    <ToastProvider>
+      <ToastTriggerButton />
+    </ToastProvider>
+  );
+}
+
+function ToastTriggerButton() {
+  const { toast } = useToast();
+  return (
+    <Button onClick={() => toast({ title: "Installed", description: "@buildora/magnetic-button added." })}>
+      Show toast
+    </Button>
+  );
+}
+
+function DialogDemo() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>Open dialog</Button>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogHeader>
+          <DialogTitle>Install component</DialogTitle>
+          <DialogDescription>Runs the shadcn CLI for this entry.</DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button variant="ghost" onClick={() => setOpen(false)}>Cancel</Button>
+          <Button onClick={() => setOpen(false)}>Install</Button>
+        </DialogFooter>
+      </Dialog>
+    </div>
+  );
+}
+
+function AlertDialogDemo() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>Delete entry</Button>
+      <AlertDialog open={open} onOpenChange={setOpen} title="Remove component?" description="This removes the entry from the workspace." variant="destructive" />
+    </div>
+  );
+}
+
+function SheetDemo() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>Open sheet</Button>
+      <Sheet open={open} onOpenChange={setOpen} side="right">
+        <p className="p-4 text-sm">Sheet content with focus management.</p>
+      </Sheet>
+    </div>
+  );
+}
+
+function DrawerDemo() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>Open drawer</Button>
+      <Drawer open={open} onOpenChange={setOpen}>
+        <p className="p-4 text-sm">Drawer content for mobile-first flows.</p>
+      </Drawer>
+    </div>
+  );
+}
+
+function PopoverDemo() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <Popover open={open} onOpenChange={setOpen} anchor={<Button onClick={() => setOpen((o) => !o)}>Toggle popover</Button>}>
+      <p className="p-3 text-sm">Anchored panel with placement control.</p>
+    </Popover>
+  );
+}
+
+function ModalStackDemo() {
+  return (
+    <ModalStackProvider>
+      <ModalStackTrigger />
+      <ModalStack />
+    </ModalStackProvider>
+  );
+}
+
+function ModalStackTrigger() {
+  const stack = useModalStack();
+  return (
+    <Button
+      onClick={() =>
+        stack.push(
+          <div className="flex h-full items-center justify-center bg-black/60 p-8">
+            <div className="rounded-2xl border border-white/10 bg-[#12141d] p-6">
+              <p className="text-sm font-bold">Stacked modal</p>
+              <p className="mt-1 text-xs text-white/60">Pushed via modal-stack API.</p>
+            </div>
+          </div>
+        )
+      }
+    >
+      Push modal
+    </Button>
+  );
 }
 
 export default ComponentRenderer;

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "badge",
+  "name": "Badge & Chip",
+  "slug": "badge",
+  "description": "Status badges and removable chips with variant tones.",
+  "categories": [
+    "primitives"
+  ],
+  "tags": [
+    "badge",
+    "chip"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/primitives/badge/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/primitives/badge/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/badge/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/badge/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/badge/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/primitives/badge/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/primitives/badge/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/primitives/badge/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/primitives/badge/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/badge/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/badge/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/primitives/badge/index.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport type BadgeVariant = \"default\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | \"outline\" | \"accent\";\n\nexport type BadgeProps = React.HTMLAttributes<HTMLSpanElement> & {\n  variant?: BadgeVariant;\n  size?: \"default\" | \"sm\" | \"lg\";\n  icon?: React.ReactNode;\n};\n\nfunction Badge({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  icon,\n  children,\n  ...props\n}: BadgeProps) {\n  const variantStyles: Record<BadgeVariant, string> = {\n    default: \"bg-[--b-surface] text-[--b-text-secondary] border-[--b-border]\",\n    secondary: \"bg-[--b-panel] text-[--b-muted] border-[--b-border]\",\n    success: \"bg-[--b-success]/10 text-[--b-success] border-[--b-success]/25\",\n    warning: \"bg-[--b-warning]/10 text-[--b-warning] border-[--b-warning]/25\",\n    danger: \"bg-[--b-danger]/10 text-[--b-danger] border-[--b-danger]/25\",\n    outline: \"bg-transparent text-[--b-text-secondary] border-[--b-border-hover]\",\n    accent: \"bg-[--b-accent-muted] text-[--b-accent] border-[--b-accent]/30\",\n  };\n\n  const sizeStyles: Record<\"default\" | \"sm\" | \"lg\", string> = {\n    default: \"px-2.5 py-0.5 text-xs\",\n    sm: \"px-2 py-0.5 text-[10px]\",\n    lg: \"px-3 py-1 text-sm\",\n  };\n\n  return (\n    <span\n      className={cn(\n        \"inline-flex items-center gap-1.5 rounded-full border font-mono font-medium transition-colors\",\n        variantStyles[variant],\n        sizeStyles[size],\n        className\n      )}\n      {...props}\n    >\n      {icon && <span className=\"shrink-0\">{icon}</span>}\n      {children}\n    </span>\n  );\n}\n\nexport type ChipProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {\n  variant?: BadgeVariant;\n  selected?: boolean;\n  icon?: React.ReactNode;\n};\n\nconst Chip = React.forwardRef<HTMLButtonElement, ChipProps>(\n  ({ className, variant = \"default\", selected, icon, children, ...props }, ref) => {\n    const variantStyles: Record<BadgeVariant, string> = {\n      default: selected\n        ? \"bg-[--b-text]/10 text-[--b-text] border-[--b-border-hover]\"\n        : \"bg-[--b-surface] text-[--b-text-secondary] border-[--b-border] hover:bg-[--b-elevated]\",\n      secondary: selected\n        ? \"bg-[--b-surface] text-[--b-text] border-[--b-border-hover]\"\n        : \"bg-[--b-panel] text-[--b-muted] border-[--b-border] hover:text-[--b-text-secondary]\",\n      success: selected\n        ? \"bg-[--b-success]/20 text-[--b-success] border-[--b-success]/30\"\n        : \"bg-[--b-success]/10 text-[--b-success] border-[--b-success]/15 hover:bg-[--b-success]/15\",\n      warning: selected\n        ? \"bg-[--b-warning]/20 text-[--b-warning] border-[--b-warning]/30\"\n        : \"bg-[--b-warning]/10 text-[--b-warning] border-[--b-warning]/15 hover:bg-[--b-warning]/15\",\n      danger: selected\n        ? \"bg-[--b-danger]/20 text-[--b-danger] border-[--b-danger]/30\"\n        : \"bg-[--b-danger]/10 text-[--b-danger] border-[--b-danger]/15 hover:bg-[--b-danger]/15\",\n      outline: selected\n        ? \"bg-[--b-surface] text-[--b-text] border-[--b-border-hover]\"\n        : \"bg-transparent text-[--b-text-secondary] border-[--b-border] hover:bg-[--b-surface]\",\n      accent: selected\n        ? \"bg-[--b-accent]/25 text-[--b-accent] border-[--b-accent]/40\"\n        : \"bg-[--b-accent-muted] text-[--b-accent] border-[--b-accent]/20 hover:bg-[--b-accent]/15\",\n    };\n\n    return (\n      <button\n        ref={ref}\n        className={cn(\n          \"inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-all\",\n          variantStyles[variant],\n          className\n        )}\n        {...props}\n      >\n        {icon && <span className=\"shrink-0\">{icon}</span>}\n        {children}\n      </button>\n    );\n  }\n);\n\nChip.displayName = \"Chip\";\n\nexport { Badge, Chip };\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/primitives/badge",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/primitives/badge/index.tsx",
+  "sourceDir": "primitives/badge",
+  "docs": "/components/badge",
+  "install": "pnpm dlx shadcn@latest add @buildora/badge"
+}

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "kbd",
+  "name": "Kbd",
+  "slug": "kbd",
+  "description": "Keyboard shortcut glyphs with chord composition.",
+  "categories": [
+    "primitives"
+  ],
+  "tags": [
+    "keyboard",
+    "kbd"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/primitives/kbd/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/primitives/kbd/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/kbd/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/kbd/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/primitives/kbd/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/primitives/kbd/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/primitives/kbd/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/primitives/kbd/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/primitives/kbd/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/kbd/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/primitives/kbd/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/primitives/kbd/index.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport type KbdSize = \"default\" | \"sm\" | \"lg\";\n\nexport type KbdProps = React.HTMLAttributes<HTMLElement> & {\n  size?: KbdSize;\n};\n\nconst Kbd = React.forwardRef<HTMLElement, KbdProps>(\n  ({ className, size = \"default\", children, ...props }, ref) => {\n    const sizeStyles: Record<KbdSize, string> = {\n      default: \"h-6 min-w-6 px-2 text-xs\",\n      sm: \"h-5 min-w-5 px-1.5 text-[10px]\",\n      lg: \"h-7 min-w-7 px-2.5 text-sm\",\n    };\n\n    return (\n      <kbd\n        ref={ref}\n        className={cn(\n          \"inline-flex items-center justify-center rounded-md font-mono font-medium\",\n          \"bg-white/5 text-white/70 border border-white/10\",\n          \"shadow-[0_2px_0_0_rgba(255,255,255,0.05)]\",\n          sizeStyles[size],\n          \"mx-0.5 first:ml-0 last:mr-0\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n      </kbd>\n    );\n  }\n);\n\nKbd.displayName = \"Kbd\";\n\nexport type KbdShortcutProps = React.HTMLAttributes<HTMLDivElement> & {\n  keys: string[];\n  size?: KbdSize;\n};\n\nconst KbdShortcut = React.forwardRef<HTMLDivElement, KbdShortcutProps>(\n  ({ className, keys, size = \"default\", ...props }, ref) => {\n    return (\n      <div ref={ref} className={cn(\"inline-flex items-center\", className)} {...props}>\n        {keys.map((key, index) => (\n          <React.Fragment key={index}>\n            <Kbd size={size}>{key}</Kbd>\n            {index < keys.length - 1 && (\n              <span className=\"mx-0.5 text-white/30\">+</span>\n            )}\n          </React.Fragment>\n        ))}\n      </div>\n    );\n  }\n);\n\nKbdShortcut.displayName = \"KbdShortcut\";\n\nexport { Kbd, KbdShortcut };\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/primitives/kbd",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/primitives/kbd/index.tsx",
+  "sourceDir": "primitives/kbd",
+  "docs": "/components/kbd",
+  "install": "pnpm dlx shadcn@latest add @buildora/kbd"
+}

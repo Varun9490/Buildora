@@ -26,6 +26,12 @@ import { RichTextEditor } from "./rich-text-editor";
 import { SlashCommands } from "./slash-commands";
 import { VersionHistory } from "./version-history";
 import { MarkdownEditor } from "./markdown-editor";
+import { Button, Input, Badge, Switch, Checkbox, Slider, Tabs, TabsList, TabsTrigger, TabsContent, Accordion, AccordionItem, AccordionTrigger, AccordionContent, Tooltip } from "./primitives";
+import { Dialog, DialogTitle, AlertDialog, Sheet, Drawer, Popover, HoverCard } from "./overlays";
+import { TUIPanel, TUIStatusBar, TUIHeader, TUITable, TUIProgress, TUIGauge, TUISparkline, TUILogViewer } from "./tui";
+import { RippleButton, HoldButton } from "./buttons";
+import { GlassCard } from "./cards";
+import { Typewriter } from "./text-effects";
 
 describe("MagneticButton", () => {
   it("renders as a real button with accessible name", () => {
@@ -201,6 +207,100 @@ describe("Dedicated implementations", () => {
     render(<VersionHistory onRestore={fn} />);
     fireEvent.click(screen.getAllByRole("button", { name: "Restore" })[0]);
     expect(fn).toHaveBeenCalled();
+  });
+});
+
+describe("Primitives", () => {
+  it("Button renders variants as native buttons", () => {
+    render(<><Button>Go</Button><Button variant="ghost">Ghost</Button></>);
+    expect(screen.getByRole("button", { name: "Go" })).toBeInTheDocument();
+  });
+  it("Input is labeled by the consumer", () => {
+    render(<><label htmlFor="t-name">Name</label><Input id="t-name" /></>);
+    expect(screen.getByLabelText("Name")).toBeInTheDocument();
+  });
+  it("Badge and Switch expose state", () => {
+    render(<><Badge variant="success">stable</Badge><Switch label="Notify" /></>);
+    expect(screen.getByText("stable")).toBeInTheDocument();
+    expect(screen.getByLabelText("Notify")).toBeInTheDocument();
+  });
+  it("Checkbox and Slider are operable", () => {
+    render(<><Checkbox label="Agree" /><Slider aria-label="Level" defaultValue={20} /></>);
+    expect(screen.getByLabelText("Agree")).toBeInTheDocument();
+    expect(screen.getByLabelText("Level")).toBeInTheDocument();
+  });
+  it("Tabs switch panels", () => {
+    render(
+      <Tabs defaultValue="a">
+        <TabsList><TabsTrigger value="a">A</TabsTrigger><TabsTrigger value="b">B</TabsTrigger></TabsList>
+        <TabsContent value="a">Panel A</TabsContent>
+        <TabsContent value="b">Panel B</TabsContent>
+      </Tabs>
+    );
+    fireEvent.click(screen.getByRole("tab", { name: "B" }));
+    expect(screen.getByText("Panel B")).toBeInTheDocument();
+  });
+  it("Accordion expands content", () => {
+    render(
+      <Accordion>
+        <AccordionItem value="x"><AccordionTrigger>Q</AccordionTrigger><AccordionContent>A</AccordionContent></AccordionItem>
+      </Accordion>
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Q" }));
+    expect(screen.getByText("A")).toBeInTheDocument();
+  });
+  it("Tooltip wraps a trigger", () => {
+    render(<Tooltip content="hint"><button>Hover</button></Tooltip>);
+    expect(screen.getByRole("button", { name: "Hover" })).toBeInTheDocument();
+  });
+});
+
+describe("Overlays", () => {
+  it("Dialog renders title when open", () => {
+    render(<Dialog open onOpenChange={() => undefined}><DialogTitle>Install</DialogTitle></Dialog>);
+    expect(screen.getByText("Install")).toBeInTheDocument();
+  });
+  it("AlertDialog confirms", () => {
+    const fn = vi.fn();
+    render(<AlertDialog open onOpenChange={() => undefined} title="Remove?" onConfirm={fn} />);
+    fireEvent.click(screen.getByRole("button", { name: "Confirm" }));
+    expect(fn).toHaveBeenCalled();
+  });
+  it("Sheet and Drawer render children when open", () => {
+    render(<><Sheet open onOpenChange={() => undefined}><p>sheet body</p></Sheet><Drawer open onOpenChange={() => undefined}><p>drawer body</p></Drawer></>);
+    expect(screen.getByText("sheet body")).toBeInTheDocument();
+    expect(screen.getByText("drawer body")).toBeInTheDocument();
+  });
+  it("Popover and HoverCard render content", () => {
+    render(<><Popover open onOpenChange={() => undefined} anchor={<button>anchor</button>}><p>pop body</p></Popover><HoverCard trigger={<button>trig</button>}><p>hover body</p></HoverCard></>);
+    expect(screen.getByText("pop body")).toBeInTheDocument();
+  });
+});
+
+describe("TUI family", () => {
+  it("Panel, StatusBar, Header render mono content", () => {
+    render(<><TUIPanel title="registry"><p>ok</p></TUIPanel><TUIStatusBar items={[{ label: "branch", value: "main" }]} /><TUIHeader title="buildora" /></>);
+    expect(screen.getByText("registry")).toBeInTheDocument();
+    expect(screen.getByText("main")).toBeInTheDocument();
+  });
+  it("Table, Progress, Gauge, Sparkline render values", () => {
+    render(<><TUITable columns={[{ key: "n", header: "Name" }]} rows={[{ id: "1", n: "a" }]} /><TUIProgress value={50} label="build" /><TUIGauge value={70} label="cov" /><TUISparkline data={[1, 2, 3]} /></>);
+    expect(screen.getByText("a")).toBeInTheDocument();
+  });
+  it("LogViewer shows entries", () => {
+    render(<TUILogViewer entries={[{ level: "info", message: "valid" }]} />);
+    expect(screen.getByText("valid")).toBeInTheDocument();
+  });
+});
+
+describe("Creative additions", () => {
+  it("Ripple and Hold buttons are native buttons", () => {
+    render(<><RippleButton>Rip</RippleButton><HoldButton>Hold</HoldButton></>);
+    expect(screen.getByRole("button", { name: "Rip" })).toBeInTheDocument();
+  });
+  it("GlassCard and Typewriter render", () => {
+    render(<><GlassCard><p>glass</p></GlassCard><Typewriter text="hi" loop={false} /></>);
+    expect(screen.getByText("glass")).toBeInTheDocument();
   });
 });
 

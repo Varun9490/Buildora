@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "grid-background",
+  "name": "Grid Background",
+  "slug": "grid-background",
+  "description": "Perspective grid with fade control.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "background",
+    "grid"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/backgrounds/grid-background.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/backgrounds/grid-background.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/backgrounds/grid-background.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/backgrounds/grid-background.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/backgrounds/grid-background.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/backgrounds/grid-background.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/backgrounds/grid-background.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/backgrounds/grid-background.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/backgrounds/grid-background.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/backgrounds/grid-background.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/backgrounds/grid-background.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/backgrounds/grid-background.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport type GridBackgroundProps = {\n  gridColor?: string;\n  gridSize?: number;\n  perspective?: boolean;\n  fade?: boolean;\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function GridBackground({\n  gridColor = \"rgba(255, 255, 255, 0.05)\",\n  gridSize = 40,\n  perspective = true,\n  fade = true,\n  className,\n  children,\n}: GridBackgroundProps) {\n  return (\n    <div className={cn(\"relative overflow-hidden\", className)}>\n      <div\n        aria-hidden\n        className={cn(\n          \"pointer-events-none absolute inset-0\",\n          perspective && \"[perspective:500px]\"\n        )}\n      >\n        <div\n          className={cn(\n            \"absolute inset-0\",\n            perspective && \"origin-bottom [transform:rotateX(60deg)]\"\n          )}\n          style={{\n            backgroundImage: `\n              linear-gradient(${gridColor} 1px, transparent 1px),\n              linear-gradient(90deg, ${gridColor} 1px, transparent 1px)\n            `,\n            backgroundSize: `${gridSize}px ${gridSize}px`,\n          }}\n        />\n        {fade && (\n          <div\n            className=\"pointer-events-none absolute inset-0\"\n            style={{\n              background: \"linear-gradient(to bottom, transparent 0%, var(--bg-color, #0b0d13) 100%)\",\n            }}\n          />\n        )}\n      </div>\n      <div className=\"relative z-10\">{children}</div>\n    </div>\n  );\n}\n\nexport default GridBackground;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/backgrounds/grid-background.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/backgrounds/grid-background.tsx",
+  "sourceDir": "backgrounds/grid-background.tsx",
+  "docs": "/components/grid-background",
+  "install": "pnpm dlx shadcn@latest add @buildora/grid-background"
+}

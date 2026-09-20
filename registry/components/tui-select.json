@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "tui-select",
+  "name": "TUI Select",
+  "slug": "tui-select",
+  "description": "Terminal single-select with search support.",
+  "categories": [
+    "developer"
+  ],
+  "tags": [
+    "tui",
+    "select"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/tui/tui-select.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/tui/tui-select.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/tui/tui-select.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/tui/tui-select.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/tui/tui-select.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/tui/tui-select.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/tui/tui-select.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/tui/tui-select.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/tui/tui-select.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/tui/tui-select.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/tui/tui-select.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/tui/tui-select.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport interface TUISelectOption {\n  value: string;\n  label: string;\n  description?: string;\n  icon?: string;\n  disabled?: boolean;\n}\n\nexport interface TUISelectProps {\n  options: TUISelectOption[];\n  value?: string;\n  onChange?: (value: string) => void;\n  placeholder?: string;\n  className?: string;\n  disabled?: boolean;\n  searchable?: boolean;\n}\n\nexport function TUISelect({\n  options,\n  value,\n  onChange,\n  placeholder = \"Select...\",\n  className,\n  disabled = false,\n  searchable = false,\n}: TUISelectProps) {\n  const [open, setOpen] = React.useState(false);\n  const [focusedIndex, setFocusedIndex] = React.useState(0);\n  const [search, setSearch] = React.useState(\"\");\n  const containerRef = React.useRef<HTMLDivElement>(null);\n\n  const filteredOptions = searchable\n    ? options.filter(\n        (o) =>\n          o.label.toLowerCase().includes(search.toLowerCase()) ||\n          o.value.toLowerCase().includes(search.toLowerCase())\n      )\n    : options;\n\n  const selectedOption = options.find((o) => o.value === value);\n\n  React.useEffect(() => {\n    const handleClickOutside = (e: MouseEvent) => {\n      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {\n        setOpen(false);\n      }\n    };\n    document.addEventListener(\"mousedown\", handleClickOutside);\n    return () => document.removeEventListener(\"mousedown\", handleClickOutside);\n  }, []);\n\n  const handleKeyDown = (e: React.KeyboardEvent) => {\n    if (!open) {\n      if (e.key === \"Enter\" || e.key === \" \") {\n        e.preventDefault();\n        setOpen(true);\n      }\n      return;\n    }\n    if (e.key === \"ArrowDown\") {\n      e.preventDefault();\n      setFocusedIndex((i) => Math.min(i + 1, filteredOptions.length - 1));\n    } else if (e.key === \"ArrowUp\") {\n      e.preventDefault();\n      setFocusedIndex((i) => Math.max(i - 1, 0));\n    } else if (e.key === \"Enter\") {\n      e.preventDefault();\n      const opt = filteredOptions[focusedIndex];\n      if (opt && !opt.disabled) {\n        onChange?.(opt.value);\n        setOpen(false);\n      }\n    } else if (e.key === \"Escape\") {\n      setOpen(false);\n    }\n  };\n\n  return (\n    <div\n      ref={containerRef}\n      className={cn(\"relative font-mono text-xs\", className)}\n      tabIndex={disabled ? -1 : 0}\n      onKeyDown={handleKeyDown}\n      role=\"combobox\"\n      aria-expanded={open}\n      aria-disabled={disabled}\n    >\n      <button\n        type=\"button\"\n        onClick={() => !disabled && setOpen(!open)}\n        className={cn(\n          \"w-full flex items-center justify-between gap-2 px-2 py-1.5 border rounded bg-[#0a0c10] text-left\",\n          open ? \"border-cyan-500/50\" : \"border-white/10\",\n          disabled && \"opacity-50 cursor-not-allowed\"\n        )}\n      >\n        <span className={selectedOption ? \"text-white/80\" : \"text-white/40\"}>\n          {selectedOption ? (\n            <span className=\"flex items-center gap-1\">\n              {selectedOption.icon && <span>{selectedOption.icon}</span>}\n              {selectedOption.label}\n            </span>\n          ) : (\n            placeholder\n          )}\n        </span>\n        <span className=\"text-white/40\">▼</span>\n      </button>\n      {open && (\n        <div\n          className=\"absolute z-50 w-full mt-1 bg-[#0a0c10] border border-white/10 rounded shadow-lg overflow-hidden\"\n          role=\"listbox\"\n        >\n          {searchable && (\n            <div className=\"border-b border-white/10 p-1\">\n              <input\n                type=\"text\"\n                value={search}\n                onChange={(e) => setSearch(e.target.value)}\n                placeholder=\"Search...\"\n                className=\"w-full px-2 py-1 bg-white/5 border border-white/10 rounded text-white/80 outline-none placeholder:text-white/30\"\n                autoFocus\n              />\n            </div>\n          )}\n          <div className=\"max-h-48 overflow-auto\">\n            {filteredOptions.length === 0 ? (\n              <div className=\"px-3 py-2 text-white/40\">No options</div>\n            ) : (\n              filteredOptions.map((opt, i) => (\n                <div\n                  key={opt.value}\n                  className={cn(\n                    \"flex items-center gap-2 px-3 py-1.5 cursor-pointer\",\n                    opt.disabled ? \"opacity-40 cursor-not-allowed\" : \"hover:bg-white/5\",\n                    focusedIndex === i && \"bg-cyan-500/10\",\n                    value === opt.value && \"text-cyan-400\"\n                  )}\n                  onClick={() => {\n                    if (!opt.disabled) {\n                      onChange?.(opt.value);\n                      setOpen(false);\n                    }\n                  }}\n                  role=\"option\"\n                  aria-selected={value === opt.value}\n                >\n                  {opt.icon && <span className=\"text-white/50\">{opt.icon}</span>}\n                  <div className=\"min-w-0\">\n                    <div className=\"truncate\">{opt.label}</div>\n                    {opt.description && (\n                      <div className=\"text-[10px] text-white/40 truncate\">\n                        {opt.description}\n                      </div>\n                    )}\n                  </div>\n                </div>\n              ))\n            )}\n          </div>\n        </div>\n      )}\n    </div>\n  );\n}\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/tui/tui-select.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/tui/tui-select.tsx",
+  "sourceDir": "tui/tui-select.tsx",
+  "docs": "/components/tui-select",
+  "install": "pnpm dlx shadcn@latest add @buildora/tui-select"
+}

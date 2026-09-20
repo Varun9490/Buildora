@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-hold-button",
+  "type": "registry:component",
+  "title": "Hold Button",
+  "description": "Press-and-hold confirm with progress feedback.",
+  "categories": [
+    "creative"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/buttons/hold-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type HoldButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {\n  holdDuration?: number;\n  onHoldComplete?: () => void;\n  progressColor?: string;\n};\n\nexport function HoldButton({\n  holdDuration = 1000,\n  onHoldComplete,\n  progressColor = \"#d4ff4f\",\n  className,\n  children,\n  disabled,\n  ...rest\n}: HoldButtonProps) {\n  const [progress, setProgress] = React.useState(0);\n  const [isHolding, setIsHolding] = React.useState(false);\n  const reduced = useReducedMotion();\n  const timerRef = React.useRef<NodeJS.Timeout | null>(null);\n  const intervalRef = React.useRef<NodeJS.Timeout | null>(null);\n\n  const startHold = React.useCallback(() => {\n    if (disabled || reduced) return;\n    setIsHolding(true);\n\n    const startTime = Date.now();\n    intervalRef.current = setInterval(() => {\n      const elapsed = Date.now() - startTime;\n      const newProgress = Math.min((elapsed / holdDuration) * 100, 100);\n      setProgress(newProgress);\n\n      if (newProgress >= 100) {\n        if (intervalRef.current) clearInterval(intervalRef.current);\n        onHoldComplete?.();\n      }\n    }, 16);\n\n    timerRef.current = setTimeout(() => {\n      if (intervalRef.current) clearInterval(intervalRef.current);\n      setIsHolding(false);\n      setProgress(0);\n    }, holdDuration + 100);\n  }, [holdDuration, onHoldComplete, disabled, reduced]);\n\n  const cancelHold = React.useCallback(() => {\n    if (timerRef.current) clearTimeout(timerRef.current);\n    if (intervalRef.current) clearInterval(intervalRef.current);\n    setIsHolding(false);\n    setProgress(0);\n  }, []);\n\n  React.useEffect(() => {\n    return () => {\n      if (timerRef.current) clearTimeout(timerRef.current);\n      if (intervalRef.current) clearInterval(intervalRef.current);\n    };\n  }, []);\n\n  return (\n    <button\n      onPointerDown={startHold}\n      onPointerUp={cancelHold}\n      onPointerLeave={cancelHold}\n      disabled={disabled}\n      className={cn(\n        \"relative overflow-hidden rounded-xl bg-[#1a1c25] px-6 py-2.5 text-sm font-medium text-white\",\n        \"transition-all duration-200\",\n        \"focus:outline-none focus:ring-2 focus:ring-[#d4ff4f]/50\",\n        \"disabled:opacity-50 disabled:pointer-events-none\",\n        isHolding && \"scale-95\",\n        className\n      )}\n      {...rest}\n    >\n      <span\n        aria-hidden\n        className=\"absolute inset-y-0 left-0 transition-all ease-linear\"\n        style={{\n          width: `${progress}%`,\n          background: progressColor,\n          opacity: 0.2,\n          transitionDuration: reduced ? \"0ms\" : `${holdDuration}ms`,\n        }}\n      />\n      <span className=\"relative z-10 flex items-center gap-2\">\n        {children}\n        {isHolding && !reduced && (\n          <span className=\"text-xs opacity-60\">{Math.round(progress)}%</span>\n        )}\n      </span>\n    </button>\n  );\n}\n\nexport default HoldButton;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/buttons/hold-button.tsx"
+}

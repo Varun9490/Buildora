@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "gradient-mesh-background",
+  "name": "Gradient Mesh Background",
+  "slug": "gradient-mesh-background",
+  "description": "Layered mesh gradient field.",
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "background",
+    "mesh"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/backgrounds/gradient-mesh-background.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/backgrounds/gradient-mesh-background.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/backgrounds/gradient-mesh-background.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/backgrounds/gradient-mesh-background.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/backgrounds/gradient-mesh-background.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/backgrounds/gradient-mesh-background.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/backgrounds/gradient-mesh-background.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/backgrounds/gradient-mesh-background.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/backgrounds/gradient-mesh-background.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/backgrounds/gradient-mesh-background.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/backgrounds/gradient-mesh-background.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/backgrounds/gradient-mesh-background.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\nimport { useReducedMotion } from \"@buildora/hooks\";\n\nexport type GradientMeshBackgroundProps = {\n  colors?: string[];\n  speed?: number;\n  blur?: number;\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function GradientMeshBackground({\n  colors = [\"#5f4de8\", \"#d4ff4f\", \"#ff8a3d\", \"#3dd4ff\"],\n  speed = 20,\n  blur = 100,\n  className,\n  children,\n}: GradientMeshBackgroundProps) {\n  const reduced = useReducedMotion();\n  const actualSpeed = reduced ? 0 : speed;\n\n  return (\n    <div className={cn(\"relative overflow-hidden\", className)}>\n      <div aria-hidden className=\"pointer-events-none absolute inset-0\">\n        {colors.map((color, i) => (\n          <div\n            key={i}\n            className=\"absolute\"\n            style={{\n              width: \"60%\",\n              height: \"60%\",\n              left: `${(i % 2) * 30}%`,\n              top: `${Math.floor(i / 2) * 30}%`,\n              background: color,\n              opacity: 0.4,\n              filter: `blur(${blur}px)`,\n              borderRadius: \"50%\",\n              mixBlendMode: \"screen\",\n              animation: actualSpeed > 0 ? `meshDrift ${actualSpeed}s ease-in-out infinite alternate` : undefined,\n              animationDelay: `${i * 2}s`,\n            }}\n          />\n        ))}\n      </div>\n      <style>{`\n        @keyframes meshDrift {\n          0% { transform: translate(0, 0) scale(1); }\n          100% { transform: translate(10%, 15%) scale(1.1); }\n        }\n      `}</style>\n      <div className=\"relative z-10\">{children}</div>\n    </div>\n  );\n}\n\nexport default GradientMeshBackground;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/backgrounds/gradient-mesh-background.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/backgrounds/gradient-mesh-background.tsx",
+  "sourceDir": "backgrounds/gradient-mesh-background.tsx",
+  "docs": "/components/gradient-mesh-background",
+  "install": "pnpm dlx shadcn@latest add @buildora/gradient-mesh-background"
+}

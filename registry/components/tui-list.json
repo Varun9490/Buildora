@@ -1,0 +1,119 @@
+{
+  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "id": "tui-list",
+  "name": "TUI List",
+  "slug": "tui-list",
+  "description": "Selectable terminal list with shortcuts and icons.",
+  "categories": [
+    "developer"
+  ],
+  "tags": [
+    "tui",
+    "list"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/tui/tui-list.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/tui/tui-list.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/tui/tui-list.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/tui/tui-list.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/tui/tui-list.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/tui/tui-list.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/tui/tui-list.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/tui/tui-list.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/tui/tui-list.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/tui/tui-list.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/tui/tui-list.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/tui/tui-list.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport interface TUIListItem {\n  id: string;\n  label: string;\n  description?: string;\n  icon?: string;\n  shortcut?: string;\n  disabled?: boolean;\n}\n\nexport interface TUIListProps {\n  items: TUIListItem[];\n  selectedId?: string;\n  onSelect?: (item: TUIListItem) => void;\n  onDoubleClick?: (item: TUIListItem) => void;\n  className?: string;\n  focusable?: boolean;\n  showShortcuts?: boolean;\n}\n\nexport function TUIList({\n  items,\n  selectedId,\n  onSelect,\n  onDoubleClick,\n  className,\n  focusable = true,\n  showShortcuts = true,\n}: TUIListProps) {\n  const [focused, setFocused] = React.useState(false);\n  const [focusedIndex, setFocusedIndex] = React.useState(-1);\n\n  React.useEffect(() => {\n    if (selectedId) {\n      const idx = items.findIndex((i) => i.id === selectedId);\n      if (idx >= 0) setFocusedIndex(idx);\n    }\n  }, [selectedId, items]);\n\n  const handleKeyDown = (e: React.KeyboardEvent) => {\n    if (e.key === \"ArrowDown\") {\n      e.preventDefault();\n      setFocusedIndex((i) => {\n        const next = Math.min(i + 1, items.length - 1);\n        while (next < items.length && items[next].disabled) {\n          return next;\n        }\n        return next;\n      });\n    } else if (e.key === \"ArrowUp\") {\n      e.preventDefault();\n      setFocusedIndex((i) => Math.max(i - 1, 0));\n    } else if (e.key === \"Enter\" && focusedIndex >= 0) {\n      const item = items[focusedIndex];\n      if (!item.disabled) onSelect?.(item);\n    }\n  };\n\n  return (\n    <div\n      className={cn(\"font-mono text-xs bg-[#0a0c10] overflow-auto\", className)}\n      role=\"listbox\"\n      tabIndex={focusable ? 0 : -1}\n      onFocus={() => setFocused(true)}\n      onBlur={() => setFocused(false)}\n      onKeyDown={handleKeyDown}\n    >\n      {items.map((item, i) => (\n        <div\n          key={item.id}\n          className={cn(\n            \"flex items-center justify-between px-3 py-2 cursor-pointer border-b border-white/5\",\n            item.disabled\n              ? \"opacity-40 cursor-not-allowed\"\n              : \"hover:bg-white/5\",\n            selectedId === item.id && \"bg-cyan-500/10\",\n            focused && focusedIndex === i && \"bg-cyan-500/5\"\n          )}\n          onClick={() => !item.disabled && onSelect?.(item)}\n          onDoubleClick={() => !item.disabled && onDoubleClick?.(item)}\n          role=\"option\"\n          aria-selected={selectedId === item.id}\n          aria-disabled={item.disabled}\n        >\n          <div className=\"flex items-center gap-2 min-w-0\">\n            {item.icon && <span className=\"text-white/50\">{item.icon}</span>}\n            <div className=\"min-w-0\">\n              <div className={cn(\"truncate\", selectedId === item.id ? \"text-cyan-400\" : \"text-white/80\")}>\n                {item.label}\n              </div>\n              {item.description && (\n                <div className=\"text-[10px] text-white/40 truncate\">\n                  {item.description}\n                </div>\n              )}\n            </div>\n          </div>\n          {showShortcuts && item.shortcut && (\n            <kbd className=\"px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-white/50 text-[10px]\">\n              {item.shortcut}\n            </kbd>\n          )}\n        </div>\n      ))}\n    </div>\n  );\n}\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/tui/tui-list.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/tui/tui-list.tsx",
+  "sourceDir": "tui/tui-list.tsx",
+  "docs": "/components/tui-list",
+  "install": "pnpm dlx shadcn@latest add @buildora/tui-list"
+}

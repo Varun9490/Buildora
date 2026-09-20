@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buildora-tui-sparkline",
+  "type": "registry:component",
+  "title": "TUI Sparkline",
+  "description": "Inline data sparkline with min/max readout.",
+  "categories": [
+    "developer"
+  ],
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/components/src/tui/tui-sparkline.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@buildora/utils\";\n\nexport interface TUISparklineProps {\n  data: number[];\n  width?: number;\n  height?: number;\n  className?: string;\n  color?: \"default\" | \"success\" | \"warning\" | \"error\";\n  showMinMax?: boolean;\n  label?: string;\n}\n\nconst sparklineChars = {\n  default: [\"▁\", \"▂\", \"▃\", \"▄\", \"▅\", \"▆\", \"▇\", \"█\"],\n  dots: [\"⠁\", \"⠃\", \"⠇\", \"⡇\", \"⡏\", \"⡟\", \"⡿\", \"⣿\"],\n};\n\nconst sparklineColors = {\n  default: \"text-cyan-400\",\n  success: \"text-green-400\",\n  warning: \"text-yellow-400\",\n  error: \"text-red-400\",\n};\n\nexport function TUISparkline({\n  data,\n  width = 20,\n  height = 1,\n  className,\n  color = \"default\",\n  showMinMax = false,\n  label,\n}: TUISparklineProps) {\n  if (data.length === 0) return null;\n\n  const min = Math.min(...data);\n  const max = Math.max(...data);\n  const range = max - min || 1;\n\n  const chars = sparklineChars.default;\n\n  const normalized = data.map((v) => Math.round(((v - min) / range) * (chars.length - 1)));\n  const paddedData = normalized.slice(-width);\n  const padding = width - paddedData.length;\n  const sparkline = \" \".repeat(Math.max(0, padding)) + \n    paddedData.map((v) => chars[Math.min(v, chars.length - 1)]).join(\"\");\n\n  return (\n    <div className={cn(\"font-mono text-xs inline-flex flex-col\", className)}>\n      {label && (\n        <div className=\"flex items-center justify-between mb-0.5\">\n          <span className=\"text-white/50 text-[10px]\">{label}</span>\n          {showMinMax && (\n            <span className=\"text-white/30 text-[10px]\">\n              {min.toFixed(1)} – {max.toFixed(1)}\n            </span>\n          )}\n        </div>\n      )}\n      <div className={cn(\"flex\", sparklineColors[color])}>\n        {height > 1 ? (\n          <pre className=\"leading-none\">{sparkline}</pre>\n        ) : (\n          <span className={sparklineColors[color]}>{sparkline}</span>\n        )}\n      </div>\n      {!label && showMinMax && (\n        <div className=\"flex justify-between text-[10px] text-white/30 mt-0.5\">\n          <span>-{min.toFixed(0)}</span>\n          <span>+{max.toFixed(0)}</span>\n        </div>\n      )}\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/tui/tui-sparkline.tsx"
+}

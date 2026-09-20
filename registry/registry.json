@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 54,
+  "total": 138,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -782,6 +782,1174 @@
       "tags": [
         "versions",
         "history"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "button",
+      "name": "Primitive Button",
+      "description": "Base button with variants and sizes. Foundation for everything clickable.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "button",
+        "foundation"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "input",
+      "name": "Primitive Input",
+      "description": "Labeled text input with variants, sizes, and error states.",
+      "categories": [
+        "forms"
+      ],
+      "tags": [
+        "input",
+        "field"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "textarea",
+      "name": "Primitive Textarea",
+      "description": "Multiline text field sharing Input styling and semantics.",
+      "categories": [
+        "forms"
+      ],
+      "tags": [
+        "textarea",
+        "field"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "badge",
+      "name": "Badge & Chip",
+      "description": "Status badges and removable chips with variant tones.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "badge",
+        "chip"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "switch",
+      "name": "Switch",
+      "description": "Labeled toggle switch built on a native checkbox.",
+      "categories": [
+        "forms"
+      ],
+      "tags": [
+        "switch",
+        "toggle"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "checkbox",
+      "name": "Checkbox",
+      "description": "Accessible checkbox with label and indeterminate support.",
+      "categories": [
+        "forms"
+      ],
+      "tags": [
+        "checkbox"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "radio-group",
+      "name": "Radio Group",
+      "description": "Single-select radio set with keyboard arrow navigation.",
+      "categories": [
+        "forms"
+      ],
+      "tags": [
+        "radio"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "slider",
+      "name": "Slider",
+      "description": "Range slider with value display and keyboard support.",
+      "categories": [
+        "forms"
+      ],
+      "tags": [
+        "slider",
+        "range"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "progress",
+      "name": "Progress",
+      "description": "Determinate progress bar with variant tones.",
+      "categories": [
+        "feedback"
+      ],
+      "tags": [
+        "progress"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "spinner",
+      "name": "Spinner",
+      "description": "Activity spinner with sizes and live-region label.",
+      "categories": [
+        "feedback"
+      ],
+      "tags": [
+        "spinner",
+        "loading"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "skeleton",
+      "name": "Skeleton",
+      "description": "Content placeholder matching final layout shape.",
+      "categories": [
+        "feedback"
+      ],
+      "tags": [
+        "skeleton",
+        "loading"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "avatar",
+      "name": "Avatar",
+      "description": "Identity avatar with fallback initials and group stacking.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "avatar"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "kbd",
+      "name": "Kbd",
+      "description": "Keyboard shortcut glyphs with chord composition.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "keyboard",
+        "kbd"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "separator",
+      "name": "Separator",
+      "description": "Thematic break and divider rules for grouping content.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "separator",
+        "divider"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tabs",
+      "name": "Tabs",
+      "description": "Keyboard-navigable tab set with panels.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "tabs"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "accordion",
+      "name": "Accordion",
+      "description": "Disclosure stack with expanded-state semantics.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "accordion"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "toast",
+      "name": "Toast",
+      "description": "Transient notifications via provider and toast API.",
+      "categories": [
+        "feedback"
+      ],
+      "tags": [
+        "toast"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tooltip",
+      "name": "Tooltip",
+      "description": "Hover/focus description bubble for controls.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "tooltip"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "dialog",
+      "name": "Dialog",
+      "description": "Focus-trapped modal dialog with overlay and escape handling.",
+      "categories": [
+        "overlays"
+      ],
+      "tags": [
+        "dialog",
+        "modal"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "alert-dialog",
+      "name": "Alert Dialog",
+      "description": "Confirm/cancel dialog with destructive variant.",
+      "categories": [
+        "overlays"
+      ],
+      "tags": [
+        "confirm",
+        "dialog"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "sheet",
+      "name": "Sheet",
+      "description": "Side panel sliding from any edge with focus management.",
+      "categories": [
+        "overlays"
+      ],
+      "tags": [
+        "panel",
+        "side"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "drawer",
+      "name": "Drawer",
+      "description": "Bottom-anchored drawer panel for mobile-first flows.",
+      "categories": [
+        "overlays"
+      ],
+      "tags": [
+        "panel",
+        "drawer"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "popover",
+      "name": "Popover",
+      "description": "Anchored floating panel with placement control.",
+      "categories": [
+        "overlays"
+      ],
+      "tags": [
+        "popover"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "dropdown-menu",
+      "name": "Dropdown Menu",
+      "description": "Trigger-anchored menu with items, labels, and checks.",
+      "categories": [
+        "overlays"
+      ],
+      "tags": [
+        "menu",
+        "dropdown"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "context-menu",
+      "name": "Context Menu",
+      "description": "Right-click menu with keyboard fallback trigger.",
+      "categories": [
+        "overlays"
+      ],
+      "tags": [
+        "menu",
+        "context"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "hover-card",
+      "name": "Hover Card",
+      "description": "Delayed hover preview card with configurable side.",
+      "categories": [
+        "overlays"
+      ],
+      "tags": [
+        "preview",
+        "hover"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "modal-stack",
+      "name": "Modal Stack",
+      "description": "Stacked modal manager with push/pop/replace semantics.",
+      "categories": [
+        "overlays"
+      ],
+      "tags": [
+        "stacked",
+        "modal"
+      ],
+      "difficulty": "advanced",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "navbar",
+      "name": "Navbar",
+      "description": "Sticky header bar with logo, center, and actions slots.",
+      "categories": [
+        "navigation"
+      ],
+      "tags": [
+        "header",
+        "navbar"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "floating-navbar",
+      "name": "Floating Navbar",
+      "description": "Scroll-aware floating navigation pill.",
+      "categories": [
+        "navigation"
+      ],
+      "tags": [
+        "floating",
+        "navbar"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "sidebar",
+      "name": "Sidebar",
+      "description": "Collapsible app sidebar with sections and active state.",
+      "categories": [
+        "navigation"
+      ],
+      "tags": [
+        "sidebar"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "expandable-sidebar",
+      "name": "Expandable Sidebar",
+      "description": "Hover-expanding rail sidebar with delayed reveal.",
+      "categories": [
+        "navigation"
+      ],
+      "tags": [
+        "sidebar",
+        "hover"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "mobile-nav",
+      "name": "Mobile Nav",
+      "description": "Bottom mobile navigation with labeled items.",
+      "categories": [
+        "navigation"
+      ],
+      "tags": [
+        "mobile",
+        "bottom"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "breadcrumb",
+      "name": "Breadcrumb",
+      "description": "Ancestor trail with current-page semantics.",
+      "categories": [
+        "navigation"
+      ],
+      "tags": [
+        "trail",
+        "breadcrumb"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "step-nav",
+      "name": "Step Nav",
+      "description": "Stepper navigation with current-step state.",
+      "categories": [
+        "navigation"
+      ],
+      "tags": [
+        "stepper",
+        "steps"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "pagination",
+      "name": "Pagination",
+      "description": "Page controls with prev/next and numbered buttons.",
+      "categories": [
+        "navigation"
+      ],
+      "tags": [
+        "pages",
+        "pagination"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "command-bar",
+      "name": "Command Bar",
+      "description": "Keyboard-triggered command bar with trigger and items.",
+      "categories": [
+        "navigation"
+      ],
+      "tags": [
+        "command",
+        "palette"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-panel",
+      "name": "TUI Panel",
+      "description": "Bordered terminal panel with title and focus state.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "panel"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-status-bar",
+      "name": "TUI Status Bar",
+      "description": "Status strip with labeled values and tone colors.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "status"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-header",
+      "name": "TUI Header",
+      "description": "Terminal header with title, subtitle, and slots.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "header"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-footer",
+      "name": "TUI Footer",
+      "description": "Shortcut hints and message line for terminal UIs.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "footer"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-table",
+      "name": "TUI Table",
+      "description": "Monospace data table with selection support.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "table"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-tree",
+      "name": "TUI Tree",
+      "description": "Expandable terminal tree with selection callbacks.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "tree"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-list",
+      "name": "TUI List",
+      "description": "Selectable terminal list with shortcuts and icons.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "list"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-form",
+      "name": "TUI Form",
+      "description": "Terminal form renderer with submit handling.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "form"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-select",
+      "name": "TUI Select",
+      "description": "Terminal single-select with search support.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "select"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-multi-select",
+      "name": "TUI Multi Select",
+      "description": "Terminal multi-select with visible-count control.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "select"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-progress",
+      "name": "TUI Progress",
+      "description": "Block-character progress bar with tone colors.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "progress"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-spinner",
+      "name": "TUI Spinner",
+      "description": "Terminal activity indicator with label.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "spinner"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-gauge",
+      "name": "TUI Gauge",
+      "description": "Capacity gauge with value, unit, and size options.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "gauge"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-sparkline",
+      "name": "TUI Sparkline",
+      "description": "Inline data sparkline with min/max readout.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "chart"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-log-viewer",
+      "name": "TUI Log Viewer",
+      "description": "Leveled terminal log stream with filtering.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "logs"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-help-overlay",
+      "name": "TUI Help Overlay",
+      "description": "Keybinding reference overlay with columns.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "help"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "tui-diff-viewer",
+      "name": "TUI Diff Viewer",
+      "description": "Hunk-based terminal diff with line numbers.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "tui",
+        "diff"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "terminal-workspace",
+      "name": "Terminal Workspace",
+      "description": "Full terminal workspace: tabs, panes, sidebar, themes, command input.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "terminal",
+        "workspace"
+      ],
+      "difficulty": "advanced",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "noise-background",
+      "name": "Noise Background",
+      "description": "Film-grain texture overlay for tactile surfaces.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "background",
+        "noise"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "grid-background",
+      "name": "Grid Background",
+      "description": "Perspective grid with fade control.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "background",
+        "grid"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "dot-grid-background",
+      "name": "Dot Grid Background",
+      "description": "Dotted lattice backdrop for technical layouts.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "background",
+        "dots"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "gradient-mesh-background",
+      "name": "Gradient Mesh Background",
+      "description": "Layered mesh gradient field.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "background",
+        "mesh"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "aurora-beam-background",
+      "name": "Aurora Beam Background",
+      "description": "Sweeping aurora beams over content.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "background",
+        "aurora"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "ripple-background",
+      "name": "Ripple Background",
+      "description": "Pointer-reactive ripple field.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "background",
+        "ripple"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "meteor-background",
+      "name": "Meteor Background",
+      "description": "Streaking meteor shower backdrop.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "background",
+        "meteor"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "beam-background",
+      "name": "Beam Background",
+      "description": "Light-beam sweep backdrop.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "background",
+        "beam"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "glow-cursor",
+      "name": "Glow Cursor",
+      "description": "Soft glow following the pointer. Null under reduced motion; pointer-only.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "cursor",
+        "glow"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "blob-cursor",
+      "name": "Blob Cursor",
+      "description": "Organic blob trailing the pointer. Pointer-only.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "cursor",
+        "blob"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "trail-cursor",
+      "name": "Trail Cursor",
+      "description": "Fading particle trail behind the pointer.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "cursor",
+        "trail"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "ghost-cursor",
+      "name": "Ghost Cursor",
+      "description": "Delayed ghost echo of pointer movement.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "cursor",
+        "ghost"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "spotlight-cursor",
+      "name": "Spotlight Cursor",
+      "description": "Hard-edged spotlight tracking the pointer.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "cursor",
+        "spotlight"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "typewriter",
+      "name": "Typewriter",
+      "description": "Typing loop with configurable speed and cursor.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "text",
+        "typewriter"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "scrambled-text",
+      "name": "Scrambled Text",
+      "description": "Decode-style scramble reveal for headings.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "text",
+        "scramble"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "blur-text",
+      "name": "Blur Text",
+      "description": "Blur-to-sharp text entrance.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "text",
+        "blur"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "gradient-text",
+      "name": "Gradient Text",
+      "description": "Gradient-ink display text.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "text",
+        "gradient"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "glitch-text",
+      "name": "Glitch Text",
+      "description": "RGB-split glitch effect for display type.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "text",
+        "glitch"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "ripple-button",
+      "name": "Ripple Button",
+      "description": "Material-style expanding ripple on press.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "button",
+        "ripple"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "shimmer-button",
+      "name": "Shimmer Button",
+      "description": "Light sweep shimmer across the label.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "button",
+        "shimmer"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "glow-button",
+      "name": "Glow Button",
+      "description": "Luminous halo button for primary actions.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "button",
+        "glow"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "gradient-border-button",
+      "name": "Gradient Border Button",
+      "description": "Animated gradient frame around a solid label.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "button",
+        "gradient"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "hold-button",
+      "name": "Hold Button",
+      "description": "Press-and-hold confirm with progress feedback.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "button",
+        "hold",
+        "confirm"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "glare-card",
+      "name": "Glare Card",
+      "description": "Specular glare sweeping with pointer angle.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "card",
+        "glare"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "spotlight-card",
+      "name": "Spotlight Card",
+      "description": "Cursor spotlight card, calmer sibling of Magnetic Card.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "card",
+        "spotlight"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "wobble-card",
+      "name": "Wobble Card",
+      "description": "Spring wobble response to pointer enter.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "card",
+        "spring"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "glass-card",
+      "name": "Glass Card",
+      "description": "Frosted-glass panel card with solid fallback.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "card",
+        "glass"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "bento-grid",
+      "name": "Bento Grid",
+      "description": "Tile grid with configurable columns and spans.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "layout",
+        "bento",
+        "grid"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "infinite-marquee",
+      "name": "Infinite Marquee",
+      "description": "Seamless looping marquee row.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "layout",
+        "marquee"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0"
+    },
+    {
+      "slug": "masonry-layout",
+      "name": "Masonry Layout",
+      "description": "Pinterest-style masonry columns.",
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "layout",
+        "masonry"
       ],
       "difficulty": "intermediate",
       "version": "0.1.0"

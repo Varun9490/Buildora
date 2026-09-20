@@ -42,6 +42,25 @@ const EXPECTED: Record<string, string[]> = {
   "interactive-3d-card": ["Interactive3DCard"],
   "json-viewer": ["JSONViewer"],
   "log-viewer": ["LogViewer"],
+  breadcrumb: ["BreadcrumbNav"],
+  "terminal-workspace": ["TerminalUI"],
+  "tui-panel": ["TUIPanel"],
+  "tui-status-bar": ["TUIStatusBar"],
+  "tui-header": ["TUIHeader"],
+  "tui-footer": ["TUIFooter"],
+  "tui-table": ["TUITable"],
+  "tui-tree": ["TUITree"],
+  "tui-list": ["TUIList"],
+  "tui-form": ["TUIForm"],
+  "tui-select": ["TUISelect"],
+  "tui-multi-select": ["TUIMultiSelect"],
+  "tui-progress": ["TUIProgress"],
+  "tui-spinner": ["TUISpinner"],
+  "tui-gauge": ["TUIGauge"],
+  "tui-sparkline": ["TUISparkline"],
+  "tui-log-viewer": ["TUILogViewer"],
+  "tui-help-overlay": ["TUIHelpOverlay"],
+  "tui-diff-viewer": ["TUIDiffViewer"],
 };
 
 function pascal(slug: string): string {
@@ -51,19 +70,31 @@ function pascal(slug: string): string {
 let failed = 0;
 for (const item of catalog) {
   const errs: string[] = [];
+  const entryExports = new Set<string>();
   for (const f of item.files) {
     const abs = path.join(process.cwd(), f);
     if (!fs.existsSync(abs)) {
       errs.push(`missing file ${f}`);
       continue;
     }
-    const content = fs.readFileSync(abs, "utf8");
+    let content = fs.readFileSync(abs, "utf8");
     if (content.includes("Could not read file")) errs.push(`unreadable ${f}`);
-    const exports = [...content.matchAll(/export function (\w+)/g)].map((m) => m[1]);
-    const want = EXPECTED[item.slug] ?? [pascal(item.slug)];
-    if (!want.some((w) => exports.includes(w))) {
-      errs.push(`expected export ${want.join("/")} not found in ${f} (has: ${exports.slice(0, 6).join(", ")})`);
+    // Sibling index.ts often holds the re-export (navigation/, primitives/ style).
+    try {
+      const idx = path.join(path.dirname(abs), "index.ts");
+      if (idx !== abs && fs.existsSync(idx)) content += "\n" + fs.readFileSync(idx, "utf8");
+    } catch { /* ignore */ }
+    for (const m of content.matchAll(/export (?:function|const) (\w+)/g)) entryExports.add(m[1]);
+    for (const m of content.matchAll(/export\s*\{([^}]*)\}/g)) {
+      for (const part of m[1].split(",")) {
+        const name = part.trim().split(/\s+as\s+/).pop()?.trim();
+        if (name) entryExports.add(name);
+      }
     }
+  }
+  const want = EXPECTED[item.slug] ?? [pascal(item.slug)];
+  if (!want.some((w) => entryExports.has(w))) {
+    errs.push(`expected export ${want.join("/")} not found (has: ${[...entryExports].slice(0, 8).join(", ")})`);
   }
   const install = `pnpm dlx shadcn@latest add @buildora/${item.slug}`;
   // install shape is verified in validate-registry; smoke re-checks the invariant
