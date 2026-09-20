@@ -76,7 +76,9 @@ function composeCode(slug: string, name: string): string {
 }
 
 export function frameworkExample(slug: string, name: string, fw: string, item?: RegistryItem | null): FrameworkExample {
-  const status = item?.implementations?.[fw]?.status ?? (["react", "javascript", "html", "tailwind"].includes(fw) ? "Full" : "Partial");
+  // Honest fallback: only React is Full. All snippet ports are Partial/Experimental.
+  const status =
+    item?.implementations?.[fw]?.status ?? (fw === "react" ? "Full" : ["flutter", "swiftUI", "compose"].includes(fw) ? "Experimental" : "Partial");
   const notes = item?.implementations?.[fw]?.notes;
   const deps = fw === "react" ? ["clsx", "tailwind-merge"] : [];
   const install = fw === "react" ? `pnpm dlx shadcn@latest add @buildora/${slug}` : fw === "html" ? `<!-- copy buildora/${slug}.css + buildora/${slug}.js -->` : `// see ${fw} notes for ${slug}`;

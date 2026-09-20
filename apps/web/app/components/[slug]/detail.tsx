@@ -43,6 +43,17 @@ export function ComponentDetail({ slug }: { slug: string }) {
 
   const allowed: ControlDef[] = controlsFor(slug);
 
+  // Honest source + pattern transparency. Registry items that share an
+  // implementation file (e.g. agent-timeline inside streaming-chat) must
+  // link to the real file and say so — never imply a dedicated slug dir.
+  const primaryPath = (item as unknown as { files?: { path?: string }[] } | null)?.files?.[0]?.path;
+  const sourceDir = (item as unknown as { sourceDir?: string } | null)?.sourceDir;
+  const expectedDir = `packages/components/src/${slug}`;
+  const isShared = Boolean(primaryPath && !primaryPath.startsWith(expectedDir + "/"));
+  const sourceHref = sourceDir
+    ? `https://github.com/Varun9490/Buildora/tree/main/packages/components/src/${sourceDir}`
+    : `https://github.com/Varun9490/Buildora/tree/main/packages/components/src/${slug}`;
+
   const setNum = (k: keyof Controls) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setControls((c) => ({ ...c, [k]: Number(e.target.value) }));
   };
@@ -81,7 +92,16 @@ export function ComponentDetail({ slug }: { slug: string }) {
             <span className="b-badge-accent">{summary.categories[0]}</span>
             <span className="b-badge">v{summary.version}</span>
             <span className="b-badge">{summary.difficulty}</span>
+            {isShared && <span className="b-badge">pattern · shares {sourceDir}</span>}
           </div>
+          {isShared && primaryPath && (
+            <p className="mt-4 max-w-2xl rounded-xl border border-[--b-border] bg-white/[0.02] p-4 font-mono text-[11px] leading-relaxed text-[--b-muted]">
+              Pattern preview — this entry shares implementation{" "}
+              <span className="text-[--b-text]">{primaryPath}</span>. Dedicated{" "}
+              <span className="text-[--b-text]">{slug}</span> implementation planned; install gives
+              the shared pattern source today.
+            </p>
+          )}
         </div>
 
         <div className="flex shrink-0 gap-3">
@@ -92,13 +112,13 @@ export function ComponentDetail({ slug }: { slug: string }) {
              {copied === "install" ? "Copied" : "Install Component"}
            </button>
             <a
-              href={`https://github.com/Varun9490/Buildora/tree/main/packages/components/src/${slug}`}
+              href={sourceHref}
               target="_blank"
               rel="noreferrer"
               className="flex h-11 items-center gap-2 rounded-[10px] border border-[--b-border] bg-[--b-surface] px-6 font-mono text-[12px] font-bold text-[--b-text] transition-colors hover:border-[--b-border-hover]"
             >
-             Source
-           </a>
+              Source
+            </a>
         </div>
       </motion.div>
 

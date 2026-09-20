@@ -28,6 +28,19 @@ export type CatalogItem = {
   demoProps?: Record<string, unknown>;
 };
 
+const HONEST_SNIPPET_NOTES = {
+  javascript: "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+  vue: "Composition API snippet port. React is the source of truth.",
+  svelte: "Svelte runes snippet port. React is the source of truth.",
+  angular: "Angular @Input snippet port. React is the source of truth.",
+  html: "Static markup snippet. Interactive behavior requires the React implementation.",
+  tailwind: "Tailwind variant snippet, not a standalone component.",
+  reactNative: "No hover/cursor on mobile; use press + haptics. Snippet port.",
+  flutter: "Experimental snippet port; pointer interactions remapped to gestures.",
+  swiftUI: "Experimental snippet port; pointer interactions remapped.",
+  compose: "Experimental snippet port; pointer interactions remapped.",
+} as const;
+
 const R = (slug: string, compat: Partial<Record<string, Compat>>, extra: Partial<CatalogItem> = {}): CatalogItem => ({
   id: slug,
   name: extra.name ?? slug,
@@ -40,20 +53,22 @@ const R = (slug: string, compat: Partial<Record<string, Compat>>, extra: Partial
   license: "MIT",
   states: extra.states,
   compat: {
+    // Honest defaults: only React is a tested Full implementation.
+    // Every other framework is a hand-written snippet port.
     react: "Full",
-    javascript: "Full",
+    javascript: "Partial",
     vue: "Partial",
     svelte: "Partial",
     angular: "Partial",
-    html: "Full",
-    tailwind: "Full",
+    html: "Partial",
+    tailwind: "Partial",
     reactNative: "Partial",
     flutter: "Experimental",
     swiftUI: "Experimental",
     compose: "Experimental",
     ...compat
   },
-  notes: extra.notes,
+  notes: { ...HONEST_SNIPPET_NOTES, ...extra.notes },
   dependencies: extra.dependencies ?? [],
   registryDependencies: extra.registryDependencies,
   files: extra.files ?? [`packages/components/src/${slug}/index.tsx`],

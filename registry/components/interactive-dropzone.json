@@ -24,61 +24,71 @@
       ]
     },
     "javascript": {
-      "status": "Full",
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
       "files": [
         "packages/components/src/interactive-dropzone/index.tsx"
       ]
     },
     "vue": {
       "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
       "files": [
         "packages/components/src/interactive-dropzone/index.tsx"
       ]
     },
     "svelte": {
       "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
       "files": [
         "packages/components/src/interactive-dropzone/index.tsx"
       ]
     },
     "angular": {
       "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
       "files": [
         "packages/components/src/interactive-dropzone/index.tsx"
       ]
     },
     "html": {
-      "status": "Full",
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
       "files": [
         "packages/components/src/interactive-dropzone/index.tsx"
       ]
     },
     "tailwind": {
-      "status": "Full",
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
       "files": [
         "packages/components/src/interactive-dropzone/index.tsx"
       ]
     },
     "reactNative": {
       "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
       "files": [
         "packages/components/src/interactive-dropzone/index.tsx"
       ]
     },
     "flutter": {
       "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
       "files": [
         "packages/components/src/interactive-dropzone/index.tsx"
       ]
     },
     "swiftUI": {
       "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
       "files": [
         "packages/components/src/interactive-dropzone/index.tsx"
       ]
     },
     "compose": {
       "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
       "files": [
         "packages/components/src/interactive-dropzone/index.tsx"
       ]
