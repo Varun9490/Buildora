@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@buildora/utils";
+import { createPortal } from "react-dom";
 import { useReducedMotion } from "@buildora/hooks";
 
 export type DialogProps = {
@@ -26,6 +27,11 @@ export function Dialog({
   const reducedMotion = useReducedMotion();
   const contentRef = React.useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   React.useEffect(() => {
     if (open) {
@@ -74,10 +80,10 @@ export function Dialog({
 
   if (!open && !isVisible) return null;
 
-  return (
+  const content = (
     <div
       className={cn(
-        "fixed inset-0 z-[100] flex items-center justify-center",
+        "fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm",
         overlayClassName
       )}
       role="dialog"
@@ -150,6 +156,8 @@ export function Dialog({
       `}</style>
     </div>
   );
+
+  return mounted ? createPortal(content, document.body) : null;
 }
 
 export function DialogHeader({ children, className }: { children: React.ReactNode; className?: string }) {

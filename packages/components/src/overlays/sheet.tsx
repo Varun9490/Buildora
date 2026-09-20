@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@buildora/utils";
+import { createPortal } from "react-dom";
 import { useReducedMotion } from "@buildora/hooks";
 
 export type SheetSide = "left" | "right" | "top" | "bottom";
@@ -49,6 +50,11 @@ export function Sheet({
   const reducedMotion = useReducedMotion();
   const sheetRef = React.useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   React.useEffect(() => {
     if (open) {
@@ -104,7 +110,7 @@ export function Sheet({
 
   if (!open && !isVisible) return null;
 
-  return (
+  const content = (
     <div
       className={cn(
         "fixed inset-0 z-[100]",
@@ -181,6 +187,8 @@ export function Sheet({
       `}</style>
     </div>
   );
+
+  return mounted ? createPortal(content, document.body) : null;
 }
 
 export function SheetHeader({ children, className }: { children: React.ReactNode; className?: string }) {
