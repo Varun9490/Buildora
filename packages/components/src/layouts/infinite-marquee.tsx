@@ -29,40 +29,57 @@ export function InfiniteMarquee({
   };
 
   const duration = speedValues[speed];
+  const items = React.Children.toArray(children);
+
+  if (items.length === 0) return null;
+
+  const renderItems = (ariaHidden: boolean) => (
+    <div
+      aria-hidden={ariaHidden || undefined}
+      className="flex shrink-0 items-center"
+      style={{ gap: `${gap}px`, paddingRight: `${gap}px` }}
+    >
+      {items.map((child, i) => (
+        <React.Fragment key={i}>{child}</React.Fragment>
+      ))}
+    </div>
+  );
+
+  // Static fallbacks: no animation, no duplication.
+  if (reduced) {
+    return (
+      <div className={cn("relative overflow-hidden", className)} {...rest}>
+        <div className="flex flex-wrap items-center" style={{ gap: `${gap}px` }}>
+          {items.map((child, i) => (
+            <React.Fragment key={i}>{child}</React.Fragment>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
       className={cn(
         "group relative overflow-hidden",
-        pauseOnHover && "hover:[animation-play-state:paused]",
+        "[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]",
         className
       )}
       {...rest}
     >
       <div
         className={cn(
-          "flex",
-          !reduced && "animate-marquee"
+          "flex w-max animate-marquee",
+          pauseOnHover && "group-hover:[animation-play-state:paused]"
         )}
         style={{
-          gap: `${gap}px`,
           animationDuration: `${duration}s`,
           animationDirection: direction === "right" ? "reverse" : "normal",
         }}
       >
-        {children}
-        {!reduced && React.cloneElement(children as React.ReactElement, {
-          "aria-hidden": true,
-        })}
+        {renderItems(false)}
+        {renderItems(true)}
       </div>
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0a0b10] to-transparent"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0a0b10] to-transparent"
-      />
       <style jsx global>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
@@ -70,6 +87,11 @@ export function InfiniteMarquee({
         }
         .animate-marquee {
           animation: marquee linear infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-marquee {
+            animation: none;
+          }
         }
       `}</style>
     </div>
