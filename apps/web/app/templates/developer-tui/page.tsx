@@ -1,11 +1,32 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { Terminal, FileTree } from "@buildora/components";
 
 export default function DeveloperTUITemplate() {
+  const treeData = {
+    name: "root",
+    children: [
+      { name: "bin" },
+      { name: "etc" },
+      { name: "var", children: [{ name: "log" }, { name: "tmp" }] },
+      { name: "sys" }
+    ]
+  };
+
+  const initialTerminalLines = [
+    "Starting sequence... OK",
+    "Loading kernel modules... OK",
+    "Mounting filesystems... OK",
+    "WARN: Unrecognized device on bus 4",
+    "System ready."
+  ];
+
   return (
     <div className="min-h-[100dvh] bg-[#0A0A0A] text-[#EAEAEA] font-mono selection:bg-[#FF2A2A] selection:text-white flex flex-col p-4 md:p-8">
-      {/* Go Back Link (Not part of the template itself, just for navigation) */}
+      {/* Go Back Link */}
       <Link href="/templates" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-500 hover:text-[#EAEAEA] mb-8 w-fit transition-colors">
         <ArrowLeft className="w-3 h-3" /> Return to Templates
       </Link>
@@ -33,19 +54,10 @@ export default function DeveloperTUITemplate() {
             <div className="p-3 border-b border-zinc-800 text-[10px] text-zinc-500 uppercase tracking-widest">
               [ DIRECTORY_TREE ]
             </div>
-            <nav className="flex-1 overflow-y-auto p-4 space-y-2 text-xs">
-              <div className="text-[#FF2A2A] hover:bg-zinc-900 px-2 py-1 cursor-pointer">/root</div>
-              <div className="pl-4 space-y-1">
-                <div className="hover:bg-zinc-900 px-2 py-1 cursor-pointer">├── bin</div>
-                <div className="hover:bg-zinc-900 px-2 py-1 cursor-pointer">├── etc</div>
-                <div className="hover:bg-zinc-900 px-2 py-1 cursor-pointer">├── var</div>
-                <div className="pl-4 text-zinc-500 space-y-1">
-                  <div className="hover:text-[#EAEAEA] cursor-pointer">├── log</div>
-                  <div className="hover:text-[#EAEAEA] cursor-pointer">└── tmp</div>
-                </div>
-                <div className="hover:bg-zinc-900 px-2 py-1 cursor-pointer">└── sys</div>
-              </div>
-            </nav>
+            <div className="flex-1 overflow-y-auto p-4 text-xs">
+              {/* Actual Interactive File Tree Component */}
+              <FileTree tree={treeData} className="bg-transparent border-none p-0 w-full" />
+            </div>
             <div className="p-4 border-t border-zinc-800">
               <div className="w-full bg-zinc-900 h-1 mt-1">
                 <div className="bg-[#FF2A2A] h-full w-[78%]"></div>
@@ -76,16 +88,7 @@ export default function DeveloperTUITemplate() {
             </div>
 
             {/* Terminal Window */}
-            <div className="flex-1 flex flex-col p-6 overflow-y-auto">
-              <div className="text-xs space-y-2 mb-8">
-                <p className="text-zinc-500">Starting sequence... OK</p>
-                <p className="text-zinc-500">Loading kernel modules... OK</p>
-                <p className="text-zinc-500">Mounting filesystems... OK</p>
-                <p className="text-[#FF2A2A]">WARN: Unrecognized device on bus 4</p>
-                <p>System ready.</p>
-              </div>
-              
-              {/* ASCII Art / Decorative element */}
+            <div className="flex-1 flex flex-col p-6 overflow-hidden">
               <pre className="text-[10px] leading-tight text-zinc-700 mb-8 select-none hidden md:block">
 {`    ____  __  __ __  __ ____  ___    
    / __ )/ / / / / / / / __ \\/   |   
@@ -93,12 +96,12 @@ export default function DeveloperTUITemplate() {
  / /_/ / /_/ / / /_/ / /_/ / ___ |   
 /_____/\\____/  \\____/_____/_/  |_|   `}
               </pre>
-
-              <div className="mt-auto">
-                <div className="flex items-center text-sm gap-3">
-                  <span className="text-[#FF2A2A]">root@sys:~#</span>
-                  <span className="w-2 h-4 bg-[#EAEAEA] animate-pulse"></span>
-                </div>
+              
+              <div className="flex-1 mt-auto">
+                <Terminal 
+                  lines={initialTerminalLines} 
+                  className="h-full border-zinc-800 bg-[#0A0A0A] rounded-none [&>div:first-child]:hidden" 
+                />
               </div>
             </div>
           </main>

@@ -52,6 +52,24 @@ const templates = [
     uses: ["rich-text-editor", "version-history", "step-nav", "diff-viewer"],
     blurb: "Beautiful documentation scaffolding with diff viewers, version history, and step-by-step guides.",
   },
+  {
+    slug: "agent-workflow",
+    name: "Agent Workflow",
+    icon: "bot",
+    image: "/previews/agent-workflow.png",
+    gradient: "from-[color-mix(in_oklab,var(--b-accent)_15%,transparent)] via-transparent to-[color-mix(in_oklab,var(--b-accent)_5%,transparent)]",
+    uses: ["agent-timeline", "streaming-chat", "tool-call-viz"],
+    blurb: "Next-generation reasoning visualized in real-time. High-end, smooth animations and gapless bento grid.",
+  },
+  {
+    slug: "spatial-portfolio",
+    name: "Spatial Portfolio",
+    icon: "spark",
+    image: "/previews/spatial-portfolio.png",
+    gradient: "from-[color-mix(in_oklab,var(--b-accent)_15%,transparent)] via-transparent to-[color-mix(in_oklab,var(--b-accent)_5%,transparent)]",
+    uses: ["bento-grid", "magnetic-button", "cursor-fx", "infinite-marquee"],
+    blurb: "An independent digital design practice template focused on highly technical tools and spatial interfaces.",
+  },
 ];
 
 function TemplateIcon({ name, className }: { name: string; className?: string }) {
