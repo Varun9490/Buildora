@@ -65,7 +65,7 @@ export function SiteHeader() {
       className={cn(
         "sticky top-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-b border-[--b-border] bg-[--b-bg]/90 backdrop-blur-xl"
+          ? "border-b border-[color:var(--b-border)] bg-[color-mix(in_oklab,var(--b-bg)_90%,transparent)] backdrop-blur-xl"
           : "border-b border-transparent bg-transparent"
       )}
     >
@@ -79,7 +79,7 @@ export function SiteHeader() {
           <motion.div
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="flex h-8 w-8 items-center justify-center rounded-[10px] border border-[--b-border] bg-[--b-panel] text-[--b-text]"
+            className="flex h-8 w-8 items-center justify-center rounded-[10px] border border-[color:var(--b-border)] bg-[color:var(--b-panel)] text-[color:var(--b-text)]"
           >
             {/* Scaffold-B: modular B with open remix joint */}
             <svg
@@ -102,7 +102,7 @@ export function SiteHeader() {
           <span className="font-display text-base font-bold tracking-tight">
             Buildora
           </span>
-          <span className="hidden rounded-full border border-[--b-border] bg-[--b-surface] px-2 py-0.5 font-mono text-[10px] text-[--b-muted] sm:inline">
+          <span className="hidden rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-2 py-0.5 font-mono text-[10px] text-[color:var(--b-muted)] sm:inline">
             v0.1
           </span>
         </Link>
@@ -119,15 +119,15 @@ export function SiteHeader() {
               className={cn(
                 "relative rounded-md px-3 py-1.5 text-sm font-medium transition-colors duration-200",
                 path === l.href
-                  ? "text-[--b-text]"
-                  : "text-[--b-muted] hover:text-[--b-text-secondary]"
+                  ? "text-[color:var(--b-text)]"
+                  : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
               )}
             >
               {l.label}
               {path === l.href && (
                 <motion.div
                   layoutId="activeNav"
-                  className="absolute bottom-0 left-3 right-3 h-px bg-[--b-accent]"
+                  className="absolute bottom-0 left-3 right-3 h-px bg-[color:var(--b-accent)]"
                   transition={{
                     type: "spring",
                     bounce: 0.15,
@@ -145,14 +145,14 @@ export function SiteHeader() {
           
           <button
             onClick={() => setCmdOpen(true)}
-            className="hidden items-center gap-2 rounded-full border border-[--b-border] bg-[--b-surface]/80 px-3 py-1 font-mono text-[11px] text-[--b-text-secondary] transition-all hover:border-[--b-border-hover] hover:text-[--b-text] hover:bg-[--b-elevated] md:flex"
+            className="hidden items-center gap-2 rounded-full border border-[color:var(--b-border)] bg-[color-mix(in_oklab,var(--b-surface)_80%,transparent)] px-3 py-1 font-mono text-[11px] text-[color:var(--b-text-secondary)] transition-all hover:border-[color:var(--b-border-hover)] hover:text-[color:var(--b-text)] hover:bg-[color:var(--b-elevated)] md:flex"
             aria-label="Open command palette"
           >
-            <svg className="h-3 w-3 text-[--b-muted]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <svg className="h-3 w-3 text-[color:var(--b-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <span>Search</span>
-            <kbd className="rounded border border-[--b-border] bg-[--b-bg] px-1 py-0.2 text-[9px] text-[--b-muted]">⌘K</kbd>
+            <kbd className="rounded border border-[color:var(--b-border)] bg-[color:var(--b-bg)] px-1 py-0.2 text-[9px] text-[color:var(--b-muted)]">⌘K</kbd>
           </button>
 
           {/* Framework selector */}
@@ -171,12 +171,12 @@ export function SiteHeader() {
                   setOpen(false);
                 }
               }}
-              className="flex items-center gap-2 rounded-md border border-[--b-border] bg-[--b-surface] px-3 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:border-[--b-border-hover] hover:bg-[--b-elevated]"
+              className="flex items-center gap-2 rounded-md border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-1.5 font-mono text-[11px] text-[color:var(--b-text-secondary)] transition-colors hover:border-[color:var(--b-border-hover)] hover:bg-[color:var(--b-elevated)]"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[--b-accent]" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--b-accent)]" />
               {frameworkLabels[framework]}
               <svg
-                className="h-3 w-3 text-[--b-muted]"
+                className="h-3 w-3 text-[color:var(--b-muted)]"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -206,7 +206,7 @@ export function SiteHeader() {
                     transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
                     role="listbox"
                     aria-label="Framework"
-                    className="absolute right-0 z-50 mt-2 max-h-72 w-44 overflow-auto rounded-lg border border-[--b-border] bg-[--b-panel]/95 p-1 shadow-card backdrop-blur-xl"
+                    className="absolute right-0 z-50 mt-2 max-h-72 w-44 overflow-auto rounded-lg border border-[color:var(--b-border)] bg-[color-mix(in_oklab,var(--b-panel)_95%,transparent)] p-1 shadow-card backdrop-blur-xl"
                   >
                     {frameworks.map((f, i) => (
                       <li key={f}>
@@ -242,16 +242,16 @@ export function SiteHeader() {
                           className={cn(
                             "flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left font-mono text-[11px] transition-colors",
                             f === framework
-                              ? "bg-accent-wash text-[--b-accent]"
-                              : "text-[--b-text-secondary] hover:bg-[--b-surface] hover:text-[--b-text]"
+                              ? "bg-accent-wash text-[color:var(--b-accent)]"
+                              : "text-[color:var(--b-text-secondary)] hover:bg-[color:var(--b-surface)] hover:text-[color:var(--b-text)]"
                           )}
                         >
                           <span
                             className={cn(
                               "h-1.5 w-1.5 rounded-full",
                               f === framework
-                                ? "bg-[--b-accent]"
-                                : "bg-[--b-border-hover]"
+                                ? "bg-[color:var(--b-accent)]"
+                                : "bg-[color:var(--b-border-hover)]"
                             )}
                           />
                           {frameworkLabels[f]}
@@ -269,7 +269,7 @@ export function SiteHeader() {
             href="https://github.com/Varun9490/Buildora"
             target="_blank"
             rel="noreferrer"
-            className="hidden items-center gap-2 rounded-md border border-[--b-border] px-3 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:bg-[--b-surface] sm:flex"
+            className="hidden items-center gap-2 rounded-md border border-[color:var(--b-border)] px-3 py-1.5 font-mono text-[11px] text-[color:var(--b-text-secondary)] transition-colors hover:bg-[color:var(--b-surface)] sm:flex"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.84 2.8 1.31 3.49 1 .1-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12.01 12.01 0 0024 12c0-6.63-5.37-12-12-12z" />
@@ -280,7 +280,7 @@ export function SiteHeader() {
           {/* Install CTA */}
           <Link
             href="/registry"
-            className="hidden items-center gap-2 rounded-md bg-[--b-accent] px-4 py-1.5 font-mono text-[11px] font-bold text-[--b-accent-foreground] transition-transform active:scale-[0.97] sm:inline-flex"
+            className="hidden items-center gap-2 rounded-md bg-[color:var(--b-accent)] px-4 py-1.5 font-mono text-[11px] font-bold text-[color:var(--b-accent-foreground)] transition-transform active:scale-[0.97] sm:inline-flex"
           >
             Install
           </Link>
@@ -288,7 +288,7 @@ export function SiteHeader() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen((o) => !o)}
-            className="flex h-8 w-8 items-center justify-center rounded-md border border-[--b-border] text-[--b-text-secondary] transition-colors hover:bg-[--b-surface] lg:hidden"
+            className="flex h-8 w-8 items-center justify-center rounded-md border border-[color:var(--b-border)] text-[color:var(--b-text-secondary)] transition-colors hover:bg-[color:var(--b-surface)] lg:hidden"
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
           >
@@ -325,7 +325,7 @@ export function SiteHeader() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="border-t border-[--b-border] bg-[--b-bg]/95 backdrop-blur-xl lg:hidden"
+            className="border-t border-[color:var(--b-border)] bg-[color-mix(in_oklab,var(--b-bg)_95%,transparent)] backdrop-blur-xl lg:hidden"
           >
             <nav className="space-y-0.5 px-4 py-3" aria-label="Primary mobile">
               {links.map((l) => (
@@ -336,8 +336,8 @@ export function SiteHeader() {
                   className={cn(
                     "block rounded-md px-3 py-2 text-sm transition-colors",
                     path === l.href
-                      ? "bg-[--b-surface] font-medium text-[--b-text]"
-                      : "text-[--b-muted] hover:bg-[--b-surface] hover:text-[--b-text-secondary]"
+                      ? "bg-[color:var(--b-surface)] font-medium text-[color:var(--b-text)]"
+                      : "text-[color:var(--b-muted)] hover:bg-[color:var(--b-surface)] hover:text-[color:var(--b-text-secondary)]"
                   )}
                 >
                   {l.label}
@@ -348,7 +348,7 @@ export function SiteHeader() {
                   href="https://github.com/Varun9490/Buildora"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex-1 rounded-md border border-[--b-border] py-2 text-center text-sm text-[--b-text-secondary]"
+                  className="flex-1 rounded-md border border-[color:var(--b-border)] py-2 text-center text-sm text-[color:var(--b-text-secondary)]"
                 >
                   GitHub
                 </a>
@@ -374,7 +374,7 @@ export function SiteHeader() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -12 }}
               transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-10 w-full max-w-lg overflow-hidden rounded-2xl border border-[--b-border] bg-[--b-panel] shadow-2xl"
+              className="relative z-10 w-full max-w-lg overflow-hidden rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] shadow-2xl"
             >
               <CommandPalette
                 onSelect={(id) => {
@@ -403,13 +403,13 @@ export function SiteHeader() {
    ───────────────────────────────────────────────────── */
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[--b-border] bg-[--b-bg]">
+    <footer className="border-t border-[color:var(--b-border)] bg-[color:var(--b-bg)]">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:py-20">
         <div className="grid gap-10 md:grid-cols-4">
           {/* Brand column */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-7 w-7 items-center justify-center rounded-[10px] border border-[--b-border] bg-[--b-panel] text-[--b-text]">
+              <span className="flex h-7 w-7 items-center justify-center rounded-[10px] border border-[color:var(--b-border)] bg-[color:var(--b-panel)] text-[color:var(--b-text)]">
                 <svg
                   width="14"
                   height="14"
@@ -431,16 +431,16 @@ export function SiteFooter() {
                 Buildora
               </p>
             </div>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[--b-muted]">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[color:var(--b-muted)]">
               One system. Any product. Universal, theme-aware components. MIT-licensed,
               GitHub-hosted.
             </p>
             <div className="mt-4 b-code-block text-[11px]">
-              <span className="text-[--b-muted]">$</span>{" "}
-              <code className="text-[--b-accent]">
+              <span className="text-[color:var(--b-muted)]">$</span>{" "}
+              <code className="text-[color:var(--b-accent)]">
                 pnpm dlx shadcn@latest add @buildora/{"{component}"}
               </code>
-              <p className="mt-2 font-mono text-[10px] text-[--b-muted]">
+              <p className="mt-2 font-mono text-[10px] text-[color:var(--b-muted)]">
                 Example: @buildora/magnetic-button — see /registry for all 147.
               </p>
             </div>
@@ -448,7 +448,7 @@ export function SiteFooter() {
 
           {/* Explore */}
           <nav aria-label="Explore">
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-[--b-muted]">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-[color:var(--b-muted)]">
               Explore
             </p>
             <ul className="mt-4 space-y-3">
@@ -460,7 +460,7 @@ export function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-[--b-text-secondary] transition-colors hover:text-[--b-accent]"
+                    className="text-sm text-[color:var(--b-text-secondary)] transition-colors hover:text-[color:var(--b-accent)]"
                   >
                     {link.label}
                   </Link>
@@ -471,7 +471,7 @@ export function SiteFooter() {
 
           {/* Resources */}
           <nav aria-label="Resources">
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-[--b-muted]">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-[color:var(--b-muted)]">
               Resources
             </p>
             <ul className="mt-4 space-y-3">
@@ -489,14 +489,14 @@ export function SiteFooter() {
                       href={link.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-sm text-[--b-text-secondary] transition-colors hover:text-[--b-accent]"
+                      className="text-sm text-[color:var(--b-text-secondary)] transition-colors hover:text-[color:var(--b-accent)]"
                     >
                       {link.label}
                     </a>
                   ) : (
                     <Link
                       href={link.href}
-                      className="text-sm text-[--b-text-secondary] transition-colors hover:text-[--b-accent]"
+                      className="text-sm text-[color:var(--b-text-secondary)] transition-colors hover:text-[color:var(--b-accent)]"
                     >
                       {link.label}
                     </Link>
@@ -508,7 +508,7 @@ export function SiteFooter() {
 
           {/* Principles */}
           <div>
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-[--b-muted]">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-[color:var(--b-muted)]">
               Principles
             </p>
             <ul className="mt-4 space-y-3">
@@ -520,9 +520,9 @@ export function SiteFooter() {
               ].map((item) => (
                 <li
                   key={item.text}
-                  className="flex items-start gap-2.5 text-sm text-[--b-text-secondary]"
+                  className="flex items-start gap-2.5 text-sm text-[color:var(--b-text-secondary)]"
                 >
-                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-[--b-accent]" />
+                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-[color:var(--b-accent)]" />
                   {item.text}
                 </li>
               ))}
@@ -531,10 +531,10 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="border-t border-[--b-border] py-6">
-        <p className="text-center font-mono text-[11px] text-[--b-muted]">
+      <div className="border-t border-[color:var(--b-border)] py-6">
+        <p className="text-center font-mono text-[11px] text-[color:var(--b-muted)]">
           Built with craft by{" "}
-          <span className="text-[--b-text-secondary]">Buildora</span> · MIT
+          <span className="text-[color:var(--b-text-secondary)]">Buildora</span> · MIT
           License · {new Date().getFullYear()}
         </p>
       </div>

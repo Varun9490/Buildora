@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export type DocVersion = { id: string; label: string; at: string; author: string; current?: boolean };
 
@@ -28,23 +28,23 @@ export function VersionHistory({
           key={v.id}
           className={cn(
             "flex items-center gap-3 rounded-xl border px-3 py-2 text-sm",
-            v.current ? "border-[#d4ff4f]/40 bg-[#d4ff4f]/[0.05]" : "border-white/10 bg-white/[0.02]"
+            v.current ? "border-[color-mix(in_oklab,var(--b-accent)_40%,transparent)] bg-var(--b-accent)/[0.05]" : "border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_2%,transparent)]"
           )}
         >
-          <span className="font-mono text-xs text-white/40">{v.id}</span>
+          <span className="font-mono text-xs text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">{v.id}</span>
           <span className="min-w-0 flex-1">
-            <span className="block truncate text-white/85">{v.label}</span>
-            <span className="font-mono text-[11px] text-white/40">{v.at} · {v.author}</span>
+            <span className="block truncate text-[color-mix(in_oklab,var(--b-text)_85%,transparent)]">{v.label}</span>
+            <span className="font-mono text-[11px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">{v.at} · {v.author}</span>
           </span>
           {v.current ? (
-            <span className="rounded bg-[#d4ff4f]/20 px-2 py-0.5 font-mono text-[11px] text-[--b-accent]">current</span>
+            <span className="rounded bg-[color-mix(in_oklab,var(--b-accent)_20%,transparent)] px-2 py-0.5 font-mono text-[11px] text-[color:var(--b-accent)]">current</span>
           ) : (
             <button
               onClick={() => {
                 setItems((xs) => xs.map((x) => ({ ...x, current: x.id === v.id })));
                 onRestore?.(v.id);
               }}
-              className="rounded-lg border border-white/10 px-2.5 py-1 font-mono text-[11px] text-white/70 hover:bg-white/5"
+              className="rounded-lg border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] px-2.5 py-1 font-mono text-[11px] text-[color-mix(in_oklab,var(--b-text)_70%,transparent)] hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]"
             >
               Restore
             </button>

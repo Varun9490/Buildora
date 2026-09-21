@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type SpotlightCardProps = React.HTMLAttributes<HTMLDivElement> & {
   spotlightColor?: string;
@@ -43,9 +43,9 @@ export function SpotlightCard({
         "group relative rounded-2xl bg-[#12141d] p-6",
         "transition-all duration-200",
         borderStyle === "none" && "border-0",
-        borderStyle === "subtle" && "border border-white/10",
-        borderStyle === "glow" && "border border-[#d4ff4f]/20",
-        "focus-within:ring-2 focus-within:ring-[#d4ff4f]/50",
+        borderStyle === "subtle" && "border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]",
+        borderStyle === "glow" && "border border-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]",
+        "focus-within:ring-2 focus-within:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
         className
       )}
       {...rest}

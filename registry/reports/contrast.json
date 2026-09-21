@@ -1,0 +1,132 @@
+{
+  "baseThemes": {
+    "light.bg_vs_text": {
+      "background": "oklch(98.23% 0.0029 84.6)",
+      "foreground": "oklch(18.81% 0.0060 285.8)",
+      "ratio": 17.62,
+      "AA": true,
+      "AAA": true
+    },
+    "light.panel_vs_text": {
+      "background": "oklch(100.00% 0.0000 0)",
+      "foreground": "oklch(18.81% 0.0060 285.8)",
+      "ratio": 18.54,
+      "AA": true,
+      "AAA": true
+    },
+    "light.surface_vs_text": {
+      "background": "oklch(95.26% 0.0058 84.6)",
+      "foreground": "oklch(18.81% 0.0060 285.8)",
+      "ratio": 16.15,
+      "AA": true,
+      "AAA": true
+    },
+    "dark.bg_vs_text": {
+      "background": "oklch(16.29% 0.0041 106.8)",
+      "foreground": "oklch(94.58% 0.0013 106.4)",
+      "ratio": 16.49,
+      "AA": true,
+      "AAA": true
+    },
+    "dark.panel_vs_text": {
+      "background": "oklch(19.94% 0.0039 106.7)",
+      "foreground": "oklch(94.58% 0.0013 106.4)",
+      "ratio": 15.47,
+      "AA": true,
+      "AAA": true
+    },
+    "dark.surface_vs_text": {
+      "background": "oklch(22.96% 0.0057 106.8)",
+      "foreground": "oklch(94.58% 0.0013 106.4)",
+      "ratio": 14.42,
+      "AA": true,
+      "AAA": true
+    }
+  },
+  "accentPresets": {
+    "acid.light": {
+      "background": "oklch(53.22% 0.1405 131.6)",
+      "foreground": "oklch(100.00% 0.0000 0)",
+      "ratio": 4.99,
+      "AA": true,
+      "AAA": false
+    },
+    "acid.dark": {
+      "background": "oklch(93.88% 0.2000 122.3)",
+      "foreground": "oklch(18.22% 0.0271 108.8)",
+      "ratio": 16.22,
+      "AA": true,
+      "AAA": true
+    },
+    "emerald.light": {
+      "background": "oklch(50.81% 0.1049 165.6)",
+      "foreground": "oklch(100.00% 0.0000 0)",
+      "ratio": 5.48,
+      "AA": true,
+      "AAA": false
+    },
+    "emerald.dark": {
+      "background": "oklch(77.29% 0.1535 163.2)",
+      "foreground": "oklch(26.98% 0.0497 168.8)",
+      "ratio": 7.69,
+      "AA": true,
+      "AAA": true
+    },
+    "sky.light": {
+      "background": "oklch(50.00% 0.1193 242.7)",
+      "foreground": "oklch(100.00% 0.0000 0)",
+      "ratio": 5.93,
+      "AA": true,
+      "AAA": false
+    },
+    "sky.dark": {
+      "background": "oklch(75.35% 0.1390 232.7)",
+      "foreground": "oklch(29.35% 0.0632 243.2)",
+      "ratio": 6.48,
+      "AA": true,
+      "AAA": false
+    },
+    "ember.light": {
+      "background": "oklch(55.34% 0.1739 38.4)",
+      "foreground": "oklch(100.00% 0.0000 0)",
+      "ratio": 5.18,
+      "AA": true,
+      "AAA": false
+    },
+    "ember.dark": {
+      "background": "oklch(75.76% 0.1590 55.9)",
+      "foreground": "oklch(26.59% 0.0762 36.3)",
+      "ratio": 6.91,
+      "AA": true,
+      "AAA": false
+    },
+    "iris.light": {
+      "background": "oklch(51.06% 0.2301 277.0)",
+      "foreground": "oklch(100.00% 0.0000 0)",
+      "ratio": 6.29,
+      "AA": true,
+      "AAA": false
+    },
+    "iris.dark": {
+      "background": "oklch(78.53% 0.1041 274.7)",
+      "foreground": "oklch(25.73% 0.0861 281.3)",
+      "ratio": 8.02,
+      "AA": true,
+      "AAA": true
+    },
+    "rose.light": {
+      "background": "oklch(51.43% 0.1978 16.9)",
+      "foreground": "oklch(100.00% 0.0000 0)",
+      "ratio": 6.28,
+      "AA": true,
+      "AAA": false
+    },
+    "rose.dark": {
+      "background": "oklch(80.97% 0.1061 11.6)",
+      "foreground": "oklch(27.08% 0.1009 12.1)",
+      "ratio": 8.27,
+      "AA": true,
+      "AAA": true
+    }
+  }
+}

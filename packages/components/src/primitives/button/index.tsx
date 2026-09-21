@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
-import { useReducedMotion } from "../../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type ButtonVariant = "default" | "destructive" | "outline" | "ghost" | "link" | "accent";
 export type ButtonSize = "default" | "sm" | "lg" | "icon";
@@ -35,7 +35,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const baseStyles = cn(
       "relative inline-flex items-center justify-center gap-2 font-medium transition-all duration-200",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent] focus-visible:ring-offset-2 focus-visible:ring-offset-[--b-bg]",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--b-bg)]",
       "disabled:pointer-events-none disabled:opacity-50",
       !reducedMotion && "active:scale-[0.98]",
       className
@@ -43,15 +43,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles: Record<ButtonVariant, string> = {
       default:
-        "rounded-[10px] bg-[--b-surface] text-[--b-text] border border-[--b-border] hover:border-[--b-border-hover] hover:bg-[--b-elevated]",
+        "rounded-[10px] bg-[color:var(--b-surface)] text-[color:var(--b-text)] border border-[color:var(--b-border)] hover:border-[color:var(--b-border-hover)] hover:bg-[color:var(--b-elevated)]",
       destructive:
-        "rounded-[10px] bg-[--b-danger]/10 text-[--b-danger] border border-[--b-danger]/20 hover:bg-[--b-danger]/15",
+        "rounded-[10px] bg-[color-mix(in_oklab,var(--b-danger)_10%,transparent)] text-[color:var(--b-danger)] border border-[color-mix(in_oklab,var(--b-danger)_20%,transparent)] hover:bg-[color-mix(in_oklab,var(--b-danger)_15%,transparent)]",
       outline:
-        "rounded-[10px] bg-transparent text-[--b-text] border border-[--b-border-hover] hover:bg-[--b-surface]",
-      ghost: "rounded-[10px] bg-transparent text-[--b-text-secondary] hover:bg-[--b-surface] hover:text-[--b-text]",
-      link: "bg-transparent text-[--b-accent] underline-offset-4 hover:underline",
+        "rounded-[10px] bg-transparent text-[color:var(--b-text)] border border-[color:var(--b-border-hover)] hover:bg-[color:var(--b-surface)]",
+      ghost: "rounded-[10px] bg-transparent text-[color:var(--b-text-secondary)] hover:bg-[color:var(--b-surface)] hover:text-[color:var(--b-text)]",
+      link: "bg-transparent text-[color:var(--b-accent)] underline-offset-4 hover:underline",
       accent:
-        "rounded-[10px] bg-[--b-accent] text-[--b-accent-foreground] font-semibold hover:brightness-[1.03]",
+        "rounded-[10px] bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)] font-semibold hover:brightness-[1.03]",
     };
 
     const sizeStyles: Record<ButtonSize, string> = {

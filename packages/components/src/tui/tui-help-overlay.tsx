@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUIKeyBinding {
   key: string;
@@ -61,14 +61,14 @@ export function TUIHelpOverlay({
       onClick={onClose}
     >
       <div
-        className="bg-[#0a0c10] border border-white/20 rounded-lg shadow-2xl max-w-2xl w-full mx-4 overflow-hidden"
+        className="bg-[#0a0c10] border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] rounded-lg shadow-2xl max-w-2xl w-full mx-4 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
-          <h2 className="font-mono text-sm text-white/90">{title}</h2>
+        <div className="flex items-center justify-between px-4 py-3 border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]">
+          <h2 className="font-mono text-sm text-[color-mix(in_oklab,var(--b-text)_90%,transparent)]">{title}</h2>
           <button
             onClick={onClose}
-            className="text-white/40 hover:text-white/80 text-xs"
+            className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] hover:text-[color-mix(in_oklab,var(--b-text)_80%,transparent)] text-xs"
             aria-label="Close"
           >
             ✕ Esc
@@ -80,18 +80,18 @@ export function TUIHelpOverlay({
               {col.map((binding, j) => (
                 <div
                   key={j}
-                  className="flex items-center justify-between gap-4 px-2 py-1.5 rounded hover:bg-white/5"
+                  className="flex items-center justify-between gap-4 px-2 py-1.5 rounded hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]"
                 >
                   <div className="flex items-center gap-2 min-w-0">
-                    <kbd className="px-2 py-1 bg-white/5 border border-white/20 rounded font-mono text-[11px] text-cyan-400 min-w-[3rem] text-center">
+                    <kbd className="px-2 py-1 bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] rounded font-mono text-[11px] text-cyan-400 min-w-[3rem] text-center">
                       {binding.key}
                     </kbd>
-                    <span className="text-white/70 text-xs truncate">
+                    <span className="text-[color-mix(in_oklab,var(--b-text)_70%,transparent)] text-xs truncate">
                       {binding.label}
                     </span>
                   </div>
                   {binding.description && (
-                    <span className="text-white/40 text-[10px] truncate">
+                    <span className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] text-[10px] truncate">
                       {binding.description}
                     </span>
                   )}
@@ -100,9 +100,9 @@ export function TUIHelpOverlay({
             </div>
           ))}
         </div>
-        <div className="px-4 py-2 border-t border-white/10 text-center">
-          <span className="text-white/30 text-[10px]">
-            Press <kbd className="px-1 bg-white/5 border border-white/10 rounded text-white/50">?</kbd> to toggle
+        <div className="px-4 py-2 border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] text-center">
+          <span className="text-[color-mix(in_oklab,var(--b-text)_30%,transparent)] text-[10px]">
+            Press <kbd className="px-1 bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded text-[color-mix(in_oklab,var(--b-text)_50%,transparent)]">?</kbd> to toggle
           </span>
         </div>
       </div>

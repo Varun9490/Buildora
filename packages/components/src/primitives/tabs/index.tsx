@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
-import { useReducedMotion } from "../../hooks/use-reduced-motion";
-import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
+import { motion, AnimatePresence } from "motion/react";
 
 const TabsContext = React.createContext<{
   id: string;
@@ -54,7 +54,7 @@ const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
         ref={ref}
         role="tablist"
         className={cn(
-          "flex items-center gap-1 p-1 rounded-xl bg-white/5 border border-white/10",
+          "flex items-center gap-1 p-1 rounded-xl bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]",
           className
         )}
         {...props}
@@ -88,8 +88,8 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
         data-state={isSelected ? "active" : "inactive"}
         className={cn(
           "relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent]/50",
-          isSelected ? "text-white" : "text-white/50 hover:text-white/80",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
+          isSelected ? "text-[color:var(--b-text)]" : "text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] hover:text-[color-mix(in_oklab,var(--b-text)_80%,transparent)]",
           className
         )}
         onClick={() => context.setSelectedTab(value)}
@@ -99,7 +99,7 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
           {!reducedMotion && isSelected && (
             <motion.div
               layoutId={layoutId}
-              className="absolute inset-0 rounded-lg bg-white/10 shadow-sm border border-white/20"
+              className="absolute inset-0 rounded-lg bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] shadow-sm border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -135,7 +135,7 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
         tabIndex={0}
         data-state={isSelected ? "active" : "inactive"}
         className={cn(
-          "mt-4 outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50 rounded-lg",
+          "mt-4 outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)] rounded-lg",
           className
         )}
         {...props}

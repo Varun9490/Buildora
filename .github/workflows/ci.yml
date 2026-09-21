@@ -30,6 +30,9 @@ jobs:
       - name: Generated artifacts committed
         run: git diff --exit-code -- registry/ apps/web/lib/registry-data.generated.ts
 
+      - name: Registry audit (prevents regressions)
+        run: pnpm registry:audit
+
       - name: Registry validate
         run: pnpm registry:validate
 

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
+import { cn } from "@buildora/utils";
 
 const ToastContext = React.createContext<{
   toasts: ToastData[];
@@ -86,11 +86,11 @@ const Toast = React.forwardRef<HTMLDivElement, ToastData>(
     }, [id, duration, context]);
 
     const variantStyles: Record<ToastVariant, string> = {
-      default: "bg-white/10 border-white/10 text-white",
-      success: "bg-[#4fe08a]/10 border-[#4fe08a]/20 text-[--b-success]",
+      default: "bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] text-[color:var(--b-text)]",
+      success: "bg-[#4fe08a]/10 border-[#4fe08a]/20 text-[color:var(--b-success)]",
       warning: "bg-[#ffb86b]/10 border-[#ffb86b]/20 text-[#ffb86b]",
       danger: "bg-red-500/10 border-red-500/20 text-red-400",
-      accent: "bg-[#d4ff4f]/10 border-[#d4ff4f]/20 text-[--b-accent]",
+      accent: "bg-[color-mix(in_oklab,var(--b-accent)_10%,transparent)] border-[color-mix(in_oklab,var(--b-accent)_20%,transparent)] text-[color:var(--b-accent)]",
     };
 
     return (

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
   "id": "utils",
   "name": "Utils",
   "slug": "utils",

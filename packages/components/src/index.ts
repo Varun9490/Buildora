@@ -355,5 +355,5 @@ export {
   type PaginationNextProps,
   type CommandBarProps,
   type CommandBarItemProps,
-  type CommandBarTriggerProps,
 } from "./navigation";
+export { springs, springToLinear, springStep, type SpringConfig } from "./animations/spring";

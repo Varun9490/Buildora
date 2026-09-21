@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type GradientBorderButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   gradientColors?: string[];
@@ -23,9 +23,9 @@ export function GradientBorderButton({
   return (
     <button
       className={cn(
-        "group relative overflow-hidden rounded-xl px-6 py-2.5 text-sm font-semibold text-white",
+        "group relative overflow-hidden rounded-xl px-6 py-2.5 text-sm font-semibold text-[color:var(--b-text)]",
         "transition-transform active:scale-95",
-        "focus:outline-none focus:ring-2 focus:ring-[#d4ff4f]/50",
+        "focus:outline-none focus:ring-2 focus:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
         "disabled:opacity-50 disabled:pointer-events-none",
         className
       )}

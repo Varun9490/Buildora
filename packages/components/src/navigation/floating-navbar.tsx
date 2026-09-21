@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type FloatingNavbarProps = React.HTMLAttributes<HTMLElement> & {
   visible?: boolean;
@@ -34,7 +34,7 @@ const FloatingNavbar = React.forwardRef<HTMLElement, FloatingNavbarProps>(
         role="banner"
         className={cn(
           "fixed top-4 left-1/2 z-50 w-auto max-w-4xl px-4",
-          "border border-white/10 rounded-2xl bg-[#0d0f16]/90 backdrop-blur-xl shadow-2xl",
+          "border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded-2xl bg-[var(--b-bg)]/90 backdrop-blur-xl shadow-2xl",
           "transform -translate-x-1/2",
           reducedMotion ? (isVisible ? "opacity-100" : "opacity-0 pointer-events-none") : "transition-all duration-300",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none",
@@ -67,8 +67,8 @@ const FloatingNavbarItem = React.forwardRef<HTMLAnchorElement, FloatingNavbarIte
         aria-current={active ? "page" : undefined}
         className={cn(
           "relative px-3 py-2 text-sm font-medium rounded-lg transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50",
-          active ? "text-white bg-white/5" : "text-white/60 hover:text-white hover:bg-white/5",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
+          active ? "text-[color:var(--b-text)] bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]" : "text-[color-mix(in_oklab,var(--b-text)_60%,transparent)] hover:text-[color:var(--b-text)] hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]",
           !reducedMotion && "duration-200",
           className
         )}

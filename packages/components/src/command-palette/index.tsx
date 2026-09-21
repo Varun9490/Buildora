@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn, fuzzyScore } from "../utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { cn, fuzzyScore } from "@buildora/utils";
+import { motion, AnimatePresence } from "motion/react";
 
 export type Command = { id: string; label: string; hint?: string; group?: string };
 
@@ -31,8 +31,8 @@ export function CommandPalette({
     .map((x) => x.c);
   React.useEffect(() => setActive(0), [q]);
   return (
-    <div className={cn("overflow-hidden rounded-2xl border border-white/10 bg-[#0d0f16]", className)}>
-      <div className="border-b border-white/10 p-2">
+    <div className={cn("overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)]", className)}>
+      <div className="border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-2">
         <label htmlFor="cmd-input" className="sr-only">Type a command</label>
         <input
           id="cmd-input"
@@ -48,7 +48,7 @@ export function CommandPalette({
           aria-expanded
           aria-controls="cmd-list"
           aria-activedescendant={view[active] ? `cmd-${view[active].id}` : undefined}
-          className="w-full rounded-xl bg-transparent px-3 py-2 text-sm outline-none placeholder:text-white/30"
+          className="w-full rounded-xl bg-transparent px-3 py-2 text-sm outline-none placeholder:text-[color-mix(in_oklab,var(--b-text)_30%,transparent)]"
         />
       </div>
       <ul id="cmd-list" role="listbox" aria-label="Commands" className="max-h-56 overflow-auto p-1.5 space-y-0.5">
@@ -58,7 +58,7 @@ export function CommandPalette({
               {i === active && (
                 <motion.div
                   layoutId={`${id}-active-cmd`}
-                  className="absolute inset-0 rounded-lg bg-white/10 border border-white/10"
+                  className="absolute inset-0 rounded-lg bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -71,15 +71,15 @@ export function CommandPalette({
               onMouseEnter={() => setActive(i)}
               className={cn(
                 "relative z-10 flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors duration-200",
-                i === active ? "font-semibold text-white" : "text-white/75"
+                i === active ? "font-semibold text-[color:var(--b-text)]" : "text-[color-mix(in_oklab,var(--b-text)_75%,transparent)]"
               )}
             >
               <span>{c.label}</span>
-              {c.hint && <span className={cn("ml-auto font-mono text-[11px] transition-colors", i === active ? "text-white/60" : "text-white/35")}>{c.hint}</span>}
+              {c.hint && <span className={cn("ml-auto font-mono text-[11px] transition-colors", i === active ? "text-[color-mix(in_oklab,var(--b-text)_60%,transparent)]" : "text-[color-mix(in_oklab,var(--b-text)_35%,transparent)]")}>{c.hint}</span>}
             </button>
           </li>
         ))}
-        {view.length === 0 && <li className="px-3 py-4 text-center text-sm text-white/40">No commands.</li>}
+        {view.length === 0 && <li className="px-3 py-4 text-center text-sm text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">No commands.</li>}
       </ul>
     </div>
   );

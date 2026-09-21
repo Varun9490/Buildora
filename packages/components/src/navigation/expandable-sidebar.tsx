@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 const ExpandableSidebarContext = React.createContext<{
   expanded: boolean;
@@ -48,7 +48,7 @@ const ExpandableSidebar = React.forwardRef<HTMLElement, ExpandableSidebarProps>(
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className={cn(
-            "fixed left-0 top-0 z-40 flex h-full flex-col border-r border-white/10 bg-[#0d0f16]",
+            "fixed left-0 top-0 z-40 flex h-full flex-col border-r border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)]",
             "transition-all",
             !reducedMotion && "duration-300",
             expanded ? "w-64" : "w-16",
@@ -76,7 +76,7 @@ const ExpandableSidebarHeader = React.forwardRef<HTMLDivElement, ExpandableSideb
       <div
         ref={ref}
         className={cn(
-          "flex items-center border-b border-white/10 p-4",
+          "flex items-center border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-4",
           context.expanded ? "justify-between" : "justify-center",
           className
         )}
@@ -124,11 +124,11 @@ const ExpandableSidebarItem = React.forwardRef<HTMLAnchorElement, ExpandableSide
         onClick={() => context.setActiveItem(value)}
         className={cn(
           "flex items-center gap-3 rounded-lg px-3 py-2 mx-2 my-0.5 text-sm font-medium transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
           !context.expanded && "justify-center px-2 mx-1",
           isActive
-            ? "bg-[#d4ff4f]/10 text-[--b-accent] border border-[#d4ff4f]/20"
-            : "text-white/60 hover:text-white hover:bg-white/5",
+            ? "bg-[color-mix(in_oklab,var(--b-accent)_10%,transparent)] text-[color:var(--b-accent)] border border-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]"
+            : "text-[color-mix(in_oklab,var(--b-text)_60%,transparent)] hover:text-[color:var(--b-text)] hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]",
           !reducedMotion && "duration-200",
           className
         )}
@@ -151,7 +151,7 @@ export type ExpandableSidebarFooterProps = React.HTMLAttributes<HTMLDivElement>;
 const ExpandableSidebarFooter = React.forwardRef<HTMLDivElement, ExpandableSidebarFooterProps>(
   ({ className, children, ...props }, ref) => {
     return (
-      <div ref={ref} className={cn("border-t border-white/10 p-4", className)} {...props}>
+      <div ref={ref} className={cn("border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-4", className)} {...props}>
         {children}
       </div>
     );

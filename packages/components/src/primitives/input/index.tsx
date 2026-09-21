@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
+import { cn } from "@buildora/utils";
 
 export type InputVariant = "default" | "filled" | "ghost";
 export type InputSize = "default" | "sm" | "lg";
@@ -17,10 +17,10 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 
 const inputVariantStyles: Record<InputVariant, string> = {
   default:
-    "bg-[--b-panel] border border-[--b-border] hover:border-[--b-border-hover] focus:border-[--b-accent]",
+    "bg-[color:var(--b-panel)] border border-[color:var(--b-border)] hover:border-[color:var(--b-border-hover)] focus:border-[color:var(--b-accent)]",
   filled:
-    "bg-[--b-surface] border border-transparent hover:bg-[--b-elevated] focus:bg-[--b-panel] focus:border-[--b-accent]",
-  ghost: "bg-transparent border border-transparent hover:bg-[--b-surface] focus:bg-[--b-surface]",
+    "bg-[color:var(--b-surface)] border border-transparent hover:bg-[color:var(--b-elevated)] focus:bg-[color:var(--b-panel)] focus:border-[color:var(--b-accent)]",
+  ghost: "bg-transparent border border-transparent hover:bg-[color:var(--b-surface)] focus:bg-[color:var(--b-surface)]",
 };
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -48,7 +48,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div className="w-full">
         <div className="relative">
           {leftIcon && (
-            <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[--b-muted]">
+            <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[color:var(--b-muted)]">
               {leftIcon}
             </div>
           )}
@@ -56,27 +56,27 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             type={type}
             className={cn(
-              "block w-full rounded-[10px] px-4 text-[--b-text] outline-none transition-all duration-200",
-              "placeholder:text-[--b-muted]",
-              "focus:outline-none focus:ring-2 focus:ring-[--b-accent]/20",
+              "block w-full rounded-[10px] px-4 text-[color:var(--b-text)] outline-none transition-all duration-200",
+              "placeholder:text-[color:var(--b-muted)]",
+              "focus:outline-none focus:ring-2 focus:ring-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]",
               "disabled:cursor-not-allowed disabled:opacity-50",
               inputVariantStyles[variant],
               sizeStyles[inputSize],
               leftIcon && "pl-10",
               rightIcon && "pr-10",
-              error && "border-[--b-danger]/60 focus:border-[--b-danger] focus:ring-[--b-danger]/15",
+              error && "border-[color-mix(in_oklab,var(--b-danger)_60%,transparent)] focus:border-[color:var(--b-danger)] focus:ring-[color-mix(in_oklab,var(--b-danger)_15%,transparent)]",
               className
             )}
             {...props}
           />
           {rightIcon && (
-            <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[--b-muted]">
+            <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[color:var(--b-muted)]">
               {rightIcon}
             </div>
           )}
         </div>
         {error && errorMessage && (
-          <p className="mt-1.5 text-xs text-[--b-danger]">{errorMessage}</p>
+          <p className="mt-1.5 text-xs text-[color:var(--b-danger)]">{errorMessage}</p>
         )}
       </div>
     );
@@ -101,18 +101,18 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           ref={ref}
           className={cn(
-            "block w-full resize-none rounded-[10px] border px-4 py-3 text-sm text-[--b-text] outline-none transition-all duration-200",
-            "placeholder:text-[--b-muted]",
-            "focus:outline-none focus:ring-2 focus:ring-[--b-accent]/20",
+            "block w-full resize-none rounded-[10px] border px-4 py-3 text-sm text-[color:var(--b-text)] outline-none transition-all duration-200",
+            "placeholder:text-[color:var(--b-muted)]",
+            "focus:outline-none focus:ring-2 focus:ring-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]",
             "disabled:cursor-not-allowed disabled:opacity-50",
             inputVariantStyles[variant],
-            error && "border-[--b-danger]/60 focus:border-[--b-danger] focus:ring-[--b-danger]/15",
+            error && "border-[color-mix(in_oklab,var(--b-danger)_60%,transparent)] focus:border-[color:var(--b-danger)] focus:ring-[color-mix(in_oklab,var(--b-danger)_15%,transparent)]",
             className
           )}
           {...props}
         />
         {error && errorMessage && (
-          <p className="mt-1.5 text-xs text-[--b-danger]">{errorMessage}</p>
+          <p className="mt-1.5 text-xs text-[color:var(--b-danger)]">{errorMessage}</p>
         )}
       </div>
     );

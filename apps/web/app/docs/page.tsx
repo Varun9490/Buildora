@@ -3,10 +3,11 @@
 import Link from "next/link";
 import * as React from "react";
 import { motion } from "framer-motion";
+import { SITE } from "@/lib/site";
 
 const docs = [
   { slug: "overview", icon: "book", title: "Overview", body: "Buildora is a registry-driven creative component ecosystem. One definition powers website, docs, playground, search, and install." },
-  { slug: "installation", icon: "package", title: "Installation", body: "pnpm dlx shadcn@latest add @buildora/{component} with the @buildora registry pointing at https://buildora.dev/r/{name}.json (local /r/{component}.json on this domain). Every component declares dependencies + registryDependencies; shared utils/hooks/spring/tokens install automatically." },
+  { slug: "installation", icon: "package", title: "Installation", body: `pnpm dlx shadcn@latest add @buildora/{component} with the @buildora registry pointing at ${SITE.url}/r/{name}.json (local /r/{component}.json on this domain). Every component declares dependencies + registryDependencies; shared utils/hooks/spring/tokens install automatically.` },
   { slug: "usage", icon: "terminal", title: "Usage", body: "Import from @/components/buildora/{component} after install (e.g. @/components/buildora/magnetic-button). Tune props in the playground, copy the framework tab, keep semantic behavior intact." },
   { slug: "props-api", icon: "gear", title: "Props API", body: "Props are per-component and listed on each component page with live controls (e.g. MagneticButton: strength, radius, glow, variant). There is no global prop set — past docs listing intensity/spring/scale were wrong and have been removed." },
   { slug: "frameworks", icon: "code", title: "Framework Implementations", body: "React is Full — the source of truth. JS/HTML/Tailwind get snippet-level starters. Native targets (RN, Flutter, SwiftUI, Compose) are experimental snippets that remap hover/cursor to press and gestures. We label snippets honestly; we never ship a fake port." },
@@ -109,7 +110,7 @@ export default function DocsPage() {
     <div className="mx-auto max-w-5xl px-4 py-10">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
         <h1 className="font-display text-3xl font-black md:text-4xl">Docs</h1>
-        <p className="mt-2 text-sm text-[--b-text-secondary]">
+        <p className="mt-2 text-sm text-[color:var(--b-text-secondary)]">
           Concise, technically accurate, focused on shipping. Everything you need to get productive.
         </p>
       </motion.div>
@@ -126,7 +127,7 @@ export default function DocsPage() {
           <a
             key={d.slug}
             href={`#${d.slug}`}
-            className="rounded-lg border border-[--b-border] bg-[--b-panel] px-3 py-1.5 font-mono text-xs text-[--b-text-secondary] transition-colors hover:border-accent-soft hover:text-[--b-accent]"
+            className="rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-panel)] px-3 py-1.5 font-mono text-xs text-[color:var(--b-text-secondary)] transition-colors hover:border-accent-soft hover:text-[color:var(--b-accent)]"
           >
             {d.title}
           </a>
@@ -145,12 +146,12 @@ export default function DocsPage() {
             className="group b-card p-5 scroll-mt-20"
           >
             <div className="flex items-center gap-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[--b-surface] text-[--b-text-secondary]">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--b-surface)] text-[color:var(--b-text-secondary)]">
                 <DocIcon name={d.icon} className="h-4 w-4" />
               </span>
               <h2 className="font-display text-lg font-black">{d.title}</h2>
             </div>
-            <p className="mt-3 text-sm leading-relaxed text-[--b-text-secondary]">{d.body}</p>
+            <p className="mt-3 text-sm leading-relaxed text-[color:var(--b-text-secondary)]">{d.body}</p>
           </motion.article>
         ))}
       </div>
@@ -163,30 +164,30 @@ export default function DocsPage() {
         className="mt-8 rounded-2xl border border-accent-soft bg-accent-wash p-6"
       >
         <div className="flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[--b-accent] text-[--b-accent-foreground]">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)]">
             <DocIcon name="book" className="h-4 w-4" />
           </span>
           <h2 className="font-display text-lg font-black">How it works (learning mode)</h2>
         </div>
-        <ul className="mt-4 space-y-3 text-sm text-[--b-text-secondary]">
+        <ul className="mt-4 space-y-3 text-sm text-[color:var(--b-text-secondary)]">
           <li className="flex gap-3">
-            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[--b-accent]" />
-            <span><strong className="text-[--b-text]">Interaction logic:</strong> pointer proximity → eased target → spring steps → transform. Reduced-motion short-circuits to final state.</span>
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--b-accent)]" />
+            <span><strong className="text-[color:var(--b-text)]">Interaction logic:</strong> pointer proximity → eased target → spring steps → transform. Reduced-motion short-circuits to final state.</span>
           </li>
           <li className="flex gap-3">
-            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[--b-iris]" />
-            <span><strong className="text-[--b-text]">Design principles:</strong> usefulness first, one memorable interaction per component, tactile feedback, no meaningless motion.</span>
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--b-iris)]" />
+            <span><strong className="text-[color:var(--b-text)]">Design principles:</strong> usefulness first, one memorable interaction per component, tactile feedback, no meaningless motion.</span>
           </li>
           <li className="flex gap-3">
-            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[--b-warning]" />
-            <span><strong className="text-[--b-text]">Performance:</strong> rAF + DPR-aware canvas, lazy 3D (no Three.js unless the route needs it), code-split playgrounds.</span>
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--b-warning)]" />
+            <span><strong className="text-[color:var(--b-text)]">Performance:</strong> rAF + DPR-aware canvas, lazy 3D (no Three.js unless the route needs it), code-split playgrounds.</span>
           </li>
           <li className="flex gap-3">
-            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[--b-success]" />
-            <span><strong className="text-[--b-text]">Framework differences:</strong> web hover/blur become press/haptics on native; canvas becomes Skia/CustomPainter/Canvas equivalents. Snippets are labeled — never a silent stand-in for a port.</span>
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--b-success)]" />
+            <span><strong className="text-[color:var(--b-text)]">Framework differences:</strong> web hover/blur become press/haptics on native; canvas becomes Skia/CustomPainter/Canvas equivalents. Snippets are labeled — never a silent stand-in for a port.</span>
           </li>
         </ul>
-        <Link href="/components/slingshot-otp" className="mt-4 inline-block text-sm text-[--b-accent] transition-colors hover:underline">
+        <Link href="/components/slingshot-otp" className="mt-4 inline-block text-sm text-[color:var(--b-accent)] transition-colors hover:underline">
           Study Slingshot OTP — our signature component →
         </Link>
       </motion.div>

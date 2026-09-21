@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 import { type TerminalColorScheme, ansiColorToCSS } from "./terminal-theme";
 
 export interface TerminalLine {

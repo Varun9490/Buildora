@@ -132,9 +132,9 @@ export function FrameworkMatrix() {
 
   return (
     <div className="relative rounded-[2rem] border border-white/10 bg-white/[0.02] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-      <div className="overflow-hidden rounded-[calc(2rem-0.5rem)] border border-white/[0.08] bg-[--b-panel]">
+      <div className="overflow-hidden rounded-[calc(2rem-0.5rem)] border border-white/[0.08] bg-[color:var(--b-panel)]">
         {/* Framework Tab Bar */}
-        <div className="flex flex-wrap items-center justify-between border-b border-[--b-border] bg-[--b-surface]/40 px-4 py-2">
+        <div className="flex flex-wrap items-center justify-between border-b border-[color:var(--b-border)] bg-[color-mix(in_oklab,var(--b-surface)_40%,transparent)] px-4 py-2">
           <div className="flex items-center gap-1 overflow-x-auto py-1">
             {FRAMEWORKS.map((fw) => {
               const isCurr = fw.id === selected;
@@ -144,14 +144,14 @@ export function FrameworkMatrix() {
                   onClick={() => setSelected(fw.id)}
                   className={`relative rounded-lg px-3 py-1.5 font-mono text-xs transition-colors ${
                     isCurr
-                      ? "text-[--b-text] font-semibold"
-                      : "text-[--b-muted] hover:text-[--b-text-secondary] hover:bg-white/[0.03]"
+                      ? "text-[color:var(--b-text)] font-semibold"
+                      : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)] hover:bg-white/[0.03]"
                   }`}
                 >
                   {isCurr && (
                     <motion.div
                       layoutId="activeFwTab"
-                      className="absolute inset-0 rounded-lg bg-[--b-panel] border border-[--b-border] shadow-xs"
+                      className="absolute inset-0 rounded-lg bg-[color:var(--b-panel)] border border-[color:var(--b-border)] shadow-xs"
                       transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
                     />
                   )}
@@ -164,17 +164,17 @@ export function FrameworkMatrix() {
           </div>
 
           <div className="flex items-center gap-2 py-1">
-            <span className="rounded-full bg-[--b-accent-muted] px-2.5 py-0.5 font-mono text-[10px] font-medium text-[--b-accent] border border-[--b-accent]/20">
+            <span className="rounded-full bg-[color:var(--b-accent-muted)] px-2.5 py-0.5 font-mono text-[10px] font-medium text-[color:var(--b-accent)] border border-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]">
               {active.badge}
             </span>
           </div>
         </div>
 
         {/* Notes banner */}
-        <div className="flex items-center justify-between border-b border-[--b-border] bg-[--b-surface]/20 px-5 py-2.5 text-xs text-[--b-text-secondary]">
+        <div className="flex items-center justify-between border-b border-[color:var(--b-border)] bg-[color-mix(in_oklab,var(--b-surface)_20%,transparent)] px-5 py-2.5 text-xs text-[color:var(--b-text-secondary)]">
           <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-[--b-accent]" />
-            <span className="font-mono text-[11px] text-[--b-muted]">ARCHITECTURE:</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--b-accent)]" />
+            <span className="font-mono text-[11px] text-[color:var(--b-muted)]">ARCHITECTURE:</span>
             <span>{active.notes}</span>
           </div>
 
@@ -184,7 +184,7 @@ export function FrameworkMatrix() {
               setCopied(true);
               setTimeout(() => setCopied(false), 1400);
             }}
-            className="flex items-center gap-1.5 rounded-md border border-[--b-border] bg-[--b-surface] px-2.5 py-1 font-mono text-[11px] text-[--b-text] transition-colors hover:bg-[--b-elevated] active:scale-95"
+            className="flex items-center gap-1.5 rounded-md border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-2.5 py-1 font-mono text-[11px] text-[color:var(--b-text)] transition-colors hover:bg-[color:var(--b-elevated)] active:scale-95"
           >
             {copied ? "Copied ✓" : "Copy Code"}
           </button>

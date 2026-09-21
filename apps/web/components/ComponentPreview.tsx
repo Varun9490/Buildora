@@ -90,7 +90,7 @@ export function ComponentPreview({
     <div
       ref={ref}
       className={cn(
-        "relative flex h-40 items-center justify-center overflow-hidden border-b border-[--b-border] bg-[--b-bg] px-4",
+        "relative flex h-40 items-center justify-center overflow-hidden border-b border-[color:var(--b-border)] bg-[color:var(--b-bg)] px-4",
         className
       )}
       aria-hidden="true"

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export type DiffLine = { n: number; text: string; kind: "same" | "add" | "del" };
 
@@ -44,10 +44,10 @@ export function DiffViewer({
             "flex gap-2 px-2 py-0.5 font-mono text-xs",
             l.kind === "add" && "bg-[#4fe08a]/10 text-emerald-100",
             l.kind === "del" && "bg-red-500/10 text-red-200",
-            l.kind === "same" && "text-white/60"
+            l.kind === "same" && "text-[color-mix(in_oklab,var(--b-text)_60%,transparent)]"
           )}
         >
-          <span className="w-6 shrink-0 text-right text-white/25">{l.n}</span>
+          <span className="w-6 shrink-0 text-right text-[color-mix(in_oklab,var(--b-text)_25%,transparent)]">{l.n}</span>
           <span className="whitespace-pre-wrap break-all">
             {l.kind === "add" ? `+ ${l.text}` : l.kind === "del" ? `− ${l.text}` : `  ${l.text}`}
           </span>
@@ -56,14 +56,14 @@ export function DiffViewer({
     </div>
   );
   return (
-    <div className={cn("overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c11]", className)}>
+    <div className={cn("overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#0a0c11]", className)}>
       <div className="grid md:grid-cols-2">
-        <div className="border-b border-white/10 md:border-b-0 md:border-r">
-          <p className="border-b border-white/10 px-3 py-1.5 font-mono text-[11px] text-white/40">before</p>
+        <div className="border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] md:border-b-0 md:border-r">
+          <p className="border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] px-3 py-1.5 font-mono text-[11px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">before</p>
           {col(left, "Before")}
         </div>
         <div>
-          <p className="border-b border-white/10 px-3 py-1.5 font-mono text-[11px] text-white/40">after</p>
+          <p className="border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] px-3 py-1.5 font-mono text-[11px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">after</p>
           {col(right, "After")}
         </div>
       </div>

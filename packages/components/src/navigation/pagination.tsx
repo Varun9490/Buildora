@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 const PaginationContext = React.createContext<{
   currentPage: number;
@@ -71,10 +71,10 @@ const PaginationButton = React.forwardRef<HTMLButtonElement, PaginationButtonPro
         onClick={() => context.setCurrentPage(page)}
         className={cn(
           "flex h-9 w-9 items-center justify-center rounded-lg text-sm font-medium transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
           isActive
-            ? "bg-[#d4ff4f]/10 text-[--b-accent] border border-[#d4ff4f]/20"
-            : "text-white/60 hover:text-white hover:bg-white/5",
+            ? "bg-[color-mix(in_oklab,var(--b-accent)_10%,transparent)] text-[color:var(--b-accent)] border border-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]"
+            : "text-[color-mix(in_oklab,var(--b-text)_60%,transparent)] hover:text-[color:var(--b-text)] hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]",
           !reducedMotion && "duration-200",
           className
         )}
@@ -96,7 +96,7 @@ const PaginationEllipsis = React.forwardRef<HTMLSpanElement, PaginationEllipsisP
       <span
         ref={ref}
         aria-hidden="true"
-        className={cn("flex h-9 w-9 items-center justify-center text-white/40", className)}
+        className={cn("flex h-9 w-9 items-center justify-center text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]", className)}
         {...props}
       >
         ...
@@ -125,10 +125,10 @@ const PaginationPrev = React.forwardRef<HTMLButtonElement, PaginationPrevProps>(
         disabled={isDisabled}
         className={cn(
           "flex h-9 w-9 items-center justify-center rounded-lg transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
           isDisabled
-            ? "text-white/30 cursor-not-allowed"
-            : "text-white/60 hover:text-white hover:bg-white/5",
+            ? "text-[color-mix(in_oklab,var(--b-text)_30%,transparent)] cursor-not-allowed"
+            : "text-[color-mix(in_oklab,var(--b-text)_60%,transparent)] hover:text-[color:var(--b-text)] hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]",
           !reducedMotion && "duration-200",
           className
         )}
@@ -164,10 +164,10 @@ const PaginationNext = React.forwardRef<HTMLButtonElement, PaginationNextProps>(
         disabled={isDisabled}
         className={cn(
           "flex h-9 w-9 items-center justify-center rounded-lg transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
           isDisabled
-            ? "text-white/30 cursor-not-allowed"
-            : "text-white/60 hover:text-white hover:bg-white/5",
+            ? "text-[color-mix(in_oklab,var(--b-text)_30%,transparent)] cursor-not-allowed"
+            : "text-[color-mix(in_oklab,var(--b-text)_60%,transparent)] hover:text-[color:var(--b-text)] hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]",
           !reducedMotion && "duration-200",
           className
         )}

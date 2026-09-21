@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUISparklineProps {
   data: number[];
@@ -52,9 +52,9 @@ export function TUISparkline({
     <div className={cn("font-mono text-xs inline-flex flex-col", className)}>
       {label && (
         <div className="flex items-center justify-between mb-0.5">
-          <span className="text-white/50 text-[10px]">{label}</span>
+          <span className="text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] text-[10px]">{label}</span>
           {showMinMax && (
-            <span className="text-white/30 text-[10px]">
+            <span className="text-[color-mix(in_oklab,var(--b-text)_30%,transparent)] text-[10px]">
               {min.toFixed(1)} – {max.toFixed(1)}
             </span>
           )}
@@ -68,7 +68,7 @@ export function TUISparkline({
         )}
       </div>
       {!label && showMinMax && (
-        <div className="flex justify-between text-[10px] text-white/30 mt-0.5">
+        <div className="flex justify-between text-[10px] text-[color-mix(in_oklab,var(--b-text)_30%,transparent)] mt-0.5">
           <span>-{min.toFixed(0)}</span>
           <span>+{max.toFixed(0)}</span>
         </div>

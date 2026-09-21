@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
-import { useReducedMotion } from "../../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 const AccordionContext = React.createContext<{
   openItems: string[];
@@ -76,7 +76,7 @@ const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
         ref={ref}
         data-state={isOpen ? "open" : "closed"}
         className={cn(
-          "border border-white/10 rounded-xl overflow-hidden bg-white/[0.02]",
+          "border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded-xl overflow-hidden bg-[color-mix(in_oklab,var(--b-text)_2%,transparent)]",
           className
         )}
         {...props}
@@ -113,9 +113,9 @@ const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerPro
         aria-expanded={isOpen}
         data-state={isOpen ? "open" : "closed"}
         className={cn(
-          "flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-white transition-all",
-          "hover:bg-white/[0.02]",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50",
+          "flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-[color:var(--b-text)] transition-all",
+          "hover:bg-[color-mix(in_oklab,var(--b-text)_2%,transparent)]",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
           className
         )}
         onClick={() => value && context.toggleItem(value)}
@@ -124,7 +124,7 @@ const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerPro
         <span>{children}</span>
         <svg
           className={cn(
-            "h-4 w-4 text-white/50 transition-transform",
+            "h-4 w-4 text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] transition-transform",
             !reducedMotion && "duration-200",
             isOpen && "rotate-180"
           )}
@@ -162,7 +162,7 @@ const AccordionContent = React.forwardRef<HTMLDivElement, AccordionContentProps>
         )}
         {...props}
       >
-        <div className={cn("px-4 py-3 pt-0 text-sm text-white/70", className)}>
+        <div className={cn("px-4 py-3 pt-0 text-sm text-[color-mix(in_oklab,var(--b-text)_70%,transparent)]", className)}>
           {children}
         </div>
       </div>

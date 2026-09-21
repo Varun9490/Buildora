@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn, clamp } from "../../utils";
-import { useReducedMotion } from "../../hooks/use-reduced-motion";
-import { motion } from "framer-motion";
+import { cn, clamp } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
+import { motion } from "motion/react";
 
 export type ProgressVariant = "default" | "accent" | "success" | "warning" | "danger";
 export type ProgressSize = "default" | "sm" | "lg";
@@ -35,9 +35,9 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     const clampedPercentage = (percentage / max) * 100;
 
     const variantStyles: Record<ProgressVariant, string> = {
-      default: "bg-white/20",
-      accent: "bg-[--b-accent]",
-      success: "bg-[--b-success]",
+      default: "bg-[color-mix(in_oklab,var(--b-text)_20%,transparent)]",
+      accent: "bg-[color:var(--b-accent)]",
+      success: "bg-[color:var(--b-success)]",
       warning: "bg-[#ffb86b]",
       danger: "bg-red-500",
     };
@@ -56,7 +56,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
           aria-valuemax={max}
           aria-valuenow={indeterminate ? undefined : value}
           className={cn(
-            "relative w-full overflow-hidden rounded-full bg-white/10 border border-white/5",
+            "relative w-full overflow-hidden rounded-full bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_5%,transparent)]",
             sizeStyles[size]
           )}
         >
@@ -82,7 +82,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
           )}
         </div>
         {showValue && !indeterminate && (
-          <div className="mt-1.5 text-xs text-white/50 text-right">
+          <div className="mt-1.5 text-xs text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] text-right">
             {formatValue ? formatValue(value, max) : `${Math.round(clampedPercentage)}%`}
           </div>
         )}

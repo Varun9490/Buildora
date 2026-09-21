@@ -1,5 +1,5 @@
 {
-  "$schema": "https://buildora.dev/schema/registry.json",
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
@@ -1230,5 +1230,5 @@
       "status": "stable"
     }
   ],
-  "shadcn": "Compatible — install via shadcn with the @buildora registry pointing at https://buildora.dev/r/{component}.json, or the local /r/{component}.json endpoint."
+  "shadcn": "Compatible — install via shadcn with the @buildora registry pointing at https://buildora-hazel.vercel.app/r/{component}.json, or the local /r/{component}.json endpoint."
 }

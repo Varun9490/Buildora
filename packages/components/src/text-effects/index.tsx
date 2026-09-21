@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export type TypewriterProps = React.HTMLAttributes<HTMLSpanElement> & {
   text: string | string[];

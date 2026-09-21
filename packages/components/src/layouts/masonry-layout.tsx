@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export type MasonryLayoutProps = React.HTMLAttributes<HTMLDivElement> & {
   columns?: number;
@@ -65,8 +65,8 @@ function MasonryItem({ className, children, ...rest }: MasonryItemProps) {
   return (
     <div
       className={cn(
-        "rounded-xl border border-white/10 bg-[#12141d] p-4",
-        "transition-all duration-200 hover:border-white/20",
+        "rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#12141d] p-4",
+        "transition-all duration-200 hover:border-[color-mix(in_oklab,var(--b-border)_20%,transparent)]",
         className
       )}
       {...rest}

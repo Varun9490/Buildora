@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
-import { useReducedMotion } from "../../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type SkeletonVariant = "default" | "circular" | "rounded";
 
@@ -38,7 +38,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
         role="presentation"
         aria-hidden="true"
         className={cn(
-          "relative overflow-hidden border border-white/5 bg-white/[0.04]",
+          "relative overflow-hidden border border-[color-mix(in_oklab,var(--b-border)_5%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_4%,transparent)]",
           variantStyles[variant],
           className
         )}

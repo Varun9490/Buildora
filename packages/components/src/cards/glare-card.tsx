@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type GlareCardProps = React.HTMLAttributes<HTMLDivElement> & {
   glareColor?: string;
@@ -33,9 +33,9 @@ export function GlareCard({
       ref={ref}
       onPointerMove={handleMove}
       className={cn(
-        "group relative rounded-2xl border border-white/10 bg-[#12141d] p-6",
+        "group relative rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#12141d] p-6",
         "transition-transform duration-200 hover:scale-[1.02]",
-        "focus-within:ring-2 focus-within:ring-[#d4ff4f]/50",
+        "focus-within:ring-2 focus-within:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
         className
       )}
       {...rest}

@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 import { createPortal } from "react-dom";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type DropdownMenuProps = {
   children: React.ReactNode;
@@ -118,7 +118,7 @@ export function DropdownMenuContent({ children, className, align = "start" }: {
       <div
         ref={contentRef}
         className={cn(
-          "fixed z-[200] min-w-[180px] overflow-auto rounded-xl border border-white/10 bg-[#0d0f16] py-2 shadow-2xl backdrop-blur-xl",
+          "fixed z-[200] min-w-[180px] overflow-auto rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] py-2 shadow-2xl backdrop-blur-xl",
           className
         )}
         role="menu"
@@ -166,9 +166,9 @@ export function DropdownMenuItem({
   return (
     <button
       className={cn(
-        "flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-white/90 transition-colors",
-        "hover:bg-white/5 hover:text-white",
-        "focus:bg-white/5 focus:text-white focus:outline-none",
+        "flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-[color-mix(in_oklab,var(--b-text)_90%,transparent)] transition-colors",
+        "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] hover:text-[color:var(--b-text)]",
+        "focus:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] focus:text-[color:var(--b-text)] focus:outline-none",
         disabled && "pointer-events-none opacity-50",
         className
       )}
@@ -186,13 +186,13 @@ export function DropdownMenuItem({
 
 export function DropdownMenuSeparator({ className }: { className?: string }) {
   return (
-    <div className={cn("my-1 h-px bg-white/10", className)} role="separator" />
+    <div className={cn("my-1 h-px bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]", className)} role="separator" />
   );
 }
 
 export function DropdownMenuLabel({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white/40", className)}>
+    <div className={cn("px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]", className)}>
       {children}
     </div>
   );
@@ -214,9 +214,9 @@ export function DropdownMenuCheckboxItem({
   return (
     <button
       className={cn(
-        "flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-white/90 transition-colors",
-        "hover:bg-white/5 hover:text-white",
-        "focus:bg-white/5 focus:text-white focus:outline-none",
+        "flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-[color-mix(in_oklab,var(--b-text)_90%,transparent)] transition-colors",
+        "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] hover:text-[color:var(--b-text)]",
+        "focus:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] focus:text-[color:var(--b-text)] focus:outline-none",
         className
       )}
       role="menuitemcheckbox"
@@ -227,11 +227,11 @@ export function DropdownMenuCheckboxItem({
       }}
     >
       <div className={cn(
-        "flex h-4 w-4 items-center justify-center rounded border border-white/20 transition-colors",
-        checked && "border-[--b-accent] bg-[--b-accent]"
+        "flex h-4 w-4 items-center justify-center rounded border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] transition-colors",
+        checked && "border-[color:var(--b-accent)] bg-[color:var(--b-accent)]"
       )}>
         {checked && (
-          <svg className="h-3 w-3 text-[--b-accent-foreground]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-3 w-3 text-[color:var(--b-accent-foreground)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         )}

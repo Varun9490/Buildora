@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 import { TerminalPane, type TerminalLine, createTerminalLine } from "./terminal-pane";
 import { TerminalSidebar, type FileTreeNode, type TerminalSession } from "./terminal-sidebar";
 import { TerminalTabBar, type TerminalTab, createTerminalTab } from "./terminal-tab-bar";
@@ -51,7 +51,7 @@ const defaultFiles: FileTreeNode[] = [
         type: "folder",
         children: [
           { name: "components", path: "/buildora/packages/components", type: "folder" },
-          { name: "../utils", path: "../utils", type: "folder" },
+          { name: "@buildora/utils", path: "@buildora/utils", type: "folder" },
           { name: "hooks", path: "/buildora/packages/hooks", type: "folder" },
           { name: "tokens", path: "/buildora/packages/tokens", type: "folder" },
         ],

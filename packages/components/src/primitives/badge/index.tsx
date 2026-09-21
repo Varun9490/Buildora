@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
+import { cn } from "@buildora/utils";
 
 export type BadgeVariant = "default" | "secondary" | "success" | "warning" | "danger" | "outline" | "accent";
 
@@ -20,13 +20,13 @@ function Badge({
   ...props
 }: BadgeProps) {
   const variantStyles: Record<BadgeVariant, string> = {
-    default: "bg-[--b-surface] text-[--b-text-secondary] border-[--b-border]",
-    secondary: "bg-[--b-panel] text-[--b-muted] border-[--b-border]",
-    success: "bg-[--b-success]/10 text-[--b-success] border-[--b-success]/25",
-    warning: "bg-[--b-warning]/10 text-[--b-warning] border-[--b-warning]/25",
-    danger: "bg-[--b-danger]/10 text-[--b-danger] border-[--b-danger]/25",
-    outline: "bg-transparent text-[--b-text-secondary] border-[--b-border-hover]",
-    accent: "bg-[--b-accent-muted] text-[--b-accent] border-[--b-accent]/30",
+    default: "bg-[color:var(--b-surface)] text-[color:var(--b-text-secondary)] border-[color:var(--b-border)]",
+    secondary: "bg-[color:var(--b-panel)] text-[color:var(--b-muted)] border-[color:var(--b-border)]",
+    success: "bg-[color-mix(in_oklab,var(--b-success)_10%,transparent)] text-[color:var(--b-success)] border-[color-mix(in_oklab,var(--b-success)_25%,transparent)]",
+    warning: "bg-[color-mix(in_oklab,var(--b-warning)_10%,transparent)] text-[color:var(--b-warning)] border-[color-mix(in_oklab,var(--b-warning)_25%,transparent)]",
+    danger: "bg-[color-mix(in_oklab,var(--b-danger)_10%,transparent)] text-[color:var(--b-danger)] border-[color-mix(in_oklab,var(--b-danger)_25%,transparent)]",
+    outline: "bg-transparent text-[color:var(--b-text-secondary)] border-[color:var(--b-border-hover)]",
+    accent: "bg-[color:var(--b-accent-muted)] text-[color:var(--b-accent)] border-[color-mix(in_oklab,var(--b-accent)_30%,transparent)]",
   };
 
   const sizeStyles: Record<"default" | "sm" | "lg", string> = {
@@ -61,26 +61,26 @@ const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(
   ({ className, variant = "default", selected, icon, children, ...props }, ref) => {
     const variantStyles: Record<BadgeVariant, string> = {
       default: selected
-        ? "bg-[--b-text]/10 text-[--b-text] border-[--b-border-hover]"
-        : "bg-[--b-surface] text-[--b-text-secondary] border-[--b-border] hover:bg-[--b-elevated]",
+        ? "bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] text-[color:var(--b-text)] border-[color:var(--b-border-hover)]"
+        : "bg-[color:var(--b-surface)] text-[color:var(--b-text-secondary)] border-[color:var(--b-border)] hover:bg-[color:var(--b-elevated)]",
       secondary: selected
-        ? "bg-[--b-surface] text-[--b-text] border-[--b-border-hover]"
-        : "bg-[--b-panel] text-[--b-muted] border-[--b-border] hover:text-[--b-text-secondary]",
+        ? "bg-[color:var(--b-surface)] text-[color:var(--b-text)] border-[color:var(--b-border-hover)]"
+        : "bg-[color:var(--b-panel)] text-[color:var(--b-muted)] border-[color:var(--b-border)] hover:text-[color:var(--b-text-secondary)]",
       success: selected
-        ? "bg-[--b-success]/20 text-[--b-success] border-[--b-success]/30"
-        : "bg-[--b-success]/10 text-[--b-success] border-[--b-success]/15 hover:bg-[--b-success]/15",
+        ? "bg-[color-mix(in_oklab,var(--b-success)_20%,transparent)] text-[color:var(--b-success)] border-[color-mix(in_oklab,var(--b-success)_30%,transparent)]"
+        : "bg-[color-mix(in_oklab,var(--b-success)_10%,transparent)] text-[color:var(--b-success)] border-[color-mix(in_oklab,var(--b-success)_15%,transparent)] hover:bg-[color-mix(in_oklab,var(--b-success)_15%,transparent)]",
       warning: selected
-        ? "bg-[--b-warning]/20 text-[--b-warning] border-[--b-warning]/30"
-        : "bg-[--b-warning]/10 text-[--b-warning] border-[--b-warning]/15 hover:bg-[--b-warning]/15",
+        ? "bg-[color-mix(in_oklab,var(--b-warning)_20%,transparent)] text-[color:var(--b-warning)] border-[color-mix(in_oklab,var(--b-warning)_30%,transparent)]"
+        : "bg-[color-mix(in_oklab,var(--b-warning)_10%,transparent)] text-[color:var(--b-warning)] border-[color-mix(in_oklab,var(--b-warning)_15%,transparent)] hover:bg-[color-mix(in_oklab,var(--b-warning)_15%,transparent)]",
       danger: selected
-        ? "bg-[--b-danger]/20 text-[--b-danger] border-[--b-danger]/30"
-        : "bg-[--b-danger]/10 text-[--b-danger] border-[--b-danger]/15 hover:bg-[--b-danger]/15",
+        ? "bg-[color-mix(in_oklab,var(--b-danger)_20%,transparent)] text-[color:var(--b-danger)] border-[color-mix(in_oklab,var(--b-danger)_30%,transparent)]"
+        : "bg-[color-mix(in_oklab,var(--b-danger)_10%,transparent)] text-[color:var(--b-danger)] border-[color-mix(in_oklab,var(--b-danger)_15%,transparent)] hover:bg-[color-mix(in_oklab,var(--b-danger)_15%,transparent)]",
       outline: selected
-        ? "bg-[--b-surface] text-[--b-text] border-[--b-border-hover]"
-        : "bg-transparent text-[--b-text-secondary] border-[--b-border] hover:bg-[--b-surface]",
+        ? "bg-[color:var(--b-surface)] text-[color:var(--b-text)] border-[color:var(--b-border-hover)]"
+        : "bg-transparent text-[color:var(--b-text-secondary)] border-[color:var(--b-border)] hover:bg-[color:var(--b-surface)]",
       accent: selected
-        ? "bg-[--b-accent]/25 text-[--b-accent] border-[--b-accent]/40"
-        : "bg-[--b-accent-muted] text-[--b-accent] border-[--b-accent]/20 hover:bg-[--b-accent]/15",
+        ? "bg-[color-mix(in_oklab,var(--b-accent)_25%,transparent)] text-[color:var(--b-accent)] border-[color-mix(in_oklab,var(--b-accent)_40%,transparent)]"
+        : "bg-[color:var(--b-accent-muted)] text-[color:var(--b-accent)] border-[color-mix(in_oklab,var(--b-accent)_20%,transparent)] hover:bg-[color-mix(in_oklab,var(--b-accent)_15%,transparent)]",
     };
 
     return (

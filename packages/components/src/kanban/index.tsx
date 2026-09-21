@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export type CardT = { id: string; title: string; tag?: string; };
 export type ColT = { id: string; title: string; cards: CardT[]; };
@@ -44,8 +44,8 @@ export function Kanban({ initial, className }: { initial?: ColT[]; className?: s
           onDragOver={(e) => { e.preventDefault(); setOver(col.id); }}
           onDragLeave={() => setOver((o) => (o === col.id ? null : o))}
           onDrop={(e) => { e.preventDefault(); if (drag) move(drag.card, drag.from, col.id); setDrag(null); setOver(null); }}
-          className={cn("min-h-[12rem] rounded-2xl border p-2 transition-all", over === col.id ? "border-[--b-accent] bg-[#d4ff4f]/[0.06] scale-[1.01]" : "border-white/10 bg-white/[0.02]")}>
-          <p className="px-2 py-1 text-xs font-bold uppercase tracking-wider text-white/50">{col.title} · {col.cards.length}</p>
+          className={cn("min-h-[12rem] rounded-2xl border p-2 transition-all", over === col.id ? "border-[color:var(--b-accent)] bg-var(--b-accent)/[0.06] scale-[1.01]" : "border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_2%,transparent)]")}>
+          <p className="px-2 py-1 text-xs font-bold uppercase tracking-wider text-[color-mix(in_oklab,var(--b-text)_50%,transparent)]">{col.title} · {col.cards.length}</p>
           <ul className="space-y-2">
             {col.cards.map((card, ki) => (
               <li key={card.id}
@@ -58,9 +58,9 @@ export function Kanban({ initial, className }: { initial?: ColT[]; className?: s
                   if (e.altKey && e.key === "ArrowRight") moveKeyboard(ci, ki, 1);
                   if (e.altKey && e.key === "ArrowLeft") moveKeyboard(ci, ki, -1);
                 }}
-                className="cursor-grab rounded-xl border border-white/10 bg-[#141726] p-3 text-sm shadow transition-transform active:cursor-grabbing active:scale-[1.02]">
+                className="cursor-grab rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#141726] p-3 text-sm shadow transition-transform active:cursor-grabbing active:scale-[1.02]">
                 <p className="font-medium">{card.title}</p>
-                {card.tag && <span className="mt-1 inline-block rounded bg-white/10 px-1.5 py-0.5 font-mono text-[10px] text-white/60">{card.tag}</span>}
+                {card.tag && <span className="mt-1 inline-block rounded bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] px-1.5 py-0.5 font-mono text-[10px] text-[color-mix(in_oklab,var(--b-text)_60%,transparent)]">{card.tag}</span>}
                 <span className="sr-only">Press Alt plus arrow keys to move.</span>
               </li>
             ))}
@@ -75,12 +75,12 @@ export function Calendar({ className }: { className?: string }) {
   const [day, setDay] = React.useState(14);
   const days = Array.from({ length: 28 }, (_, i) => i + 1);
   return (
-    <div className={cn("rounded-2xl border border-white/10 bg-[#0d0f16] p-4", className)}>
-      <p className="mb-2 text-sm font-bold">February <span className="text-white/40">— scheduling demo</span></p>
+    <div className={cn("rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] p-4", className)}>
+      <p className="mb-2 text-sm font-bold">February <span className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">— scheduling demo</span></p>
       <div className="grid grid-cols-7 gap-1" role="grid" aria-label="Calendar">
         {days.map((d) => (
           <button key={d} role="gridcell" aria-selected={d === day} onClick={() => setDay(d)}
-            className={cn("aspect-square rounded-lg text-sm transition-all", d === day ? "bg-[--b-accent] font-bold text-[--b-accent-foreground] scale-105" : "text-white/70 hover:bg-white/10")}>{d}</button>
+            className={cn("aspect-square rounded-lg text-sm transition-all", d === day ? "bg-[color:var(--b-accent)] font-bold text-[color:var(--b-accent-foreground)] scale-105" : "text-[color-mix(in_oklab,var(--b-text)_70%,transparent)] hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]")}>{d}</button>
         ))}
       </div>
     </div>

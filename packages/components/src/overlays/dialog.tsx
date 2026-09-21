@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 import { createPortal } from "react-dom";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type DialogProps = {
   open: boolean;
@@ -101,7 +101,7 @@ export function Dialog({
       <div
         ref={contentRef}
         className={cn(
-          "relative z-[101] max-h-[90vh] w-full max-w-lg overflow-auto rounded-2xl border border-white/10 bg-[#0d0f16] p-6 shadow-2xl backdrop-blur-xl",
+          "relative z-[101] max-h-[90vh] w-full max-w-lg overflow-auto rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] p-6 shadow-2xl backdrop-blur-xl",
           className
         )}
         onClick={(e) => e.stopPropagation()}
@@ -170,7 +170,7 @@ export function DialogHeader({ children, className }: { children: React.ReactNod
 
 export function DialogTitle({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <h2 className={cn("text-lg font-semibold text-white", className)}>
+    <h2 className={cn("text-lg font-semibold text-[color:var(--b-text)]", className)}>
       {children}
     </h2>
   );
@@ -178,7 +178,7 @@ export function DialogTitle({ children, className }: { children: React.ReactNode
 
 export function DialogDescription({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <p className={cn("mt-1 text-sm text-white/60", className)}>
+    <p className={cn("mt-1 text-sm text-[color-mix(in_oklab,var(--b-text)_60%,transparent)]", className)}>
       {children}
     </p>
   );

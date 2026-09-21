@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
+import { cn } from "@buildora/utils";
 
 export type AvatarSize = "default" | "sm" | "lg" | "xl";
 
@@ -25,8 +25,8 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     };
 
     const statusColors: Record<string, string> = {
-      online: "bg-[--b-success]",
-      offline: "bg-white/30",
+      online: "bg-[color:var(--b-success)]",
+      offline: "bg-[color-mix(in_oklab,var(--b-text)_30%,transparent)]",
       busy: "bg-red-500",
       away: "bg-[#ffb86b]",
     };
@@ -48,7 +48,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
           role="img"
           aria-label={alt || fallback || "Avatar"}
           className={cn(
-            "relative inline-flex items-center justify-center rounded-full bg-white/10 border border-white/10 font-semibold text-white/80",
+            "relative inline-flex items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] font-semibold text-[color-mix(in_oklab,var(--b-text)_80%,transparent)]",
             sizeStyles[size],
             className
           )}
@@ -101,7 +101,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       >
         {visibleChildren}
         {remainingCount > 0 && (
-          <div className="flex items-center justify-center h-10 w-10 rounded-full bg-white/10 border border-white/10 text-xs font-medium text-white/70 ring-2 ring-[#08090d]">
+          <div className="flex items-center justify-center h-10 w-10 rounded-full bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] text-xs font-medium text-[color-mix(in_oklab,var(--b-text)_70%,transparent)] ring-2 ring-[#08090d]">
             +{remainingCount}
           </div>
         )}

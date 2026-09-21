@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
-import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
+import { motion, AnimatePresence } from "motion/react";
 
 const MobileNavContext = React.createContext<{
   id: string;
@@ -41,7 +41,7 @@ const MobileNav = React.forwardRef<HTMLElement, MobileNavProps>(
           aria-label="Mobile navigation"
           className={cn(
             "fixed bottom-0 left-0 right-0 z-50",
-            "border-t border-white/10 bg-[#0d0f16]/95 backdrop-blur-xl",
+            "border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)]/95 backdrop-blur-xl",
             "md:hidden",
             className
           )}
@@ -78,7 +78,7 @@ const MobileNavItem = React.forwardRef<HTMLAnchorElement, MobileNavItemProps>(
           {!reducedMotion && isActive && (
             <motion.div
               layoutId={layoutId}
-              className="absolute inset-x-2 inset-y-1 rounded-xl bg-white/10"
+              className="absolute inset-x-2 inset-y-1 rounded-xl bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -94,10 +94,10 @@ const MobileNavItem = React.forwardRef<HTMLAnchorElement, MobileNavItemProps>(
           className={cn(
             "relative z-10 flex flex-col items-center justify-center gap-1 rounded-lg px-3 py-2",
             "text-xs font-medium transition-colors",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent]/50",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
             isActive
-              ? "text-white"
-              : "text-white/50 hover:text-white",
+              ? "text-[color:var(--b-text)]"
+              : "text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] hover:text-[color:var(--b-text)]",
             !reducedMotion && "duration-200",
             className
           )}

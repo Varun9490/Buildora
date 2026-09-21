@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { MotionConfig } from "framer-motion";
+import { MotionConfig } from "motion/react";
 import { useBuildora } from "@/lib/store";
 import { accentPresets } from "@buildora/tokens";
 
@@ -43,15 +43,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     root.classList.toggle("dark", resolved === "dark");
     root.style.colorScheme = resolved;
 
-    const preset =
-      (accentPresets as Record<string, { dark: { accent: string; foreground: string; muted: string }; light: { accent: string; foreground: string; muted: string } }>)[
-        themeAccent
-      ] ?? accentPresets.acid;
-
-    const active = resolved === "dark" ? preset.dark : preset.light;
-    root.style.setProperty("--b-accent", active.accent);
-    root.style.setProperty("--b-accent-foreground", active.foreground);
-    root.style.setProperty("--b-accent-muted", active.muted);
+    root.setAttribute("data-accent", themeAccent);
 
     return () => mq.removeEventListener?.("change", onChange);
   }, [themeAccent, themeMode]);

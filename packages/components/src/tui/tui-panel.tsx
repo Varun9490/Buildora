@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUIPanelProps {
   title?: string;
@@ -14,7 +14,7 @@ export interface TUIPanelProps {
 }
 
 const borderColors = {
-  default: "border-white/20",
+  default: "border-[color-mix(in_oklab,var(--b-border)_20%,transparent)]",
   accent: "border-cyan-500/50",
   success: "border-green-500/50",
   warning: "border-yellow-500/50",
@@ -59,9 +59,9 @@ export function TUIPanel({
       aria-label={title}
     >
       {title && (
-        <div className="flex items-center gap-2 px-2 py-1 border-b border-white/10 mb-2">
+        <div className="flex items-center gap-2 px-2 py-1 border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] mb-2">
           {focused && <span className="text-cyan-400">●</span>}
-          <span className="text-white/60 text-[11px] uppercase tracking-wider">
+          <span className="text-[color-mix(in_oklab,var(--b-text)_60%,transparent)] text-[11px] uppercase tracking-wider">
             {title}
           </span>
         </div>

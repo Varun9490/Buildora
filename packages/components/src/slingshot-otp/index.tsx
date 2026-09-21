@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@buildora/utils";
+import { motion, AnimatePresence } from "motion/react";
 
 export type SlingshotOTPProps = {
   length?: number;
@@ -44,13 +44,13 @@ export function SlingshotOTP({ length = 6, value, onChange, onComplete, label = 
   return (
     <div className={cn("relative flex flex-col items-center", className)}>
       <div className="mb-4 flex w-full max-w-[360px] items-center justify-between px-2">
-        <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-[--b-muted]">{label}</label>
+        <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-[color:var(--b-muted)]">{label}</label>
         <button
           onClick={() => {
             setMode(mode === "standard" ? "game" : "standard");
             commit(""); // reset on mode switch
           }}
-          className="rounded-md border border-[--b-border] bg-white/[0.03] px-2 py-1 font-mono text-[10px] text-[--b-text-secondary] transition-colors hover:bg-white/[0.06]"
+          className="rounded-md border border-[color:var(--b-border)] bg-[color-mix(in_oklab,var(--b-text)_3%,transparent)] px-2 py-1 font-mono text-[10px] text-[color:var(--b-text-secondary)] transition-colors hover:bg-[color-mix(in_oklab,var(--b-text)_6%,transparent)]"
         >
           {mode === "standard" ? "Play Game" : "Standard Mode"}
         </button>
@@ -94,10 +94,10 @@ function StandardOTP({ length, value, onChange }: { length: number; value: strin
           className={cn(
             "flex h-14 w-11 items-center justify-center rounded-xl border font-mono text-2xl shadow-sm transition-all",
             d !== " "
-              ? "border-[--b-accent] bg-[--b-accent]/5 text-[--b-accent]"
+              ? "border-[color:var(--b-accent)] bg-[color-mix(in_oklab,var(--b-accent)_5%,transparent)] text-[color:var(--b-accent)]"
               : value.length === i
-              ? "border-[--b-text] bg-white/[0.05] ring-2 ring-[--b-accent]/20" // Focus state
-              : "border-[--b-border] bg-white/[0.02] text-[--b-muted]"
+              ? "border-[color:var(--b-text)] bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] ring-2 ring-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]" // Focus state
+              : "border-[color:var(--b-border)] bg-[color-mix(in_oklab,var(--b-text)_2%,transparent)] text-[color:var(--b-muted)]"
           )}
         >
           {d !== " " ? d : ""}
@@ -105,7 +105,7 @@ function StandardOTP({ length, value, onChange }: { length: number; value: strin
             <motion.div
               animate={{ opacity: [1, 0] }}
               transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
-              className="absolute h-6 w-0.5 bg-[--b-text]"
+              className="absolute h-6 w-0.5 bg-[color:var(--b-text)]"
             />
           )}
         </div>
@@ -305,14 +305,14 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
   return (
     <div
       ref={containerRef}
-      className="relative h-[360px] w-[360px] max-w-full overflow-hidden rounded-2xl border border-[--b-border] bg-[#050505] shadow-xl"
+      className="relative h-[360px] w-[360px] max-w-full overflow-hidden rounded-2xl border border-[color:var(--b-border)] bg-[#050505] shadow-xl"
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
     >
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]" />
       
-      <button onClick={onClear} className="absolute right-3 top-3 z-10 text-[10px] uppercase tracking-wider text-[--b-muted] hover:text-[--b-accent]">
+      <button onClick={onClear} className="absolute right-3 top-3 z-10 text-[10px] uppercase tracking-wider text-[color:var(--b-muted)] hover:text-[color:var(--b-accent)]">
         Clear
       </button>
 
@@ -324,8 +324,8 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
             className={cn(
               "flex h-12 w-10 items-center justify-center rounded-lg border font-mono text-xl shadow-lg transition-colors",
               digits[i] !== " "
-                ? "border-[--b-accent] bg-[--b-accent]/10 text-[--b-accent]"
-                : "border-white/10 bg-white/5 text-white/20"
+                ? "border-[color:var(--b-accent)] bg-[color-mix(in_oklab,var(--b-accent)_10%,transparent)] text-[color:var(--b-accent)]"
+                : "border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] text-[color-mix(in_oklab,var(--b-text)_20%,transparent)]"
             )}
           >
             {digits[i] !== " " ? digits[i] : "-"}
@@ -345,8 +345,8 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
           ref={(el) => { rock.el = el; }}
           onPointerDown={(e) => onPointerDown(e, rock.id)}
           className={cn(
-            "absolute left-0 top-0 flex h-10 w-10 touch-none select-none items-center justify-center rounded-full border border-white/10 bg-[#111] font-mono text-lg font-bold text-white shadow-lg transition-colors",
-            rock.state === "loaded" ? "cursor-grabbing border-[--b-accent] bg-[--b-accent] text-[--b-accent-foreground] shadow-[0_0_20px_rgba(212,255,79,0.3)]" : "cursor-grab hover:bg-white/10"
+            "absolute left-0 top-0 flex h-10 w-10 touch-none select-none items-center justify-center rounded-full border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#111] font-mono text-lg font-bold text-[color:var(--b-text)] shadow-lg transition-colors",
+            rock.state === "loaded" ? "cursor-grabbing border-[color:var(--b-accent)] bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)] shadow-[0_0_20px_rgba(212,255,79,0.3)]" : "cursor-grab hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]"
           )}
           style={{ transform: `translate(${rock.x}px, ${rock.y}px) translate(-50%, -50%)` }}
         >
@@ -354,7 +354,7 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
         </div>
       ))}
       
-      <div className="absolute bottom-4 w-full text-center font-mono text-[9px] text-[--b-muted]">
+      <div className="absolute bottom-4 w-full text-center font-mono text-[9px] text-[color:var(--b-muted)]">
         Drag a rock into the slingshot and fire
       </div>
     </div>

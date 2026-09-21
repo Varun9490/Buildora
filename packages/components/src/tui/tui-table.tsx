@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUITableColumn {
   key: string;
@@ -68,14 +68,14 @@ export function TUITable({
     >
       {showHeader && (
         <div
-          className="flex items-center border-b border-white/10 bg-white/[0.02]"
+          className="flex items-center border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_2%,transparent)]"
           role="row"
         >
           {columns.map((col) => (
             <div
               key={col.key}
               className={cn(
-                "px-2 py-1 text-[11px] text-white/50 uppercase tracking-wider",
+                "px-2 py-1 text-[11px] text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] uppercase tracking-wider",
                 col.align === "center" && "text-center",
                 col.align === "right" && "text-right"
               )}
@@ -92,9 +92,9 @@ export function TUITable({
           <div
             key={row.id}
             className={cn(
-              "flex items-center border-b border-white/5 cursor-pointer",
+              "flex items-center border-b border-[color-mix(in_oklab,var(--b-border)_5%,transparent)] cursor-pointer",
               dense ? "py-0.5" : "py-1",
-              zebra && rowIndex % 2 === 1 && "bg-white/[0.015]",
+              zebra && rowIndex % 2 === 1 && "bg-[color-mix(in_oklab,var(--b-text)_1.5%,transparent)]",
               selectedId === row.id && "bg-cyan-500/10",
               focused && focusedIndex === rowIndex && "bg-cyan-500/5"
             )}

@@ -93,8 +93,8 @@ const R = (slug: string, compat: Partial<Record<string, Compat>>, extra: Partial
         "command-palette", "mobile-nav", "navbar", "onboarding-checklist",
         "pricing-table", "progress", "sidebar", "slider", "tabs",
         "team-switcher", "usage-dashboard", "slingshot-otp"
-      ].includes(slug) && !(extra.dependencies ?? []).includes("framer-motion")
-        ? ["framer-motion"]
+      ].includes(slug) && !(extra.dependencies ?? []).includes("motion")
+        ? ["motion"]
         : []
     )
   ],
@@ -127,8 +127,8 @@ export const catalog: CatalogItem[] = [
   R("text-fx", fullWeb, { name: "Text Fx", description: "Unified text effects (morphing, typewriter, glitch).", categories: ["motion"], tags: ["text", "effects"], difficulty: "beginner" }),
   R("cursor-fx", fullWeb, { name: "Cursor Fx", description: "Unified cursor effects (glow, spotlight, trail, blob).", categories: ["motion"], tags: ["cursor", "effects"], difficulty: "beginner" }),
   R("backdrop", fullWeb, { name: "Backdrop", description: "Unified animated backgrounds (aurora, grid, noise, mesh).", categories: ["backgrounds"], tags: ["background", "effects"], difficulty: "beginner" }),
-  R("magnetic-button", fullWeb, { name: "Magnetic Button", description: "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.", categories: ["motion"], tags: ["button", "magnetic", "spring", "cursor"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge"], demoProps: { strength: 0.35, radius: 120 } }),
-  R("slingshot-otp", fullWeb, { name: "Slingshot OTP", description: "OTP with real inputs, paste, and SR support. Standard mode by default; slingshot game is opt-in delight.", categories: ["motion"], tags: ["otp", "slingshot", "spring", "signature"], difficulty: "advanced", states: ["empty", "filled", "error"], dependencies: ["framer-motion"] }),
+  R("magnetic-button", fullWeb, { name: "Magnetic Button", description: "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.", categories: ["motion"], tags: ["button", "magnetic", "spring", "cursor"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge", "zod"], demoProps: { strength: 0.35, radius: 120 } }),
+  R("slingshot-otp", fullWeb, { name: "Slingshot OTP", description: "OTP with real inputs, paste, and SR support. Standard mode by default; slingshot game is opt-in delight.", categories: ["motion"], tags: ["otp", "slingshot", "spring", "signature"], difficulty: "advanced", states: ["empty", "filled", "error"], dependencies: ["motion"] }),
   R("interactive-dropzone", fullWeb, { name: "Interactive Dropzone", description: "Proximity-reactive dropzone with progress visualization and error recovery.", categories: ["motion"], tags: ["upload", "dropzone", "magnetic"], difficulty: "intermediate" }),
 
   R("streaming-chat", fullWeb, { name: "Streaming Chat", description: "Demo chat UI with simulated token streaming and citations. No transport yet — do not point at production. Transport-agnostic rebuild planned.", categories: ["ai-llm"], tags: ["chat", "demo", "llm"], difficulty: "intermediate" }),
@@ -248,9 +248,60 @@ export const catalog: CatalogItem[] = [
     categories: ["primitives"], tags: ["tokens", "theme", "css"], difficulty: "beginner",
     files: ["registry/shared/tokens.css"], targets: ["styles/buildora/tokens.css"], registryType: "registry:theme", status: "stable",
     cssVars: {
-      light: { "--b-bg": "#faf9f7", "--b-panel": "#ffffff", "--b-text": "#131316", "--b-border": "rgba(19,19,22,0.08)", "--b-accent": "#4d7c0f", "--b-accent-foreground": "#ffffff" },
-      dark: { "--b-bg": "#0e0e0c", "--b-panel": "#161614", "--b-text": "#ededec", "--b-border": "rgba(255,255,255,0.08)", "--b-accent": "#d4ff4f", "--b-accent-foreground": "#131305" },
+      light: {
+        "--b-bg": "var(--background, oklch(98.23% 0.0029 84.6))",
+        "--b-panel": "oklch(100.00% 0.0000 0)",
+        "--b-surface": "var(--card, oklch(95.26% 0.0058 84.6))",
+        "--b-elevated": "var(--popover, oklch(100.00% 0.0000 0))",
+        "--b-border": "var(--border, oklch(18.81% 0.0060 285.8 / 0.08))",
+        "--b-border-hover": "oklch(18.81% 0.0060 285.8 / 0.16)",
+        "--b-text": "var(--foreground, oklch(18.81% 0.0060 285.8))",
+        "--b-text-secondary": "oklch(44.19% 0.0146 285.8)",
+        "--b-muted": "var(--muted-foreground, oklch(64.83% 0.0073 286.2))",
+        "--b-ring": "oklch(18.81% 0.0060 285.8 / 0.16)",
+        "--b-success": "oklch(50.81% 0.1049 165.6)",
+        "--b-warning": "oklch(55.53% 0.1455 49.0)",
+        "--b-danger": "oklch(51.43% 0.1978 16.9)",
+        "--b-accent": "oklch(53.22% 0.1405 131.6)",
+        "--b-accent-foreground": "oklch(100.00% 0.0000 0)",
+        "--b-accent-muted": "oklch(53.22% 0.1405 131.6 / 0.1)",
+        "--b-iris": "oklch(51.06% 0.2301 277.0)",
+        "--b-iris-foreground": "oklch(100.00% 0.0000 0)"
+      },
+      dark: {
+        "--b-bg": "var(--background, oklch(16.29% 0.0041 106.8))",
+        "--b-panel": "oklch(19.94% 0.0039 106.7)",
+        "--b-surface": "var(--card, oklch(22.96% 0.0057 106.8))",
+        "--b-elevated": "var(--popover, oklch(25.96% 0.0037 106.7))",
+        "--b-border": "var(--border, oklch(100.00% 0.0000 0 / 0.08))",
+        "--b-border-hover": "oklch(100.00% 0.0000 0 / 0.16)",
+        "--b-text": "var(--foreground, oklch(94.58% 0.0013 106.4))",
+        "--b-text-secondary": "oklch(71.18% 0.0129 286.1)",
+        "--b-muted": "var(--muted-foreground, oklch(53.99% 0.0077 286.1))",
+        "--b-ring": "oklch(100.00% 0.0000 0 / 0.16)",
+        "--b-success": "oklch(77.29% 0.1535 163.2)",
+        "--b-warning": "oklch(83.69% 0.1644 84.4)",
+        "--b-danger": "oklch(71.06% 0.1661 22.2)",
+        "--b-accent": "oklch(93.88% 0.2000 122.3)",
+        "--b-accent-foreground": "oklch(18.22% 0.0271 108.8)",
+        "--b-accent-muted": "oklch(93.88% 0.2000 122.3 / 0.12)",
+        "--b-iris": "oklch(70.51% 0.1642 288.2)",
+        "--b-iris-foreground": "oklch(25.73% 0.0861 281.3)"
+      },
     },
+    css: `
+      @layer base {
+        [data-accent="acid"] { --b-accent: oklch(53.22% 0.1405 131.6); --b-accent-foreground: oklch(100.00% 0.0000 0); }
+        [data-theme="dark"][data-accent="acid"] { --b-accent: oklch(93.88% 0.2000 122.3); --b-accent-foreground: oklch(18.22% 0.0271 108.8); }
+        [data-accent="emerald"] { --b-accent: oklch(50.81% 0.1049 165.6); --b-accent-foreground: oklch(100.00% 0.0000 0); }
+        [data-theme="dark"][data-accent="emerald"] { --b-accent: oklch(77.29% 0.1535 163.2); --b-accent-foreground: oklch(26.98% 0.0497 168.8); }
+        [data-accent="iris"] { --b-accent: oklch(51.06% 0.2301 277.0); --b-accent-foreground: oklch(100.00% 0.0000 0); }
+        [data-theme="dark"][data-accent="iris"] { --b-accent: oklch(78.53% 0.1041 274.7); --b-accent-foreground: oklch(25.73% 0.0861 281.3); }
+        [data-accent="amber"] { --b-accent: oklch(55.34% 0.1739 38.4); --b-accent-foreground: oklch(100.00% 0.0000 0); }
+        [data-theme="dark"][data-accent="amber"] { --b-accent: oklch(75.76% 0.1590 55.9); --b-accent-foreground: oklch(26.59% 0.0762 36.3); }
+        [data-accent="inherit"] { --b-accent: var(--primary); --b-accent-foreground: var(--primary-foreground); }
+      }
+    `
   }),
 ];
 
@@ -321,10 +372,12 @@ const CONSUMER_IMPORTS: Array<[RegExp, string]> = [
   [/@buildora\/animations/g, "@/lib/buildora/spring"],
   [/@buildora\/tokens/g, "@/styles/buildora/tokens"],
   [/@buildora\/magnetic-button/g, "@/components/buildora/magnetic-button"],
+  [/from "motion"/g, 'from "motion/react"'],
+  [/from 'motion'/g, "from 'motion/react'"],
 ];
 
 export function toConsumerContent(content: string) {
-  let out = content;
+  let out = content.replace(/\r/g, "");
   for (const [re, to] of CONSUMER_IMPORTS) out = out.replace(re, to);
   return out;
 }
@@ -348,7 +401,14 @@ export function inferRegistryDeps(item: CatalogItem): string[] {
   if (!["utils", "use-reduced-motion", "spring", "use-pointer-proximity", "tokens"].includes(item.slug)) {
     deps.add("tokens");
   }
-  return [...deps];
+  
+  const REGISTRY_BASE_URL = process.env.REGISTRY_BASE_URL || "https://buildora-hazel.vercel.app";
+  const buildoraSlugs = new Set(catalog.map(c => c.slug));
+  
+  return [...deps].map(d => {
+    if (buildoraSlugs.has(d)) return `${REGISTRY_BASE_URL}/r/${d}.json`;
+    return d;
+  });
 }
 
 /** Consumer install path per file. Never index.tsx. */
@@ -375,7 +435,7 @@ export function toRegistryJson(item: CatalogItem) {
     .replace(/^packages\/components\/src\//, "")
     .replace(/\/index\.tsx$/, "");
   return {
-    $schema: "https://buildora.dev/schema/registry-item.json",
+    $schema: "https://buildora-hazel.vercel.app/schema/registry-item.json",
     id: item.id,
     name: item.name,
     slug: item.slug,
@@ -484,18 +544,18 @@ export function buildAll(outDir: string) {
     fs.writeFileSync(path.join(outDir, "generated", `${item.slug}.json`), JSON.stringify(toShadcnJson(item), null, 2));
   }
   const index = {
-    $schema: "https://buildora.dev/schema/registry.json",
+    $schema: "https://buildora-hazel.vercel.app/schema/registry-item.json",
     name: "buildora",
     tagline: "Build. Remix. Ship.",
     version: "0.1.0",
     total: comps.length,
     installBase: "pnpm dlx shadcn@latest add @buildora/{component}",
     components: comps.map((c) => ({ slug: c.slug, name: c.name, description: c.description, categories: c.categories, tags: c.tags, difficulty: c.difficulty, version: c.version, status: (c as { status?: string }).status ?? "beta" })),
-    shadcn: "Compatible — install via shadcn with the @buildora registry pointing at https://buildora.dev/r/{component}.json, or the local /r/{component}.json endpoint."
+    shadcn: "Compatible — install via shadcn with the @buildora registry pointing at https://buildora-hazel.vercel.app/r/{component}.json, or the local /r/{component}.json endpoint."
   };
   fs.writeFileSync(path.join(outDir, "registry.json"), JSON.stringify(index, null, 2));
   const agentCatalog = {
-    $schema: "https://buildora.dev/schema/agent-catalog.json",
+    $schema: "https://buildora-hazel.vercel.app/schema/agent-catalog.json",
     name: "buildora",
     version: "0.1.0",
     total: catalog.length,

@@ -1,0 +1,764 @@
+<USER_REQUEST>
+# Buildora: Trust, Correctness & World-Class Polish
+
+**Agent brief. Paste into Claude Code / Cursor / any coding agent opened at the repo root.**
+
+**How to use**
+- Full run: paste this whole file.
+- Recommended: paste **Part A** plus **one Phase at a time**. Every phase ends with a gate. Do not start the next phase until the gate is green and the phase report is written.
+- Findings marked **(verify)** were inferred from reading HTML and source, not from running the code. Reproduce them before changing anything.
+
+---
+
+# PART A: BRIEF
+
+## A1. Mission
+
+You are a senior design engineer and developer-experience engineer working in the Buildora monorepo (`https://github.com/Varun9490/Buildora`, deployed at `https://buildora-hazel.vercel.app`).
+
+Mission, in priority order:
+1. **Make every install work.** Every registry item must install and compile in a fresh project.
+2. **Make every claim true.** Anything the site or README says must be backed by code or a generated report, or be removed.
+3. **Bring the flagship components to production quality**: correct physics, real semantics, accessibility, theming.
+4. **Add the layers top libraries have**: previews, docs anatomy, blocks and templates, and an agent-readable surface (llms.txt, markdown routes, MCP).
+
+Truth first, polish second. The reference bar is Aceternity UI, React Bits, Watermelon UI and Rare UI. Copy their *practices* (previews for everything, layered blocks and templates, machine-readable surface, one sharp promise), never their code.
+
+## A2. Context you can rely on
+
+- Monorepo (pnpm). Per the README:
+  - `apps/web`: Next.js site (discovery, playground, docs)
+  - `packages/tokens`, `packages/utils`, `packages/hooks`, `packages/animations`: shared packages
+  - `packages/components`: React + TypeScript implementations, at `packages/components/src/<slug>/index.tsx`
+  - `registry/components/*.json` (source), `registry/registry.json` (index), `registry/generated/*.json` (built shadcn items)
+  - `examples/`, `docs/`, `scripts/`
+- Existing files to read first: `AUDIT.md`, `PROVENANCE.md`, `CONTRIBUTING.md`, `README.md`, `vercel.json`, `package.json` scripts (`registry:build`, `registry:validate`).
+- Live routes: `/`, `/components`, `/components/[slug]`, `/registry`, `/docs`, `/playground`, `/templates`, `/templates/[slug]`, `/r/[slug].json` (the last one works and returns valid shadcn registry items).
+- Stack facts: Tailwind classes use `--b-*` CSS variables (`--b-accent`, `--b-accent-foreground`, `--b-iris`, `--b-bg`, `--b-surface`, `--b-elevated`, `--b-border`, `--b-border-hover`, `--b-text`, `--b-text-secondary`, `--b-muted`). Components use `"use client"`. Motion uses either hand-rolled `springStep` (in `@buildora/animations`) or `framer-motion`.
+
+## A3. Operating rules (non-negotiable)
+
+1. **Read before writing.** Do Phase 0 first. Follow existing conventions unless this brief overrides them.
+2. **Reproduce before fixing.** If a finding does not reproduce, mark it `NOT REPRODUCED` with evidence and move on. Do not "fix" things that are not broken.
+3. **Never fabricate.** No invented numbers, benchmarks, testimonials, star/install counts, framework support or accessibility claims. Every figure shown on the site must come from a generated report file (Phase 2 / Phase 4) or be removed. If data is missing, render nothing rather than a placeholder claim.
+4. **Branching and commits.** Work on `fix/trust-and-quality`. One commit per numbered task, Conventional Commits (`fix(registry): …`, `feat(web): …`). One PR per phase if using PRs.
+5. **Gates after every task** (once the script exists, add it to the list): `pnpm -w typecheck`, `pnpm -w lint`, `pnpm registry:build && pnpm registry:validate && pnpm registry:audit`, `pnpm --filter web build`. Never proceed on red.
+6. **Keep public surface stable.** Slugs and install commands do not change. For breaking prop changes: bump the component version, add a changelog entry, and keep a deprecated alias for one minor version where feasible.
+7. **No third-party implementation code.** The project is MIT and CONTRIBUTING says everything is written from scratch. If a design is inspired by another library, record it in `PROVENANCE.md`; do not paste code.
+8. **Dependencies.** Only those in A6. Anything else: list it and the reason in the report and ask.
+9. **Do not delete** `.claude/`, `.agents/`, `.freebuff/`, `skills/`, `skills-lock.json`. List them for the owner (Phase 11).
+10. **Accessibility and reduced-motion are requirements, not polish.** A change that regresses either is a failed change.
+11. **Ambiguity.** If A4 defaults do not cover it, choose the most conservative option and log it under "Decisions made" in the report.
+12. **Stop at the end of each phase** and emit the phase report (Part C) before continuing.
+
+## A4. Owner decisions (defaults the agent uses)
+
+| # | Decision | Default | Where to override |
+|---|---|---|---|
+| D1 | Primary tagline | "Tactile React components with real spring physics." Sub-line: "Plus AI-agent and devtool UI you won't find elsewhere." | `SITE.tagline` |
+| D2 | Production domain | Unknown. Read `NEXT_PUBLIC_SITE_URL`; fall back to `https://buildora-hazel.vercel.app` | env |
+| D3 | Non-React frameworks | Claim none as supported. Show "planned". Any existing snippets stay labelled "snippet / experimental" | `FRAMEWORK_SUPPORT` data file |
+| D4 | Tailwind support | v3 and v4, via explicit `var()` syntax with type hints (Task 3.3) | n/a |
+| D5 | Overlay/menu primitives | Wrap Radix (shadcn's default) | n/a |
+| D6 | Signature set (gold standard, Phase 5) | magnetic-button, slingshot-otp, holographic-card, glare-card, hold-button, spatial-command-palette | `SIGNATURE_SLUGS` |
+| D7 | Featured effects beyond signature | liquid-button, particle-field, morphing-typography. All other backgrounds/cursors/text effects move to category `lab`, stability `experimental` | `FEATURED_EFFECTS` |
+| D8 | Install-count display | Hidden until total ≥ 50 | `MIN_INSTALLS_TO_SHOW` |
+| D9 | Renames for name overlap with other libraries | None. Document in provenance only | n/a |
+| D10 | "WCAG AAA" wording | Removed unless the contrast report proves AAA for every shipped token pair | derived |
+
+## A5. Findings to fix (traceable IDs)
+
+Confidence: **C** = confirmed from fetched output, **V** = inferred, verify first.
+
+| ID | Finding | Conf. | Phase |
+|---|---|---|---|
+| F-01 | `/r/magnetic-button.json` imports `@buildora/utils`, `@buildora/hooks`, `@buildora/animations` (private workspace packages); `registryDependencies: []`. Installed code cannot compile | C | 1 |
+| F-02 | No tokens / `cssVars` shipped, yet components use `--b-*` variables. Accent background resolves to nothing in a fresh project | C | 1, 3 |
+| F-03 | `/r/slingshot-otp.json` imports `framer-motion` but `dependencies: []` | C | 1 |
+| F-04 | `/registry` page's `registries` config uses `https://github.com/Varun9490/Buildora/tree/main/registry/generated/{name}.json`, an HTML page, not JSON. The working endpoint is `/r/{name}.json` | C | 1 |
+| F-05 | Homepage install command `shadcn add @buildora/…` needs a `components.json` registries entry that is never mentioned | C | 1, 8 |
+| F-06 | Every item's file is named `index.tsx` under `packages/components/src/<slug>/`, no `target`; README imports `@/components/buildora/<slug>`. Possible collisions or wrong location | V | 1 |
+| F-07 | Item `name` is `buildora-<slug>` but the install id is `@buildora/<slug>` | C | 1 |
+| F-08 | Homepage GitHub link → `Varun9490/Buildora`; every inner page header/footer → `github.com/buildora/buildora` (404 confirmed) | C | 2 |
+| F-09 | Three different component counts: 82 (home), 142 (components/registry/templates), 147 (footer) | C | 2 |
+| F-10 | Homepage claims "11 framework idioms" and "authentic native port" for Svelte/Vue/Solid/RN/SwiftUI; docs say React is the only full implementation and native targets are experimental snippets; README says "multi-framework" | C | 2 |
+| F-11 | Unsupported claims: "VERIFIED" chips, "100% Accessible", "WCAG AAA contrast", "< 2kb" (excludes runtime deps), "60 FPS guarantee / zero layout reflows" | C | 2, 3, 4 |
+| F-12 | 4+ different taglines; `og:title` is "Buildora" on every page; `twitter:card` is `summary` on inner pages; docs/registry/playground/templates share the generic `<title>` | C | 2 |
+| F-13 | `/playground` returned no server-rendered content | V | 2 |
+| F-14 | Magnetic Button defects (see Task 5.1) | C | 5 |
+| F-15 | Slingshot OTP defects (see Task 5.2) | C/V | 5 |
+| F-16 | Hard-coded colours (`#050505`, `#111`, `text-white`, `white/[0.03]`, `rgba(212,255,79,…)`) break light mode and swappable accents | C | 3 |
+| F-17 | Tailwind arbitrary values written as `bg-[--b-accent]`, `text-[--…]`, `ring-[--…]`: v3-only form; ambiguous colour-vs-size for `text-`/`ring-`; not valid the same way in v4 | V | 3 |
+| F-18 | Hand-rolled dialog/popover/dropdown/context-menu/tooltip/hover-card/tabs overlap shadcn/Radix and carry focus-management risk | V | 6 |
+| F-19 | Component page is thin (preview, controls, deps, one-line a11y/perf). Index has no category facets, posters, stability badges or install counts | C | 7 |
+| F-20 | Only 2 templates, each just installs 2 components | C | 8 |
+| F-21 | No `llms.txt`, markdown routes or MCP server linked | V | 9 |
+| F-22 | Repo hygiene: `tsconfig.tsbuildinfo` tracked, dev-tool dirs tracked, 0 releases/tags, CRLF (`\r\n`) inside shipped JSON | C | 11 |
+| F-23 | Many component names match other libraries' (Aurora/Meteor/Beam Background, Glare/Wobble Card, Blur/Scrambled Text, Infinite Marquee, Bento Grid, Blob/Trail/Ghost Cursor). `PROVENANCE.md` exists but is not public | C | 11 |
+| F-24 | Homepage Slingshot demo shows standard mode ("Play Game" button) but the registry file defaults to game mode: demo and registry source have diverged | C | 1, 5 |
+
+## A6. Allowed dependencies
+
+`motion` (replaces `framer-motion`; import from `motion/react`), `@radix-ui/*`, `vaul` (drawer), `zod`, `culori`, `ts-morph` or `react-docgen-typescript`, `esbuild`, `vitest`, `@testing-library/react`, `@testing-library/user-event`, `happy-dom` or `jsdom`, `@playwright/test`, `@axe-core/playwright`, `@modelcontextprotocol/sdk`, `@changesets/cli`, `serve` (dev only). Runtime deps that ship inside a component must be declared in that registry item's `dependencies`.
+
+## A7. Global definition of done
+
+- 100% of registry items install and typecheck/build in the CI matrix (Next App Router + Vite × Tailwind v3/v4 × React 18/19).
+- 0 workspace-package imports and 0 undeclared dependencies in any registry item.
+- One component count, one GitHub URL, one tagline, each defined once and generated or imported everywhere.
+- No site claim without a linked, generated measurement.
+- Every interactive component: `dt`-based motion, pauses off-screen, reduced-motion fallback, touch behaviour defined, tokens only (no hard-coded colours).
+- 0 serious/critical axe violations on every component page; every stable component has a keyboard table.
+- Every component has a poster, a props table, a measured size and a changelog.
+- Mobile Lighthouse ≥ 95 performance and 100 accessibility on `/` and one heavy component page.
+- Per-page OG image, sitemap, robots, `llms.txt`.
+
+---
+
+# PART B: PHASES
+
+## PHASE 0: Discovery and baseline (no behaviour changes)
+
+**Goal:** know the real state before touching anything.
+
+**Tasks**
+- 0.1 Create branch `fix/trust-and-quality`. Run `pnpm install`, `pnpm registry:build`, `pnpm registry:validate`, `pnpm --filter web build`. Record pass/fail and timings.
+- 0.2 Read `AUDIT.md`, `PROVENANCE.md`, `CONTRIBUTING.md`, `docs/`, `scripts/`, `registry/registry.json`. Note conventions (naming, schema, how `registry/generated` is produced).
+- 0.3 Run these searches and save the raw results to `docs/audit/baseline.md`:
+  ```bash
+  rg -n "\b(82|142|147)\b" apps/web
+  rg -n "github\.com/(buildora|Varun9490)" .
+  rg -n -i "idiom|Svelte|Vue|Solid|React Native|SwiftUI|Flutter|Compose|native port" apps/web README.md docs
+  rg -n -i "VERIFIED|100%|WCAG|AAA|60 ?FPS|< ?2 ?kb|zero.*reflow|reflow" apps/web
+  rg -n "@buildora/(utils|hooks|animations|tokens)" packages/components registry
+  rg -n "framer-motion" packages apps registry
+  rg -n "\[--b-" packages/components apps/web | wc -l
+  rg -n "#[0-9a-fA-F]{3,8}\b|white/\[|black/\[|rgba?\(|text-white|bg-black" packages/components/src
+  rg -n "getBoundingClientRect|requestAnimationFrame|pointermove|onPointerMove" packages/components/src
+  rg -n "matchMedia|prefers-reduced-motion|useReducedMotion" packages/components/src
+  ```
+- 0.4 Reproduce each finding in A5. For each, write `REPRODUCED`, `NOT REPRODUCED` or `PARTIAL` plus the file/line evidence. Pay special attention to F-06 (install a single item into a scratch app and see where files land), F-13 (`curl -s https://buildora-hazel.vercel.app/playground | head`), F-15 (the "repeated digits" and "Clear" bugs) and F-17 (which Tailwind version the site uses).
+- 0.5 Create a scratch app outside the repo (`/tmp/scratch-next`, Next App Router + Tailwind v4 + shadcn init) and try `pnpm dlx shadcn@latest add https://buildora-hazel.vercel.app/r/magnetic-button.json`. Record exactly what happens (errors, file locations). This is the ground truth for Phase 1.
+- 0.6 Inventory all registry items into `docs/audit/inventory.csv`: slug, category, has `"use client"`, imports (external + `@buildora/*`), uses rAF, uses `getBoundingClientRect`, uses `framer-motion`, hard-coded colour count, `[--b-` count, has reduced-motion handling, has keyboard handling, lines of code.
+
+**Gate 0:** `docs/audit/baseline.md` and `inventory.csv` exist; every A5 finding has a status; build is green (or failures recorded).
+
+---
+
+## PHASE 1: Registry install correctness (P0)
+
+**Goal:** `shadcn add <any item>` works in a fresh project and the result compiles and renders.
+
+**1.1 Make items self-contained (F-01, F-02, F-03)**
+- Create registry items for shared code, built from the existing packages:
+  - `utils` (`cn` helper) → `registry:lib`
+  - `use-reduced-motion` and other hooks → `registry:hook`
+  - `springs` (spring presets + step function; Phase 4 extends this) → `registry:lib`
+  - `tokens` → `registry:style` (Phase 3 fills it; in Phase 1 ship the current variables so nothing regresses)
+- Rewrite imports inside component sources: no `@buildora/*` specifier may remain in any registry item's file content. Follow shadcn conventions of the installed CLI version (imports like `@/lib/utils` and `@/hooks/...` that the CLI rewrites to the user's aliases). **Verify by installing into the scratch app**, not by assuming.
+- Every component's `registryDependencies` must list, as absolute URLs, the Buildora items it needs (`https://<registryBase>/r/utils.json`, etc.) plus any shadcn items it wraps. Build the base URL from `REGISTRY_BASE_URL` (default = `SITE.url`), so preview deployments and local CI resolve to themselves, not production.
+- Every component's `dependencies` must list every npm package its source imports (`motion`, `clsx`, `tailwind-merge`, `@radix-ui/*`, …). Replace `framer-motion` with `motion` (`import { motion } from "motion/react"`).
+- Keep `packages/*` as the dev source of truth, but the **registry build** must inline or rewrite so the emitted JSON is standalone.
+
+**1.2 Fix the registries config and install command (F-04, F-05)**
+- Everywhere it appears (`/registry` page, README, docs, `/templates`, homepage, component pages) the config becomes:
+  ```json
+  { "registries": { "@buildora": "https://<registryBase>/r/{name}.json" } }
+  ```
+- Because the namespaced form needs that config, show two install methods side by side wherever an install command appears (create one `<InstallCommand>` component used everywhere):
+  - **Zero-config:** `pnpm dlx shadcn@latest add https://<registryBase>/r/<slug>.json`
+  - **Namespaced:** `pnpm dlx shadcn@latest add @buildora/<slug>` with a one-time "add this to `components.json`" disclosure.
+  - Package-manager tabs: pnpm / npm / yarn / bun. Remember the last choice.
+- Ensure `/r/registry.json` exists (index of all items) and is valid against the shadcn registry schema.
+
+**1.3 Names and targets (F-06, F-07)**
+- Item `name` = slug (`magnetic-button`), not `buildora-<slug>`. `title` holds the display name.
+- Give each file an explicit `target` (or a distinct file name) so components land at `components/buildora/<slug>.tsx` and can never collide. Confirm in the scratch app with two components installed together.
+- Normalise line endings (F-22): add `.gitattributes` with `* text=auto eol=lf`, and make the registry builder emit `\n` only.
+
+**1.4 Registry audit script (prevents regression)**
+Create `scripts/audit-registry.ts` and the script `pnpm registry:audit`:
+```ts
+import { readdirSync, readFileSync } from "node:fs";
+
+const dir = "registry/generated";
+let failed = 0;
+const fail = (m: string) => { console.error("✗", m); failed++; };
+
+for (const f of readdirSync(dir).filter((f) => f.endsWith(".json") && f !== "registry.json")) {
+  const item = JSON.parse(readFileSync(`${dir}/${f}`, "utf8"));
+  const declared = new Set<string>(item.dependencies ?? []);
+  const src: string = item.files.map((x: { content: string }) => x.content).join("\n");
+  if (src.includes("\r")) fail(`${item.name}: CRLF line endings`);
+  for (const [, spec] of src.matchAll(/from\s+["']([^"']+)["']/g)) {
+    if (spec.startsWith("@buildora/")) { fail(`${item.name}: workspace import ${spec}`); continue; }
+    if (spec.startsWith(".") || spec.startsWith("@/") || spec === "react") continue;
+    const pkg = spec.startsWith("@") ? spec.split("/").slice(0, 2).join("/") : spec.split("/")[0];
+    if (!declared.has(pkg)) fail(`${item.name}: undeclared dependency ${pkg}`);
+  }
+  if (/\[--b-/.test(src)) fail(`${item.name}: legacy arbitrary value [--b-…] (use var() with type hint)`);
+  if (/#[0-9a-fA-F]{3,8}\b|\bwhite\/\[|\btext-white\b/.test(src)) fail(`${item.name}: hard-coded colour`);
+  if (!(item.files ?? []).every((x: { target?: string; path: string }) => x.target || !/\/index\.tsx$/.test(x.path)))
+    fail(`${item.name}: ambiguous index.tsx without target`);
+}
+process.exit(failed ? 1 : 0);
+```
+The last three rules (legacy `[--b-`, hard-coded colours, ambiguous `index.tsx`) start as warnings until Phase 3 and 1.3 land, then become errors. Add to CI.
+
+**1.5 Install-matrix CI (`.github/workflows/registry-install.yml`)**
+- Build the registry, serve `registry/generated` at `http://localhost:4000/r/{name}.json` (`npx serve`), with `REGISTRY_BASE_URL=http://localhost:4000`.
+- Matrix: framework `[next-app, vite-react]` × tailwind `[3, 4]` × react `[18, 19]`. For each: scaffold, `shadcn init`, install **all** items in one command, then `tsc --noEmit` and `build`.
+- Smoke test: a Playwright page that mounts each component with default props and fails on any console error or hydration warning.
+- Upload logs as artifacts.
+
+**1.6 Demo/registry drift (F-24)**
+- The site's live demos must import from the same source that `registry:build` reads (`packages/components/src/<slug>`), never from a copied variant. Add a test that fails if any file under `apps/web` defines a component with the same name as a registry component.
+
+**Gate 1:** scratch-app install of Magnetic Button and Slingshot OTP compiles and renders; `pnpm registry:audit` green; CI matrix green on at least one cell locally.
+
+---
+
+## PHASE 2: Site truthfulness and single source of truth
+
+**2.1 One `SITE` module (F-08)**
+Create `apps/web/lib/site.ts` exporting `name`, `tagline`, `description`, `url`, `github` (`https://github.com/Varun9490/Buildora`), `registryBase`. Replace every literal GitHub URL and registry URL in `apps/web`, README and docs. Add a CI check: `! rg "github.com/buildora/buildora" .`.
+
+**2.2 Generated stats, not typed numbers (F-09)**
+- `apps/web/lib/stats.ts` reads `registry/registry.json` at build and returns: total items, per-category counts, TUI count, AI/agent count, devtool count, number of items per stability level.
+- Replace every hard-coded 82 / 142 / 147 (hero, stat cards, `/components`, `/registry`, `/templates`, footer) with those values.
+- If data is unavailable at build, fail the build (do not silently fall back to a stale number).
+
+**2.3 Honest framework support (F-10)**
+- Create `apps/web/data/framework-support.ts` describing exactly what exists: React = `stable`; anything else = `planned` unless a real, tested implementation exists in the repo (check `examples/`). Per D3, claim nothing non-React by default.
+- Rework the homepage "Universal portability" section into "React-first, portable by design": show React as stable with the code sample, and a small "Planned" row for others with no implication of availability. Delete "11 framework idioms", "Eleven idiomatic translations", "authentic native port".
+- Align README ("multi-framework" → "React-first"), docs, GitHub description and `package.json` descriptions. The docs already say "never ship a fake port". Make the homepage match it.
+
+**2.4 Claims become measurements (F-11)**
+- Introduce `registry/reports/{size,axe,contrast,perf}.json`, produced by scripts in Phases 3–4 and regenerated by `pnpm reports` in CI, each with `generatedAt` and `commit`. The site reads them at build.
+- Replace, in this order:
+  - "VERIFIED" chips → remove, or make each a link to the report entry it summarises.
+  - "100% Accessible & Typed" → "N of M component pages pass axe with 0 serious/critical violations" (from `axe.json`), only rendered if data exists.
+  - "WCAG AAA contrast" → remove, unless `contrast.json` shows AAA for all shipped pairs (D10); otherwise say "WCAG AA-verified token pairs".
+  - "< 2kb Zero-Bloat" → "Median X kB gzipped including dependencies" (from `size.json`).
+  - "60 FPS guarantee" and "zero layout reflows" → until Phase 4's frame-budget test passes: "Animations run on transform/opacity". After it passes: "Frame-time budget enforced in CI" with a link.
+- Show "Measured <date> @ <sha>" next to any figure.
+
+**2.5 One tagline (F-12)**
+Apply D1 through `SITE.tagline` to: hero, `<title>`, meta description, OG/Twitter, README title, GitHub repo description (list as a manual owner step), `package.json`.
+
+**2.6 Metadata, OG, sitemap, robots (F-12)**
+- `metadataBase: new URL(SITE.url)` and a title template `%s — Buildora` in the root layout.
+- `generateMetadata` for `/`, `/components`, `/components/[slug]`, `/docs`, `/registry`, `/playground`, `/templates`, `/templates/[slug]`. Component pages take title and description from registry metadata.
+- `opengraph-image.tsx` (using `ImageResponse` from `next/og`) at root and for `/components/[slug]` and `/templates/[slug]`, rendering name, one-line description and the accent colour. `twitter.card = "summary_large_image"` everywhere.
+- `app/sitemap.ts` (all static + component + template routes) and `app/robots.ts`.
+- Canonical URLs on every page.
+
+**2.7 Playground SSR (F-13)**
+Server-render a real shell (heading, description, a skeleton of the controls) and lazy-load the heavy client. `curl` of `/playground` must contain visible text content. Do not import heavy demos above the fold.
+
+**Gate 2:** `rg` checks in 2.1/2.2 clean; `curl -s <page> | rg "og:title"` shows distinct titles per page; no "11 idioms"; homepage numbers come from `stats.ts`.
+
+---
+
+## PHASE 3: Tokens and theming
+
+**3.1 Real `tokens` registry item (F-02)**
+- Convert current values in `packages/tokens` to OKLCH programmatically with `culori` (verify round-trip ΔE < 1 so the visual identity does not change) and emit:
+  ```json
+  {
+    "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+    "name": "tokens",
+    "type": "registry:style",
+    "title": "Buildora Tokens",
+    "cssVars": {
+      "light": { "b-bg": "oklch(...)", "b-surface": "oklch(...)", "b-text": "oklch(...)", "b-accent": "oklch(...)", "b-accent-foreground": "oklch(...)" },
+      "dark":  { "b-bg": "oklch(...)", "b-accent": "oklch(...)" }
+    },
+    "css": {
+      "@layer base": {
+        "[data-accent=\"acid\"]":    { "--b-accent": "oklch(...)", "--b-accent-foreground": "oklch(...)" },
+        "[data-accent=\"iris\"]":    { "--b-accent": "oklch(...)", "--b-accent-foreground": "oklch(...)" },
+        "[data-accent=\"amber\"]":   { "--b-accent": "oklch(...)", "--b-accent-foreground": "oklch(...)" },
+        "[data-accent=\"emerald\"]": { "--b-accent": "oklch(...)", "--b-accent-foreground": "oklch(...)" }
+      }
+    }
+  }
+  ```
+  Consult the current registry-item schema for the exact fields, then **verify the variables actually land in `globals.css`** in the scratch app.
+- Every component lists this item in `registryDependencies`.
+
+**3.2 shadcn interoperability**
+Neutral tokens fall back to shadcn's when present:
+`--b-bg → var(--background)`, `--b-text → var(--foreground)`, `--b-surface → var(--card)`, `--b-elevated → var(--popover)`, `--b-border → var(--border)`, `--b-muted → var(--muted-foreground)`, each with a Buildora OKLCH fallback. **Accent stays independent** (`--b-accent` does not inherit `--primary`) unless the user sets `data-accent="inherit"`, which maps it to `var(--primary)`.
+
+**3.3 Tailwind syntax codemod (F-17)**
+Write `scripts/codemods/b-vars.ts` and run it across `packages/components` and `apps/web`:
+- Rewrite `X-[--b-token]` → `X-[var(--b-token)]`.
+- Add type hints for ambiguous utilities, since all `--b-*` colour tokens are colours: `text-[color:var(--b-…)]`, `ring-[color:var(--b-…)]`, `ring-offset-[color:var(--b-…)]`, `border-[color:var(--b-…)]`, `outline-[color:var(--b-…)]`, `decoration-`, `caret-`, `accent-`, `fill-`, `stroke-`, `divide-`, `from-/via-/to-`. Length tokens use `length:`.
+- Opacity forms like `bg-[--b-accent]/5` → `bg-[color-mix(in_oklab,var(--b-accent)_5%,transparent)]`.
+- Review the diff by hand; run the site in light and dark mode in both Tailwind v3 and v4 scratch apps.
+- Promote the audit rule "legacy `[--b-`" from warning to error.
+
+**3.4 Kill hard-coded colours (F-16)**
+Replace every hex/rgb/`white/[…]`/`text-white` hit from 0.3 with a token or `color-mix(in oklab, var(--b-…) N%, transparent)`. Add tokens where needed (`--b-glow`, `--b-overlay`, `--b-grid-line`). Every component must render legibly in light and dark and under each accent. Promote the "hard-coded colour" audit rule to error.
+
+**3.5 Contrast report**
+`scripts/contrast.ts` uses `culori` (`wcagContrast`) over every accent × light/dark × pair (text on bg, text-secondary on bg, muted on bg, accent-foreground on accent, accent on bg for UI ≥ 3:1, border on bg ≥ 3:1) and writes `registry/reports/contrast.json` with per-pair ratios and AA/AAA pass flags. CI fails below AA (4.5 body text, 3.0 large text and UI). Fix tokens that fail without changing brand hue: adjust lightness in OKLCH.
+
+**3.6 Motion tokens made real**
+- In `springs` export presets: `snappy {k:420,c:30}`, `gentle {k:170,c:26}`, `wobbly {k:180,c:12}`, `magnetic {k:260,c:22}` (all mass 1), plus `durations` and `easings`.
+- `springToLinear(spring, samples=48)` returns `{ duration, easing }`, where `easing` is a CSS `linear(...)` string generated by simulating the step response (dt = 1/240, stop when |x−1| < 0.001 and |v| < 0.001, cap 4 s, normalise). Unit test: reconstructed curve deviates < 0.5% from the simulation.
+- Docs page `/docs/motion`: table of presets with an inline SVG curve for each, and a live example.
+- Use `linear()` easings for CSS-only hover/press springs where no JS is needed.
+
+**3.7 Site theme switcher**
+Ensure the site has light/dark plus an accent switcher (Acid, Iris, Amber, Emerald) persisted in `localStorage`, applied before paint with an inline script (no flash), and that every live preview follows it. If one already exists, verify it changes every component.
+
+**Gate 3:** `registry:audit` has zero warnings for colour and legacy syntax; `contrast.json` exists with no AA failures; scratch app in Tailwind v3 and v4 shows correct colours in light and dark and all four accents.
+
+---
+
+## PHASE 4: Motion engine and performance
+
+**4.1 Shared frame scheduler (`packages/animations/src/scheduler.ts`)**
+```ts
+type FrameCb = (dt: number, now: number) => void | false; // return false to unsubscribe
+const subs = new Set<FrameCb>();
+let raf = 0, last = 0;
+
+function loop(now: number) {
+  const dt = Math.min((now - last) / 1000, 1 / 30);
+  last = now;
+  for (const cb of [...subs]) if (cb(dt, now) === false) subs.delete(cb);
+  raf = subs.size ? requestAnimationFrame(loop) : 0;
+}
+export function subscribeFrame(cb: FrameCb) {
+  subs.add(cb);
+  if (!raf && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(loop); }
+  return () => { subs.delete(cb); };
+}
+if (typeof document !== "undefined")
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) { cancelAnimationFrame(raf); raf = 0; }
+    else if (subs.size && !raf) { last = performance.now(); raf = requestAnimationFrame(loop); }
+  });
+```
+One rAF for the whole page; it stops when there are no subscribers.
+
+**4.2 Spring integration (`springs.ts`), replacing the `dt`-less `springStep`**
+```ts
+export type Spring = { k: number; c: number; m?: number };
+export function stepSpring(s: { x: number; v: number }, target: number, sp: Spring, dt: number) {
+  const m = sp.m ?? 1, h = 1 / 120;
+  for (let t = dt; t > 0; t -= h) {
+    const d = Math.min(h, t);
+    s.v += ((sp.k * (target - s.x) - sp.c * s.v) / m) * d;
+    s.x += s.v * d;
+  }
+}
+export const isAtRest = (s: { x: number; v: number }, target: number, eps = 0.05) =>
+  Math.abs(s.v) < eps && Math.abs(target - s.x) < eps;
+```
+Keep a deprecated `springStep` wrapper for one minor version. Note: with mass 1, critical damping is `2·√k` (≈ 32 for k = 260), so `c = 22` is underdamped (ζ ≈ 0.68). That is the intended slight overshoot, so fix any comment claiming "critically damped".
+Unit test: simulating the same spring at 60 Hz and 144 Hz for 2 s reaches the same position within 0.5 px.
+
+**4.3 Hooks (`packages/hooks`)**
+- `useReducedMotion`: SSR-safe via `useSyncExternalStore` on `(prefers-reduced-motion: reduce)`.
+- `useFinePointer`: `(hover: hover) and (pointer: fine)`.
+- `useInView(ref, { rootMargin })`: IntersectionObserver.
+- `useElementRect(ref)`: ResizeObserver plus passive scroll/resize invalidation, cached; consumers never call `getBoundingClientRect` in a frame callback.
+
+**4.4 Refactor every rAF/pointer component (list comes from `inventory.csv`)**
+Rules for each:
+1. Subscribe through `subscribeFrame`; no private rAF loops.
+2. Integrate with `dt`; never per-event or per-frame constants.
+3. Cache layout (`useElementRect`); no layout reads inside the frame callback for more than one element.
+4. Pause when off-screen (`useInView`) or when the tab is hidden.
+5. `will-change` only while active.
+6. Canvas: clamp DPR to 2, `ResizeObserver` for sizing, spatial hash instead of O(n²) neighbour checks (particle-field).
+7. Pointer-driven effects gate on `useFinePointer`; cursor components render `null` on touch.
+8. Every effect has a static reduced-motion fallback (final state, no animation).
+9. Pointer listeners: one shared window listener per effect type where many instances can exist.
+
+**4.5 Performance harness (`scripts/perf/run.ts`, Playwright)**
+- For each `/components/[slug]`: CDP `Emulation.setCPUThrottlingRate` = 4; run a scripted interaction (mouse path or drag); collect long tasks (PerformanceObserver `longtask`) and frame times (rAF sampling).
+- Off-screen check: inject
+  ```ts
+  await page.addInitScript(() => {
+    const raf = window.requestAnimationFrame.bind(window);
+    (window as any).__raf = 0;
+    window.requestAnimationFrame = (cb) => { (window as any).__raf++; return raf(cb); };
+  });
+  ```
+  scroll the component out of view, wait 1 s, assert `__raf` delta ≤ 2.
+- Reduced-motion check: `page.emulateMedia({ reducedMotion: "reduce" })`; assert `document.getAnimations().length === 0` and rAF delta ≈ 0 after the interaction settles.
+- Budgets (fail CI): p95 frame ≤ 20 ms at 4× throttle; no long task > 50 ms during interaction; off-screen rAF delta ≤ 2; reduced-motion rAF idle.
+- Write `registry/reports/perf.json`.
+
+**4.6 Size report (`scripts/size.ts`)**
+For each item: bundle with `esbuild` (`react`, `react-dom` external, everything else bundled, minify) and gzip. Report `sourceGz` and `withDepsGz`. Write `registry/reports/size.json`. This produces the honest replacement for "< 2kb".
+
+**4.7 Homepage lazy demos**
+Mount each live demo only when it enters the viewport (IntersectionObserver, `rootMargin: "200px"`); show a poster (Phase 7 generates them) until then. Only one heavy canvas/rAF demo active at once.
+
+**Gate 4:** perf harness green on all components with rAF/pointer logic; `size.json` and `perf.json` exist; no `requestAnimationFrame(` outside the scheduler (`rg` check); all pointer effects verified inert on touch emulation and under reduced motion.
+
+---
+
+## PHASE 5: Flagship components (Signature set, D6)
+
+**Gold-standard checklist (apply to every signature component)**
+- [ ] Native semantics preserved; `forwardRef`; ref composition; correct `type`/roles; `disabled` honoured.
+- [ ] Controlled + uncontrolled where it is a value component.
+- [ ] Keyboard map documented and tested.
+- [ ] `prefers-reduced-motion` and coarse-pointer behaviour defined and tested.
+- [ ] Tokens only. No hard-coded colours. Works in light/dark and all accents.
+- [ ] `dt`-based physics via the scheduler; pauses off-screen; SSR-safe.
+- [ ] Every prop in docs is implemented, and every implemented prop is in docs.
+- [ ] Vitest + Testing Library for semantics/keyboard; Playwright for physics/pointer; axe = 0 serious/critical.
+- [ ] Measured size in `size.json`; perf budget passes.
+- [ ] Docs page uses the full anatomy from Phase 7.
+
+### 5.1 Magnetic Button (F-14)
+
+Defects to fix:
+- (a) The listener is on the button, so proximity never triggers outside it (the `radius` prop only shapes falloff inside the button).
+- (b) "Spring" only advances on pointer events (3 `springStep`s per event, no `dt`); speed depends on mouse polling rate; it freezes mid-flight when the pointer stops.
+- (c) Leaving hard-snaps (`style.transform = ""`, no transform transition), so there is no spring return.
+- (d) The rect is read from the transformed element, so the centre moves with the button (feedback loop).
+- (e) `glow` is destructured and never used, while the docs show a Glow control.
+- (f) No `forwardRef`; `{...rest}` after `ref`; no default `type="button"`; permanent `will-change-transform`; pointless `useReducer` re-render.
+- (g) Variant `iris` does not use the iris token; Tailwind syntax per F-17.
+
+Reference implementation (adapt class strings/variants to existing styles; use tokens and the syntax from Task 3.3):
+```tsx
+"use client";
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
+
+export interface MagneticButtonProps extends React.ComponentPropsWithoutRef<"button"> {
+  strength?: number;   // 0..1
+  radius?: number;     // px from the button's EDGE where the pull starts
+  glow?: boolean;
+  variant?: "accent" | "ghost" | "iris";
+}
+const K = 260, C = 22; // mass 1 → ζ≈0.68, slight overshoot
+
+export const MagneticButton = React.forwardRef<HTMLButtonElement, MagneticButtonProps>(
+  ({ strength = 0.35, radius = 120, glow = true, variant = "accent", type = "button", className, ...props }, fwd) => {
+    const ref = React.useRef<HTMLButtonElement>(null);
+    React.useImperativeHandle(fwd, () => ref.current!, []);
+    const reduced = useReducedMotion();
+
+    React.useEffect(() => {
+      const el = ref.current;
+      if (!el || reduced) return;
+      if (!matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+      const s = { x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0 };
+      let raf = 0, last = 0;
+
+      const tick = (now: number) => {
+        const dt = Math.min((now - last) / 1000, 1 / 30); last = now;
+        s.vx += (K * (s.tx - s.x) - C * s.vx) * dt;
+        s.vy += (K * (s.ty - s.y) - C * s.vy) * dt;
+        s.x += s.vx * dt; s.y += s.vy * dt;
+        const rest = Math.hypot(s.vx, s.vy) < 0.05 && Math.hypot(s.tx - s.x, s.ty - s.y) < 0.05;
+        el.style.transform = rest && !s.tx && !s.ty ? "" : `translate3d(${s.x}px,${s.y}px,0)`;
+        if (rest) { el.style.willChange = ""; raf = 0; } else raf = requestAnimationFrame(tick);
+      };
+      const wake = () => { if (!raf) { last = performance.now(); el.style.willChange = "transform"; raf = requestAnimationFrame(tick); } };
+
+      const onMove = (e: PointerEvent) => {
+        const r = el.getBoundingClientRect();
+        const cx = r.left + r.width / 2 - s.x, cy = r.top + r.height / 2 - s.y; // rest centre
+        const dx = e.clientX - cx, dy = e.clientY - cy;
+        const ex = Math.max(Math.abs(dx) - r.width / 2, 0), ey = Math.max(Math.abs(dy) - r.height / 2, 0);
+        const t = Math.max(0, 1 - Math.hypot(ex, ey) / radius);
+        s.tx = dx * strength * t; s.ty = dy * strength * t;
+        if (t > 0 || s.tx || s.ty || raf) wake();
+      };
+      addEventListener("pointermove", onMove, { passive: true });
+      return () => { removeEventListener("pointermove", onMove); cancelAnimationFrame(raf); el.style.transform = ""; el.style.willChange = ""; };
+    }, [radius, strength, reduced]);
+
+    return <button ref={ref} type={type} data-glow={glow || undefined} className={cn(/* base + variant + glow ::after via data-glow */ className)} {...props} />;
+  }
+);
+```
+Then swap the private rAF for `subscribeFrame` and the per-event `getBoundingClientRect` for the cached `useElementRect` (Phase 4), and use one shared window listener when many instances exist. Implement `glow` as a `::after` radial-gradient pseudo-element that fades via `opacity` (compositor-friendly) driven by `data-glow`, or remove the prop and the docs control.
+
+Acceptance tests (Playwright/Vitest):
+- Pointer 10 px outside the edge produces a non-zero translate within 300 ms; pointer beyond `radius` produces none.
+- Pointer leaves: returns to `translate(0,0)` within 800 ms with overshoot ≤ 15% of the displacement.
+- `prefers-reduced-motion: reduce`: transform is never set.
+- Coarse pointer/touch emulation: no window listener attached.
+- `ref` forwarding works; default `type="button"` (does not submit a form); `disabled` does not move.
+- Focus ring visible under keyboard focus; axe 0 violations.
+- Docs controls (strength, radius, variant, glow) each change observable behaviour.
+
+### 5.2 Slingshot OTP (F-15, F-24)
+
+Defects to fix:
+- (a) `mode` defaults to `"game"`, and game mode has no `<input>`. No keyboard, paste, autofill or `autocomplete="one-time-code"`. This contradicts "real inputs, paste, SR fallback underneath" and the docs' own principle.
+- (b) Rocks are single-use (`"done"` → `display:none`; `pointerDown` only accepts `ground`/`shot`), and `onClear` never restores them. Codes with repeated digits (e.g. `112233`) cannot be entered; Clear leaves fewer digits. **(verify)**
+- (c) Physics is per-frame (`x += vx; vy += 0.5`): about 2× faster at 120 Hz.
+- (d) `getBoundingClientRect()` for every empty target on every flight frame.
+- (e) Hard-coded geometry (SVG frame at `x=180`, rocks at `80 + col*45`) versus `width/2` slingshot position; breaks below 360 px.
+- (f) Hard-coded colours (`#050505`, `#111`, `text-white`, acid `rgba(...)`): dark-only, ignores accent.
+- (g) Standard mode: `maxLength` truncates a pasted `"123 456"` to `"123 45"` (5 digits after filtering); `<label>` has no `htmlFor`; toggle button has no `type="button"` / `aria-pressed`; fake caret blinks forever even when unfocused; no `invalid`, `disabled`, `name`, `aria-live`; no reduced-motion handling.
+- (h) The rAF effect deps are `[length, digits, onHit]`, so it restarts whenever the parent re-renders.
+- (i) `framer-motion` used but undeclared (F-03).
+
+Target architecture:
+- Public API: `length`, `value`, `defaultValue`, `onChange`, `onComplete`, `name`, `disabled`, `invalid`, `autoFocus`, `label`, `aria-describedby`, `gameEnabled?: boolean` (default `true`, hidden automatically under reduced motion).
+- **Always render a real `<input>`** (single, visually hidden but focusable, `inputMode="numeric"`, `autoComplete="one-time-code"`, `pattern="\d*"`, no `maxLength`) as the single source of truth. The visual digit cells mirror its value (`aria-hidden`).
+- Handle paste with `onPaste`: strip non-digits **before** truncating to `length`.
+- **The game is an optional second input method** that writes into the same value. Default view is the standard cells; a labelled toggle (`type="button"`, `aria-pressed`) opens the game. The game layer is `aria-hidden` and never the only way to enter a code.
+- Game has **unlimited ammo**: a rock respawns at its base after a hit. Clear and per-digit Backspace exist. Repeated digits work.
+- Fixed-timestep physics in px/s (preserves the current 60 Hz feel): gravity `1800`, launch velocity `pull × 15`, restitution `0.4`. Use `STEP = 1/120`, accumulate `dt` (clamped to 0.1 s), and run `while (acc >= STEP)`.
+- Geometry derived from the measured container (ResizeObserver, container-local coordinates) and an SVG `viewBox`; no fixed pixel constants.
+- Cache target rects; latest-ref pattern for `onHit` and `digits` so the loop mounts once.
+- Tokens only; glow via `color-mix(in oklab, var(--b-accent) 30%, transparent)`.
+- `role="group"` + `aria-labelledby` (label wired to the input), `aria-live="polite"` announcing "3 of 6 digits entered", `aria-invalid` when `invalid`.
+- Under `prefers-reduced-motion`: game toggle hidden; blink caret only while focused and only when motion is allowed.
+- The homepage demo renders the **exact** registry component (F-24).
+
+Acceptance tests:
+- Paste `"123 456"` → value `123456`; paste `"12-34-56"` → `123456`.
+- Game mode: `112233` can be entered; Clear restores all rocks; Backspace removes one digit.
+- Physics determinism: simulate the same shot at 60 Hz and 144 Hz; landing x differs by ≤ 2 px.
+- `<label>` click focuses the input; form submission includes `name=value`; `disabled` blocks both modes.
+- Reduced motion: no game toggle, no infinite animation.
+- Works at container widths 280 / 320 / 360 / 480.
+- Light mode and all four accents render correctly; axe 0 violations.
+
+### 5.3 Holographic Card, Glare Card, Hold Button, Spatial Command Palette
+
+I have not read these sources. **Audit first**: produce `docs/audit/signature-<slug>.md` with defects against the gold-standard checklist, then fix. Specific expectations:
+- **Holographic/Glare Card:** pointer tracking through the scheduler; CSS custom properties updated on a single element (no per-frame React state); gyro/tilt behind a permission-aware, opt-in path on touch; static sheen under reduced motion; no layout reads per frame.
+- **Hold Button:** works with keyboard (Space/Enter held; ignore key-repeat re-triggers), pointer and touch; cancel on pointer leave/blur/Escape; `aria-live="polite"` progress ("Hold to confirm, 40%"); `onConfirm` fires exactly once; reduced-motion shows a non-animated progress bar.
+- **Spatial Command Palette:** built on Radix Dialog for focus trap/scroll lock/return focus; combobox + listbox pattern with `aria-activedescendant`; typeahead; ⌘K/Ctrl+K opens; grouped results and recents; depth effect off under reduced motion; no ⌘K collisions with the site's search (one global handler).
+
+**Gate 5:** every signature component passes its acceptance tests, `size.json`/`perf.json` entries exist, and the docs "Controls" match implemented props exactly.
+
+---
+
+## PHASE 6: Primitives strategy (F-18)
+
+**Goal:** stop hand-rolling focus-critical primitives; keep Buildora's value where it is unique.
+
+**6.1 Classify every foundation item** (from `inventory.csv`) and record in `docs/audit/primitives.md`:
+
+| Strategy | Items | Action |
+|---|---|---|
+| **Wrap Radix** (`@radix-ui/*` via `dependencies`) | dialog, alert-dialog, sheet, popover, dropdown-menu, context-menu, tooltip, hover-card, tabs, accordion, checkbox, switch, radio-group, slider | Reimplement on Radix; keep the Buildora visual API (variants, tokens) and slug; add `registryDependencies` on shadcn items only where a straight re-export is better than a fork |
+| **Vaul** | drawer | Reimplement on `vaul` |
+| **Native / server components** | button, input, textarea, badge, progress, skeleton, separator, kbd, spinner, avatar | Remove `"use client"` wherever no hooks/events are needed; keep native semantics |
+| **Keep custom, harden** | toast, creative-notifications, modal-stack, navbar, floating-navbar, sidebar, expandable-sidebar, mobile-nav, breadcrumb, step-nav, pagination, command-bar | Add tests for live regions, focus order, landmarks; `modal-stack` must sit on Radix Dialog for focus management |
+
+**6.2 Rules**
+- Public slugs and prop names remain. If a hand-rolled prop cannot be supported after wrapping Radix, keep it as a deprecated no-op with a console warning in development only.
+- Each rebuilt overlay gets tests: focus trap, Escape, focus return to trigger, `aria-*` wiring, scroll lock, outside-click, and RTL `dir`.
+- Mark these items `category: "foundation"` in registry metadata. The `/components` index shows Foundation as a separate, collapsed facet so the interactive, AI and devtool components lead.
+
+**6.3 Effects consolidation (D7)**
+Set `category: "lab"` and `stability: "experimental"` for all backgrounds, cursors and text effects that are not in `FEATURED_EFFECTS`. Do not delete any slug. Lab items keep their pages, get an "Experimental" badge, and are excluded from the homepage and templates.
+
+**Gate 6:** overlay components pass the new tests; `docs/audit/primitives.md` is complete; nothing that used to install now 404s.
+
+---
+
+## PHASE 7: Docs, registry metadata and component pages (F-19)
+
+**7.1 Extend the registry schema (zod-validated)**
+Add to `registry/components/*.json` and the builder:
+```ts
+{
+  category: "physics" | "cards" | "buttons" | "backgrounds" | "text" | "cursor" | "ai" | "devtools" | "tui" | "layout" | "overlays" | "forms" | "data" | "foundation" | "lab",
+  stability: "stable" | "beta" | "experimental",
+  a11y: { keyboard: { keys: string; action: string }[]; roles: string[]; reducedMotion: string; touch: string },
+  preview: { poster: string; video?: string },
+  changelog: { version: string; date: string; notes: string }[],
+  related: string[]
+}
+```
+Migrate all items with a script that fills defaults and writes `TODO` markers for unknowns. Validation rule: a `stable` item without a non-empty `a11y.keyboard` table fails `registry:validate`. Size, perf and axe data come from the generated reports, not the metadata.
+
+**7.2 Props tables generated from TypeScript**
+Use `ts-morph` or `react-docgen-typescript` at build to emit `props.json` per component (name, type, default, description from JSDoc). Add JSDoc to every public prop. A CI check fails if a documented control has no matching prop, or a prop has no doc.
+
+**7.3 Component page anatomy (`/components/[slug]`), in this order**
+1. Title, one-line description, stability badge, version, category, "Copy for AI" button (Phase 9).
+2. Hero preview: poster first, live demo lazily mounted, Controls panel.
+3. Install: the shared `<InstallCommand>` (zero-config + namespaced, package-manager tabs), plus a "Manual" tab with source and an explicit dependency list (npm deps + registry deps, transitive).
+4. Usage: minimal example, then 3–5 real examples.
+5. Props table (generated).
+6. Accessibility: keyboard table, roles, reduced-motion behaviour, touch behaviour, live axe status from `axe.json`.
+7. Performance: `withDepsGz`, rAF/off-screen behaviour, budget status from `perf.json`. Show "Measured <date> @ <sha>".
+8. Changelog.
+9. Related components; permalink to source at a commit SHA.
+Tabs must be keyboard-accessible; code blocks copyable; no content only available via hover.
+
+**7.4 Index page (`/components`)**
+- Category facets (Physics, Cards, Buttons, Backgrounds, Text, Cursor, AI, DevTools, TUI, Layout, Overlays, Forms, Data; Foundation and Lab collapsed), stability filter, sort (Featured, A–Z, Newest), URL-synced filters, counts from `stats.ts`.
+- Cards show poster + hover-to-play `webm` (lazy, muted, reduced-motion → poster only), name, one line, badges.
+- `⌘K` search indexes name, description, tags, category.
+- Keep the "Featured" order driven by `SIGNATURE_SLUGS` then `FEATURED_EFFECTS`.
+
+**7.5 Preview generation (`pnpm previews`)**
+- Add a chromeless route `/preview/[slug]` that renders only the demo on a themed background.
+- Playwright script: viewport 800×500, dark and light, performs a per-component scripted interaction (declared in registry metadata as `previewScript`), captures `public/previews/<slug>.webp` (≤ 40 KB) and a 4 s `webm` (≤ 300 KB). Fail the script if budgets are exceeded (recompress first).
+- Regenerate only changed components (hash of source + metadata).
+
+**7.6 Docs pages**
+Add or complete: Installation (both methods, troubleshooting: "registry not found", alias mismatch, Tailwind version), Theming (tokens, accents, shadcn interop), Motion (Phase 3.6), Accessibility policy (keyboard conventions, reduced-motion, touch, testing approach), Performance policy (budgets and how they are measured), Support matrix (from `framework-support.ts`), Provenance (Phase 11), Changelog (aggregated).
+
+**7.7 Install counts (optional, D8)**
+Serve `/r/[name].json` through a route handler that increments an anonymous counter (no IPs, no cookies; Vercel KV or an equivalent). Expose totals to the site build/runtime. Show counts only above `MIN_INSTALLS_TO_SHOW`. Document the counter in the privacy note.
+
+**Gate 7:** registry validates with the new schema; every component page has all nine sections (or an explicit "not applicable" for perf on static items); `pnpm previews` produces assets within budget; index facets work with URL state.
+
+---
+
+## PHASE 8: Homepage, templates, positioning (F-20)
+
+**8.1 Homepage structure**
+1. Hero: one tagline (D1), primary CTA = tested install command, secondary = Explore. Keep the interactive console.
+2. Three pillars, each with 3 lazily mounted live demos and a link to its category: **Physics** (magnetic, slingshot, holographic), **AI & agents** (streaming-chat, tool-call-viz, agent-timeline, token-meter, model-selector, attachment-prompt, ai-review-edit), **DevTools & TUI** (env-manager, webhook-viewer, cron-builder, feature-flags, audit-log, log-viewer, the TUI set).
+3. Templates: the real templates from 8.2, each with a screenshot and live-demo link.
+4. Trust strip: stats from `stats.ts`, links to axe/perf/size/contrast reports, "Measured <date>".
+5. "Install in 60 seconds": three steps with real commands (init, add, use), including the `components.json` registry entry.
+6. FAQ: framework support (honest), accessibility policy, licensing and provenance.
+7. Final CTA. Remove "VERIFIED" chips, "11 idioms", and all typed numbers.
+
+**8.2 Templates as real blocks**
+Convert templates to `registry:block` or `registry:page` items that install a full working page (with a mock, frontend-only data layer: a local async generator for streaming, fixtures for tables):
+- **AI Agent Console:** streaming-chat, tool-call-viz, agent-timeline, token-meter, model-selector, attachment-prompt, spatial-command-palette.
+- **Ops Console (new):** usage-dashboard, env-manager, feature-flags, audit-log, webhook-viewer, log-viewer, team-switcher.
+- **Creative Portfolio:** magnetic-button, morphing-typography, glare/holographic cards, smooth-scroll section.
+Each template needs: `/templates/[slug]` overview (screenshot, components list, one install command, source link), `/templates/[slug]/demo` (full-bleed live demo), passing axe, Lighthouse ≥ 90 mobile, and a "Deploy to Vercel" button (owner supplies the repo/template URL; use a placeholder env var and list it as an owner step).
+
+**8.3 Positioning check**
+Every homepage sentence must be defensible from code or a report. Run a final `rg` for superlatives ("world-class", "guarantee", "100%", "authentic", "zero") and either link to evidence or remove.
+
+**Gate 8:** homepage passes Lighthouse targets; each template installs into the scratch app and runs; no unsupported claims remain.
+
+---
+
+## PHASE 9: Agent-readable surface (F-21)
+
+**9.1 `llms.txt` and markdown routes**
+- `/llms.txt`: site summary, links to docs, and an index of components (`- [Name](url.md): one-line description`). `/llms-full.txt`: full docs + component metadata.
+- `/components/[slug].md`: markdown with title, description, install commands, props table, a11y table, dependencies, and the full source. Add `<link rel="alternate" type="text/markdown">` on component pages.
+- Include these in `sitemap.ts` (as appropriate) and `robots.ts` (allow).
+
+**9.2 "Copy for AI" button**
+Copies a ready prompt: install command, props table, key a11y rules, and the source path. No deep links to third-party products unless the owner supplies them.
+
+**9.3 MCP server (`packages/mcp`)**
+`@modelcontextprotocol/sdk`, stdio transport, reads `registry/generated` and metadata. Tools:
+- `search_components({ query: string, category?: string, limit?: number })` → `{ slug, title, description, category, stability }[]`
+- `get_component({ slug })` → metadata, install commands, props, a11y, dependencies, source
+- `get_install_command({ slug, packageManager? })` → command strings (both methods)
+- `list_categories()` → categories with counts
+- `get_tokens()` → tokens item JSON and accent list
+Publish setup instructions on a `/docs/agents` page (config snippet for common MCP clients). Separately **test** whether the shadcn CLI's own MCP integration works against the `@buildora` registry entry and document the result honestly; do not claim it works untested.
+
+**Gate 9:** `curl /llms.txt` and `/components/magnetic-button.md` return complete content; the MCP server answers all five tools in a scripted test.
+
+---
+
+## PHASE 10: Spring Lab (differentiating tool)
+
+Turn the playground ("Creative Lab", ⌘P) into a Spring Lab at `/lab/spring` (keep `/playground` redirecting).
+- Controls: stiffness, damping, mass, preset picker (from `springs`), duration for `linear()` output.
+- Live visuals: response curve (SVG path from the simulation), draggable ball demo driven by the same spring, readouts for damping ratio ζ, overshoot %, and settle time.
+- Export: TypeScript preset object, CSS `linear()` easing + duration, and a `springs.ts` entry; copy buttons; shareable URL query params.
+- Accessibility: all controls labelled and keyboard-operable; curve has a text summary; reduced-motion disables the ball animation but keeps the curve.
+- Tests: simulation and `springToLinear` unit tests; Playwright test for URL round-tripping.
+
+**Gate 10:** Spring Lab works with keyboard only; export output is verified in a scratch app.
+
+---
+
+## PHASE 11: Repo hygiene, provenance, release (F-22, F-23)
+
+- 11.1 `git rm --cached tsconfig.tsbuildinfo` and add it to `.gitignore`. Add `.gitattributes` (`* text=auto eol=lf`).
+- 11.2 **Do not delete** `.claude/`, `.agents/`, `.freebuff/`, `skills/`, `skills-lock.json`. List each with what it appears to be and recommend keep/ignore/move for the owner.
+- 11.3 README rewrite: React-first honest positioning, badges (CI, license), hero GIF placeholder, both install methods, monorepo map, link to docs and support matrix, contributing.
+- 11.4 **Provenance page** (`/docs/provenance`), built from `PROVENANCE.md`: generate a table (slug, implementation approach, "inspiration", license). Pre-fill only what the repo proves. For every component whose name matches a component in another well-known library (F-23 list), write `inspiration: TBD (owner to confirm)`. **Never invent provenance or originality claims.** The owner fills these in (D9: no renames).
+- 11.5 Add `SECURITY.md`, issue templates, PR template, `CODEOWNERS`.
+- 11.6 Changesets: `pnpm dlx @changesets/cli init`; version packages; tag `v0.2.0`; write release notes summarising Phases 1–10.
+- 11.7 Domain: keep everything env-driven (`SITE.url`, `REGISTRY_BASE_URL`). List the owner steps: buy domain, add to Vercel, set env vars, update GitHub description and website field, optionally submit the registry to shadcn's registry directory.
+
+**Gate 11:** clean `git status` after a fresh clone + build; README and site agree on support claims; provenance page contains no invented statements.
+
+---
+
+# PART C: VERIFICATION AND REPORTING
+
+## C1. Full verification (run at the end, and per phase where applicable)
+
+```bash
+pnpm install --frozen-lockfile
+pnpm -w typecheck && pnpm -w lint && pnpm -w test
+pnpm registry:build && pnpm registry:validate && pnpm registry:audit
+pnpm reports            # size, axe, contrast, perf
+pnpm previews
+pnpm --filter web build
+pnpm --filter web exec playwright test
+# then the install matrix (CI) or locally in a scratch app:
+pnpm dlx shadcn@latest add http://localhost:4000/r/magnetic-button.json
+```
+
+Manual checks:
+- Keyboard-only walkthrough of `/`, `/components`, three component pages, `/templates/ai-agent`.
+- Screen-reader spot check (VoiceOver or NVDA) on Slingshot OTP, Hold Button, Command Palette, Dialog.
+- Reduced motion on (OS setting): no continuous animation anywhere.
+- Touch emulation: no hover-only flows; pointer-physics effects inert.
+- Light/dark × four accents on the homepage and five components.
+- Lighthouse mobile on `/` and `/components/particle-field`.
+- `curl -s <url>` of `/`, `/playground`, `/docs` contains meaningful text and distinct `<title>`/`og:title`.
+
+## C2. Phase report format (emit after every phase)
+
+```
+## Phase N report
+- Status: DONE | PARTIAL | BLOCKED
+- Findings: F-xx → FIXED | NOT REPRODUCED | DEFERRED (reason)
+- Commits: <sha> <message> (one per task)
+- Evidence: commands run + key output (paths to reports)
+- Decisions made: <anything not covered by A4, with reasoning>
+- Owner actions needed: <domain, env vars, GitHub settings, provenance answers, …>
+- Risks / follow-ups
+```
+
+## C3. Final report
+List every A5 finding with its final status and evidence link; the A7 checklist with pass/fail; measured numbers (`size.json`, `axe.json`, `contrast.json`, `perf.json` summaries); everything that still needs the owner.
+
+## C4. Do NOT
+
+- Do not claim framework support, accessibility levels, performance or usage numbers that no generated report supports.
+- Do not paste third-party component code or copy another library's implementation.
+- Do not change slugs, remove components, or delete tool/agent directories.
+- Do not add dependencies outside A6 without asking.
+- Do not skip a gate or merge on red CI.
+- Do not "fix" a finding that does not reproduce. Report it instead.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-21T17:24:24+05:30.
+
+The user's current state is as follows:
+Other open documents:
+- c:\Users\varun\Desktop\Buildora\scripts\catalog.ts (LANGUAGE_TYPESCRIPT)
+- c:\Users\varun\Desktop\Buildora\apps\web\components\ThemeCustomizer.tsx (LANGUAGE_TSX)
+- c:\Users\varun\Desktop\Buildora\apps\web\app\layout.tsx (LANGUAGE_TSX)
+- c:\Users\varun\Desktop\Buildora\packages\components\src\overlays\sheet.tsx (LANGUAGE_TSX)
+- c:\Users\varun\Desktop\Buildora\packages\components\src\command\index.tsx (LANGUAGE_TSX)
+Running terminal commands:
+- npm run dev  (in c:\Users\varun\Desktop\Buildora, running for 20m6s)
+</ADDITIONAL_METADATA>
+<USER_SETTINGS_CHANGE>
+The user changed setting `Model Selection` from None to Gemini 3.1 Pro (High). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+</USER_SETTINGS_CHANGE>

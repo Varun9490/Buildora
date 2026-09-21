@@ -14,8 +14,9 @@
     "@buildora/tokens": "workspace:*",
     "@buildora/utils": "workspace:*",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.18.2",
-    "tailwind-merge": "^2.5.4"
+    "motion": "^13.4.0",
+    "tailwind-merge": "^2.5.4",
+    "zod": "^4.6.5"
   },
   "scripts": {
     "build": "echo ok",

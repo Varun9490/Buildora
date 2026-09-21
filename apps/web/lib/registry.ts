@@ -93,9 +93,7 @@ export function searchComponents(items: ComponentSummary[], f: SearchFilters): C
   const q = f.query.trim().toLowerCase();
   let out = items.filter((c) => {
     const status = c.status ?? "beta";
-    if (f.status === "all") {
-      if (status === "experimental") return false;
-    } else if (status !== f.status) return false;
+    if (f.status !== "all" && status !== f.status) return false;
     if (f.category !== "all" && !c.categories.includes(f.category)) return false;
     if (f.difficulty !== "all" && c.difficulty !== f.difficulty) return false;
     if (f.tag !== "all" && !c.tags.includes(f.tag)) return false;

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
+import { cn } from "@buildora/utils";
 
 export type SeparatorProps = React.HTMLAttributes<HTMLDivElement> & {
   orientation?: "horizontal" | "vertical";
@@ -19,7 +19,7 @@ const Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(
         ref={ref}
         {...semanticProps}
         className={cn(
-          "shrink-0 bg-white/10 border-0",
+          "shrink-0 bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] border-0",
           orientation === "horizontal" ? "h-px w-full" : "w-px h-full",
           className
         )}
@@ -44,13 +44,13 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
         className={cn("flex items-center gap-4", className)}
         {...props}
       >
-        <div className="flex-1 h-px bg-white/10" />
+        <div className="flex-1 h-px bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]" />
         {(label || children) && (
-          <span className="text-xs font-mono text-white/40 uppercase tracking-wider">
+          <span className="text-xs font-mono text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] uppercase tracking-wider">
             {label || children}
           </span>
         )}
-        <div className="flex-1 h-px bg-white/10" />
+        <div className="flex-1 h-px bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]" />
       </div>
     );
   }

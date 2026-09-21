@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type FxButtonEffect = "none" | "shimmer" | "glow" | "ripple" | "gradient-border" | "liquid";
 
@@ -66,11 +66,11 @@ export function FxButton({ effect = "none", rippleMs = 600, className, children,
       onClick={handleClick}
       className={cn(
         "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl px-6 py-2.5 text-sm font-semibold",
-        "bg-white/[0.05] text-[--b-text] border border-white/10",
-        "transition-all duration-200 hover:border-white/25 active:scale-[0.98]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent] focus-visible:ring-offset-2",
+        "bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] text-[color:var(--b-text)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]",
+        "transition-all duration-200 hover:border-[color-mix(in_oklab,var(--b-border)_25%,transparent)] active:scale-[0.98]",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)] focus-visible:ring-offset-2",
         "disabled:pointer-events-none disabled:opacity-50",
-        effect === "glow" && "border-[--b-accent]/40",
+        effect === "glow" && "border-[color-mix(in_oklab,var(--b-accent)_40%,transparent)]",
         effect === "gradient-border" && "border-transparent",
         className
       )}
@@ -116,7 +116,7 @@ export function FxButton({ effect = "none", rippleMs = 600, className, children,
           <span
             key={r.id}
             aria-hidden
-            className="pointer-events-none absolute rounded-full bg-white/40"
+            className="pointer-events-none absolute rounded-full bg-[color-mix(in_oklab,var(--b-text)_40%,transparent)]"
             style={{ left: r.x, top: r.y, width: 10, height: 10, animation: `buildora-ripple-dot ${rippleMs}ms ease-out forwards` }}
           />
         ))}

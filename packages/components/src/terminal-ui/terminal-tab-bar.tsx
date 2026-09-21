@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 import { type TerminalColorScheme } from "./terminal-theme";
 
 export interface TerminalTab {
@@ -153,7 +153,7 @@ export function TerminalTabBar({
                 type="button"
                 className={cn(
                   "ml-1 p-0.5 rounded opacity-0 group-hover:opacity-100",
-                  "hover:bg-white/10 transition-opacity"
+                  "hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] transition-opacity"
                 )}
                 style={{ color: theme.brightBlack }}
                 onClick={(e) => {
@@ -172,7 +172,7 @@ export function TerminalTabBar({
                 type="button"
                 className={cn(
                   "p-0.5 rounded opacity-0 group-hover:opacity-100",
-                  "hover:bg-white/10 transition-opacity"
+                  "hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] transition-opacity"
                 )}
                 style={{ color: theme.brightBlack }}
                 onClick={(e) => {
@@ -191,7 +191,7 @@ export function TerminalTabBar({
       })}
       <button
         type="button"
-        className="flex items-center justify-center w-6 h-6 rounded hover:bg-white/5 transition-colors"
+        className="flex items-center justify-center w-6 h-6 rounded hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] transition-colors"
         style={{ color: theme.brightBlack }}
         onClick={onTabAdd}
         aria-label="New terminal tab"

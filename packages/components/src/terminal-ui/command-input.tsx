@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 import { type TerminalColorScheme } from "./terminal-theme";
 
 export interface CommandSuggestion {
@@ -189,7 +189,7 @@ export function CommandInput({
               aria-selected={idx === tabIndex}
               className={cn(
                 "flex items-center gap-2 px-2 py-1 cursor-pointer",
-                idx === tabIndex && "bg-white/10"
+                idx === tabIndex && "bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]"
               )}
               style={{ color: theme.foreground }}
               onClick={() => {
@@ -282,7 +282,7 @@ export function CommandInput({
             rows={multiline ? Math.max(3, lineCount) : 1}
             className={cn(
               "w-full bg-transparent px-2 py-0.5 outline-none resize-none",
-              highlight && multiline && "caret-white"
+              highlight && multiline && "caret-[color:var(--b-text)]"
             )}
             style={{
               color: highlight && multiline ? "transparent" : theme.foreground,

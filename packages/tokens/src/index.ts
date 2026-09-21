@@ -6,13 +6,13 @@
  * - Semantic vars: --b-bg, --b-panel, --b-surface, --b-elevated, --b-border,
  *   --b-text, --b-text-secondary, --b-muted, --b-accent, --b-accent-foreground,
  *   --b-ring, --b-success, --b-warning, --b-danger, --b-iris, --b-iris-foreground
- * - Components MUST use vars, never hardcoded #d4ff4f / white-opacity / #0C0C0C.
+ * - Components MUST use vars, never hardcoded oklch(93.88% 0.2000 122.3) / white-opacity / oklch(15.43% 0.0000 0).
  * - Accent swap = change vars only. No sed across components.
  *
  * Known limitations (documented, not silently violated):
  * - Translucent accent washes (e.g. bg accent /10) keep hardcoded hex:
  *   Tailwind v3 cannot apply opacity modifiers to var() colors.
- * - Violet ramp (#5f4de8) stays hardcoded: decorative gradients + particle
+ * - Violet ramp (oklch(53.50% 0.2231 281.0)) stays hardcoded: decorative gradients + particle
  *   color arrays, no semantic role.
  * - JS color-math defaults (cursor glow alpha compositing) need hex channels
  *   and intentionally keep hex fallbacks.
@@ -20,36 +20,36 @@
 
 export const accentPresets = {
   // Default: Buildora Scaffold Lime — same hue both modes, lightness adjusted for AA.
-  // Dark: luminous #D4FF4F on near-black. Light: deep #4D7C0F on paper.
+  // Dark: luminous oklch(93.88% 0.2000 122.3) on near-black. Light: deep oklch(53.22% 0.1405 131.6) on paper.
   acid: {
     label: "Scaffold Lime",
-    dark: { accent: "#D4FF4F", foreground: "#131305", muted: "rgba(212,255,79,0.12)" },
-    light: { accent: "#4D7C0F", foreground: "#FFFFFF", muted: "rgba(77,124,15,0.10)" },
+    dark: { accent: "oklch(93.88% 0.2000 122.3)", foreground: "oklch(18.22% 0.0271 108.8)", muted: "oklch(93.88% 0.2000 122.3 / 0.12)" },
+    light: { accent: "oklch(53.22% 0.1405 131.6)", foreground: "oklch(100.00% 0.0000 0)", muted: "oklch(53.22% 0.1405 131.6 / 0.1)" },
   },
   emerald: {
     label: "Universal Emerald",
-    dark: { accent: "#34D399", foreground: "#052E22", muted: "rgba(52,211,153,0.12)" },
-    light: { accent: "#047857", foreground: "#FFFFFF", muted: "rgba(4,120,87,0.10)" },
+    dark: { accent: "oklch(77.29% 0.1535 163.2)", foreground: "oklch(26.98% 0.0497 168.8)", muted: "oklch(77.29% 0.1535 163.2 / 0.12)" },
+    light: { accent: "oklch(50.81% 0.1049 165.6)", foreground: "oklch(100.00% 0.0000 0)", muted: "oklch(50.81% 0.1049 165.6 / 0.1)" },
   },
   sky: {
     label: "Operator Sky",
-    dark: { accent: "#38BDF8", foreground: "#082F49", muted: "rgba(56,189,248,0.12)" },
-    light: { accent: "#0369A1", foreground: "#FFFFFF", muted: "rgba(3,105,161,0.10)" },
+    dark: { accent: "oklch(75.35% 0.1390 232.7)", foreground: "oklch(29.35% 0.0632 243.2)", muted: "oklch(75.35% 0.1390 232.7 / 0.12)" },
+    light: { accent: "oklch(50.00% 0.1193 242.7)", foreground: "oklch(100.00% 0.0000 0)", muted: "oklch(50.00% 0.1193 242.7 / 0.1)" },
   },
   ember: {
     label: "Builder Ember",
-    dark: { accent: "#FB923C", foreground: "#431407", muted: "rgba(251,146,60,0.12)" },
-    light: { accent: "#C2410C", foreground: "#FFFFFF", muted: "rgba(194,65,12,0.10)" },
+    dark: { accent: "oklch(75.76% 0.1590 55.9)", foreground: "oklch(26.59% 0.0762 36.3)", muted: "oklch(75.76% 0.1590 55.9 / 0.12)" },
+    light: { accent: "oklch(55.34% 0.1739 38.4)", foreground: "oklch(100.00% 0.0000 0)", muted: "oklch(55.34% 0.1739 38.4 / 0.1)" },
   },
   iris: {
     label: "Signal Iris",
-    dark: { accent: "#A5B4FC", foreground: "#1E1B4B", muted: "rgba(165,180,252,0.12)" },
-    light: { accent: "#4F46E5", foreground: "#FFFFFF", muted: "rgba(79,70,229,0.10)" },
+    dark: { accent: "oklch(78.53% 0.1041 274.7)", foreground: "oklch(25.73% 0.0861 281.3)", muted: "oklch(78.53% 0.1041 274.7 / 0.12)" },
+    light: { accent: "oklch(51.06% 0.2301 277.0)", foreground: "oklch(100.00% 0.0000 0)", muted: "oklch(51.06% 0.2301 277.0 / 0.1)" },
   },
   rose: {
     label: "Editorial Rose",
-    dark: { accent: "#FDA4AF", foreground: "#4C0519", muted: "rgba(253,164,175,0.12)" },
-    light: { accent: "#BE123C", foreground: "#FFFFFF", muted: "rgba(190,18,60,0.10)" },
+    dark: { accent: "oklch(80.97% 0.1061 11.6)", foreground: "oklch(27.08% 0.1009 12.1)", muted: "oklch(80.97% 0.1061 11.6 / 0.12)" },
+    light: { accent: "oklch(51.43% 0.1978 16.9)", foreground: "oklch(100.00% 0.0000 0)", muted: "oklch(51.43% 0.1978 16.9 / 0.1)" },
   },
 } as const;
 
@@ -58,35 +58,35 @@ export type AccentName = keyof typeof accentPresets;
 export const baseThemes = {
   light: {
     label: "Paper",
-    bg: "#FAF9F7",
-    panel: "#FFFFFF",
-    surface: "#F1EFEB",
-    elevated: "#FFFFFF",
-    border: "rgba(19,19,22,0.08)",
-    borderHover: "rgba(19,19,22,0.16)",
-    text: "#131316",
-    textSecondary: "#52525B",
-    muted: "#8E8E93",
-    ring: "rgba(19,19,22,0.16)",
-    success: "#047857",
-    warning: "#B45309",
-    danger: "#BE123C",
+    bg: "oklch(98.23% 0.0029 84.6)",
+    panel: "oklch(100.00% 0.0000 0)",
+    surface: "oklch(95.26% 0.0058 84.6)",
+    elevated: "oklch(100.00% 0.0000 0)",
+    border: "oklch(18.81% 0.0060 285.8 / 0.08)",
+    borderHover: "oklch(18.81% 0.0060 285.8 / 0.16)",
+    text: "oklch(18.81% 0.0060 285.8)",
+    textSecondary: "oklch(44.19% 0.0146 285.8)",
+    muted: "oklch(64.83% 0.0073 286.2)",
+    ring: "oklch(18.81% 0.0060 285.8 / 0.16)",
+    success: "oklch(50.81% 0.1049 165.6)",
+    warning: "oklch(55.53% 0.1455 49.0)",
+    danger: "oklch(51.43% 0.1978 16.9)",
   },
   dark: {
     label: "Warm Charcoal",
-    bg: "#0E0E0C",
-    panel: "#161614",
-    surface: "#1D1D1A",
-    elevated: "#242422",
-    border: "rgba(255,255,255,0.08)",
-    borderHover: "rgba(255,255,255,0.16)",
-    text: "#EDEDEC",
-    textSecondary: "#A1A1AA",
-    muted: "#6E6E73",
-    ring: "rgba(255,255,255,0.16)",
-    success: "#34D399",
-    warning: "#FBBF24",
-    danger: "#F87171",
+    bg: "oklch(16.29% 0.0041 106.8)",
+    panel: "oklch(19.94% 0.0039 106.7)",
+    surface: "oklch(22.96% 0.0057 106.8)",
+    elevated: "oklch(25.96% 0.0037 106.7)",
+    border: "oklch(100.00% 0.0000 0 / 0.08)",
+    borderHover: "oklch(100.00% 0.0000 0 / 0.16)",
+    text: "oklch(94.58% 0.0013 106.4)",
+    textSecondary: "oklch(71.18% 0.0129 286.1)",
+    muted: "oklch(53.99% 0.0077 286.1)",
+    ring: "oklch(100.00% 0.0000 0 / 0.16)",
+    success: "oklch(77.29% 0.1535 163.2)",
+    warning: "oklch(83.69% 0.1644 84.4)",
+    danger: "oklch(71.06% 0.1661 22.2)",
   },
 } as const;
 
@@ -102,9 +102,9 @@ export const tokens = {
     text: baseThemes.dark.text,
     muted: baseThemes.dark.muted,
     accent: accentPresets.acid.dark.accent,
-    iris: "#A5B4FC",
-    irisDeep: "#4F46E5",
-    ember: "#FB923C",
+    iris: "oklch(78.53% 0.1041 274.7)",
+    irisDeep: "oklch(51.06% 0.2301 277.0)",
+    ember: "oklch(75.76% 0.1590 55.9)",
     danger: baseThemes.dark.danger,
     success: baseThemes.dark.success,
   },
@@ -148,8 +148,8 @@ export const cssVars = `
   --b-accent: ${accentPresets.acid.light.accent};
   --b-accent-foreground: ${accentPresets.acid.light.foreground};
   --b-accent-muted: ${accentPresets.acid.light.muted};
-  --b-iris: #4F46E5;
-  --b-iris-foreground: #FFFFFF;
+  --b-iris: oklch(51.06% 0.2301 277.0);
+  --b-iris-foreground: oklch(100.00% 0.0000 0);
   --b-radius: ${tokens.radius.lg}px;
   color-scheme: light;
 }
@@ -170,8 +170,8 @@ export const cssVars = `
   --b-accent: ${accentPresets.acid.dark.accent};
   --b-accent-foreground: ${accentPresets.acid.dark.foreground};
   --b-accent-muted: ${accentPresets.acid.dark.muted};
-  --b-iris: #9D8CFF;
-  --b-iris-foreground: #1E1B4B;
+  --b-iris: oklch(70.51% 0.1642 288.2);
+  --b-iris-foreground: oklch(25.73% 0.0861 281.3);
   color-scheme: dark;
 }
 `;

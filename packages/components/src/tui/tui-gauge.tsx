@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUIGaugeProps {
   value: number;
@@ -90,7 +90,7 @@ export function TUIGauge({
         </div>
       )}
       {label && (
-        <div className="text-white/50 text-[10px] mt-0.5">{label}</div>
+        <div className="text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] text-[10px] mt-0.5">{label}</div>
       )}
     </div>
   );

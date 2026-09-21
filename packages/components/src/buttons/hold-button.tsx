@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type HoldButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   holdDuration?: number;
@@ -69,9 +69,9 @@ export function HoldButton({
       onPointerLeave={cancelHold}
       disabled={disabled}
       className={cn(
-        "relative overflow-hidden rounded-xl bg-[#1a1c25] px-6 py-2.5 text-sm font-medium text-white",
+        "relative overflow-hidden rounded-xl bg-[#1a1c25] px-6 py-2.5 text-sm font-medium text-[color:var(--b-text)]",
         "transition-all duration-200",
-        "focus:outline-none focus:ring-2 focus:ring-[#d4ff4f]/50",
+        "focus:outline-none focus:ring-2 focus:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
         "disabled:opacity-50 disabled:pointer-events-none",
         isHolding && "scale-95",
         className

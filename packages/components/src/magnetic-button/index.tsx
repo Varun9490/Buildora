@@ -1,9 +1,17 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
-import { springStep } from "../animations/spring";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
+import { springStep } from "@buildora/animations";
+import { z } from "zod";
+
+const magneticButtonSchema = z.object({
+  strength: z.number().min(0).max(1).optional(),
+  radius: z.number().min(0).optional(),
+  glow: z.boolean().optional(),
+  variant: z.enum(["accent", "ghost", "iris"]).optional(),
+});
 
 export type MagneticButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   strength?: number; // 0..1 attraction
@@ -29,6 +37,15 @@ export function MagneticButton({
   const reduced = useReducedMotion();
   const pos = React.useRef({ x: 0, y: 0, vx: 0, vy: 0 });
   const [, force] = React.useReducer((x: number) => x + 1, 0);
+
+  React.useEffect(() => {
+    if (process.env.NODE_ENV !== "production") {
+      const res = magneticButtonSchema.safeParse({ strength, radius, glow, variant });
+      if (!res.success) {
+        console.warn("[MagneticButton] Invalid props:", res.error.format());
+      }
+    }
+  }, [strength, radius, glow, variant]);
 
   const onMove = React.useCallback(
     (e: React.PointerEvent) => {
@@ -66,10 +83,10 @@ export function MagneticButton({
 
   const styles =
     variant === "accent"
-      ? "bg-[--b-accent] text-[--b-accent-foreground]"
+      ? "bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)]"
       : variant === "iris"
-        ? "bg-[--b-surface] text-[--b-text] border border-[--b-border] hover:border-[--b-border-hover]"
-        : "bg-[--b-surface] text-[--b-text-secondary] border border-[--b-border] hover:bg-[--b-elevated] hover:text-[--b-text]";
+        ? "bg-[color:var(--b-surface)] text-[color:var(--b-text)] border border-[color:var(--b-border)] hover:border-[color:var(--b-border-hover)]"
+        : "bg-[color:var(--b-surface)] text-[color:var(--b-text-secondary)] border border-[color:var(--b-border)] hover:bg-[color:var(--b-elevated)] hover:text-[color:var(--b-text)]";
 
   return (
     <button
@@ -80,7 +97,7 @@ export function MagneticButton({
       className={cn(
         "relative inline-flex items-center justify-center gap-2 rounded-[10px] px-5 py-2.5 text-sm font-semibold",
         "transition-[background-color,border-color] duration-200 will-change-transform",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent] focus-visible:ring-offset-2 focus-visible:ring-offset-[--b-bg]",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--b-bg)]",
         styles,
         className
       )}

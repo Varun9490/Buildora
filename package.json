@@ -16,9 +16,13 @@
     "registry:smoke": "tsx scripts/smoke-registry.ts",
     "registry:e2e": "tsx scripts/compile-e2e.ts",
     "registry:verify-install": "tsx scripts/verify-install.ts",
-    "registry:verify-install:matrix": "tsx scripts/verify-install.ts --matrix"
+    "registry:verify-install:matrix": "tsx scripts/verify-install.ts --matrix",
+    "registry:audit": "tsx scripts/audit-registry.ts"
   },
   "devDependencies": {
+    "@types/glob": "^9.0.0",
+    "culori": "^4.0.2",
+    "glob": "^13.0.6",
     "next": "^14.2.35",
     "tsx": "^4.19.0",
     "typescript": "^5.6.3"

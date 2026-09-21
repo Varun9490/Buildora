@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn, fuzzyScore } from "../utils";
+import { cn, fuzzyScore } from "@buildora/utils";
 
 export type SlashItem = { id: string; cmd: string; desc: string };
 
@@ -29,8 +29,8 @@ export function SlashCommands({
     .map((v) => v.x);
   React.useEffect(() => setActive(0), [q]);
   return (
-    <div className={cn("overflow-hidden rounded-2xl border border-white/10 bg-[#0d0f16]", className)}>
-      <div className="border-b border-white/10 p-2">
+    <div className={cn("overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)]", className)}>
+      <div className="border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-2">
         <label htmlFor="slash-input" className="sr-only">Slash command</label>
         <input
           id="slash-input"
@@ -55,15 +55,15 @@ export function SlashCommands({
               onMouseEnter={() => setActive(i)}
               className={cn(
                 "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left",
-                i === active ? "bg-[--b-accent] text-[--b-accent-foreground]" : "hover:bg-white/5"
+                i === active ? "bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)]" : "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]"
               )}
             >
               <span className="font-mono text-sm font-bold">{x.cmd}</span>
-              <span className={cn("text-xs", i === active ? "text-black/60" : "text-white/40")}>{x.desc}</span>
+              <span className={cn("text-xs", i === active ? "text-black/60" : "text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]")}>{x.desc}</span>
             </button>
           </li>
         ))}
-        {view.length === 0 && <li className="px-3 py-4 text-center text-sm text-white/40">No match.</li>}
+        {view.length === 0 && <li className="px-3 py-4 text-center text-sm text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">No match.</li>}
       </ul>
     </div>
   );

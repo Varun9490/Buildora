@@ -65,16 +65,16 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
         className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
       >
         <div className="flex-1">
-          <nav className="mb-4 flex items-center gap-2 font-mono text-[11px] font-medium text-[--b-muted] uppercase tracking-widest">
-            <Link href="/components" className="hover:text-[--b-text]">Components</Link>
+          <nav className="mb-4 flex items-center gap-2 font-mono text-[11px] font-medium text-[color:var(--b-muted)] uppercase tracking-widest">
+            <Link href="/components" className="hover:text-[color:var(--b-text)]">Components</Link>
             <span>/</span>
-            <span className="text-[--b-text]">{slug}</span>
+            <span className="text-[color:var(--b-text)]">{slug}</span>
           </nav>
           
           <h1 className="font-display text-4xl font-black tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
             {summary.name}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-[--b-muted] leading-relaxed">
+          <p className="mt-4 max-w-2xl text-lg text-[color:var(--b-muted)] leading-relaxed">
             {summary.description}
           </p>
           
@@ -89,7 +89,7 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
         <div className="flex shrink-0 gap-3">
             <button
               onClick={() => copy(item?.install ?? `pnpm dlx shadcn@latest add @buildora/${slug}`, "install")}
-              className="flex h-11 items-center gap-2 rounded-[10px] bg-[--b-accent] px-6 font-mono text-[12px] font-bold text-[--b-accent-foreground] transition-transform active:scale-95"
+              className="flex h-11 items-center gap-2 rounded-[10px] bg-[color:var(--b-accent)] px-6 font-mono text-[12px] font-bold text-[color:var(--b-accent-foreground)] transition-transform active:scale-95"
             >
              {copied === "install" ? "Copied" : "Install Component"}
            </button>
@@ -97,7 +97,7 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
               href={sourceHref}
               target="_blank"
               rel="noreferrer"
-              className="flex h-11 items-center gap-2 rounded-[10px] border border-[--b-border] bg-[--b-surface] px-6 font-mono text-[12px] font-bold text-[--b-text] transition-colors hover:border-[--b-border-hover]"
+              className="flex h-11 items-center gap-2 rounded-[10px] border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-6 font-mono text-[12px] font-bold text-[color:var(--b-text)] transition-colors hover:border-[color:var(--b-border-hover)]"
             >
               Source
             </a>
@@ -113,7 +113,7 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
            className="min-w-0"
         >
           {/* Tabs */}
-          <div className="mb-4 flex items-center justify-between border-b border-[--b-border] pb-4">
+          <div className="mb-4 flex items-center justify-between border-b border-[color:var(--b-border)] pb-4">
              <div className="flex gap-6">
                 <motion.button
                   onClick={() => setActiveTab("preview")}
@@ -121,7 +121,7 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
                   transition={{ type: "spring", stiffness: 100, damping: 20 }}
                   className={cn(
                     "relative pb-4 font-mono text-[12px] font-bold uppercase tracking-widest transition-colors",
-                    activeTab === "preview" ? "text-[--b-accent]" : "text-[--b-muted] hover:text-[--b-text]"
+                    activeTab === "preview" ? "text-[color:var(--b-accent)]" : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text)]"
                   )}
                 >
                   Preview
@@ -129,7 +129,7 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
                     <motion.div
                       layoutId="detail-tab-underline"
                       transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8 }}
-                      className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[--b-accent]"
+                      className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[color:var(--b-accent)]"
                     />
                   )}
                 </motion.button>
@@ -139,7 +139,7 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
                   transition={{ type: "spring", stiffness: 100, damping: 20 }}
                   className={cn(
                     "relative pb-4 font-mono text-[12px] font-bold uppercase tracking-widest transition-colors",
-                    activeTab === "code" ? "text-[--b-accent]" : "text-[--b-muted] hover:text-[--b-text]"
+                    activeTab === "code" ? "text-[color:var(--b-accent)]" : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text)]"
                   )}
                 >
                   Code
@@ -147,7 +147,7 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
                     <motion.div
                       layoutId="detail-tab-underline"
                       transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8 }}
-                      className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[--b-accent]"
+                      className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[color:var(--b-accent)]"
                     />
                   )}
                 </motion.button>
@@ -155,11 +155,11 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
           </div>
 
           {/* Tab Content — theme-aware preview surface */}
-          <div className="relative rounded-2xl border border-[--b-border] bg-[--b-panel] shadow-card overflow-hidden">
+          <div className="relative rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] shadow-card overflow-hidden">
               
               {/* Window header — real metadata, not decorative traffic lights */}
-          <div className="flex h-12 items-center justify-between border-b border-[--b-border] bg-[--b-surface] px-4">
-            <span className="font-mono text-[11px] text-[--b-muted]">@buildora/{slug}</span>
+          <div className="flex h-12 items-center justify-between border-b border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-4">
+            <span className="font-mono text-[11px] text-[color:var(--b-muted)]">@buildora/{slug}</span>
             <span className="b-badge">{activeTab === "preview" ? "live preview" : frameworkLabels[framework]}</span>
           </div>
 
@@ -172,7 +172,7 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.25, ease: "easeOut" }}
-                      className="absolute inset-0 flex items-center justify-center p-8 bg-[--b-panel]"
+                      className="absolute inset-0 flex items-center justify-center p-8 bg-[color:var(--b-panel)]"
                     >
                       <ComponentRenderer slug={slug} controls={controls} />
                     </motion.div>
@@ -183,12 +183,12 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.25, ease: "easeOut" }}
-                      className="absolute inset-0 h-full w-full overflow-auto scroll-sleek bg-[--b-panel]"
+                      className="absolute inset-0 h-full w-full overflow-auto scroll-sleek bg-[color:var(--b-panel)]"
                     >
                       <div className="p-4 relative">
                           {ex.notes && (
-                            <p className="mb-3 rounded-lg border border-[--b-border] bg-[--b-surface] px-3 py-2 font-mono text-[11px] leading-relaxed text-[--b-muted]">
-                              <span className="font-bold text-[--b-text-secondary]">React.</span> {ex.notes}
+                            <p className="mb-3 rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-2 font-mono text-[11px] leading-relaxed text-[color:var(--b-muted)]">
+                              <span className="font-bold text-[color:var(--b-text-secondary)]">React.</span> {ex.notes}
                             </p>
                           )}
 

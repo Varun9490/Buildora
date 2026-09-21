@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 const StepNavContext = React.createContext<{
   currentStep: number;
@@ -106,7 +106,7 @@ const StepNavItem = React.forwardRef<HTMLDivElement, StepNavItemProps>(
           className={cn(
             "flex items-center gap-2 transition-colors",
             isClickable ? "cursor-pointer" : "cursor-not-allowed",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff4f]/50 rounded-lg",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)] rounded-lg",
             !reducedMotion && "duration-200",
             className
           )}
@@ -117,10 +117,10 @@ const StepNavItem = React.forwardRef<HTMLDivElement, StepNavItemProps>(
               "flex h-8 w-8 items-center justify-center rounded-full border-2 text-sm font-semibold transition-colors",
               !reducedMotion && "duration-200",
               isCompleted
-                ? "border-[--b-accent] bg-[--b-accent] text-[--b-accent-foreground]"
+                ? "border-[color:var(--b-accent)] bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)]"
                 : isActive
-                  ? "border-[--b-accent] bg-[#d4ff4f]/10 text-[--b-accent]"
-                  : "border-white/20 bg-transparent text-white/40"
+                  ? "border-[color:var(--b-accent)] bg-[color-mix(in_oklab,var(--b-accent)_10%,transparent)] text-[color:var(--b-accent)]"
+                  : "border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] bg-transparent text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]"
             )}
           >
             {icon || (isCompleted ? (
@@ -136,7 +136,7 @@ const StepNavItem = React.forwardRef<HTMLDivElement, StepNavItemProps>(
               className={cn(
                 "text-sm font-medium transition-colors",
                 !reducedMotion && "duration-200",
-                isActive ? "text-white" : isCompleted ? "text-white/60" : "text-white/40"
+                isActive ? "text-[color:var(--b-text)]" : isCompleted ? "text-[color-mix(in_oklab,var(--b-text)_60%,transparent)]" : "text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]"
               )}
             >
               {title}
@@ -148,7 +148,7 @@ const StepNavItem = React.forwardRef<HTMLDivElement, StepNavItemProps>(
             className={cn(
               "mx-2 h-0.5 w-8 transition-colors",
               !reducedMotion && "duration-200",
-              isCompleted ? "bg-[--b-accent]" : "bg-white/10"
+              isCompleted ? "bg-[color:var(--b-accent)]" : "bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]"
             )}
           />
         )}

@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 import { createPortal } from "react-dom";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type SheetSide = "left" | "right" | "top" | "bottom";
 
@@ -133,7 +133,7 @@ export function Sheet({
       <div
         ref={sheetRef}
         className={cn(
-          "absolute overflow-auto border border-white/10 bg-[#0d0f16] shadow-2xl backdrop-blur-xl",
+          "absolute overflow-auto border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] shadow-2xl backdrop-blur-xl",
           side === "left" && "rounded-r-2xl",
           side === "right" && "rounded-l-2xl",
           side === "top" && "rounded-b-2xl",
@@ -193,7 +193,7 @@ export function Sheet({
 
 export function SheetHeader({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("border-b border-white/10 px-6 py-4", className)}>
+    <div className={cn("border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] px-6 py-4", className)}>
       {children}
     </div>
   );
@@ -201,7 +201,7 @@ export function SheetHeader({ children, className }: { children: React.ReactNode
 
 export function SheetTitle({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <h2 className={cn("text-lg font-semibold text-white", className)}>
+    <h2 className={cn("text-lg font-semibold text-[color:var(--b-text)]", className)}>
       {children}
     </h2>
   );
@@ -217,7 +217,7 @@ export function SheetContent({ children, className }: { children: React.ReactNod
 
 export function SheetFooter({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("border-t border-white/10 px-6 py-4", className)}>
+    <div className={cn("border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] px-6 py-4", className)}>
       {children}
     </div>
   );

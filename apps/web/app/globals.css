@@ -91,7 +91,7 @@ body {
 
 @layer base {
   * {
-    @apply border-[--b-border];
+    @apply border-[color:var(--b-border)];
   }
   h1, h2, h3 {
     font-family: var(--font-display), "Space Grotesk", system-ui, sans-serif;

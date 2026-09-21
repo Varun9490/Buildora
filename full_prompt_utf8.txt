@@ -1,0 +1,123 @@
+<USER_REQUEST>
+# Buildora: Trust, Correctness & World-Class Polish
+
+
+
+**Agent brief. Paste into Claude Code / Cursor / any coding agent opened at the repo root.**
+
+
+
+**How to use**
+
+- Full run: paste this whole file.
+
+- Recommended: paste **Part A** plus **one Phase at a time**. Every phase ends with a gate. Do not start the next phase until the gate is green and the phase report is written.
+
+- Findings marked **(verify)** were inferred from reading HTML and source, not from running the code. Reproduce them before changing anything.
+
+
+
+---
+
+
+
+# PART A: BRIEF
+
+
+
+## A1. Mission
+
+
+
+You are a senior design engineer and developer-experience engineer working in the Buildora monorepo (`https://github.com/Varun9490/Buildora`, deployed at `https://buildora-hazel.vercel.app`).
+
+
+
+Mission, in priority order:
+
+1. **Make every install work.** Every registry item must install and compile in a fresh project.
+
+2. **Make every claim true.** Anything the site or README says must be backed by code or a generated report, or be removed.
+
+3. **Bring the flagship components to production quality**: correct physics, real semantics, accessibility, theming.
+
+4. **Add the layers top libraries have**: previews, docs anatomy, blocks and templates, and an agent-readable surface (llms.txt, markdown routes, MCP).
+
+
+
+Truth first, polish second. The reference bar is Aceternity UI, React Bits, Watermelon UI and Rare UI. Copy their *practices* (previews for everything, layered blocks and templates, machine-readable surface, one sharp promise), never their code.
+
+
+
+## A2. Context you can rely on
+
+
+
+- Monorepo (pnpm). Per the README:
+
+  - `apps/web`: Next.js site (discovery, playground, docs)
+
+  - `packages/tokens`, `packages/utils`, `packages/hooks`, `packages/animations`: shared packages
+
+  - `packages/components`: React + TypeScript implementations, at `packages/components/src/<slug>/index.tsx`
+
+  - `registry/components/*.json` (source), `registry/registry.json` (index), `registry/generated/*.json` (built shadcn items)
+
+  - `examples/`, `docs/`, `
+<truncated 56390 bytes>
+| BLOCKED
+
+- Findings: F-xx ΓåÆ FIXED | NOT REPRODUCED | DEFERRED (reason)
+
+- Commits: <sha> <message> (one per task)
+
+- Evidence: commands run + key output (paths to reports)
+
+- Decisions made: <anything not covered by A4, with reasoning>
+
+- Owner actions needed: <domain, env vars, GitHub settings, provenance answers, ΓÇª>
+
+- Risks / follow-ups
+
+```
+
+
+
+## C3. Final report
+
+List every A5 finding with its final status and evidence link; the A7 checklist with pass/fail; measured numbers (`size.json`, `axe.json`, `contrast.json`, `perf.json` summaries); everything that still needs the owner.
+
+
+
+## C4. Do NOT
+
+
+
+- Do not claim framework support, accessibility levels, performance or usage numbers that no generated report supports.
+
+- Do not paste third-party component code or copy another library's implementation.
+
+- Do not change slugs, remove components, or delete tool/agent directories.
+
+- Do not add dependencies outside A6 without asking.
+
+- Do not skip a gate or merge on red CI.
+
+- Do not "fix" a finding that does not reproduce. Report it instead.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-21T17:24:24+05:30.
+
+The user's current state is as follows:
+Other open documents:
+- c:\Users\varun\Desktop\Buildora\scripts\catalog.ts (LANGUAGE_TYPESCRIPT)
+- c:\Users\varun\Desktop\Buildora\apps\web\components\ThemeCustomizer.tsx (LANGUAGE_TSX)
+- c:\Users\varun\Desktop\Buildora\apps\web\app\layout.tsx (LANGUAGE_TSX)
+- c:\Users\varun\Desktop\Buildora\packages\components\src\overlays\sheet.tsx (LANGUAGE_TSX)
+- c:\Users\varun\Desktop\Buildora\packages\components\src\command\index.tsx (LANGUAGE_TSX)
+Running terminal commands:
+- npm run dev  (in c:\Users\varun\Desktop\Buildora, running for 20m6s)
+</ADDITIONAL_METADATA>
+<USER_SETTINGS_CHANGE>
+The user changed setting `Model Selection` from None to Gemini 3.1 Pro (High). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+</USER_SETTINGS_CHANGE>

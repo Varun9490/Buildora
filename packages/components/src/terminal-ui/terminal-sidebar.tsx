@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 import { type TerminalColorScheme } from "./terminal-theme";
 
 export interface FileTreeNode {
@@ -69,7 +69,7 @@ function FileTreeItem({
       <div
         className={cn(
           "flex items-center gap-1 px-1 py-0.5 rounded cursor-pointer",
-          "hover:bg-white/5 transition-colors"
+          "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] transition-colors"
         )}
         style={{
           paddingLeft: `${8 + depth * 12}px`,
@@ -145,7 +145,7 @@ export function TerminalSidebar({
       >
         <button
           type="button"
-          className="p-2 rounded hover:bg-white/5"
+          className="p-2 rounded hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]"
           style={{ color: theme.foreground }}
           onClick={() => onCollapseChange?.(false)}
           aria-label="Expand sidebar"
@@ -181,7 +181,7 @@ export function TerminalSidebar({
         </span>
         <button
           type="button"
-          className="p-1 rounded hover:bg-white/5"
+          className="p-1 rounded hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]"
           style={{ color: theme.brightBlack }}
           onClick={() => onCollapseChange?.(true)}
           aria-label="Collapse sidebar"
@@ -239,7 +239,7 @@ export function TerminalSidebar({
                   <div
                     className={cn(
                       "flex items-center gap-2 px-3 py-1.5 cursor-pointer",
-                      activeSession === session.id && "bg-white/10"
+                      activeSession === session.id && "bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]"
                     )}
                     onClick={() => onSessionClick?.(session.id)}
                     role="button"
@@ -260,7 +260,7 @@ export function TerminalSidebar({
                     {onSessionTerminate && (
                       <button
                         type="button"
-                        className="p-0.5 rounded opacity-0 hover:bg-white/10 group-hover:opacity-100 focus:opacity-100"
+                        className="p-0.5 rounded opacity-0 hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] group-hover:opacity-100 focus:opacity-100"
                         style={{ color: theme.red }}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -288,7 +288,7 @@ export function TerminalSidebar({
               processes.map((proc) => (
                 <li key={proc.id}>
                   <div
-                    className="flex items-center gap-2 px-3 py-1.5 cursor-pointer hover:bg-white/5"
+                    className="flex items-center gap-2 px-3 py-1.5 cursor-pointer hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]"
                     onClick={() => proc.pid && onProcessClick?.(proc.pid)}
                     role="button"
                     tabIndex={0}
@@ -328,7 +328,7 @@ export function TerminalSidebar({
             type="button"
             className={cn(
               "flex items-center gap-1.5 px-2 py-1 text-xs rounded transition-colors",
-              "hover:bg-white/10 focus:bg-white/10"
+              "hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] focus:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]"
             )}
             style={{ color: theme.foreground }}
             onClick={() => onQuickAction("new")}
@@ -342,7 +342,7 @@ export function TerminalSidebar({
             type="button"
             className={cn(
               "flex items-center gap-1.5 px-2 py-1 text-xs rounded transition-colors",
-              "hover:bg-white/10 focus:bg-white/10"
+              "hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] focus:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]"
             )}
             style={{ color: theme.foreground }}
             onClick={() => onQuickAction("split")}
@@ -356,7 +356,7 @@ export function TerminalSidebar({
             type="button"
             className={cn(
               "flex items-center gap-1.5 px-2 py-1 text-xs rounded transition-colors",
-              "hover:bg-white/10 focus:bg-white/10"
+              "hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] focus:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]"
             )}
             style={{ color: theme.foreground }}
             onClick={() => onQuickAction("settings")}

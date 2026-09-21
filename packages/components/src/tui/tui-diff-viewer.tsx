@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUIDiffHunk {
   type: "add" | "delete" | "context" | "header";
@@ -45,7 +45,7 @@ export function TUIDiffViewer({
   const lineStyles = {
     add: "bg-green-500/10 text-green-400",
     delete: "bg-red-500/10 text-red-400",
-    context: "text-white/70",
+    context: "text-[color-mix(in_oklab,var(--b-text)_70%,transparent)]",
     header: "bg-cyan-500/10 text-cyan-400",
   };
 
@@ -69,8 +69,8 @@ export function TUIDiffViewer({
         tabIndex={0}
       >
         {title && (
-          <div className="flex border-b border-white/10">
-            <div className="flex-1 px-2 py-1 text-white/50 text-[10px] truncate">
+          <div className="flex border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]">
+            <div className="flex-1 px-2 py-1 text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] text-[10px] truncate">
               {title.left || "Original"}
             </div>
           </div>
@@ -81,11 +81,11 @@ export function TUIDiffViewer({
             className={cn(
               "flex px-2 py-0.5",
               lineStyles[hunk.type],
-              focusedIndex === i && "bg-white/5"
+              focusedIndex === i && "bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]"
             )}
           >
             {showLineNumbers && hunk.type !== "header" && (
-              <span className="w-8 text-right pr-2 text-white/30 shrink-0 select-none">
+              <span className="w-8 text-right pr-2 text-[color-mix(in_oklab,var(--b-text)_30%,transparent)] shrink-0 select-none">
                 {hunk.oldLine ?? hunk.newLine}
               </span>
             )}
@@ -114,17 +114,17 @@ export function TUIDiffViewer({
       tabIndex={0}
     >
       {title && (
-        <div className="flex border-b border-white/10">
-          <div className="flex-1 px-2 py-1 text-white/50 text-[10px] truncate border-r border-white/10">
+        <div className="flex border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]">
+          <div className="flex-1 px-2 py-1 text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] text-[10px] truncate border-r border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]">
             {title.left || "Original"}
           </div>
-          <div className="flex-1 px-2 py-1 text-white/50 text-[10px] truncate">
+          <div className="flex-1 px-2 py-1 text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] text-[10px] truncate">
             {title.right || "Modified"}
           </div>
         </div>
       )}
       <div className="flex">
-        <div className="flex-1 border-r border-white/10 overflow-auto">
+        <div className="flex-1 border-r border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] overflow-auto">
           {leftHunks.map((hunk, i) => (
             <div
               key={`left-${i}`}
@@ -135,7 +135,7 @@ export function TUIDiffViewer({
               )}
             >
               {showLineNumbers && hunk.type !== "header" && (
-                <span className="w-8 text-right pr-1 text-white/30 shrink-0 select-none">
+                <span className="w-8 text-right pr-1 text-[color-mix(in_oklab,var(--b-text)_30%,transparent)] shrink-0 select-none">
                   {hunk.oldLine ?? ""}
                 </span>
               )}
@@ -157,7 +157,7 @@ export function TUIDiffViewer({
               )}
             >
               {showLineNumbers && hunk.type !== "header" && (
-                <span className="w-8 text-right pr-1 text-white/30 shrink-0 select-none">
+                <span className="w-8 text-right pr-1 text-[color-mix(in_oklab,var(--b-text)_30%,transparent)] shrink-0 select-none">
                   {hunk.newLine ?? ""}
                 </span>
               )}

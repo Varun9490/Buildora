@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUIHeaderProps {
   title: string;
@@ -13,7 +13,7 @@ export interface TUIHeaderProps {
 }
 
 const headerColors = {
-  default: "bg-[#0a0c10] border-white/10",
+  default: "bg-[#0a0c10] border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]",
   accent: "bg-[#0a1520] border-cyan-500/20",
   success: "bg-[#0a1510] border-green-500/20",
   warning: "bg-[#15100a] border-yellow-500/20",
@@ -21,7 +21,7 @@ const headerColors = {
 };
 
 const titleColors = {
-  default: "text-white/90",
+  default: "text-[color-mix(in_oklab,var(--b-text)_90%,transparent)]",
   accent: "text-cyan-400",
   success: "text-green-400",
   warning: "text-yellow-400",
@@ -52,7 +52,7 @@ export function TUIHeader({
             {title}
           </h1>
           {subtitle && (
-            <span className="text-[11px] text-white/40">{subtitle}</span>
+            <span className="text-[11px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">{subtitle}</span>
           )}
         </div>
       </div>

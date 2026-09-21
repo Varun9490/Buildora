@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
-import { useReducedMotion } from "../../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type CheckboxProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> & {
   label?: string;
@@ -44,10 +44,10 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           />
           <div
             className={cn(
-              "h-5 w-5 rounded-md border border-white/20 bg-white/5 transition-all",
+              "h-5 w-5 rounded-md border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] transition-all",
               !reducedMotion && "duration-200",
-              "peer-focus-visible:ring-2 peer-focus-visible:ring-[#d4ff4f]/50 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-[#08090d]",
-              "peer-checked:bg-[--b-accent] peer-checked:border-[--b-accent] peer-checked:bg-opacity-100",
+              "peer-focus-visible:ring-2 peer-focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)] peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-[#08090d]",
+              "peer-checked:bg-[color:var(--b-accent)] peer-checked:border-[color:var(--b-accent)] peer-checked:bg-opacity-100",
               className
             )}
           >
@@ -73,7 +73,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           </div>
         </div>
         {label && (
-          <span className="text-sm text-white/70">{label}</span>
+          <span className="text-sm text-[color-mix(in_oklab,var(--b-text)_70%,transparent)]">{label}</span>
         )}
       </label>
     );

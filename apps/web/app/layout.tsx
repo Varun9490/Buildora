@@ -26,7 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://buildora.dev"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://buildora-hazel.vercel.app"),
   title: "Buildora — One system. Any product.",
   description:
     "Universal, theme-aware React components. Light + dark, swappable accent, accessible. Build. Remix. Ship.",
@@ -51,6 +51,7 @@ function themeInit() {
     const mq = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     const resolved = mode === "system" ? mq : mode;
     document.documentElement.setAttribute("data-theme", resolved);
+    document.documentElement.setAttribute("data-accent", accent);
     document.documentElement.classList.toggle("dark", resolved === "dark");
   } catch {}
 }
@@ -70,11 +71,11 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: `(${themeInit.toString()})()` }} />
       </head>
-      <body className="min-h-screen bg-[--b-bg] font-sans text-[--b-text] antialiased">
+      <body className="min-h-screen bg-[color:var(--b-bg)] font-sans text-[color:var(--b-text)] antialiased">
         <ThemeProvider>
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-[100] focus:rounded-lg focus:bg-[--b-accent] focus:px-3 focus:py-1 focus:text-[--b-accent-foreground]"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-[100] focus:rounded-lg focus:bg-[color:var(--b-accent)] focus:px-3 focus:py-1 focus:text-[color:var(--b-accent-foreground)]"
           >
             Skip to content
           </a>

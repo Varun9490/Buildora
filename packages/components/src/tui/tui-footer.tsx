@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUIFooterProps {
   shortcuts?: Array<{ key: string; label: string }>;
@@ -20,7 +20,7 @@ export function TUIFooter({ shortcuts, message, className }: TUIFooterProps) {
   return (
     <footer
       className={cn(
-        "flex items-center justify-between px-3 py-1.5 bg-[#0a0c10] border-t border-white/10 font-mono text-[11px]",
+        "flex items-center justify-between px-3 py-1.5 bg-[#0a0c10] border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] font-mono text-[11px]",
         className
       )}
       role="contentinfo"
@@ -28,10 +28,10 @@ export function TUIFooter({ shortcuts, message, className }: TUIFooterProps) {
       <div className="flex items-center gap-4">
         {shortcuts?.map((s, i) => (
           <span key={i} className="flex items-center gap-1">
-            <kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-white/70">
+            <kbd className="px-1.5 py-0.5 bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded text-[color-mix(in_oklab,var(--b-text)_70%,transparent)]">
               {s.key}
             </kbd>
-            <span className="text-white/40">{s.label}</span>
+            <span className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">{s.label}</span>
           </span>
         ))}
       </div>

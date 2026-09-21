@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type GlassCardProps = React.HTMLAttributes<HTMLDivElement> & {
   blurAmount?: "sm" | "md" | "lg" | "xl";
@@ -35,7 +35,7 @@ export function GlassCard({
         "group relative rounded-2xl border p-6",
         "transition-all duration-300",
         glowEffect && "hover:shadow-[0_0_40px_rgba(212,255,79,0.15)]",
-        "focus-within:ring-2 focus-within:ring-[#d4ff4f]/50",
+        "focus-within:ring-2 focus-within:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
         className
       )}
       style={{

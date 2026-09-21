@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
+import { cn } from "@buildora/utils";
 
 export type TooltipProps = React.HTMLAttributes<HTMLDivElement> & {
   content: React.ReactNode;
@@ -49,10 +49,10 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     };
 
     const arrowStyles: Record<string, string> = {
-      top: "top-full left-1/2 -translate-x-1/2 border-t-white/10 border-l-transparent border-r-transparent border-b-transparent",
-      right: "right-full top-1/2 -translate-y-1/2 border-r-white/10 border-t-transparent border-b-transparent border-l-transparent",
-      bottom: "bottom-full left-1/2 -translate-x-1/2 border-b-white/10 border-l-transparent border-r-transparent border-t-transparent",
-      left: "left-full top-1/2 -translate-y-1/2 border-l-white/10 border-t-transparent border-b-transparent border-r-transparent",
+      top: "top-full left-1/2 -translate-x-1/2 border-t-[color-mix(in_oklab,var(--b-text)_10%,transparent)] border-l-transparent border-r-transparent border-b-transparent",
+      right: "right-full top-1/2 -translate-y-1/2 border-r-[color-mix(in_oklab,var(--b-text)_10%,transparent)] border-t-transparent border-b-transparent border-l-transparent",
+      bottom: "bottom-full left-1/2 -translate-x-1/2 border-b-[color-mix(in_oklab,var(--b-text)_10%,transparent)] border-l-transparent border-r-transparent border-t-transparent",
+      left: "left-full top-1/2 -translate-y-1/2 border-l-[color-mix(in_oklab,var(--b-text)_10%,transparent)] border-t-transparent border-b-transparent border-r-transparent",
     };
 
     React.useEffect(() => {
@@ -78,8 +78,8 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           <div
             role="tooltip"
             className={cn(
-              "absolute z-50 px-3 py-2 text-xs font-medium text-white",
-              "bg-[#08090d] border border-white/10 rounded-lg shadow-xl",
+              "absolute z-50 px-3 py-2 text-xs font-medium text-[color:var(--b-text)]",
+              "bg-[#08090d] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded-lg shadow-xl",
               "whitespace-nowrap",
               "animate-in fade-in-0 zoom-in-95 duration-200",
               sideStyles[side],

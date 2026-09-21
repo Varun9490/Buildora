@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
-import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
+import { motion, AnimatePresence } from "motion/react";
 
 const NavbarContext = React.createContext<{ id: string } | null>(null);
 
@@ -18,8 +18,8 @@ const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
           ref={ref}
           role="banner"
           className={cn(
-            "sticky top-0 z-50 w-full border-b border-white/10 bg-[#0d0f16]/80 backdrop-blur-xl",
-            "supports-[backdrop-filter]:bg-[#0d0f16]/60",
+            "sticky top-0 z-50 w-full border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)]/80 backdrop-blur-xl",
+            "supports-[backdrop-filter]:bg-[var(--b-bg)]/60",
             className
           )}
           {...props}
@@ -94,9 +94,9 @@ const NavbarItem = React.forwardRef<HTMLAnchorElement, NavbarItemProps>(
         aria-current={active ? "page" : undefined}
         className={cn(
           "relative px-4 py-2 text-sm font-medium transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[--b-background]",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--b-background)]",
           "rounded-full",
-          active ? "text-white" : "text-white/60 hover:text-white",
+          active ? "text-[color:var(--b-text)]" : "text-[color-mix(in_oklab,var(--b-text)_60%,transparent)] hover:text-[color:var(--b-text)]",
           !reducedMotion && "duration-200",
           className
         )}
@@ -106,7 +106,7 @@ const NavbarItem = React.forwardRef<HTMLAnchorElement, NavbarItemProps>(
           {!reducedMotion && active && (
             <motion.div
               layoutId={layoutId}
-              className="absolute inset-0 rounded-full bg-white/10 border border-white/20"
+              className="absolute inset-0 rounded-full bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

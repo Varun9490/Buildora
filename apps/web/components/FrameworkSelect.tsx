@@ -7,10 +7,10 @@ import { cn } from "@buildora/utils";
 export type FrameworkStatus = "Full" | "Partial" | "Experimental" | "Unsupported";
 
 const dot: Record<FrameworkStatus, string> = {
-  Full: "bg-[--b-accent]",
-  Partial: "bg-[--b-warning]",
-  Experimental: "bg-[--b-muted]",
-  Unsupported: "bg-[--b-border-hover]",
+  Full: "bg-[color:var(--b-accent)]",
+  Partial: "bg-[color:var(--b-warning)]",
+  Experimental: "bg-[color:var(--b-muted)]",
+  Unsupported: "bg-[color:var(--b-border-hover)]",
 };
 
 /**
@@ -84,10 +84,10 @@ export function FrameworkSelect({
           }
         }}
         className={cn(
-          "flex items-center gap-2 rounded-lg border border-[--b-border] bg-[--b-surface] px-3 py-1.5",
-          "font-mono text-[11px] font-bold uppercase tracking-wider text-[--b-text]",
-          "transition-colors hover:border-[--b-border-hover]",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent]"
+          "flex items-center gap-2 rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-1.5",
+          "font-mono text-[11px] font-bold uppercase tracking-wider text-[color:var(--b-text)]",
+          "transition-colors hover:border-[color:var(--b-border-hover)]",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)]"
         )}
       >
         <span aria-hidden className={cn("h-2 w-2 rounded-full", dot[current])} />
@@ -96,7 +96,7 @@ export function FrameworkSelect({
           aria-hidden
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ type: "spring", stiffness: 400, damping: 28 }}
-          className="h-3 w-3 text-[--b-muted]"
+          className="h-3 w-3 text-[color:var(--b-muted)]"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -115,7 +115,7 @@ export function FrameworkSelect({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: -4 }}
             transition={{ type: "spring", stiffness: 420, damping: 32 }}
-            className="scroll-sleek absolute right-0 z-30 mt-2 max-h-64 w-56 origin-top overflow-y-auto rounded-xl border border-[--b-border] bg-[--b-elevated] p-1.5 shadow-card"
+            className="scroll-sleek absolute right-0 z-30 mt-2 max-h-64 w-56 origin-top overflow-y-auto rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-elevated)] p-1.5 shadow-card"
           >
             {frameworks.map((f, i) => {
               const selected = f === value;
@@ -151,19 +151,19 @@ export function FrameworkSelect({
                     }}
                     className={cn(
                       "flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left transition-colors",
-                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[--b-accent]",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[color:var(--b-accent)]",
                       selected
-                        ? "bg-[--b-accent-muted] text-[--b-text]"
-                        : "text-[--b-text-secondary] hover:bg-[--b-surface] hover:text-[--b-text]"
+                        ? "bg-[color:var(--b-accent-muted)] text-[color:var(--b-text)]"
+                        : "text-[color:var(--b-text-secondary)] hover:bg-[color:var(--b-surface)] hover:text-[color:var(--b-text)]"
                     )}
                   >
                     <span aria-hidden className={cn("h-2 w-2 shrink-0 rounded-full", dot[status])} />
                     <span className="font-mono text-[11px] font-bold uppercase tracking-wider">
                       {labels[f] ?? f}
                     </span>
-                    <span className="ml-auto font-mono text-[10px] text-[--b-muted]">{status}</span>
+                    <span className="ml-auto font-mono text-[10px] text-[color:var(--b-muted)]">{status}</span>
                     {selected && (
-                      <svg aria-hidden className="h-3.5 w-3.5 text-[--b-accent]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <svg aria-hidden className="h-3.5 w-3.5 text-[color:var(--b-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     )}

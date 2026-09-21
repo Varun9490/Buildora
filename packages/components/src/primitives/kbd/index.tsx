@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
+import { cn } from "@buildora/utils";
 
 export type KbdSize = "default" | "sm" | "lg";
 
@@ -22,7 +22,7 @@ const Kbd = React.forwardRef<HTMLElement, KbdProps>(
         ref={ref}
         className={cn(
           "inline-flex items-center justify-center rounded-md font-mono font-medium",
-          "bg-white/5 text-white/70 border border-white/10",
+          "bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] text-[color-mix(in_oklab,var(--b-text)_70%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]",
           "shadow-[0_2px_0_0_rgba(255,255,255,0.05)]",
           sizeStyles[size],
           "mx-0.5 first:ml-0 last:mr-0",
@@ -51,7 +51,7 @@ const KbdShortcut = React.forwardRef<HTMLDivElement, KbdShortcutProps>(
           <React.Fragment key={index}>
             <Kbd size={size}>{key}</Kbd>
             {index < keys.length - 1 && (
-              <span className="mx-0.5 text-white/30">+</span>
+              <span className="mx-0.5 text-[color-mix(in_oklab,var(--b-text)_30%,transparent)]">+</span>
             )}
           </React.Fragment>
         ))}

@@ -81,7 +81,7 @@ export function CodeViewer({
 
   if (!file)
     return (
-      <p className="text-sm text-[--b-muted]">
+      <p className="text-sm text-[color:var(--b-muted)]">
         No code for this framework (Unsupported).
       </p>
     );
@@ -95,13 +95,13 @@ export function CodeViewer({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-lg border border-[--b-border] bg-[--b-panel]",
+        "overflow-hidden rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-panel)]",
         className
       )}
     >
       {/* Tab Bar */}
       <div
-        className="scroll-sleek flex flex-wrap items-center gap-1 overflow-x-auto border-b border-[--b-border] bg-[--b-panel] px-2 py-1.5"
+        className="scroll-sleek flex flex-wrap items-center gap-1 overflow-x-auto border-b border-[color:var(--b-border)] bg-[color:var(--b-panel)] px-2 py-1.5"
         role="tablist"
         aria-label="Files"
       >
@@ -114,8 +114,8 @@ export function CodeViewer({
             className={cn(
               "rounded-md px-2.5 py-1 font-mono text-[11px] transition-colors",
               i === idx
-                ? "bg-[--b-surface] text-[--b-text]"
-                : "text-[--b-muted] hover:text-[--b-text-secondary] hover:bg-[--b-surface]"
+                ? "bg-[color:var(--b-surface)] text-[color:var(--b-text)]"
+                : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)] hover:bg-[color:var(--b-surface)]"
             )}
           >
             {f.path}
@@ -127,18 +127,18 @@ export function CodeViewer({
             onChange={(e) => setQ(e.target.value)}
             placeholder="Find..."
             aria-label="Find in code"
-            className="w-24 rounded-md border border-[--b-border] bg-[--b-surface] px-2 py-1 font-mono text-[11px] text-[--b-text-secondary] outline-none placeholder:text-[--b-muted] focus:border-[--b-accent]"
+            className="w-24 rounded-md border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-2 py-1 font-mono text-[11px] text-[color:var(--b-text-secondary)] outline-none placeholder:text-[color:var(--b-muted)] focus:border-[color:var(--b-accent)]"
           />
           <button
             onClick={() => setExpanded((e) => !e)}
-            className="rounded-md border border-[--b-border] px-2 py-1 font-mono text-[11px] text-[--b-text-secondary] hover:bg-[--b-surface]"
+            className="rounded-md border border-[color:var(--b-border)] px-2 py-1 font-mono text-[11px] text-[color:var(--b-text-secondary)] hover:bg-[color:var(--b-surface)]"
             aria-expanded={expanded}
           >
             {expanded ? "Collapse" : `Expand (${lines.length})`}
           </button>
           <button
             onClick={copy}
-            className="rounded-md bg-[--b-accent] px-3 py-1 font-mono text-[11px] font-bold text-[--b-accent-foreground] transition-transform active:scale-95"
+            className="rounded-md bg-[color:var(--b-accent)] px-3 py-1 font-mono text-[11px] font-bold text-[color:var(--b-accent-foreground)] transition-transform active:scale-95"
           >
             {copied ? "Copied" : "Copy"}
           </button>
@@ -166,7 +166,7 @@ export function CodeViewer({
                 )}
               >
                 {/* Line number gutter */}
-                <span className="w-12 shrink-0 select-none border-r border-[--b-border] pr-3 text-right font-mono text-[11px] leading-[1.8] text-[--b-muted]">
+                <span className="w-12 shrink-0 select-none border-r border-[color:var(--b-border)] pr-3 text-right font-mono text-[11px] leading-[1.8] text-[color:var(--b-muted)]">
                   {i + 1}
                 </span>
                 {/* Code content */}
@@ -180,7 +180,7 @@ export function CodeViewer({
         {!expanded && lines.length > 60 && (
           <button
             onClick={() => setExpanded(true)}
-            className="block w-full border-t border-[--b-border] py-2.5 text-center font-mono text-[11px] text-[--b-muted] transition-colors hover:text-[--b-text-secondary]"
+            className="block w-full border-t border-[color:var(--b-border)] py-2.5 text-center font-mono text-[11px] text-[color:var(--b-muted)] transition-colors hover:text-[color:var(--b-text-secondary)]"
           >
             + {lines.length - 60} more lines — Click to expand
           </button>

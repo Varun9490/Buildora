@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export function AIReviewEdit({
   before = "radius={80}",
@@ -19,16 +19,16 @@ export function AIReviewEdit({
   const [state, setState] = React.useState<"pending" | "accepted" | "rejected" | "edited">("pending");
   const [edit, setEdit] = React.useState(after);
   return (
-    <div className={cn("overflow-hidden rounded-2xl border border-white/10 bg-[#0d0f16]", className)}>
-      <div className="flex items-center justify-between border-b border-white/10 px-3 py-2">
-        <p className="font-mono text-xs text-white/50">AI suggestion</p>
+    <div className={cn("overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)]", className)}>
+      <div className="flex items-center justify-between border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] px-3 py-2">
+        <p className="font-mono text-xs text-[color-mix(in_oklab,var(--b-text)_50%,transparent)]">AI suggestion</p>
         <span
           className={cn(
             "rounded px-2 py-0.5 font-mono text-[11px]",
-            state === "pending" && "bg-white/10 text-white/60",
-            state === "accepted" && "bg-[#4fe08a]/20 text-[--b-success]",
+            state === "pending" && "bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] text-[color-mix(in_oklab,var(--b-text)_60%,transparent)]",
+            state === "accepted" && "bg-[#4fe08a]/20 text-[color:var(--b-success)]",
             state === "rejected" && "bg-red-500/20 text-red-300",
-            state === "edited" && "bg-[#9d8cff]/20 text-[--b-iris]"
+            state === "edited" && "bg-[#9d8cff]/20 text-[color:var(--b-iris)]"
           )}
           role="status"
         >
@@ -36,7 +36,7 @@ export function AIReviewEdit({
         </span>
       </div>
       <div className="grid md:grid-cols-2">
-        <div className="border-b border-white/10 p-3 md:border-b-0 md:border-r" aria-label="Before">
+        <div className="border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-3 md:border-b-0 md:border-r" aria-label="Before">
           <p className="mb-1 font-mono text-[11px] uppercase tracking-wider text-red-300/70">Before</p>
           <pre className="rounded-lg bg-red-500/10 p-2 font-mono text-xs text-red-200">− {before}</pre>
         </div>
@@ -57,13 +57,13 @@ export function AIReviewEdit({
           />
         </div>
       </div>
-      <div className="flex gap-2 border-t border-white/10 p-2">
+      <div className="flex gap-2 border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-2">
         <button
           onClick={() => {
             setState("accepted");
             onAccept?.();
           }}
-          className="flex-1 rounded-lg bg-[--b-success] px-3 py-1.5 text-xs font-bold text-black"
+          className="flex-1 rounded-lg bg-[color:var(--b-success)] px-3 py-1.5 text-xs font-bold text-black"
         >
           Accept
         </button>
@@ -71,7 +71,7 @@ export function AIReviewEdit({
           onClick={() => {
             setState("edited");
           }}
-          className="flex-1 rounded-lg border border-white/15 px-3 py-1.5 text-xs text-white/80 hover:bg-white/5"
+          className="flex-1 rounded-lg border border-[color-mix(in_oklab,var(--b-border)_15%,transparent)] px-3 py-1.5 text-xs text-[color-mix(in_oklab,var(--b-text)_80%,transparent)] hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]"
         >
           Edit
         </button>

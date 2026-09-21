@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUILogEntry {
   timestamp?: string;
@@ -21,7 +21,7 @@ export interface TUILogViewerProps {
 }
 
 const levelColors = {
-  debug: "text-white/40",
+  debug: "text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]",
   info: "text-cyan-400",
   warn: "text-yellow-400",
   error: "text-red-400",
@@ -88,19 +88,19 @@ export function TUILogViewer({
     >
       <div className="p-2">
         {filteredEntries.length === 0 ? (
-          <div className="text-white/30 text-center py-4">No log entries</div>
+          <div className="text-[color-mix(in_oklab,var(--b-text)_30%,transparent)] text-center py-4">No log entries</div>
         ) : (
           filteredEntries.map((entry, i) => (
             <div
               key={i}
               className={cn(
-                "flex items-start gap-2 py-0.5 border-b border-white/5 last:border-0",
+                "flex items-start gap-2 py-0.5 border-b border-[color-mix(in_oklab,var(--b-border)_5%,transparent)] last:border-0",
                 entry.level === "error" && "bg-red-500/5",
                 entry.level === "warn" && "bg-yellow-500/5"
               )}
             >
               {showTimestamps && entry.timestamp && (
-                <span className="text-white/30 shrink-0">{entry.timestamp}</span>
+                <span className="text-[color-mix(in_oklab,var(--b-text)_30%,transparent)] shrink-0">{entry.timestamp}</span>
               )}
               {showLevel && entry.level && (
                 <span className={cn("shrink-0 font-medium", levelColors[entry.level])}>

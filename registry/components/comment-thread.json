@@ -1,5 +1,5 @@
 {
-  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
   "id": "comment-thread",
   "name": "Comment Thread",
   "slug": "comment-thread",
@@ -100,8 +100,8 @@
   },
   "dependencies": [],
   "registryDependencies": [
-    "utils",
-    "tokens"
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json"
   ],
   "provenance": {
     "origin": "original",

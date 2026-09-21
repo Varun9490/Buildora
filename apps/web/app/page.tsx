@@ -72,8 +72,8 @@ function MultiTabCLI() {
                 onClick={() => setManager(m)}
                 className={`rounded-lg px-2.5 py-1 font-mono text-[11px] transition-colors ${
                   manager === m
-                    ? "bg-white/10 text-[--b-text] font-semibold"
-                    : "text-[--b-muted] hover:text-[--b-text-secondary]"
+                    ? "bg-white/10 text-[color:var(--b-text)] font-semibold"
+                    : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
                 }`}
               >
                 {m}
@@ -81,14 +81,14 @@ function MultiTabCLI() {
             ))}
           </div>
 
-          <span className="font-mono text-[10px] text-[--b-muted]">REGISTRY CLI</span>
+          <span className="font-mono text-[10px] text-[color:var(--b-muted)]">REGISTRY CLI</span>
         </div>
 
         {/* Command line */}
         <div className="flex items-center justify-between gap-3 px-4 py-3">
           <div className="flex items-center gap-2 overflow-hidden">
-            <span className="font-mono text-xs text-[--b-accent] select-none">$</span>
-            <code className="truncate font-mono text-xs text-[--b-text]">
+            <span className="font-mono text-xs text-[color:var(--b-accent)] select-none">$</span>
+            <code className="truncate font-mono text-xs text-[color:var(--b-text)]">
               {command}
             </code>
           </div>
@@ -99,7 +99,7 @@ function MultiTabCLI() {
               setCopied(true);
               setTimeout(() => setCopied(false), 1400);
             }}
-            className="shrink-0 rounded-md border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] font-medium text-[--b-text] transition-all hover:bg-white/10 hover:border-white/20 active:scale-95"
+            className="shrink-0 rounded-md border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] font-medium text-[color:var(--b-text)] transition-all hover:bg-white/10 hover:border-white/20 active:scale-95"
           >
             {copied ? "Copied ✓" : "Copy"}
           </button>
@@ -175,22 +175,22 @@ function MetricsBar() {
           variants={fadeUp}
           className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-1.5 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]"
         >
-          <div className="flex h-full flex-col justify-between rounded-[calc(1rem-0.25rem)] border border-white/[0.06] bg-[--b-panel]/80 p-5 backdrop-blur-md">
+          <div className="flex h-full flex-col justify-between rounded-[calc(1rem-0.25rem)] border border-white/[0.06] bg-[color-mix(in_oklab,var(--b-panel)_80%,transparent)] p-5 backdrop-blur-md">
             <div className="flex items-center justify-between">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[--b-border] bg-[--b-surface] text-[--b-accent]">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] text-[color:var(--b-accent)]">
                 {item.icon}
               </div>
-              <span className="font-mono text-[10px] text-[--b-muted]">VERIFIED</span>
+              <span className="font-mono text-[10px] text-[color:var(--b-muted)]">VERIFIED</span>
             </div>
 
             <div className="mt-4">
-              <p className="font-display text-3xl font-bold tracking-tight text-[--b-text]">
+              <p className="font-display text-3xl font-bold tracking-tight text-[color:var(--b-text)]">
                 {item.value}
               </p>
-              <p className="mt-1 font-mono text-[11px] font-semibold text-[--b-text-secondary] uppercase tracking-wider">
+              <p className="mt-1 font-mono text-[11px] font-semibold text-[color:var(--b-text-secondary)] uppercase tracking-wider">
                 {item.label}
               </p>
-              <p className="mt-1 text-xs text-[--b-muted]">
+              <p className="mt-1 text-xs text-[color:var(--b-muted)]">
                 {item.detail}
               </p>
             </div>
@@ -218,35 +218,35 @@ function LiveInteractiveBento() {
         variants={fadeUp}
         className="group relative rounded-[2rem] border border-white/10 bg-white/[0.02] p-2 md:col-span-3 lg:col-span-7"
       >
-        <div className="flex h-full flex-col justify-between overflow-hidden rounded-[calc(2rem-0.5rem)] border border-white/[0.06] bg-[--b-panel] p-6">
+        <div className="flex h-full flex-col justify-between overflow-hidden rounded-[calc(2rem-0.5rem)] border border-white/[0.06] bg-[color:var(--b-panel)] p-6">
           <div className="flex items-start justify-between">
             <div>
-              <span className="rounded-full bg-[--b-accent-muted] px-2.5 py-0.5 font-mono text-[10px] font-medium text-[--b-accent] border border-[--b-accent]/20">
+              <span className="rounded-full bg-[color:var(--b-accent-muted)] px-2.5 py-0.5 font-mono text-[10px] font-medium text-[color:var(--b-accent)] border border-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]">
                 SIGNATURE INPUT
               </span>
-              <h3 className="mt-2 font-display text-xl font-bold text-[--b-text]">
+              <h3 className="mt-2 font-display text-xl font-bold text-[color:var(--b-text)]">
                 Slingshot OTP Input
               </h3>
-              <p className="mt-1 text-xs text-[--b-muted]">
+              <p className="mt-1 text-xs text-[color:var(--b-muted)]">
                 Gamified drag-and-snap token verification with spring rebound physics.
               </p>
             </div>
 
             <Link
               href="/components/slingshot-otp"
-              className="font-mono text-xs text-[--b-accent] hover:underline"
+              className="font-mono text-xs text-[color:var(--b-accent)] hover:underline"
             >
               Docs ↗
             </Link>
           </div>
 
-          <div className="my-8 flex items-center justify-center py-4 bg-[--b-surface]/40 rounded-2xl border border-[--b-border]">
+          <div className="my-8 flex items-center justify-center py-4 bg-[color-mix(in_oklab,var(--b-surface)_40%,transparent)] rounded-2xl border border-[color:var(--b-border)]">
             <SlingshotOTP length={4} />
           </div>
 
-          <div className="flex items-center justify-between pt-3 border-t border-[--b-border] font-mono text-[11px] text-[--b-muted]">
+          <div className="flex items-center justify-between pt-3 border-t border-[color:var(--b-border)] font-mono text-[11px] text-[color:var(--b-muted)]">
             <span>PHYSICS: SPRING REBOUND</span>
-            <span className="text-[--b-text-secondary]">ACCESSIBLE KEYBOARD NATIVE</span>
+            <span className="text-[color:var(--b-text-secondary)]">ACCESSIBLE KEYBOARD NATIVE</span>
           </div>
         </div>
       </motion.div>
@@ -256,7 +256,7 @@ function LiveInteractiveBento() {
         variants={fadeUp}
         className="group relative rounded-[2rem] border border-white/10 bg-white/[0.02] p-2 md:col-span-3 lg:col-span-5"
       >
-        <div className="relative flex h-full min-h-[300px] flex-col justify-between overflow-hidden rounded-[calc(2rem-0.5rem)] border border-white/[0.06] bg-[--b-panel] p-6">
+        <div className="relative flex h-full min-h-[300px] flex-col justify-between overflow-hidden rounded-[calc(2rem-0.5rem)] border border-white/[0.06] bg-[color:var(--b-panel)] p-6">
           {/* Canvas particle background */}
           <div className="absolute inset-0 z-0 opacity-80 pointer-events-none">
             <ParticleField count={45} />
@@ -264,28 +264,28 @@ function LiveInteractiveBento() {
 
           <div className="relative z-10 flex items-start justify-between">
             <div>
-              <span className="rounded-full bg-[--b-iris]/10 px-2.5 py-0.5 font-mono text-[10px] font-medium text-[--b-iris] border border-[--b-iris]/20">
+              <span className="rounded-full bg-[color-mix(in_oklab,var(--b-iris)_10%,transparent)] px-2.5 py-0.5 font-mono text-[10px] font-medium text-[color:var(--b-iris)] border border-[color-mix(in_oklab,var(--b-iris)_20%,transparent)]">
                 GENERATIVE CANVAS
               </span>
-              <h3 className="mt-2 font-display text-xl font-bold text-[--b-text]">
+              <h3 className="mt-2 font-display text-xl font-bold text-[color:var(--b-text)]">
                 Particle Dynamics
               </h3>
-              <p className="mt-1 text-xs text-[--b-muted]">
+              <p className="mt-1 text-xs text-[color:var(--b-muted)]">
                 60fps interactive HTML5 canvas particle node simulation.
               </p>
             </div>
 
             <Link
               href="/components/particle-field"
-              className="font-mono text-xs text-[--b-iris] hover:underline"
+              className="font-mono text-xs text-[color:var(--b-iris)] hover:underline"
             >
               Docs ↗
             </Link>
           </div>
 
-          <div className="relative z-10 mt-auto pt-6 flex items-center justify-between border-t border-white/10 font-mono text-[11px] text-[--b-muted]">
+          <div className="relative z-10 mt-auto pt-6 flex items-center justify-between border-t border-white/10 font-mono text-[11px] text-[color:var(--b-muted)]">
             <span>RENDER: 2D CONTEXT</span>
-            <span className="text-[--b-text]">INTERACTIVE MOUSE ATTRACTION</span>
+            <span className="text-[color:var(--b-text)]">INTERACTIVE MOUSE ATTRACTION</span>
           </div>
         </div>
       </motion.div>
@@ -295,15 +295,15 @@ function LiveInteractiveBento() {
         variants={fadeUp}
         className="group relative rounded-[2rem] border border-white/10 bg-white/[0.02] p-2 md:col-span-1 lg:col-span-4"
       >
-        <div className="flex h-full flex-col justify-between overflow-hidden rounded-[calc(2rem-0.5rem)] border border-white/[0.06] bg-[--b-panel] p-6">
+        <div className="flex h-full flex-col justify-between overflow-hidden rounded-[calc(2rem-0.5rem)] border border-white/[0.06] bg-[color:var(--b-panel)] p-6">
           <div>
             <span className="rounded-full bg-white/10 px-2.5 py-0.5 font-mono text-[10px] text-white">
               SURFACE FX
             </span>
-            <h3 className="mt-2 font-display text-lg font-bold text-[--b-text]">
+            <h3 className="mt-2 font-display text-lg font-bold text-[color:var(--b-text)]">
               Holographic Glare
             </h3>
-            <p className="mt-1 text-xs text-[--b-muted]">
+            <p className="mt-1 text-xs text-[color:var(--b-muted)]">
               Dynamic 3D gyro tilt with chromatic dispersion sheen.
             </p>
           </div>
@@ -319,7 +319,7 @@ function LiveInteractiveBento() {
 
           <Link
             href="/components/fx-card"
-            className="flex items-center justify-between border-t border-[--b-border] pt-3 font-mono text-[11px] text-[--b-accent]"
+            className="flex items-center justify-between border-t border-[color:var(--b-border)] pt-3 font-mono text-[11px] text-[color:var(--b-accent)]"
           >
             <span>Explore Card Effects</span>
             <span>↗</span>
@@ -332,21 +332,21 @@ function LiveInteractiveBento() {
         variants={fadeUp}
         className="group relative rounded-[2rem] border border-white/10 bg-white/[0.02] p-2 md:col-span-1 lg:col-span-4"
       >
-        <div className="flex h-full flex-col justify-between overflow-hidden rounded-[calc(2rem-0.5rem)] border border-white/[0.06] bg-[--b-panel] p-6">
+        <div className="flex h-full flex-col justify-between overflow-hidden rounded-[calc(2rem-0.5rem)] border border-white/[0.06] bg-[color:var(--b-panel)] p-6">
           <div>
             <span className="rounded-full bg-white/10 px-2.5 py-0.5 font-mono text-[10px] text-white">
               KINETIC BUTTONS
             </span>
-            <h3 className="mt-2 font-display text-lg font-bold text-[--b-text]">
+            <h3 className="mt-2 font-display text-lg font-bold text-[color:var(--b-text)]">
               Haptic Micro-Actions
             </h3>
-            <p className="mt-1 text-xs text-[--b-muted]">
+            <p className="mt-1 text-xs text-[color:var(--b-muted)]">
               Liquid morph, ripple waves, shimmer streams, and hold-to-confirm.
             </p>
           </div>
 
           <div className="my-5 flex flex-col gap-2.5">
-            <RippleButton className="w-full text-xs py-2 bg-[--b-accent] text-[--b-accent-foreground]">
+            <RippleButton className="w-full text-xs py-2 bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)]">
               Click for Ripple Wave
             </RippleButton>
             <HoldButton holdDuration={1000} className="w-full text-xs py-2">
@@ -359,7 +359,7 @@ function LiveInteractiveBento() {
 
           <Link
             href="/components/fx-button"
-            className="flex items-center justify-between border-t border-[--b-border] pt-3 font-mono text-[11px] text-[--b-accent]"
+            className="flex items-center justify-between border-t border-[color:var(--b-border)] pt-3 font-mono text-[11px] text-[color:var(--b-accent)]"
           >
             <span>Explore 6 Button Types</span>
             <span>↗</span>
@@ -372,15 +372,15 @@ function LiveInteractiveBento() {
         variants={fadeUp}
         className="group relative rounded-[2rem] border border-white/10 bg-white/[0.02] p-2 md:col-span-1 lg:col-span-4"
       >
-        <div className="flex h-full flex-col justify-between overflow-hidden rounded-[calc(2rem-0.5rem)] border border-white/[0.06] bg-[--b-panel] p-6">
+        <div className="flex h-full flex-col justify-between overflow-hidden rounded-[calc(2rem-0.5rem)] border border-white/[0.06] bg-[color:var(--b-panel)] p-6">
           <div>
-            <span className="rounded-full bg-[--b-accent-muted] px-2.5 py-0.5 font-mono text-[10px] font-medium text-[--b-accent] border border-[--b-accent]/20">
+            <span className="rounded-full bg-[color:var(--b-accent-muted)] px-2.5 py-0.5 font-mono text-[10px] font-medium text-[color:var(--b-accent)] border border-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]">
               SPRING MASS
             </span>
-            <h3 className="mt-2 font-display text-lg font-bold text-[--b-text]">
+            <h3 className="mt-2 font-display text-lg font-bold text-[color:var(--b-text)]">
               Magnetic Proximity
             </h3>
-            <p className="mt-1 text-xs text-[--b-muted]">
+            <p className="mt-1 text-xs text-[color:var(--b-muted)]">
               Cursor attraction field with physical mass interpolation.
             </p>
           </div>
@@ -389,14 +389,14 @@ function LiveInteractiveBento() {
             <MagneticButton strength={0.6}>
               Feel the Pull
             </MagneticButton>
-            <span className="font-mono text-[10px] text-[--b-muted]">
+            <span className="font-mono text-[10px] text-[color:var(--b-muted)]">
               Hover in proximity circle
             </span>
           </div>
 
           <Link
             href="/components/magnetic-button"
-            className="flex items-center justify-between border-t border-[--b-border] pt-3 font-mono text-[11px] text-[--b-accent]"
+            className="flex items-center justify-between border-t border-[color:var(--b-border)] pt-3 font-mono text-[11px] text-[color:var(--b-accent)]"
           >
             <span>Inspect Magnetic Source</span>
             <span>↗</span>
@@ -415,7 +415,7 @@ export default function Home() {
     <div className="relative overflow-x-clip">
       {/* Fixed Ambient Glow Orbs */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden opacity-60">
-        <div className="absolute -top-40 left-1/2 h-[600px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[--b-accent]/15 via-[--b-iris]/10 to-transparent blur-[120px]" />
+        <div className="absolute -top-40 left-1/2 h-[600px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[color-mix(in_oklab,var(--b-accent)_15%,transparent)] via-[color-mix(in_oklab,var(--b-iris)_10%,transparent)] to-transparent blur-[120px]" />
       </div>
 
       {/* ── SECTION 1: HERO & HARDWARE CONSOLE ─────────── */}
@@ -433,10 +433,10 @@ export default function Home() {
               <motion.div variants={fadeUp}>
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 backdrop-blur-md">
                   <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[--b-accent] opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[--b-accent]" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--b-accent)] opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--b-accent)]" />
                   </span>
-                  <span className="font-mono text-[11px] font-medium tracking-[0.15em] text-[--b-text-secondary] uppercase">
+                  <span className="font-mono text-[11px] font-medium tracking-[0.15em] text-[color:var(--b-text-secondary)] uppercase">
                     OPEN SOURCE REGISTRY · {totalComponents} COMPONENTS
                   </span>
                 </span>
@@ -445,7 +445,7 @@ export default function Home() {
               {/* Main Headline */}
               <motion.h1
                 variants={fadeUp}
-                className="font-display font-bold tracking-[-0.035em] leading-[1.04] text-[--b-text] text-balance"
+                className="font-display font-bold tracking-[-0.035em] leading-[1.04] text-[color:var(--b-text)] text-balance"
                 style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)" }}
               >
                 Tactile UI primitives for production apps.
@@ -454,7 +454,7 @@ export default function Home() {
               {/* Subtitle */}
               <motion.p
                 variants={fadeUp}
-                className="max-w-xl text-base sm:text-lg leading-relaxed text-[--b-text-secondary] text-balance"
+                className="max-w-xl text-base sm:text-lg leading-relaxed text-[color:var(--b-text-secondary)] text-balance"
               >
                 Engineered with real spring mass physics, fluid motion tokens, and
                 cross-framework idioms. Drop-in via the shadcn CLI with zero vendor lock-in.
@@ -464,7 +464,7 @@ export default function Home() {
               <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 pt-1">
                 <Link
                   href="/components"
-                  className="group relative inline-flex items-center gap-3 rounded-full bg-[--b-accent] px-6 py-3 font-mono text-xs sm:text-sm font-semibold text-[--b-accent-foreground] shadow-[0_0_30px_var(--b-accent-muted)] transition-all hover:scale-[1.02] active:scale-[0.98]"
+                  className="group relative inline-flex items-center gap-3 rounded-full bg-[color:var(--b-accent)] px-6 py-3 font-mono text-xs sm:text-sm font-semibold text-[color:var(--b-accent-foreground)] shadow-[0_0_30px_var(--b-accent-muted)] transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <span>Explore {totalComponents} Components</span>
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-black/15 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -474,10 +474,10 @@ export default function Home() {
 
                 <Link
                   href="/playground"
-                  className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 font-mono text-xs sm:text-sm font-medium text-[--b-text] backdrop-blur-md transition-all hover:bg-white/[0.08] hover:border-white/20 active:scale-[0.98]"
+                  className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 font-mono text-xs sm:text-sm font-medium text-[color:var(--b-text)] backdrop-blur-md transition-all hover:bg-white/[0.08] hover:border-white/20 active:scale-[0.98]"
                 >
                   <span>Creative Lab</span>
-                  <kbd className="rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] text-[--b-muted]">
+                  <kbd className="rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] text-[color:var(--b-muted)]">
                     ⌘P
                   </kbd>
                 </Link>
@@ -517,13 +517,13 @@ export default function Home() {
             variants={sectionReveal}
             className="mb-14 max-w-2xl"
           >
-            <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[10px] font-medium tracking-widest text-[--b-accent] uppercase">
+            <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[10px] font-medium tracking-widest text-[color:var(--b-accent)] uppercase">
               TACTILE SHOWCASE
             </span>
-            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-[--b-text] sm:text-4xl">
+            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-[color:var(--b-text)] sm:text-4xl">
               Components you can feel before installing.
             </h2>
-            <p className="mt-3 text-sm sm:text-base leading-relaxed text-[--b-text-secondary]">
+            <p className="mt-3 text-sm sm:text-base leading-relaxed text-[color:var(--b-text-secondary)]">
               Every demonstration below is a live, reactive component running in real time.
               Test drag gestures, spring damping, and specular lighting in place.
             </p>
@@ -543,13 +543,13 @@ export default function Home() {
             variants={sectionReveal}
             className="mb-14 max-w-2xl"
           >
-            <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[10px] font-medium tracking-widest text-[--b-iris] uppercase">
+            <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[10px] font-medium tracking-widest text-[color:var(--b-iris)] uppercase">
               UNIVERSAL PORTABILITY
             </span>
-            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-[--b-text] sm:text-4xl">
+            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-[color:var(--b-text)] sm:text-4xl">
               One intent. Eleven idiomatic translations.
             </h2>
-            <p className="mt-3 text-sm sm:text-base leading-relaxed text-[--b-text-secondary]">
+            <p className="mt-3 text-sm sm:text-base leading-relaxed text-[color:var(--b-text-secondary)]">
               React is the source of truth. Every other framework receives an authentic native
               port — preserving spring curves, gesture listeners, and token bindings.
             </p>
@@ -563,10 +563,10 @@ export default function Home() {
       <section className="relative z-10 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-14 text-center">
-            <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[10px] font-medium tracking-widest text-[--b-text-secondary] uppercase">
+            <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[10px] font-medium tracking-widest text-[color:var(--b-text-secondary)] uppercase">
               CRAFT PRINCIPLES
             </span>
-            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-[--b-text] sm:text-4xl">
+            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-[color:var(--b-text)] sm:text-4xl">
               Built for production scale.
             </h2>
           </div>
@@ -593,15 +593,15 @@ export default function Home() {
                 key={pillar.title}
                 className="rounded-[2rem] border border-white/10 bg-white/[0.02] p-2"
               >
-                <div className="flex h-full flex-col justify-between rounded-[calc(2rem-0.5rem)] border border-white/[0.06] bg-[--b-panel] p-6">
+                <div className="flex h-full flex-col justify-between rounded-[calc(2rem-0.5rem)] border border-white/[0.06] bg-[color:var(--b-panel)] p-6">
                   <div>
-                    <span className="font-mono text-[10px] font-semibold text-[--b-accent]">
+                    <span className="font-mono text-[10px] font-semibold text-[color:var(--b-accent)]">
                       {pillar.badge}
                     </span>
-                    <h3 className="mt-3 font-display text-lg font-bold text-[--b-text]">
+                    <h3 className="mt-3 font-display text-lg font-bold text-[color:var(--b-text)]">
                       {pillar.title}
                     </h3>
-                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[--b-text-secondary]">
+                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[color:var(--b-text-secondary)]">
                       {pillar.desc}
                     </p>
                   </div>
@@ -615,18 +615,18 @@ export default function Home() {
       {/* ── SECTION 6: ACTION / FINAL LAUNCHPAD ─────────── */}
       <section className="relative z-10 border-t border-white/[0.08] py-28 sm:py-36">
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <div className="absolute -inset-8 rounded-[3rem] bg-gradient-to-r from-[--b-accent]/15 to-[--b-iris]/15 blur-3xl opacity-60 pointer-events-none" />
+          <div className="absolute -inset-8 rounded-[3rem] bg-gradient-to-r from-[color-mix(in_oklab,var(--b-accent)_15%,transparent)] to-[color-mix(in_oklab,var(--b-iris)_15%,transparent)] blur-3xl opacity-60 pointer-events-none" />
 
-          <div className="relative rounded-[2.5rem] border border-white/10 bg-[--b-panel]/90 p-8 sm:p-14 backdrop-blur-2xl shadow-2xl">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[--b-accent]">
+          <div className="relative rounded-[2.5rem] border border-white/10 bg-[color-mix(in_oklab,var(--b-panel)_90%,transparent)] p-8 sm:p-14 backdrop-blur-2xl shadow-2xl">
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--b-accent)]">
               ELEVATE YOUR INTERFACE
             </span>
 
-            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-[--b-text] sm:text-5xl text-balance">
+            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-[color:var(--b-text)] sm:text-5xl text-balance">
               Build interfaces your users will actually feel.
             </h2>
 
-            <p className="mx-auto mt-4 max-w-lg text-sm sm:text-base text-[--b-text-secondary] text-balance">
+            <p className="mx-auto mt-4 max-w-lg text-sm sm:text-base text-[color:var(--b-text-secondary)] text-balance">
               Free and open source. Drop into your project in seconds and start shipping
               tactile digital experiences.
             </p>
@@ -634,7 +634,7 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/components"
-                className="group inline-flex items-center gap-3 rounded-full bg-[--b-accent] px-7 py-3.5 font-mono text-sm font-semibold text-[--b-accent-foreground] shadow-[0_0_30px_var(--b-accent-muted)] transition-all hover:scale-[1.02] active:scale-[0.98]"
+                className="group inline-flex items-center gap-3 rounded-full bg-[color:var(--b-accent)] px-7 py-3.5 font-mono text-sm font-semibold text-[color:var(--b-accent-foreground)] shadow-[0_0_30px_var(--b-accent-muted)] transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span>Browse All Components</span>
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-black/15 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -646,10 +646,10 @@ export default function Home() {
                 href="https://github.com/Varun9490/Buildora"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-7 py-3.5 font-mono text-sm font-medium text-[--b-text] transition-all hover:bg-white/[0.08]"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-7 py-3.5 font-mono text-sm font-medium text-[color:var(--b-text)] transition-all hover:bg-white/[0.08]"
               >
                 <span>Star on GitHub</span>
-                <span className="text-xs text-[--b-muted]">★</span>
+                <span className="text-xs text-[color:var(--b-muted)]">★</span>
               </a>
             </div>
           </div>

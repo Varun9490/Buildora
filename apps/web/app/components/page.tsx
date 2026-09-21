@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { allComponents, searchComponents } from "@/lib/registry";
+import { LazyPreview } from "@/components/LazyPreview";
 import { cn } from "@buildora/utils";
 
 const staggerContainer = {
@@ -110,9 +111,7 @@ export default function ComponentsPage() {
                   <div className="flex h-40 items-center justify-center border-b border-white/5 bg-[#0a0a0a] relative overflow-hidden">
                      {/* Decorative background element for the card hero */}
                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                     <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/20 group-hover:text-[#d4ff4f]/60 transition-colors duration-500">
-                       {c.categories[0]}
-                     </h3>
+                     <LazyPreview slug={c.slug} category={c.categories[0]} />
                   </div>
 
                   <div className="p-6 flex flex-col flex-1 relative z-10">

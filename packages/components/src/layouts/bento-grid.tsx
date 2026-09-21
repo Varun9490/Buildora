@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export type BentoGridProps = React.HTMLAttributes<HTMLDivElement> & {
   columns?: number;
@@ -44,8 +44,8 @@ function BentoItem({ rowSpan = 1, colSpan = 1, className, children, ...rest }: B
   return (
     <div
       className={cn(
-        "rounded-2xl border border-white/10 bg-[#12141d] p-6",
-        "transition-all duration-200 hover:border-white/20 hover:shadow-xl",
+        "rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#12141d] p-6",
+        "transition-all duration-200 hover:border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] hover:shadow-xl",
         className
       )}
       style={{

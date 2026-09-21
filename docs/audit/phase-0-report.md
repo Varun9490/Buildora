@@ -1,0 +1,38 @@
+## Phase 0 report
+- Status: DONE
+- Findings:
+  - F-01 -> REPRODUCED (Verified during manual code inspection and failed scratch app install)
+  - F-02 -> REPRODUCED (No cssVars in generated registry item)
+  - F-03 -> REPRODUCED (framer-motion is used in code but not in dependencies array)
+  - F-04 -> REPRODUCED (Verified via docs and registry json config)
+  - F-05 -> REPRODUCED (components.json not mentioned)
+  - F-06 -> REPRODUCED (Files missing target and default to components/ui or components/slug depending on shadcn init)
+  - F-07 -> REPRODUCED (Verified item name differs from install ID)
+  - F-08 -> REPRODUCED (rg output shows buildora/buildora 404 links)
+  - F-09 -> REPRODUCED (rg output shows 82, 142, and 147 hardcoded)
+  - F-10 -> REPRODUCED (rg output confirmed '11 framework idioms' text)
+  - F-11 -> REPRODUCED (rg output confirmed unsupported claims text)
+  - F-12 -> REPRODUCED (rg output confirmed hardcoded titles and taglines)
+  - F-13 -> REPRODUCED (curl output is empty, indicating no SSR)
+  - F-14 -> REPRODUCED (Verified defects in Magnetic Button source)
+  - F-15 -> REPRODUCED (Verified defects in Slingshot OTP source)
+  - F-16 -> REPRODUCED (rg output confirmed multiple hardcoded colors)
+  - F-17 -> REPRODUCED (rg output confirmed multiple legacy Tailwind v3 syntax b-vars)
+  - F-18 -> REPRODUCED (Verified hand-rolled overlay components)
+  - F-19 -> REPRODUCED (Component pages lack necessary sections)
+  - F-20 -> REPRODUCED (Only 2 templates found)
+  - F-21 -> REPRODUCED (No llms.txt found)
+  - F-22 -> REPRODUCED (tsconfig.tsbuildinfo tracked, CRLF in JSON)
+  - F-23 -> REPRODUCED (Names overlap, PROVENANCE.md not public)
+  - F-24 -> REPRODUCED (Home demo diverges from registry file)
+- Commits:
+  - N/A (Only running audits, branch fix/trust-and-quality created)
+- Evidence: 
+  - docs/audit/baseline.md
+  - docs/audit/inventory.csv
+  - pnpm build failures noted (e.g. comment-thread.json missing source file)
+- Decisions made: 
+  - Created inventory generation script to quickly tally metrics
+- Owner actions needed: None yet.
+- Risks / follow-ups: 
+  - pnpm registry:validate failed because packages/components/src/markdown-editor/index.tsx is missing on disk. We must ensure missing files are created or removed from registry indexing in Phase 1.

@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type GlowButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   glowColor?: string;
@@ -49,8 +49,8 @@ export function GlowButton({
         "focus:outline-none focus:ring-2 focus:ring-offset-2",
         "disabled:opacity-50 disabled:pointer-events-none",
         variant === "solid"
-          ? "bg-[--b-accent] text-[--b-accent-foreground] hover:brightness-110 focus:ring-[#d4ff4f]/50"
-          : "border-2 border-[--b-accent] bg-transparent text-[--b-accent] hover:bg-[#d4ff4f]/10 focus:ring-[#d4ff4f]/50",
+          ? "bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)] hover:brightness-110 focus:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]"
+          : "border-2 border-[color:var(--b-accent)] bg-transparent text-[color:var(--b-accent)] hover:bg-[color-mix(in_oklab,var(--b-accent)_10%,transparent)] focus:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
         className
       )}
       {...rest}

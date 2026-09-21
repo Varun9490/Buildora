@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUISelectOption {
   value: string;
@@ -96,11 +96,11 @@ export function TUISelect({
         onClick={() => !disabled && setOpen(!open)}
         className={cn(
           "w-full flex items-center justify-between gap-2 px-2 py-1.5 border rounded bg-[#0a0c10] text-left",
-          open ? "border-cyan-500/50" : "border-white/10",
+          open ? "border-cyan-500/50" : "border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]",
           disabled && "opacity-50 cursor-not-allowed"
         )}
       >
-        <span className={selectedOption ? "text-white/80" : "text-white/40"}>
+        <span className={selectedOption ? "text-[color-mix(in_oklab,var(--b-text)_80%,transparent)]" : "text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]"}>
           {selectedOption ? (
             <span className="flex items-center gap-1">
               {selectedOption.icon && <span>{selectedOption.icon}</span>}
@@ -110,35 +110,35 @@ export function TUISelect({
             placeholder
           )}
         </span>
-        <span className="text-white/40">▼</span>
+        <span className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">▼</span>
       </button>
       {open && (
         <div
-          className="absolute z-50 w-full mt-1 bg-[#0a0c10] border border-white/10 rounded shadow-lg overflow-hidden"
+          className="absolute z-50 w-full mt-1 bg-[#0a0c10] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded shadow-lg overflow-hidden"
           role="listbox"
         >
           {searchable && (
-            <div className="border-b border-white/10 p-1">
+            <div className="border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-1">
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search..."
-                className="w-full px-2 py-1 bg-white/5 border border-white/10 rounded text-white/80 outline-none placeholder:text-white/30"
+                className="w-full px-2 py-1 bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded text-[color-mix(in_oklab,var(--b-text)_80%,transparent)] outline-none placeholder:text-[color-mix(in_oklab,var(--b-text)_30%,transparent)]"
                 autoFocus
               />
             </div>
           )}
           <div className="max-h-48 overflow-auto">
             {filteredOptions.length === 0 ? (
-              <div className="px-3 py-2 text-white/40">No options</div>
+              <div className="px-3 py-2 text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">No options</div>
             ) : (
               filteredOptions.map((opt, i) => (
                 <div
                   key={opt.value}
                   className={cn(
                     "flex items-center gap-2 px-3 py-1.5 cursor-pointer",
-                    opt.disabled ? "opacity-40 cursor-not-allowed" : "hover:bg-white/5",
+                    opt.disabled ? "opacity-40 cursor-not-allowed" : "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]",
                     focusedIndex === i && "bg-cyan-500/10",
                     value === opt.value && "text-cyan-400"
                   )}
@@ -151,11 +151,11 @@ export function TUISelect({
                   role="option"
                   aria-selected={value === opt.value}
                 >
-                  {opt.icon && <span className="text-white/50">{opt.icon}</span>}
+                  {opt.icon && <span className="text-[color-mix(in_oklab,var(--b-text)_50%,transparent)]">{opt.icon}</span>}
                   <div className="min-w-0">
                     <div className="truncate">{opt.label}</div>
                     {opt.description && (
-                      <div className="text-[10px] text-white/40 truncate">
+                      <div className="text-[10px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] truncate">
                         {opt.description}
                       </div>
                     )}

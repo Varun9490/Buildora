@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../../utils";
+import { cn } from "@buildora/utils";
 
 export type SpinnerSize = "default" | "sm" | "lg" | "xl";
 export type SpinnerVariant = "default" | "accent" | "light";
@@ -22,9 +22,9 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
     };
 
     const variantStyles: Record<SpinnerVariant, string> = {
-      default: "text-[--b-accent]",
-      accent: "text-[--b-accent] drop-shadow-[0_0_8px_rgba(212,255,79,0.5))]",
-      light: "text-white/50",
+      default: "text-[color:var(--b-accent)]",
+      accent: "text-[color:var(--b-accent)] drop-shadow-[0_0_8px_rgba(212,255,79,0.5))]",
+      light: "text-[color-mix(in_oklab,var(--b-text)_50%,transparent)]",
     };
 
     return (

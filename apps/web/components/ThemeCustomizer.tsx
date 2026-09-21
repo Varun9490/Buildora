@@ -21,7 +21,7 @@ export function ThemeCustomizer() {
     <div className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="flex h-8 w-8 items-center justify-center rounded-md border border-[--b-border] text-[--b-text-secondary] transition-colors hover:bg-[--b-surface] hover:text-[--b-text]"
+        className="flex h-8 w-8 items-center justify-center rounded-md border border-[color:var(--b-border)] text-[color:var(--b-text-secondary)] transition-colors hover:bg-[color:var(--b-surface)] hover:text-[color:var(--b-text)]"
         aria-label="Customize theme (light, dark, accent)"
       >
         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -44,23 +44,23 @@ export function ThemeCustomizer() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 8, scale: 0.96 }}
               transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute right-0 top-full z-50 mt-2 w-72 origin-top-right rounded-xl border border-[--b-border] bg-[--b-panel] p-4 shadow-card"
+              className="absolute right-0 top-full z-50 mt-2 w-72 origin-top-right rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-4 shadow-card"
               role="dialog"
               aria-label="Theme customizer"
             >
               <div className="mb-4">
-                <p className="font-display text-sm font-bold tracking-tight text-[--b-text]">Theme</p>
-                <p className="mt-1 text-[11px] leading-relaxed text-[--b-muted]">
+                <p className="font-display text-sm font-bold tracking-tight text-[color:var(--b-text)]">Theme</p>
+                <p className="mt-1 text-[11px] leading-relaxed text-[color:var(--b-muted)]">
                   Light or dark, one accent. All {totalComponents} components follow these vars.
                 </p>
               </div>
 
               <div className="space-y-5">
                 <div>
-                  <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-[--b-text-secondary]">
+                  <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-[color:var(--b-text-secondary)]">
                     Mode
                   </p>
-                  <div className="grid grid-cols-3 gap-1 rounded-lg border border-[--b-border] bg-[--b-surface] p-1">
+                  <div className="grid grid-cols-3 gap-1 rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-1">
                     {modeOptions.map((m) => (
                       <button
                         key={m.key}
@@ -69,8 +69,8 @@ export function ThemeCustomizer() {
                         className={cn(
                           "rounded-md px-2 py-1.5 text-xs font-medium transition-colors",
                           themeMode === m.key
-                            ? "bg-[--b-panel] text-[--b-text] shadow-subtle"
-                            : "text-[--b-muted] hover:text-[--b-text-secondary]"
+                            ? "bg-[color:var(--b-panel)] text-[color:var(--b-text)] shadow-subtle"
+                            : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
                         )}
                       >
                         {m.label}
@@ -80,7 +80,7 @@ export function ThemeCustomizer() {
                 </div>
 
                 <div>
-                  <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-[--b-text-secondary]">
+                  <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-[color:var(--b-text-secondary)]">
                     Accent
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -90,7 +90,7 @@ export function ThemeCustomizer() {
                         onClick={() => setThemeAccent(key)}
                         className={cn(
                           "flex h-8 w-8 items-center justify-center rounded-lg transition-transform hover:scale-105 active:scale-95",
-                          themeAccent === key && "ring-2 ring-[--b-accent] ring-offset-2 ring-offset-[--b-panel]"
+                          themeAccent === key && "ring-2 ring-[color:var(--b-accent)] ring-offset-2 ring-offset-[color:var(--b-panel)]"
                         )}
                         style={{ backgroundColor: (value as { dark: { accent: string } }).dark.accent }}
                         title={(value as { label: string }).label}
@@ -105,7 +105,7 @@ export function ThemeCustomizer() {
                       </button>
                     ))}
                   </div>
-                  <p className="mt-2 text-[11px] text-[--b-muted]">
+                  <p className="mt-2 text-[11px] text-[color:var(--b-muted)]">
                     {(accentPresets as Record<string, { label: string }>)[themeAccent]?.label ?? themeAccent} · AA-tested in both modes
                   </p>
                 </div>

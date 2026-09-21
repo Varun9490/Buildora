@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type RippleButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   rippleColor?: string;
@@ -53,7 +53,7 @@ export function RippleButton({
       ref={ref}
       onClick={handleClick}
       className={cn(
-        "relative overflow-hidden rounded-xl bg-gradient-to-br from-[#7c6cf6] to-[#5a4ad1] px-6 py-2.5 text-sm font-semibold text-white",
+        "relative overflow-hidden rounded-xl bg-gradient-to-br from-[#7c6cf6] to-[#5a4ad1] px-6 py-2.5 text-sm font-semibold text-[color:var(--b-text)]",
         "transition-all duration-200 hover:brightness-110 active:scale-95",
         "focus:outline-none focus:ring-2 focus:ring-[#7c6cf6]/50 focus:ring-offset-2 focus:ring-offset-[#0a0b10]",
         "disabled:opacity-50 disabled:pointer-events-none",

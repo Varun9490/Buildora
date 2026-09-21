@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type FxCardEffect = "tilt" | "spotlight" | "glare" | "holographic" | "wobble" | "glass";
 
@@ -61,8 +61,8 @@ export function FxCard({
       onBlur={interactive ? reset : undefined}
       className={cn(
         "group relative rounded-2xl border p-6 transition-shadow duration-300",
-        "border-white/10 bg-white/[0.03]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--b-accent]",
+        "border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_3%,transparent)]",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)]",
         !reduced && effect === "wobble" && "transition-transform duration-300 hover:scale-[1.03] hover:rotate-1",
         !reduced && effect === "tilt" && "will-change-transform",
         className

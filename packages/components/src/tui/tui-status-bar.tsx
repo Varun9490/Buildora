@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUIStatusBarProps {
   items: Array<{
@@ -13,7 +13,7 @@ export interface TUIStatusBarProps {
 }
 
 const valueColors = {
-  default: "text-white/90",
+  default: "text-[color-mix(in_oklab,var(--b-text)_90%,transparent)]",
   success: "text-green-400",
   warning: "text-yellow-400",
   error: "text-red-400",
@@ -24,7 +24,7 @@ export function TUIStatusBar({ items, className }: TUIStatusBarProps) {
   return (
     <div
       className={cn(
-        "flex items-center gap-4 px-3 py-1 bg-[#0a0c10] border-t border-white/10 font-mono text-[11px]",
+        "flex items-center gap-4 px-3 py-1 bg-[#0a0c10] border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] font-mono text-[11px]",
         className
       )}
       role="status"
@@ -33,13 +33,13 @@ export function TUIStatusBar({ items, className }: TUIStatusBarProps) {
       {items.map((item, i) => (
         <React.Fragment key={i}>
           {i > 0 && (
-            <span className="text-white/20" aria-hidden>
+            <span className="text-[color-mix(in_oklab,var(--b-text)_20%,transparent)]" aria-hidden>
               │
             </span>
           )}
           <span className="flex items-center gap-1">
             {item.label && (
-              <span className="text-white/40">{item.label}:</span>
+              <span className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">{item.label}:</span>
             )}
             <span className={valueColors[item.color || "default"]}>
               {item.value}
@@ -48,7 +48,7 @@ export function TUIStatusBar({ items, className }: TUIStatusBarProps) {
         </React.Fragment>
       ))}
       <span className="flex-1" />
-      <span className="text-white/30">Press ? for help</span>
+      <span className="text-[color-mix(in_oklab,var(--b-text)_30%,transparent)]">Press ? for help</span>
     </div>
   );
 }

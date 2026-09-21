@@ -190,16 +190,16 @@ class RenderBoundary extends React.Component<
   render() {
     if (this.state.error) {
       return (
-        <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-[--b-danger]/40 bg-[--b-danger]/10 p-8 text-center">            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[--b-danger]/15">
-              <svg className="h-5 w-5 text-[--b-danger]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-[color-mix(in_oklab,var(--b-danger)_40%,transparent)] bg-[color-mix(in_oklab,var(--b-danger)_10%,transparent)] p-8 text-center">            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[color-mix(in_oklab,var(--b-danger)_15%,transparent)]">
+              <svg className="h-5 w-5 text-[color:var(--b-danger)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
           </div>
-          <p className="text-sm font-medium text-[--b-danger]">Component failed to render</p>
-          <p className="font-mono text-[11px] text-[--b-muted]">{this.props.fallback}</p>
+          <p className="text-sm font-medium text-[color:var(--b-danger)]">Component failed to render</p>
+          <p className="font-mono text-[11px] text-[color:var(--b-muted)]">{this.props.fallback}</p>
           <button
             onClick={() => this.setState({ error: false })}
-            className="mt-2 rounded-md border border-[--b-border] bg-[--b-surface] px-4 py-1.5 font-mono text-[11px] text-[--b-text-secondary] transition-colors hover:bg-[--b-elevated]"
+            className="mt-2 rounded-md border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-4 py-1.5 font-mono text-[11px] text-[color:var(--b-text-secondary)] transition-colors hover:bg-[color:var(--b-elevated)]"
           >
             Retry
           </button>
@@ -281,15 +281,15 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <Backdrop variant="aurora" className="w-full rounded-xl p-10 text-center">
           <p className="font-display text-xl font-bold">Backdrop · aurora</p>
-          <p className="mt-1 text-sm text-[--b-muted]">Nine variants, one component.</p>
+          <p className="mt-1 text-sm text-[color:var(--b-muted)]">Nine variants, one component.</p>
         </Backdrop>
       );
     case "cursor-fx":
       return wrap(
-        <div className="w-full rounded-xl border border-[--b-border] p-10 text-center">
+        <div className="w-full rounded-xl border border-[color:var(--b-border)] p-10 text-center">
           <CursorFx mode="glow" />
           <p className="font-display text-xl font-bold">Move your pointer</p>
-          <p className="mt-1 text-sm text-[--b-muted]">Glow · spotlight · trail · blob. Pointer-fine only.</p>
+          <p className="mt-1 text-sm text-[color:var(--b-muted)]">Glow · spotlight · trail · blob. Pointer-fine only.</p>
         </div>
       );
     case "text-fx":
@@ -303,7 +303,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <FxCard effect="spotlight" className="w-80">
           <p className="font-display text-lg font-bold">FxCard</p>
-          <p className="mt-2 text-sm text-[--b-muted]">Six effects. Move your pointer across this card.</p>
+          <p className="mt-2 text-sm text-[color:var(--b-muted)]">Six effects. Move your pointer across this card.</p>
         </FxCard>
       );
     case "fx-button":
@@ -462,11 +462,11 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <div className="w-full max-w-sm space-y-3">
           <div>
-            <label htmlFor="prim-name" className="mb-1 block text-xs text-[--b-text-secondary]">Name</label>
+            <label htmlFor="prim-name" className="mb-1 block text-xs text-[color:var(--b-text-secondary)]">Name</label>
             <Input id="prim-name" placeholder="Ada Lovelace" />
           </div>
           <div>
-            <label htmlFor="prim-email" className="mb-1 block text-xs text-[--b-text-secondary]">Email</label>
+            <label htmlFor="prim-email" className="mb-1 block text-xs text-[color:var(--b-text-secondary)]">Email</label>
             <Input id="prim-email" type="email" placeholder="ada@example.com" />
           </div>
         </div>
@@ -474,7 +474,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
     case "textarea":
       return wrap(
         <div className="w-full max-w-sm">
-          <label htmlFor="prim-notes" className="mb-1 block text-xs text-[--b-text-secondary]">Notes</label>
+          <label htmlFor="prim-notes" className="mb-1 block text-xs text-[color:var(--b-text-secondary)]">Notes</label>
           <Textarea id="prim-notes" placeholder="Ship notes…" rows={4} />
         </div>
       );
@@ -512,7 +512,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
     case "slider":
       return wrap(
         <div className="w-full max-w-xl">
-          <span id="prim-slider-label" className="mb-1 block text-xs text-[--b-text-secondary]">Strength</span>
+          <span id="prim-slider-label" className="mb-1 block text-xs text-[color:var(--b-text-secondary)]">Strength</span>
           <Slider defaultValue={35} showValue aria-labelledby="prim-slider-label" />
         </div>
       );
@@ -630,7 +630,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <ContextMenu>
           <ContextMenuTrigger>
-            <div className="rounded-xl border border-dashed border-[--b-border-hover] p-8 text-center text-sm text-[--b-text-secondary]">
+            <div className="rounded-xl border border-dashed border-[color:var(--b-border-hover)] p-8 text-center text-sm text-[color:var(--b-text-secondary)]">
               Right-click here
             </div>
           </ContextMenuTrigger>
@@ -644,7 +644,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <HoverCard trigger={<Button variant="outline">Hover for preview</Button>}>
           <p className="text-sm font-bold">Magnetic Button</p>
-          <p className="text-xs text-[--b-text-secondary]">Spring magnetic attraction.</p>
+          <p className="text-xs text-[color:var(--b-text-secondary)]">Spring magnetic attraction.</p>
         </HoverCard>
       );
     case "modal-stack":
@@ -680,7 +680,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     case "sidebar":
       return wrap(
-        <div className="h-72 w-64 overflow-hidden rounded-xl border border-[--b-border]">
+        <div className="h-72 w-64 overflow-hidden rounded-xl border border-[color:var(--b-border)]">
           <Sidebar>
             <SidebarHeader>Workspace</SidebarHeader>
             <SidebarContent>
@@ -692,7 +692,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     case "expandable-sidebar":
       return wrap(
-        <div className="h-72 w-64 overflow-hidden rounded-xl border border-[--b-border]">
+        <div className="h-72 w-64 overflow-hidden rounded-xl border border-[color:var(--b-border)]">
           <ExpandableSidebar>
             <ExpandableSidebarItem value="components">Components</ExpandableSidebarItem>
             <ExpandableSidebarItem value="playground">Playground</ExpandableSidebarItem>
@@ -701,7 +701,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     case "mobile-nav":
       return wrap(
-        <div className="w-full max-w-sm overflow-hidden rounded-xl border border-[--b-border]">
+        <div className="w-full max-w-sm overflow-hidden rounded-xl border border-[color:var(--b-border)]">
           <MobileNav defaultActiveItem="home">
             <MobileNavItem value="home" label="Home">Home</MobileNavItem>
             <MobileNavItem value="search" label="Search">Search</MobileNavItem>
@@ -821,9 +821,9 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     default:
       return wrap(
-        <div className="w-80 rounded-xl border border-[--b-border] bg-[--b-surface] p-6 shadow-card">
+        <div className="w-80 rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-6 shadow-card">
           <p className="font-display text-lg font-bold">{slug}</p>
-          <p className="mt-2 text-sm text-[--b-muted]">
+          <p className="mt-2 text-sm text-[color:var(--b-muted)]">
             Live React implementation shares patterns with the components above. Open the framework tabs
             to see the code.
           </p>
@@ -927,9 +927,9 @@ function ModalStackTrigger() {
       onClick={() =>
         stack.push(
           <div className="flex h-full items-center justify-center bg-black/60 p-8">
-            <div className="rounded-2xl border border-[--b-border] bg-[--b-elevated] p-6">
+            <div className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-elevated)] p-6">
               <p className="text-sm font-bold">Stacked modal</p>
-              <p className="mt-1 text-xs text-[--b-text-secondary]">Pushed via modal-stack API.</p>
+              <p className="mt-1 text-xs text-[color:var(--b-text-secondary)]">Pushed via modal-stack API.</p>
             </div>
           </div>
         )

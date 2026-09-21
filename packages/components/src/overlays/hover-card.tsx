@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 import { createPortal } from "react-dom";
-import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type HoverCardProps = {
   children: React.ReactNode;
@@ -103,7 +103,7 @@ export function HoverCard({
     <div
       ref={cardRef}
       className={cn(
-        "fixed z-[150] rounded-xl border border-white/10 bg-[#0d0f16] p-4 shadow-2xl backdrop-blur-xl",
+        "fixed z-[150] rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] p-4 shadow-2xl backdrop-blur-xl",
         className
       )}
       role="dialog"

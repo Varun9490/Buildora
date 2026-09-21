@@ -1,5 +1,5 @@
 {
-  "$schema": "https://buildora.dev/schema/registry-item.json",
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
   "id": "logo-cloud",
   "name": "Logo Cloud",
   "slug": "logo-cloud",
@@ -104,8 +104,8 @@
     "tailwind-merge"
   ],
   "registryDependencies": [
-    "utils",
-    "tokens"
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json"
   ],
   "provenance": {
     "origin": "original",
@@ -116,7 +116,7 @@
     {
       "path": "packages/components/src/logo-cloud/index.tsx",
       "target": "components/buildora/logo-cloud.tsx",
-      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"../utils\";\n\nexport function LogoCloud({\n  label = \"Powering component teams\",\n  brands,\n  className,\n}: {\n  label?: string;\n  brands?: string[];\n  className?: string;\n}) {\n  const seed = brands ?? [\"Acme\", \"Globex\", \"Initech\", \"Umbrella\", \"Hooli\", \"Stark\"];\n  return (\n    <section aria-label={label} className={cn(\"rounded-2xl border border-white/10 bg-white/[0.01] px-6 py-8 text-center\", className)}>\n      <p className=\"font-mono text-[11px] uppercase tracking-[0.18em] text-white/40\">{label}</p>\n      <ul className=\"mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3\" aria-label=\"Customer logos\">\n        {seed.map((b) => (\n          <li key={b} className=\"font-display text-lg font-black tracking-tight text-white/35 transition-colors hover:text-white/70\">\n            {b}\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n\nexport default LogoCloud;\n"
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\n\nexport function LogoCloud({\n  label = \"Powering component teams\",\n  brands,\n  className,\n}: {\n  label?: string;\n  brands?: string[];\n  className?: string;\n}) {\n  const seed = brands ?? [\"Acme\", \"Globex\", \"Initech\", \"Umbrella\", \"Hooli\", \"Stark\"];\n  return (\n    <section aria-label={label} className={cn(\"rounded-2xl border border-white/10 bg-white/[0.01] px-6 py-8 text-center\", className)}>\n      <p className=\"font-mono text-[11px] uppercase tracking-[0.18em] text-white/40\">{label}</p>\n      <ul className=\"mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3\" aria-label=\"Customer logos\">\n        {seed.map((b) => (\n          <li key={b} className=\"font-display text-lg font-black tracking-tight text-white/35 transition-colors hover:text-white/70\">\n            {b}\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n\nexport default LogoCloud;\n"
     }
   ],
   "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/logo-cloud",

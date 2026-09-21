@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUITreeNode {
   id: string;
@@ -53,7 +53,7 @@ export function TUITree({
       <div key={node.id} role="treeitem" aria-expanded={hasChildren ? isExpanded : undefined}>
         <div
           className={cn(
-            "flex items-center gap-1 cursor-pointer hover:bg-white/5",
+            "flex items-center gap-1 cursor-pointer hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]",
             dense ? "py-0.5" : "py-1",
             isSelected && "bg-cyan-500/10"
           )}
@@ -64,7 +64,7 @@ export function TUITree({
           }}
         >
           {showLines && depth > 0 && (
-            <span className="text-white/20" aria-hidden>
+            <span className="text-[color-mix(in_oklab,var(--b-text)_20%,transparent)]" aria-hidden>
               {isLast ? "└─" : "├─"}
             </span>
           )}
@@ -74,15 +74,15 @@ export function TUITree({
                 e.stopPropagation();
                 toggle(node);
               }}
-              className="text-white/40 hover:text-white/60 w-4 text-left"
+              className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] hover:text-[color-mix(in_oklab,var(--b-text)_60%,transparent)] w-4 text-left"
               aria-label={isExpanded ? "Collapse" : "Expand"}
             >
               {isExpanded ? "▼" : "▶"}
             </button>
           )}
           {!hasChildren && <span className="w-4" />}
-          {node.icon && <span className="text-white/60">{node.icon}</span>}
-          <span className={cn(isSelected ? "text-cyan-400" : "text-white/80")}>
+          {node.icon && <span className="text-[color-mix(in_oklab,var(--b-text)_60%,transparent)]">{node.icon}</span>}
+          <span className={cn(isSelected ? "text-cyan-400" : "text-[color-mix(in_oklab,var(--b-text)_80%,transparent)]")}>
             {node.label}
           </span>
         </div>

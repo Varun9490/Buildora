@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUIListItem {
   id: string;
@@ -73,10 +73,10 @@ export function TUIList({
         <div
           key={item.id}
           className={cn(
-            "flex items-center justify-between px-3 py-2 cursor-pointer border-b border-white/5",
+            "flex items-center justify-between px-3 py-2 cursor-pointer border-b border-[color-mix(in_oklab,var(--b-border)_5%,transparent)]",
             item.disabled
               ? "opacity-40 cursor-not-allowed"
-              : "hover:bg-white/5",
+              : "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]",
             selectedId === item.id && "bg-cyan-500/10",
             focused && focusedIndex === i && "bg-cyan-500/5"
           )}
@@ -87,20 +87,20 @@ export function TUIList({
           aria-disabled={item.disabled}
         >
           <div className="flex items-center gap-2 min-w-0">
-            {item.icon && <span className="text-white/50">{item.icon}</span>}
+            {item.icon && <span className="text-[color-mix(in_oklab,var(--b-text)_50%,transparent)]">{item.icon}</span>}
             <div className="min-w-0">
-              <div className={cn("truncate", selectedId === item.id ? "text-cyan-400" : "text-white/80")}>
+              <div className={cn("truncate", selectedId === item.id ? "text-cyan-400" : "text-[color-mix(in_oklab,var(--b-text)_80%,transparent)]")}>
                 {item.label}
               </div>
               {item.description && (
-                <div className="text-[10px] text-white/40 truncate">
+                <div className="text-[10px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] truncate">
                   {item.description}
                 </div>
               )}
             </div>
           </div>
           {showShortcuts && item.shortcut && (
-            <kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-white/50 text-[10px]">
+            <kbd className="px-1.5 py-0.5 bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] text-[10px]">
               {item.shortcut}
             </kbd>
           )}

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
 export interface TUISpinnerProps {
   size?: "sm" | "md" | "lg";
@@ -67,9 +67,9 @@ export function TUISpinner({
     >
       <span className="animate-pulse">{frames[frame]}</span>
       {text && (
-        <span className="text-white/70">
+        <span className="text-[color-mix(in_oklab,var(--b-text)_70%,transparent)]">
           {text}
-          <span className="text-white/30">{dotFrames[0][dotFrame]}</span>
+          <span className="text-[color-mix(in_oklab,var(--b-text)_30%,transparent)]">{dotFrames[0][dotFrame]}</span>
         </span>
       )}
     </div>

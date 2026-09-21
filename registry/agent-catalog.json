@@ -1,5 +1,5 @@
 {
-  "$schema": "https://buildora.dev/schema/agent-catalog.json",
+  "$schema": "https://buildora-hazel.vercel.app/schema/agent-catalog.json",
   "name": "buildora",
   "version": "0.1.0",
   "total": 82,
@@ -477,8 +477,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -563,8 +564,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -649,8 +651,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -735,8 +738,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -821,8 +824,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -909,11 +913,14 @@
       },
       "dependencies": [
         "clsx",
-        "tailwind-merge"
+        "tailwind-merge",
+        "zod"
       ],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json",
+        "https://buildora-hazel.vercel.app/r/spring.json"
       ],
       "status": "beta",
       "provenance": {
@@ -999,11 +1006,11 @@
         }
       },
       "dependencies": [
-        "framer-motion"
+        "motion"
       ],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -1089,8 +1096,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -1176,8 +1183,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -1262,8 +1269,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -1349,8 +1356,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -1436,8 +1443,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -1522,8 +1529,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -1608,8 +1615,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -1696,8 +1703,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -1783,8 +1790,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -1870,8 +1877,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -1957,8 +1964,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -2043,8 +2050,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -2130,8 +2137,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -2216,8 +2223,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -2302,8 +2309,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -2388,8 +2395,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -2473,8 +2480,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -2558,8 +2565,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -2644,8 +2651,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -2730,8 +2737,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -2816,8 +2823,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -2902,8 +2910,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -2988,8 +2996,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -3074,8 +3082,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -3160,8 +3168,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -3245,8 +3254,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -3330,8 +3340,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -3415,11 +3426,12 @@
         }
       },
       "dependencies": [
-        "framer-motion"
+        "motion"
       ],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -3502,11 +3514,12 @@
         }
       },
       "dependencies": [
-        "framer-motion"
+        "motion"
       ],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -3591,8 +3604,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -3677,8 +3690,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -3762,8 +3776,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -3848,8 +3862,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -3934,8 +3948,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4018,11 +4032,12 @@
         }
       },
       "dependencies": [
-        "framer-motion"
+        "motion"
       ],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4106,8 +4121,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4191,8 +4207,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4276,8 +4292,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4362,8 +4378,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4448,8 +4465,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4534,8 +4551,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4620,8 +4638,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4705,8 +4724,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4791,8 +4811,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4877,8 +4898,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4963,8 +4984,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -5049,8 +5071,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -5134,11 +5156,12 @@
         }
       },
       "dependencies": [
-        "framer-motion"
+        "motion"
       ],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -5223,8 +5246,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -5307,11 +5331,12 @@
         }
       },
       "dependencies": [
-        "framer-motion"
+        "motion"
       ],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -5396,8 +5421,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -5481,11 +5507,12 @@
         }
       },
       "dependencies": [
-        "framer-motion"
+        "motion"
       ],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -5570,8 +5597,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -5656,8 +5683,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -5742,8 +5770,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -5828,8 +5857,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -5917,8 +5946,8 @@
         "tailwind-merge"
       ],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -6006,8 +6035,8 @@
         "tailwind-merge"
       ],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -6095,8 +6124,8 @@
         "tailwind-merge"
       ],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -6184,8 +6213,8 @@
         "tailwind-merge"
       ],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -6270,8 +6299,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -6356,8 +6386,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
       "provenance": {
@@ -6442,8 +6472,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -6528,8 +6559,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -6614,8 +6646,9 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "utils",
-        "tokens"
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {

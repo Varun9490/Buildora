@@ -51,9 +51,61 @@ function getPresets(slug: string): Preset[] {
 
 function PlaygroundSkeleton() {
   return (
-    <div className="flex h-[60vh] items-center justify-center gap-4">
-      <div className="skeleton h-10 w-40 rounded-[10px]" />
-      <div className="skeleton h-4 w-56 rounded" />
+    <div className="flex flex-col lg:h-[calc(100vh-80px)] lg:min-h-[600px] animate-pulse">
+      <div className="flex flex-1 flex-col gap-4 p-4 lg:flex-row lg:overflow-hidden">
+        
+        {/* Left Sidebar Skeleton */}
+        <aside className="flex w-full flex-shrink-0 flex-col gap-3 lg:w-64 lg:overflow-hidden">
+          <div className="flex items-center justify-between">
+            <div className="h-7 w-16 rounded-md bg-[color:var(--b-border)]" />
+            <div className="h-4 w-24 rounded bg-[color:var(--b-border)]" />
+          </div>
+          <div className="h-10 w-full rounded-xl bg-[color:var(--b-border)]" />
+          <div className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-2 lg:flex-1">
+            <div className="flex flex-col gap-2">
+              {Array.from({ length: 12 }).map((_, i) => (
+                <div key={i} className="h-9 w-full rounded-lg bg-[color-mix(in_oklab,var(--b-border)_50%,transparent)]" />
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        {/* Main Canvas Skeleton */}
+        <main className="flex flex-1 flex-col gap-3">
+          <div className="h-[52px] w-full rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)]" />
+          <div className="flex-1 rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] opacity-50" />
+          <div className="h-[52px] w-full rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)]" />
+        </main>
+
+        {/* Right Sidebar Skeleton */}
+        <aside className="flex w-full flex-shrink-0 flex-col gap-3 lg:w-72 lg:overflow-hidden">
+          <div className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-4">
+            <div className="mb-4 h-3 w-20 rounded bg-[color:var(--b-border)]" />
+            <div className="space-y-4">
+              <div className="h-12 w-full rounded-lg bg-[color-mix(in_oklab,var(--b-border)_50%,transparent)]" />
+              <div className="h-12 w-full rounded-lg bg-[color-mix(in_oklab,var(--b-border)_50%,transparent)]" />
+            </div>
+          </div>
+          <div className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-4">
+            <div className="mb-4 h-3 w-16 rounded bg-[color:var(--b-border)]" />
+            <div className="flex gap-2">
+              <div className="h-8 w-16 rounded-lg bg-[color-mix(in_oklab,var(--b-border)_50%,transparent)]" />
+              <div className="h-8 w-16 rounded-lg bg-[color-mix(in_oklab,var(--b-border)_50%,transparent)]" />
+            </div>
+          </div>
+          <div className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-4">
+            <div className="mb-4 h-3 w-16 rounded bg-[color:var(--b-border)]" />
+            <div className="space-y-2">
+              <div className="h-10 w-full rounded-lg bg-[color-mix(in_oklab,var(--b-border)_50%,transparent)]" />
+              <div className="h-10 w-full rounded-lg bg-[color-mix(in_oklab,var(--b-border)_50%,transparent)]" />
+            </div>
+          </div>
+        </aside>
+
+      </div>
+      
+      {/* Bottom Code Skeleton */}
+      <div className="mx-4 mb-4 h-48 rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)]" />
     </div>
   );
 }
@@ -62,8 +114,8 @@ function SliderControl({ label, value, min, max, step, onChange }: { label: stri
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium text-[--b-text-secondary]">{label}</span>
-        <span className="font-mono text-xs text-[--b-accent]">{value.toFixed(step < 1 ? 2 : 0)}</span>
+        <span className="text-xs font-medium text-[color:var(--b-text-secondary)]">{label}</span>
+        <span className="font-mono text-xs text-[color:var(--b-accent)]">{value.toFixed(step < 1 ? 2 : 0)}</span>
       </div>
       <input
         type="range"
@@ -72,7 +124,7 @@ function SliderControl({ label, value, min, max, step, onChange }: { label: stri
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-[--b-border] accent-[--b-accent] [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[--b-accent]"
+        className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-[color:var(--b-border)] accent-[color:var(--b-accent)] [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[color:var(--b-accent)]"
       />
     </div>
   );
@@ -81,7 +133,7 @@ function SliderControl({ label, value, min, max, step, onChange }: { label: stri
 function ToggleControl({ label, checked, onChange }: { label: string; checked: boolean; onChange: (v: boolean) => void }) {
   return (
     <label className="flex cursor-pointer items-center justify-between">
-      <span className="text-xs font-medium text-[--b-text-secondary]">{label}</span>
+      <span className="text-xs font-medium text-[color:var(--b-text-secondary)]">{label}</span>
       <button
         role="switch"
         aria-checked={checked}
@@ -89,12 +141,12 @@ function ToggleControl({ label, checked, onChange }: { label: string; checked: b
         onClick={() => onChange(!checked)}
         className={cn(
           "relative h-5 w-9 rounded-full transition-colors",
-          checked ? "bg-[--b-accent]" : "bg-[--b-border-hover]"
+          checked ? "bg-[color:var(--b-accent)]" : "bg-[color:var(--b-border-hover)]"
         )}
       >
         <span
           className={cn(
-            "absolute top-0.5 left-0.5 h-4 w-4 rounded-full bg-[--b-accent-foreground] shadow-subtle transition-transform",
+            "absolute top-0.5 left-0.5 h-4 w-4 rounded-full bg-[color:var(--b-accent-foreground)] shadow-subtle transition-transform",
             checked && "translate-x-4"
           )}
         />
@@ -235,7 +287,7 @@ function PlaygroundContent() {
             <h1 className="font-display text-lg font-black">Lab</h1>
             <Link
               href="/components"
-              className="text-xs text-[--b-muted] transition-colors hover:text-[--b-accent]"
+              className="text-xs text-[color:var(--b-muted)] transition-colors hover:text-[color:var(--b-accent)]"
             >
               All components
             </Link>
@@ -246,20 +298,20 @@ function PlaygroundContent() {
               placeholder="Search components..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-[--b-border] bg-[--b-panel] px-3 py-2 text-sm text-[--b-text] outline-none transition-colors placeholder:text-[--b-muted] focus:border-[--b-accent]"
+              className="w-full rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] px-3 py-2 text-sm text-[color:var(--b-text)] outline-none transition-colors placeholder:text-[color:var(--b-muted)] focus:border-[color:var(--b-accent)]"
               aria-label="Search components"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-[--b-muted] transition-colors hover:text-[--b-text]"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-[color:var(--b-muted)] transition-colors hover:text-[color:var(--b-text)]"
                 aria-label="Clear search"
               >
                 &times;
               </button>
             )}
           </div>
-          <ul className="scroll-sleek max-h-64 overflow-y-auto rounded-2xl border border-[--b-border] bg-[--b-panel] p-1 lg:max-h-none lg:flex-1">
+          <ul className="scroll-sleek max-h-64 overflow-y-auto rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-1 lg:max-h-none lg:flex-1">
             {filteredComponents.map((c) => (
               <li key={c.slug}>
                 <button
@@ -267,8 +319,8 @@ function PlaygroundContent() {
                   className={cn(
                     "w-full rounded-xl px-3 py-2 text-left text-sm transition-colors",
                     slug === c.slug
-                      ? "bg-[--b-accent] font-bold text-[--b-accent-foreground]"
-                      : "text-[--b-text-secondary] hover:bg-[--b-surface] hover:text-[--b-text]"
+                      ? "bg-[color:var(--b-accent)] font-bold text-[color:var(--b-accent-foreground)]"
+                      : "text-[color:var(--b-text-secondary)] hover:bg-[color:var(--b-surface)] hover:text-[color:var(--b-text)]"
                   )}
                 >
                   {c.name}
@@ -279,8 +331,8 @@ function PlaygroundContent() {
         </aside>
 
         <main className="flex flex-1 flex-col gap-3">
-          <div className="flex items-center gap-2 rounded-2xl border border-[--b-border] bg-[--b-panel] p-2">
-            <span className="px-2 font-mono text-[11px] font-medium uppercase tracking-wider text-[--b-muted]">
+          <div className="flex items-center gap-2 rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-2">
+            <span className="px-2 font-mono text-[11px] font-medium uppercase tracking-wider text-[color:var(--b-muted)]">
               Preview
             </span>
             <div className="ml-auto flex items-center gap-1.5">
@@ -288,7 +340,7 @@ function PlaygroundContent() {
                 onClick={() => handleThemeChange("dark")}
                 className={cn(
                   "rounded-lg p-1.5 transition-colors",
-                  theme === "dark" ? "bg-[--b-surface] text-[--b-text]" : "text-[--b-muted] hover:text-[--b-text-secondary]"
+                  theme === "dark" ? "bg-[color:var(--b-surface)] text-[color:var(--b-text)]" : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
                 )}
                 aria-label="Dark preview"
                 aria-pressed={theme === "dark"}
@@ -301,7 +353,7 @@ function PlaygroundContent() {
                 onClick={() => handleThemeChange("light")}
                 className={cn(
                   "rounded-lg p-1.5 transition-colors",
-                  theme === "light" ? "bg-[--b-surface] text-[--b-text]" : "text-[--b-muted] hover:text-[--b-text-secondary]"
+                  theme === "light" ? "bg-[color:var(--b-surface)] text-[color:var(--b-text)]" : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
                 )}
                 aria-label="Light preview"
                 aria-pressed={theme === "light"}
@@ -310,7 +362,7 @@ function PlaygroundContent() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </button>
-              <div className="mx-1 h-4 w-px bg-[--b-border]" />
+              <div className="mx-1 h-4 w-px bg-[color:var(--b-border)]" />
               {(["desktop", "tablet", "mobile"] as const).map((w) => (
                 <button
                   key={w}
@@ -319,8 +371,8 @@ function PlaygroundContent() {
                   className={cn(
                     "rounded-lg px-2.5 py-1 text-xs font-medium transition-colors",
                     previewWidth === w
-                      ? "bg-[--b-accent] text-[--b-accent-foreground]"
-                      : "text-[--b-muted] hover:bg-[--b-surface] hover:text-[--b-text-secondary]"
+                      ? "bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)]"
+                      : "text-[color:var(--b-muted)] hover:bg-[color:var(--b-surface)] hover:text-[color:var(--b-text-secondary)]"
                   )}
                 >
                   {w.charAt(0).toUpperCase() + w.slice(1)}
@@ -331,7 +383,7 @@ function PlaygroundContent() {
 
           <div
             className={cn(
-              "flex-1 overflow-auto rounded-2xl border border-[--b-border] p-6",
+              "flex-1 overflow-auto rounded-2xl border border-[color:var(--b-border)] p-6",
               theme === "dark" ? "preview-canvas-dark" : "preview-canvas-light"
             )}
           >
@@ -345,9 +397,9 @@ function PlaygroundContent() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-[--b-border] bg-[--b-panel] p-3">
+          <div className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-3">
             <div className="scroll-sleek flex items-center gap-2 overflow-x-auto">
-              <span className="shrink-0 font-mono text-[11px] font-medium uppercase tracking-wider text-[--b-muted]">
+              <span className="shrink-0 font-mono text-[11px] font-medium uppercase tracking-wider text-[color:var(--b-muted)]">
                 Framework
               </span>
               {frameworks.map((fw) => (
@@ -358,8 +410,8 @@ function PlaygroundContent() {
                   className={cn(
                     "shrink-0 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
                     framework === fw
-                      ? "bg-[--b-accent] text-[--b-accent-foreground]"
-                      : "text-[--b-text-secondary] hover:bg-[--b-surface] hover:text-[--b-text]"
+                      ? "bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)]"
+                      : "text-[color:var(--b-text-secondary)] hover:bg-[color:var(--b-surface)] hover:text-[color:var(--b-text)]"
                   )}
                 >
                   {frameworkLabels[fw] || fw}
@@ -371,13 +423,13 @@ function PlaygroundContent() {
 
         {/* Controls + export — stacks below the canvas on mobile */}
         <aside className="flex w-full flex-shrink-0 flex-col gap-3 lg:w-72 lg:overflow-hidden">
-          <div className="rounded-2xl border border-[--b-border] bg-[--b-panel] p-4">
-            <h2 className="mb-3 font-mono text-[11px] font-bold uppercase tracking-wider text-[--b-muted]">
+          <div className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-4">
+            <h2 className="mb-3 font-mono text-[11px] font-bold uppercase tracking-wider text-[color:var(--b-muted)]">
               Controls · {controlsFor(slug).length > 0 ? "component-specific" : "no tunable props"}
             </h2>
             <div className="space-y-4">
               {controlsFor(slug).length === 0 && (
-                <p className="rounded-lg border border-[--b-border] bg-[--b-surface] p-3 text-xs leading-relaxed text-[--b-text-secondary]">
+                <p className="rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-3 text-xs leading-relaxed text-[color:var(--b-text-secondary)]">
                   This component exposes no tunable numeric props. Preview shows the real default.
                 </p>
               )}
@@ -407,13 +459,13 @@ function PlaygroundContent() {
                 }
                 return (
                   <label key={d.key} className="block">
-                    <span className="mb-1.5 block text-xs font-medium text-[--b-text-secondary]">
+                    <span className="mb-1.5 block text-xs font-medium text-[color:var(--b-text-secondary)]">
                       {d.label} · {d.prop}
                     </span>
                     <select
                       value={String(controls[d.key as keyof Controls])}
                       onChange={(e) => setControls((c) => ({ ...c, [d.key]: e.target.value }))}
-                      className="w-full rounded-lg border border-[--b-border] bg-[--b-surface] px-2 py-1.5 text-xs text-[--b-text]"
+                      className="w-full rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-2 py-1.5 text-xs text-[color:var(--b-text)]"
                     >
                       {d.options.map((o) => (
                         <option key={o} value={o}>
@@ -427,8 +479,8 @@ function PlaygroundContent() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-[--b-border] bg-[--b-panel] p-4">
-            <h2 className="mb-3 font-mono text-[11px] font-bold uppercase tracking-wider text-[--b-muted]">
+          <div className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-4">
+            <h2 className="mb-3 font-mono text-[11px] font-bold uppercase tracking-wider text-[color:var(--b-muted)]">
               Presets
             </h2>
             <div className="flex flex-wrap gap-2">
@@ -436,7 +488,7 @@ function PlaygroundContent() {
                 <button
                   key={preset.label}
                   onClick={() => applyPreset(preset)}
-                  className="rounded-lg border border-[--b-border] bg-[--b-surface] px-3 py-1.5 text-xs text-[--b-text-secondary] transition-colors hover:border-accent-soft hover:bg-accent-wash hover:text-[--b-accent]"
+                  className="rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-1.5 text-xs text-[color:var(--b-text-secondary)] transition-colors hover:border-accent-soft hover:bg-accent-wash hover:text-[color:var(--b-accent)]"
                 >
                   {preset.label}
                 </button>
@@ -444,41 +496,41 @@ function PlaygroundContent() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-[--b-border] bg-[--b-panel] p-4">
-            <h2 className="mb-3 font-mono text-[11px] font-bold uppercase tracking-wider text-[--b-muted]">
+          <div className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-4">
+            <h2 className="mb-3 font-mono text-[11px] font-bold uppercase tracking-wider text-[color:var(--b-muted)]">
               Export
             </h2>
             <div className="space-y-2">
               <button
                 onClick={copyInstallCommand}
-                className="flex w-full items-center justify-between rounded-lg border border-[--b-border] bg-[--b-surface] px-3 py-2 text-xs text-[--b-text-secondary] transition-colors hover:border-accent-soft hover:text-[--b-text]"
+                className="flex w-full items-center justify-between rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-2 text-xs text-[color:var(--b-text-secondary)] transition-colors hover:border-accent-soft hover:text-[color:var(--b-text)]"
               >
                 <span>Install command</span>
-                <span className="font-mono text-[--b-accent]">
+                <span className="font-mono text-[color:var(--b-accent)]">
                   {copiedInstall ? "Copied!" : "Copy"}
                 </span>
               </button>
               <button
                 onClick={copyAiPrompt}
-                className="flex w-full items-center justify-between rounded-lg border border-[--b-border] bg-[--b-surface] px-3 py-2 text-xs text-[--b-text-secondary] transition-colors hover:border-accent-soft hover:text-[--b-text]"
+                className="flex w-full items-center justify-between rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-2 text-xs text-[color:var(--b-text-secondary)] transition-colors hover:border-accent-soft hover:text-[color:var(--b-text)]"
               >
                 <span>AI prompt</span>
-                <span className="font-mono text-[--b-accent]">
+                <span className="font-mono text-[color:var(--b-accent)]">
                   {copiedPrompt ? "Copied!" : "Copy"}
                 </span>
               </button>
               <button
                 onClick={copyShareUrl}
-                className="flex w-full items-center justify-between rounded-lg border border-[--b-border] bg-[--b-surface] px-3 py-2 text-xs text-[--b-text-secondary] transition-colors hover:border-accent-soft hover:text-[--b-text]"
+                className="flex w-full items-center justify-between rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-2 text-xs text-[color:var(--b-text-secondary)] transition-colors hover:border-accent-soft hover:text-[color:var(--b-text)]"
               >
                 <span>Share URL</span>
-                <span className="font-mono text-[--b-accent]">
+                <span className="font-mono text-[color:var(--b-accent)]">
                   {copiedUrl ? "Copied!" : "Copy"}
                 </span>
               </button>
               <Link
                 href={`/components/${slug}`}
-                className="flex w-full items-center justify-between rounded-lg border border-accent-soft bg-accent-wash px-3 py-2 text-xs font-medium text-[--b-accent] transition-colors hover:border-accent-soft hover:bg-accent-wash"
+                className="flex w-full items-center justify-between rounded-lg border border-accent-soft bg-accent-wash px-3 py-2 text-xs font-medium text-[color:var(--b-accent)] transition-colors hover:border-accent-soft hover:bg-accent-wash"
               >
                 <span>Full docs</span>
                 <span>&rarr;</span>
@@ -488,18 +540,18 @@ function PlaygroundContent() {
         </aside>
       </div>
 
-      <div className="mx-4 mb-4 overflow-hidden rounded-2xl border border-[--b-border] bg-[--b-panel]">
-        <div className="flex items-center gap-2 border-b border-[--b-border] px-4 py-2">
-          <span className="text-xs font-medium text-[--b-text-secondary]">{component.name}</span>
-          <span className="font-mono text-[11px] text-[--b-muted]">{slug}</span>
+      <div className="mx-4 mb-4 overflow-hidden rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)]">
+        <div className="flex items-center gap-2 border-b border-[color:var(--b-border)] px-4 py-2">
+          <span className="text-xs font-medium text-[color:var(--b-text-secondary)]">{component.name}</span>
+          <span className="font-mono text-[11px] text-[color:var(--b-muted)]">{slug}</span>
           <span
             className={cn(
               "ml-auto rounded px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider",
               example.status === "Full"
-                ? "bg-accent-wash text-[--b-accent]"
+                ? "bg-accent-wash text-[color:var(--b-accent)]"
                 : example.status === "Partial"
-                ? "bg-warning-wash text-[--b-warning]"
-                : "bg-[--b-surface] text-[--b-muted]"
+                ? "bg-warning-wash text-[color:var(--b-warning)]"
+                : "bg-[color:var(--b-surface)] text-[color:var(--b-muted)]"
             )}
           >
             {example.status}
@@ -509,7 +561,7 @@ function PlaygroundContent() {
           {example.files.length > 0 ? (
             <CodeViewer files={example.files} className="border-0 bg-transparent" />
           ) : (
-            <div className="flex h-24 items-center justify-center px-6 text-center text-sm text-[--b-muted]">
+            <div className="flex h-24 items-center justify-center px-6 text-center text-sm text-[color:var(--b-muted)]">
               No code for {frameworkLabels[framework]} — {example.notes}
             </div>
           )}
