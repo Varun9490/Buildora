@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { copyToClipboard } from "@buildora/utils";
 
 type FrameworkId = "react" | "svelte" | "vue" | "solid" | "react-native" | "swiftui";

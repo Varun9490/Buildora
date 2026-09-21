@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import * as React from "react";
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 import { allComponents, searchComponents } from "@/lib/registry";
 import { LazyPreview } from "@/components/LazyPreview";
 import { cn } from "@buildora/utils";
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -15,12 +15,12 @@ const staggerContainer = {
   },
 };
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 

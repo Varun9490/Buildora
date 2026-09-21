@@ -3,7 +3,7 @@
 import Link from "next/link";
 import * as React from "react";
 import dynamic from "next/dynamic";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { cn, copyToClipboard } from "@buildora/utils";
 import { useBuildora } from "@/lib/store";
 import { allComponents, frameworkLabels, frameworks } from "@/lib/registry";

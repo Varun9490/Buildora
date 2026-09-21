@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { copyToClipboard } from "@buildora/utils";
 import { allComponents, totalComponents } from "@/lib/registry";
 import { SITE } from "@/lib/site";

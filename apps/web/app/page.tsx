@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "motion/react";
 import {
   MagneticButton,
   SlingshotOTP,
@@ -21,7 +21,7 @@ import { FrameworkMatrix } from "@/components/FrameworkMatrix";
 /* ─────────────────────────────────────────────────────
    ANIMATION VARIANTS (Awwwards-tier custom curves)
    ───────────────────────────────────────────────────── */
-const sectionReveal = {
+const sectionReveal: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -29,7 +29,7 @@ const sectionReveal = {
   },
 };
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,

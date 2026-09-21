@@ -92,7 +92,7 @@ export default function InteractiveDocsTemplate() {
               
               <div className="flex-1 overflow-hidden rounded-2xl border-2 border-[#E5E0D8] bg-white shadow-sm">
                 <RichTextEditor 
-                  initialHTML={initialContent} 
+                  initial={initialContent} 
                   className="h-full border-none bg-transparent"
                 />
               </div>

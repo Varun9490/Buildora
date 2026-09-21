@@ -11,7 +11,7 @@ import { accentPresets } from "@buildora/tokens";
  * - Respects system preference when mode = system.
  * - Sets data-theme + color-scheme for Tailwind dark: variant.
  * - MotionConfig honors the user's reduced-motion preference for all
- *   framer-motion animations globally (explorer-level gating stays).
+ *   motion/react animations globally (explorer-level gating stays).
  */
 
 function resolveMode(mode: string): "light" | "dark" {
