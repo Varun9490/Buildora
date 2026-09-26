@@ -57,6 +57,8 @@ export function DropdownMenuContent({ children, className, align = "start" }: {
   const reducedMotion = useReducedMotion();
   const context = React.useContext(DropdownMenuContext);
   const contentRef = React.useRef<HTMLDivElement>(null);
+  const titleId = React.useId();
+  const previousActiveElement = React.useRef<HTMLElement | null>(null);
 
   if (!context) return null;
   const { open, setOpen, triggerRef } = context;
@@ -69,7 +71,10 @@ export function DropdownMenuContent({ children, className, align = "start" }: {
   }, []);
 
   React.useEffect(() => {
+    if (typeof window === "undefined") return;
+
     if (open && triggerRef.current && contentRef.current) {
+      previousActiveElement.current = document.activeElement as HTMLElement;
       const triggerRect = triggerRef.current.getBoundingClientRect();
       const contentRect = contentRef.current.getBoundingClientRect();
       
@@ -81,22 +86,31 @@ export function DropdownMenuContent({ children, className, align = "start" }: {
           : triggerRect.right - contentRect.width;
 
       setPosition({ top, left });
+
+      setTimeout(() => {
+        const firstItem = contentRef.current?.querySelector<HTMLElement>('[role="menuitem"]:not([disabled])');
+        firstItem?.focus();
+      }, 0);
+    } else if (!open && previousActiveElement.current) {
+      previousActiveElement.current.focus();
     }
-  }, [open, align, triggerRef, contentRef]);
+  }, [open, align, triggerRef]);
 
   React.useEffect(() => {
-    if (!open) return;
+    if (typeof window === "undefined" || !open) return;
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        e.preventDefault();
+        e.stopPropagation();
         setOpen(false);
       }
     };
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
+    window.addEventListener("keydown", handleEscape, true);
+    return () => window.removeEventListener("keydown", handleEscape, true);
   }, [open, setOpen]);
 
   React.useEffect(() => {
-    if (!open) return;
+    if (typeof window === "undefined" || !open) return;
     const handleClickOutside = (e: MouseEvent) => {
       if (
         contentRef.current &&
@@ -111,43 +125,59 @@ export function DropdownMenuContent({ children, className, align = "start" }: {
     return () => window.removeEventListener("click", handleClickOutside);
   }, [open, setOpen, triggerRef]);
 
+  React.useEffect(() => {
+    if (typeof window === "undefined" || !open || !contentRef.current) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        const items = Array.from(contentRef.current!.querySelectorAll<HTMLElement>('[role="menuitem"]:not([disabled])'));
+        const currentIndex = items.findIndex((item) => item === document.activeElement);
+        
+        let nextIndex: number;
+        if (e.key === "ArrowDown") {
+          nextIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+        } else {
+          nextIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+        }
+        
+        items[nextIndex]?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
   if (!open) return null;
+  if (!mounted) return null;
 
   const content = (
     <>
       <div
+        className="fixed inset-0 z-[199] bg-[var(--b-scrim)] backdrop-blur-sm animate-fade-in"
+        aria-hidden="true"
+      />
+      <div
         ref={contentRef}
+        role="menu"
+        aria-labelledby={titleId}
         className={cn(
           "fixed z-[200] min-w-[180px] overflow-auto rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] py-2 shadow-2xl backdrop-blur-xl",
+          reducedMotion ? "" : "animate-scale-in",
           className
         )}
-        role="menu"
         style={{
           top: position.top,
           left: position.left,
-          animation: reducedMotion
-            ? undefined
-            : "dropdownFadeIn 150ms ease-out",
         }}
       >
         {children}
       </div>
-      <style jsx global>{`
-        @keyframes dropdownFadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-4px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </>
   );
 
-  return mounted ? createPortal(content, document.body) : null;
+  return typeof window !== "undefined" ? createPortal(content, document.body) : null;
 }
 
 export function DropdownMenuItem({
@@ -166,9 +196,9 @@ export function DropdownMenuItem({
   return (
     <button
       className={cn(
-        "flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-[color-mix(in_oklab,var(--b-text)_90%,transparent)] transition-colors",
-        "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] hover:text-[color:var(--b-text)]",
-        "focus:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] focus:text-[color:var(--b-text)] focus:outline-none",
+        "flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-[var(--b-text-secondary)] transition-colors",
+        "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] hover:text-[var(--b-text)]",
+        "focus:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] focus:text-[var(--b-text)] focus:outline-none focus:ring-2 focus:ring-[var(--b-accent)] focus:ring-inset",
         disabled && "pointer-events-none opacity-50",
         className
       )}
@@ -192,7 +222,7 @@ export function DropdownMenuSeparator({ className }: { className?: string }) {
 
 export function DropdownMenuLabel({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]", className)}>
+    <div className={cn("px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--b-text-tertiary)]", className)}>
       {children}
     </div>
   );
@@ -214,9 +244,9 @@ export function DropdownMenuCheckboxItem({
   return (
     <button
       className={cn(
-        "flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-[color-mix(in_oklab,var(--b-text)_90%,transparent)] transition-colors",
-        "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] hover:text-[color:var(--b-text)]",
-        "focus:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] focus:text-[color:var(--b-text)] focus:outline-none",
+        "flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-[var(--b-text-secondary)] transition-colors",
+        "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] hover:text-[var(--b-text)]",
+        "focus:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] focus:text-[var(--b-text)] focus:outline-none focus:ring-2 focus:ring-[var(--b-accent)] focus:ring-inset",
         className
       )}
       role="menuitemcheckbox"
@@ -228,10 +258,10 @@ export function DropdownMenuCheckboxItem({
     >
       <div className={cn(
         "flex h-4 w-4 items-center justify-center rounded border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] transition-colors",
-        checked && "border-[color:var(--b-accent)] bg-[color:var(--b-accent)]"
+        checked && "border-[var(--b-accent)] bg-[var(--b-accent)]"
       )}>
         {checked && (
-          <svg className="h-3 w-3 text-[color:var(--b-accent-foreground)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-3 w-3 text-[var(--b-accent-foreground)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         )}

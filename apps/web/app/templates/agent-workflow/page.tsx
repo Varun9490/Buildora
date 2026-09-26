@@ -3,10 +3,26 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowLeft, BrainCircuit, Activity, Eye, Play } from "lucide-react";
-import { AgentTimeline, StreamingChat, ToolCallViz, TokenMeter } from "@buildora/components";
-import { motion } from "motion/react";
+import { AgentTimeline, CommandPalette, StreamingChat, ToolCallViz, TokenMeter } from "@buildora/components";
+import { AnimatePresence, motion } from "motion/react";
 
 export default function AgentWorkflowTemplate() {
+  const [paletteOpen, setPaletteOpen] = React.useState(false);
+
+  const workspaceCommands = [
+    { id: "new-agent", label: "Initialize new agent workspace", hint: "workspace", group: "Actions" },
+    { id: "connect-thread", label: "Connect primary thread", hint: "chat", group: "Actions" },
+    { id: "view-trace", label: "Open execution trace", hint: "telemetry", group: "Go to" },
+  ];
+
+  React.useEffect(() => {
+    if (!paletteOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setPaletteOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [paletteOpen]);
   const steps = [
     { id: "1", phase: "plan", title: "Analyze Intent", detail: "Extracted: [Generate Landing Page]", status: "done" },
     { id: "2", phase: "act", title: "search_registry", detail: "{ query: 'bento-grid' }", status: "done" },
@@ -110,11 +126,57 @@ export default function AgentWorkflowTemplate() {
       {/* ACTION: Conversion */}
       <section className="min-h-[40vh] flex flex-col items-center justify-center text-center px-6 pb-24">
         <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8">Deploy your first agent.</h2>
-        <button className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform active:scale-95">
+        <button
+          type="button"
+          onClick={() => setPaletteOpen(true)}
+          aria-haspopup="dialog"
+          aria-expanded={paletteOpen}
+          className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform active:scale-95"
+        >
           <Play className="w-5 h-5 fill-current" />
           Initialize Workspace
         </button>
+        <p className="mt-4 text-sm text-zinc-500">Opens the workspace command palette — pick an action to begin.</p>
       </section>
+
+      {/* Workspace command palette overlay */}
+      <AnimatePresence>
+        {paletteOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-start justify-center bg-black/70 p-6 pt-24 md:pt-32"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Initialize workspace"
+            onClick={() => setPaletteOpen(false)}
+          >
+            <motion.div
+              initial={{ y: 16, scale: 0.98 }}
+              animate={{ y: 0, scale: 1 }}
+              exit={{ y: 8, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              className="w-full max-w-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <CommandPalette
+                commands={workspaceCommands}
+                onSelect={() => setPaletteOpen(false)}
+                className="shadow-2xl"
+              />
+              <button
+                type="button"
+                onClick={() => setPaletteOpen(false)}
+                className="mt-3 w-full text-center text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
+              >
+                Close (Esc)
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );

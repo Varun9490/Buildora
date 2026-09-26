@@ -6,6 +6,20 @@ import { ArrowLeft, Activity, Database, Server, ShieldAlert } from "lucide-react
 import { AdvancedTable, Kanban } from "@buildora/components";
 
 export default function SaaSAdminDashboardTemplate() {
+  const [activeView, setActiveView] = React.useState<"overview" | "clusters" | "datastores">("overview");
+
+  const scrollToSection = React.useCallback((id: "overview" | "clusters" | "datastores") => {
+    setActiveView(id);
+    requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }, []);
+
+  const views = [
+    { id: "overview" as const, label: "Overview", Icon: Activity },
+    { id: "clusters" as const, label: "Clusters", Icon: Server },
+    { id: "datastores" as const, label: "Datastores", Icon: Database },
+  ];
   const tableCols = [
     { key: "node", label: "NODE_ID", sortable: true },
     { key: "region", label: "REGION", sortable: true },
@@ -60,17 +74,22 @@ export default function SaaSAdminDashboardTemplate() {
           
           {/* Side Navigation */}
           <aside className="border-r-2 border-zinc-800 lg:col-span-2 hidden lg:flex flex-col">
-            <nav className="flex-1 flex flex-col">
+            <nav className="flex-1 flex flex-col" aria-label="Dashboard views">
               <div className="p-4 border-b border-zinc-800 font-mono text-[10px] text-zinc-500 uppercase tracking-widest">Views</div>
-              <a href="#" className="p-4 border-b border-zinc-800 hover:bg-zinc-800 flex items-center gap-3 bg-zinc-800/50 text-[#FF2A2A]">
-                <Activity className="w-4 h-4" /> Overview
-              </a>
-              <a href="#" className="p-4 border-b border-zinc-800 hover:bg-zinc-800 flex items-center gap-3 text-zinc-400">
-                <Server className="w-4 h-4" /> Clusters
-              </a>
-              <a href="#" className="p-4 border-b border-zinc-800 hover:bg-zinc-800 flex items-center gap-3 text-zinc-400">
-                <Database className="w-4 h-4" /> Datastores
-              </a>
+              {views.map(({ id, label, Icon }) => {
+                const isActive = activeView === id;
+                return (
+                  <button
+                    key={id}
+                    type="button"
+                    onClick={() => scrollToSection(id)}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`p-4 border-b border-zinc-800 hover:bg-zinc-800 flex items-center gap-3 text-left w-full transition-colors ${isActive ? "bg-zinc-800/50 text-[#FF2A2A]" : "text-zinc-400"}`}
+                  >
+                    <Icon className="w-4 h-4" /> {label}
+                  </button>
+                );
+              })}
             </nav>
           </aside>
 
@@ -78,7 +97,7 @@ export default function SaaSAdminDashboardTemplate() {
           <main className="lg:col-span-10 flex flex-col overflow-y-auto h-[100dvh]">
             
             {/* KPI Strip */}
-            <div className="grid grid-cols-2 md:grid-cols-4 border-b-2 border-zinc-800 shrink-0">
+            <div id="overview" className="grid grid-cols-2 md:grid-cols-4 border-b-2 border-zinc-800 shrink-0 scroll-mt-4">
               <div className="p-6 border-r border-zinc-800 flex flex-col">
                 <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2">Network In</span>
                 <span className="font-mono text-2xl md:text-4xl text-[#EAEAEA]">1.24<span className="text-sm text-zinc-500 ml-1">TB/s</span></span>
@@ -99,7 +118,7 @@ export default function SaaSAdminDashboardTemplate() {
 
             {/* Dense Data Section */}
             <div className="flex flex-col gap-6 p-6">
-              <div className="flex flex-col">
+              <div id="clusters" className="flex flex-col scroll-mt-4">
                 <h3 className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">[ NODE_STATUS ]</h3>
                 <AdvancedTable 
                   columns={tableCols} 
@@ -109,7 +128,7 @@ export default function SaaSAdminDashboardTemplate() {
                 />
               </div>
 
-              <div className="flex flex-col">
+              <div id="datastores" className="flex flex-col scroll-mt-4">
                 <h3 className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">[ ACTIVE_INCIDENTS ]</h3>
                 <Kanban 
                   initial={kanbanCols} 

@@ -19,77 +19,77 @@
     "react": {
       "status": "Full",
       "files": [
-        "packages/components/src/markdown-editor/index.tsx"
+        "packages/components/src/comment-thread/index.tsx"
       ]
     },
     "javascript": {
       "status": "Partial",
       "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
       "files": [
-        "packages/components/src/markdown-editor/index.tsx"
+        "packages/components/src/comment-thread/index.tsx"
       ]
     },
     "vue": {
       "status": "Partial",
       "notes": "Composition API snippet port. React is the source of truth.",
       "files": [
-        "packages/components/src/markdown-editor/index.tsx"
+        "packages/components/src/comment-thread/index.tsx"
       ]
     },
     "svelte": {
       "status": "Partial",
       "notes": "Svelte runes snippet port. React is the source of truth.",
       "files": [
-        "packages/components/src/markdown-editor/index.tsx"
+        "packages/components/src/comment-thread/index.tsx"
       ]
     },
     "angular": {
       "status": "Partial",
       "notes": "Angular @Input snippet port. React is the source of truth.",
       "files": [
-        "packages/components/src/markdown-editor/index.tsx"
+        "packages/components/src/comment-thread/index.tsx"
       ]
     },
     "html": {
       "status": "Partial",
       "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
       "files": [
-        "packages/components/src/markdown-editor/index.tsx"
+        "packages/components/src/comment-thread/index.tsx"
       ]
     },
     "tailwind": {
       "status": "Partial",
       "notes": "Tailwind variant snippet, not a standalone component.",
       "files": [
-        "packages/components/src/markdown-editor/index.tsx"
+        "packages/components/src/comment-thread/index.tsx"
       ]
     },
     "reactNative": {
       "status": "Partial",
       "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
       "files": [
-        "packages/components/src/markdown-editor/index.tsx"
+        "packages/components/src/comment-thread/index.tsx"
       ]
     },
     "flutter": {
       "status": "Experimental",
       "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
       "files": [
-        "packages/components/src/markdown-editor/index.tsx"
+        "packages/components/src/comment-thread/index.tsx"
       ]
     },
     "swiftUI": {
       "status": "Experimental",
       "notes": "Experimental snippet port; pointer interactions remapped.",
       "files": [
-        "packages/components/src/markdown-editor/index.tsx"
+        "packages/components/src/comment-thread/index.tsx"
       ]
     },
     "compose": {
       "status": "Experimental",
       "notes": "Experimental snippet port; pointer interactions remapped.",
       "files": [
-        "packages/components/src/markdown-editor/index.tsx"
+        "packages/components/src/comment-thread/index.tsx"
       ]
     }
   },
@@ -110,14 +110,14 @@
   },
   "files": [
     {
-      "path": "packages/components/src/markdown-editor/index.tsx",
+      "path": "packages/components/src/comment-thread/index.tsx",
       "target": "components/buildora/comment-thread.tsx",
-      "content": "// Could not read file: packages/components/src/markdown-editor/index.tsx"
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\n\nexport interface Comment {\n  id: string;\n  author: string;\n  body: string;\n  time: string;\n  resolved?: boolean;\n}\n\nexport interface CommentThreadProps {\n  threads: Comment[];\n  onResolve?: (id: string) => void;\n  onReply?: (id: string) => void;\n  className?: string;\n}\n\nfunction CommentThread({ threads, onResolve, onReply, className }: CommentThreadProps) {\n  const [focusedId, setFocusedId] = React.useState<string | null>(null);\n\n  const handleKeyDown = (e: React.KeyboardEvent) => {\n    const currentIndex = threads.findIndex((t) => t.id === focusedId);\n    if (e.key === \"ArrowDown\" && currentIndex < threads.length - 1) {\n      e.preventDefault();\n      setFocusedId(threads[currentIndex + 1].id);\n    } else if (e.key === \"ArrowUp\" && currentIndex > 0) {\n      e.preventDefault();\n      setFocusedId(threads[currentIndex - 1].id);\n    } else if (e.key === \"Enter\" && focusedId) {\n      e.preventDefault();\n      if (e.shiftKey) {\n        onResolve?.(focusedId);\n      } else {\n        onReply?.(focusedId);\n      }\n    }\n  };\n\n  const handleResolveToggle = (id: string, resolved: boolean) => {\n    onResolve?.(id);\n  };\n\n  return (\n    <article\n      className={cn(\n        \"rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-4\",\n        className\n      )}\n      aria-label=\"Comment thread\"\n    >\n      <ul className=\"space-y-3\" role=\"list\" onKeyDown={handleKeyDown}>\n        {threads.map((comment) => (\n          <li\n            key={comment.id}\n            className={cn(\n              \"rounded-lg p-3 transition-colors\",\n              focusedId === comment.id && \"bg-[color-mix(in_oklab,var(--b-accent)_8%,transparent)]\",\n              comment.resolved && \"opacity-60\"\n            )}\n            tabIndex={0}\n            onFocus={() => setFocusedId(comment.id)}\n            onBlur={() => setFocusedId(null)}\n            role=\"article\"\n            aria-label={`Comment by ${comment.author}`}\n          >\n            <header className=\"mb-2 flex items-center gap-2\">\n              <div\n                className=\"flex h-8 w-8 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] text-xs font-semibold text-[color-mix(in_oklab,var(--b-text)_80%,transparent)]\"\n                aria-hidden=\"true\"\n              >\n                {comment.author\n                  .split(\" \")\n                  .map((n) => n[0])\n                  .slice(0, 2)\n                  .join(\"\")\n                  .toUpperCase()}\n              </div>\n              <div className=\"flex flex-col\">\n                <span className=\"text-sm font-medium text-[color:var(--b-text)]\">{comment.author}</span>\n                <time className=\"text-xs text-[color:var(--b-text-secondary)]\" dateTime={comment.time}>\n                  {comment.time}\n                </time>\n              </div>\n              <div className=\"ml-auto flex items-center gap-2\">\n                <button\n                  onClick={() => handleResolveToggle(comment.id, comment.resolved ?? false)}\n                  aria-pressed={comment.resolved ?? false}\n                  className={cn(\n                    \"inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-mono font-medium transition-all\",\n                    comment.resolved\n                      ? \"border-[color-mix(in_oklab,var(--b-success)_25%,transparent)] bg-[color-mix(in_oklab,var(--b-success)_10%,transparent)] text-[color:var(--b-success)]\"\n                      : \"border-[color:var(--b-border)] bg-transparent text-[color:var(--b-text-secondary)] hover:bg-[color:var(--b-elevated)]\"\n                  )}\n                >\n                  {comment.resolved ? \"Resolved\" : \"Resolve\"}\n                </button>\n                {onReply && !comment.resolved && (\n                  <button\n                    onClick={() => onReply(comment.id)}\n                    className={cn(\n                      \"inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-mono font-medium transition-all\",\n                      \"border-[color-mix(in_oklab,var(--b-accent)_20%,transparent)] bg-[color:var(--b-accent-muted)] text-[color:var(--b-accent)]\",\n                      \"hover:bg-[color-mix(in_oklab,var(--b-accent)_15%,transparent)]\"\n                    )}\n                  >\n                    Reply\n                  </button>\n                )}\n              </div>\n            </header>\n            <p className=\"text-sm text-[color-mix(in_oklab,var(--b-text)_85%,transparent)]\">{comment.body}</p>\n          </li>\n        ))}\n      </ul>\n    </article>\n  );\n}\n\nCommentThread.displayName = \"CommentThread\";\n\nexport { CommentThread };\n"
     }
   ],
-  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/markdown-editor",
-  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/markdown-editor/index.tsx",
-  "sourceDir": "markdown-editor",
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/comment-thread",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/comment-thread/index.tsx",
+  "sourceDir": "comment-thread",
   "docs": "/components/comment-thread",
   "install": "pnpm dlx shadcn@latest add @buildora/comment-thread"
 }

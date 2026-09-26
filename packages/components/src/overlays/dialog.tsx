@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { cn } from "@buildora/utils";
-import { createPortal } from "react-dom";
 import { useReducedMotion } from "@buildora/hooks";
 
 export type DialogProps = {
@@ -26,138 +25,156 @@ export function Dialog({
 }: DialogProps) {
   const reducedMotion = useReducedMotion();
   const contentRef = React.useRef<HTMLDivElement>(null);
+  const titleId = React.useId();
+  const descriptionId = React.useId();
   const [isVisible, setIsVisible] = React.useState(false);
   const [mounted, setMounted] = React.useState(false);
+
+  const previousActiveElement = React.useRef<HTMLElement | null>(null);
 
   React.useEffect(() => {
     setMounted(true);
   }, []);
 
   React.useEffect(() => {
+    if (typeof window === "undefined") return;
+
     if (open) {
       setIsVisible(true);
+      previousActiveElement.current = document.activeElement as HTMLElement;
       document.body.style.overflow = "hidden";
-      const focusable = contentRef.current?.querySelector<HTMLElement>(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      focusable?.focus();
+      
+      setTimeout(() => {
+        const focusable = contentRef.current?.querySelector<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        focusable?.focus();
+      }, 0);
     } else {
       setIsVisible(false);
       document.body.style.overflow = "";
+      
+      if (previousActiveElement.current) {
+        previousActiveElement.current.focus();
+      }
     }
+    
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
 
   React.useEffect(() => {
-    if (!closeOnEscape || !open) return;
+    if (typeof window === "undefined" || !closeOnEscape || !open) return;
+
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        e.preventDefault();
+        e.stopPropagation();
         onOpenChange(false);
       }
     };
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
+
+    window.addEventListener("keydown", handleEscape, true);
+    return () => window.removeEventListener("keydown", handleEscape, true);
   }, [open, closeOnEscape, onOpenChange]);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Tab" && contentRef.current) {
-      const focusableEls = contentRef.current.querySelectorAll<HTMLElement>(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      const firstEl = focusableEls[0];
-      const lastEl = focusableEls[focusableEls.length - 1];
-      if (e.shiftKey && document.activeElement === firstEl) {
-        e.preventDefault();
-        lastEl?.focus();
-      } else if (!e.shiftKey && document.activeElement === lastEl) {
-        e.preventDefault();
-        firstEl?.focus();
+  React.useEffect(() => {
+    if (typeof window === "undefined" || !open) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Tab" && contentRef.current) {
+        const focusableEls = contentRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusableEls.length === 0) return;
+
+        const firstEl = focusableEls[0];
+        const lastEl = focusableEls[focusableEls.length - 1];
+
+        if (e.shiftKey && document.activeElement === firstEl) {
+          e.preventDefault();
+          lastEl.focus();
+        } else if (!e.shiftKey && document.activeElement === lastEl) {
+          e.preventDefault();
+          firstEl.focus();
+        }
       }
-    }
-  };
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined" || !open) return;
+
+    const inertElements = document.querySelectorAll<HTMLElement>("body > *:not(script):not(noscript)");
+    const originalInert = new Map<HTMLElement, boolean>();
+    
+    inertElements.forEach((el) => {
+      originalInert.set(el, el.inert);
+      el.inert = true;
+    });
+
+    return () => {
+      inertElements.forEach((el) => {
+        const original = originalInert.get(el);
+        if (typeof original === "boolean") {
+          el.inert = original;
+        }
+      });
+    };
+  }, [open]);
 
   if (!open && !isVisible) return null;
+  if (!mounted) return null;
 
-  const content = (
-    <div
-      className={cn(
-        "fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm",
-        overlayClassName
-      )}
-      role="dialog"
-      aria-modal="true"
-      aria-hidden={!open}
-      onClick={() => closeOnOverlayClick && onOpenChange(false)}
-      style={{
-        animation: reducedMotion
-          ? undefined
-          : open
-            ? "dialogFadeIn 200ms ease-out"
-            : "dialogFadeOut 150ms ease-in forwards",
-      }}
-    >
+  return (
+    <>
       <div
-        ref={contentRef}
         className={cn(
-          "relative z-[101] max-h-[90vh] w-full max-w-lg overflow-auto rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] p-6 shadow-2xl backdrop-blur-xl",
-          className
+          "fixed inset-0 z-[100] flex items-center justify-center bg-[var(--b-scrim)] backdrop-blur-sm",
+          reducedMotion ? "opacity-100" : "animate-fade-in",
+          open ? "opacity-100" : "opacity-0 transition-opacity duration-150",
+          overlayClassName
         )}
-        onClick={(e) => e.stopPropagation()}
-        onKeyDown={handleKeyDown}
-        style={{
-          animation: reducedMotion
-            ? undefined
-            : open
-              ? "dialogScaleIn 200ms ease-out"
-              : "dialogScaleOut 150ms ease-in forwards",
-        }}
+        aria-hidden="true"
+        onClick={() => closeOnOverlayClick && onOpenChange(false)}
+      />
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
+        className={cn(
+          "fixed inset-0 z-[101] flex items-center justify-center pointer-events-none"
+        )}
       >
-        {children}
+        <div
+          ref={contentRef}
+          className={cn(
+            "relative pointer-events-auto max-h-[90vh] w-full max-w-lg overflow-auto rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] p-6 shadow-2xl backdrop-blur-xl",
+            "focus:outline-none focus:ring-2 focus:ring-[var(--b-accent)] focus:ring-offset-2 focus:ring-offset-[var(--b-bg)]",
+            reducedMotion ? "" : open ? "animate-scale-in" : "animate-scale-out",
+            className
+          )}
+          onClick={(e) => e.stopPropagation()}
+          tabIndex={-1}
+        >
+          {React.Children.map(children, (child) => {
+            if (React.isValidElement(child) && child.type === DialogTitle) {
+              return React.cloneElement(child as React.ReactElement<{ id?: string }>, { id: titleId });
+            }
+            if (React.isValidElement(child) && child.type === DialogDescription) {
+              return React.cloneElement(child as React.ReactElement<{ id?: string }>, { id: descriptionId });
+            }
+            return child;
+          })}
+        </div>
       </div>
-      <style jsx global>{`
-        @keyframes dialogFadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        @keyframes dialogFadeOut {
-          from {
-            opacity: 1;
-          }
-          to {
-            opacity: 0;
-          }
-        }
-        @keyframes dialogScaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.95) translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
-        }
-        @keyframes dialogScaleOut {
-          from {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
-          to {
-            opacity: 0;
-            transform: scale(0.95) translateY(10px);
-          }
-        }
-      `}</style>
-    </div>
+    </>
   );
-
-  return mounted ? createPortal(content, document.body) : null;
 }
 
 export function DialogHeader({ children, className }: { children: React.ReactNode; className?: string }) {
@@ -168,17 +185,17 @@ export function DialogHeader({ children, className }: { children: React.ReactNod
   );
 }
 
-export function DialogTitle({ children, className }: { children: React.ReactNode; className?: string }) {
+export function DialogTitle({ children, className, id }: { children: React.ReactNode; className?: string; id?: string }) {
   return (
-    <h2 className={cn("text-lg font-semibold text-[color:var(--b-text)]", className)}>
+    <h2 id={id} className={cn("text-lg font-semibold text-[var(--b-text)]", className)}>
       {children}
     </h2>
   );
 }
 
-export function DialogDescription({ children, className }: { children: React.ReactNode; className?: string }) {
+export function DialogDescription({ children, className, id }: { children: React.ReactNode; className?: string; id?: string }) {
   return (
-    <p className={cn("mt-1 text-sm text-[color-mix(in_oklab,var(--b-text)_60%,transparent)]", className)}>
+    <p id={id} className={cn("mt-1 text-sm text-[var(--b-text-secondary)]", className)}>
       {children}
     </p>
   );

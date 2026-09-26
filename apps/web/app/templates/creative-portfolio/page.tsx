@@ -8,7 +8,10 @@ import Link from "next/link";
 export default function CreativePortfolioTemplate() {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  
+
+  const scrollTo = React.useCallback((id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
   return (
     <div className="min-h-screen bg-[#F5F5F3] text-[#1A1A1A] font-sans selection:bg-[#1A1A1A] selection:text-[#F5F5F3]">
       
@@ -30,8 +33,7 @@ export default function CreativePortfolioTemplate() {
           style={{ y }}
           className="absolute inset-0 z-0 bg-[#E8E8E6]"
         >
-           {/* Placeholder for hero image/video */}
-           <div className="w-full h-full opacity-30 mix-blend-multiply bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center" />
+            <div className="w-full h-full opacity-30 mix-blend-multiply bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center" />
         </motion.div>
 
         <div className="relative z-10 grid md:grid-cols-12 gap-6 items-end pb-12">
@@ -60,16 +62,18 @@ export default function CreativePortfolioTemplate() {
                transition={{ delay: 0.5 }}
                className="mt-8"
              >
-                <MagneticButton className="bg-[#1A1A1A] text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold">
-                  View Cases
-                </MagneticButton>
+                 <MagneticButton
+                   onClick={() => scrollTo("work")}
+                   className="bg-[#1A1A1A] text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold">
+                   View Cases
+                 </MagneticButton>
              </motion.div>
           </div>
         </div>
       </header>
 
       {/* Work Grid */}
-      <section id="work" className="py-32 px-6 md:px-12 bg-[#F5F5F3] relative z-20">
+      <section id="work" className="py-32 px-6 md:px-12 bg-[#F5F5F3] relative z-20 scroll-mt-24">
          <div className="flex justify-between items-end mb-16 border-b border-black/10 pb-6">
             <h2 className="font-display text-4xl font-bold tracking-tight">Selected Projects</h2>
             <span className="font-mono text-xs opacity-50">(24 — 26)</span>
@@ -108,20 +112,42 @@ export default function CreativePortfolioTemplate() {
          </div>
       </section>
 
+      {/* About */}
+      <section id="about" className="px-6 md:px-12 pb-32 bg-[#F5F5F3] relative z-20 scroll-mt-24">
+         <div className="grid md:grid-cols-12 gap-6 border-t border-black/10 pt-16">
+            <div className="md:col-span-4">
+               <span className="font-mono text-xs opacity-50 uppercase tracking-widest">About the studio</span>
+            </div>
+            <div className="md:col-span-8">
+               <p className="font-display text-2xl md:text-4xl font-medium tracking-tight leading-tight max-w-2xl">
+                  A compact team of designers and engineers crafting identities,
+                  websites, and design systems for ambitious companies.
+               </p>
+               <div className="mt-8 flex flex-wrap gap-x-12 gap-y-4 text-sm opacity-70">
+                  <span>Identity systems</span>
+                  <span>Digital experiences</span>
+                  <span>Motion &amp; art direction</span>
+               </div>
+            </div>
+         </div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-[#1A1A1A] text-white py-32 px-6 md:px-12 rounded-t-[3rem] relative z-20">
+      <footer id="contact" className="bg-[#1A1A1A] text-white py-32 px-6 md:px-12 rounded-t-[3rem] relative z-20 scroll-mt-24">
          <div className="grid md:grid-cols-2 gap-12">
             <div>
                <h2 className="font-display text-[8vw] leading-none font-black uppercase tracking-tighter mb-8">Let's Talk.</h2>
-               <MagneticButton className="bg-[var(--b-accent)] text-[var(--b-accent-foreground)] px-10 py-5 rounded-full text-xs uppercase tracking-widest font-bold">
-                  hello@bstudio.com
-               </MagneticButton>
+                <MagneticButton
+                  onClick={() => { window.location.href = "mailto:hello@bstudio.com"; }}
+                  className="bg-[var(--b-accent)] text-[var(--b-accent-foreground)] px-10 py-5 rounded-full text-xs uppercase tracking-widest font-bold">
+                   hello@bstudio.com
+                </MagneticButton>
             </div>
-            <div className="flex md:justify-end items-end">
-               <ul className="space-y-4 text-sm opacity-60">
-                  <li><a href="#" className="hover:opacity-100 transition-opacity">Instagram</a></li>
-                  <li><a href="#" className="hover:opacity-100 transition-opacity">Twitter</a></li>
-                  <li><a href="#" className="hover:opacity-100 transition-opacity">LinkedIn</a></li>
+             <div className="flex md:justify-end items-end">
+                <ul className="space-y-4 text-sm opacity-60">
+                   <li><a href="https://www.instagram.com/bstudio" target="_blank" rel="noreferrer" className="hover:opacity-100 transition-opacity">Instagram</a></li>
+                   <li><a href="https://x.com/bstudio" target="_blank" rel="noreferrer" className="hover:opacity-100 transition-opacity">Twitter</a></li>
+                   <li><a href="https://www.linkedin.com/company/bstudio" target="_blank" rel="noreferrer" className="hover:opacity-100 transition-opacity">LinkedIn</a></li>
                   <li className="pt-8 opacity-50 font-mono text-xs">© {new Date().getFullYear()} B—Studio. Built with Buildora.</li>
                </ul>
             </div>

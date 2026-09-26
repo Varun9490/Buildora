@@ -30,13 +30,14 @@ export function HoverCard({
   const openTimeout = React.useRef<number | null>(null);
   const closeTimeout = React.useRef<number | null>(null);
   const [mounted, setMounted] = React.useState(false);
+  const titleId = React.useId();
 
   React.useEffect(() => {
     setMounted(true);
   }, []);
 
   const calculatePosition = React.useCallback(() => {
-    if (!triggerRef.current || !cardRef.current) return;
+    if (typeof window === "undefined" || !triggerRef.current || !cardRef.current) return;
 
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const cardRect = cardRef.current.getBoundingClientRect();
@@ -67,6 +68,8 @@ export function HoverCard({
   }, [side]);
 
   const handleMouseEnter = React.useCallback(() => {
+    if (typeof window === "undefined") return;
+    
     if (closeTimeout.current) {
       window.clearTimeout(closeTimeout.current);
       closeTimeout.current = null;
@@ -77,6 +80,8 @@ export function HoverCard({
   }, [openDelay]);
 
   const handleMouseLeave = React.useCallback(() => {
+    if (typeof window === "undefined") return;
+    
     if (openTimeout.current) {
       window.clearTimeout(openTimeout.current);
       openTimeout.current = null;
@@ -94,33 +99,69 @@ export function HoverCard({
 
   React.useEffect(() => {
     return () => {
+      if (typeof window === "undefined") return;
       if (openTimeout.current) window.clearTimeout(openTimeout.current);
       if (closeTimeout.current) window.clearTimeout(closeTimeout.current);
     };
   }, []);
 
-  const content = open && mounted ? createPortal(
-    <div
-      ref={cardRef}
-      className={cn(
-        "fixed z-[150] rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] p-4 shadow-2xl backdrop-blur-xl",
-        className
-      )}
-      role="dialog"
-      aria-modal="false"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        top: position.top,
-        left: position.left,
-        animation: reducedMotion
-          ? undefined
-          : "hoverCardFadeIn 150ms ease-out",
-      }}
-    >
-      {children}
-    </div>,
-    document.body
+  React.useEffect(() => {
+    if (typeof window === "undefined" || !open) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Tab" && cardRef.current) {
+        const focusableEls = cardRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusableEls.length === 0) return;
+
+        const firstEl = focusableEls[0];
+        const lastEl = focusableEls[focusableEls.length - 1];
+
+        if (e.shiftKey && document.activeElement === firstEl) {
+          e.preventDefault();
+          lastEl.focus();
+        } else if (!e.shiftKey && document.activeElement === lastEl) {
+          e.preventDefault();
+          firstEl.focus();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
+  if (!mounted) return null;
+
+  const content = open ? (
+    <>
+      <div
+        className="fixed inset-0 z-[149] bg-[var(--b-scrim)] backdrop-blur-sm animate-fade-in"
+        aria-hidden="true"
+      />
+      <div
+        ref={cardRef}
+        role="dialog"
+        aria-modal="false"
+        aria-labelledby={titleId}
+        className={cn(
+          "fixed z-[150] rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] p-4 shadow-2xl backdrop-blur-xl",
+          "focus:outline-none focus:ring-2 focus:ring-[var(--b-accent)] focus:ring-offset-2 focus:ring-offset-[var(--b-bg)]",
+          reducedMotion ? "" : "animate-scale-in",
+          className
+        )}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          top: position.top,
+          left: position.left,
+        }}
+        tabIndex={-1}
+      >
+        {children}
+      </div>
+    </>
   ) : null;
 
   return (
@@ -133,19 +174,7 @@ export function HoverCard({
       >
         {trigger}
       </div>
-      {content}
-      <style jsx global>{`
-        @keyframes hoverCardFadeIn {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-      `}</style>
+      {typeof window !== "undefined" && createPortal(content, document.body)}
     </>
   );
 }

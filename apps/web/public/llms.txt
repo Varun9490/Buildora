@@ -1,0 +1,138 @@
+# Buildora — Build. Remix. Ship.
+
+> Creative components for serious developers.
+
+Buildora is a premium open-source, registry-driven component platform for
+creative, interactive, production-ready developer components.
+One component definition powers website, docs, playground, search, and install.
+Accessibility-first: creative interactions never remove semantic behavior.
+Flow: Discover → Interact → Inspect → Copy → Install → Remix → Ship.
+Version: 0.1.0. License: MIT.
+
+## Install (shadcn-compatible registry)
+
+Pattern (from `registry/registry.json` `installBase`):
+
+```bash
+pnpm dlx shadcn@latest add @buildora/{component}
+```
+
+Example:
+
+```bash
+pnpm dlx shadcn@latest add @buildora/magnetic-button
+```
+
+```tsx
+import { MagneticButton } from "@/components/buildora/magnetic-button";
+
+export function Demo() {
+  return <MagneticButton strength={0.35}>Ship it</MagneticButton>;
+}
+```
+
+Registry endpoints:
+- `https://buildora-hazel.vercel.app/r/{component}.json`
+- Local: `/r/{component}.json` (served from `registry/generated/`)
+
+Rebuild / validate (source of truth is `scripts/catalog.ts`):
+
+```bash
+pnpm registry:build     # emits registry/components/*.json, registry/generated/*.json, registry/registry.json, apps/web/lib/registry-data.generated.ts
+pnpm registry:validate  # schema + status check
+```
+
+## Components (72 unique slugs, 82 registry entries; one line each)
+
+- accordion: Disclosure stack with expanded-state semantics.
+- advanced-table: Sortable, filterable, paginated table with semantic <table> markup.
+- agent-timeline: Agent activity timeline (plan → act → observe) with status semantics.
+- ai-review-edit: Diff-style review UI for AI-generated content (accept / edit / reject).
+- alert-dialog: Confirm/cancel dialog with destructive variant.
+- attachment-prompt: Prompt input with removable attachment chips and send.
+- avatar: Identity avatar with fallback initials and group stacking.
+- backdrop: One ambient background, nine variants (aurora, grid, dots, noise, mesh, beams, rise, meteors, ripple). CSS-first, decorative, deterministic layout.
+- badge: Status badges and removable chips with variant tones.
+- breadcrumb: Ancestor trail with current-page semantics.
+- button: Base button with variants and sizes. Foundation for everything clickable.
+- calendar: Scheduling grid with gridcell semantics.
+- checkbox: Accessible checkbox with label and indeterminate support.
+- comment-thread: Resolve/reopen comment thread.
+- context-menu: Right-click menu with keyboard fallback trigger.
+- cta-block: Centered call-to-action with actions and optional stats.
+- cursor-fx: Pointer-following glow in four modes (glow, spotlight, trail, blob). One rAF loop, pointer-fine only, silent under reduced motion.
+- dialog: Focus-trapped modal dialog with overlay and escape handling.
+- diff-viewer: Side-by-side line comparison with added/removed semantics.
+- drawer: Bottom-anchored drawer panel for mobile-first flows.
+- dropdown-menu: Trigger-anchored menu with items, labels, and checks.
+- expandable-sidebar: Hover-expanding rail sidebar with delayed reveal.
+- feature-grid: Three-up feature grid with tags and copy.
+- file-tree: Accessible tree with expand/collapse and keyboard support.
+- floating-navbar: Scroll-aware floating navigation pill.
+- fx-button: Real button with six finishes (none, shimmer, glow, ripple, gradient-border, liquid). Native semantics throughout.
+- fx-card: Card shell with six pointer effects (tilt, spotlight, glare, holographic, wobble, glass). Ref-driven, no re-render per move.
+- hover-card: Delayed hover preview card with configurable side.
+- input: Labeled text input with variants, sizes, and error states.
+- interactive-dropzone: Proximity-reactive dropzone with progress visualization and error recovery.
+- json-viewer: Collapsible JSON viewer with mono styling.
+- kbd: Keyboard shortcut glyphs with chord composition.
+- log-viewer: Filterable log stream with role=log semantics.
+- logo-cloud: Customer logo row with label. Logos only, no taglines.
+- magnetic-button: A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.
+- masonry-layout: Pinterest-style masonry columns.
+- mobile-nav: Bottom mobile navigation with labeled items.
+- modal-stack: Stacked modal manager with push/pop/replace semantics.
+- model-selector: Accessible model picker with status dot.
+- navbar: Sticky header bar with logo, center, and actions slots.
+- pagination: Page controls with prev/next and numbered buttons.
+- popover: Anchored floating panel with placement control.
+- progress: Determinate progress bar with variant tones.
+- query-builder: Composable filter rows with field/operator/value and removable chips.
+- radio-group: Single-select radio set with keyboard arrow navigation.
+- rich-text-editor: Toolbar + contentEditable editor with word count.
+- separator: Thematic break and divider rules for grouping content.
+- sheet: Side panel sliding from any edge with focus management.
+- sidebar: Collapsible app sidebar with sections and active state.
+- site-footer: Footer with brand, link columns, and status line.
+- skeleton: Content placeholder matching final layout shape.
+- slash-commands: Notion-style slash menu with fuzzy filtering.
+- slider: Range slider with value display and keyboard support.
+- slingshot-otp: OTP with real inputs, paste, and SR support. Standard mode by default; slingshot game is opt-in delight.
+- spinner: Activity spinner with sizes and live-region label.
+- spring: dt-based springStep + magnet + rafLoop. The physics behind magnetic effects.
+- step-nav: Stepper navigation with current-step state.
+- streaming-chat: Demo chat UI with simulated token streaming and citations. No transport yet — do not point at production. Transport-agnostic rebuild planned.
+- switch: Labeled toggle switch built on a native checkbox.
+- tabs: Keyboard-navigable tab set with panels.
+- terminal: Terminal emulator UI with scrollback + command input.
+- text-fx: Kinetic text in six kinds (typewriter, scramble, blur, gradient, glitch, morph). Screen readers hear the final text once.
+- textarea: Multiline text field sharing Input styling and semantics.
+- toast: Transient notifications via provider and toast API.
+- token-meter: Token usage meter with role=meter semantics.
+- tokens: Light + dark CSS vars + shared keyframes. Import once so components are styled on first paint.
+- tool-call-viz: Timeline of agent tool calls with running/done states.
+- tooltip: Hover/focus description bubble for controls.
+- use-pointer-proximity: Window-level pointer proximity with rAF throttle. Attracts from radius away; fine-pointer only; zero cost under reduced motion.
+- use-reduced-motion: SSR-safe prefers-reduced-motion via useSyncExternalStore. No hydration flash.
+- utils: cn + clamp + fuzzyScore + formatBytes. Shared class-name helper for every component.
+- version-history: Document version list with restore action.
+
+Full machine-readable metadata: `registry/registry.json` (index), `registry/agent-catalog.json` (install + frameworks + docs + github per component), `registry/components/*.json`, `registry/generated/*.json`.
+Per-component docs: `/components/{slug}`. Per-component source: `https://github.com/Varun9490/Buildora/tree/main/packages/components/src/{slug}`.
+
+## Framework support (honest)
+
+- React: Full. React is the source of truth and the only tested full implementation. Install via shadcn above.
+- JavaScript / Vue (Composition API) / Svelte (runes) / Angular (@Input) / HTML / Tailwind / React Native: Partial — snippet-level ports only, no dedicated runtime. Interactive behavior requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Flutter / SwiftUI / Jetpack Compose: Experimental — snippet ports only; pointer interactions remapped to gestures.
+- Exceptions: `utils` and `tokens` are broader (Full across JS/Vue/Svelte/Angular/HTML/Tailwind); `cursor-fx` / pointer hooks are pointer-fine only and Unsupported on touch/native targets. Check `registry/agent-catalog.json` `frameworks` per component before promising support.
+
+## Links
+
+- Site: https://buildora-hazel.vercel.app
+- Components: https://buildora-hazel.vercel.app/components/{slug}
+- Registry item: https://buildora-hazel.vercel.app/r/{component}.json
+- Registry index: https://buildora-hazel.vercel.app/schema/registry-item.json
+- Agent catalog: https://buildora-hazel.vercel.app/schema/agent-catalog.json
+- GitHub: https://github.com/Varun9490/Buildora
+- Docs: docs/registry.md, README.md, CONTRIBUTING.md

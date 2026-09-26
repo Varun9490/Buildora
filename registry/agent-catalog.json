@@ -2429,9 +2429,9 @@
       "version": "0.1.0",
       "install": "pnpm dlx shadcn@latest add @buildora/comment-thread",
       "docs": "/components/comment-thread",
-      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/markdown-editor",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/comment-thread",
       "files": [
-        "packages/components/src/markdown-editor/index.tsx"
+        "packages/components/src/comment-thread/index.tsx"
       ],
       "frameworks": {
         "react": {
@@ -4466,7 +4466,8 @@
       "dependencies": [],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json"
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -4899,7 +4900,8 @@
       "dependencies": [],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json"
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -5072,7 +5074,8 @@
       "dependencies": [],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json"
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "experimental",
       "provenance": {
