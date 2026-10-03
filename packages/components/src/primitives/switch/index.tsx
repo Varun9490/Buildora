@@ -9,9 +9,14 @@ export type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "typ
 };
 
 const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
-  ({ className, label, disabled, checked, onChange, ...props }, ref) => {
+  ({ className, label, disabled, checked, onChange, defaultChecked, ...props }, ref) => {
     const reducedMotion = useReducedMotion();
     const id = React.useId();
+    // Uncontrolled support: mirror defaultChecked into state so aria-checked can
+    // be derived. `checked` still wins when the component is controlled.
+    const [inner, setInner] = React.useState(defaultChecked ?? false);
+    const isControlled = checked !== undefined;
+    const isChecked = isControlled ? checked : inner;
 
     return (
       <label
@@ -27,10 +32,13 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
             id={id}
             type="checkbox"
             role="switch"
-            aria-checked={checked}
+            aria-checked={isChecked}
             disabled={disabled}
-            checked={checked}
-            onChange={onChange}
+            checked={isChecked}
+            onChange={(e) => {
+              if (!isControlled) setInner(e.target.checked);
+              onChange?.(e);
+            }}
             className="sr-only peer"
             {...props}
           />

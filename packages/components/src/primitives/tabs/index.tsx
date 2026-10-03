@@ -20,16 +20,15 @@ export type TabsProps = React.HTMLAttributes<HTMLDivElement> & {
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
   ({ className, defaultValue, value, onValueChange, children, ...props }, ref) => {
     const id = React.useId();
-    const [selectedTab, setSelectedTab] = React.useState(value || defaultValue || "");
-
-    React.useEffect(() => {
-      if (value !== undefined) {
-        setSelectedTab(value);
-      }
-    }, [value]);
+    const [uncontrolled, setUncontrolled] = React.useState(defaultValue || "");
+    // Controlled when `value` is provided, uncontrolled otherwise. Reading the
+    // prop directly (instead of mirroring it into state) means a controlled
+    // parent that rejects a change wins, which is the standard React contract.
+    const isControlled = value !== undefined;
+    const selectedTab = isControlled ? value : uncontrolled;
 
     const handleChange = (newValue: string) => {
-      setSelectedTab(newValue);
+      if (!isControlled) setUncontrolled(newValue);
       onValueChange?.(newValue);
     };
 
