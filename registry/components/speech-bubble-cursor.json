@@ -1,0 +1,125 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "speech-bubble-cursor",
+  "name": "Speech Bubble Cursor",
+  "slug": "speech-bubble-cursor",
+  "description": "Custom cursor provider that shows speech-bubble tooltips.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "cursor",
+    "tooltip"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/speech-bubble-cursor/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/speech-bubble-cursor/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/speech-bubble-cursor/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/speech-bubble-cursor/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/speech-bubble-cursor/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/speech-bubble-cursor/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/speech-bubble-cursor/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/speech-bubble-cursor/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/speech-bubble-cursor/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/speech-bubble-cursor/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/speech-bubble-cursor/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/speech-bubble-cursor/index.tsx",
+      "target": "components/buildora/speech-bubble-cursor.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type SpeechBubbleCursorProps = {\n  /** Default bubble text (when no element is hovered) */\n  defaultText?: string;\n  /** CSS selector for elements with data-cursor attribute */\n  selector?: string;\n  /** Position: top-left, top-right, bottom-left, or follow cursor */\n  bubblePosition?: \"top-left\" | \"top-right\" | \"bottom-left\" | \"follow\";\n  /** Color scheme */\n  backgroundColor?: string;\n  borderColor?: string;\n  textColor?: string;\n  /** Children to render inside the provider */\n  children: React.ReactNode;\n};\n\nexport function SpeechBubbleCursor({\n  defaultText,\n  selector = \"[data-cursor]\",\n  bubblePosition = \"follow\",\n  backgroundColor,\n  borderColor,\n  textColor,\n  children,\n}: SpeechBubbleCursorProps) {\n  const cursorRef = React.useRef<HTMLDivElement | null>(null);\n  const [bubbleText, setBubbleText] = React.useState(defaultText || \"\");\n  const [visible, setVisible] = React.useState(false);\n  const posRef = React.useRef({ x: -200, y: -200 });\n  const rafRef = React.useRef<number | null>(null);\n  const reduced = useReducedMotion();\n\n  React.useEffect(() => {\n    if (reduced) return;\n\n    const onMove = (e: MouseEvent) => {\n      posRef.current = { x: e.clientX, y: e.clientY };\n      if (rafRef.current) return;\n      rafRef.current = requestAnimationFrame(() => {\n        rafRef.current = null;\n        if (cursorRef.current) {\n          cursorRef.current.style.transform = `translate3d(${posRef.current.x}px, ${posRef.current.y}px, 0)`;\n        }\n      });\n    };\n\n    const onOver = (e: Event) => {\n      const target = (e.target as HTMLElement)?.closest?.(selector);\n      if (target) {\n        const text = (target as HTMLElement).getAttribute(\"data-cursor\");\n        if (text) {\n          setBubbleText(text);\n          setVisible(true);\n        }\n      }\n    };\n\n    const onOut = (e: Event) => {\n      const target = (e.target as HTMLElement)?.closest?.(selector);\n      if (target) {\n        setVisible(false);\n        if (defaultText) setBubbleText(defaultText);\n      }\n    };\n\n    document.addEventListener(\"mousemove\", onMove, { passive: true });\n    document.addEventListener(\"mouseover\", onOver, { passive: true });\n    document.addEventListener(\"mouseout\", onOut, { passive: true });\n\n    return () => {\n      document.removeEventListener(\"mousemove\", onMove);\n      document.removeEventListener(\"mouseover\", onOver);\n      document.removeEventListener(\"mouseout\", onOut);\n      if (rafRef.current) cancelAnimationFrame(rafRef.current);\n    };\n  }, [selector, defaultText, reduced]);\n\n  const resolvedBg = backgroundColor || \"var(--b-surface, #fff)\";\n  const resolvedBorder = borderColor || \"var(--b-accent, #2E90FA)\";\n  const resolvedText = textColor || \"var(--b-fg, #000)\";\n\n  return (\n    <>\n      {children}\n\n      {/* Custom cursor bubble */}\n      {!reduced && (\n        <div\n          ref={cursorRef}\n          aria-hidden\n          className=\"pointer-events-none fixed left-0 top-0 z-[100] hidden will-change-transform lg:block\"\n          style={{ transform: \"translate3d(-200px, -200px, 0)\" }}\n        >\n          <div\n            className={cn(\n              \"origin-top-left whitespace-nowrap px-4 py-2 text-sm font-medium\",\n              \"transition-[opacity,scale] duration-300\",\n              \"rounded-[2px_24px_24px_24px]\",\n              \"border-2 shadow-lg\"\n            )}\n            style={{\n              background: resolvedBg,\n              borderColor: resolvedBorder,\n              color: resolvedText,\n              opacity: visible ? 1 : 0,\n              scale: visible ? \"1\" : \"0.75\",\n              transitionTimingFunction: \"cubic-bezier(.34,1.56,.64,1)\",\n              filter: `drop-shadow(4px 4px 5px color-mix(in oklab, ${resolvedBorder} 16%, transparent))`,\n            }}\n          >\n            {bubbleText || \"\\u00A0\"}\n          </div>\n        </div>\n      )}\n    </>\n  );\n}\n\nexport default SpeechBubbleCursor;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/speech-bubble-cursor",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/speech-bubble-cursor/index.tsx",
+  "sourceDir": "speech-bubble-cursor",
+  "docs": "/components/speech-bubble-cursor",
+  "install": "pnpm dlx shadcn@latest add @buildora/speech-bubble-cursor"
+}

@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 82,
+  "total": 85,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -67,77 +67,122 @@
       "status": "stable"
     },
     {
-      "slug": "fx-button",
-      "name": "Fx Button",
-      "description": "Unified button with multiple effects (liquid, shimmer, glow, ripple).",
+      "slug": "floating-object",
+      "name": "Floating Object",
+      "description": "3D hovering objects with perspective tilt on hover, floating animation, and drop shadow.",
       "categories": [
         "motion"
       ],
       "tags": [
-        "button",
-        "effects"
-      ],
-      "difficulty": "beginner",
-      "version": "0.1.0",
-      "status": "beta"
-    },
-    {
-      "slug": "fx-card",
-      "name": "Fx Card",
-      "description": "Unified card with multiple interactive effects (glare, spotlight, wobble, glass).",
-      "categories": [
-        "motion"
-      ],
-      "tags": [
-        "card",
-        "effects"
+        "3d",
+        "hover"
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
       "status": "beta"
     },
     {
-      "slug": "text-fx",
-      "name": "Text Fx",
-      "description": "Unified text effects (morphing, typewriter, glitch).",
+      "slug": "horizontal-scroll",
+      "name": "Horizontal Scroll",
+      "description": "Scroll-driven horizontal panning section with mobile fallback.",
       "categories": [
         "motion"
       ],
       "tags": [
-        "text",
-        "effects"
+        "scroll",
+        "horizontal"
+      ],
+      "difficulty": "advanced",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "thread-line",
+      "name": "Thread Line",
+      "description": "Animated SVG path that draws itself on scroll or on mount.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "scroll",
+        "svg"
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
       "status": "beta"
     },
     {
-      "slug": "cursor-fx",
-      "name": "Cursor Fx",
-      "description": "Unified cursor effects (glow, spotlight, trail, blob).",
+      "slug": "project-showcase",
+      "name": "Project Showcase",
+      "description": "Project gallery section with filter pills, sticky sidebar, and hover zoom.",
+      "categories": [
+        "blocks"
+      ],
+      "tags": [
+        "gallery",
+        "portfolio"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "reveal-on-scroll",
+      "name": "Reveal on Scroll",
+      "description": "Intersection Observer-based reveal wrapper with multiple animation variants.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "scroll",
+        "reveal"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "handwritten-annotation",
+      "name": "Handwritten Annotation",
+      "description": "Playful handwritten-style text annotations with hand-drawn arrow SVGs.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "annotation",
+        "handwritten"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "vertical-timeline",
+      "name": "Vertical Timeline",
+      "description": "Timeline with dots, tick marks, connecting lines, and staggered scroll-reveal.",
+      "categories": [
+        "data"
+      ],
+      "tags": [
+        "timeline",
+        "scroll"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "speech-bubble-cursor",
+      "name": "Speech Bubble Cursor",
+      "description": "Custom cursor provider that shows speech-bubble tooltips.",
       "categories": [
         "motion"
       ],
       "tags": [
         "cursor",
-        "effects"
+        "tooltip"
       ],
-      "difficulty": "beginner",
-      "version": "0.1.0",
-      "status": "beta"
-    },
-    {
-      "slug": "backdrop",
-      "name": "Backdrop",
-      "description": "Unified animated backgrounds (aurora, grid, noise, mesh).",
-      "categories": [
-        "backgrounds"
-      ],
-      "tags": [
-        "background",
-        "effects"
-      ],
-      "difficulty": "beginner",
+      "difficulty": "intermediate",
       "version": "0.1.0",
       "status": "beta"
     },

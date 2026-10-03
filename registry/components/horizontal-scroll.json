@@ -1,0 +1,124 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "horizontal-scroll",
+  "name": "Horizontal Scroll",
+  "slug": "horizontal-scroll",
+  "description": "Scroll-driven horizontal panning section with mobile fallback.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "scroll",
+    "horizontal"
+  ],
+  "difficulty": "advanced",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/horizontal-scroll/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/horizontal-scroll/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/horizontal-scroll/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/horizontal-scroll/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/horizontal-scroll/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/horizontal-scroll/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/horizontal-scroll/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/horizontal-scroll/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/horizontal-scroll/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/horizontal-scroll/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/horizontal-scroll/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/horizontal-scroll/index.tsx",
+      "target": "components/buildora/horizontal-scroll.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\n\nexport type HorizontalScrollProps = React.HTMLAttributes<HTMLElement> & {\n  /** Total width multiplier (e.g. 5 means the inner track is 5x viewport width) */\n  widthMultiplier?: number;\n  /** Height of the scroll region in vh units (determines scroll range) */\n  scrollHeight?: string;\n  /** Whether to show on mobile (falls back to vertical) */\n  mobileBreakpoint?: number;\n};\n\nexport function HorizontalScroll({\n  widthMultiplier = 5,\n  scrollHeight = \"600vh\",\n  mobileBreakpoint = 768,\n  className,\n  children,\n  ...rest\n}: HorizontalScrollProps) {\n  const sectionRef = React.useRef<HTMLElement | null>(null);\n  const trackRef = React.useRef<HTMLDivElement | null>(null);\n  const [isMobile, setIsMobile] = React.useState(false);\n\n  React.useEffect(() => {\n    const mq = window.matchMedia(`(max-width: ${mobileBreakpoint}px)`);\n    setIsMobile(mq.matches);\n    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);\n    mq.addEventListener(\"change\", handler);\n    return () => mq.removeEventListener(\"change\", handler);\n  }, [mobileBreakpoint]);\n\n  React.useEffect(() => {\n    if (isMobile) return;\n\n    const section = sectionRef.current;\n    const track = trackRef.current;\n    if (!section || !track) return;\n\n    let raf: number | null = null;\n\n    const onScroll = () => {\n      if (raf) return;\n      raf = requestAnimationFrame(() => {\n        raf = null;\n        const rect = section.getBoundingClientRect();\n        const sectionHeight = section.offsetHeight;\n        const viewportHeight = window.innerHeight;\n        const scrollRange = sectionHeight - viewportHeight;\n\n        if (scrollRange <= 0) return;\n\n        const progress = Math.max(0, Math.min(1, -rect.top / scrollRange));\n        const trackWidth = track.scrollWidth;\n        const maxTranslate = trackWidth - window.innerWidth;\n        track.style.transform = `translate3d(${-progress * maxTranslate}px, 0, 0)`;\n      });\n    };\n\n    window.addEventListener(\"scroll\", onScroll, { passive: true });\n    onScroll();\n\n    return () => {\n      window.removeEventListener(\"scroll\", onScroll);\n      if (raf) cancelAnimationFrame(raf);\n    };\n  }, [isMobile]);\n\n  if (isMobile) {\n    return (\n      <section\n        className={cn(\"buildora-horizontal-scroll relative\", className)}\n        {...rest}\n      >\n        {children}\n      </section>\n    );\n  }\n\n  return (\n    <section\n      ref={sectionRef}\n      className={cn(\"buildora-horizontal-scroll relative\", className)}\n      style={{ height: scrollHeight }}\n      {...rest}\n    >\n      <div className=\"sticky top-0 h-screen overflow-hidden\">\n        <div\n          ref={trackRef}\n          className=\"relative h-full will-change-transform\"\n          style={{ width: `${widthMultiplier * 100}vw` }}\n        >\n          {children}\n        </div>\n      </div>\n    </section>\n  );\n}\n\nexport default HorizontalScroll;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/horizontal-scroll",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/horizontal-scroll/index.tsx",
+  "sourceDir": "horizontal-scroll",
+  "docs": "/components/horizontal-scroll",
+  "install": "pnpm dlx shadcn@latest add @buildora/horizontal-scroll"
+}

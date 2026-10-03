@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reveal-on-scroll",
+  "type": "registry:component",
+  "title": "Reveal on Scroll",
+  "description": "Intersection Observer-based reveal wrapper with multiple animation variants.",
+  "status": "beta",
+  "categories": [
+    "motion"
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/reveal-on-scroll/index.tsx",
+      "target": "components/buildora/reveal-on-scroll.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type RevealOnScrollVariant =\n  | \"fade-up\"\n  | \"fade-down\"\n  | \"fade-left\"\n  | \"fade-right\"\n  | \"zoom\"\n  | \"blur\";\n\nexport type RevealOnScrollProps = React.HTMLAttributes<HTMLDivElement> & {\n  /** Animation variant */\n  variant?: RevealOnScrollVariant;\n  /** Stagger delay (seconds) */\n  delay?: number;\n  /** Animation duration (seconds) */\n  duration?: number;\n  /** IntersectionObserver threshold */\n  threshold?: number;\n  /** Only animate once */\n  once?: boolean;\n  /** Root margin for earlier triggering */\n  rootMargin?: string;\n};\n\nconst variantMap: Record<RevealOnScrollVariant, { from: string; to: string }> = {\n  \"fade-up\": {\n    from: \"opacity: 0; transform: translateY(2rem);\",\n    to: \"opacity: 1; transform: translateY(0);\",\n  },\n  \"fade-down\": {\n    from: \"opacity: 0; transform: translateY(-2rem);\",\n    to: \"opacity: 1; transform: translateY(0);\",\n  },\n  \"fade-left\": {\n    from: \"opacity: 0; transform: translateX(2rem);\",\n    to: \"opacity: 1; transform: translateX(0);\",\n  },\n  \"fade-right\": {\n    from: \"opacity: 0; transform: translateX(-2rem);\",\n    to: \"opacity: 1; transform: translateX(0);\",\n  },\n  zoom: {\n    from: \"opacity: 0; transform: scale(0.92);\",\n    to: \"opacity: 1; transform: scale(1);\",\n  },\n  blur: {\n    from: \"opacity: 0; filter: blur(8px); transform: translateY(1rem);\",\n    to: \"opacity: 1; filter: blur(0); transform: translateY(0);\",\n  },\n};\n\nexport function RevealOnScroll({\n  variant = \"fade-up\",\n  delay = 0,\n  duration = 0.7,\n  threshold = 0.15,\n  once = true,\n  rootMargin = \"0px\",\n  className,\n  children,\n  style,\n  ...rest\n}: RevealOnScrollProps) {\n  const ref = React.useRef<HTMLDivElement | null>(null);\n  const [isVisible, setIsVisible] = React.useState(false);\n  const reduced = useReducedMotion();\n\n  React.useEffect(() => {\n    if (reduced) {\n      setIsVisible(true);\n      return;\n    }\n\n    const el = ref.current;\n    if (!el) return;\n\n    const observer = new IntersectionObserver(\n      ([entry]) => {\n        if (entry.isIntersecting) {\n          setIsVisible(true);\n          if (once) observer.disconnect();\n        } else if (!once) {\n          setIsVisible(false);\n        }\n      },\n      { threshold, rootMargin }\n    );\n\n    observer.observe(el);\n    return () => observer.disconnect();\n  }, [threshold, rootMargin, once, reduced]);\n\n  const v = variantMap[variant];\n\n  return (\n    <div\n      ref={ref}\n      className={cn(\"buildora-reveal\", className)}\n      style={{\n        willChange: \"opacity, transform, filter\",\n        transition: `opacity ${duration}s cubic-bezier(0.16, 1, 0.3, 1), transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1), filter ${duration}s ease-out`,\n        transitionDelay: `${delay}s`,\n        ...(reduced\n          ? {}\n          : isVisible\n          ? Object.fromEntries(\n              v.to\n                .split(\";\")\n                .filter(Boolean)\n                .map((s) => {\n                  const [k, ...rest] = s.trim().split(\":\");\n                  return [\n                    k.replace(/-([a-z])/g, (_, c) => c.toUpperCase()),\n                    rest.join(\":\").trim(),\n                  ];\n                })\n            )\n          : Object.fromEntries(\n              v.from\n                .split(\";\")\n                .filter(Boolean)\n                .map((s) => {\n                  const [k, ...rest] = s.trim().split(\":\");\n                  return [\n                    k.replace(/-([a-z])/g, (_, c) => c.toUpperCase()),\n                    rest.join(\":\").trim(),\n                  ];\n                })\n            )),\n        ...style,\n      }}\n      {...rest}\n    >\n      {children}\n    </div>\n  );\n}\n\nexport default RevealOnScroll;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/reveal-on-scroll/index.tsx"
+}

@@ -1,0 +1,125 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "handwritten-annotation",
+  "name": "Handwritten Annotation",
+  "slug": "handwritten-annotation",
+  "description": "Playful handwritten-style text annotations with hand-drawn arrow SVGs.",
+  "categories": [
+    "primitives"
+  ],
+  "tags": [
+    "annotation",
+    "handwritten"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/handwritten-annotation/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/handwritten-annotation/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/handwritten-annotation/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/handwritten-annotation/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/handwritten-annotation/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/handwritten-annotation/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/handwritten-annotation/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/handwritten-annotation/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/handwritten-annotation/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/handwritten-annotation/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/handwritten-annotation/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/handwritten-annotation/index.tsx",
+      "target": "components/buildora/handwritten-annotation.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type HandwrittenAnnotationProps = React.HTMLAttributes<HTMLDivElement> & {\n  /** The handwritten text */\n  text: string;\n  /** Arrow direction pointing from the text to the target */\n  arrowDirection?: \"down-left\" | \"down-right\" | \"up-left\" | \"up-right\" | \"left\" | \"right\" | \"none\";\n  /** Rotation of the text in degrees */\n  rotation?: number;\n  /** Max width of the text block */\n  maxWidth?: string;\n  /** Font family override */\n  fontFamily?: string;\n};\n\nconst arrowPaths: Record<string, { path: string; head: string; viewBox: string }> = {\n  \"down-left\": {\n    path: \"M30 4 C32 20 22 32 6 36\",\n    head: \"M6 36 L16 29 M6 36 L15 42\",\n    viewBox: \"0 0 40 50\",\n  },\n  \"down-right\": {\n    path: \"M4 8 C8 22 18 30 34 30\",\n    head: \"M34 30 L25 24 M34 30 L26 37\",\n    viewBox: \"0 0 40 44\",\n  },\n  \"up-left\": {\n    path: \"M30 36 C24 20 14 10 4 8\",\n    head: \"M4 8 L14 6 M4 8 L8 17\",\n    viewBox: \"0 0 40 44\",\n  },\n  \"up-right\": {\n    path: \"M4 36 C12 22 22 14 34 10\",\n    head: \"M34 10 L24 7 M34 10 L32 20\",\n    viewBox: \"0 0 40 44\",\n  },\n  left: {\n    path: \"M40 18 C30 30 18 32 6 30\",\n    head: \"M6 30 L15 24 M6 30 L14 37\",\n    viewBox: \"0 0 44 44\",\n  },\n  right: {\n    path: \"M4 18 C14 30 26 32 38 30\",\n    head: \"M38 30 L29 24 M38 30 L30 37\",\n    viewBox: \"0 0 44 44\",\n  },\n};\n\nexport function HandwrittenAnnotation({\n  text,\n  arrowDirection = \"down-left\",\n  rotation = -12,\n  maxWidth = \"9rem\",\n  fontFamily,\n  className,\n  style,\n  ...rest\n}: HandwrittenAnnotationProps) {\n  const reduced = useReducedMotion();\n  const arrow = arrowDirection !== \"none\" ? arrowPaths[arrowDirection] : null;\n\n  const isArrowBelow = arrowDirection === \"down-left\" || arrowDirection === \"down-right\";\n\n  return (\n    <div\n      className={cn(\"buildora-handwritten-annotation relative inline-block\", className)}\n      style={{ maxWidth, ...style }}\n      {...rest}\n    >\n      <p\n        className=\"leading-[1.3] tracking-[0.08em]\"\n        style={{\n          fontFamily:\n            fontFamily ||\n            \"var(--b-font-hand, 'Patrick Hand', 'Caveat', cursive)\",\n          fontSize: \"1.05rem\",\n          color: \"color-mix(in oklab, var(--b-fg, #000) 75%, transparent)\",\n          rotate: `${rotation}deg`,\n        }}\n        dangerouslySetInnerHTML={{\n          __html: text.replace(/\\n/g, \"<br/>\"),\n        }}\n      />\n\n      {arrow && (\n        <svg\n          aria-hidden\n          viewBox={arrow.viewBox}\n          className={cn(\n            \"h-10 w-10 overflow-visible\",\n            isArrowBelow ? \"mt-1\" : \"mb-1\"\n          )}\n          style={{\n            color: \"color-mix(in oklab, var(--b-fg, #000) 70%, transparent)\",\n          }}\n        >\n          <path\n            d={arrow.path}\n            fill=\"none\"\n            stroke=\"currentColor\"\n            strokeWidth=\"1.8\"\n            strokeLinecap=\"round\"\n            pathLength={reduced ? undefined : 1}\n            style={\n              reduced\n                ? {}\n                : {\n                    strokeDasharray: \"1\",\n                    strokeDashoffset: \"0\",\n                  }\n            }\n          />\n          <path\n            d={arrow.head}\n            fill=\"none\"\n            stroke=\"currentColor\"\n            strokeWidth=\"1.8\"\n            strokeLinecap=\"round\"\n            strokeLinejoin=\"round\"\n          />\n        </svg>\n      )}\n    </div>\n  );\n}\n\nexport default HandwrittenAnnotation;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/handwritten-annotation",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/handwritten-annotation/index.tsx",
+  "sourceDir": "handwritten-annotation",
+  "docs": "/components/handwritten-annotation",
+  "install": "pnpm dlx shadcn@latest add @buildora/handwritten-annotation"
+}

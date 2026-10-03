@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "thread-line",
+  "type": "registry:component",
+  "title": "Thread Line",
+  "description": "Animated SVG path that draws itself on scroll or on mount.",
+  "status": "beta",
+  "categories": [
+    "motion"
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/thread-line/index.tsx",
+      "target": "components/buildora/thread-line.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type ThreadLineProps = React.SVGAttributes<SVGSVGElement> & {\n  /** SVG path data string */\n  path: string;\n  /** Stroke color */\n  strokeColor?: string;\n  /** Stroke width */\n  strokeWidth?: number;\n  /** Whether the line draws itself on scroll (vs. on mount) */\n  triggerOnScroll?: boolean;\n  /** Duration of draw animation in seconds (mount mode only) */\n  drawDuration?: number;\n  /** Show a dot at the starting position */\n  showDot?: boolean;\n  /** Dot radius */\n  dotRadius?: number;\n  /** ViewBox for the SVG */\n  viewBox?: string;\n};\n\nexport function ThreadLine({\n  path,\n  strokeColor = \"currentColor\",\n  strokeWidth = 3,\n  triggerOnScroll = true,\n  drawDuration = 2.6,\n  showDot = false,\n  dotRadius = 9,\n  viewBox = \"0 0 5700 1000\",\n  className,\n  ...rest\n}: ThreadLineProps) {\n  const svgRef = React.useRef<SVGSVGElement | null>(null);\n  const pathRef = React.useRef<SVGPathElement | null>(null);\n  const reduced = useReducedMotion();\n  const [dashOffset, setDashOffset] = React.useState(1);\n  const [dotPos, setDotPos] = React.useState<{ x: number; y: number } | null>(\n    null\n  );\n\n  /* ---- Scroll-driven draw ---- */\n  React.useEffect(() => {\n    if (reduced) {\n      setDashOffset(0);\n      return;\n    }\n\n    if (!triggerOnScroll) return;\n\n    const svg = svgRef.current;\n    if (!svg) return;\n\n    let raf: number | null = null;\n\n    const onScroll = () => {\n      if (raf) return;\n      raf = requestAnimationFrame(() => {\n        raf = null;\n        const rect = svg.getBoundingClientRect();\n        const start = window.innerHeight;\n        const end = -rect.height;\n        const progress = Math.max(\n          0,\n          Math.min(1, (start - rect.top) / (start - end))\n        );\n        setDashOffset(1 - progress);\n      });\n    };\n\n    window.addEventListener(\"scroll\", onScroll, { passive: true });\n    onScroll();\n\n    return () => {\n      window.removeEventListener(\"scroll\", onScroll);\n      if (raf) cancelAnimationFrame(raf);\n    };\n  }, [triggerOnScroll, reduced]);\n\n  /* ---- Compute dot position ---- */\n  React.useEffect(() => {\n    if (!showDot || !pathRef.current) return;\n    try {\n      const p = pathRef.current.getPointAtLength(0);\n      setDotPos({ x: p.x, y: p.y });\n    } catch {\n      /* ignore in SSR */\n    }\n  }, [showDot, path]);\n\n  return (\n    <svg\n      ref={svgRef}\n      aria-hidden\n      viewBox={viewBox}\n      preserveAspectRatio=\"none\"\n      className={cn(\n        \"buildora-thread-line pointer-events-none overflow-visible\",\n        className\n      )}\n      {...rest}\n    >\n      <path\n        ref={pathRef}\n        pathLength={1}\n        d={path}\n        fill=\"none\"\n        stroke={strokeColor}\n        strokeWidth={strokeWidth}\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n        strokeDasharray=\"1\"\n        style={\n          triggerOnScroll\n            ? { strokeDashoffset: dashOffset }\n            : {\n                strokeDashoffset: 1,\n                animation: reduced\n                  ? \"none\"\n                  : `buildora-draw ${drawDuration}s ease-out forwards`,\n              }\n        }\n      />\n\n      {showDot && dotPos && (\n        <circle\n          r={dotRadius}\n          cx={dotPos.x}\n          cy={dotPos.y}\n          fill={strokeColor}\n          style={{\n            opacity: triggerOnScroll ? (dashOffset < 0.99 ? 1 : 0) : 0,\n            transition: \"opacity 0.3s\",\n          }}\n        />\n      )}\n\n      <style\n        dangerouslySetInnerHTML={{\n          __html: `\n@keyframes buildora-draw {\n  from { stroke-dashoffset: 1; }\n  to   { stroke-dashoffset: 0; }\n}\n          `,\n        }}\n      />\n    </svg>\n  );\n}\n\nexport default ThreadLine;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/thread-line/index.tsx"
+}

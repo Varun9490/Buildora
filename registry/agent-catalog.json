@@ -2,7 +2,7 @@
   "$schema": "https://buildora-hazel.vercel.app/schema/agent-catalog.json",
   "name": "buildora",
   "version": "0.1.0",
-  "total": 82,
+  "total": 85,
   "workflow": [
     "find component",
     "inspect metadata",
@@ -412,110 +412,23 @@
       ]
     },
     {
-      "slug": "fx-button",
-      "name": "Fx Button",
-      "description": "Unified button with multiple effects (liquid, shimmer, glow, ripple).",
+      "slug": "floating-object",
+      "name": "Floating Object",
+      "description": "3D hovering objects with perspective tilt on hover, floating animation, and drop shadow.",
       "categories": [
         "motion"
       ],
       "tags": [
-        "button",
-        "effects"
-      ],
-      "difficulty": "beginner",
-      "version": "0.1.0",
-      "install": "pnpm dlx shadcn@latest add @buildora/fx-button",
-      "docs": "/components/fx-button",
-      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/fx-button",
-      "files": [
-        "packages/components/src/fx-button/index.tsx"
-      ],
-      "frameworks": {
-        "react": {
-          "status": "Full"
-        },
-        "javascript": {
-          "status": "Partial",
-          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
-        },
-        "vue": {
-          "status": "Partial",
-          "note": "Composition API snippet port. React is the source of truth."
-        },
-        "svelte": {
-          "status": "Partial",
-          "note": "Svelte runes snippet port. React is the source of truth."
-        },
-        "angular": {
-          "status": "Partial",
-          "note": "Angular @Input snippet port. React is the source of truth."
-        },
-        "html": {
-          "status": "Partial",
-          "note": "Static markup snippet. Interactive behavior requires the React implementation."
-        },
-        "tailwind": {
-          "status": "Partial",
-          "note": "Tailwind variant snippet, not a standalone component."
-        },
-        "reactNative": {
-          "status": "Partial",
-          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
-        },
-        "flutter": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped to gestures."
-        },
-        "swiftUI": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        },
-        "compose": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        }
-      },
-      "dependencies": [],
-      "registryDependencies": [
-        "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json",
-        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
-      ],
-      "status": "beta",
-      "provenance": {
-        "origin": "original",
-        "license": "MIT",
-        "adapted": false
-      },
-      "targets": [
-        "components/buildora/fx-button.tsx"
-      ],
-      "workflow": [
-        "find",
-        "inspect",
-        "install",
-        "customize",
-        "validate"
-      ]
-    },
-    {
-      "slug": "fx-card",
-      "name": "Fx Card",
-      "description": "Unified card with multiple interactive effects (glare, spotlight, wobble, glass).",
-      "categories": [
-        "motion"
-      ],
-      "tags": [
-        "card",
-        "effects"
+        "3d",
+        "hover"
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "install": "pnpm dlx shadcn@latest add @buildora/fx-card",
-      "docs": "/components/fx-card",
-      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/fx-card",
+      "install": "pnpm dlx shadcn@latest add @buildora/floating-object",
+      "docs": "/components/floating-object",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/floating-object",
       "files": [
-        "packages/components/src/fx-card/index.tsx"
+        "packages/components/src/floating-object/index.tsx"
       ],
       "frameworks": {
         "react": {
@@ -575,7 +488,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/fx-card.tsx"
+        "components/buildora/floating-object.tsx"
       ],
       "workflow": [
         "find",
@@ -586,110 +499,23 @@
       ]
     },
     {
-      "slug": "text-fx",
-      "name": "Text Fx",
-      "description": "Unified text effects (morphing, typewriter, glitch).",
+      "slug": "horizontal-scroll",
+      "name": "Horizontal Scroll",
+      "description": "Scroll-driven horizontal panning section with mobile fallback.",
       "categories": [
         "motion"
       ],
       "tags": [
-        "text",
-        "effects"
+        "scroll",
+        "horizontal"
       ],
-      "difficulty": "beginner",
+      "difficulty": "advanced",
       "version": "0.1.0",
-      "install": "pnpm dlx shadcn@latest add @buildora/text-fx",
-      "docs": "/components/text-fx",
-      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/text-fx",
+      "install": "pnpm dlx shadcn@latest add @buildora/horizontal-scroll",
+      "docs": "/components/horizontal-scroll",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/horizontal-scroll",
       "files": [
-        "packages/components/src/text-fx/index.tsx"
-      ],
-      "frameworks": {
-        "react": {
-          "status": "Full"
-        },
-        "javascript": {
-          "status": "Partial",
-          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
-        },
-        "vue": {
-          "status": "Partial",
-          "note": "Composition API snippet port. React is the source of truth."
-        },
-        "svelte": {
-          "status": "Partial",
-          "note": "Svelte runes snippet port. React is the source of truth."
-        },
-        "angular": {
-          "status": "Partial",
-          "note": "Angular @Input snippet port. React is the source of truth."
-        },
-        "html": {
-          "status": "Partial",
-          "note": "Static markup snippet. Interactive behavior requires the React implementation."
-        },
-        "tailwind": {
-          "status": "Partial",
-          "note": "Tailwind variant snippet, not a standalone component."
-        },
-        "reactNative": {
-          "status": "Partial",
-          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
-        },
-        "flutter": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped to gestures."
-        },
-        "swiftUI": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        },
-        "compose": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        }
-      },
-      "dependencies": [],
-      "registryDependencies": [
-        "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json",
-        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
-      ],
-      "status": "beta",
-      "provenance": {
-        "origin": "original",
-        "license": "MIT",
-        "adapted": false
-      },
-      "targets": [
-        "components/buildora/text-fx.tsx"
-      ],
-      "workflow": [
-        "find",
-        "inspect",
-        "install",
-        "customize",
-        "validate"
-      ]
-    },
-    {
-      "slug": "cursor-fx",
-      "name": "Cursor Fx",
-      "description": "Unified cursor effects (glow, spotlight, trail, blob).",
-      "categories": [
-        "motion"
-      ],
-      "tags": [
-        "cursor",
-        "effects"
-      ],
-      "difficulty": "beginner",
-      "version": "0.1.0",
-      "install": "pnpm dlx shadcn@latest add @buildora/cursor-fx",
-      "docs": "/components/cursor-fx",
-      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/cursor-fx",
-      "files": [
-        "packages/components/src/cursor-fx/index.tsx"
+        "packages/components/src/horizontal-scroll/index.tsx"
       ],
       "frameworks": {
         "react": {
@@ -748,7 +574,7 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/cursor-fx.tsx"
+        "components/buildora/horizontal-scroll.tsx"
       ],
       "workflow": [
         "find",
@@ -759,23 +585,23 @@
       ]
     },
     {
-      "slug": "backdrop",
-      "name": "Backdrop",
-      "description": "Unified animated backgrounds (aurora, grid, noise, mesh).",
+      "slug": "thread-line",
+      "name": "Thread Line",
+      "description": "Animated SVG path that draws itself on scroll or on mount.",
       "categories": [
-        "backgrounds"
+        "motion"
       ],
       "tags": [
-        "background",
-        "effects"
+        "scroll",
+        "svg"
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "install": "pnpm dlx shadcn@latest add @buildora/backdrop",
-      "docs": "/components/backdrop",
-      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/backdrop",
+      "install": "pnpm dlx shadcn@latest add @buildora/thread-line",
+      "docs": "/components/thread-line",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/thread-line",
       "files": [
-        "packages/components/src/backdrop/index.tsx"
+        "packages/components/src/thread-line/index.tsx"
       ],
       "frameworks": {
         "react": {
@@ -835,7 +661,440 @@
         "adapted": false
       },
       "targets": [
-        "components/buildora/backdrop.tsx"
+        "components/buildora/thread-line.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "project-showcase",
+      "name": "Project Showcase",
+      "description": "Project gallery section with filter pills, sticky sidebar, and hover zoom.",
+      "categories": [
+        "blocks"
+      ],
+      "tags": [
+        "gallery",
+        "portfolio"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/project-showcase",
+      "docs": "/components/project-showcase",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/project-showcase",
+      "files": [
+        "packages/components/src/project-showcase/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/project-showcase.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "reveal-on-scroll",
+      "name": "Reveal on Scroll",
+      "description": "Intersection Observer-based reveal wrapper with multiple animation variants.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "scroll",
+        "reveal"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/reveal-on-scroll",
+      "docs": "/components/reveal-on-scroll",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/reveal-on-scroll",
+      "files": [
+        "packages/components/src/reveal-on-scroll/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/reveal-on-scroll.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "handwritten-annotation",
+      "name": "Handwritten Annotation",
+      "description": "Playful handwritten-style text annotations with hand-drawn arrow SVGs.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "annotation",
+        "handwritten"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/handwritten-annotation",
+      "docs": "/components/handwritten-annotation",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/handwritten-annotation",
+      "files": [
+        "packages/components/src/handwritten-annotation/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/handwritten-annotation.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "vertical-timeline",
+      "name": "Vertical Timeline",
+      "description": "Timeline with dots, tick marks, connecting lines, and staggered scroll-reveal.",
+      "categories": [
+        "data"
+      ],
+      "tags": [
+        "timeline",
+        "scroll"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/vertical-timeline",
+      "docs": "/components/vertical-timeline",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/vertical-timeline",
+      "files": [
+        "packages/components/src/vertical-timeline/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/vertical-timeline.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "speech-bubble-cursor",
+      "name": "Speech Bubble Cursor",
+      "description": "Custom cursor provider that shows speech-bubble tooltips.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "cursor",
+        "tooltip"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/speech-bubble-cursor",
+      "docs": "/components/speech-bubble-cursor",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/speech-bubble-cursor",
+      "files": [
+        "packages/components/src/speech-bubble-cursor/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/speech-bubble-cursor.tsx"
       ],
       "workflow": [
         "find",
