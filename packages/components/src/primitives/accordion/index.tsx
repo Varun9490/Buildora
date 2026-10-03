@@ -27,25 +27,22 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     const defaultOpen = parseValue(defaultValue);
     const controlledOpen = parseValue(value);
 
-    const [openItems, setOpenItems] = React.useState<string[]>(controlledOpen.length > 0 ? controlledOpen : defaultOpen);
-
-    React.useEffect(() => {
-      if (value !== undefined) {
-        setOpenItems(parseValue(value));
-      }
-    }, [value]);
+    // Controlled when `value` is provided. Deriving from the prop (rather than
+    // mirroring it into state) means a controlled parent that rejects a change
+    // wins, matching the React contract.
+    const isControlled = value !== undefined;
+    const [uncontrolledOpen, setUncontrolledOpen] = React.useState<string[]>(defaultOpen);
+    const openItems = isControlled ? controlledOpen : uncontrolledOpen;
 
     const toggleItem = (itemValue: string) => {
-      setOpenItems((prev) => {
-        let next: string[];
-        if (prev.includes(itemValue)) {
-          next = prev.filter((v) => v !== itemValue);
-        } else {
-          next = type === "multiple" ? [...prev, itemValue] : [itemValue];
-        }
-        onValueChange?.(type === "multiple" ? next : next[0] || "");
-        return next;
-      });
+      const next = openItems.includes(itemValue)
+        ? openItems.filter((v) => v !== itemValue)
+        : type === "multiple"
+          ? [...openItems, itemValue]
+          : [itemValue];
+
+      if (!isControlled) setUncontrolledOpen(next);
+      onValueChange?.(type === "multiple" ? next : next[0] || "");
     };
 
     return (

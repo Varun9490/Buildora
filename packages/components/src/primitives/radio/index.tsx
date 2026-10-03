@@ -71,16 +71,14 @@ export type RadioGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
   ({ className, value, defaultValue, onValueChange, name, disabled, children, ...props }, ref) => {
-    const [selected, setSelected] = React.useState(value || defaultValue || "");
-
-    React.useEffect(() => {
-      if (value !== undefined) {
-        setSelected(value);
-      }
-    }, [value]);
+    // Controlled when `value` is provided. Deriving from the prop means a
+    // controlled parent that rejects a change wins, matching the React contract.
+    const isControlled = value !== undefined;
+    const [uncontrolled, setUncontrolled] = React.useState(defaultValue || "");
+    const selected = isControlled ? value : uncontrolled;
 
     const handleChange = (newValue: string) => {
-      setSelected(newValue);
+      if (!isControlled) setUncontrolled(newValue);
       onValueChange?.(newValue);
     };
 
