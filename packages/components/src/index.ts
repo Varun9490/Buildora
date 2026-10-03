@@ -357,3 +357,24 @@ export {
   type CommandBarItemProps,
 } from "./navigation";
 export { springs, springToLinear, springStep, type SpringConfig } from "./animations/spring";
+export { FloatingObject, type FloatingObjectProps } from "./floating-object";
+export { HorizontalScroll, type HorizontalScrollProps } from "./horizontal-scroll";
+export { ThreadLine, type ThreadLineProps } from "./thread-line";
+export {
+  ProjectShowcase,
+  ProjectShowcaseCard,
+  type ProjectShowcaseProps,
+  type ProjectShowcaseCardProps,
+} from "./project-showcase";
+export {
+  RevealOnScroll,
+  type RevealOnScrollProps,
+  type RevealOnScrollVariant,
+} from "./reveal-on-scroll";
+export { HandwrittenAnnotation, type HandwrittenAnnotationProps } from "./handwritten-annotation";
+export {
+  VerticalTimeline,
+  type VerticalTimelineProps,
+  type TimelineEntry,
+} from "./vertical-timeline";
+export { SpeechBubbleCursor, type SpeechBubbleCursorProps } from "./speech-bubble-cursor";
