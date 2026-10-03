@@ -1,4 +1,5 @@
 import registryIndex from "../../../registry/registry.json";
+// Cache invalidation: force Next.js to reload this file
 import { fuzzyScore } from "@buildora/utils";
 
 export type RegistryItem = {

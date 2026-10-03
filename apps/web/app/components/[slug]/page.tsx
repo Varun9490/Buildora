@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+// Cache invalidation: force Next.js to reload this file
 import { allComponents, getComponent } from "@/lib/registry";
 import { ComponentDetail } from "./detail";
 
