@@ -93,8 +93,8 @@ const NavbarItem = React.forwardRef<HTMLAnchorElement, NavbarItemProps>(
         role="menuitem"
         aria-current={active ? "page" : undefined}
         className={cn(
-          "relative px-4 py-2 text-sm font-medium transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--b-background)]",
+          "relative inline-flex items-center justify-center min-h-[44px] min-w-[44px] px-4 py-2 text-sm font-medium transition-colors",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--b-bg)]",
           "rounded-full",
           active ? "text-[color:var(--b-text)]" : "text-[color-mix(in_oklab,var(--b-text)_60%,transparent)] hover:text-[color:var(--b-text)]",
           !reducedMotion && "duration-200",
@@ -103,14 +103,14 @@ const NavbarItem = React.forwardRef<HTMLAnchorElement, NavbarItemProps>(
         {...props}
       >
         <AnimatePresence>
-          {!reducedMotion && active && (
+          {active && (
             <motion.div
               layoutId={layoutId}
               className="absolute inset-0 rounded-full bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              transition={reducedMotion ? { duration: 0 } : { type: "spring", bounce: 0.2, duration: 0.6 }}
             />
           )}
         </AnimatePresence>

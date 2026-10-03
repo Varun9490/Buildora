@@ -22,10 +22,10 @@ export interface TUILogViewerProps {
 
 const levelColors = {
   debug: "text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]",
-  info: "text-cyan-400",
-  warn: "text-yellow-400",
-  error: "text-red-400",
-  success: "text-green-400",
+  info: "text-[color:var(--b-accent)]",
+  warn: "text-[color:var(--b-warning)]",
+  error: "text-[color:var(--b-danger)]",
+  success: "text-[color:var(--b-success)]",
 };
 
 const levelLabels = {
@@ -79,7 +79,7 @@ export function TUILogViewer({
     <div
       ref={containerRef}
       className={cn(
-        "font-mono text-xs bg-[#0a0c10] overflow-auto",
+        "font-mono text-xs bg-[var(--b-bg)] overflow-auto",
         className
       )}
       role="log"
@@ -95,8 +95,8 @@ export function TUILogViewer({
               key={i}
               className={cn(
                 "flex items-start gap-2 py-0.5 border-b border-[color-mix(in_oklab,var(--b-border)_5%,transparent)] last:border-0",
-                entry.level === "error" && "bg-red-500/5",
-                entry.level === "warn" && "bg-yellow-500/5"
+                entry.level === "error" && "bg-[color:var(--b-danger)]/5",
+                entry.level === "warn" && "bg-[color:var(--b-warning)]/5"
               )}
             >
               {showTimestamps && entry.timestamp && (
@@ -108,7 +108,7 @@ export function TUILogViewer({
                 </span>
               )}
               {entry.source && (
-                <span className="text-cyan-400/60 shrink-0">[{entry.source}]</span>
+                <span className="text-[color:var(--b-accent)]/60 shrink-0">[{entry.source}]</span>
               )}
               <span className={cn("break-all", levelColors[entry.level || "info"])}>
                 {entry.message}
@@ -118,7 +118,7 @@ export function TUILogViewer({
         )}
       </div>
       {!following && (
-        <div className="sticky bottom-0 left-0 right-0 bg-cyan-500/10 border-t border-cyan-500/20 px-2 py-0.5 text-cyan-400 text-[10px] text-center cursor-pointer">
+        <div className="sticky bottom-0 left-0 right-0 bg-[color:var(--b-accent)]/10 border-t border-[color:var(--b-accent)]/20 px-2 py-0.5 text-[color:var(--b-accent)] text-[10px] text-center cursor-pointer">
           ⮕ New logs (click to follow)
         </div>
       )}

@@ -55,8 +55,8 @@ export function StreamingChat({ seed, className }: { seed?: string; className?: 
       </div>
       <form className="flex gap-2 border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-3" onSubmit={(e) => { e.preventDefault(); if (!input.trim()) return; setMessages((m) => [...m, { id: `u-${Date.now()}`, role: "user", text: input }]); setInput(""); stream(); }}>
         <label htmlFor="chat-input" className="sr-only">Message</label>
-        <input id="chat-input" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask about components… (demo only)" className="min-w-0 flex-1 rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_4%,transparent)] px-3 py-2 text-sm outline-none focus:border-[color:var(--b-accent)]" />
-        <button className="rounded-xl bg-[color:var(--b-accent)] px-4 py-2 text-sm font-bold text-[color:var(--b-accent-foreground)] disabled:opacity-50" disabled={streaming}>Send</button>
+        <input id="chat-input" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask about components… (demo only)" className="min-h-[44px] min-w-0 flex-1 rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_4%,transparent)] px-3 py-2 text-sm outline-none focus:border-[color:var(--b-accent)]" />
+        <button className="min-h-[44px] min-w-[44px] rounded-xl bg-[color:var(--b-accent)] px-4 py-2 text-sm font-bold text-[color:var(--b-accent-foreground)] disabled:opacity-50" disabled={streaming}>Send</button>
       </form>
       <p className="px-4 pb-3 text-[11px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">Frontend component only. No Buildora AI backend.</p>
     </div>
@@ -76,11 +76,11 @@ export function TokenMeter({ used = 1284, limit = 8000, className }: { used?: nu
 export function ModelSelector({ models = ["buildora-1-pro", "buildora-1-flash", "oss-70b"], className }: { models?: string[]; className?: string }) {
   const [m, setM] = React.useState(models[0]);
   return (
-    <label className={cn("inline-flex items-center gap-2 rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_4%,transparent)] px-3 py-1.5 text-sm", className)}>
+    <label className={cn("inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_4%,transparent)] px-3 py-1.5 text-sm", className)}>
       <span className="sr-only">Select model</span>
       <span className="h-2 w-2 rounded-full bg-[color:var(--b-success)]" aria-hidden />
-      <select value={m} onChange={(e) => setM(e.target.value)} className="bg-transparent outline-none" aria-label="Model">
-        {models.map((x) => <option key={x} value={x} className="bg-[#12141d]">{x}</option>)}
+      <select value={m} onChange={(e) => setM(e.target.value)} className="bg-transparent outline-none min-h-[44px]" aria-label="Model">
+        {models.map((x) => <option key={x} value={x} className="bg-[var(--b-surface)]">{x}</option>)}
       </select>
     </label>
   );
@@ -90,8 +90,8 @@ export function ToolCallViz({ calls = [{ name: "search_registry", args: "{ query
   return (
     <ol className={cn("space-y-2", className)} aria-label="Tool calls">
       {calls.map((c) => (
-        <li key={c.name} className="flex items-center gap-3 rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-black/30 px-3 py-2 font-mono text-xs">
-          <span className={cn("h-2 w-2 rounded-full", c.status === "done" ? "bg-[color:var(--b-success)]" : "animate-pulse bg-[#ff8a3d]")} aria-hidden />
+        <li key={c.name} className="flex items-center gap-3 rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color-mix(in_oklab,var(--b-bg)_30%,transparent)] px-3 py-2 font-mono text-xs">
+          <span className={cn("h-2 w-2 rounded-full", c.status === "done" ? "bg-[color:var(--b-success)]" : "animate-pulse bg-[color:var(--b-warning)]")} aria-hidden />
           <span className="font-bold text-[color:var(--b-iris)]">{c.name}</span>
           <span className="truncate text-[color-mix(in_oklab,var(--b-text)_50%,transparent)]">{c.args}</span>
           <span className="ml-auto text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">{c.status}</span>

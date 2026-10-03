@@ -43,10 +43,10 @@ export function TUIDiffViewer({
   }, [hunks.length]);
 
   const lineStyles = {
-    add: "bg-green-500/10 text-green-400",
-    delete: "bg-red-500/10 text-red-400",
+    add: "bg-[color:var(--b-success)]/10 text-[color:var(--b-success)]",
+    delete: "bg-[color:var(--b-danger)]/10 text-[color:var(--b-danger)]",
     context: "text-[color-mix(in_oklab,var(--b-text)_70%,transparent)]",
-    header: "bg-cyan-500/10 text-cyan-400",
+    header: "bg-[color:var(--b-accent)]/10 text-[color:var(--b-accent)]",
   };
 
   const linePrefixes = {
@@ -61,7 +61,7 @@ export function TUIDiffViewer({
       <div
         ref={containerRef}
         className={cn(
-          "font-mono text-xs bg-[#0a0c10] overflow-auto",
+          "font-mono text-xs bg-[var(--b-bg)] overflow-auto",
           className
         )}
         role="region"
@@ -106,7 +106,7 @@ export function TUIDiffViewer({
     <div
       ref={containerRef}
       className={cn(
-        "font-mono text-xs bg-[#0a0c10] overflow-hidden",
+        "font-mono text-xs bg-[var(--b-bg)] overflow-hidden",
         className
       )}
       role="region"
@@ -131,7 +131,7 @@ export function TUIDiffViewer({
               className={cn(
                 "flex px-1 py-0.5 min-h-[1.25rem]",
                 lineStyles[hunk.type],
-                hunk.type === "delete" && "bg-red-500/20"
+                hunk.type === "delete" && "bg-[color:var(--b-danger)]/20"
               )}
             >
               {showLineNumbers && hunk.type !== "header" && (
@@ -153,7 +153,7 @@ export function TUIDiffViewer({
               className={cn(
                 "flex px-1 py-0.5 min-h-[1.25rem]",
                 lineStyles[hunk.type],
-                hunk.type === "add" && "bg-green-500/20"
+                hunk.type === "add" && "bg-[color:var(--b-success)]/20"
               )}
             >
               {showLineNumbers && hunk.type !== "header" && (

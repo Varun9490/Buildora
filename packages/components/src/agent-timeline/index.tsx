@@ -41,8 +41,8 @@ export function AgentTimeline({
             aria-hidden
             className={cn(
               "mt-1.5 h-3.5 w-3.5 shrink-0 rounded-full border-2",
-              s.status === "done" && "border-[color:var(--b-success)] bg-[#4fe08a]/30",
-              s.status === "running" && "motion-safe:animate-pulse border-[#ff8a3d] bg-[#ff8a3d]/30",
+              s.status === "done" && "border-[color:var(--b-success)] bg-[color-mix(in_oklab,var(--b-success)_30%,transparent)]",
+              s.status === "running" && "motion-safe:animate-pulse border-[color:var(--b-warning)] bg-[color-mix(in_oklab,var(--b-warning)_30%,transparent)]",
               s.status === "queued" && "border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] bg-transparent"
             )}
           />

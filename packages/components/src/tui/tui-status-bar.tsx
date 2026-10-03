@@ -14,17 +14,17 @@ export interface TUIStatusBarProps {
 
 const valueColors = {
   default: "text-[color-mix(in_oklab,var(--b-text)_90%,transparent)]",
-  success: "text-green-400",
-  warning: "text-yellow-400",
-  error: "text-red-400",
-  accent: "text-cyan-400",
+  success: "text-[color:var(--b-success)]",
+  warning: "text-[color:var(--b-warning)]",
+  error: "text-[color:var(--b-danger)]",
+  accent: "text-[color:var(--b-accent)]",
 };
 
 export function TUIStatusBar({ items, className }: TUIStatusBarProps) {
   return (
     <div
       className={cn(
-        "flex items-center gap-4 px-3 py-1 bg-[#0a0c10] border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] font-mono text-[11px]",
+        "flex items-center gap-4 px-3 py-1 bg-[var(--b-bg)] border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] font-mono text-[11px]",
         className
       )}
       role="status"

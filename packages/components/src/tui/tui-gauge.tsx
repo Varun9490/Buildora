@@ -15,10 +15,10 @@ export interface TUIGaugeProps {
 }
 
 const gaugeColors = {
-  default: { fill: "█", empty: "░", text: "text-cyan-400" },
-  success: { fill: "█", empty: "░", text: "text-green-400" },
-  warning: { fill: "█", empty: "░", text: "text-yellow-400" },
-  error: { fill: "█", empty: "░", text: "text-red-400" },
+  default: { fill: "█", empty: "░", text: "text-[color:var(--b-accent)]" },
+  success: { fill: "█", empty: "░", text: "text-[color:var(--b-success)]" },
+  warning: { fill: "█", empty: "░", text: "text-[color:var(--b-warning)]" },
+  error: { fill: "█", empty: "░", text: "text-[color:var(--b-danger)]" },
 };
 
 const gaugeSizes = {
@@ -28,10 +28,10 @@ const gaugeSizes = {
 };
 
 const gaugeStyles = {
-  default: "text-cyan-400",
-  success: "text-green-400",
-  warning: "text-yellow-400",
-  error: "text-red-400",
+  default: "text-[color:var(--b-accent)]",
+  success: "text-[color:var(--b-success)]",
+  warning: "text-[color:var(--b-warning)]",
+  error: "text-[color:var(--b-danger)]",
 };
 
 export function TUIGauge({

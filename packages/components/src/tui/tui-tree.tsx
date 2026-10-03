@@ -55,7 +55,7 @@ export function TUITree({
           className={cn(
             "flex items-center gap-1 cursor-pointer hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]",
             dense ? "py-0.5" : "py-1",
-            isSelected && "bg-cyan-500/10"
+            isSelected && "bg-[color:var(--b-accent)]/10"
           )}
           style={{ paddingLeft: depth * 12 + 4 }}
           onClick={() => onSelect?.(node)}
@@ -82,7 +82,7 @@ export function TUITree({
           )}
           {!hasChildren && <span className="w-4" />}
           {node.icon && <span className="text-[color-mix(in_oklab,var(--b-text)_60%,transparent)]">{node.icon}</span>}
-          <span className={cn(isSelected ? "text-cyan-400" : "text-[color-mix(in_oklab,var(--b-text)_80%,transparent)]")}>
+          <span className={cn(isSelected ? "text-[color:var(--b-accent)]" : "text-[color-mix(in_oklab,var(--b-text)_80%,transparent)]")}>
             {node.label}
           </span>
         </div>
@@ -99,7 +99,7 @@ export function TUITree({
 
   return (
     <div
-      className={cn("font-mono text-xs bg-[#0a0c10] overflow-auto", className)}
+      className={cn("font-mono text-xs bg-[var(--b-bg)] overflow-auto", className)}
       role="tree"
       aria-label="File tree"
     >

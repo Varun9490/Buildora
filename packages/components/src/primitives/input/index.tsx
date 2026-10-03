@@ -56,17 +56,19 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             type={type}
             className={cn(
-              "block w-full rounded-[10px] px-4 text-[color:var(--b-text)] outline-none transition-all duration-200",
+              "block w-full min-h-[44px] rounded-[10px] px-4 text-[color:var(--b-text)] outline-none transition-all duration-200",
               "placeholder:text-[color:var(--b-muted)]",
-              "focus:outline-none focus:ring-2 focus:ring-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]",
               "disabled:cursor-not-allowed disabled:opacity-50",
               inputVariantStyles[variant],
               sizeStyles[inputSize],
               leftIcon && "pl-10",
               rightIcon && "pr-10",
-              error && "border-[color-mix(in_oklab,var(--b-danger)_60%,transparent)] focus:border-[color:var(--b-danger)] focus:ring-[color-mix(in_oklab,var(--b-danger)_15%,transparent)]",
+              error && "border-[color-mix(in_oklab,var(--b-danger)_60%,transparent)] focus-visible:border-[color:var(--b-danger)] focus-visible:ring-[color-mix(in_oklab,var(--b-danger)_15%,transparent)]",
               className
             )}
+            aria-invalid={!!error}
+            aria-describedby={error ? (props.id ? `${props.id}-err` : undefined) : undefined}
             {...props}
           />
           {rightIcon && (
@@ -76,7 +78,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           )}
         </div>
         {error && errorMessage && (
-          <p className="mt-1.5 text-xs text-[color:var(--b-danger)]">{errorMessage}</p>
+          <p id={props.id ? `${props.id}-err` : undefined} role="alert" className="mt-1.5 text-sm text-[color:var(--b-danger)]">{errorMessage}</p>
         )}
       </div>
     );
@@ -101,18 +103,20 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           ref={ref}
           className={cn(
-            "block w-full resize-none rounded-[10px] border px-4 py-3 text-sm text-[color:var(--b-text)] outline-none transition-all duration-200",
+            "block w-full min-h-[44px] resize-none rounded-[10px] border px-4 py-3 text-sm text-[color:var(--b-text)] outline-none transition-all duration-200",
             "placeholder:text-[color:var(--b-muted)]",
-            "focus:outline-none focus:ring-2 focus:ring-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_20%,transparent)]",
             "disabled:cursor-not-allowed disabled:opacity-50",
             inputVariantStyles[variant],
-            error && "border-[color-mix(in_oklab,var(--b-danger)_60%,transparent)] focus:border-[color:var(--b-danger)] focus:ring-[color-mix(in_oklab,var(--b-danger)_15%,transparent)]",
+            error && "border-[color-mix(in_oklab,var(--b-danger)_60%,transparent)] focus-visible:border-[color:var(--b-danger)] focus-visible:ring-[color-mix(in_oklab,var(--b-danger)_15%,transparent)]",
             className
           )}
+          aria-invalid={!!error}
+          aria-describedby={error ? (props.id ? `${props.id}-err` : undefined) : undefined}
           {...props}
         />
         {error && errorMessage && (
-          <p className="mt-1.5 text-xs text-[color:var(--b-danger)]">{errorMessage}</p>
+          <p id={props.id ? `${props.id}-err` : undefined} role="alert" className="mt-1.5 text-sm text-[color:var(--b-danger)]">{errorMessage}</p>
         )}
       </div>
     );

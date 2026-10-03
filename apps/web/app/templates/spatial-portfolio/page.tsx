@@ -125,7 +125,7 @@ export default function SpatialPortfolioTemplate() {
       </section>
 
       {/* Marquee Divider */}
-      <div className="py-12 border-y border-[#1A1A1A]/10 bg-white/50 backdrop-blur-sm overflow-hidden">
+      <div className="py-12 border-y border-[#1A1A1A]/10 bg-[var(--b-bg)]/50 backdrop-blur-sm overflow-hidden">
         <InfiniteMarquee speed="normal" gap={16} className="text-[#1A1A1A]/30">
           {disciplines.map((word, i) => (
             <span
@@ -139,7 +139,7 @@ export default function SpatialPortfolioTemplate() {
       </div>
 
       {/* Selected Works - Bento Grid */}
-      <section id="work" className="p-8 md:p-12 lg:p-24 bg-white scroll-mt-24">
+      <section id="work" className="p-8 md:p-12 lg:p-24 bg-[var(--b-bg)] scroll-mt-24">
         <div className="flex items-center justify-between mb-16">
           <h2 className="text-2xl md:text-4xl font-medium tracking-tight">Selected Works</h2>
           <span className="text-sm text-[#888] font-mono">( 2024 - 2026 )</span>
@@ -152,14 +152,14 @@ export default function SpatialPortfolioTemplate() {
             className="bg-[#F4F4F2] border-none shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] flex flex-col justify-between group overflow-hidden relative min-h-[320px]"
           >
             <div className="relative z-10 p-4">
-              <span className="inline-block px-3 py-1 rounded-full border border-[#1A1A1A]/10 text-xs font-medium uppercase tracking-widest bg-white/50 backdrop-blur-md">Featured</span>
+              <span className="inline-block px-3 py-1 rounded-full border border-[#1A1A1A]/10 text-xs font-medium uppercase tracking-widest bg-[var(--b-bg)]/50 backdrop-blur-md">Featured</span>
             </div>
             <div className="relative z-10 p-4">
               <h3 className="text-3xl font-medium mb-2">Buildora Ecosystem</h3>
               <p className="text-[#555] max-w-sm">A comprehensive toolkit for spatial and motion-first web experiences.</p>
             </div>
             <div className="absolute right-8 top-8 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-4 group-hover:translate-x-0 duration-500">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl">
+              <div className="w-16 h-16 bg-[var(--b-bg)] rounded-full flex items-center justify-center shadow-2xl">
                 <ArrowUpRight className="w-6 h-6 text-[#1A1A1A]" />
               </div>
             </div>
@@ -183,7 +183,7 @@ export default function SpatialPortfolioTemplate() {
           >
             <div className="w-full h-full bg-gradient-to-br from-[#EAEAEA] to-[#FAF9F6] flex items-center justify-center">
               <div className="w-32 h-32 rounded-full border border-[#CCC] shadow-inner flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-white shadow-xl" />
+                <div className="w-16 h-16 rounded-full bg-[var(--b-bg)] shadow-xl" />
               </div>
             </div>
           </BentoItem>
@@ -207,7 +207,7 @@ export default function SpatialPortfolioTemplate() {
         </div>
         <ul className="divide-y divide-[#1A1A1A]/10 border-y border-[#1A1A1A]/10">
           {services.map((service) => (
-            <li key={service.index} className="group py-8 grid md:grid-cols-12 gap-4 items-baseline hover:bg-white/60 transition-colors px-2 md:px-4 -mx-2 md:-mx-4">
+            <li key={service.index} className="group py-8 grid md:grid-cols-12 gap-4 items-baseline hover:bg-[var(--b-bg)]/60 transition-colors px-2 md:px-4 -mx-2 md:-mx-4">
               <span className="font-mono text-xs text-[#888] md:col-span-1">{service.index}</span>
               <h3 className="text-2xl md:text-3xl font-medium tracking-tight md:col-span-5 group-hover:translate-x-2 transition-transform duration-300">
                 {service.title}
@@ -245,7 +245,7 @@ export default function SpatialPortfolioTemplate() {
                 onClick={() => {
                   window.location.href = "mailto:hello@bstudio.example?subject=Project%20inquiry";
                 }}
-                className="bg-[#F4F4F2] text-[#1A1A1A] px-8 py-4 rounded-full text-sm font-medium hover:bg-white transition-colors"
+                className="bg-[#F4F4F2] text-[#1A1A1A] px-8 py-4 rounded-full text-sm font-medium hover:bg-[var(--b-bg)] transition-colors"
               >
                 hello@bstudio.example
               </MagneticButton>

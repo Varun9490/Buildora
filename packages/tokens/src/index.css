@@ -1,0 +1,53 @@
+/* ─────────────────────────────────────────────────────
+   BUILDORA UNIVERSAL TOKENS
+   Stone-neutral base · Swappable accent · Light + Dark
+   Brand: Scaffold + signal. One system. Any product.
+   ───────────────────────────────────────────────────── */
+:root,
+[data-theme="light"] {
+  --b-bg: #FAF9F7;
+  --b-panel: #FFFFFF;
+  --b-surface: #F1EFEB;
+  --b-elevated: #FFFFFF;
+  --b-border: rgba(19, 19, 22, 0.08);
+  --b-border-hover: rgba(19, 19, 22, 0.16);
+  --b-text: #131316;
+  --b-text-secondary: #52525B;
+  --b-muted: #8E8E93;
+  --b-ring: rgba(19, 19, 22, 0.16);
+  --b-success: #047857;
+  --b-warning: #B45309;
+  --b-danger: #BE123C;
+  --b-accent: #4D7C0F;
+  --b-accent-foreground: #FFFFFF;
+  --b-accent-muted: rgba(77, 124, 15, 0.1);
+  --b-iris: #4F46E5;
+  --b-iris-foreground: #FFFFFF;
+  --b-radius: 12px;
+  --b-radius-sm: 10px;
+  --b-radius-lg: 16px;
+  --b-transition: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --b-bg: #0E0E0C;
+  --b-panel: #161614;
+  --b-surface: #1D1D1A;
+  --b-elevated: #242422;
+  --b-border: rgba(255, 255, 255, 0.08);
+  --b-border-hover: rgba(255, 255, 255, 0.16);
+  --b-text: #EDEDEC;
+  --b-text-secondary: #A1A1AA;
+  --b-muted: #6E6E73;
+  --b-ring: rgba(255, 255, 255, 0.16);
+  --b-success: #34D399;
+  --b-warning: #FBBF24;
+  --b-danger: #F87171;
+  --b-accent: #D4FF4F;
+  --b-accent-foreground: #131305;
+  --b-accent-muted: rgba(212, 255, 79, 0.12);
+  --b-iris: #9D8CFF;
+  --b-iris-foreground: #1E1B4B;
+  color-scheme: dark;
+}

@@ -45,37 +45,37 @@ export default function SaaSAdminDashboardTemplate() {
   ];
 
   return (
-    <div className="min-h-[100dvh] bg-[#0A0A0A] text-[#EAEAEA] font-sans selection:bg-[#FF2A2A] selection:text-white p-4 md:p-8 flex flex-col">
+    <div className="min-h-[100dvh] bg-[var(--b-bg)] text-[color:var(--b-text)] font-sans selection:bg-[color:var(--b-accent)] selection:text-white p-4 md:p-8 flex flex-col">
       {/* Go Back Link */}
-      <Link href="/templates" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-500 hover:text-[#EAEAEA] mb-8 w-fit transition-colors">
+      <Link href="/templates" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] hover:text-[color:var(--b-text)] mb-8 w-fit transition-colors">
         <ArrowLeft className="w-3 h-3" /> Return to Templates
       </Link>
 
-      <div className="flex-1 border-2 border-zinc-800 flex flex-col">
+      <div className="flex-1 border-2 border-[color:var(--b-border)] flex flex-col">
         {/* Top Header */}
-        <header className="border-b-2 border-zinc-800 p-4 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <header className="border-b-2 border-[color:var(--b-border)] p-4 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none mb-1">Central Command</h1>
-            <p className="font-mono text-xs text-zinc-500 uppercase tracking-widest">Global Infrastructure Monitoring &middot; Active</p>
+            <p className="font-mono text-xs text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] uppercase tracking-widest">Global Infrastructure Monitoring &middot; Active</p>
           </div>
           <div className="flex items-center gap-4">
-            <div className="border border-zinc-800 px-4 py-2 flex items-center gap-3">
-              <ShieldAlert className="w-4 h-4 text-[#FF2A2A]" />
-              <span className="font-mono text-xs uppercase tracking-widest text-[#FF2A2A]">2 Critical Alerts</span>
+            <div className="border border-[color:var(--b-border)] px-4 py-2 flex items-center gap-3">
+              <ShieldAlert className="w-4 h-4 text-[color:var(--b-accent)]" />
+              <span className="font-mono text-xs uppercase tracking-widest text-[color:var(--b-accent)]">2 Critical Alerts</span>
             </div>
-            <div className="w-12 h-12 bg-zinc-800 flex items-center justify-center font-black">
+            <div className="w-12 h-12 bg-[var(--b-surface)] flex items-center justify-center font-black">
               OP
             </div>
           </div>
         </header>
 
         {/* Main Grid Area */}
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 bg-[#0A0A0A]">
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 bg-[var(--b-bg)]">
           
           {/* Side Navigation */}
-          <aside className="border-r-2 border-zinc-800 lg:col-span-2 hidden lg:flex flex-col">
+          <aside className="border-r-2 border-[color:var(--b-border)] lg:col-span-2 hidden lg:flex flex-col">
             <nav className="flex-1 flex flex-col" aria-label="Dashboard views">
-              <div className="p-4 border-b border-zinc-800 font-mono text-[10px] text-zinc-500 uppercase tracking-widest">Views</div>
+              <div className="p-4 border-b border-[color:var(--b-border)] font-mono text-[10px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] uppercase tracking-widest">Views</div>
               {views.map(({ id, label, Icon }) => {
                 const isActive = activeView === id;
                 return (
@@ -84,7 +84,7 @@ export default function SaaSAdminDashboardTemplate() {
                     type="button"
                     onClick={() => scrollToSection(id)}
                     aria-current={isActive ? "page" : undefined}
-                    className={`p-4 border-b border-zinc-800 hover:bg-zinc-800 flex items-center gap-3 text-left w-full transition-colors ${isActive ? "bg-zinc-800/50 text-[#FF2A2A]" : "text-zinc-400"}`}
+                    className={`p-4 border-b border-[color:var(--b-border)] hover:bg-[var(--b-surface)] flex items-center gap-3 text-left w-full transition-colors ${isActive ? "bg-[color-mix(in_oklab,var(--b-surface)_50%,transparent)] text-[color:var(--b-accent)]" : "text-[color:var(--b-muted)]"}`}
                   >
                     <Icon className="w-4 h-4" /> {label}
                   </button>
@@ -97,42 +97,42 @@ export default function SaaSAdminDashboardTemplate() {
           <main className="lg:col-span-10 flex flex-col overflow-y-auto h-[100dvh]">
             
             {/* KPI Strip */}
-            <div id="overview" className="grid grid-cols-2 md:grid-cols-4 border-b-2 border-zinc-800 shrink-0 scroll-mt-4">
-              <div className="p-6 border-r border-zinc-800 flex flex-col">
-                <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2">Network In</span>
-                <span className="font-mono text-2xl md:text-4xl text-[#EAEAEA]">1.24<span className="text-sm text-zinc-500 ml-1">TB/s</span></span>
+            <div id="overview" className="grid grid-cols-2 md:grid-cols-4 border-b-2 border-[color:var(--b-border)] shrink-0 scroll-mt-4">
+              <div className="p-6 border-r border-[color:var(--b-border)] flex flex-col">
+                <span className="font-mono text-[10px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] uppercase tracking-widest mb-2">Network In</span>
+                <span className="font-mono text-2xl md:text-4xl text-[color:var(--b-text)]">1.24<span className="text-sm text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] ml-1">TB/s</span></span>
               </div>
-              <div className="p-6 border-r border-zinc-800 flex flex-col bg-[#FF2A2A]/5">
-                <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2">Error Rate</span>
-                <span className="font-mono text-2xl md:text-4xl text-[#FF2A2A]">0.08<span className="text-sm text-[#FF2A2A] ml-1">%</span></span>
+              <div className="p-6 border-r border-[color:var(--b-border)] flex flex-col bg-[color:var(--b-accent)]/5">
+                <span className="font-mono text-[10px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] uppercase tracking-widest mb-2">Error Rate</span>
+                <span className="font-mono text-2xl md:text-4xl text-[color:var(--b-accent)]">0.08<span className="text-sm text-[color:var(--b-accent)] ml-1">%</span></span>
               </div>
-              <div className="p-6 border-r border-zinc-800 flex flex-col">
-                <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2">Active Nodes</span>
-                <span className="font-mono text-2xl md:text-4xl text-[#EAEAEA]">4,291</span>
+              <div className="p-6 border-r border-[color:var(--b-border)] flex flex-col">
+                <span className="font-mono text-[10px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] uppercase tracking-widest mb-2">Active Nodes</span>
+                <span className="font-mono text-2xl md:text-4xl text-[color:var(--b-text)]">4,291</span>
               </div>
               <div className="p-6 flex flex-col">
-                <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2">Avg Latency</span>
-                <span className="font-mono text-2xl md:text-4xl text-[#EAEAEA]">42<span className="text-sm text-zinc-500 ml-1">ms</span></span>
+                <span className="font-mono text-[10px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] uppercase tracking-widest mb-2">Avg Latency</span>
+                <span className="font-mono text-2xl md:text-4xl text-[color:var(--b-text)]">42<span className="text-sm text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] ml-1">ms</span></span>
               </div>
             </div>
 
             {/* Dense Data Section */}
             <div className="flex flex-col gap-6 p-6">
               <div id="clusters" className="flex flex-col scroll-mt-4">
-                <h3 className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">[ NODE_STATUS ]</h3>
+                <h3 className="font-mono text-xs text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] uppercase tracking-widest mb-4">[ NODE_STATUS ]</h3>
                 <AdvancedTable 
                   columns={tableCols} 
                   rows={tableRows} 
                   pageSize={4}
-                  className="bg-[#0A0A0A] border-zinc-800 rounded-none [&_th]:border-zinc-800 [&_td]:border-zinc-800 [&_input]:border-zinc-800 [&_input]:bg-zinc-900" 
+                  className="bg-[var(--b-bg)] border-[color:var(--b-border)] rounded-none [&_th]:border-[color:var(--b-border)] [&_td]:border-[color:var(--b-border)] [&_input]:border-[color:var(--b-border)] [&_input]:bg-[var(--b-panel)]" 
                 />
               </div>
 
               <div id="datastores" className="flex flex-col scroll-mt-4">
-                <h3 className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">[ ACTIVE_INCIDENTS ]</h3>
+                <h3 className="font-mono text-xs text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] uppercase tracking-widest mb-4">[ ACTIVE_INCIDENTS ]</h3>
                 <Kanban 
                   initial={kanbanCols} 
-                  className="[&>div]:border-zinc-800 [&>div]:bg-[#0A0A0A] [&_li]:border-zinc-800 [&_li]:bg-zinc-900" 
+                  className="[&>div]:border-[color:var(--b-border)] [&>div]:bg-[var(--b-bg)] [&_li]:border-[color:var(--b-border)] [&_li]:bg-[var(--b-panel)]" 
                 />
               </div>
             </div>

@@ -13,19 +13,19 @@ export interface TUIHeaderProps {
 }
 
 const headerColors = {
-  default: "bg-[#0a0c10] border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]",
-  accent: "bg-[#0a1520] border-cyan-500/20",
-  success: "bg-[#0a1510] border-green-500/20",
-  warning: "bg-[#15100a] border-yellow-500/20",
-  error: "bg-[#150a0a] border-red-500/20",
+  default: "bg-[var(--b-bg)] border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]",
+  accent: "bg-[#0a1520] border-[color:var(--b-accent)]/20",
+  success: "bg-[#0a1510] border-[color:var(--b-success)]/20",
+  warning: "bg-[#15100a] border-[color:var(--b-warning)]/20",
+  error: "bg-[#150a0a] border-[color:var(--b-danger)]/20",
 };
 
 const titleColors = {
   default: "text-[color-mix(in_oklab,var(--b-text)_90%,transparent)]",
-  accent: "text-cyan-400",
-  success: "text-green-400",
-  warning: "text-yellow-400",
-  error: "text-red-400",
+  accent: "text-[color:var(--b-accent)]",
+  success: "text-[color:var(--b-success)]",
+  warning: "text-[color:var(--b-warning)]",
+  error: "text-[color:var(--b-danger)]",
 };
 
 export function TUIHeader({

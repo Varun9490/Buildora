@@ -9,7 +9,7 @@
 
 | File/Pattern | Owner Agent | Task ID | Since | Status |
 |---|---|---|---|---|
-| *(none — all worker locks released after validation)* | — | — | — | — |
+| (None) | - | - | - | - |
 
 ## Lock Protocol
 
@@ -23,4 +23,7 @@
 
 ## Lock History
 
-*(will be populated as tasks complete)*
+- TASK-030 component-builder-primitives: RELEASED
+- TASK-031 component-builder-overlays: RELEASED
+- TASK-032 component-builder-navigation: RELEASED
+- TASK-033 component-builder-creative: RELEASED

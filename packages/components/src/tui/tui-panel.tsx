@@ -15,18 +15,18 @@ export interface TUIPanelProps {
 
 const borderColors = {
   default: "border-[color-mix(in_oklab,var(--b-border)_20%,transparent)]",
-  accent: "border-cyan-500/50",
-  success: "border-green-500/50",
-  warning: "border-yellow-500/50",
-  error: "border-red-500/50",
+  accent: "border-[color:var(--b-accent)]/50",
+  success: "border-[color:var(--b-success)]/50",
+  warning: "border-[color:var(--b-warning)]/50",
+  error: "border-[color:var(--b-danger)]/50",
 };
 
 const focusBorders = {
-  default: "focus-within:border-cyan-400",
-  accent: "focus-within:border-cyan-300",
-  success: "focus-within:border-green-300",
-  warning: "focus-within:border-yellow-300",
-  error: "focus-within:border-red-300",
+  default: "focus-within:border-[color:var(--b-accent)]",
+  accent: "focus-within:border-[color:var(--b-accent)]",
+  success: "focus-within:border-[color:var(--b-success)]",
+  warning: "focus-within:border-[color:var(--b-warning)]",
+  error: "focus-within:border-[color:var(--b-danger)]",
 };
 
 const paddingSizes = {
@@ -48,7 +48,7 @@ export function TUIPanel({
   return (
     <div
       className={cn(
-        "font-mono text-xs bg-[#0a0c10] overflow-hidden",
+        "font-mono text-xs bg-[var(--b-bg)] overflow-hidden",
         bordered && "border",
         focused ? focusBorders[borderColor] : borderColors[borderColor],
         paddingSizes[padding],
@@ -60,7 +60,7 @@ export function TUIPanel({
     >
       {title && (
         <div className="flex items-center gap-2 px-2 py-1 border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] mb-2">
-          {focused && <span className="text-cyan-400">●</span>}
+          {focused && <span className="text-[color:var(--b-accent)]">●</span>}
           <span className="text-[color-mix(in_oklab,var(--b-text)_60%,transparent)] text-[11px] uppercase tracking-wider">
             {title}
           </span>

@@ -40,11 +40,23 @@ export function ContextMenuTrigger({ children }: { children: React.ReactNode }) 
 
   return (
     <div
+      tabIndex={0}
       onContextMenu={(e) => {
         e.preventDefault();
         setPosition({ x: e.clientX, y: e.clientY });
         setOpen(true);
       }}
+      onKeyDown={(e) => {
+        if (e.shiftKey && e.key === "F10") {
+          e.preventDefault();
+          const rect = (e.target as HTMLElement).getBoundingClientRect();
+          setPosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+          setOpen(true);
+        } else if (e.key === "Escape") {
+          setOpen(false);
+        }
+      }}
+      className="inline-block"
     >
       {children}
     </div>
@@ -186,7 +198,7 @@ export function ContextMenuItem({
   return (
     <button
       className={cn(
-        "flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-[var(--b-text-secondary)] transition-colors",
+        "flex w-full items-center gap-3 px-4 py-3 min-h-[44px] text-left text-sm text-[var(--b-text-secondary)] transition-colors",
         "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] hover:text-[var(--b-text)]",
         "focus:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] focus:text-[var(--b-text)] focus:outline-none focus:ring-2 focus:ring-[var(--b-accent)] focus:ring-inset",
         disabled && "pointer-events-none opacity-50",
@@ -234,7 +246,7 @@ export function ContextMenuCheckboxItem({
   return (
     <button
       className={cn(
-        "flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-[var(--b-text-secondary)] transition-colors",
+        "flex w-full items-center gap-3 px-4 py-3 min-h-[44px] text-left text-sm text-[var(--b-text-secondary)] transition-colors",
         "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] hover:text-[var(--b-text)]",
         "focus:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] focus:text-[var(--b-text)] focus:outline-none focus:ring-2 focus:ring-[var(--b-accent)] focus:ring-inset",
         className

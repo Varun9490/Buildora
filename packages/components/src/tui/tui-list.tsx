@@ -62,7 +62,7 @@ export function TUIList({
 
   return (
     <div
-      className={cn("font-mono text-xs bg-[#0a0c10] overflow-auto", className)}
+      className={cn("font-mono text-xs bg-[var(--b-bg)] overflow-auto", className)}
       role="listbox"
       tabIndex={focusable ? 0 : -1}
       onFocus={() => setFocused(true)}
@@ -77,8 +77,8 @@ export function TUIList({
             item.disabled
               ? "opacity-40 cursor-not-allowed"
               : "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]",
-            selectedId === item.id && "bg-cyan-500/10",
-            focused && focusedIndex === i && "bg-cyan-500/5"
+            selectedId === item.id && "bg-[color:var(--b-accent)]/10",
+            focused && focusedIndex === i && "bg-[color:var(--b-accent)]/5"
           )}
           onClick={() => !item.disabled && onSelect?.(item)}
           onDoubleClick={() => !item.disabled && onDoubleClick?.(item)}
@@ -89,7 +89,7 @@ export function TUIList({
           <div className="flex items-center gap-2 min-w-0">
             {item.icon && <span className="text-[color-mix(in_oklab,var(--b-text)_50%,transparent)]">{item.icon}</span>}
             <div className="min-w-0">
-              <div className={cn("truncate", selectedId === item.id ? "text-cyan-400" : "text-[color-mix(in_oklab,var(--b-text)_80%,transparent)]")}>
+              <div className={cn("truncate", selectedId === item.id ? "text-[color:var(--b-accent)]" : "text-[color-mix(in_oklab,var(--b-text)_80%,transparent)]")}>
                 {item.label}
               </div>
               {item.description && (

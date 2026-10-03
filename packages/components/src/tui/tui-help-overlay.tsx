@@ -52,7 +52,7 @@ export function TUIHelpOverlay({
   return (
     <div
       className={cn(
-        "fixed inset-0 z-50 flex items-center justify-center bg-black/80",
+        "fixed inset-0 z-50 flex items-center justify-center bg-[var(--b-bg)]/80",
         className
       )}
       role="dialog"
@@ -61,7 +61,7 @@ export function TUIHelpOverlay({
       onClick={onClose}
     >
       <div
-        className="bg-[#0a0c10] border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] rounded-lg shadow-2xl max-w-2xl w-full mx-4 overflow-hidden"
+        className="bg-[var(--b-bg)] border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] rounded-lg shadow-2xl max-w-2xl w-full mx-4 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-4 py-3 border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]">
@@ -83,7 +83,7 @@ export function TUIHelpOverlay({
                   className="flex items-center justify-between gap-4 px-2 py-1.5 rounded hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]"
                 >
                   <div className="flex items-center gap-2 min-w-0">
-                    <kbd className="px-2 py-1 bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] rounded font-mono text-[11px] text-cyan-400 min-w-[3rem] text-center">
+                    <kbd className="px-2 py-1 bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] rounded font-mono text-[11px] text-[color:var(--b-accent)] min-w-[3rem] text-center">
                       {binding.key}
                     </kbd>
                     <span className="text-[color-mix(in_oklab,var(--b-text)_70%,transparent)] text-xs truncate">

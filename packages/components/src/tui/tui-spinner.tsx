@@ -11,11 +11,11 @@ export interface TUISpinnerProps {
 }
 
 const spinnerColors = {
-  default: "text-cyan-400",
-  accent: "text-cyan-300",
-  success: "text-green-400",
-  warning: "text-yellow-400",
-  error: "text-red-400",
+  default: "text-[color:var(--b-accent)]",
+  accent: "text-[color:var(--b-accent)]",
+  success: "text-[color:var(--b-success)]",
+  warning: "text-[color:var(--b-warning)]",
+  error: "text-[color:var(--b-danger)]",
 };
 
 const spinnerSizes = {

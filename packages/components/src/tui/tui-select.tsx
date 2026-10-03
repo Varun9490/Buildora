@@ -95,8 +95,8 @@ export function TUISelect({
         type="button"
         onClick={() => !disabled && setOpen(!open)}
         className={cn(
-          "w-full flex items-center justify-between gap-2 px-2 py-1.5 border rounded bg-[#0a0c10] text-left",
-          open ? "border-cyan-500/50" : "border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]",
+          "w-full flex items-center justify-between gap-2 px-2 py-1.5 border rounded bg-[var(--b-bg)] text-left",
+          open ? "border-[color:var(--b-accent)]/50" : "border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]",
           disabled && "opacity-50 cursor-not-allowed"
         )}
       >
@@ -114,7 +114,7 @@ export function TUISelect({
       </button>
       {open && (
         <div
-          className="absolute z-50 w-full mt-1 bg-[#0a0c10] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded shadow-lg overflow-hidden"
+          className="absolute z-50 w-full mt-1 bg-[var(--b-bg)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded shadow-lg overflow-hidden"
           role="listbox"
         >
           {searchable && (
@@ -139,8 +139,8 @@ export function TUISelect({
                   className={cn(
                     "flex items-center gap-2 px-3 py-1.5 cursor-pointer",
                     opt.disabled ? "opacity-40 cursor-not-allowed" : "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]",
-                    focusedIndex === i && "bg-cyan-500/10",
-                    value === opt.value && "text-cyan-400"
+                    focusedIndex === i && "bg-[color:var(--b-accent)]/10",
+                    value === opt.value && "text-[color:var(--b-accent)]"
                   )}
                   onClick={() => {
                     if (!opt.disabled) {

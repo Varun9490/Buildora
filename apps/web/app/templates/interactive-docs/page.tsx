@@ -73,7 +73,7 @@ export default function InteractiveDocsTemplate() {
         <div className="flex items-center gap-2 text-[#002D56] font-bold">
           <Book className="w-5 h-5" /> DocuFlow
         </div>
-        <Link href="/templates" className="text-xs uppercase tracking-widest text-zinc-500 hover:text-[#002D56] transition-colors">
+        <Link href="/templates" className="text-xs uppercase tracking-widest text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] hover:text-[#002D56] transition-colors">
           Return
         </Link>
       </header>
@@ -81,7 +81,7 @@ export default function InteractiveDocsTemplate() {
       {/* Sidebar Navigation */}
       <aside className="w-full md:w-72 border-r border-[#E5E0D8] bg-[#F9F7F1] flex-col hidden md:flex h-[100dvh] sticky top-0">
         <div className="p-6 border-b border-[#E5E0D8]">
-          <Link href="/templates" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest text-zinc-500 hover:text-[#002D56] mb-8 w-fit transition-colors">
+          <Link href="/templates" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] hover:text-[#002D56] mb-8 w-fit transition-colors">
             <ArrowLeft className="w-3 h-3" /> Templates
           </Link>
           <div className="flex items-center gap-2 text-[#002D56] font-display font-black text-xl">
@@ -91,7 +91,7 @@ export default function InteractiveDocsTemplate() {
         
         <nav className="flex-1 overflow-y-auto p-4 space-y-6">
           <div>
-            <h4 className="font-serif text-[11px] text-zinc-500 uppercase tracking-widest mb-3 px-2">Compliance Standards</h4>
+            <h4 className="font-serif text-[11px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] uppercase tracking-widest mb-3 px-2">Compliance Standards</h4>
             <div className="space-y-1 text-sm" role="tablist" aria-label="Compliance documents">
               {docItems.map(({ id, icon }) => {
                 const isActive = activeDoc === id;
@@ -120,7 +120,7 @@ export default function InteractiveDocsTemplate() {
         {/* Document Header */}
         <header className="border-b border-[#E5E0D8] p-6 lg:px-12 flex flex-col md:flex-row md:items-end justify-between gap-4 bg-[#FDFBF7] shrink-0">
           <div>
-            <div className="flex items-center gap-2 text-[11px] text-zinc-500 uppercase tracking-widest mb-4 font-serif">
+            <div className="flex items-center gap-2 text-[11px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)] uppercase tracking-widest mb-4 font-serif">
               Compliance Standards <ChevronRight className="w-3 h-3" /> {doc.breadcrumb}
             </div>
             <h1 className="text-3xl md:text-5xl font-serif text-[#002D56]">{doc.title}</h1>
@@ -143,7 +143,7 @@ export default function InteractiveDocsTemplate() {
                 {doc.lead}
               </p>
               
-              <div className="flex-1 overflow-hidden rounded-2xl border-2 border-[#E5E0D8] bg-white shadow-sm">
+              <div className="flex-1 overflow-hidden rounded-2xl border-2 border-[#E5E0D8] bg-[var(--b-bg)] shadow-sm">
                 <RichTextEditor 
                   key={activeDoc}
                   initial={doc.content} 
@@ -152,27 +152,27 @@ export default function InteractiveDocsTemplate() {
               </div>
 
               {/* Mobile / tablet version history fallback (rail is xl-only) */}
-              <div className="mt-8 rounded-2xl border-2 border-[#E5E0D8] bg-white shadow-sm p-6 xl:hidden">
+              <div className="mt-8 rounded-2xl border-2 border-[#E5E0D8] bg-[var(--b-bg)] shadow-sm p-6 xl:hidden">
                 <h3 className="font-serif text-[#002D56] text-lg mb-6 flex items-center gap-2">
                   <History className="w-5 h-5" /> Version History
                 </h3>
                 <VersionHistory 
                   versions={versions} 
-                  className="[&_li]:bg-white [&_li]:border-[#E5E0D8] [&_button]:bg-[#F9F7F1] [&_button]:text-[#002D56]"
+                  className="[&_li]:bg-[var(--b-bg)] [&_li]:border-[#E5E0D8] [&_button]:bg-[#F9F7F1] [&_button]:text-[#002D56]"
                 />
               </div>
             </article>
 
             {/* Right Sidebar - Version History */}
             <aside className="hidden xl:block xl:col-span-4 space-y-8">
-              <div className="p-6 rounded-2xl border-2 border-[#E5E0D8] bg-white shadow-sm">
+              <div className="p-6 rounded-2xl border-2 border-[#E5E0D8] bg-[var(--b-bg)] shadow-sm">
                 <h3 className="font-serif text-[#002D56] text-lg mb-6 flex items-center gap-2">
                   <History className="w-5 h-5" /> Version History
                 </h3>
                 
                 <VersionHistory 
                   versions={versions} 
-                  className="[&_li]:bg-white [&_li]:border-[#E5E0D8] [&_button]:bg-[#F9F7F1] [&_button]:text-[#002D56]"
+                  className="[&_li]:bg-[var(--b-bg)] [&_li]:border-[#E5E0D8] [&_button]:bg-[#F9F7F1] [&_button]:text-[#002D56]"
                 />
               </div>
             </aside>

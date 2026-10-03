@@ -47,7 +47,7 @@ export function TUIForm({
   return (
     <form
       ref={formRef}
-      className={cn("font-mono text-xs bg-[#0a0c10] overflow-auto", className)}
+      className={cn("font-mono text-xs bg-[var(--b-bg)] overflow-auto", className)}
       onSubmit={handleSubmit}
     >
       <div className="divide-y divide-[color-mix(in_oklab,var(--b-border)_5%,transparent)]">
@@ -60,7 +60,7 @@ export function TUIForm({
                 style={{ width: `${labelWidth}ch` }}
               >
                 {field.label}
-                {field.required && <span className="text-red-400 ml-0.5">*</span>}
+                {field.required && <span className="text-[color:var(--b-danger)] ml-0.5">*</span>}
               </label>
             )}
             <div className="flex-1 min-w-0">
@@ -73,7 +73,7 @@ export function TUIForm({
                     checked={field.value as boolean}
                     disabled={field.disabled}
                     onChange={(e) => onChange?.(field.name, e.target.checked)}
-                    className="w-3.5 h-3.5 rounded border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] bg-transparent accent-cyan-500"
+                    className="w-3.5 h-3.5 rounded border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] bg-transparent accent-[color:var(--b-accent)]"
                   />
                   <span className="text-[color-mix(in_oklab,var(--b-text)_70%,transparent)] text-[11px]">{field.label}</span>
                 </label>
@@ -84,7 +84,7 @@ export function TUIForm({
                   value={field.value as string}
                   disabled={field.disabled}
                   onChange={(e) => onChange?.(field.name, e.target.value)}
-                  className="w-full px-2 py-1 bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded text-[color-mix(in_oklab,var(--b-text)_80%,transparent)] outline-none focus:border-cyan-500/50 disabled:opacity-50"
+                  className="w-full px-2 py-1 bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded text-[color-mix(in_oklab,var(--b-text)_80%,transparent)] outline-none focus:border-[color:var(--b-accent)]/50 disabled:opacity-50"
                 >
                   {field.options?.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -101,7 +101,7 @@ export function TUIForm({
                   disabled={field.disabled}
                   placeholder={field.placeholder}
                   onChange={(e) => onChange?.(field.name, e.target.value)}
-                  className="w-full px-2 py-1 bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded text-[color-mix(in_oklab,var(--b-text)_80%,transparent)] outline-none focus:border-cyan-500/50 disabled:opacity-50 placeholder:text-[color-mix(in_oklab,var(--b-text)_20%,transparent)]"
+                  className="w-full px-2 py-1 bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded text-[color-mix(in_oklab,var(--b-text)_80%,transparent)] outline-none focus:border-[color:var(--b-accent)]/50 disabled:opacity-50 placeholder:text-[color-mix(in_oklab,var(--b-text)_20%,transparent)]"
                 />
               )}
             </div>

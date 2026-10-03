@@ -19,10 +19,10 @@ const sparklineChars = {
 };
 
 const sparklineColors = {
-  default: "text-cyan-400",
-  success: "text-green-400",
-  warning: "text-yellow-400",
-  error: "text-red-400",
+  default: "text-[color:var(--b-accent)]",
+  success: "text-[color:var(--b-success)]",
+  warning: "text-[color:var(--b-warning)]",
+  error: "text-[color:var(--b-danger)]",
 };
 
 export function TUISparkline({

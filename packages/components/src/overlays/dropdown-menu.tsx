@@ -21,11 +21,29 @@ export function DropdownMenuTrigger({
   asChild,
   className,
 }: DropdownMenuTriggerProps) {
+  const context = React.useContext(DropdownMenuContext);
+  if (!context) return null;
+  const { open, setOpen, triggerRef } = context;
+
+  const props = {
+    ref: triggerRef as any,
+    "aria-haspopup": "menu" as const,
+    "aria-expanded": open,
+    onClick: (e: any) => {
+      setOpen(!open);
+      if (asChild && React.isValidElement(children) && (children.props as any).onClick) {
+        (children.props as any).onClick(e);
+      }
+    },
+    className: cn("inline-flex items-center justify-center min-h-[44px] min-w-[44px]", className)
+  };
+
   return asChild && React.isValidElement(children)
-    ? React.cloneElement(children as React.ReactElement<{ className?: string }>, {
-        className: cn(children.props?.className, className),
+    ? React.cloneElement(children, {
+        ...props,
+        className: cn(children.props.className, props.className),
       })
-    : <button className={className}>{children}</button>;
+    : <button {...props}>{children}</button>;
 }
 
 type DropdownMenuContextType = {
@@ -196,7 +214,7 @@ export function DropdownMenuItem({
   return (
     <button
       className={cn(
-        "flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-[var(--b-text-secondary)] transition-colors",
+        "flex w-full items-center gap-3 px-4 py-3 min-h-[44px] text-left text-sm text-[var(--b-text-secondary)] transition-colors",
         "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] hover:text-[var(--b-text)]",
         "focus:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] focus:text-[var(--b-text)] focus:outline-none focus:ring-2 focus:ring-[var(--b-accent)] focus:ring-inset",
         disabled && "pointer-events-none opacity-50",
@@ -244,7 +262,7 @@ export function DropdownMenuCheckboxItem({
   return (
     <button
       className={cn(
-        "flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-[var(--b-text-secondary)] transition-colors",
+        "flex w-full items-center gap-3 px-4 py-3 min-h-[44px] text-left text-sm text-[var(--b-text-secondary)] transition-colors",
         "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] hover:text-[var(--b-text)]",
         "focus:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] focus:text-[var(--b-text)] focus:outline-none focus:ring-2 focus:ring-[var(--b-accent)] focus:ring-inset",
         className

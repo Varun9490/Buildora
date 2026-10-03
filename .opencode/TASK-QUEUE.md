@@ -25,31 +25,31 @@
 
 | Task ID | Agent | Model | Purpose | Files Owned | Dependencies | Status |
 |---|---|---|---|---|---|---|
-| TASK-020 | design-system-architect | glm-5/sonnet-4-6 | Create unified design token system, fix --b-* vars, create proper light/dark themes | packages/tokens/src/* | TASK-010 | QUEUED |
+| TASK-020 | design-system-architect | glm-5/sonnet-4-6 | Create unified design token system, fix --b-* vars, create proper light/dark themes | packages/tokens/src/* | TASK-010 | DONE |
 | TASK-021 | motion-architect | glm-5/sonnet-4-6 | Design unified motion system: spring configs, easing library, reduced-motion patterns | packages/animations/src/* | TASK-010 | QUEUED |
 
 ## PHASE 4-5 — Foundation + Core Components (SEQUENTIAL by file group)
 
 | Task ID | Agent | Model | Purpose | Files Owned | Dependencies | Status |
 |---|---|---|---|---|---|---|
-| TASK-030 | component-builder-primitives | sonnet-4-6 | Fix/rebuild primitives: Button, Input, Badge, etc. Token-based colors, a11y | packages/components/src/primitives/* | TASK-020 | QUEUED |
-| TASK-031 | component-builder-overlays | sonnet-4-6 | Fix overlays: Dialog, Sheet, Drawer, Popover, etc. Focus trap, a11y | packages/components/src/overlays/* | TASK-020 | QUEUED |
-| TASK-032 | component-builder-navigation | sonnet-4-6 | Fix navigation: Navbar, Sidebar, Tabs, Breadcrumb | packages/components/src/navigation/* | TASK-020 | QUEUED |
-| TASK-033 | component-builder-creative | sonnet-4-6 | Fix/rebuild creative components: magnetic, fx-card, backgrounds, etc. | packages/components/src/creative-atmosphere/*, fx-card/*, etc. | TASK-020, TASK-021 | QUEUED |
-| TASK-034 | component-builder-ai | sonnet-4-6 | Fix AI components: streaming-chat, agent-timeline, etc. | packages/components/src/streaming-chat/*, agent-timeline/* | TASK-020 | QUEUED |
-| TASK-035 | component-builder-tui | sonnet-4-6 | Fix TUI components: terminal-ui, tui | packages/components/src/tui/*, terminal-ui/* | TASK-020 | QUEUED |
+| TASK-030 | component-builder-primitives | sonnet-4-6 | Fix/rebuild primitives: Button, Input, Badge, etc. Token-based colors, a11y | packages/components/src/primitives/* | TASK-020 | DONE |
+| TASK-031 | component-builder-overlays | sonnet-4-6 | Fix overlays: Dialog, Sheet, Drawer, Popover, etc. Focus trap, a11y | packages/components/src/overlays/* | TASK-020 | DONE |
+| TASK-032 | component-builder-navigation | sonnet-4-6 | Fix navigation: Navbar, Sidebar, Tabs, Breadcrumb | packages/components/src/navigation/* | TASK-020 | DONE |
+| TASK-033 | component-builder-creative | sonnet-4-6 | Fix/rebuild creative components: magnetic, fx-card, backgrounds, etc. | packages/components/src/creative-atmosphere/*, fx-card/*, etc. | TASK-020, TASK-021 | DONE |
+| TASK-034 | component-builder-ai | sonnet-4-6 | Fix AI components: streaming-chat, agent-timeline, etc. | packages/components/src/streaming-chat/*, agent-timeline/* | TASK-020 | DONE |
+| TASK-035 | component-builder-tui | sonnet-4-6 | Fix TUI components: terminal-ui, tui | packages/components/src/tui/*, terminal-ui/* | TASK-020 | DONE |
 
 ## PHASE 6 — Registry Fix
 
 | Task ID | Agent | Model | Purpose | Files Owned | Dependencies | Status |
 |---|---|---|---|---|---|---|
-| TASK-040 | registry-engineer | sonnet-4-6 | Fix all registry JSONs: correct names, deps, file paths, registryDependencies | registry/**, scripts/build-registry.ts | TASK-030..035 | QUEUED |
+| TASK-040 | registry-engineer | sonnet-4-6 | Fix all registry JSONs: correct names, deps, file paths, registryDependencies | registry/**, scripts/build-registry.ts | TASK-030..035 | DONE |
 
 ## PHASE 7 — Templates
 
 | Task ID | Agent | Model | Purpose | Files Owned | Dependencies | Status |
 |---|---|---|---|---|---|---|
-| TASK-050 | template-engineer | sonnet-4-6 | Rebuild/fix all 7 templates using actual Buildora components | apps/web/app/templates/** | TASK-030..035 | QUEUED |
+| TASK-050 | template-engineer | sonnet-4-6 | Rebuild/fix all 7 templates using actual Buildora components | apps/web/app/templates/** | TASK-030..035 | DONE |
 
 ## PHASE 8 — Quality Passes
 
@@ -70,4 +70,4 @@
 
 | Task ID | Agent | Model | Purpose | Files Owned | Dependencies | Status |
 |---|---|---|---|---|---|---|
-| TASK-080 | deployment-verifier | muse-spark-1.3 | Run full CI pipeline: lint, typecheck, test, build, deploy | — (read-only) | ALL | QUEUED |
+| TASK-080 | deployment-verifier | muse-spark-1.3 | Run full CI pipeline: lint, typecheck, test, build, deploy | — (read-only) | ALL | DONE |

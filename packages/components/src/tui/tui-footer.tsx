@@ -10,17 +10,17 @@ export interface TUIFooterProps {
 }
 
 const messageColors = {
-  info: "text-cyan-400",
-  success: "text-green-400",
-  warning: "text-yellow-400",
-  error: "text-red-400",
+  info: "text-[color:var(--b-accent)]",
+  success: "text-[color:var(--b-success)]",
+  warning: "text-[color:var(--b-warning)]",
+  error: "text-[color:var(--b-danger)]",
 };
 
 export function TUIFooter({ shortcuts, message, className }: TUIFooterProps) {
   return (
     <footer
       className={cn(
-        "flex items-center justify-between px-3 py-1.5 bg-[#0a0c10] border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] font-mono text-[11px]",
+        "flex items-center justify-between px-3 py-1.5 bg-[var(--b-bg)] border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] font-mono text-[11px]",
         className
       )}
       role="contentinfo"

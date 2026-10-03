@@ -116,7 +116,7 @@ export function TUIMultiSelect({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-2 px-2 py-1.5 border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded bg-[#0a0c10] text-left hover:border-[color-mix(in_oklab,var(--b-border)_20%,transparent)]"
+        className="w-full flex items-center justify-between gap-2 px-2 py-1.5 border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded bg-[var(--b-bg)] text-left hover:border-[color-mix(in_oklab,var(--b-border)_20%,transparent)]"
       >
         <span className={selected.length > 0 ? "text-[color-mix(in_oklab,var(--b-text)_80%,transparent)]" : "text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]"}>
           {displayText}
@@ -124,7 +124,7 @@ export function TUIMultiSelect({
         <span className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">☐ {open ? "▲" : "▼"}</span>
       </button>
       {open && (
-        <div className="absolute z-50 w-full mt-1 bg-[#0a0c10] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded shadow-lg overflow-hidden">
+        <div className="absolute z-50 w-full mt-1 bg-[var(--b-bg)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded shadow-lg overflow-hidden">
           {searchable && (
             <div className="border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-1">
               <input
@@ -156,7 +156,7 @@ export function TUIMultiSelect({
                         opt.disabled
                           ? "opacity-40 cursor-not-allowed"
                           : "hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]",
-                        focusedIndex === globalIndex && "bg-cyan-500/10"
+                        focusedIndex === globalIndex && "bg-[color:var(--b-accent)]/10"
                       )}
                       onClick={() => toggle(opt.value, opt.disabled || false)}
                     >
@@ -164,14 +164,14 @@ export function TUIMultiSelect({
                         className={cn(
                           "w-3.5 h-3.5 border rounded flex items-center justify-center text-[10px]",
                           isSelected
-                            ? "bg-cyan-500 border-cyan-500 text-[color:var(--b-text)]"
+                            ? "bg-[color:var(--b-accent)] border-[color:var(--b-accent)] text-[color:var(--b-text)]"
                             : "border-[color-mix(in_oklab,var(--b-border)_20%,transparent)]"
                         )}
                       >
                         {isSelected && "✓"}
                       </span>
                       <div className="min-w-0">
-                        <div className={cn("truncate", isSelected && "text-cyan-400")}>
+                        <div className={cn("truncate", isSelected && "text-[color:var(--b-accent)]")}>
                           {opt.label}
                         </div>
                         {opt.description && (

@@ -104,13 +104,13 @@ export function HandwrittenAnnotation({
             stroke="currentColor"
             strokeWidth="1.8"
             strokeLinecap="round"
+            pathLength={reduced ? undefined : 1}
             style={
               reduced
                 ? {}
                 : {
                     strokeDasharray: "1",
                     strokeDashoffset: "0",
-                    pathLength: 1,
                   }
             }
           />

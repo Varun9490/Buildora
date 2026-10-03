@@ -57,7 +57,7 @@ export function TUITable({
   return (
     <div
       className={cn(
-        "font-mono text-xs overflow-auto bg-[#0a0c10]",
+        "font-mono text-xs overflow-auto bg-[var(--b-bg)]",
         className
       )}
       role="grid"
@@ -95,8 +95,8 @@ export function TUITable({
               "flex items-center border-b border-[color-mix(in_oklab,var(--b-border)_5%,transparent)] cursor-pointer",
               dense ? "py-0.5" : "py-1",
               zebra && rowIndex % 2 === 1 && "bg-[color-mix(in_oklab,var(--b-text)_1.5%,transparent)]",
-              selectedId === row.id && "bg-cyan-500/10",
-              focused && focusedIndex === rowIndex && "bg-cyan-500/5"
+              selectedId === row.id && "bg-[color:var(--b-accent)]/10",
+              focused && focusedIndex === rowIndex && "bg-[color:var(--b-accent)]/5"
             )}
             onClick={() => onSelect?.(row)}
             onDoubleClick={() => onDoubleClick?.(row)}

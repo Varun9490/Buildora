@@ -14,17 +14,17 @@ export interface TUIProgressProps {
 }
 
 const progressColors = {
-  default: "bg-cyan-500",
-  success: "bg-green-500",
-  warning: "bg-yellow-500",
-  error: "bg-red-500",
+  default: "bg-[color:var(--b-accent)]",
+  success: "bg-[color:var(--b-success)]",
+  warning: "bg-[color:var(--b-warning)]",
+  error: "bg-[color:var(--b-danger)]",
 };
 
 const textColors = {
-  default: "text-cyan-400",
-  success: "text-green-400",
-  warning: "text-yellow-400",
-  error: "text-red-400",
+  default: "text-[color:var(--b-accent)]",
+  success: "text-[color:var(--b-success)]",
+  warning: "text-[color:var(--b-warning)]",
+  error: "text-[color:var(--b-danger)]",
 };
 
 export function TUIProgress({

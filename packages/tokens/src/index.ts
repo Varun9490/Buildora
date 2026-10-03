@@ -205,3 +205,5 @@ export const brand = {
   voice: ["precise", "calm", "confident", "inclusive"],
   shapeRule: "Cards 12px, inputs 10px, buttons 10px, badges full-pill. One radius scale.",
 } as const;
+
+export const CSS_FILE_PATH = "packages/tokens/src/index.css";

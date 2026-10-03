@@ -53,10 +53,24 @@ const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
       <div
         ref={ref}
         role="tablist"
+        aria-orientation="horizontal"
         className={cn(
           "flex items-center gap-1 p-1 rounded-xl bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)]",
           className
         )}
+        onKeyDown={(e) => {
+          const target = e.target as HTMLElement;
+          if (target.role !== "tab") return;
+          const tabs = Array.from(target.parentElement?.querySelectorAll('[role="tab"]') || []) as HTMLElement[];
+          const index = tabs.indexOf(target);
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            tabs[(index + 1) % tabs.length]?.focus();
+          } else if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            tabs[(index - 1 + tabs.length) % tabs.length]?.focus();
+          }
+        }}
         {...props}
       >
         {children}
@@ -84,26 +98,30 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
       <button
         ref={ref}
         role="tab"
+        id={`${context.id}-tab-${value}`}
+        aria-controls={`${context.id}-panel-${value}`}
         aria-selected={isSelected}
+        tabIndex={isSelected ? 0 : -1}
         data-state={isSelected ? "active" : "inactive"}
         className={cn(
-          "relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200",
+          "relative px-4 py-2 min-h-[44px] min-w-[44px] text-sm font-medium rounded-lg transition-all duration-200",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_oklab,var(--b-accent)_50%,transparent)]",
           isSelected ? "text-[color:var(--b-text)]" : "text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] hover:text-[color-mix(in_oklab,var(--b-text)_80%,transparent)]",
           className
         )}
         onClick={() => context.setSelectedTab(value)}
+        onFocus={() => context.setSelectedTab(value)}
         {...props}
       >
         <AnimatePresence>
-          {!reducedMotion && isSelected && (
+          {isSelected && (
             <motion.div
               layoutId={layoutId}
               className="absolute inset-0 rounded-lg bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] shadow-sm border border-[color-mix(in_oklab,var(--b-border)_20%,transparent)]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              transition={reducedMotion ? { duration: 0 } : { type: "spring", bounce: 0.2, duration: 0.6 }}
             />
           )}
         </AnimatePresence>
@@ -132,6 +150,8 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
       <div
         ref={ref}
         role="tabpanel"
+        id={`${context.id}-panel-${value}`}
+        aria-labelledby={`${context.id}-tab-${value}`}
         tabIndex={0}
         data-state={isSelected ? "active" : "inactive"}
         className={cn(

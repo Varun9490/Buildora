@@ -168,14 +168,11 @@ export function Popover({
   const content = open ? (
     <>
       <div
-        className="fixed inset-0 z-[199] bg-[var(--b-scrim)] backdrop-blur-sm animate-fade-in"
-        aria-hidden="true"
-      />
-      <div
         ref={popoverRef}
+        id={titleId}
         role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
+        aria-modal="false"
+        aria-label="Popover"
         className={cn(
           "fixed z-[200] overflow-auto rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] p-4 shadow-2xl backdrop-blur-xl",
           "focus:outline-none focus:ring-2 focus:ring-[var(--b-accent)] focus:ring-offset-2 focus:ring-offset-[var(--b-bg)]",
@@ -195,7 +192,22 @@ export function Popover({
 
   return (
     <>
-      <div ref={anchorRef} onClick={() => onOpenChange(!open)}>
+      <div 
+        ref={anchorRef} 
+        onClick={() => onOpenChange(!open)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onOpenChange(!open);
+          }
+        }}
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        aria-controls={open ? titleId : undefined}
+        className="inline-block min-h-[44px] min-w-[44px]"
+      >
         {anchor}
       </div>
       {typeof window !== "undefined" && createPortal(content, document.body)}

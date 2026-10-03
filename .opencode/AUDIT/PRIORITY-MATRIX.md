@@ -9,10 +9,10 @@
 
 | # | Issue | Evidence | Impact | Fix Effort |
 |---|---|---|---|---|
-| C1 | **Registry installs broken for ALL items** | All 142 catalog entries import `@buildora/utils`, `@buildora/hooks`, `@buildora/animations` — workspace-only packages not published to npm. `registryDependencies` is empty everywhere. | No consumer can install any component | HIGH — requires registry rebuild + token shipping |
-| C2 | **Design tokens not shipped** | `--b-*` CSS vars are only in `apps/web/app/globals.css`, not in registry output. Consumer gets unstyled/invisible components. | Components are invisible after install | MEDIUM — create portable token CSS + add to registryDependencies |
+| C1 | **[FIXED] Registry installs broken for ALL items** | All 142 catalog entries import `@buildora/utils`, `@buildora/hooks`, `@buildora/animations` — workspace-only packages not published to npm. `registryDependencies` is empty everywhere. | No consumer can install any component | HIGH — requires registry rebuild + token shipping |
+| C2 | **[FIXED] Design tokens not shipped** | `--b-*` CSS vars are only in `apps/web/app/globals.css`, not in registry output. Consumer gets unstyled/invisible components. | Components are invisible after install | MEDIUM — create portable token CSS + add to registryDependencies |
 | C3 | **Registry name mismatch** | Generated names are `buildora-{slug}` but install commands reference `@buildora/{slug}` | Install commands fail | LOW — fix naming in build script |
-| C4 | **Missing source file** | `comment-thread.json` references `packages/components/src/markdown-editor/index.tsx` which doesn't exist. `pnpm registry:validate` fails. | CI breaks, validation fails | LOW — fix file path or create missing file |
+| C4 | **[FIXED] Missing source file** | `comment-thread.json` references `packages/components/src/markdown-editor/index.tsx` which doesn't exist. `pnpm registry:validate` fails. | CI breaks, validation fails | LOW — fix file path or create missing file |
 
 ## HIGH — Significant quality/trust issues
 

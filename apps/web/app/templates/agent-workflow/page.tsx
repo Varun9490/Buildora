@@ -36,10 +36,10 @@ export default function AgentWorkflowTemplate() {
   ];
 
   return (
-    <div className="min-h-[100dvh] bg-[#030303] text-zinc-100 font-sans selection:bg-zinc-800 selection:text-white">
+    <div className="min-h-[100dvh] bg-[#030303] text-[color:var(--b-text)] font-sans selection:bg-[var(--b-surface)] selection:text-white">
       {/* Navigation */}
       <nav className="fixed top-0 w-full p-6 z-50 mix-blend-difference">
-        <Link href="/templates" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">
+        <Link href="/templates" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[color:var(--b-muted)] hover:text-white transition-colors">
           <ArrowLeft className="w-4 h-4" /> Back to templates
         </Link>
       </nav>
@@ -54,13 +54,13 @@ export default function AgentWorkflowTemplate() {
         >
           <div className="flex items-center gap-3 mb-8">
             <span className="h-px w-12 bg-zinc-700" />
-            <span className="text-xs uppercase tracking-[0.3em] text-zinc-400">Autonomous Orchestration</span>
+            <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--b-muted)]">Autonomous Orchestration</span>
           </div>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-600">
             Next-gen reasoning. <br />
             Visualized in real-time.
           </h1>
-          <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl leading-relaxed font-light">
+          <p className="text-xl md:text-2xl text-[color:var(--b-muted)] max-w-2xl leading-relaxed font-light">
             Monitor, intervene, and orchestrate multiple autonomous agents working in parallel. A gapless telemetry surface designed for extreme clarity.
           </p>
         </motion.div>
@@ -73,11 +73,11 @@ export default function AgentWorkflowTemplate() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1 }}
-          className="grid grid-cols-1 md:grid-cols-12 border border-zinc-800 rounded-3xl overflow-hidden bg-zinc-950"
+          className="grid grid-cols-1 md:grid-cols-12 border border-[color:var(--b-border)] rounded-3xl overflow-hidden bg-[var(--b-bg)]"
         >
           
           {/* Bento 1: Streaming Chat */}
-          <div className="md:col-span-8 border-b md:border-b-0 md:border-r border-zinc-800 p-8 md:p-12 flex flex-col">
+          <div className="md:col-span-8 border-b md:border-b-0 md:border-r border-[color:var(--b-border)] p-8 md:p-12 flex flex-col">
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-lg font-medium flex items-center gap-3">
                 <BrainCircuit className="w-5 h-5 text-indigo-400" />
@@ -98,24 +98,24 @@ export default function AgentWorkflowTemplate() {
           <div className="md:col-span-4 flex flex-col">
             
             {/* Top right: Timeline */}
-            <div className="flex-1 p-8 border-b border-zinc-800">
-              <h3 className="text-sm font-medium text-zinc-400 mb-6 flex items-center gap-2">
+            <div className="flex-1 p-8 border-b border-[color:var(--b-border)]">
+              <h3 className="text-sm font-medium text-[color:var(--b-muted)] mb-6 flex items-center gap-2">
                 <Activity className="w-4 h-4" /> Execution Trace
               </h3>
-              <AgentTimeline steps={steps as any} className="[&_li>div]:bg-zinc-900/50 [&_li>div]:border-zinc-800" />
+              <AgentTimeline steps={steps as any} className="[&_li>div]:bg-[var(--b-panel)]/50 [&_li>div]:border-[color:var(--b-border)]" />
             </div>
 
             {/* Middle right: Tool Calls */}
-            <div className="p-8 border-b border-zinc-800 bg-zinc-900/20">
-              <h3 className="text-sm font-medium text-zinc-400 mb-6 flex items-center gap-2">
+            <div className="p-8 border-b border-[color:var(--b-border)] bg-[var(--b-panel)]/20">
+              <h3 className="text-sm font-medium text-[color:var(--b-muted)] mb-6 flex items-center gap-2">
                 <Eye className="w-4 h-4" /> Active Sub-routines
               </h3>
-              <ToolCallViz calls={calls} className="[&_li]:bg-black/50 [&_li]:border-zinc-800" />
+              <ToolCallViz calls={calls} className="[&_li]:bg-black/50 [&_li]:border-[color:var(--b-border)]" />
             </div>
 
             {/* Bottom right: Resource usage */}
-            <div className="p-8 bg-zinc-950">
-              <TokenMeter used={14285} limit={32000} className="border-none bg-zinc-900/50" />
+            <div className="p-8 bg-[var(--b-bg)]">
+              <TokenMeter used={14285} limit={32000} className="border-none bg-[var(--b-panel)]/50" />
             </div>
 
           </div>
@@ -131,12 +131,12 @@ export default function AgentWorkflowTemplate() {
           onClick={() => setPaletteOpen(true)}
           aria-haspopup="dialog"
           aria-expanded={paletteOpen}
-          className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform active:scale-95"
+          className="flex items-center gap-3 bg-[var(--b-bg)] text-[var(--b-text)] px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform active:scale-95"
         >
           <Play className="w-5 h-5 fill-current" />
           Initialize Workspace
         </button>
-        <p className="mt-4 text-sm text-zinc-500">Opens the workspace command palette — pick an action to begin.</p>
+        <p className="mt-4 text-sm text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">Opens the workspace command palette — pick an action to begin.</p>
       </section>
 
       {/* Workspace command palette overlay */}
@@ -169,7 +169,7 @@ export default function AgentWorkflowTemplate() {
               <button
                 type="button"
                 onClick={() => setPaletteOpen(false)}
-                className="mt-3 w-full text-center text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
+                className="mt-3 w-full text-center text-xs uppercase tracking-widest text-[color:var(--b-muted)] hover:text-white transition-colors"
               >
                 Close (Esc)
               </button>

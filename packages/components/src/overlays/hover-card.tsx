@@ -97,6 +97,18 @@ export function HoverCard({
     }
   }, [open, calculatePosition]);
 
+  const handleFocus = React.useCallback(() => {
+    setOpen(true);
+  }, []);
+
+  const handleBlur = React.useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  const toggle = React.useCallback(() => {
+    setOpen((v) => !v);
+  }, []);
+
   React.useEffect(() => {
     return () => {
       if (typeof window === "undefined") return;
@@ -137,14 +149,9 @@ export function HoverCard({
   const content = open ? (
     <>
       <div
-        className="fixed inset-0 z-[149] bg-[var(--b-scrim)] backdrop-blur-sm animate-fade-in"
-        aria-hidden="true"
-      />
-      <div
         ref={cardRef}
-        role="dialog"
-        aria-modal="false"
-        aria-labelledby={titleId}
+        id={titleId}
+        role="tooltip"
         className={cn(
           "fixed z-[150] rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] p-4 shadow-2xl backdrop-blur-xl",
           "focus:outline-none focus:ring-2 focus:ring-[var(--b-accent)] focus:ring-offset-2 focus:ring-offset-[var(--b-bg)]",
@@ -166,14 +173,22 @@ export function HoverCard({
 
   return (
     <>
-      <div
+      <span
         ref={triggerRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="inline-block"
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onClick={toggle}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") setOpen(false);
+        }}
+        tabIndex={0}
+        aria-describedby={open ? titleId : undefined}
+        className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] cursor-pointer"
       >
         {trigger}
-      </div>
+      </span>
       {typeof window !== "undefined" && createPortal(content, document.body)}
     </>
   );
