@@ -40,20 +40,27 @@ export const metadata: Metadata = {
 
 function themeInit() {
   try {
-    const raw = localStorage.getItem("buildora-store");
-    let mode = "system";
-    let accent = "acid";
+    var raw = localStorage.getItem("buildora-store");
+    var surface = "obsidian";
+    var accent = "acid";
+    var motion = "auto";
     if (raw) {
-      const parsed = JSON.parse(raw);
-      mode = parsed?.state?.themeMode ?? "system";
+      var parsed = JSON.parse(raw);
+      surface = parsed?.state?.surface ?? "obsidian";
       accent = parsed?.state?.themeAccent ?? "acid";
+      motion = parsed?.state?.motionOverride ?? "auto";
     }
-    const mq = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    const resolved = mode === "system" ? mq : mode;
-    document.documentElement.setAttribute("data-theme", resolved);
+    var accents = ["acid", "iris", "amber", "emerald", "crimson"];
+    if (accents.indexOf(accent) === -1) accent = "acid";
+    if (["obsidian", "oled", "alabaster"].indexOf(surface) === -1) surface = "obsidian";
+    var theme = surface === "alabaster" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.setAttribute("data-surface", surface);
     document.documentElement.setAttribute("data-accent", accent);
-    document.documentElement.classList.toggle("dark", resolved === "dark");
-  } catch {}
+    if (motion === "reduced") document.documentElement.setAttribute("data-motion", "reduced");
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.style.colorScheme = theme;
+  } catch (e) {}
 }
 
 export default function RootLayout({

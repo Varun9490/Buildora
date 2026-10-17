@@ -4,114 +4,140 @@ import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useBuildora } from "@/lib/store";
 import { cn } from "@buildora/utils";
-import { accentPresets } from "@buildora/tokens";
-import { totalComponents } from "@/lib/registry";
+import { ACCENTS, SURFACES } from "@/lib/design";
 
-const modeOptions = [
-  { key: "light", label: "Light" },
-  { key: "dark", label: "Dark" },
-  { key: "system", label: "System" },
-] as const;
-
+/**
+ * Live Accent & Surface switcher.
+ * Accessible popover: every control is a real <button> with aria-pressed.
+ */
 export function ThemeCustomizer() {
   const [open, setOpen] = React.useState(false);
-  const { themeAccent, setThemeAccent, themeMode, setThemeMode } = useBuildora();
+  const wrapRef = React.useRef<HTMLDivElement | null>(null);
+  const { themeAccent, setThemeAccent, surface, setSurface } = useBuildora();
+
+  React.useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    const onDown = (e: PointerEvent) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("pointerdown", onDown);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("pointerdown", onDown);
+    };
+  }, [open]);
 
   return (
-    <div className="relative">
+    <div className="relative" ref={wrapRef}>
       <button
         onClick={() => setOpen((o) => !o)}
-        className="flex h-8 w-8 items-center justify-center rounded-md border border-[color:var(--b-border)] text-[color:var(--b-text-secondary)] transition-colors hover:bg-[color:var(--b-surface)] hover:text-[color:var(--b-text)]"
-        aria-label="Customize theme (light, dark, accent)"
+        className="flex h-8 items-center gap-2 rounded-full border border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-surface)_80%,transparent)] px-2.5 text-[color:var(--b-text-secondary)] transition-colors hover:border-[color:var(--b-border-hover)] hover:text-[color:var(--b-text)]"
+        aria-label="Theme — accent palette and surface mode"
+        aria-haspopup="dialog"
+        aria-expanded={open}
       >
-        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
-        </svg>
+        <span
+          className="h-3.5 w-3.5 rounded-full border border-white/20"
+          style={{ background: "var(--b-accent)", boxShadow: "0 0 10px var(--b-accent-glow)" }}
+          aria-hidden="true"
+        />
+        <span className="hidden font-mono text-[10px] uppercase tracking-wider sm:inline">
+          Theme
+        </span>
       </button>
 
       <AnimatePresence>
         {open && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40"
-              onClick={() => setOpen(false)}
-            />
-            <motion.div
-              initial={{ opacity: 0, y: 8, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 8, scale: 0.96 }}
-              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute right-0 top-full z-50 mt-2 w-72 origin-top-right rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-4 shadow-card"
-              role="dialog"
-              aria-label="Theme customizer"
-            >
-              <div className="mb-4">
-                <p className="font-display text-sm font-bold tracking-tight text-[color:var(--b-text)]">Theme</p>
-                <p className="mt-1 text-[11px] leading-relaxed text-[color:var(--b-muted)]">
-                  Light or dark, one accent. All {totalComponents} components follow these vars.
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+            className="absolute right-0 top-full z-50 mt-2 w-72 origin-top-right rounded-2xl border border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-panel)_94%,transparent)] p-4 shadow-2xl backdrop-blur-2xl"
+            role="dialog"
+            aria-label="Theme controls"
+          >
+            <p className="font-display text-sm font-bold tracking-tight text-[color:var(--b-text)]">
+              Universal Token Engine
+            </p>
+            <p className="mt-1 text-[11px] leading-relaxed text-[color:var(--b-muted)]">
+              Swaps CSS variables live. Every surface on this page repaints instantly.
+            </p>
+
+            <div className="mt-4 space-y-5">
+              <div>
+                <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-[color:var(--b-text-secondary)]">
+                  Accent palette
                 </p>
-              </div>
-
-              <div className="space-y-5">
-                <div>
-                  <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-[color:var(--b-text-secondary)]">
-                    Mode
-                  </p>
-                  <div className="grid grid-cols-3 gap-1 rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-1">
-                    {modeOptions.map((m) => (
+                <div className="flex flex-wrap gap-2">
+                  {ACCENTS.map((a) => {
+                    const active = themeAccent === a.id;
+                    return (
                       <button
-                        key={m.key}
-                        onClick={() => setThemeMode(m.key)}
-                        aria-pressed={themeMode === m.key}
+                        key={a.id}
+                        onClick={() => setThemeAccent(a.id)}
                         className={cn(
-                          "rounded-md px-2 py-1.5 text-xs font-medium transition-colors",
-                          themeMode === m.key
-                            ? "bg-[color:var(--b-panel)] text-[color:var(--b-text)] shadow-subtle"
-                            : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
+                          "relative flex h-9 w-9 items-center justify-center rounded-xl transition-transform hover:scale-105 active:scale-95",
+                          active && "ring-2 ring-[color:var(--b-accent)] ring-offset-2 ring-offset-[color:var(--b-panel)]"
                         )}
+                        style={{ backgroundColor: a.hex, color: a.fg }}
+                        title={a.label}
+                        aria-label={`Accent ${a.label}`}
+                        aria-pressed={active}
                       >
-                        {m.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-[color:var(--b-text-secondary)]">
-                    Accent
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {Object.entries(accentPresets).map(([key, value]) => (
-                      <button
-                        key={key}
-                        onClick={() => setThemeAccent(key)}
-                        className={cn(
-                          "flex h-8 w-8 items-center justify-center rounded-lg transition-transform hover:scale-105 active:scale-95",
-                          themeAccent === key && "ring-2 ring-[color:var(--b-accent)] ring-offset-2 ring-offset-[color:var(--b-panel)]"
-                        )}
-                        style={{ backgroundColor: (value as { dark: { accent: string } }).dark.accent }}
-                        title={(value as { label: string }).label}
-                        aria-label={`Accent ${(value as { label: string }).label}`}
-                        aria-pressed={themeAccent === key}
-                      >
-                        {themeAccent === key && (
-                          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3} style={{ color: "#131305" }}>
+                        {active && (
+                          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                           </svg>
                         )}
                       </button>
-                    ))}
-                  </div>
-                  <p className="mt-2 text-[11px] text-[color:var(--b-muted)]">
-                    {(accentPresets as Record<string, { label: string }>)[themeAccent]?.label ?? themeAccent} · AA-tested in both modes
-                  </p>
+                    );
+                  })}
                 </div>
+                <p className="mt-2 font-mono text-[10px] text-[color:var(--b-muted)]">
+                  --b-accent:{" "}
+                  <span className="text-[color:var(--b-accent)]">
+                    {ACCENTS.find((a) => a.id === themeAccent)?.hex}
+                  </span>
+                </p>
               </div>
-            </motion.div>
-          </>
+
+              <div>
+                <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-[color:var(--b-text-secondary)]">
+                  Surface mode
+                </p>
+                <div className="grid grid-cols-3 gap-1 rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-1">
+                  {SURFACES.map((s) => (
+                    <button
+                      key={s.id}
+                      onClick={() => setSurface(s.id)}
+                      aria-pressed={surface === s.id}
+                      className={cn(
+                        "flex flex-col items-center gap-1 rounded-lg px-2 py-2 text-[11px] font-medium transition-colors",
+                        surface === s.id
+                          ? "bg-[color:var(--b-panel)] text-[color:var(--b-text)] shadow-sm"
+                          : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
+                      )}
+                    >
+                      <span
+                        className="h-4 w-4 rounded-full border border-[color:var(--b-border-hover)]"
+                        style={{ background: s.swatch }}
+                        aria-hidden="true"
+                      />
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+                <p className="mt-2 text-[11px] text-[color:var(--b-muted)]">
+                  {SURFACES.find((s) => s.id === surface)?.detail} surface · instant repaint
+                </p>
+              </div>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

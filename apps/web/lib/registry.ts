@@ -35,9 +35,15 @@ export type ComponentSummary = {
   status?: "stable" | "beta" | "experimental";
 };
 
-export const allComponents: ComponentSummary[] = (registryIndex as { components: ComponentSummary[] }).components;
+const rawComponents = (registryIndex as { components: ComponentSummary[] }).components;
 
-export const totalComponents = (registryIndex as { total: number }).total;
+// The JSON ships a few duplicated slugs (foundational entries repeated at the
+// list tail). Dedupe by slug — first occurrence wins, order preserved.
+export const allComponents: ComponentSummary[] = Array.from(
+  new Map(rawComponents.map((c) => [c.slug, c])).values()
+);
+
+export const totalComponents = allComponents.length;
 
 export async function getComponent(slug: string): Promise<RegistryItem | null> {
   const { registryComponents } = await import("./registry-data.generated");

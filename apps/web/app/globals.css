@@ -3,62 +3,143 @@
 @tailwind utilities;
 
 /* ─────────────────────────────────────────────────────
-   BUILDORA UNIVERSAL TOKENS
-   Stone-neutral base · Swappable accent · Light + Dark
-   Brand: Scaffold + signal. One system. Any product.
+   BUILDORA UNIVERSAL TOKEN ENGINE
+   Surfaces   : Obsidian (default) · OLED Pitch Black · Alabaster Light
+   Accents    : Acid Lime · Electric Iris · Solar Amber · Cyber Emerald · Hyper Crimson
+   Contract   : every component reads --b-* vars. Swapping a token
+                repaints the entire page instantly. No sed. No recompiles.
    ───────────────────────────────────────────────────── */
 :root,
-[data-theme="light"] {
-  --b-bg: #FAF9F7;
-  --b-panel: #FFFFFF;
-  --b-surface: #F1EFEB;
-  --b-elevated: #FFFFFF;
-  --b-border: rgba(19, 19, 22, 0.08);
-  --b-border-hover: rgba(19, 19, 22, 0.16);
-  --b-text: #131316;
-  --b-text-secondary: #52525B;
-  --b-muted: #8E8E93;
-  --b-ring: rgba(19, 19, 22, 0.16);
-  --b-success: #047857;
-  --b-warning: #B45309;
-  --b-danger: #BE123C;
-  --b-accent: #4D7C0F;
-  --b-accent-foreground: #FFFFFF;
-  --b-accent-muted: rgba(77, 124, 15, 0.1);
-  --b-iris: #4F46E5;
-  --b-iris-foreground: #FFFFFF;
+[data-theme="dark"] {
+  /* ── Obsidian surface (default) ── */
+  --b-bg: #09090b;
+  --b-panel: #111115;
+  --b-surface: #17171c;
+  --b-elevated: #1d1d23;
+  --b-border: rgba(255, 255, 255, 0.08);
+  --b-border-hover: rgba(255, 255, 255, 0.18);
+  --b-text: #ededf0;
+  --b-text-secondary: #a5a5b2;
+  --b-muted: #6e6e7c;
+  --b-ring: rgba(255, 255, 255, 0.16);
+  --b-success: #34d399;
+  --b-warning: #fbbf24;
+  --b-danger: #fb7185;
+  --b-iris: #818cf8;
+  --b-iris-foreground: #10102a;
   --b-radius: 12px;
   --b-radius-sm: 10px;
   --b-radius-lg: 16px;
   --b-transition: cubic-bezier(0.16, 1, 0.3, 1);
-  color-scheme: light;
-}
-
-[data-theme="dark"] {
-  --b-bg: #0E0E0C;
-  --b-panel: #161614;
-  --b-surface: #1D1D1A;
-  --b-elevated: #242422;
-  --b-border: rgba(255, 255, 255, 0.08);
-  --b-border-hover: rgba(255, 255, 255, 0.16);
-  --b-text: #EDEDEC;
-  --b-text-secondary: #A1A1AA;
-  --b-muted: #6E6E73;
-  --b-ring: rgba(255, 255, 255, 0.16);
-  --b-success: #34D399;
-  --b-warning: #FBBF24;
-  --b-danger: #F87171;
-  --b-accent: #D4FF4F;
-  --b-accent-foreground: #131305;
-  --b-accent-muted: rgba(212, 255, 79, 0.12);
-  --b-iris: #9D8CFF;
-  --b-iris-foreground: #1E1B4B;
+  --b-glass: rgba(24, 24, 29, 0.65);
+  --b-glass-border: rgba(255, 255, 255, 0.08);
   color-scheme: dark;
+
+  /* ── Accent: Acid Lime (default) ── */
+  --b-accent: #ccff00;
+  --b-accent-foreground: #131305;
+  --b-accent-muted: rgba(204, 255, 0, 0.12);
+  --b-accent-glow: rgba(204, 255, 0, 0.22);
 }
 
-/* ── Base resets ── */
+/* ── OLED Pitch Black ── */
+[data-theme="dark"][data-surface="oled"] {
+  --b-bg: #000000;
+  --b-panel: #070709;
+  --b-surface: #0d0d10;
+  --b-elevated: #121215;
+  --b-border: rgba(255, 255, 255, 0.12);
+  --b-border-hover: rgba(255, 255, 255, 0.24);
+  --b-glass: rgba(10, 10, 12, 0.68);
+  --b-glass-border: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Alabaster Light ── */
+[data-theme="light"] {
+  --b-bg: #faf9f5;
+  --b-panel: #ffffff;
+  --b-surface: #f1efe9;
+  --b-elevated: #ffffff;
+  --b-border: rgba(19, 19, 22, 0.08);
+  --b-border-hover: rgba(19, 19, 22, 0.18);
+  --b-text: #131316;
+  --b-text-secondary: #52525b;
+  --b-muted: #8e8e93;
+  --b-ring: rgba(19, 19, 22, 0.16);
+  --b-success: #047857;
+  --b-warning: #b45309;
+  --b-danger: #be123c;
+  --b-iris: #4f46e5;
+  --b-iris-foreground: #ffffff;
+  --b-glass: rgba(255, 255, 255, 0.72);
+  --b-glass-border: rgba(19, 19, 22, 0.08);
+  color-scheme: light;
+
+  --b-accent: #4d7c0f;
+  --b-accent-foreground: #ffffff;
+  --b-accent-muted: rgba(77, 124, 15, 0.1);
+  --b-accent-glow: rgba(77, 124, 15, 0.2);
+}
+
+/* ── Accent palettes · dark surfaces ── */
+[data-theme="dark"][data-accent="iris"] {
+  --b-accent: #818cf8;
+  --b-accent-foreground: #0d0b2a;
+  --b-accent-muted: rgba(129, 140, 248, 0.14);
+  --b-accent-glow: rgba(99, 102, 241, 0.28);
+}
+[data-theme="dark"][data-accent="amber"] {
+  --b-accent: #fbbf24;
+  --b-accent-foreground: #1c1203;
+  --b-accent-muted: rgba(251, 191, 36, 0.13);
+  --b-accent-glow: rgba(245, 158, 11, 0.24);
+}
+[data-theme="dark"][data-accent="emerald"] {
+  --b-accent: #34d399;
+  --b-accent-foreground: #04140d;
+  --b-accent-muted: rgba(52, 211, 153, 0.13);
+  --b-accent-glow: rgba(16, 185, 129, 0.24);
+}
+[data-theme="dark"][data-accent="crimson"] {
+  --b-accent: #fb7185;
+  --b-accent-foreground: #2b0710;
+  --b-accent-muted: rgba(251, 113, 133, 0.13);
+  --b-accent-glow: rgba(244, 63, 94, 0.24);
+}
+
+/* ── Accent palettes · alabaster light ── */
+[data-theme="light"][data-accent="iris"] {
+  --b-accent: #4f46e5;
+  --b-accent-foreground: #ffffff;
+  --b-accent-muted: rgba(79, 70, 229, 0.1);
+  --b-accent-glow: rgba(99, 102, 241, 0.25);
+}
+[data-theme="light"][data-accent="amber"] {
+  --b-accent: #b45309;
+  --b-accent-foreground: #ffffff;
+  --b-accent-muted: rgba(180, 83, 9, 0.1);
+  --b-accent-glow: rgba(245, 158, 11, 0.25);
+}
+[data-theme="light"][data-accent="emerald"] {
+  --b-accent: #047857;
+  --b-accent-foreground: #ffffff;
+  --b-accent-muted: rgba(4, 120, 87, 0.1);
+  --b-accent-glow: rgba(16, 185, 129, 0.22);
+}
+[data-theme="light"][data-accent="crimson"] {
+  --b-accent: #be123c;
+  --b-accent-foreground: #ffffff;
+  --b-accent-muted: rgba(190, 18, 60, 0.1);
+  --b-accent-glow: rgba(244, 63, 94, 0.22);
+}
+
+/* ── Base ── */
 html {
   scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 84px;
 }
 
 html,
@@ -99,7 +180,6 @@ body {
   }
 }
 
-/* ── Typography utilities — restrained, no gradient abuse ── */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -109,9 +189,15 @@ body {
     letter-spacing: -0.03em;
     line-height: 1.05;
   }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
 }
 
-/* ── Background textures — subtle, theme-aware ── */
+/* ── Background textures ── */
 .bg-grid-scan {
   background-image:
     linear-gradient(color-mix(in srgb, var(--b-text) 4%, transparent) 1px, transparent 1px),
@@ -133,7 +219,7 @@ body {
   );
 }
 
-/* ── Noise — fixed layer only, never scrolling ── */
+/* ── Noise ── */
 .b-noise::after {
   content: "";
   position: fixed;
@@ -144,33 +230,34 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
 }
 
-/* ── Accent washes — Tailwind v3 can't apply alpha to var() colors, so these are real classes ── */
+/* ── Accent washes ── */
 .bg-accent-wash { background-color: var(--b-accent-muted); }
 .bg-warning-wash { background-color: color-mix(in srgb, var(--b-warning) 14%, transparent); }
 .border-accent-soft { border-color: color-mix(in srgb, var(--b-accent) 30%, transparent); }
 .border-accent-wash { border-color: color-mix(in srgb, var(--b-accent) 15%, transparent); }
+.shadow-accent-glow { box-shadow: 0 0 28px var(--b-accent-glow); }
 
 /* ── Code find-highlight ── */
 .code-hit { background: color-mix(in srgb, var(--b-accent) 12%, transparent); }
 
-/* ── Syntax palette — theme-aware (dark: Material-ish, light: GitHub-ish) ── */
+/* ── Syntax palette — theme-aware ── */
 :root,
 [data-theme="light"] {
-  --syn-base: #1F2328;
-  --syn-comment: #6E7781;
-  --syn-string: #0A7D33;
-  --syn-key: #8250DF;
+  --syn-base: #1f2328;
+  --syn-comment: #6e7781;
+  --syn-string: #0a7d33;
+  --syn-key: #8250df;
   --syn-num: #953800;
-  --syn-punct: #57606A;
+  --syn-punct: #57606a;
 }
 
 [data-theme="dark"] {
-  --syn-base: #BFC7D5;
-  --syn-comment: #7D8CA0;
-  --syn-string: #C3E88D;
-  --syn-key: #C792EA;
-  --syn-num: #F78C6C;
-  --syn-punct: #89DDFF;
+  --syn-base: #bfc7d5;
+  --syn-comment: #7d8ca0;
+  --syn-string: #c3e88d;
+  --syn-key: #c792ea;
+  --syn-num: #f78c6c;
+  --syn-punct: #89ddff;
 }
 
 .syn-base { color: var(--syn-base); }
@@ -180,11 +267,11 @@ body {
 .syn-num { color: var(--syn-num); }
 .syn-punct { color: var(--syn-punct); }
 
-/* ── Preview canvases — fixed neutral grounds for the playground preview area ── */
-.preview-canvas-dark { background: #0E0E0C; }
-.preview-canvas-light { background: #FAF9F7; }
+/* ── Preview canvases ── */
+.preview-canvas-dark { background: #0e0e0c; }
+.preview-canvas-light { background: #faf9f7; }
 
-/* ── Surface & card — semantic vars, no hardcoded white/black ── */
+/* ── Surfaces ── */
 .b-card {
   background: var(--b-panel);
   border: 1px solid var(--b-border);
@@ -219,13 +306,13 @@ body {
   border-radius: var(--b-radius);
 }
 
-/* Liquid glass — approximation, with solid fallback */
+/* Liquid glass — real translucent surface */
 .b-glass {
-  background: color-mix(in srgb, var(--b-panel) 82%, transparent);
-  border: 1px solid var(--b-border);
+  background: var(--b-glass);
+  border: 1px solid var(--b-glass-border);
   border-radius: var(--b-radius);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
 }
 
 @media (prefers-reduced-transparency: reduce) {
@@ -253,7 +340,7 @@ body {
   background: var(--b-border);
 }
 
-/* ── Labels & badges — single eyebrow style, use sparingly ── */
+/* ── Labels & badges ── */
 .b-section-label {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 11px;
@@ -281,10 +368,6 @@ body {
 .b-badge-accent {
   border-color: color-mix(in srgb, var(--b-accent) 30%, transparent);
   background: var(--b-accent-muted);
-  color: var(--b-accent);
-}
-
-[data-theme="light"] .b-badge-accent {
   color: var(--b-accent);
 }
 
@@ -322,6 +405,50 @@ body {
   100% { background-position: 200% 0; }
 }
 
+@keyframes fx-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fx-spin-reverse {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes fx-pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.96); }
+}
+
+@keyframes fx-float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fx-eq {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes fx-caret-blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+}
+
+@keyframes fx-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes fx-spring-dot {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  35% { transform: translate3d(14px, -6px, 0) scale(0.92); }
+  70% { transform: translate3d(28px, 0, 0) scale(1.06); }
+}
+
+@keyframes fx-shimmer-x {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
 .b-fade-in { animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .b-fade-in-delay-1 { animation-delay: 80ms; }
 .b-fade-in-delay-2 { animation-delay: 160ms; }
@@ -333,6 +460,17 @@ body {
   animation-delay: calc(var(--index, 0) * 80ms);
 }
 
+.fx-spin-slow { animation: fx-spin 6s linear infinite; }
+.fx-spin-reverse { animation: fx-spin-reverse 4s linear infinite; }
+.fx-pulse-soft { animation: fx-pulse-soft 2.2s ease-in-out infinite; }
+.fx-float { animation: fx-float-y 3.4s ease-in-out infinite; }
+
+/* EQ bars for Dynamic Island listen state */
+.fx-eq-bar {
+  transform-origin: center;
+  animation: fx-eq 0.9s ease-in-out infinite;
+}
+
 /* ── Hover — tactile ── */
 .hover-lift {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -340,7 +478,7 @@ body {
 .hover-lift:hover { transform: translateY(-2px); }
 .hover-lift:active { transform: translateY(-1px) scale(0.98); }
 
-/* ── Spotlight — restrained, accent-muted ── */
+/* ── Spotlight ── */
 .spotlight { position: relative; overflow: hidden; }
 .spotlight::before {
   content: "";
@@ -357,7 +495,7 @@ body {
 }
 .spotlight:hover::before { opacity: 1; }
 
-/* ── Skeleton — layout-matched shimmer ── */
+/* ── Skeleton ── */
 .skeleton {
   background: linear-gradient(
     90deg,
@@ -377,7 +515,6 @@ body {
   border-radius: 99px;
 }
 
-/* ── Sleek scroll surfaces (dropdowns, code viewers) ── */
 .scroll-sleek {
   scrollbar-width: thin;
   scrollbar-color: var(--b-border-hover) transparent;
@@ -407,7 +544,7 @@ body {
   outline-offset: 2px;
 }
 
-/* ── Bento — grid, collapses on mobile ── */
+/* ── Bento helpers ── */
 .bento-grid {
   display: grid;
   gap: 1rem;
@@ -425,6 +562,57 @@ body {
   animation: shimmer 2.4s linear infinite;
 }
 
+/* ── Range inputs — themed tactile sliders ── */
+input[type="range"].b-range {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 22px;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"].b-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--b-accent) 0%,
+    var(--b-accent) var(--range-fill, 50%),
+    color-mix(in srgb, var(--b-text) 12%, transparent) var(--range-fill, 50%),
+    color-mix(in srgb, var(--b-text) 12%, transparent) 100%
+  );
+}
+input[type="range"].b-range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  margin-top: -6px;
+  height: 16px;
+  width: 16px;
+  border-radius: 999px;
+  background: var(--b-panel);
+  border: 2px solid var(--b-accent);
+  box-shadow: 0 0 10px var(--b-accent-glow);
+  transition: transform 0.15s ease;
+}
+input[type="range"].b-range:active::-webkit-slider-thumb { transform: scale(1.15); }
+input[type="range"].b-range::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--b-text) 12%, transparent);
+}
+input[type="range"].b-range::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--b-accent);
+}
+input[type="range"].b-range::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 999px;
+  background: var(--b-panel);
+  border: 2px solid var(--b-accent);
+  box-shadow: 0 0 10px var(--b-accent-glow);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
@@ -432,4 +620,13 @@ body {
     transition-duration: 0.001ms !important;
   }
   html { scroll-behavior: auto; }
+}
+
+/* Explicit reduce-motion override set from the Physics Console */
+[data-motion="reduced"] *,
+[data-motion="reduced"] *::before,
+[data-motion="reduced"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
 }

@@ -2,51 +2,42 @@
 
 import * as React from "react";
 import { MotionConfig } from "motion/react";
-import { useBuildora } from "@/lib/store";
-import { accentPresets } from "@buildora/tokens";
+import { useBuildora, type AccentName } from "@/lib/store";
+import { surfaceTheme } from "@/lib/design";
+import { ACCENTS } from "@/lib/design";
 
 /**
- * Universal ThemeProvider — light + dark + swappable accent.
- * - Writes only CSS vars, never hardcoded hex in components.
- * - Respects system preference when mode = system.
- * - Sets data-theme + color-scheme for Tailwind dark: variant.
- * - MotionConfig honors the user's reduced-motion preference for all
- *   motion/react animations globally (explorer-level gating stays).
+ * Universal ThemeProvider — surface + accent + motion override.
+ * - Writes CSS vars (data-theme / data-surface / data-accent), never hex.
+ * - Sets color-scheme + Tailwind dark class for parity.
+ * - MotionConfig honors OS reduce-motion for every motion/react animation.
  */
 
-function resolveMode(mode: string): "light" | "dark" {
-  if (mode === "light" || mode === "dark") return mode;
-  if (typeof window !== "undefined" && window.matchMedia) {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  }
-  return "dark";
-}
+const VALID_ACCENTS = ACCENTS.map((a) => a.id);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const { themeAccent, themeMode } = useBuildora();
+  const surface = useBuildora((s) => s.surface);
+  const themeAccent = useBuildora((s) => s.themeAccent);
+  const motionOverride = useBuildora((s) => s.motionOverride);
 
   React.useEffect(() => {
     const root = document.documentElement;
-    const resolved = resolveMode(themeMode === "system" ? "system" : themeMode);
+    const theme = surfaceTheme(surface);
+    root.setAttribute("data-theme", theme);
+    root.setAttribute("data-surface", surface);
+    root.setAttribute(
+      "data-accent",
+      VALID_ACCENTS.includes(themeAccent as AccentName) ? themeAccent : "acid"
+    );
+    root.style.colorScheme = theme;
+    root.classList.toggle("dark", theme === "dark");
 
-    // Re-resolve system on change
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => {
-      if (useBuildora.getState().themeMode === "system") {
-        root.setAttribute("data-theme", mq.matches ? "dark" : "light");
-        root.classList.toggle("dark", mq.matches);
-      }
-    };
-    mq.addEventListener?.("change", onChange);
-
-    root.setAttribute("data-theme", resolved);
-    root.classList.toggle("dark", resolved === "dark");
-    root.style.colorScheme = resolved;
-
-    root.setAttribute("data-accent", themeAccent);
-
-    return () => mq.removeEventListener?.("change", onChange);
-  }, [themeAccent, themeMode]);
+    if (motionOverride === "reduced") {
+      root.setAttribute("data-motion", "reduced");
+    } else {
+      root.removeAttribute("data-motion");
+    }
+  }, [surface, themeAccent, motionOverride]);
 
   return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }
