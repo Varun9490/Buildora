@@ -26,7 +26,7 @@ export default function HomePage() {
       {/* ── Final CTA ── */}
       <section className="relative mx-auto w-full max-w-7xl px-4 pb-28 sm:px-6 lg:px-8">
         <div
-          className="pointer-events-none absolute -inset-x-8 top-1/2 h-72 -translate-y-1/2 rounded-[4rem] opacity-50 blur-3xl"
+          className="pointer-events-none absolute inset-x-0 top-1/2 h-72 -translate-y-1/2 rounded-[4rem] opacity-50 blur-3xl sm:-inset-x-8"
           style={{
             background:
               "linear-gradient(90deg, color-mix(in oklab, var(--b-accent) 14%, transparent), color-mix(in oklab, var(--b-iris) 14%, transparent))",

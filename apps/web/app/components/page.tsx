@@ -1,152 +1,97 @@
 "use client";
-// Cache invalidation
 
 import Link from "next/link";
 import * as React from "react";
 import { motion, type Variants } from "motion/react";
 import { allComponents, searchComponents } from "@/lib/registry";
 import { LazyPreview } from "@/components/LazyPreview";
-import { cn } from "@buildora/utils";
 
-const staggerContainer: Variants = {
+const stagger: Variants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.05 },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.045, delayChildren: 0.08 } },
 };
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
+const rise: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.52, ease: [0.16, 1, 0.3, 1] as const } },
 };
 
 export default function ComponentsPage() {
   const [query, setQuery] = React.useState("");
-
   const results = React.useMemo(
-    () =>
-      searchComponents(allComponents, {
-        query,
-        category: "all",
-        framework: "all",
-        tag: "all",
-        difficulty: "all",
-        status: "all",
-        sort: "featured",
-      }),
+    () => searchComponents(allComponents, { query, category: "all", framework: "all", tag: "all", difficulty: "all", status: "all", sort: "featured" }),
     [query]
   );
 
   return (
-    <div className="min-h-screen bg-[#050505] text-[#ededed] font-sans selection:bg-[#d4ff4f]/30">
-      
-      {/* Massive Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-20 border-b border-white/5">
-         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(212,255,79,0.05)_0%,transparent_70%)]" />
-         <div className="mx-auto max-w-7xl px-6 relative z-10 text-center">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-5xl md:text-7xl font-black tracking-tighter text-white"
-            >
-              The Component <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d4ff4f] to-[#a8cc3f]">Registry</span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="mx-auto mt-6 max-w-2xl text-lg text-white/40 leading-relaxed font-light"
-            >
-              Premium, production-ready React components. Copy, paste, and ship your next idea faster. Everything is open source.
-            </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }} 
-              animate={{ opacity: 1, scale: 1 }} 
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-12 mx-auto max-w-md relative"
-            >
-               <input
-                 type="text"
-                 value={query}
-                 onChange={(e) => setQuery(e.target.value)}
-                 placeholder="Search components..."
-                 className="w-full bg-white/[0.03] border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-[#d4ff4f]/50 focus:border-[#d4ff4f] transition-all"
-               />
-               <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-               </svg>
-            </motion.div>
-         </div>
+    <div className="min-h-screen bg-[color:var(--b-bg)] text-[color:var(--b-text)] selection:bg-[color:var(--b-accent)] selection:text-[color:var(--b-accent-foreground)]">
+      {/* Hero — token-driven, not hardcoded #050505 */}
+      <section className="relative overflow-hidden border-b border-[color:var(--b-border)]">
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
+          <div className="absolute left-1/2 top-[-180px] h-[520px] w-[880px] -translate-x-1/2 rounded-full blur-[120px] opacity-60" style={{ background: "radial-gradient(closest-side, var(--b-accent-glow), transparent 72%)" }} />
+          <div className="absolute inset-0 opacity-[0.32]" style={{ backgroundImage: "linear-gradient(color-mix(in oklab, var(--b-text) 4%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--b-text) 4%, transparent) 1px, transparent 1px)", backgroundSize: "56px 56px", maskImage: "radial-gradient(ellipse 80% 52% at 50% 0%, black 28%, transparent 74%)" }} />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-6 py-16 sm:py-20 text-center">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} className="inline-flex items-center gap-2 rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-glass)] px-3.5 py-1.5 text-[11px] font-medium tracking-wide text-[color:var(--b-text-secondary)] backdrop-blur-md">
+            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--b-accent)] animate-pulse" /> {results.length} primitives · fluid by default
+          </motion.div>
+          <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.62, delay: 0.06, ease: [0.16, 1, 0.3, 1] }} className="mx-auto mt-6 max-w-3xl font-display text-4xl font-bold tracking-[-0.032em] leading-[1.02] sm:text-5xl lg:text-6xl">
+            The component registry <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(100deg, var(--b-accent), var(--b-iris))" }}>that moves.</span>
+          </motion.h1>
+          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }} className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[color:var(--b-text-secondary)] sm:text-base">
+            Every preview is live. Every component springs. Copy a command, feel the physics — then ship it.
+          </motion.p>
+          <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.45, delay: 0.18 }} className="mx-auto mt-8 flex max-w-lg items-center gap-3 rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-2 shadow-sm">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[color:var(--b-surface)] border border-[color:var(--b-border)] text-[color:var(--b-muted)]">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7}><circle cx="11" cy="11" r="7" /><path d="M20 20L16.5 16.5" /></svg>
+            </div>
+            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search primitives, effects, tokens…" className="min-w-0 flex-1 bg-transparent text-sm text-[color:var(--b-text)] placeholder:text-[color:var(--b-muted)] outline-none" aria-label="Search components" />
+            {query && (
+              <button onClick={() => setQuery("")} className="shrink-0 rounded-lg px-2.5 py-1.5 text-xs font-medium text-[color:var(--b-muted)] hover:text-[color:var(--b-text)] hover:bg-[color:var(--b-surface)]">Clear</button>
+            )}
+          </motion.div>
+        </div>
       </section>
 
-      {/* Components Grid */}
-      <section className="mx-auto max-w-[1400px] px-6 py-24">
-         <div className="mb-12 flex items-center justify-between border-b border-white/5 pb-6">
-            <h2 className="font-mono text-xs uppercase tracking-widest text-white/30">
-              {results.length} Components Available
-            </h2>
-         </div>
+      {/* Filter strip */}
+      <div className="sticky top-0 z-10 border-b border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-bg)_88%,transparent)] backdrop-blur-xl">
+        <div className="mx-auto max-w-[1400px] px-6 py-3 flex items-center justify-between gap-4">
+          <span className="font-mono text-[11px] tracking-widest uppercase text-[color:var(--b-muted)]">{results.length} results{query ? ` for “${query}”` : ""}</span>
+          <span className="hidden sm:inline-flex items-center gap-2 text-xs text-[color:var(--b-muted)]">Each card is a live preview — hover to feel the spring <span className="h-1 w-1 rounded-full bg-[color:var(--b-accent)]" /></span>
+        </div>
+      </div>
 
-         <motion.div 
-            variants={staggerContainer} 
-            initial="hidden" 
-            animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
-         >
-            {results.map((c) => (
-              <motion.div key={c.slug} variants={fadeUp}>
-                <Link
-                  href={`/components/${c.slug}`}
-                  className="group flex flex-col h-full rounded-2xl bg-white/[0.02] border border-white/5 overflow-hidden hover:border-white/10 transition-colors duration-500 relative"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <div className="flex h-40 items-center justify-center border-b border-white/5 bg-[#0a0a0a] relative overflow-hidden">
-                     {/* Decorative background element for the card hero */}
-                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                     <LazyPreview slug={c.slug} category={c.categories[0]} />
+      {/* Grid */}
+      <section className="mx-auto max-w-[1400px] px-6 py-10 sm:py-12">
+        <motion.div variants={stagger} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+          {results.map((c) => (
+            <motion.div key={c.slug} variants={rise}>
+              <Link href={`/components/${c.slug}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] b-fluid-card">
+                <div className="relative flex h-44 items-center justify-center overflow-hidden border-b border-[color:var(--b-border)] bg-[color:var(--b-surface)]">
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: "radial-gradient(420px circle at 50% 0%, var(--b-accent-muted), transparent 62%)" }} aria-hidden />
+                  <LazyPreview slug={c.slug} category={c.categories[0]} />
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <h2 className="font-display text-[15px] font-semibold tracking-tight text-[color:var(--b-text)] group-hover:text-[color:var(--b-accent)] transition-colors">{c.name}</h2>
+                    <span className="shrink-0 rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-2 py-0.5 font-mono text-[10px] text-[color:var(--b-muted)]">v{c.version}</span>
                   </div>
-
-                  <div className="p-6 flex flex-col flex-1 relative z-10">
-                    <div className="flex items-center justify-between mb-2">
-                       <h2 className="font-display text-xl font-bold tracking-tight text-white transition-colors group-hover:text-[#d4ff4f]">
-                         {c.name}
-                       </h2>
-                       <span className="rounded bg-white/5 px-2 py-0.5 font-mono text-[9px] text-white/40">
-                         v{c.version}
-                       </span>
-                    </div>
-                    
-                    <p className="line-clamp-2 text-sm leading-relaxed text-white/40 group-hover:text-white/60 transition-colors flex-1">
-                      {c.description}
-                    </p>
-                    
-                    <div className="mt-6 flex flex-wrap gap-2">
-                       {c.tags.slice(0, 3).map(tag => (
-                         <span key={tag} className="rounded-md border border-white/5 bg-white/[0.02] px-2.5 py-1 font-mono text-[10px] text-white/30 transition-colors group-hover:border-white/10 group-hover:text-white/50">
-                           {tag}
-                         </span>
-                       ))}
-                    </div>
+                  <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-[color:var(--b-text-secondary)] flex-1">{c.description}</p>
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {c.tags.slice(0, 3).map((tag) => (
+                      <span key={tag} className="rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-2.5 py-1 font-mono text-[10px] text-[color:var(--b-muted)] group-hover:border-[color:var(--b-border-hover)] transition-colors">{tag}</span>
+                    ))}
                   </div>
-                </Link>
-              </motion.div>
-            ))}
-         </motion.div>
-
-         {results.length === 0 && (
-           <div className="py-32 text-center">
-             <p className="font-mono text-sm text-white/30 uppercase tracking-widest">No components found</p>
-           </div>
-         )}
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
+        {results.length === 0 && (
+          <div className="py-20 text-center">
+            <p className="font-mono text-xs uppercase tracking-widest text-[color:var(--b-muted)]">No matches</p>
+            <button onClick={() => setQuery("")} className="mt-3 text-sm font-medium text-[color:var(--b-accent)] hover:underline">Clear search</button>
+          </div>
+        )}
       </section>
     </div>
   );

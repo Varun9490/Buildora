@@ -204,4 +204,18 @@ useEffect(() => {
     ))}
   </AnimatePresence>
 </motion.div>`,
+
+  "kinetic-type": `import { MatrixDecode, RgbGlitchText, EchoStack, PeriodDrop, SelectionSnap, NumberWheel, InlineWordRoll, TypeWall } from "@/components/buildora";
+
+<h1><MatrixDecode text="Build with motion" /></h1>
+<p><RgbGlitchText text="Break the grid" intensity={1} /></p>
+<h2><PeriodDrop text="Motion that lands" delay={300} /></h2>
+
+<EchoStack text="Echo" layers={2} spread={14} />
+<SelectionSnap text="Snap to black" weightFrom={250} weightTo={900} />
+
+<NumberWheel value={93480} countUp prefix="" suffix=" installs" />
+<span><InlineWordRoll prefix="Deploy in " words={["seconds", "one line"]} /></span>
+
+<TypeWall rows={4} speed={60} words={["Momentum", "Material", "Method", "Motion"]} />`,
 };

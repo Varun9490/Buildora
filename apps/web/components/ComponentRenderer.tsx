@@ -7,6 +7,14 @@ import {
   Backdrop,
   CursorFx,
   TextFx,
+  MatrixDecode,
+  RgbGlitchText,
+  NumberWheel,
+  InlineWordRoll,
+  EchoStack,
+  SelectionSnap,
+  PeriodDrop,
+  TypeWall,
   FxCard,
   FxButton,
   SlingshotOTP,
@@ -297,6 +305,61 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
         <div className="flex flex-col items-center gap-3 p-6 text-center">
           <TextFx kind="typewriter" text={["Build", "Remix", "Ship"]} className="font-display text-3xl font-black" />
           <TextFx kind="glitch" text="No fake support" className="font-display text-xl font-bold" />
+        </div>
+      );
+    case "matrix-decode":
+      return wrap(
+        <div className="flex flex-col items-center gap-2 p-6 text-center">
+          <MatrixDecode text="Ship with physics" className="font-display text-3xl font-black" />
+          <p className="text-sm text-[color:var(--b-muted)]">Glyphs lock in left-to-right. Replay to decode again.</p>
+        </div>
+      );
+    case "rgb-glitch":
+      return wrap(
+        <div className="flex flex-col items-center gap-2 p-6 text-center">
+          <RgbGlitchText text="Signal intact" className="font-display text-3xl font-black" />
+          <p className="text-sm text-[color:var(--b-muted)]">Channel-split bursts on a deterministic cycle.</p>
+        </div>
+      );
+    case "number-wheel":
+      return wrap(
+        <div className="flex flex-col items-center gap-2 p-6 text-center">
+          <OdometerDemo />
+          <p className="text-sm text-[color:var(--b-muted)]">Digits roll on reels with staggered cascades.</p>
+        </div>
+      );
+    case "inline-word-roll":
+      return wrap(
+        <div className="flex flex-col items-center gap-2 p-6 text-center">
+          <InlineWordRoll prefix="Deploy in " words={["seconds", "one line", "minutes"]} className="font-display text-3xl font-black" />
+          <p className="text-sm text-[color:var(--b-muted)]">Slot width eases to each word as it rolls up.</p>
+        </div>
+      );
+    case "echo-stack":
+      return wrap(
+        <div className="flex flex-col items-center gap-2 p-6 text-center">
+          <EchoStack text="Echo" layers={2} spread={14} className="font-display text-5xl font-black" />
+          <p className="text-sm text-[color:var(--b-muted)]">Outlined copies drift above. Hover to widen.</p>
+        </div>
+      );
+    case "selection-snap":
+      return wrap(
+        <div className="flex flex-col items-center gap-2 p-6 text-center">
+          <SelectionSnap text="Hover to select" className="font-display text-3xl" />
+          <p className="text-sm text-[color:var(--b-muted)]">Hairline snaps to black under a selection box.</p>
+        </div>
+      );
+    case "period-drop":
+      return wrap(
+        <div className="flex flex-col items-center gap-2 p-6 text-center">
+          <PeriodDrop text="Motion that lands" className="font-display text-3xl font-black" />
+          <p className="text-sm text-[color:var(--b-muted)]">The full stop falls, squashes, and settles.</p>
+        </div>
+      );
+    case "type-wall":
+      return wrap(
+        <div className="w-full">
+          <TypeWall rows={4} className="w-full" />
         </div>
       );
     case "fx-card":
@@ -876,6 +939,20 @@ function AlertDialogDemo() {
       <AlertDialog open={open} onOpenChange={setOpen} title="Remove component?" description="This removes the entry from the workspace." variant="destructive" />
     </div>
   );
+}
+
+function OdometerDemo() {
+  const [v, setV] = React.useState(42910);
+  React.useEffect(() => {
+    const values = [42910, 986, 128480, 7];
+    let k = 0;
+    const id = window.setInterval(() => {
+      k = (k + 1) % values.length;
+      setV(values[k]);
+    }, 2600);
+    return () => window.clearInterval(id);
+  }, []);
+  return <NumberWheel value={v} className="font-display text-4xl font-black" />;
 }
 
 function SheetDemo() {

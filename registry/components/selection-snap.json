@@ -1,0 +1,126 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "selection-snap",
+  "name": "Selection Snap",
+  "slug": "selection-snap",
+  "description": "Text snaps from hairline to black weight under a designer-style selection box with corner handles.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "text",
+    "weight",
+    "variable-font"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/selection-snap/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/selection-snap/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/selection-snap/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/selection-snap/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/selection-snap/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/selection-snap/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/selection-snap/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/selection-snap/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/selection-snap/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/selection-snap/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/selection-snap/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/selection-snap/index.tsx",
+      "target": "components/buildora/selection-snap.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type SelectionSnapProps = React.HTMLAttributes<HTMLSpanElement> & {\n  text: string;\n  weightTo?: number;\n  weightFrom?: number;\n};\n\nconst HANDLES = [\n  { pos: { left: -3, top: -3 }, delay: 40 },\n  { pos: { right: -3, top: -3 }, delay: 70 },\n  { pos: { left: -3, bottom: -3 }, delay: 100 },\n  { pos: { right: -3, bottom: -3 }, delay: 130 },\n];\n\n/**\n * SelectionSnap — the word snaps from hairline to black weight while a\n * designer-style selection box with corner handles springs into place.\n * Hover or focus to play.\n */\nexport function SelectionSnap({ text, weightFrom = 250, weightTo = 900, className, style, ...rest }: SelectionSnapProps) {\n  const reduced = useReducedMotion();\n  const [on, setOn] = React.useState(false);\n  const active = on;\n  const snapEase = \"cubic-bezier(.34,1.56,.64,1)\";\n\n  return (\n    <span\n      tabIndex={0}\n      aria-label={text}\n      className={cn(\"relative inline-block cursor-default outline-none\", className)}\n      style={{ ...style, fontWeight: reduced ? weightTo : active ? weightTo : weightFrom, transition: \"font-weight 240ms ease\" }}\n      onPointerEnter={() => setOn(true)}\n      onPointerLeave={() => setOn(false)}\n      onFocus={() => setOn(true)}\n      onBlur={() => setOn(false)}\n      {...rest}\n    >\n      <span aria-hidden className=\"inline-block\">\n        {text}\n        <span\n          aria-hidden\n          className=\"pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-[2px] border\"\n          style={{\n            borderColor: \"var(--b-accent)\",\n            opacity: active ? 1 : 0,\n            transform: active ? \"scale(1)\" : \"scale(.94)\",\n            transition: reduced ? \"opacity 140ms ease\" : `opacity 140ms ease, transform 260ms ${snapEase}`,\n          }}\n        >\n          {HANDLES.map((h, i) => (\n            <span\n              key={i}\n              className=\"absolute h-1.5 w-1.5\"\n              style={{\n                ...h.pos,\n                background: \"var(--b-accent)\",\n                opacity: active ? 1 : 0,\n                transition: reduced ? \"opacity 140ms ease\" : `opacity 140ms ease ${active ? h.delay : 0}ms`,\n              }}\n            />\n          ))}\n        </span>\n      </span>\n    </span>\n  );\n}\n\nexport default SelectionSnap;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/selection-snap",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/selection-snap/index.tsx",
+  "sourceDir": "selection-snap",
+  "docs": "/components/selection-snap",
+  "install": "pnpm dlx shadcn@latest add @buildora/selection-snap"
+}

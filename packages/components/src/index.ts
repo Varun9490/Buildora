@@ -2,6 +2,14 @@ export { MagneticButton } from "./magnetic-button";
 export { Backdrop, type BackdropProps, type BackdropVariant } from "./backdrop";
 export { CursorFx, type CursorFxProps, type CursorFxMode } from "./cursor-fx";
 export { TextFx, type TextFxProps, type TextFxKind } from "./text-fx";
+export { MatrixDecode, type MatrixDecodeProps } from "./matrix-decode";
+export { RgbGlitchText, type RgbGlitchTextProps } from "./rgb-glitch";
+export { NumberWheel, type NumberWheelProps } from "./number-wheel";
+export { InlineWordRoll, type InlineWordRollProps } from "./inline-word-roll";
+export { EchoStack, type EchoStackProps } from "./echo-stack";
+export { SelectionSnap, type SelectionSnapProps } from "./selection-snap";
+export { PeriodDrop, type PeriodDropProps } from "./period-drop";
+export { TypeWall, type TypeWallProps } from "./type-wall";
 export { FxCard, type FxCardProps, type FxCardEffect } from "./fx-card";
 export { FxButton, type FxButtonProps, type FxButtonEffect } from "./fx-button";
 export {

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "selection-snap",
+  "type": "registry:component",
+  "title": "Selection Snap",
+  "description": "Text snaps from hairline to black weight under a designer-style selection box with corner handles.",
+  "status": "beta",
+  "categories": [
+    "motion"
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/selection-snap/index.tsx",
+      "target": "components/buildora/selection-snap.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type SelectionSnapProps = React.HTMLAttributes<HTMLSpanElement> & {\n  text: string;\n  weightTo?: number;\n  weightFrom?: number;\n};\n\nconst HANDLES = [\n  { pos: { left: -3, top: -3 }, delay: 40 },\n  { pos: { right: -3, top: -3 }, delay: 70 },\n  { pos: { left: -3, bottom: -3 }, delay: 100 },\n  { pos: { right: -3, bottom: -3 }, delay: 130 },\n];\n\n/**\n * SelectionSnap — the word snaps from hairline to black weight while a\n * designer-style selection box with corner handles springs into place.\n * Hover or focus to play.\n */\nexport function SelectionSnap({ text, weightFrom = 250, weightTo = 900, className, style, ...rest }: SelectionSnapProps) {\n  const reduced = useReducedMotion();\n  const [on, setOn] = React.useState(false);\n  const active = on;\n  const snapEase = \"cubic-bezier(.34,1.56,.64,1)\";\n\n  return (\n    <span\n      tabIndex={0}\n      aria-label={text}\n      className={cn(\"relative inline-block cursor-default outline-none\", className)}\n      style={{ ...style, fontWeight: reduced ? weightTo : active ? weightTo : weightFrom, transition: \"font-weight 240ms ease\" }}\n      onPointerEnter={() => setOn(true)}\n      onPointerLeave={() => setOn(false)}\n      onFocus={() => setOn(true)}\n      onBlur={() => setOn(false)}\n      {...rest}\n    >\n      <span aria-hidden className=\"inline-block\">\n        {text}\n        <span\n          aria-hidden\n          className=\"pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-[2px] border\"\n          style={{\n            borderColor: \"var(--b-accent)\",\n            opacity: active ? 1 : 0,\n            transform: active ? \"scale(1)\" : \"scale(.94)\",\n            transition: reduced ? \"opacity 140ms ease\" : `opacity 140ms ease, transform 260ms ${snapEase}`,\n          }}\n        >\n          {HANDLES.map((h, i) => (\n            <span\n              key={i}\n              className=\"absolute h-1.5 w-1.5\"\n              style={{\n                ...h.pos,\n                background: \"var(--b-accent)\",\n                opacity: active ? 1 : 0,\n                transition: reduced ? \"opacity 140ms ease\" : `opacity 140ms ease ${active ? h.delay : 0}ms`,\n              }}\n            />\n          ))}\n        </span>\n      </span>\n    </span>\n  );\n}\n\nexport default SelectionSnap;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/selection-snap/index.tsx"
+}

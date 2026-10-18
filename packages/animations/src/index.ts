@@ -1,9 +1,3 @@
-/**
- * Tiny spring + attraction helpers. No heavy animation dependency required.
- * Framer Motion is used in the web app for layout transitions; these helpers
- * power canvas / pointer physics with rAF and respect reduced motion.
- */
-
 export type SpringOpts = { stiffness?: number; damping?: number; mass?: number };
 
 export function springStep(
@@ -67,3 +61,6 @@ export function rafLoop(fn: (dt: number, t: number) => void | false) {
     cancelAnimationFrame(raf);
   };
 }
+
+export { springs, easings, durations, fadeUp, scaleIn, stagger, springTransition } from "./motion-tokens";
+export type { SpringPreset } from "./motion-tokens";

@@ -38,6 +38,11 @@ const GROUPS: { id: string; label: string; slugs: string[] }[] = [
     ],
   },
   {
+    id: "kinetic",
+    label: "Kinetic Type",
+    slugs: ["matrix-decode", "rgb-glitch", "number-wheel", "inline-word-roll", "echo-stack", "selection-snap", "period-drop", "type-wall"],
+  },
+  {
     id: "inputs",
     label: "Tactile Inputs",
     slugs: ["magnetic-button", "slingshot-otp", "fx-button", "button", "input", "textarea", "switch", "checkbox", "radio-group", "slider", "kbd"],

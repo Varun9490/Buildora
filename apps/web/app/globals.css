@@ -622,6 +622,57 @@ input[type="range"].b-range::-moz-range-thumb {
   html { scroll-behavior: auto; }
 }
 
+/* ── Buildora Fluid — ink ripple, gradient pan, stagger drift ── */
+@keyframes buildora-ink {
+  0% { transform: scale(0.2); opacity: 0.45; }
+  100% { transform: scale(18); opacity: 0; }
+}
+@keyframes buildora-gradient-pan {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes buildora-drift-a {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(18px, -14px, 0) scale(1.04); }
+  100% { transform: translate3d(-12px, 10px, 0) scale(0.98); }
+}
+@keyframes buildora-beam-sweep {
+  0% { transform: translateX(-8%); opacity: 0.55; }
+  100% { transform: translateX(8%); opacity: 0.85; }
+}
+@keyframes buildora-fade-in {
+  from { opacity: 0; transform: translateY(8px); filter: blur(6px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes buildora-glitch-a {
+  0%, 90%, 100% { transform: translateX(-1.5px); opacity: 0; }
+  92%, 96% { transform: translateX(-2px); opacity: 0.55; }
+}
+@keyframes buildora-glitch-b {
+  0%, 90%, 100% { transform: translateX(1.5px); opacity: 0; }
+  94%, 98% { transform: translateX(2px); opacity: 0.55; }
+}
+@keyframes buildora-ripple-dot {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(14); opacity: 0; }
+}
+@keyframes buildora-scale-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.97); }
+}
+.animate-scale-out { animation: buildora-scale-out 0.16s cubic-bezier(0.4, 0, 1, 1) both; }
+
+/* ── Fluid card hover — inner glow + lift ── */
+.b-fluid-card {
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease, box-shadow 0.38s ease;
+}
+.b-fluid-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--b-accent) 18%, var(--b-border));
+  box-shadow: 0 12px 40px -16px color-mix(in srgb, var(--b-accent) 16%, transparent), 0 4px 16px -8px rgba(0,0,0,0.4);
+}
+.b-fluid-card:active { transform: translateY(-1px) scale(0.985); }
+
 /* Explicit reduce-motion override set from the Physics Console */
 [data-motion="reduced"] *,
 [data-motion="reduced"] *::before,

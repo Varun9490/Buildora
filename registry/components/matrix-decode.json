@@ -1,0 +1,127 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "matrix-decode",
+  "name": "Matrix Decode",
+  "slug": "matrix-decode",
+  "description": "Characters scramble through glyphs and lock in left-to-right with stochastic jitter. rAF-driven, resolves once.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "text",
+    "kinetic",
+    "decode"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/matrix-decode/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/matrix-decode/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/matrix-decode/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/matrix-decode/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/matrix-decode/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/matrix-decode/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/matrix-decode/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/matrix-decode/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/matrix-decode/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/matrix-decode/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/matrix-decode/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json",
+    "https://buildora-hazel.vercel.app/r/spring.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/matrix-decode/index.tsx",
+      "target": "components/buildora/matrix-decode.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { rafLoop } from \"@/lib/buildora/spring\";\n\nexport type MatrixDecodeProps = React.HTMLAttributes<HTMLSpanElement> & {\n  text: string;\n  speed?: number;\n  delay?: number;\n  charset?: string;\n};\n\nconst DEFAULT_CHARS = \"!<>-_\\\\/[]{}=+*^?#$%&@01\";\n\n/**\n * MatrixDecode — characters cycle through glyphs and lock in left-to-right\n * with stochastic jitter. rAF-driven, resolves once, static under reduced motion.\n */\nexport function MatrixDecode({ text, speed = 1, delay = 0, charset = DEFAULT_CHARS, className, ...rest }: MatrixDecodeProps) {\n  const reduced = useReducedMotion();\n  const [view, setView] = React.useState<string[]>(() => text.split(\"\"));\n\n  React.useEffect(() => {\n    if (reduced) {\n      setView(text.split(\"\"));\n      return;\n    }\n    let stop: (() => void) | null = null;\n    let cancelled = false;\n    const t0 = window.setTimeout(() => {\n      if (cancelled) return;\n      const chars = text.split(\"\");\n      const n = Math.max(1, chars.length);\n      const base = 900 / Math.max(0.25, speed);\n      const locks = chars.map((ch, i) => {\n        const jitter = ch === \" \" ? 0 : (Math.random() - 0.5) * base * 0.35;\n        return Math.max(0, (i / n) * base + jitter);\n      });\n      const total = Math.max(...locks, 0) + 80;\n      const startedAt = performance.now();\n      let lastPaint = 0;\n      stop = rafLoop((_dt, now) => {\n        if (cancelled) return false;\n        const elapsed = now - startedAt;\n        if (elapsed - lastPaint < 28) return;\n        lastPaint = elapsed;\n        if (elapsed >= total) {\n          setView(chars);\n          return false;\n        }\n        setView(\n          chars.map((ch, i) => {\n            if (ch === \" \") return \" \";\n            if (elapsed >= locks[i]) return ch;\n            return Math.random() < 0.7 ? charset[Math.floor(Math.random() * charset.length)] : ch;\n          })\n        );\n      });\n    }, delay);\n    return () => {\n      cancelled = true;\n      window.clearTimeout(t0);\n      if (stop) stop();\n    };\n  }, [text, speed, delay, charset, reduced]);\n\n  return (\n    <span aria-label={text} className={cn(\"inline\", className)} {...rest}>\n      <span aria-hidden className=\"inline-block\">\n        {view.join(\"\")}\n      </span>\n    </span>\n  );\n}\n\nexport default MatrixDecode;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/matrix-decode",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/matrix-decode/index.tsx",
+  "sourceDir": "matrix-decode",
+  "docs": "/components/matrix-decode",
+  "install": "pnpm dlx shadcn@latest add @buildora/matrix-decode"
+}

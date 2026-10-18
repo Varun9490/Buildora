@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "period-drop",
+  "type": "registry:component",
+  "title": "Period Drop",
+  "description": "The full stop falls in with gravity, squashes on impact, and settles. One-shot keyframes when scrolled into view.",
+  "status": "beta",
+  "categories": [
+    "motion"
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/period-drop/index.tsx",
+      "target": "components/buildora/period-drop.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type PeriodDropProps = React.HTMLAttributes<HTMLSpanElement> & {\n  text: string;\n  delay?: number;\n};\n\nconst DROP_CSS = `\n@keyframes bk-period-drop{\n  0%{transform:translateY(-1.2em) scale(1.15,.8);opacity:0;animation-timing-function:cubic-bezier(.55,0,1,.45)}\n  8%{opacity:1}\n  55%{transform:translateY(0) scale(1,1);animation-timing-function:linear}\n  64%{transform:translateY(0) scale(1.5,.5)}\n  78%{transform:translateY(-.22em) scale(.9,1.15)}\n  100%{transform:translateY(0) scale(1,1)}\n}\n`;\n\n/**\n * PeriodDrop — the full stop falls in with gravity, squashes on impact, and\n * settles into the sentence. One-shot keyframes, plays once when in view.\n */\nexport function PeriodDrop({ text, delay = 300, className, ...rest }: PeriodDropProps) {\n  const reduced = useReducedMotion();\n  const [on, setOn] = React.useState(false);\n  const ref = React.useRef<HTMLSpanElement | null>(null);\n\n  React.useEffect(() => {\n    const el = ref.current;\n    if (!el || reduced) return;\n    if (typeof IntersectionObserver === \"undefined\") {\n      const t = window.setTimeout(() => setOn(true), delay);\n      return () => window.clearTimeout(t);\n    }\n    const io = new IntersectionObserver(\n      (entries) => {\n        if (entries.some((e) => e.isIntersecting)) {\n          setOn(true);\n          io.disconnect();\n        }\n      },\n      { threshold: 0.4 }\n    );\n    io.observe(el);\n    return () => io.disconnect();\n  }, [reduced, delay]);\n\n  return (\n    <span ref={ref} aria-label={`${text}.`} className={cn(\"inline\", className)} {...rest}>\n      <style>{DROP_CSS}</style>\n      <span aria-hidden className=\"inline\">\n        {text}\n        <span\n          aria-hidden\n          className=\"inline-block rounded-full\"\n          style={{\n            width: \"0.16em\",\n            height: \"0.16em\",\n            marginLeft: \"0.14em\",\n            background: \"currentColor\",\n            transformOrigin: \"50% 100%\",\n            opacity: reduced || on ? undefined : 0,\n            animation: on && !reduced ? `bk-period-drop 780ms ${delay}ms both` : undefined,\n          }}\n        />\n      </span>\n    </span>\n  );\n}\n\nexport default PeriodDrop;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/period-drop/index.tsx"
+}

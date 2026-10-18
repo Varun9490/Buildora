@@ -86,3 +86,20 @@ if (typeof globalThis.IntersectionObserver === "undefined") {
     }
   } as unknown as typeof IntersectionObserver;
 }
+
+// jsdom has no PointerEvent global; motion-dom press gestures construct one on
+// keyboard activation, so provide a minimal implementation.
+if (typeof globalThis.PointerEvent === "undefined" && typeof MouseEvent !== "undefined") {
+  class PointerEventPolyfill extends MouseEvent {
+    pointerId: number;
+    pointerType: string;
+    isPrimary: boolean;
+    constructor(type: string, params: PointerEventInit = {}) {
+      super(type, params);
+      this.pointerId = params.pointerId ?? 1;
+      this.pointerType = params.pointerType ?? "mouse";
+      this.isPrimary = params.isPrimary ?? true;
+    }
+  }
+  globalThis.PointerEvent = PointerEventPolyfill as unknown as typeof PointerEvent;
+}

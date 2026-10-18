@@ -10,6 +10,7 @@ import { MagnificationDock } from "./bento/MagnificationDock";
 import { DynamicIsland } from "./bento/DynamicIsland";
 import { RubberScrubber } from "./bento/RubberScrubber";
 import { AiComposer } from "./bento/AiComposer";
+import { KineticTypeStage } from "./bento/KineticTypeStage";
 
 export function BentoShowcase() {
   return (
@@ -96,6 +97,16 @@ export function BentoShowcase() {
           slug="attachment-prompt"
           demo={<AiComposer />}
           code={SIGNATURE_CODE["attachment-prompt"]}
+        />
+
+        <BentoShell
+          span="lg:col-span-12"
+          category="Kinetic type"
+          title="The kinetic type family"
+          slug="type-wall"
+          demo={<KineticTypeStage />}
+          code={SIGNATURE_CODE["kinetic-type"]}
+          stageClassName="min-h-[380px]"
         />
       </div>
     </section>

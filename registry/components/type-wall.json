@@ -1,0 +1,126 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "type-wall",
+  "name": "Type Wall",
+  "slug": "type-wall",
+  "description": "Alternating solid and outline marquee rows under a fade mask. Pauses on hover, static under reduced motion.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "text",
+    "marquee",
+    "wall"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/type-wall/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/type-wall/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/type-wall/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/type-wall/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/type-wall/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/type-wall/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/type-wall/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/type-wall/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/type-wall/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/type-wall/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/type-wall/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/type-wall/index.tsx",
+      "target": "components/buildora/type-wall.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type TypeWallProps = React.HTMLAttributes<HTMLDivElement> & {\n  rows?: number;\n  words?: string[];\n  speed?: number;\n  pauseOnHover?: boolean;\n};\n\nconst WALL_CSS = `\n@keyframes bk-wall-slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}\n.bk-wall:hover .bk-wall-track{animation-play-state:paused}\n`;\n\n/**\n * TypeWall — alternating solid and outline marquee rows under a top-and-bottom\n * fade mask. Pauses on hover, fully static under reduced motion.\n */\nexport function TypeWall({ rows = 4, words, speed = 60, pauseOnHover = true, className, ...rest }: TypeWallProps) {\n  const reduced = useReducedMotion();\n  const list = words && words.length > 0 ? words : [\"Momentum\", \"Material\", \"Method\", \"Motion\"];\n  const n = Math.max(1, Math.min(8, rows));\n  const dur = Math.max(8, Math.min(90, 2600 / speed));\n\n  const face = (r: number): React.CSSProperties => {\n    if (r % 2 === 1) {\n      return {\n        WebkitTextStroke: \"1px color-mix(in oklab, var(--b-text) 40%, transparent)\",\n        color: \"transparent\",\n      };\n    }\n    if (r % 4 === 2) {\n      return { color: \"color-mix(in oklab, var(--b-text) 30%, transparent)\" };\n    }\n    return { color: \"var(--b-text)\" };\n  };\n\n  return (\n    <div aria-hidden className={cn(\"bk-wall w-full select-none\", className)} {...rest}>\n      {(pauseOnHover || !reduced) && <style>{WALL_CSS}</style>}\n      <div\n        className=\"flex flex-col overflow-hidden py-2\"\n        style={{\n          WebkitMaskImage: \"linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)\",\n          maskImage: \"linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)\",\n        }}\n      >\n        {Array.from({ length: n }, (_, r) => {\n          const word = list[r % list.length] ?? \"Motion\";\n          const reverse = r % 2 === 1;\n          return (\n            <div key={r} className=\"flex overflow-hidden\">\n              <div\n                className=\"flex shrink-0 items-center gap-[3vw] whitespace-nowrap pr-[3vw] font-display font-black leading-[1.05] tracking-tight\"\n                style={{\n                  fontSize: \"clamp(2.25rem, 6vw, 4.5rem)\",\n                  ...face(r),\n                  animation: reduced ? undefined : `bk-wall-slide ${dur}s linear infinite`,\n                  animationDirection: !reduced && reverse ? \"reverse\" : undefined,\n                }}\n              >\n                {Array.from({ length: 10 }, (_, k) => (\n                  <span key={k}>{word}</span>\n                ))}\n              </div>\n            </div>\n          );\n        })}\n      </div>\n    </div>\n  );\n}\n\nexport default TypeWall;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/type-wall",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/type-wall/index.tsx",
+  "sourceDir": "type-wall",
+  "docs": "/components/type-wall",
+  "install": "pnpm dlx shadcn@latest add @buildora/type-wall"
+}

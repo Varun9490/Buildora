@@ -11,14 +11,7 @@ export type BadgeProps = React.HTMLAttributes<HTMLSpanElement> & {
   icon?: React.ReactNode;
 };
 
-function Badge({
-  className,
-  variant = "default",
-  size = "default",
-  icon,
-  children,
-  ...props
-}: BadgeProps) {
+function Badge({ className, variant = "default", size = "default", icon, children, ...props }: BadgeProps) {
   const variantStyles: Record<BadgeVariant, string> = {
     default: "bg-[color:var(--b-surface)] text-[color:var(--b-text-secondary)] border-[color:var(--b-border)]",
     secondary: "bg-[color:var(--b-panel)] text-[color:var(--b-muted)] border-[color:var(--b-border)]",
@@ -26,25 +19,11 @@ function Badge({
     warning: "bg-[color-mix(in_oklab,var(--b-warning)_10%,transparent)] text-[color:var(--b-warning)] border-[color-mix(in_oklab,var(--b-warning)_25%,transparent)]",
     danger: "bg-[color-mix(in_oklab,var(--b-danger)_10%,transparent)] text-[color:var(--b-danger)] border-[color-mix(in_oklab,var(--b-danger)_25%,transparent)]",
     outline: "bg-transparent text-[color:var(--b-text-secondary)] border-[color:var(--b-border-hover)]",
-    accent: "bg-[color:var(--b-accent-muted)] text-[color:var(--b-accent)] border-[color-mix(in_oklab,var(--b-accent)_30%,transparent)]",
+    accent: "bg-[color:var(--b-accent-muted)] text-[color:var(--b-accent)] border-[color-mix(in_oklab,var(--b-accent)_30%,transparent)] shadow-[0_0_10px_var(--b-accent-glow)]",
   };
-
-  const sizeStyles: Record<"default" | "sm" | "lg", string> = {
-    default: "px-2.5 py-0.5 text-xs",
-    sm: "px-2 py-0.5 text-[10px]",
-    lg: "px-3 py-1 text-sm",
-  };
-
+  const sizeStyles: Record<"default" | "sm" | "lg", string> = { default: "px-2.5 py-0.5 text-xs", sm: "px-2 py-0.5 text-[10px]", lg: "px-3 py-1 text-sm" };
   return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border font-mono font-medium transition-colors",
-        variantStyles[variant],
-        sizeStyles[size],
-        className
-      )}
-      {...props}
-    >
+    <span className={cn("inline-flex items-center gap-1.5 rounded-full border font-mono font-medium transition-colors hover:scale-[1.02] active:scale-[0.98]", variantStyles[variant], sizeStyles[size], className)} {...props}>
       {icon && <span className="shrink-0">{icon}</span>}
       {children}
     </span>

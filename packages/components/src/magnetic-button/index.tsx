@@ -2,8 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@buildora/utils";
-import { useReducedMotion } from "@buildora/hooks";
-import { springStep } from "@buildora/animations";
+import { useReducedMotion, useMagnetic } from "@buildora/hooks";
 import { z } from "zod";
 
 const magneticButtonSchema = z.object({
@@ -14,95 +13,54 @@ const magneticButtonSchema = z.object({
 });
 
 export type MagneticButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  strength?: number; // 0..1 attraction
-  radius?: number; // px influence
+  strength?: number;
+  radius?: number;
   glow?: boolean;
   variant?: "accent" | "ghost" | "iris";
 };
 
 /**
- * MagneticButton — a real <button> with a magnetic pointer layer.
- * Semantics stay intact: keyboard, focus, disabled all native.
+ * MagneticButton — spring-magnetic, now with true proximity radius
+ * (pointermove watched globally so attraction begins before the cursor
+ * touches the button). Real <button> semantics, rAF spring, glow wash.
  */
-export function MagneticButton({
-  strength = 0.35,
-  radius = 120,
-  glow = true,
-  variant = "accent",
-  className,
-  children,
-  ...rest
-}: MagneticButtonProps) {
+export function MagneticButton({ strength = 0.38, radius = 180, glow = true, variant = "accent", className, children, ...rest }: MagneticButtonProps) {
   const ref = React.useRef<HTMLButtonElement | null>(null);
   const reduced = useReducedMotion();
-  const pos = React.useRef({ x: 0, y: 0, vx: 0, vy: 0 });
-  const [, force] = React.useReducer((x: number) => x + 1, 0);
+  const { reset } = useMagnetic(ref as React.RefObject<HTMLElement>, { strength, radius, disabled: !!reduced });
 
   React.useEffect(() => {
     if (process.env.NODE_ENV !== "production") {
       const res = magneticButtonSchema.safeParse({ strength, radius, glow, variant });
-      if (!res.success) {
-        console.warn("[MagneticButton] Invalid props:", res.error.format());
-      }
+      if (!res.success) console.warn("[MagneticButton] Invalid props:", res.error.format());
     }
   }, [strength, radius, glow, variant]);
 
-  const onMove = React.useCallback(
-    (e: React.PointerEvent) => {
-      if (reduced) return;
-      const el = ref.current;
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top + r.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
-      const dist = Math.hypot(dx, dy) || 1;
-      const t = Math.max(0, 1 - dist / radius);
-      const target = { x: dx * strength * t, y: dy * strength * t };
-      // critically-damped approach via spring steps
-      let { x, y, vx, vy } = pos.current;
-      for (let i = 0; i < 3; i++) {
-        const sx = springStep(x, vx, target.x, { stiffness: 260, damping: 22 });
-        const sy = springStep(y, vy, target.y, { stiffness: 260, damping: 22 });
-        x = sx.x; vx = sx.v; y = sy.x; vy = sy.v;
-      }
-      pos.current = { x, y, vx, vy };
-      el.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
-    },
-    [radius, strength, reduced]
-  );
-
-  const reset = React.useCallback(() => {
-    const el = ref.current;
-    if (!el) return;
-    pos.current = { x: 0, y: 0, vx: 0, vy: 0 };
-    el.style.transform = "";
-    force();
-  }, []);
-
   const styles =
     variant === "accent"
-      ? "bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)]"
+      ? "bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)] shadow-[0_8px_32px_-8px_var(--b-accent-glow)] hover:shadow-[0_12px_40px_-10px_var(--b-accent-glow)] hover:brightness-[1.04]"
       : variant === "iris"
-        ? "bg-[color:var(--b-surface)] text-[color:var(--b-text)] border border-[color:var(--b-border)] hover:border-[color:var(--b-border-hover)]"
+        ? "bg-[color:var(--b-panel)] text-[color:var(--b-text)] border border-[color:var(--b-border)] hover:border-[color:var(--b-iris)]/30 hover:bg-[color:var(--b-surface)]"
         : "bg-[color:var(--b-surface)] text-[color:var(--b-text-secondary)] border border-[color:var(--b-border)] hover:bg-[color:var(--b-elevated)] hover:text-[color:var(--b-text)]";
 
   return (
     <button
       ref={ref}
-      onPointerMove={onMove}
       onPointerLeave={reset}
       onBlur={reset}
       className={cn(
-        "relative inline-flex items-center justify-center gap-2 rounded-[10px] px-5 py-2.5 text-sm font-semibold",
-        "transition-[background-color,border-color] duration-200 will-change-transform",
+        "relative inline-flex items-center justify-center gap-2 rounded-[12px] px-6 py-3 text-sm font-semibold isolate overflow-hidden",
+        "transition-[background-color,border-color,box-shadow,filter] duration-300 will-change-transform",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--b-bg)]",
+        "active:scale-[0.98]",
         styles,
         className
       )}
       {...rest}
     >
+      {glow && variant === "accent" && !reduced && (
+        <span aria-hidden className="pointer-events-none absolute -inset-6 opacity-60 blur-2xl" style={{ background: "radial-gradient(closest-side, var(--b-accent-glow), transparent 70%)" }} />
+      )}
       <span className="relative z-10 inline-flex items-center gap-2">{children}</span>
     </button>
   );

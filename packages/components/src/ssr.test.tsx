@@ -76,6 +76,14 @@ const PROPS: Record<string, Record<string, unknown>> = {
   KbdShortcut: { keys: ["Ctrl", "K"] },
   HandwrittenAnnotation: { text: "note" },
   VerticalTimeline: { entries: [{ title: "Kickoff" }] },
+  MatrixDecode: { text: "hello" },
+  RgbGlitchText: { text: "hello" },
+  NumberWheel: { value: 42 },
+  InlineWordRoll: { words: ["one", "two"] },
+  EchoStack: { text: "hello" },
+  SelectionSnap: { text: "hello" },
+  PeriodDrop: { text: "hello" },
+  TypeWall: { words: ["one", "two"] },
 };
 
 /** Functions are components; objects are components only when they are a memo or

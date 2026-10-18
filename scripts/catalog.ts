@@ -214,6 +214,40 @@ export const catalog: CatalogItem[] = [
     name: "TextFx", description: "Kinetic text in six kinds (typewriter, scramble, blur, gradient, glitch, morph). Screen readers hear the final text once.",
     categories: ["motion"], tags: ["text", "animated"], difficulty: "beginner", files: ["packages/components/src/text-fx/index.tsx"],
   }),
+
+  // ── Kinetic Type family (web-native motion-typography set) ──
+  R("matrix-decode", fullWeb, {
+    name: "Matrix Decode", description: "Characters scramble through glyphs and lock in left-to-right with stochastic jitter. rAF-driven, resolves once.",
+    categories: ["motion"], tags: ["text", "kinetic", "decode"], difficulty: "beginner",
+  }),
+  R("rgb-glitch", fullWeb, {
+    name: "RGB Glitch", description: "Channel-split glitch bursts with clip-path slices and skew in theme-adaptive colors. Pure CSS, deterministic burst cycle.",
+    categories: ["motion"], tags: ["text", "glitch", "css"], difficulty: "beginner",
+  }),
+  R("number-wheel", fullWeb, {
+    name: "Number Wheel", description: "Odometer counters: digits roll on vertical reels with staggered cascades. Locale grouping, prefix, suffix, count-up.",
+    categories: ["motion"], tags: ["text", "counter", "odometer"], difficulty: "intermediate",
+  }),
+  R("inline-word-roll", fullWeb, {
+    name: "Inline Word Roll", description: "Rolling word slot for inline headlines: slot width eases to the measured word as each term slides up, clipped.",
+    categories: ["motion"], tags: ["text", "roll", "headline"], difficulty: "beginner",
+  }),
+  R("echo-stack", fullWeb, {
+    name: "Echo Stack", description: "Outlined echo copies drift above the word and intensify on hover. Pure CSS, zero re-renders.",
+    categories: ["motion"], tags: ["text", "echo", "outline"], difficulty: "beginner",
+  }),
+  R("selection-snap", fullWeb, {
+    name: "Selection Snap", description: "Text snaps from hairline to black weight under a designer-style selection box with corner handles.",
+    categories: ["motion"], tags: ["text", "weight", "variable-font"], difficulty: "beginner",
+  }),
+  R("period-drop", fullWeb, {
+    name: "Period Drop", description: "The full stop falls in with gravity, squashes on impact, and settles. One-shot keyframes when scrolled into view.",
+    categories: ["motion"], tags: ["text", "dot", "gravity"], difficulty: "beginner",
+  }),
+  R("type-wall", fullWeb, {
+    name: "Type Wall", description: "Alternating solid and outline marquee rows under a fade mask. Pauses on hover, static under reduced motion.",
+    categories: ["motion"], tags: ["text", "marquee", "wall"], difficulty: "beginner",
+  }),
   R("fx-card", fullWeb, {
     name: "FxCard", description: "Card shell with six pointer effects (tilt, spotlight, glare, holographic, wobble, glass). Ref-driven, no re-render per move.",
     categories: ["motion"], tags: ["card", "hover"], difficulty: "beginner", files: ["packages/components/src/fx-card/index.tsx"],

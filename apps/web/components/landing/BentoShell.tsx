@@ -43,7 +43,7 @@ export function BentoShell({
   code,
   stageClassName,
 }: {
-  span: "lg:col-span-6" | "lg:col-span-4";
+  span: "lg:col-span-6" | "lg:col-span-4" | "lg:col-span-12";
   category: string;
   title: string;
   slug: string;
