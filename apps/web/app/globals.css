@@ -12,11 +12,11 @@
 :root,
 [data-theme="dark"] {
   /* ── Obsidian surface (default) ── */
-  --b-bg: #09090b;
-  --b-panel: #111115;
-  --b-surface: #17171c;
-  --b-elevated: #1d1d23;
-  --b-border: rgba(255, 255, 255, 0.08);
+  --b-bg: #050507;
+  --b-panel: #0a0a0e;
+  --b-surface: #101015;
+  --b-elevated: #16161c;
+  --b-border: rgba(255, 255, 255, 0.06);
   --b-border-hover: rgba(255, 255, 255, 0.18);
   --b-text: #ededf0;
   --b-text-secondary: #a5a5b2;

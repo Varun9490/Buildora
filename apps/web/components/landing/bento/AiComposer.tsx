@@ -4,12 +4,6 @@ import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@buildora/utils";
 
-/* ─────────────────────────────────────────────────────
-   CARD 8 · AI COMPOSER SURFACE
-   Model pills, removable attachment chips, streaming
-   token response with caret — a full composer loop.
-   ───────────────────────────────────────────────────── */
-
 const MODELS = ["sonnet-4.6", "gpt-5.2", "local-7b"] as const;
 type Model = (typeof MODELS)[number];
 
@@ -44,14 +38,28 @@ export function AiComposer() {
   const [prompt, setPrompt] = React.useState("Make this button feel like it weighs something");
   const [streamed, setStreamed] = React.useState("");
   const [status, setStatus] = React.useState<"idle" | "streaming" | "done">("idle");
+  const [streamHeight, setStreamHeight] = React.useState(0);
   const timer = React.useRef<number>(0);
+  const areaRef = React.useRef<HTMLDivElement | null>(null);
+  const innerRef = React.useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => () => window.clearInterval(timer.current), []);
+
+  React.useEffect(() => {
+    const inner = innerRef.current;
+    if (!inner || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver((entries) => {
+      const h = entries[0]?.contentRect.height ?? 0;
+      setStreamHeight(Math.ceil(h) + 24);
+    });
+    ro.observe(inner);
+    return () => ro.disconnect();
+  }, []);
 
   const stop = React.useCallback(() => {
     window.clearInterval(timer.current);
     setStatus((s) => (s === "streaming" ? "done" : s));
   }, []);
-
-  React.useEffect(() => () => window.clearInterval(timer.current), []);
 
   const send = () => {
     if (!prompt.trim() || status === "streaming") return;
@@ -60,7 +68,6 @@ export function AiComposer() {
     const words = RESPONSE.split(" ");
     let i = 0;
     timer.current = window.setInterval(() => {
-      // 1–3 words per tick for an organic cadence
       const burst = 1 + Math.floor(Math.random() * 3);
       i += burst;
       setStreamed(words.slice(0, i).join(" "));
@@ -83,148 +90,128 @@ export function AiComposer() {
   };
 
   return (
-    <div className="w-full max-w-[480px]">
-      <div className="overflow-hidden rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-glass)] shadow-[0_28px_60px_-30px_rgba(0,0,0,0.75)] backdrop-blur-2xl">
-        {/* model pills */}
-        <div className="flex items-center justify-between border-b border-[color:var(--b-border)] px-3 py-2">
-          <div className="flex gap-1" role="radiogroup" aria-label="Model">
-            {MODELS.map((m) => (
-              <button
-                key={m}
-                role="radio"
-                aria-checked={model === m}
-                onClick={() => setModel(m)}
-                className={cn(
-                  "relative rounded-full px-2.5 py-1 font-mono text-[10px] transition-colors",
-                  model === m ? "text-[color:var(--b-accent-foreground)]" : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
-                )}
-              >
-                {model === m && (
-                  <motion.span
-                    layoutId="composer-model-pill"
-                    className="absolute inset-0 rounded-full bg-[color:var(--b-accent)]"
-                    transition={{ type: "spring", stiffness: 480, damping: 32 }}
-                  />
-                )}
-                <span className="relative z-10">{m}</span>
-              </button>
-            ))}
-          </div>
-          <span className="flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-wider text-[color:var(--b-muted)]">
-            <span className={cn("h-1.5 w-1.5 rounded-full", status === "streaming" ? "bg-[color:var(--b-accent)] fx-pulse-soft" : "bg-emerald-400")} />
-            {status === "streaming" ? "generating" : "ready"}
-          </span>
+    <div className="flex h-[340px] w-full items-center justify-center">
+      <div className="flex w-full max-w-[480px] flex-col gap-3">
+        <div className="flex items-center gap-1" role="radiogroup" aria-label="Model">
+          {MODELS.map((m) => (
+            <button
+              key={m}
+              role="radio"
+              aria-checked={model === m}
+              onClick={() => setModel(m)}
+              className={cn(
+                "relative rounded-full px-2.5 py-1 text-[11px] transition-colors",
+                model === m ? "font-medium text-[color:var(--b-text)]" : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
+              )}
+            >
+              {model === m && (
+                <motion.span
+                  layoutId="composer-model-pill"
+                  className="absolute inset-0 rounded-full bg-[color:color-mix(in_oklab,var(--b-text)_8%,transparent)]"
+                  transition={{ type: "spring", stiffness: 480, damping: 32 }}
+                />
+              )}
+              <span className="relative z-10">{m}</span>
+            </button>
+          ))}
         </div>
 
-        {/* transcript */}
-        <div className="min-h-[132px] px-4 py-3" aria-live="polite">
-          <AnimatePresence mode="wait" initial={false}>
-            {status === "idle" ? (
-              <motion.p
-                key="empty"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="pt-6 text-center font-mono text-[11px] text-[color:var(--b-muted)]"
+        <motion.div
+          ref={areaRef}
+          className="overflow-hidden"
+          initial={false}
+          animate={{ height: status === "idle" ? 0 : streamHeight }}
+          transition={{ type: "spring", stiffness: 380, damping: 32 }}
+          aria-live="polite"
+        >
+          <div ref={innerRef} className="flex gap-2.5 px-1 pb-1 pt-2">
+            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-[conic-gradient(from_140deg,var(--b-accent),var(--b-iris),var(--b-accent))] text-[10px] font-bold text-black">
+              B
+            </span>
+            <p className="text-[12.5px] leading-relaxed text-[color:var(--b-text-secondary)]">
+              {renderTokens(streamed)}
+              {status === "streaming" && (
+                <span
+                  className="ml-0.5 inline-block h-3.5 w-[2px] translate-y-[2px] bg-[color:var(--b-accent)]"
+                  style={{ animation: "fx-caret-blink 0.9s steps(1) infinite" }}
+                />
+              )}
+            </p>
+          </div>
+        </motion.div>
+
+        <div className="flex flex-wrap items-center gap-1.5 px-1">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {chips.map((c) => (
+              <motion.span
+                key={c.name}
+                layout
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ type: "spring", stiffness: 520, damping: 32 }}
+                className="flex items-center gap-1.5 rounded-lg bg-[color:color-mix(in_oklab,var(--b-text)_4%,transparent)] py-1 pl-2 pr-1 font-mono text-[10px] text-[color:var(--b-text-secondary)]"
               >
-                Ask for a variant — the composer streams the diff.
-              </motion.p>
-            ) : (
-              <motion.div key="response" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2.5">
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-[conic-gradient(from_140deg,var(--b-accent),var(--b-iris),var(--b-accent))] text-[10px] font-bold text-black">
-                  B
-                </span>
-                <p className="text-[12.5px] leading-relaxed text-[color:var(--b-text-secondary)]">
-                  {renderTokens(streamed)}
-                  {status === "streaming" && (
-                    <span className="ml-0.5 inline-block h-3.5 w-[2px] translate-y-[2px] bg-[color:var(--b-accent)]" style={{ animation: "fx-caret-blink 0.9s steps(1) infinite" }} />
-                  )}
-                </p>
-              </motion.div>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[color:var(--b-accent)]" aria-hidden="true">
+                  <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+                  <path d="M13 2v7h7" />
+                </svg>
+                {c.name}
+                <span className="text-[color:var(--b-muted)]">{c.size}</span>
+                <button
+                  onClick={() => setChips((list) => list.filter((x) => x.name !== c.name))}
+                  aria-label={`Remove ${c.name}`}
+                  className="flex h-4 w-4 items-center justify-center rounded text-[color:var(--b-muted)] hover:bg-[color:var(--b-accent-muted)] hover:text-[color:var(--b-accent)]"
+                >
+                  ×
+                </button>
+              </motion.span>
+            ))}
+            {chips.length < CHIP_POOL.length && (
+              <motion.button
+                key="add"
+                layout
+                onClick={addChip}
+                className="rounded-lg px-2 py-1 font-mono text-[10px] text-[color:var(--b-muted)] transition-colors hover:text-[color:var(--b-accent)]"
+                aria-label="Attach another file"
+              >
+                + attach
+              </motion.button>
             )}
           </AnimatePresence>
         </div>
 
-        {/* attachments */}
-        {(chips.length > 0 || status === "idle") && (
-          <div className="flex flex-wrap items-center gap-1.5 px-4 pb-2">
-            <AnimatePresence initial={false}>
-              {chips.map((c) => (
-                <motion.span
-                  key={c.name}
-                  layout
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ type: "spring", stiffness: 520, damping: 32 }}
-                  className="flex items-center gap-1.5 rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] py-1 pl-2 pr-1 font-mono text-[10px] text-[color:var(--b-text-secondary)]"
-                >
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[color:var(--b-accent)]" aria-hidden="true">
-                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
-                    <path d="M13 2v7h7" />
-                  </svg>
-                  {c.name}
-                  <span className="text-[color:var(--b-muted)]">{c.size}</span>
-                  <button
-                    onClick={() => setChips((list) => list.filter((x) => x.name !== c.name))}
-                    aria-label={`Remove ${c.name}`}
-                    className="flex h-4 w-4 items-center justify-center rounded text-[color:var(--b-muted)] hover:bg-[color:var(--b-accent-muted)] hover:text-[color:var(--b-accent)]"
-                  >
-                    ×
-                  </button>
-                </motion.span>
-              ))}
-              {chips.length < CHIP_POOL.length && (
-                <motion.button
-                  key="add"
-                  layout
-                  onClick={addChip}
-                  className="rounded-lg border border-dashed border-[color:var(--b-border)] px-2 py-1 font-mono text-[10px] text-[color:var(--b-muted)] transition-colors hover:border-[color:var(--b-accent)] hover:text-[color:var(--b-accent)]"
-                >
-                  + attach
-                </motion.button>
-              )}
-            </AnimatePresence>
-          </div>
-        )}
-
-        {/* input row */}
-        <div className="border-t border-[color:var(--b-border)] p-2.5">
-          <div className="flex items-end gap-2 rounded-xl border border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-bg)_55%,transparent)] p-2 transition-colors focus-within:border-[color:var(--b-accent)]">
-            <textarea
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  send();
-                }
-              }}
-              rows={2}
-              placeholder="Describe the motion you want…"
-              className="max-h-24 min-h-[38px] w-full resize-none bg-transparent px-1 text-[12.5px] leading-relaxed text-[color:var(--b-text)] outline-none placeholder:text-[color:var(--b-muted)]"
-              aria-label="Prompt"
-            />
-            {status === "streaming" ? (
-              <button
-                onClick={stop}
-                className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-[color:var(--b-border)] px-3 font-mono text-[10px] font-semibold text-[color:var(--b-text-secondary)] transition-colors hover:border-red-400/60 hover:text-red-400"
-              >
-                <span className="h-2.5 w-2.5 rounded-[3px] bg-current" />
-                Stop
-              </button>
-            ) : (
-              <button
-                onClick={status === "done" ? reset : send}
-                className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg bg-[color:var(--b-accent)] px-3 font-mono text-[10px] font-bold text-[color:var(--b-accent-foreground)] transition-transform active:scale-95"
-              >
-                {status === "done" ? "↺ Again" : "Send ⏎"}
-              </button>
-            )}
-          </div>
-          <p className="mt-1.5 px-1 font-mono text-[9px] text-[color:var(--b-muted)]">
-            ⏎ to send · ⇧⏎ for newline · {model} · temp 0.4
-          </p>
+        <div className="flex items-end gap-2 rounded-xl bg-[color:color-mix(in_oklab,var(--b-text)_4%,transparent)] p-2 transition-colors focus-within:bg-[color:color-mix(in_oklab,var(--b-text)_6%,transparent)]">
+          <textarea
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                send();
+              }
+            }}
+            rows={2}
+            placeholder="Describe the motion you want…"
+            className="max-h-24 min-h-[38px] w-full resize-none bg-transparent px-1 text-[12.5px] leading-relaxed text-[color:var(--b-text)] outline-none placeholder:text-[color:var(--b-muted)]"
+            aria-label="Prompt"
+          />
+          {status === "streaming" ? (
+            <button
+              onClick={stop}
+              className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg px-3 font-mono text-[10px] font-medium text-[color:var(--b-text-secondary)] transition-colors hover:text-red-400"
+            >
+              <span className="h-2.5 w-2.5 rounded-[3px] bg-current" />
+              Stop
+            </button>
+          ) : (
+            <button
+              onClick={status === "done" ? reset : send}
+              className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg bg-[color:var(--b-accent)] px-3 font-mono text-[10px] font-bold text-[color:var(--b-accent-foreground)] transition-transform active:scale-95"
+            >
+              {status === "done" ? "↺ Again" : "Send"}
+            </button>
+          )}
         </div>
       </div>
     </div>

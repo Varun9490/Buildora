@@ -1,18 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { cn } from "@buildora/utils";
-import { useReducedMotionPref } from "@/lib/physics";
-
-/* ─────────────────────────────────────────────────────
-   CARD 1 · SLINGSHOT OTP & ELASTIC TOKEN INPUT
-   6 real <input> slots with full keyboard affordances,
-   plus a spring-loaded puck you pull back and fire.
-   ───────────────────────────────────────────────────── */
+import { useRafLoop, useReducedMotionPref } from "@/lib/physics";
 
 const LEN = 6;
 const MAX_PULL = 92;
+const ORB = 84;
 
 type Flight = {
   fromX: number;
@@ -25,32 +20,34 @@ type Flight = {
   slot: number;
 };
 
-type Confetti = { id: number; x: number; y: number; dx: number; rot: number; hue: string };
+const FOCUS_SPRING = { stiffness: 500, damping: 28 };
 
 export function SlingshotOtpStage() {
   const [digits, setDigits] = React.useState<string[]>(() => Array(LEN).fill(""));
-  const [verified, setVerified] = React.useState(false);
-  const [confetti, setConfetti] = React.useState<Confetti[]>([]);
-  const [puckDigit, setPuckDigit] = React.useState("7");
+  const [active, setActive] = React.useState(0);
+  const [orbDigit, setOrbDigit] = React.useState("7");
   const [firing, setFiring] = React.useState(false);
+  const [flash, setFlash] = React.useState<number | null>(null);
 
   const containerRef = React.useRef<HTMLDivElement | null>(null);
   const inputRefs = React.useRef<(HTMLInputElement | null)[]>([]);
-  const puckRef = React.useRef<HTMLButtonElement | null>(null);
+  const orbRef = React.useRef<HTMLButtonElement | null>(null);
   const projectileRef = React.useRef<HTMLDivElement | null>(null);
   const pathRef = React.useRef<SVGPathElement | null>(null);
-  const tensionRef = React.useRef<HTMLDivElement | null>(null);
-  const timersRef = React.useRef<ReturnType<typeof setTimeout>[]>([]);
   const dragRef = React.useRef<{ pointerId: number; sx: number; sy: number; x: number; y: number } | null>(null);
   const flightRef = React.useRef<Flight | null>(null);
+  const timersRef = React.useRef<ReturnType<typeof setTimeout>[]>([]);
   const reduced = useReducedMotionPref();
+  const reducedRef = React.useRef(reduced);
+  reducedRef.current = reduced;
 
   const digitsRef = React.useRef(digits);
   digitsRef.current = digits;
+  const activeRef = React.useRef(active);
+  activeRef.current = active;
 
-  // Randomize the puck token after mount (hydration-safe)
   React.useEffect(() => {
-    setPuckDigit(String(Math.floor(Math.random() * 10)));
+    setOrbDigit(String(Math.floor(Math.random() * 10)));
   }, []);
 
   React.useEffect(
@@ -65,11 +62,10 @@ export function SlingshotOtpStage() {
     timersRef.current.push(id);
   };
 
-  /* ── Geometry helpers ── */
   const home = () => {
     const c = containerRef.current;
-    if (!c) return { x: 52, y: 220 };
-    return { x: 52, y: c.clientHeight - 52 };
+    if (!c) return { x: ORB / 2, y: ORB * 2 };
+    return { x: c.clientWidth / 2, y: c.clientHeight - ORB / 2 - 8 };
   };
 
   const slotCenter = (i: number) => {
@@ -87,66 +83,47 @@ export function SlingshotOtpStage() {
     return -1;
   };
 
-  /* ── Spring bounce on a slot ── */
-  const bounceSlot = React.useCallback(
-    (i: number) => {
-      const el = inputRefs.current[i];
-      if (!el || reduced || typeof el.animate !== "function") return;
-      el.animate(
-        [
-          { transform: "scale(1)" },
-          { transform: "scale(1.22, 0.82)" },
-          { transform: "scale(0.94, 1.08)" },
-          { transform: "scale(1)" },
-        ],
-        { duration: 420, easing: "cubic-bezier(.16,1,.3,1)" }
-      );
-    },
-    [reduced]
-  );
+  const bounceSlot = React.useCallback((i: number, delay = 0) => {
+    const el = inputRefs.current[i];
+    if (!el || typeof el.animate !== "function") return;
+    el.animate(
+      [
+        { transform: "scale(1)" },
+        { transform: "scale(1.18)", offset: 0.4 },
+        { transform: "scale(1)", offset: 1 },
+      ],
+      { duration: 360, delay, easing: "cubic-bezier(.34,1.56,.64,1)" }
+    );
+  }, []);
+
+  const flashSlot = React.useCallback((i: number, delay = 0) => {
+    later(() => {
+      setFlash(i);
+      later(() => setFlash((f) => (f === i ? null : f)), 620);
+    }, delay);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const commitDigit = React.useCallback(
-    (i: number, d: string) => {
+    (i: number, d: string, delay = 0) => {
       setDigits((prev) => {
         const next = [...prev];
         next[i] = d;
         return next;
       });
-      bounceSlot(i);
+      bounceSlot(i, delay);
+      flashSlot(i, delay);
     },
-    [bounceSlot]
+    [bounceSlot, flashSlot]
   );
 
-  /* ── Verification + confetti ── */
-  React.useEffect(() => {
-    const full = digits.every((d) => d !== "");
-    if (full && !verified) {
-      setVerified(true);
-      const hues = ["var(--b-accent)", "var(--b-iris)", "var(--b-success)", "var(--b-warning)"];
-      const pieces: Confetti[] = Array.from({ length: 26 }, (_, i) => ({
-        id: Date.now() + i,
-        x: 30 + Math.random() * 60,
-        y: 40 + Math.random() * 20,
-        dx: (Math.random() - 0.5) * 220,
-        rot: (Math.random() - 0.5) * 540,
-        hue: hues[i % hues.length],
-      }));
-      setConfetti(pieces);
-      later(() => setConfetti([]), 1700);
-    } else if (!full && verified) {
-      setVerified(false);
-    }
-  }, [digits, verified]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  /* ── Drag + flight render loop ── */
   React.useEffect(() => {
     let raf = 0;
     const loop = () => {
       raf = requestAnimationFrame(loop);
-      const puck = puckRef.current;
+      const orb = orbRef.current;
       const path = pathRef.current;
-      const tension = tensionRef.current;
-      if (!puck || !path || !tension) return;
+      const c = containerRef.current;
+      if (!orb || !path || !c) return;
 
       const h = home();
       const flight = flightRef.current;
@@ -154,71 +131,64 @@ export function SlingshotOtpStage() {
       if (flight) {
         const now = performance.now();
         const t = Math.min((now - flight.t0) / flight.dur, 1);
-        const ease = 1 - Math.pow(1 - t, 2.4);
+        const ease = 1 - Math.pow(1 - t, 2.6);
         const x = flight.fromX + (flight.toX - flight.fromX) * ease;
         const y =
           flight.fromY +
           (flight.toY - flight.fromY) * ease -
-          Math.sin(Math.PI * t) * (reduced ? 0 : 84);
+          Math.sin(Math.PI * t) * (reducedRef.current ? 0 : 72);
         const proj = projectileRef.current;
         if (proj) {
           proj.style.opacity = "1";
-          proj.style.transform = `translate3d(${x - 22}px, ${y - 22}px, 0)`;
-          const squash = 1 + Math.sin(Math.PI * t) * 0.18;
-          proj.style.setProperty("--sq", String(squash));
+          proj.style.transform = `translate3d(${x - ORB / 2}px, ${y - ORB / 2}px, 0)`;
         }
         if (t >= 1) {
           flightRef.current = null;
           if (proj) proj.style.opacity = "0";
-          puck.style.display = "";
+          orb.style.display = "";
           commitDigit(flight.slot, flight.digit);
           setFiring(false);
-          setPuckDigit(String(Math.floor(Math.random() * 10)));
-          if (!reduced && typeof puck.animate === "function") {
-            puck.animate(
-              [{ transform: "scale(0.4)" }, { transform: "scale(1.12)" }, { transform: "scale(1)" }],
-              { duration: 380, easing: "cubic-bezier(.16,1,.3,1)" }
-            );
-          }
+          setOrbDigit(String(Math.floor(Math.random() * 10)));
         }
+        path.style.opacity = "0";
         return;
       }
 
       const drag = dragRef.current;
+      const target = nextEmpty();
+      const orbX = h.x + (drag ? drag.x : 0);
+      const orbY = h.y + (drag ? drag.y : 0);
+
       if (drag) {
-        puck.style.display = "";
-        puck.style.transform = `translate3d(${drag.x}px, ${drag.y}px, 0)`;
-        const pull = Math.hypot(drag.x, drag.y);
-        tension.style.width = `${Math.min((pull / MAX_PULL) * 100, 100)}%`;
-        const target = nextEmpty();
-        if (target >= 0) {
-          const to = slotCenter(target);
-          path.setAttribute(
-            "d",
-            `M ${h.x + drag.x} ${h.y + drag.y} Q ${(h.x + drag.x + to.x) / 2} ${Math.min(h.y + drag.y, to.y) - 90} ${to.x} ${to.y}`
-          );
-          path.style.opacity = "0.9";
-        } else {
-          path.style.opacity = "0";
-        }
+        orb.style.display = "";
+        orb.style.transform = `translate3d(${drag.x}px, ${drag.y}px, 0)`;
+      } else {
+        orb.style.transform = "translate3d(0px, 0px, 0)";
+      }
+
+      if (target >= 0 && !firing) {
+        const to = slotCenter(target);
+        const sag = drag ? 54 : 26;
+        path.setAttribute(
+          "d",
+          `M ${to.x} ${to.y} Q ${(to.x + orbX) / 2} ${(to.y + orbY) / 2 + sag} ${orbX} ${orbY}`
+        );
+        path.style.opacity = drag ? "0.9" : "0.32";
       } else {
         path.style.opacity = "0";
-        tension.style.width = "0%";
-        puck.style.transform = "translate3d(0px, 0px, 0)";
       }
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [commitDigit, reduced]);
+  }, [commitDigit, firing]);
 
-  /* ── Puck pointer handlers ── */
-  const onPuckDown = (e: React.PointerEvent<HTMLButtonElement>) => {
+  const onOrbDown = (e: React.PointerEvent<HTMLButtonElement>) => {
     if (firing) return;
     e.currentTarget.setPointerCapture(e.pointerId);
     dragRef.current = { pointerId: e.pointerId, sx: e.clientX, sy: e.clientY, x: 0, y: 0 };
   };
 
-  const onPuckMove = (e: React.PointerEvent<HTMLButtonElement>) => {
+  const onOrbMove = (e: React.PointerEvent<HTMLButtonElement>) => {
     const drag = dragRef.current;
     if (!drag) return;
     const dx = e.clientX - drag.sx;
@@ -229,31 +199,33 @@ export function SlingshotOtpStage() {
     drag.y = dy * scale;
   };
 
-  const onPuckUp = () => {
+  const onOrbUp = () => {
     const drag = dragRef.current;
     dragRef.current = null;
     if (!drag) return;
     const pull = Math.hypot(drag.x, drag.y);
     const target = nextEmpty();
-    if (pull < 14 || target < 0) return; // elastic snap-back
+    if (pull < 14 || target < 0) return;
 
     const h = home();
     const to = slotCenter(target);
+    const fromX = h.x + drag.x;
+    const fromY = h.y + drag.y;
     flightRef.current = {
-      fromX: h.x + drag.x,
-      fromY: h.y + drag.y,
+      fromX,
+      fromY,
       toX: to.x,
       toY: to.y,
       t0: performance.now(),
-      dur: Math.min(300 + Math.hypot(to.x - h.x, to.y - h.y) * 0.55, 720),
-      digit: puckDigit,
+      dur: Math.min(280 + Math.hypot(to.x - fromX, to.y - fromY) * 0.5, 640),
+      digit: orbDigit,
       slot: target,
     };
+    setActive(target);
     setFiring(true);
-    if (puckRef.current) puckRef.current.style.display = "none";
+    if (orbRef.current) orbRef.current.style.display = "none";
   };
 
-  /* ── Keyboard typing ── */
   const handleChange = (i: number, raw: string) => {
     const d = raw.replace(/\D/g, "").slice(-1);
     if (!d) return;
@@ -270,6 +242,7 @@ export function SlingshotOtpStage() {
           next[i] = "";
           return next;
         });
+        bounceSlot(i);
       } else if (i > 0) {
         inputRefs.current[i - 1]?.focus();
         setDigits((prev) => {
@@ -298,159 +271,99 @@ export function SlingshotOtpStage() {
       });
       return next;
     });
-    pasted.split("").forEach((_, k) => later(() => bounceSlot(i + k), k * 55));
+    pasted.split("").forEach((_, k) => {
+      bounceSlot(i + k, k * 40);
+      flashSlot(i + k, k * 40);
+    });
     const focusAt = Math.min(i + pasted.length, LEN - 1);
     inputRefs.current[focusAt]?.focus();
   };
 
-  /* ── Auto-fire ── */
-  const autoFire = () => {
-    for (let k = 0; k < LEN; k++) {
-      later(() => {
-        const target = nextEmpty();
-        if (target < 0) return;
-        commitDigit(target, String(Math.floor(Math.random() * 10)));
-      }, k * 520);
-    }
-  };
+  const verified = digits.every((d) => d !== "");
 
   return (
-    <div ref={containerRef} className="relative flex h-[300px] w-full max-w-[560px] flex-col items-center justify-start">
-      {/* Trajectory overlay */}
+    <div ref={containerRef} className="relative h-[340px] w-full max-w-[560px]">
       <svg className="pointer-events-none absolute inset-0 z-20 h-full w-full" aria-hidden="true">
-        <path ref={pathRef} stroke="var(--b-accent)" strokeWidth="2" strokeDasharray="6 6" fill="none" style={{ opacity: 0 }} />
+        <path
+          ref={pathRef}
+          stroke="var(--b-accent)"
+          strokeWidth="2"
+          fill="none"
+          strokeLinecap="round"
+          style={{ opacity: 0 }}
+        />
       </svg>
 
-      {/* Verification banner */}
-      <div className="pointer-events-none relative z-10 mt-2 h-8">
-        <AnimatePresence>
-          {verified && (
-            <motion.span
-              initial={{ opacity: 0, y: 10, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.94 }}
-              transition={{ type: "spring", stiffness: 460, damping: 26 }}
-              className="inline-flex items-center gap-2 rounded-full border border-[color:color-mix(in_oklab,var(--b-success)_40%,transparent)] bg-[color:color-mix(in_oklab,var(--b-success)_12%,transparent)] px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-[color:var(--b-success)]"
-            >
-              <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 13l4 4L19 7" />
-              </svg>
-              Token verified
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </div>
-
-      {/* OTP slots */}
-      <div className="relative z-10 mt-3 flex gap-2" role="group" aria-label="One-time passcode, 6 digits">
-        {digits.map((d, i) => (
-          <input
-            key={i}
-            ref={(el) => {
-              inputRefs.current[i] = el;
-            }}
-            inputMode="numeric"
-            autoComplete="one-time-code"
-            maxLength={1}
-            value={d}
-            aria-label={`Digit ${i + 1} of ${LEN}`}
-            onChange={(e) => handleChange(i, e.target.value)}
-            onKeyDown={(e) => handleKeyDown(i, e)}
-            onPaste={(e) => handlePaste(i, e)}
-            className={cn(
-              "h-14 w-11 rounded-xl border bg-[color:color-mix(in_oklab,var(--b-text)_3%,transparent)] text-center font-mono text-2xl font-bold text-[color:var(--b-text)] caret-transparent outline-none transition-colors",
-              d
-                ? "border-[color:var(--b-accent)] shadow-[0_0_18px_var(--b-accent-glow)]"
-                : "border-[color:var(--b-border)] focus:border-[color:var(--b-accent)]",
-              verified && "border-[color:var(--b-success)] shadow-[0_0_20px_color-mix(in_oklab,var(--b-success)_30%,transparent)]"
-            )}
-          />
-        ))}
-      </div>
-
-      <p className="relative z-10 mt-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--b-muted)]">
-        Type, paste, or slingshot the puck
-      </p>
-
-      {/* Slingshot dock */}
-      <div className="absolute bottom-4 left-1/2 z-10 flex w-full -translate-x-1/2 items-end justify-between px-2">
-        <div className="flex flex-col items-center gap-2 pl-1">
-          <div className="h-1.5 w-24 overflow-hidden rounded-full bg-[color:color-mix(in_oklab,var(--b-text)_8%,transparent)]" aria-hidden="true">
-            <div ref={tensionRef} className="h-full w-0 rounded-full bg-[color:var(--b-accent)]" />
-          </div>
-          <span className="font-mono text-[9px] uppercase tracking-widest text-[color:var(--b-muted)]">
-            Tension
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <button
-            onClick={autoFire}
-            className="rounded-lg border border-[color:var(--b-border)] px-2.5 py-1.5 font-mono text-[10px] text-[color:var(--b-text-secondary)] transition-colors hover:border-[color:var(--b-accent)] hover:text-[color:var(--b-accent)]"
-          >
-            ⚡ Auto-Fire
-          </button>
-          <button
-            onClick={() => {
-              setDigits(Array(LEN).fill(""));
-              setVerified(false);
-              timersRef.current.forEach(clearTimeout);
-            }}
-            className="rounded-lg border border-[color:var(--b-border)] px-2.5 py-1.5 font-mono text-[10px] text-[color:var(--b-text-secondary)] transition-colors hover:border-[color:var(--b-border-hover)]"
-          >
-            Clear
-          </button>
+      <div className="relative z-10 flex justify-center pt-10">
+        <div className="flex gap-2.5" role="group" aria-label="One-time passcode, 6 digits">
+          {digits.map((d, i) => (
+            <div key={i} className="relative">
+              {active === i && !firing && (
+                <motion.span
+                  layoutId="otp-focus"
+                  className={cn(
+                    "pointer-events-none absolute -inset-px rounded-xl border-2",
+                    verified ? "border-[color:var(--b-success)]" : "border-[color:var(--b-accent)]"
+                  )}
+                  transition={{ type: "spring", stiffness: FOCUS_SPRING.stiffness, damping: FOCUS_SPRING.damping }}
+                  aria-hidden="true"
+                />
+              )}
+              <input
+                ref={(el) => {
+                  inputRefs.current[i] = el;
+                }}
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                maxLength={1}
+                value={d}
+                aria-label={`Digit ${i + 1} of ${LEN}`}
+                onChange={(e) => handleChange(i, e.target.value)}
+                onKeyDown={(e) => handleKeyDown(i, e)}
+                onPaste={(e) => handlePaste(i, e)}
+                onFocus={() => setActive(i)}
+                className={cn(
+                  "relative h-14 w-12 rounded-xl border bg-[color:color-mix(in_oklab,var(--b-text)_3%,transparent)] text-center font-mono text-xl font-semibold text-[color:var(--b-text)] caret-transparent outline-none transition-[border-color,box-shadow] duration-200",
+                  verified
+                    ? "border-[color:var(--b-success)] shadow-[0_0_22px_color-mix(in_oklab,var(--b-success)_32%,transparent)]"
+                    : d
+                      ? "border-[color:color-mix(in_oklab,var(--b-accent)_45%,transparent)]"
+                      : "border-[color:var(--b-border)]",
+                  flash === i && !verified && "border-[color:var(--b-success)] shadow-[0_0_20px_color-mix(in_oklab,var(--b-success)_28%,transparent)]"
+                )}
+              />
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Slingshot posts */}
-      <div className="pointer-events-none absolute bottom-6 left-6 z-0" aria-hidden="true">
-        <svg width="60" height="64" viewBox="0 0 60 64" fill="none">
-          <path d="M30 58V26" stroke="var(--b-border-hover)" strokeWidth="6" strokeLinecap="round" />
-          <path d="M14 12L30 26L46 12" stroke="var(--b-border-hover)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </div>
-
-      {/* Draggable puck */}
-      <button
-        ref={puckRef}
-        onPointerDown={onPuckDown}
-        onPointerMove={onPuckMove}
-        onPointerUp={onPuckUp}
-        onPointerCancel={onPuckUp}
-        aria-label={`Slingshot token ${puckDigit} — drag back and release to fire into the next slot`}
-        className="absolute bottom-6 left-6 z-10 flex h-11 w-11 touch-none select-none items-center justify-center rounded-full border border-[color:var(--b-border-hover)] bg-[color:color-mix(in_oklab,var(--b-elevated)_92%,transparent)] font-mono text-lg font-bold text-[color:var(--b-text)] shadow-lg will-change-transform hover:border-[color:var(--b-accent)] active:cursor-grabbing"
-        style={{ cursor: "grab" }}
-      >
-        {puckDigit}
-      </button>
-
-      {/* In-flight projectile */}
       <div
         ref={projectileRef}
-        className="pointer-events-none absolute left-0 top-0 z-30 flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--b-accent)] font-mono text-lg font-bold text-[color:var(--b-accent-foreground)] opacity-0 shadow-[0_0_26px_var(--b-accent-glow)]"
-        style={{ transform: "scale(var(--sq, 1))" }}
+        className="pointer-events-none absolute left-0 top-0 z-30 flex items-center justify-center rounded-full bg-[color:var(--b-accent)] font-mono text-2xl font-bold text-[color:var(--b-accent-foreground)] opacity-0 shadow-[0_0_28px_var(--b-accent-glow)]"
+        style={{ height: ORB, width: ORB }}
         aria-hidden="true"
       >
-        {puckDigit}
+        {orbDigit}
       </div>
 
-      {/* Confetti burst */}
-      <div className="pointer-events-none absolute inset-0 z-30 overflow-hidden" aria-hidden="true">
-        <AnimatePresence>
-          {confetti.map((p) => (
-            <motion.span
-              key={p.id}
-              initial={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
-              animate={{ opacity: 0, x: p.dx, y: [0, -70, 140], rotate: p.rot, scale: 0.7 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute h-2 w-2 rounded-[3px]"
-              style={{ left: `${p.x}%`, top: `${p.y}%`, background: p.hue }}
-            />
-          ))}
-        </AnimatePresence>
-      </div>
+      <button
+        ref={orbRef}
+        onPointerDown={onOrbDown}
+        onPointerMove={onOrbMove}
+        onPointerUp={onOrbUp}
+        onPointerCancel={onOrbUp}
+        aria-label={`Slingshot token ${orbDigit} — drag and release to fire it into the next slot`}
+        className="absolute z-10 flex touch-none select-none items-center justify-center rounded-full border border-[color:var(--b-border-hover)] bg-[color:var(--b-elevated)] font-mono text-2xl font-semibold text-[color:var(--b-text)] shadow-[0_16px_40px_-16px_rgba(0,0,0,0.8)] will-change-transform hover:border-[color:var(--b-accent)] active:cursor-grabbing"
+        style={{
+          height: ORB,
+          width: ORB,
+          left: `calc(50% - ${ORB / 2}px)`,
+          bottom: 8,
+          cursor: "grab",
+        }}
+      >
+        {orbDigit}
+      </button>
     </div>
   );
 }

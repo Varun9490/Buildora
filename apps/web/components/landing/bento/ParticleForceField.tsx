@@ -62,7 +62,7 @@ export function ParticleForceField() {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const target = Math.round(Math.min(Math.max((width * height) / 2600, 90), 140));
+      const target = 65;
       nodes = Array.from({ length: target }, () => ({
         x: rand() * width,
         y: rand() * height,
@@ -131,10 +131,11 @@ export function ParticleForceField() {
         }
         n.x += n.vx;
         n.y += n.vy;
-        if (n.x < 0) { n.x = 0; n.vx *= -0.85; }
-        if (n.x > width) { n.x = width; n.vx *= -0.85; }
-        if (n.y < 0) { n.y = 0; n.vy *= -0.85; }
-        if (n.y > height) { n.y = height; n.vy *= -0.85; }
+        const EDGE = 24;
+        if (n.x < EDGE) n.vx += (EDGE - n.x) * 0.08;
+        if (n.x > width - EDGE) n.vx -= (n.x - (width - EDGE)) * 0.08;
+        if (n.y < EDGE) n.vy += (EDGE - n.y) * 0.08;
+        if (n.y > height - EDGE) n.vy -= (n.y - (height - EDGE)) * 0.08;
       }
 
       // shockwaves
@@ -161,7 +162,7 @@ export function ParticleForceField() {
       }
 
       // filaments
-      ctx.lineWidth = 0.6;
+      ctx.lineWidth = 0.7;
       for (let i = 0; i < nodes.length; i++) {
         const a = nodes[i];
         for (let j = i + 1; j < nodes.length; j++) {
@@ -170,7 +171,8 @@ export function ParticleForceField() {
           const dy = a.y - b.y;
           const d2 = dx * dx + dy * dy;
           if (d2 < 8100) {
-            const alpha = (1 - d2 / 8100) * 0.32;
+            const d = Math.sqrt(d2);
+            const alpha = (1 - d / 90) * 0.32;
             ctx.strokeStyle = colors.iris;
             ctx.globalAlpha = alpha;
             ctx.beginPath();
@@ -232,24 +234,19 @@ export function ParticleForceField() {
     <div className="relative w-full">
       <div
         ref={wrapRef}
-        className="relative h-[280px] w-full max-w-[520px] overflow-hidden rounded-2xl border border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-bg)_65%,#000_10%)]"
+        className="relative mx-auto h-[280px] w-full max-w-[520px] overflow-hidden rounded-2xl border border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-bg)_65%,#000_10%)]"
       >
-        <canvas ref={canvasRef} className="absolute inset-0 cursor-crosshair touch-none" aria-label="Interactive particle force field. Move to attract, click to emit a shockwave." role="img" />
-        {!inView && (
-          <span className="absolute inset-0 flex items-center justify-center font-mono text-[10px] text-[color:var(--b-muted)]">
-            paused off-screen
-          </span>
-        )}
-        <div className="absolute right-2.5 top-2.5 z-10 flex gap-1 rounded-full border border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-bg)_70%,transparent)] p-0.5 backdrop-blur-md" role="group" aria-label="Force field mode">
+        <canvas ref={canvasRef} className="absolute inset-0 cursor-crosshair touch-none" aria-label="Interactive particle force field. Move the pointer to pull the lattice." role="img" />
+        <div className="absolute right-2.5 top-2.5 z-10 flex gap-0.5 rounded-full border border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-bg)_70%,transparent)] p-0.5 backdrop-blur-md" role="group" aria-label="Force field mode">
           {(["attract", "repel", "vortex"] as const).map((m) => (
             <button
               key={m}
               onClick={() => setMode(m)}
               aria-pressed={mode === m}
               className={cn(
-                "rounded-full px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider transition-colors",
+                "rounded-full px-2.5 py-1 text-[11px] capitalize transition-colors",
                 mode === m
-                  ? "bg-[color:var(--b-accent)] font-bold text-[color:var(--b-accent-foreground)]"
+                  ? "bg-[color:color-mix(in_oklab,var(--b-text)_9%,transparent)] font-medium text-[color:var(--b-text)]"
                   : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
               )}
             >
@@ -258,9 +255,6 @@ export function ParticleForceField() {
           ))}
         </div>
       </div>
-      <p className="mt-2 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--b-muted)]">
-        Click to detonate a kinetic shockwave
-      </p>
     </div>
   );
 }

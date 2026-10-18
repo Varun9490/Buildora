@@ -43,7 +43,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 220, damping: 26 }}
-            className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-glass)] px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[color:var(--b-text-secondary)] backdrop-blur-md"
+            className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-glass)] px-4 py-1.5 text-[11px] text-[color:var(--b-text-secondary)] backdrop-blur-md"
           >
             <span className="flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--b-accent)] fx-pulse-soft" />
@@ -110,7 +110,7 @@ export function Hero() {
             >
               Read the docs
             </Link>
-            <span className="hidden items-center gap-2 px-1 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--b-muted)] md:inline-flex">
+            <span className="hidden items-center gap-2 px-1 text-[11px] text-[color:var(--b-muted)] md:inline-flex">
               or press{" "}
               <kbd className="rounded-md border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-1.5 py-0.5 text-[10px]">
                 ⌘K
@@ -136,20 +136,7 @@ export function Hero() {
           transition={{ type: "spring", stiffness: 140, damping: 26, delay: 0.32 }}
           className="relative mx-auto mt-16 max-w-5xl"
         >
-          <div
-            className="pointer-events-none absolute -inset-10 rounded-[3rem] opacity-60 blur-3xl"
-            style={{
-              background:
-                "linear-gradient(120deg, color-mix(in oklab, var(--b-accent) 12%, transparent), transparent 40%, color-mix(in oklab, var(--b-iris) 12%, transparent))",
-            }}
-            aria-hidden="true"
-          />
-          <div className="relative rounded-[2rem] border border-[color:var(--b-border)] bg-[color:color-mix(in oklab, var(--b-panel) 88%, transparent)] p-2 backdrop-blur-2xl">
-            <PhysicsWorkbench />
-          </div>
-          <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--b-muted)]">
-            ↑ this console is live — drag the orb, flick the magnet, tune the sliders
-          </p>
+          <PhysicsWorkbench />
         </motion.div>
       </div>
     </section>

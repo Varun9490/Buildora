@@ -102,7 +102,7 @@ export function PhysicsLab() {
   return (
     <section id="physics-lab" className="relative mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-3xl text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--b-accent)]">
+        <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-1 text-[11px] text-[color:var(--b-accent)]">
           Physics Lab
         </span>
         <h2 className="mt-5 font-display text-3xl font-bold tracking-tight text-[color:var(--b-text)] sm:text-4xl lg:text-5xl text-balance">

@@ -1,14 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { gaussian, clamp, useReducedMotionPref } from "@/lib/physics";
-
-/* ─────────────────────────────────────────────────────
-   CARD 5 · FLUID GAUSSIAN MAGNIFICATION DOCK
-   S(d) = 1 + A·exp(−d² / 2σ²) — interpolated per icon,
-   written straight to GPU transforms.
-   ───────────────────────────────────────────────────── */
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, type MotionValue } from "motion/react";
+import { useReducedMotionPref } from "@/lib/physics";
 
 const APPS = [
   { label: "Foundry", d: "M3 20h18M5 20V9l7-5 7 5v11M9 20v-6h6v6" },
@@ -20,54 +14,97 @@ const APPS = [
   { label: "Vault", d: "M4 6h16v12H4zM4 10h16M8 14h2M14 14h2" },
 ];
 
-const BASE = 46;
-const GAP = 12;
+const BASE = 44;
+const CELL = 56;
+const MAX = 76;
+
+function DockIcon({
+  index,
+  label,
+  path,
+  mouseX,
+  reduce,
+  onHover,
+}: {
+  index: number;
+  label: string;
+  path: string;
+  mouseX: MotionValue<number>;
+  reduce: boolean;
+  onHover: (i: number | null) => void;
+}) {
+  const size = useSpring(
+    useTransform(mouseX, (mx: number) => {
+      const center = index * CELL + CELL / 2;
+      const d = Math.abs(mx - center);
+      const t = Math.max(0, 1 - d / 140);
+      return BASE + (reduce ? 0 : MAX - BASE) * t;
+    }),
+    { mass: 0.1, stiffness: 170, damping: 12 }
+  );
+  const depth = useTransform(size, (s: number) => Math.round(s));
+
+  return (
+    <div className="relative h-[60px] w-[56px] shrink-0">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
+        <motion.button
+          type="button"
+          aria-label={label}
+          onPointerEnter={() => onHover(index)}
+          onFocus={() => onHover(index)}
+          onBlur={() => onHover(null)}
+          onClick={(e) => {
+            if (typeof e.currentTarget.animate !== "function") return;
+            e.currentTarget.animate(
+              [
+                { transform: "scale(1)" },
+                { transform: "scale(1.12)", offset: 0.35 },
+                { transform: "scale(0.96)", offset: 0.7 },
+                { transform: "scale(1)" },
+              ],
+              { duration: 380, easing: "cubic-bezier(.34,1.56,.64,1)" }
+            );
+          }}
+          style={{ width: size, height: size, zIndex: depth }}
+          className="flex origin-bottom items-center justify-center rounded-xl border border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-surface)_85%,transparent)] text-[color:var(--b-text-secondary)] transition-colors will-change-[width,height] hover:text-[color:var(--b-accent)]"
+        >
+          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+            <path d={path} />
+          </svg>
+        </motion.button>
+      </div>
+    </div>
+  );
+}
 
 export function MagnificationDock() {
-  const rowRef = React.useRef<HTMLDivElement | null>(null);
-  const iconRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
+  const mouseX = useMotionValue(-999);
   const [hovered, setHovered] = React.useState<number | null>(null);
-  const [pressed, setPressed] = React.useState<number | null>(null);
+  const rowRef = React.useRef<HTMLDivElement | null>(null);
   const reduced = useReducedMotionPref();
 
-  const applyMagnification = (pointerX: number | null) => {
-    iconRefs.current.forEach((icon, i) => {
-      if (!icon) return;
-      const center = i * (BASE + GAP) + BASE / 2;
-      const d = pointerX === null ? 999 : Math.abs(pointerX - center);
-      const influence = gaussian(d, 52);
-      const scale = 1 + 0.9 * influence;
-      const lift = -18 * gaussian(d, 60);
-      icon.style.transform = reduced
-        ? "translate3d(0,0,0) scale(1)"
-        : `translate3d(0, ${lift.toFixed(2)}px, 0) scale(${scale.toFixed(3)})`;
-      icon.style.zIndex = String(10 + Math.round(influence * 100));
-    });
-  };
-
   const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = clamp(e.clientX - rect.left - 8, -40, rect.width + 40);
-    applyMagnification(x);
+    const r = e.currentTarget.getBoundingClientRect();
+    mouseX.set(e.clientX - r.left);
   };
 
   const onLeave = () => {
-    applyMagnification(null);
+    mouseX.set(-999);
     setHovered(null);
   };
 
   return (
-    <div className="flex w-full flex-col items-center gap-4">
-      <div className="relative pt-9">
+    <div className="flex h-[340px] w-full items-center justify-center">
+      <div className="relative">
         <AnimatePresence>
           {hovered !== null && (
             <motion.span
-              initial={{ opacity: 0, y: 10, scale: 0.85 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 8, scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 520, damping: 30 }}
-              className="absolute top-0 z-50 -translate-x-1/2 whitespace-nowrap rounded-lg border border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-panel)_96%,transparent)] px-2.5 py-1 font-mono text-[10px] text-[color:var(--b-text)] shadow-xl backdrop-blur-md"
-              style={{ left: hovered * (BASE + GAP) + BASE / 2 + 8 }}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 4 }}
+              transition={{ duration: 0.14 }}
+              className="absolute -top-9 z-50 -translate-x-1/2 whitespace-nowrap rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-panel)] px-2.5 py-1 text-[11px] text-[color:var(--b-text)] shadow-lg"
+              style={{ left: hovered * CELL + CELL / 2 }}
             >
               {APPS[hovered].label}
             </motion.span>
@@ -78,49 +115,23 @@ export function MagnificationDock() {
           ref={rowRef}
           onPointerMove={onMove}
           onPointerLeave={onLeave}
-          className="flex items-end gap-3 rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-glass)] p-2 shadow-[0_24px_50px_-24px_rgba(0,0,0,0.7)] backdrop-blur-2xl"
+          className="flex h-[60px] items-end rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] px-2"
           role="toolbar"
           aria-label="Application dock"
         >
           {APPS.map((app, i) => (
-            <motion.button
+            <DockIcon
               key={app.label}
-              ref={(el) => {
-                iconRefs.current[i] = el;
-              }}
-              type="button"
-              aria-label={`Open ${app.label}`}
-              onPointerEnter={() => setHovered(i)}
-              onFocus={() => setHovered(i)}
-              onBlur={() => setHovered(null)}
-              onClick={() => {
-                setPressed(i);
-                setTimeout(() => setPressed(null), 550);
-              }}
-              style={{ width: BASE, height: BASE }}
-              animate={pressed === i ? { scale: [1.15, 0.92, 1.08, 1] } : {}}
-              transition={{ type: "spring", stiffness: 560, damping: 18 }}
-              className="relative flex shrink-0 origin-bottom items-center justify-center rounded-xl border border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-surface)_85%,transparent)] text-[color:var(--b-text-secondary)] transition-colors will-change-transform hover:text-[color:var(--b-accent)]"
-            >
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
-                <path d={app.d} />
-              </svg>
-              {pressed === i && (
-                <motion.span
-                  initial={{ opacity: 0.7, scale: 0.4 }}
-                  animate={{ opacity: 0, scale: 1.9 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="pointer-events-none absolute inset-0 rounded-xl border border-[color:var(--b-accent)]"
-                  aria-hidden="true"
-                />
-              )}
-            </motion.button>
+              index={i}
+              label={app.label}
+              path={app.d}
+              mouseX={mouseX}
+              reduce={reduced}
+              onHover={setHovered}
+            />
           ))}
         </div>
       </div>
-      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--b-muted)]">
-        Magnify · Click for spring bounce + preview tooltip
-      </p>
     </div>
   );
 }

@@ -4,23 +4,23 @@ import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@buildora/utils";
 
-/* ─────────────────────────────────────────────────────
-   CARD 6 · MORPHING DYNAMIC ISLAND CAPSULE
-   Four real states, spring layout transitions on
-   width / height / radius. A tiny state machine.
-   ───────────────────────────────────────────────────── */
+type IslandState = "idle" | "timer" | "wave" | "think";
 
-type IslandState = "idle" | "listen" | "deploy" | "think";
-
-const SIZES: Record<IslandState, { w: number; h: number; r: number }> = {
-  idle: { w: 150, h: 44, r: 22 },
-  listen: { w: 238, h: 44, r: 22 },
-  deploy: { w: 216, h: 50, r: 25 },
-  think: { w: 258, h: 66, r: 33 },
+const SIZES: Record<IslandState, { width: number; height: number; borderRadius: number }> = {
+  idle: { width: 172, height: 44, borderRadius: 22 },
+  timer: { width: 228, height: 50, borderRadius: 25 },
+  wave: { width: 214, height: 44, borderRadius: 22 },
+  think: { width: 262, height: 62, borderRadius: 31 },
 };
 
 const THINK_LINES = ["Analyzing motion tokens…", "Compiling spring curves…", "Streaming props to the island…"];
 const EQ_BARS = [0.5, 0.9, 0.35, 1, 0.65, 0.8, 0.45];
+
+const SCREEN = {
+  initial: { opacity: 0, filter: "blur(6px)" },
+  animate: { opacity: 1, filter: "blur(0px)" },
+  exit: { opacity: 0, filter: "blur(6px)" },
+};
 
 function ListenEq() {
   return (
@@ -36,7 +36,7 @@ function ListenEq() {
   );
 }
 
-function DeployRing({ seconds }: { seconds: number }) {
+function TimerRing({ seconds }: { seconds: number }) {
   const C = 2 * Math.PI * 13;
   const frac = seconds / 8;
   return (
@@ -56,7 +56,7 @@ function DeployRing({ seconds }: { seconds: number }) {
           transition={{ type: "spring", stiffness: 120, damping: 24 }}
         />
       </svg>
-      <span className="font-mono text-[10px] font-bold text-white">{seconds}</span>
+      <span className="font-mono text-[10px] font-semibold text-white">{seconds}</span>
     </span>
   );
 }
@@ -85,7 +85,10 @@ function Typewriter({ text }: { text: string }) {
   return (
     <span className="font-mono text-[11px] text-white/85">
       {shown}
-      <span className="ml-0.5 inline-block h-3 w-[2px] translate-y-[2px] bg-[color:var(--b-accent)]" style={{ animation: "fx-caret-blink 1s steps(1) infinite" }} />
+      <span
+        className="ml-0.5 inline-block h-3 w-[2px] translate-y-[2px] bg-[color:var(--b-accent)]"
+        style={{ animation: "fx-caret-blink 1s steps(1) infinite" }}
+      />
     </span>
   );
 }
@@ -96,7 +99,7 @@ export function DynamicIsland() {
   const [lineIdx, setLineIdx] = React.useState(0);
 
   React.useEffect(() => {
-    if (state !== "deploy") return;
+    if (state !== "timer") return;
     setSeconds(8);
     const id = setInterval(() => {
       setSeconds((s) => (s <= 1 ? 8 : s - 1));
@@ -114,118 +117,124 @@ export function DynamicIsland() {
   const size = SIZES[state];
 
   return (
-    <div className="flex w-full flex-col items-center gap-5">
-      <div className="flex h-[92px] items-center justify-center">
-        <motion.div
-          animate={{ width: size.w, height: size.h, borderRadius: size.r }}
-          transition={{ type: "spring", stiffness: 360, damping: 28 }}
-          className="relative overflow-hidden border border-white/12 bg-black shadow-[0_18px_40px_-16px_rgba(0,0,0,0.9),inset_0_1px_1px_rgba(255,255,255,0.09)]"
-          role="status"
-          aria-live="polite"
-        >
-          <AnimatePresence mode="wait" initial={false}>
-            {state === "idle" && (
-              <motion.div
-                key="idle"
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.85 }}
-                transition={{ duration: 0.18 }}
-                className="flex h-full items-center justify-between px-4"
-              >
-                <span className="font-mono text-[11px] font-semibold text-white/85">09:41</span>
-                <span className="flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--b-accent)]" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-white/30" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
-                </span>
-              </motion.div>
-            )}
+    <div className="flex h-[340px] w-full flex-col items-center pt-12">
+      <motion.div
+        animate={size}
+        transition={{ type: "spring", stiffness: 380, damping: 28 }}
+        style={{ transformOrigin: "top center" }}
+        className="relative overflow-hidden border border-white/12 bg-black shadow-[0_18px_40px_-16px_rgba(0,0,0,0.9),inset_0_1px_1px_rgba(255,255,255,0.09)]"
+        role="status"
+        aria-live="polite"
+      >
+        <AnimatePresence mode="popLayout" initial={false}>
+          {state === "idle" && (
+            <motion.div
+              key="idle"
+              initial={SCREEN.initial}
+              animate={SCREEN.animate}
+              exit={SCREEN.exit}
+              transition={{ duration: 0.18 }}
+              className="flex h-full w-full items-center justify-between px-4"
+              style={{ height: size.height }}
+            >
+              <span className="font-mono text-[11px] font-semibold text-white/85">09:41</span>
+              <span className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--b-accent)]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-white/30" />
+                <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
+              </span>
+            </motion.div>
+          )}
 
-            {state === "listen" && (
-              <motion.div
-                key="listen"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.18 }}
-                className="flex h-full items-center justify-between gap-3 px-3.5"
-              >
-                <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57] fx-pulse-soft" />
-                <ListenEq />
-                <span className="font-mono text-[10px] uppercase tracking-wider text-white/50">
-                  listening
-                </span>
-              </motion.div>
-            )}
+          {state === "timer" && (
+            <motion.div
+              key="timer"
+              initial={SCREEN.initial}
+              animate={SCREEN.animate}
+              exit={SCREEN.exit}
+              transition={{ duration: 0.18 }}
+              className="flex h-full w-full items-center gap-3 px-3.5"
+              style={{ height: size.height }}
+            >
+              <TimerRing seconds={seconds} />
+              <span className="flex flex-col">
+                <span className="text-[12px] font-medium text-white/90">Deploying edge build</span>
+                <span className="font-mono text-[10px] text-white/45">{8 - seconds}/8 regions live</span>
+              </span>
+            </motion.div>
+          )}
 
-            {state === "deploy" && (
-              <motion.div
-                key="deploy"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.18 }}
-                className="flex h-full items-center gap-3 px-3.5"
-              >
-                <DeployRing seconds={seconds} />
-                <span className="flex flex-col">
-                  <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-white/85">
-                    Deploying edge build
-                  </span>
-                  <span className="font-mono text-[9px] text-white/45">
-                    {8 - seconds}/8 regions live
-                  </span>
-                </span>
-              </motion.div>
-            )}
+          {state === "wave" && (
+            <motion.div
+              key="wave"
+              initial={SCREEN.initial}
+              animate={SCREEN.animate}
+              exit={SCREEN.exit}
+              transition={{ duration: 0.18 }}
+              className="flex h-full w-full items-center justify-between gap-3 px-3.5"
+              style={{ height: size.height }}
+            >
+              <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57] fx-pulse-soft" />
+              <ListenEq />
+              <span className="text-[11px] text-white/50">listening</span>
+            </motion.div>
+          )}
 
-            {state === "think" && (
-              <motion.div
-                key="think"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.18 }}
-                className="flex h-full items-center gap-3 px-3.5"
-              >
-                <ThinkOrb />
-                <span className="flex min-w-0 flex-col">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--b-accent)]">
-                    AI agent
-                  </span>
-                  <Typewriter text={THINK_LINES[lineIdx]} />
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      </div>
+          {state === "think" && (
+            <motion.div
+              key="think"
+              initial={SCREEN.initial}
+              animate={SCREEN.animate}
+              exit={SCREEN.exit}
+              transition={{ duration: 0.18 }}
+              className="flex h-full w-full items-center gap-3 px-3.5"
+              style={{ height: size.height }}
+            >
+              <ThinkOrb />
+              <span className="flex min-w-0 flex-col">
+                <span className="text-[10px] font-medium text-[color:var(--b-accent)]">AI agent</span>
+                <Typewriter text={THINK_LINES[lineIdx]} />
+              </span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
 
-      <div className="flex flex-wrap justify-center gap-1.5" role="tablist" aria-label="Dynamic island state">
-        {(
-          [
-            { id: "idle", label: "Idle Compact" },
-            { id: "listen", label: "Live Audio" },
-            { id: "deploy", label: "Deploy Timer" },
-            { id: "think", label: "Agent Thinking" },
-          ] as const
-        ).map((s) => (
-          <button
-            key={s.id}
-            role="tab"
-            aria-selected={state === s.id}
-            onClick={() => setState(s.id)}
-            className={cn(
-              "rounded-full border px-2.5 py-1 font-mono text-[10px] transition-colors",
-              state === s.id
-                ? "border-[color:var(--b-accent)] bg-[color:var(--b-accent-muted)] text-[color:var(--b-accent)]"
-                : "border-[color:var(--b-border)] text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
-            )}
-          >
-            {s.label}
-          </button>
-        ))}
+      <div className="mt-10" role="tablist" aria-label="Dynamic island state">
+        <div className="flex rounded-full border border-[color:var(--b-border)] p-0.5">
+          {(
+            [
+              { id: "idle", label: "Idle" },
+              { id: "timer", label: "Timer" },
+              { id: "wave", label: "Audio wave" },
+              { id: "think", label: "AI thinking" },
+            ] as const
+          ).map((s) => {
+            const selected = state === s.id;
+            return (
+              <button
+                key={s.id}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                onClick={() => setState(s.id)}
+                className={cn(
+                  "relative rounded-full px-3 py-1.5 text-[11px] transition-colors",
+                  selected ? "font-medium text-[color:var(--b-text)]" : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
+                )}
+              >
+                {selected && (
+                  <motion.span
+                    layoutId="island-state"
+                    className="absolute inset-0 rounded-full bg-[color:color-mix(in_oklab,var(--b-text)_8%,transparent)]"
+                    transition={{ type: "spring", stiffness: 480, damping: 34 }}
+                  />
+                )}
+                <span className="relative z-10">{s.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ export type SurfaceMeta = {
 };
 
 export const SURFACES: SurfaceMeta[] = [
-  { id: "obsidian", label: "Obsidian", detail: "Dark", swatch: "#09090B" },
+  { id: "obsidian", label: "Obsidian", detail: "Dark", swatch: "#050507" },
   { id: "oled", label: "OLED", detail: "Pitch black", swatch: "#000000" },
   { id: "alabaster", label: "Alabaster", detail: "Light", swatch: "#FAF9F5" },
 ];

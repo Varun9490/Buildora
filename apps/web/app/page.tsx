@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Hero } from "@/components/landing/Hero";
 import { BentoShowcase } from "@/components/landing/BentoShowcase";
-import { ComponentExplorer } from "@/components/landing/ComponentExplorer";
+import { ExplorerWorkspace } from "@/components/landing/ExplorerWorkspace";
 import { PhysicsLab } from "@/components/landing/PhysicsLab";
 import { FrameworkStudio } from "@/components/landing/FrameworkStudio";
 import { CraftPrinciples } from "@/components/landing/CraftPrinciples";
@@ -18,7 +18,7 @@ export default function HomePage() {
     <>
       <Hero />
       <BentoShowcase />
-      <ComponentExplorer />
+      <ExplorerWorkspace />
       <PhysicsLab />
       <FrameworkStudio />
       <CraftPrinciples />
