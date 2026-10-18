@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 93,
+  "total": 94,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -986,15 +986,35 @@
     {
       "slug": "mobile-nav",
       "name": "Mobile Nav",
-      "description": "Bottom mobile navigation with labeled items.",
+      "description": "Bottom mobile tab bar with labeled items, active pill, badges, and safe-area padding.",
       "categories": [
-        "navigation"
+        "navigation",
+        "mobile"
       ],
       "tags": [
         "mobile",
-        "bottom"
+        "bottom",
+        "tabbar"
       ],
       "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "mobile-header",
+      "name": "Mobile Header",
+      "description": "iOS-style screen header: back bar, centered title, collapsing large title, section headers, and inset settings groups.",
+      "categories": [
+        "navigation",
+        "mobile"
+      ],
+      "tags": [
+        "mobile",
+        "header",
+        "ios",
+        "large-title"
+      ],
+      "difficulty": "intermediate",
       "version": "0.1.0",
       "status": "beta"
     },

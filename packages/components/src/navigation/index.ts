@@ -56,6 +56,17 @@ export {
 } from "./mobile-nav";
 
 export {
+  MobileHeader,
+  MobileSectionHeader,
+  MobileGroup,
+  MobileGroupRow,
+  type MobileHeaderProps,
+  type MobileSectionHeaderProps,
+  type MobileGroupProps,
+  type MobileGroupRowProps,
+} from "./mobile-header";
+
+export {
   BreadcrumbNav,
   BreadcrumbItem,
   type BreadcrumbNavProps,

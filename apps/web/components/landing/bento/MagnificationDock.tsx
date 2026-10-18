@@ -16,7 +16,7 @@ const APPS = [
 
 const BASE = 44;
 const CELL = 56;
-const MAX = 76;
+const MAX = 64;
 
 function DockIcon({
   index,
@@ -37,7 +37,7 @@ function DockIcon({
     useTransform(mouseX, (mx: number) => {
       const center = index * CELL + CELL / 2;
       const d = Math.abs(mx - center);
-      const t = Math.max(0, 1 - d / 140);
+      const t = Math.max(0, 1 - d / 120);
       return BASE + (reduce ? 0 : MAX - BASE) * t;
     }),
     { mass: 0.1, stiffness: 170, damping: 12 }

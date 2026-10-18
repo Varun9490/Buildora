@@ -60,9 +60,10 @@ describe("Dialog", () => {
   it("closes when the backdrop is clicked", async () => {
     const user = userEvent.setup();
     const onOpenChange = vi.fn();
-    const { container } = render(<Harness onOpenChange={onOpenChange} />);
+    render(<Harness onOpenChange={onOpenChange} />);
     await screen.findByRole("dialog");
-    const backdrop = container.querySelector("[aria-hidden='true']") as HTMLElement;
+    const backdrop = document.querySelector("[data-buildora-scrim]") as HTMLElement;
+    expect(backdrop).not.toBeNull();
     await user.click(backdrop);
     expect(onOpenChange).toHaveBeenCalledWith(false);
   });
@@ -128,8 +129,8 @@ describe("Dialog", () => {
   });
 
   it("has no detectable axe violations", async () => {
-    const { container } = render(<Harness />);
+    render(<Harness />);
     await screen.findByRole("dialog");
-    expect(await axe(container)).toHaveNoViolations();
+    expect(await axe(document.body)).toHaveNoViolations();
   });
 });

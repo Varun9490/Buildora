@@ -1,11 +1,12 @@
 /**
- * Buildora tokens — ships light + dark CSS vars so installed components
+ * Buildora design tokens — ships light + dark CSS vars so installed components
  * are styled on first paint instead of invisible. Import once in globals.css:
  *   @import "./styles/buildora/tokens.css";
  *
- * Semantic base (shadcn-parity): --background/--foreground/--card/--primary/
- * --muted/--accent/--border/--ring/--radius map onto --b-* internals.
- * Effect-only tokens live under --fx-*.
+ * Semantic surface (--b-*) matches the @buildora/tokens package contract.
+ * shadcn-parity aliases (--background/--primary/--border/--ring/--radius…)
+ * let Buildora inherit a host theme when those are already defined.
+ * Effect-only tokens live under --fx-*. Motion lives under --dur-* / --ease-*.
  */
 
 :root,
@@ -29,18 +30,13 @@
   --b-iris: #4f46e5;
   --b-iris-foreground: #ffffff;
   --b-radius: 12px;
-  --fx-glow: rgba(77, 124, 15, 0.25);
-  --z-dropdown: 50;
-  --z-overlay: 100;
-  --z-toast: 150;
-  --z-cursor: 200;
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur-fast: 140ms;
-  --dur-base: 220ms;
-  --dur-slow: 420ms;
+  --b-radius-sm: 10px;
+  --b-radius-lg: 16px;
+  --b-transition: cubic-bezier(0.16, 1, 0.3, 1);
+  --b-scrim: rgba(12, 10, 8, 0.42);
   color-scheme: light;
 
-  /* shadcn-parity aliases so Buildora inherits host theme */
+  /* shadcn-parity aliases so Buildora inherits the host theme */
   --background: var(--b-bg);
   --foreground: var(--b-text);
   --card: var(--b-panel);
@@ -79,7 +75,7 @@
   --b-accent-muted: rgba(212, 255, 79, 0.12);
   --b-iris: #9d8cff;
   --b-iris-foreground: #1e1b4b;
-  --fx-glow: rgba(212, 255, 79, 0.25);
+  --b-scrim: rgba(0, 0, 0, 0.66);
   color-scheme: dark;
 
   --background: var(--b-bg);
@@ -98,6 +94,18 @@
   --border: var(--b-border);
   --input: var(--b-border);
   --ring: var(--b-ring);
+}
+
+/* Layering + motion vocabulary shared by every primitive */
+:root {
+  --z-dropdown: 50;
+  --z-overlay: 100;
+  --z-toast: 150;
+  --z-cursor: 200;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 140ms;
+  --dur-base: 220ms;
+  --dur-slow: 420ms;
 }
 
 @media (forced-colors: active) {

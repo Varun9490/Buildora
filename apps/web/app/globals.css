@@ -33,6 +33,7 @@
   --b-transition: cubic-bezier(0.16, 1, 0.3, 1);
   --b-glass: rgba(24, 24, 29, 0.65);
   --b-glass-border: rgba(255, 255, 255, 0.08);
+  --b-scrim: rgba(0, 0, 0, 0.62);
   color-scheme: dark;
 
   /* ── Accent: Acid Lime (default) ── */
@@ -52,6 +53,7 @@
   --b-border-hover: rgba(255, 255, 255, 0.24);
   --b-glass: rgba(10, 10, 12, 0.68);
   --b-glass-border: rgba(255, 255, 255, 0.12);
+  --b-scrim: rgba(0, 0, 0, 0.78);
 }
 
 /* ── Alabaster Light ── */
@@ -73,6 +75,7 @@
   --b-iris-foreground: #ffffff;
   --b-glass: rgba(255, 255, 255, 0.72);
   --b-glass-border: rgba(19, 19, 22, 0.08);
+  --b-scrim: rgba(12, 10, 8, 0.42);
   color-scheme: light;
 
   --b-accent: #4d7c0f;

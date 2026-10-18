@@ -2,7 +2,7 @@
   "$schema": "https://buildora-hazel.vercel.app/schema/agent-catalog.json",
   "name": "buildora",
   "version": "0.1.0",
-  "total": 93,
+  "total": 94,
   "workflow": [
     "find component",
     "inspect metadata",
@@ -1442,7 +1442,8 @@
       "dependencies": [],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json"
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -1528,7 +1529,8 @@
       "dependencies": [],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json"
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -1615,7 +1617,8 @@
       "dependencies": [],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json"
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -1702,7 +1705,8 @@
       "dependencies": [],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json"
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "experimental",
       "provenance": {
@@ -4470,7 +4474,8 @@
       "dependencies": [],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json"
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "provenance": {
@@ -5711,13 +5716,15 @@
     {
       "slug": "mobile-nav",
       "name": "Mobile Nav",
-      "description": "Bottom mobile navigation with labeled items.",
+      "description": "Bottom mobile tab bar with labeled items, active pill, badges, and safe-area padding.",
       "categories": [
-        "navigation"
+        "navigation",
+        "mobile"
       ],
       "tags": [
         "mobile",
-        "bottom"
+        "bottom",
+        "tabbar"
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
@@ -5788,6 +5795,96 @@
       },
       "targets": [
         "components/buildora/mobile-nav/mobile-nav.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "mobile-header",
+      "name": "Mobile Header",
+      "description": "iOS-style screen header: back bar, centered title, collapsing large title, section headers, and inset settings groups.",
+      "categories": [
+        "navigation",
+        "mobile"
+      ],
+      "tags": [
+        "mobile",
+        "header",
+        "ios",
+        "large-title"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/mobile-header",
+      "docs": "/components/mobile-header",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/navigation/mobile-header.tsx",
+      "files": [
+        "packages/components/src/navigation/mobile-header.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/mobile-header/mobile-header.tsx"
       ],
       "workflow": [
         "find",

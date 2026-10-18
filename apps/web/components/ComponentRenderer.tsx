@@ -81,9 +81,19 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-  AlertDialog,
-  Sheet,
-  Drawer,
+   AlertDialog,
+   Sheet,
+   SheetHeader,
+   SheetTitle,
+   SheetContent,
+   SheetFooter,
+   Drawer,
+   DrawerHeader,
+   DrawerTitle,
+   DrawerContent,
+   SkeletonText,
+   SkeletonAvatar,
+   SkeletonCard,
   Popover,
   DropdownMenu,
   DropdownMenuTrigger,
@@ -114,6 +124,10 @@ import {
   ExpandableSidebarItem,
   MobileNav,
   MobileNavItem,
+  MobileHeader,
+  MobileSectionHeader,
+  MobileGroup,
+  MobileGroupRow,
   BreadcrumbNav,
   BreadcrumbItem,
   StepNav,
@@ -407,17 +421,22 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
     case "token-meter":
       return wrap(
         <div className="w-full max-w-sm space-y-3">
-          <TokenMeter used={1284} limit={8000} />
-          <TokenMeter used={7200} limit={8000} />
+          <TokenMeter used={1284} limit={8000} label="Chat context" />
+          <TokenMeter used={7200} limit={8000} label="Agent budget" />
         </div>
       );
     case "model-selector":
       return wrap(
-        <div className="flex w-full max-w-md flex-col items-center gap-4">
-          <div className="flex gap-3">
-            <ModelSelector />
-            <TokenMeter />
-          </div>
+        <div className="flex w-full max-w-lg flex-wrap items-start gap-4">
+          <ModelSelector
+            defaultValue="buildora-1-pro"
+            models={[
+              { id: "buildora-1-pro", name: "Buildora-1 Pro", context: "128k", latency: "240ms", grade: "flagship" },
+              { id: "buildora-1-flash", name: "Buildora-1 Flash", context: "32k", latency: "85ms", grade: "fast" },
+              { id: "oss-70b", name: "OSS-70B", context: "64k", latency: "410ms", grade: "oss" },
+            ]}
+          />
+          <TokenMeter used={6480} limit={8000} />
         </div>
       );
     case "tool-call-viz":
@@ -581,9 +600,10 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     case "progress":
       return wrap(
-        <div className="w-full max-w-xl space-y-3">
-          <Progress value={65} showValue />
-          <Progress value={30} variant="warning" />
+        <div className="w-full max-w-xl space-y-4">
+          <Progress value={65} showValue label="Uploading build" />
+          <Progress value={30} variant="warning" label="Cache warming" />
+          <Progress indeterminate variant="accent" label="Resolving" />
         </div>
       );
     case "spinner":
@@ -595,10 +615,20 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     case "skeleton":
       return wrap(
-        <div className="w-full max-w-xl space-y-2">
-          <Skeleton className="h-10 w-full" />
-          <Skeleton className="h-4 w-3/4" />
-          <Skeleton className="h-4 w-1/2" />
+        <div className="flex w-full max-w-xl flex-wrap items-start gap-6">
+          <div className="w-full max-w-xs">
+            <SkeletonText lines={3} lastLine="45%" label="Loading article" />
+          </div>
+          <div className="flex items-center gap-3">
+            <SkeletonAvatar size="lg" />
+            <div className="w-32 space-y-2">
+              <Skeleton className="h-3 w-3/4" />
+              <Skeleton className="h-3 w-1/2" />
+            </div>
+          </div>
+          <div className="w-full max-w-xs">
+            <SkeletonCard cover lines={2} />
+          </div>
         </div>
       );
     case "avatar":
@@ -764,12 +794,45 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     case "mobile-nav":
       return wrap(
-        <div className="w-full max-w-sm overflow-hidden rounded-xl border border-[color:var(--b-border)]">
-          <MobileNav defaultActiveItem="home">
-            <MobileNavItem value="home" label="Home">Home</MobileNavItem>
-            <MobileNavItem value="search" label="Search">Search</MobileNavItem>
-            <MobileNavItem value="settings" label="Settings">Settings</MobileNavItem>
+        <div className="w-full max-w-sm overflow-hidden rounded-xl border border-[color:var(--b-border)] shadow-inner">
+          <MobileNav position="static" defaultActiveItem="home">
+            <MobileNavItem value="home" label="Home" href="#" icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" /><path d="M9 22V12h6v10" /></svg>} />
+            <MobileNavItem value="search" label="Search" href="#" icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.35-4.35" /></svg>} />
+            <MobileNavItem value="inbox" label="Inbox" href="#" badge={3} icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2" /><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" /></svg>} />
+            <MobileNavItem value="settings" label="Account" href="#" icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 4-6 8-6s8 2 8 6" /></svg>} />
           </MobileNav>
+        </div>
+      );
+    case "mobile-header":
+      return wrap(
+        <div className="flex w-full flex-wrap items-start justify-center gap-8">
+          <div className="w-[300px] max-w-full shrink-0 overflow-hidden rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] shadow-inner">
+            <MobileHeader
+              title="Settings"
+              largeTitle="Settings"
+              subtitle="2 unfinished items"
+              back
+              backLabel="Back"
+              actions={
+                <button type="button" className="rounded-md px-2 py-1 text-sm font-medium text-[color:var(--b-accent)] transition-colors hover:bg-[color:color-mix(in_oklab,var(--b-text)_6%,transparent)]">Edit</button>
+              }
+            />
+            <MobileGroup label="Workspace">
+              <MobileGroupRow title="General" trailing="Product" />
+              <MobileGroupRow title="Appearance" trailing="Dark" />
+              <MobileGroupRow title="Notifications" trailing="On" />
+            </MobileGroup>
+          </div>
+          <div className="w-[300px] max-w-full shrink-0 overflow-hidden rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] shadow-inner">
+            <MobileHeader title="Activity" back actions={<Badge variant="accent">Live</Badge>} />
+            <div className="border-b border-[color:var(--b-border)] px-4 pb-3 pt-1">
+              <p className="text-[30px] font-bold leading-[1.15] tracking-[-0.02em] text-[color:var(--b-text)]">Studio</p>
+            </div>
+            <MobileSectionHeader label="Recent" trailing={<span className="text-[color:var(--b-accent)]">See all</span>} />
+            <div className="flex flex-col gap-2 px-3 pb-5 pt-2">
+              <SkeletonCard lines={2} />
+            </div>
+          </div>
         </div>
       );
     case "breadcrumb":
@@ -898,15 +961,35 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
 function ToastDemo() {
   return (
     <ToastProvider>
-      <ToastTriggerButton />
+      <ToastVariantsDemo />
     </ToastProvider>
   );
 }
 
-function ToastTriggerButton() {
+const VARIANTS: Array<{ variant: "default" | "success" | "warning" | "danger"; title: string; description: string }> = [
+  { variant: "default", title: "Draft saved", description: "Resume from any device." },
+  { variant: "success", title: "Deployment passed", description: "Edge build verified in 42s." },
+  { variant: "warning", title: "Slow response", description: "Region us-east is degraded." },
+  { variant: "danger", title: "Build failed", description: "Type errors in app/lib/registry." },
+];
+
+function ToastVariantsDemo() {
   const { toast } = useToast();
+  const firedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (firedRef.current) return;
+    firedRef.current = true;
+    const timers = VARIANTS.map((v, i) =>
+      window.setTimeout(() => toast({ variant: v.variant, title: v.title, description: v.description }), 350 + i * 620)
+    );
+    return () => timers.forEach((t) => window.clearTimeout(t));
+  }, [toast]);
   return (
-    <Button onClick={() => toast({ title: "Installed", description: "@buildora/magnetic-button added." })}>
+    <Button
+      onClick={() =>
+        toast({ title: "Installed", description: "@buildora/magnetic-button added." })
+      }
+    >
       Show toast
     </Button>
   );
@@ -917,7 +1000,7 @@ function DialogDemo() {
   return (
     <div>
       <Button onClick={() => setOpen(true)}>Open dialog</Button>
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={setOpen} showClose>
         <DialogHeader>
           <DialogTitle>Install component</DialogTitle>
           <DialogDescription>Runs the shadcn CLI for this entry.</DialogDescription>
@@ -961,7 +1044,19 @@ function SheetDemo() {
     <div>
       <Button onClick={() => setOpen(true)}>Open sheet</Button>
       <Sheet open={open} onOpenChange={setOpen} side="right">
-        <p className="p-4 text-sm">Sheet content with focus management.</p>
+        <SheetHeader>
+          <SheetTitle>Panel settings</SheetTitle>
+          <p className="text-xs text-[color:var(--b-text-secondary)]">Swipe toward the edge to dismiss.</p>
+        </SheetHeader>
+        <SheetContent>
+          <p className="text-sm">Sheet content with focus management.</p>
+          <div className="mt-4">
+            <Switch label="Compact rows" defaultChecked />
+          </div>
+        </SheetContent>
+        <SheetFooter>
+          <Button variant="ghost" onClick={() => setOpen(false)}>Close</Button>
+        </SheetFooter>
       </Sheet>
     </div>
   );
@@ -973,7 +1068,12 @@ function DrawerDemo() {
     <div>
       <Button onClick={() => setOpen(true)}>Open drawer</Button>
       <Drawer open={open} onOpenChange={setOpen}>
-        <p className="p-4 text-sm">Drawer content for mobile-first flows.</p>
+        <DrawerHeader>
+          <DrawerTitle>Activity details</DrawerTitle>
+        </DrawerHeader>
+        <DrawerContent>
+          <p className="text-sm">Drawer content for mobile-first flows. Drag the handle down to dismiss.</p>
+        </DrawerContent>
       </Drawer>
     </div>
   );

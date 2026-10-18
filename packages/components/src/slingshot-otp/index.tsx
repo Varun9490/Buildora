@@ -20,10 +20,11 @@ type Rock = {
   y: number;
   vx: number;
   vy: number;
-  state: "ground" | "loaded" | "shot" | "done" | "falling";
+  state: "ground" | "loaded" | "shot" | "falling";
   el?: HTMLDivElement | null;
   baseX: number;
   baseY: number;
+  spawnAt: number;
 };
 
 export function SlingshotOTP({ length = 6, value, onChange, onComplete, label = "Enter Verification Code", className }: SlingshotOTPProps) {
@@ -135,6 +136,7 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
   const bandRef = React.useRef<SVGPathElement>(null);
 
   React.useEffect(() => {
+    const now = performance.now();
     const rocks: Rock[] = [];
     for (let i = 0; i <= 9; i++) {
       const baseX = 40 + Math.random() * 280;
@@ -142,13 +144,14 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
       rocks.push({
         id: i,
         digit: i.toString(),
-        x: baseX,
-        y: -50 - Math.random() * 200,
+        x: 24 + (i % 2) * 8, // drops from the feed chute, drifts to its patch
+        y: -50,
         vx: (Math.random() - 0.5) * 2,
         vy: 0,
         state: "falling",
         baseX,
         baseY,
+        spawnAt: now + i * 110, // staggered rain
       });
     }
     rocksRef.current = rocks;
@@ -182,6 +185,16 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
 
       rocksRef.current.forEach((rock) => {
         if (rock.state === "falling") {
+          if (performance.now() < rock.spawnAt) {
+            if (rock.el) {
+              rock.el.style.transform = `translate(${rock.x}px, ${rock.y}px) translate(-50%, -50%)`;
+              rock.el.style.display = "none";
+            }
+            return;
+          }
+          rock.el && (rock.el.style.display = "flex");
+          // drift toward the rock's resting patch while falling
+          rock.vx += Math.sign(rock.baseX - rock.x) * 0.02;
           rock.x += rock.vx;
           rock.y += rock.vy;
           rock.vy += 0.5;
@@ -223,14 +236,19 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
             const ty = rect.top - containerRect.top;
 
             if (rock.x > tx && rock.x < tx + rect.width && rock.y > ty && rock.y < ty + rect.height) {
-              rock.state = "done";
+              // the same rock bounces off and rests on its patch — nothing vanishes
+              rock.state = "ground";
+              rock.x = rock.baseX;
+              rock.y = rock.baseY;
+              rock.vx = 0;
+              rock.vy = 0;
               onHit(rock.digit);
               changed = true;
               break;
             }
           }
 
-          if (rock.state !== "done" && rock.y > rock.baseY && rock.vy > 0) {
+          if (rock.y > rock.baseY && rock.vy > 0) {
              rock.y = rock.baseY;
              rock.vy = -rock.vy * 0.4;
              rock.vx *= 0.8;
@@ -243,8 +261,6 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
 
         if (rock.el) {
           rock.el.style.transform = `translate(${rock.x}px, ${rock.y}px) translate(-50%, -50%)`;
-          if (rock.state === "done") rock.el.style.display = "none";
-          else rock.el.style.display = "flex";
         }
       });
 

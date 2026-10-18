@@ -7,7 +7,7 @@ export { Radio, RadioGroup, type RadioProps, type RadioGroupProps } from "./radi
 export { Slider, type SliderProps } from "./slider";
 export { Progress, type ProgressProps, type ProgressVariant, type ProgressSize } from "./progress";
 export { Spinner, type SpinnerProps, type SpinnerSize, type SpinnerVariant } from "./spinner";
-export { Skeleton, SkeletonText, type SkeletonProps, type SkeletonTextProps, type SkeletonVariant } from "./skeleton";
+export { Skeleton, SkeletonText, SkeletonAvatar, SkeletonCard, type SkeletonProps, type SkeletonTextProps, type SkeletonAvatarProps, type SkeletonCardProps, type SkeletonVariant } from "./skeleton";
 export { Avatar, AvatarGroup, type AvatarProps, type AvatarGroupProps, type AvatarSize } from "./avatar";
 export { Kbd, KbdShortcut, type KbdProps, type KbdShortcutProps, type KbdSize } from "./kbd";
 export { Separator, Divider, type SeparatorProps, type DividerProps } from "./separator";

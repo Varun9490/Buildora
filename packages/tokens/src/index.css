@@ -27,6 +27,7 @@
   --b-radius-sm: 10px;
   --b-radius-lg: 16px;
   --b-transition: cubic-bezier(0.16, 1, 0.3, 1);
+  --b-scrim: rgba(12, 10, 8, 0.42);
   color-scheme: light;
 }
 
@@ -49,5 +50,6 @@
   --b-accent-muted: rgba(212, 255, 79, 0.12);
   --b-iris: #9D8CFF;
   --b-iris-foreground: #1E1B4B;
+  --b-scrim: rgba(0, 0, 0, 0.66);
   color-scheme: dark;
-}
+}}

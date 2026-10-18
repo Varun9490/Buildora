@@ -125,7 +125,7 @@ export function searchComponents(items: ComponentSummary[], f: SearchFilters): C
   return out;
 }
 
-export const allCategories = ["primitives", "forms", "feedback", "navigation", "overlays", "motion", "backgrounds", "data", "developer", "ai-llm", "canvas", "editor", "blocks", "saas"];
+export const allCategories = ["primitives", "forms", "feedback", "navigation", "overlays", "mobile", "motion", "backgrounds", "data", "developer", "ai-llm", "canvas", "editor", "blocks", "saas"];
 
 export const categoryMeta: Record<string, { label: string; blurb: string }> = {
   primitives: { label: "Primitives", blurb: "Unstyled-able foundations: buttons, badges, tabs, layout." },
@@ -133,6 +133,7 @@ export const categoryMeta: Record<string, { label: string; blurb: string }> = {
   feedback: { label: "Feedback", blurb: "Loaders, toasts, and progress that announce state." },
   navigation: { label: "Navigation", blurb: "Headers, sidebars, trails, and command surfaces." },
   overlays: { label: "Overlays", blurb: "Dialogs, popovers, and menus with focus management." },
+  mobile: { label: "Mobile", blurb: "Screen-native nav bars, large titles, tab bars, and sheets." },
   motion: { label: "Motion", blurb: "Tactile springs, pointer physics, and kinetic type." },
   backgrounds: { label: "Backgrounds", blurb: "Ambient surfaces: aurora, grids, particles, beams." },
   data: { label: "Data", blurb: "Tables, grids, and inspectors with honest semantics." },
