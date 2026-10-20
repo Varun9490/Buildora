@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 122,
+  "total": 127,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -870,6 +870,91 @@
         "swipe"
       ],
       "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "parallax-stack",
+      "name": "Parallax Stack",
+      "description": "Layers that move at different rates as you scroll, computed once per frame.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "scroll",
+        "parallax",
+        "layers"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "scroll-linked-path",
+      "name": "Scroll Linked Path",
+      "description": "An SVG path drawn by scroll position. Scrolling back up un-draws it.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "scroll",
+        "svg",
+        "path"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "pinned-section",
+      "name": "Pinned Section",
+      "description": "A section that sticks while its content scrolls past, and hands off cleanly.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "scroll",
+        "sticky",
+        "storytelling"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "physics-kanban",
+      "name": "Physics Kanban",
+      "description": "A board whose cards are thrown, not teleported. The card keeps its momentum.",
+      "categories": [
+        "canvas"
+      ],
+      "tags": [
+        "kanban",
+        "drag",
+        "spring"
+      ],
+      "difficulty": "advanced",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "kit"
+    },
+    {
+      "slug": "count-up",
+      "name": "Count Up",
+      "description": "A number that counts to its value when it scrolls into view. Announced once.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "number",
+        "counter",
+        "ticker"
+      ],
+      "difficulty": "beginner",
       "version": "0.1.0",
       "status": "beta",
       "collection": "creative"

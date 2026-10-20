@@ -14,13 +14,13 @@
 > | Accessibility | `pnpm --filter @buildora/components test` |
 > | Catalogue coherence | `pnpm registry:catalogue` |
 
-## 0. Summary (n=122)
+## 0. Summary (n=127)
 
 | Flag | Count | Meaning |
 |---|---:|---|
 | Undeclared third-party import | 0 | the install will not compile |
 | Hardcoded colours | 23 | the component ignores the theme |
-| No theme token | 16 | nothing reads --b-* vars |
+| No theme token | 19 | nothing reads --b-* vars |
 | `<style jsx>` | 0 | Next-only; breaks elsewhere |
 | `document.execCommand` | 0 | deprecated editor path |
 | Missing ARIA | 0 | a role without the attribute it needs |

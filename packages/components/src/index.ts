@@ -72,6 +72,11 @@ export { SpringCarousel, type SpringCarouselProps } from "./spring-carousel";
 export { RubberBand, type RubberBandProps } from "./rubber-band";
 export { ScrollProgress, type ScrollProgressProps } from "./scroll-progress";
 export { DragDismiss, type DragDismissProps } from "./drag-dismiss";
+export { ParallaxStack, type ParallaxStackProps, type ParallaxLayer } from "./parallax-stack";
+export { ScrollLinkedPath, type ScrollLinkedPathProps } from "./scroll-linked-path";
+export { PinnedSection, type PinnedSectionProps } from "./pinned-section";
+export { PhysicsKanban, type PhysicsKanbanProps, type PhysicsCard, type PhysicsColumn } from "./physics-kanban";
+export { CountUp, type CountUpProps } from "./count-up";
 export { TactileLoader, type TactileLoaderProps } from "./tactile-loader";
 export {
   MagnificationDock,

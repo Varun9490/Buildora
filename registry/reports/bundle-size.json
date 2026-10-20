@@ -1,7 +1,7 @@
 {
   "note": "gzip level 9, the file content a consumer installs",
-  "components": 122,
-  "totalGzipKb": 205.79,
+  "components": 127,
+  "totalGzipKb": 214.22,
   "medianGzipKb": 1.45,
   "heaviest": {
     "slug": "terminal-ui",
@@ -475,6 +475,21 @@
       ]
     },
     {
+      "slug": "pinned-section",
+      "title": "Pinned Section",
+      "description": "A section that sticks while its content scrolls past, and hands off cleanly.",
+      "rawBytes": 2679,
+      "gzipBytes": 1157,
+      "gzipKb": 1.13,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
       "slug": "comet-ring-spinner",
       "title": "Comet Ring Spinner",
       "description": "Comet head racing around a ring of fading trail dots. Pure CSS transforms, role=status, frozen under reduced motion.",
@@ -774,6 +789,21 @@
       ]
     },
     {
+      "slug": "parallax-stack",
+      "title": "Parallax Stack",
+      "description": "Layers that move at different rates as you scroll, computed once per frame.",
+      "rawBytes": 3087,
+      "gzipBytes": 1314,
+      "gzipKb": 1.28,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
       "slug": "magnetic-button",
       "title": "Magnetic Button",
       "description": "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.",
@@ -865,6 +895,21 @@
       "registryDependencies": [
         "utils",
         "tokens"
+      ]
+    },
+    {
+      "slug": "count-up",
+      "title": "Count Up",
+      "description": "A number that counts to its value when it scrolls into view. Announced once.",
+      "rawBytes": 3619,
+      "gzipBytes": 1442,
+      "gzipKb": 1.41,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
       ]
     },
     {
@@ -1143,6 +1188,21 @@
       "dependencies": [
         "motion@^13.4.0"
       ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "scroll-linked-path",
+      "title": "Scroll Linked Path",
+      "description": "An SVG path drawn by scroll position. Scrolling back up un-draws it.",
+      "rawBytes": 4543,
+      "gzipBytes": 1715,
+      "gzipKb": 1.67,
+      "files": 1,
+      "dependencies": [],
       "registryDependencies": [
         "utils",
         "tokens",
@@ -1774,6 +1834,21 @@
       "registryDependencies": [
         "utils",
         "tokens"
+      ]
+    },
+    {
+      "slug": "physics-kanban",
+      "title": "Physics Kanban",
+      "description": "A board whose cards are thrown, not teleported. The card keeps its momentum.",
+      "rawBytes": 9723,
+      "gzipBytes": 2996,
+      "gzipKb": 2.93,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
       ]
     },
     {

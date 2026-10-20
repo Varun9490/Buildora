@@ -1,0 +1,127 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "pinned-section",
+  "name": "Pinned Section",
+  "slug": "pinned-section",
+  "description": "A section that sticks while its content scrolls past, and hands off cleanly.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "scroll",
+    "sticky",
+    "storytelling"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/pinned-section/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/pinned-section/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/pinned-section/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/pinned-section/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/pinned-section/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/pinned-section/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/pinned-section/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/pinned-section/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/pinned-section/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/pinned-section/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/pinned-section/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/pinned-section/index.tsx",
+      "target": "components/buildora/pinned-section.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type PinnedSectionProps = {\n  children: React.ReactNode;\n  /** How many viewport heights the section scrolls through while pinned. */\n  length?: number;\n  /** Sticky top offset, in px. */\n  top?: number;\n  className?: string;\n};\n\n/**\n * PinnedSection — a section that sticks while its content scrolls past.\n *\n * What makes this different from `position: sticky`: the pinning is\n * explicit. The section reserves a scroll length, the inner content sticks\n * for exactly that long, and the release is handled by the scroll position\n * rather than by the browser guessing where a sticky element should stop.\n * That means a pinned panel can hand off to the next section cleanly.\n *\n * Under reduced motion the section collapses to its natural height and\n * nothing sticks.\n */\nexport function PinnedSection({\n  children,\n  length = 2,\n  top = 0,\n  className,\n}: PinnedSectionProps) {\n  const reduced = useReducedMotion();\n  const outerRef = React.useRef<HTMLDivElement | null>(null);\n  const [pinned, setPinned] = React.useState(false);\n  const frame = React.useRef(0);\n\n  React.useEffect(() => {\n    if (reduced) {\n      setPinned(false);\n      return;\n    }\n    const read = () => {\n      frame.current = 0;\n      const el = outerRef.current;\n      if (!el) return;\n      const r = el.getBoundingClientRect();\n      // Pinned while the section's top is above the sticky offset and its\n      // bottom is still below it.\n      const isPinned = r.top <= top && r.bottom > top + window.innerHeight * 0.5;\n      setPinned(isPinned);\n    };\n    const onScroll = () => {\n      if (frame.current) return;\n      frame.current = requestAnimationFrame(read);\n    };\n    read();\n    window.addEventListener(\"scroll\", onScroll, { passive: true });\n    window.addEventListener(\"resize\", onScroll);\n    return () => {\n      if (frame.current) cancelAnimationFrame(frame.current);\n      window.removeEventListener(\"scroll\", onScroll);\n      window.removeEventListener(\"resize\", onScroll);\n    };\n  }, [reduced, top]);\n\n  return (\n    <div\n      ref={outerRef}\n      className={cn(\"relative w-full\", className)}\n      style={reduced ? undefined : { height: `${length * 100}vh` }}\n    >\n      <div\n        className={cn(\"w-full\", !reduced && \"sticky\")}\n        style={{ top: reduced ? undefined : `${top}px` }}\n      >\n        {children}\n      </div>\n      {pinned ? (\n        <span className=\"sr-only\" role=\"status\">\n          Section pinned\n        </span>\n      ) : null}\n    </div>\n  );\n}\n\nexport default PinnedSection;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/pinned-section",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/pinned-section/index.tsx",
+  "sourceDir": "pinned-section",
+  "docs": "/components/pinned-section",
+  "install": "pnpm dlx shadcn@latest add @buildora/pinned-section"
+}

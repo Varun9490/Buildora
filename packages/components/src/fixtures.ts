@@ -139,6 +139,16 @@ export const PROPS: Record<string, Record<string, unknown>> = {
   RubberBand: { children: "Pull me" },
   ScrollProgress: {},
   DragDismiss: { children: "Flick me away" },
+  ParallaxStack: { layers: [{ speed: 0.2, children: "back" }, { speed: 0.6, children: "front" }] },
+  ScrollLinkedPath: { path: "M20 120 C 90 20, 160 200, 230 80" },
+  PinnedSection: { children: "Pinned" },
+  PhysicsKanban: {
+    columns: [
+      { id: "todo", title: "To do", cards: [{ id: "c1", title: "One" }] },
+      { id: "done", title: "Done", cards: [] },
+    ],
+  },
+  CountUp: { value: 1284 },
   // Terminal parts need the data and the theme they display.
   TUISparkline: { data: [1, 2, 3] },
   TUIHelpOverlay: { bindings: [], visible: false },

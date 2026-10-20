@@ -36,6 +36,7 @@ const GROUPS: { id: string; label: string; slugs: string[] }[] = [
       "project-showcase", "reveal-on-scroll", "handwritten-annotation", "vertical-timeline",
       "speech-bubble-cursor", "spring", "use-pointer-proximity", "use-reduced-motion",
       "split-text", "scroll-progress", "spring-carousel", "rubber-band", "drag-dismiss",
+      "parallax-stack", "scroll-linked-path", "pinned-section", "physics-kanban", "count-up",
     ],
   },
   {

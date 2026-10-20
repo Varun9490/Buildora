@@ -1,0 +1,127 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "physics-kanban",
+  "name": "Physics Kanban",
+  "slug": "physics-kanban",
+  "description": "A board whose cards are thrown, not teleported. The card keeps its momentum.",
+  "categories": [
+    "canvas"
+  ],
+  "tags": [
+    "kanban",
+    "drag",
+    "spring"
+  ],
+  "difficulty": "advanced",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "kit",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/physics-kanban/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/physics-kanban/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/physics-kanban/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/physics-kanban/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/physics-kanban/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/physics-kanban/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/physics-kanban/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/physics-kanban/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/physics-kanban/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/physics-kanban/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/physics-kanban/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/physics-kanban/index.tsx",
+      "target": "components/buildora/physics-kanban.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type PhysicsCard = {\n  id: string;\n  title: string;\n  /** Optional metadata shown under the title. */\n  meta?: string;\n};\n\nexport type PhysicsColumn = {\n  id: string;\n  title: string;\n  cards: PhysicsCard[];\n};\n\nexport type PhysicsKanbanProps = {\n  columns: PhysicsColumn[];\n  /** Called when a card moves between columns. */\n  onMove?: (cardId: string, fromColumn: string, toColumn: string) => void;\n  /** Called when a card is dropped on a card, to reorder. */\n  onReorder?: (cardId: string, targetCardId: string) => void;\n  /** Spring stiffness for the drop. */\n  stiffness?: number;\n  /** Spring damping for the drop. */\n  damping?: number;\n  className?: string;\n};\n\ntype Drag = {\n  cardId: string;\n  fromColumn: string;\n  offsetX: number;\n  offsetY: number;\n  overColumn: string | null;\n  overCardId: string | null;\n};\n\n/**\n * PhysicsKanban — a board whose cards are thrown, not teleported.\n *\n * What makes this different from a drag-and-drop board: a card you drag\n * keeps its momentum. When you let go it does not jump into place — it is\n * released into a spring, overshoots slightly, and settles. The card you\n * are holding tracks your pointer exactly, including the throw.\n *\n * The board is still a plain list of lists underneath. Every card is a real\n * button, the columns are real lists, and a card can be moved with the\n * keyboard: pick it up with Enter, move it with the arrow keys, drop it\n * with Enter, cancel with Escape.\n */\nexport function PhysicsKanban({\n  columns,\n  onMove,\n  onReorder,\n  stiffness = 320,\n  damping = 26,\n  className,\n}: PhysicsKanbanProps) {\n  const reduced = useReducedMotion();\n  const [cards, setCards] = React.useState(() =>\n    columns.map((c) => ({ ...c, cards: [...c.cards] }))\n  );\n  const [drag, setDrag] = React.useState<Drag | null>(null);\n  /** The offset the card is springing home from, after release. */\n  const [settling, setSettling] = React.useState<{\n    cardId: string;\n    offsetX: number;\n    offsetY: number;\n  } | null>(null);\n  const [carrying, setCarrying] = React.useState<string | null>(null);\n\n  const springPos = React.useRef({ x: 0, y: 0, vx: 0, vy: 0 });\n  const raf = React.useRef(0);\n\n  /** Run the spring from the drag offset back to the origin. */\n  const settle = React.useCallback(\n    (cardId: string, from: { x: number; y: number }) => {\n      if (reduced) {\n        setSettling(null);\n        return;\n      }\n      springPos.current = { x: from.x, y: from.y, vx: 0, vy: 0 };\n      let last = performance.now();\n      const tick = (now: number) => {\n        const dt = Math.min(0.05, (now - last) / 1000);\n        last = now;\n        const p = springPos.current;\n        const ax = -stiffness * p.x - damping * p.vx;\n        const ay = -stiffness * p.y - damping * p.vy;\n        p.vx += ax * dt;\n        p.vy += ay * dt;\n        p.x += p.vx * dt;\n        p.y += p.vy * dt;\n        if (Math.abs(p.x) < 0.4 && Math.abs(p.y) < 0.4 && Math.abs(p.vx) < 4 && Math.abs(p.vy) < 4) {\n          setSettling(null);\n          raf.current = 0;\n          return;\n        }\n        setSettling({ cardId, offsetX: p.x, offsetY: p.y });\n        raf.current = requestAnimationFrame(tick);\n      };\n      if (raf.current) cancelAnimationFrame(raf.current);\n      raf.current = requestAnimationFrame(tick);\n    },\n    [reduced, stiffness, damping]\n  );\n\n  React.useEffect(\n    () => () => {\n      if (raf.current) cancelAnimationFrame(raf.current);\n    },\n    []\n  );\n\n  const findCard = (cardId: string) => {\n    for (const col of cards) {\n      const card = col.cards.find((c) => c.id === cardId);\n      if (card) return { card, column: col };\n    }\n    return null;\n  };\n\n  const moveCard = (cardId: string, toColumn: string, beforeCardId?: string | null) => {\n    const found = findCard(cardId);\n    if (!found) return;\n    const from = found.column.id;\n\n    setCards((prev) => {\n      const next = prev.map((c) => ({ ...c, cards: [...c.cards] }));\n      const source = next.find((c) => c.id === from)!;\n      const target = next.find((c) => c.id === toColumn)!;\n      const idx = source.cards.findIndex((c) => c.id === cardId);\n      const [moved] = source.cards.splice(idx, 1);\n      if (!moved) return prev;\n      const at =\n        beforeCardId && beforeCardId !== cardId\n          ? Math.max(0, target.cards.findIndex((c) => c.id === beforeCardId))\n          : target.cards.length;\n      target.cards.splice(at, 0, moved);\n      return next;\n    });\n\n    if (from !== toColumn) onMove?.(cardId, from, toColumn);\n    else if (beforeCardId) onReorder?.(cardId, beforeCardId);\n  };\n\n  const onPointerDown = (e: React.PointerEvent, cardId: string, columnId: string) => {\n    if (e.button !== 0) return;\n    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);\n    setDrag({\n      cardId,\n      fromColumn: columnId,\n      offsetX: 0,\n      offsetY: 0,\n      overColumn: columnId,\n      overCardId: null,\n    });\n  };\n\n  const onPointerMove = (e: React.PointerEvent) => {\n    if (!drag) return;\n    const target = e.currentTarget as HTMLElement;\n    const r = target.getBoundingClientRect();\n    setDrag({\n      ...drag,\n      offsetX: e.clientX - r.left - r.width / 2,\n      offsetY: e.clientY - r.top - r.height / 2,\n    });\n  };\n\n  const onPointerUp = () => {\n    if (!drag) return;\n    if (drag.overColumn && drag.overColumn !== drag.fromColumn) {\n      moveCard(drag.cardId, drag.overColumn, drag.overCardId);\n    }\n    settle(drag.cardId, { x: drag.offsetX, y: drag.offsetY });\n    setDrag(null);\n  };\n\n  /** Keyboard: pick up, move with arrows, drop. */\n  const onCardKeyDown = (e: React.KeyboardEvent, cardId: string, columnId: string) => {\n    if (e.key === \"Enter\" || e.key === \" \") {\n      e.preventDefault();\n      if (carrying === cardId) {\n        setCarrying(null);\n        return;\n      }\n      setCarrying(cardId);\n      setDrag({\n        cardId,\n        fromColumn: columnId,\n        offsetX: 0,\n        offsetY: 0,\n        overColumn: columnId,\n        overCardId: null,\n      });\n      return;\n    }\n    if (carrying !== cardId) return;\n\n    if (e.key === \"Escape\") {\n      e.preventDefault();\n      setCarrying(null);\n      setDrag(null);\n      return;\n    }\n    if (e.key === \"ArrowLeft\" || e.key === \"ArrowRight\") {\n      e.preventDefault();\n      const idx = cards.findIndex((c) => c.id === columnId);\n      const next = cards[idx + (e.key === \"ArrowRight\" ? 1 : -1)];\n      if (!next) return;\n      setDrag({\n        ...drag!,\n        overColumn: next.id,\n        overCardId: null,\n      });\n      return;\n    }\n    if (e.key === \"ArrowUp\" || e.key === \"ArrowDown\") {\n      e.preventDefault();\n      const col = cards.find((c) => c.id === columnId);\n      if (!col) return;\n      const pos = col.cards.findIndex((c) => c.id === cardId);\n      const nextPos = pos + (e.key === \"ArrowDown\" ? 1 : -1);\n      const target = col.cards[nextPos];\n      setDrag({\n        ...drag!,\n        overCardId: target ? target.id : null,\n      });\n    }\n  };\n\n  return (\n    <div\n      className={cn(\"grid gap-4\", className)}\n      style={{ gridTemplateColumns: `repeat(${cards.length}, minmax(0, 1fr))` }}\n    >\n      {cards.map((column) => (\n        <section\n          key={column.id}\n          aria-label={column.title}\n          className=\"flex min-h-[180px] flex-col rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-3\"\n        >\n          <h3 className=\"mb-2 px-1 font-mono text-[10px] font-bold uppercase tracking-wider text-[color:var(--b-muted)]\">\n            {column.title}\n          </h3>\n          <ul className=\"flex flex-1 flex-col gap-2\">\n            {column.cards.map((card) => {\n              const isDragging = drag?.cardId === card.id;\n              const springOffset =\n                settling?.cardId === card.id ? settling : null;\n              const offset = isDragging && drag ? drag : springOffset;\n              return (\n                <li key={card.id} className=\"list-none\">\n                  <button\n                    type=\"button\"\n                    onPointerDown={(e) => onPointerDown(e, card.id, column.id)}\n                    onPointerMove={onPointerMove}\n                    onPointerUp={onPointerUp}\n                    onKeyDown={(e) => onCardKeyDown(e, card.id, column.id)}\n                    aria-pressed={carrying === card.id}\n                    className={cn(\n                      \"w-full cursor-grab rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-3 text-left transition-shadow\",\n                      \"hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)]\",\n                      isDragging && \"cursor-grabbing opacity-40\"\n                    )}\n                    style={\n                      offset\n                        ? {\n                            transform: `translate3d(${offset.offsetX}px, ${offset.offsetY}px, 0)`,\n                          }\n                        : undefined\n                    }\n                  >\n                    <span className=\"block text-sm font-medium text-[color:var(--b-text)]\">\n                      {card.title}\n                    </span>\n                    {card.meta ? (\n                      <span className=\"mt-0.5 block text-[11px] text-[color:var(--b-muted)]\">\n                        {card.meta}\n                      </span>\n                    ) : null}\n                  </button>\n                </li>\n              );\n            })}\n          </ul>\n        </section>\n      ))}\n    </div>\n  );\n}\n\nexport default PhysicsKanban;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/physics-kanban",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/physics-kanban/index.tsx",
+  "sourceDir": "physics-kanban",
+  "docs": "/components/physics-kanban",
+  "install": "pnpm dlx shadcn@latest add @buildora/physics-kanban"
+}

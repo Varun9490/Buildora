@@ -10,7 +10,7 @@
     "bypass",
     "color-contrast"
   ],
-  "components": 176,
+  "components": 181,
   "componentsWithViolations": 0,
   "violations": 0,
   "allPass": true,
@@ -177,6 +177,11 @@
     },
     {
       "component": "ContextMenuTrigger",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CountUp",
       "pass": true,
       "violations": []
     },
@@ -591,12 +596,27 @@
       "violations": []
     },
     {
+      "component": "ParallaxStack",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "ParticleField",
       "pass": true,
       "violations": []
     },
     {
       "component": "PeriodDrop",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "PhysicsKanban",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "PinnedSection",
       "pass": true,
       "violations": []
     },
@@ -652,6 +672,11 @@
     },
     {
       "component": "RubberBand",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ScrollLinkedPath",
       "pass": true,
       "violations": []
     },

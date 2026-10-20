@@ -1,0 +1,127 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "count-up",
+  "name": "Count Up",
+  "slug": "count-up",
+  "description": "A number that counts to its value when it scrolls into view. Announced once.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "number",
+    "counter",
+    "ticker"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/count-up/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/count-up/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/count-up/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/count-up/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/count-up/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/count-up/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/count-up/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/count-up/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/count-up/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/count-up/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/count-up/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/count-up/index.tsx",
+      "target": "components/buildora/count-up.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type CountUpProps = {\n  /** The value to count to. */\n  value: number;\n  /** Where the count starts. Defaults to 0. */\n  from?: number;\n  /** How long the count takes, in ms. */\n  duration?: number;\n  /** Decimal places to show. */\n  decimals?: number;\n  /** Prefix, e.g. \"$\". */\n  prefix?: string;\n  /** Suffix, e.g. \" installs\". */\n  suffix?: string;\n  /** Thousands separators. */\n  separator?: boolean;\n  /** Start counting when the element scrolls into view. */\n  whenVisible?: boolean;\n  className?: string;\n};\n\n/**\n * CountUp — a number that counts to its value.\n *\n * What makes this different from a number that just renders: it counts\n * when it comes into view, so a statistic on a landing page arrives rather\n * than sitting there. The count is eased, not linear, and it is announced\n * once with the final value rather than on every frame — a live region\n * that fires sixty times a second is unusable.\n *\n * Under reduced motion the final value is rendered immediately.\n */\nexport function CountUp({\n  value,\n  from = 0,\n  duration = 1400,\n  decimals = 0,\n  prefix = \"\",\n  suffix = \"\",\n  separator = true,\n  whenVisible = true,\n  className,\n}: CountUpProps) {\n  const reduced = useReducedMotion();\n  const ref = React.useRef<HTMLSpanElement | null>(null);\n  const [shown, setShown] = React.useState(reduced ? value : from);\n  const raf = React.useRef(0);\n\n  React.useEffect(() => {\n    if (reduced) {\n      setShown(value);\n      return;\n    }\n\n    let start: number | null = null;\n\n    const run = () => {\n      const tick = (now: number) => {\n        if (start === null) start = now;\n        const t = Math.min(1, (now - start) / duration);\n        // Ease-out cubic: fast at first, settling on the value.\n        const eased = 1 - Math.pow(1 - t, 3);\n        setShown(from + (value - from) * eased);\n        if (t < 1) {\n          raf.current = requestAnimationFrame(tick);\n        } else {\n          setShown(value);\n          raf.current = 0;\n        }\n      };\n      raf.current = requestAnimationFrame(tick);\n    };\n\n    if (!whenVisible) {\n      run();\n      return () => {\n        if (raf.current) cancelAnimationFrame(raf.current);\n      };\n    }\n\n    const el = ref.current;\n    if (!el || typeof IntersectionObserver === \"undefined\") {\n      run();\n      return () => {\n        if (raf.current) cancelAnimationFrame(raf.current);\n      };\n    }\n\n    const io = new IntersectionObserver(\n      (entries) => {\n        if (entries.some((e) => e.isIntersecting)) {\n          io.disconnect();\n          run();\n        }\n      },\n      { threshold: 0.4 }\n    );\n    io.observe(el);\n\n    return () => {\n      io.disconnect();\n      if (raf.current) cancelAnimationFrame(raf.current);\n    };\n  }, [value, from, duration, reduced, whenVisible]);\n\n  const format = (n: number) => {\n    const fixed = n.toFixed(decimals);\n    if (!separator) return fixed;\n    const [whole, frac] = fixed.split(\".\");\n    const grouped = whole.replace(/\\B(?=(\\d{3})+(?!\\d))/g, \",\");\n    return frac ? `${grouped}.${frac}` : grouped;\n  };\n\n  return (\n    <span ref={ref} className={cn(\"tabular-nums\", className)}>\n      {/* The final value is announced once; the animated number is for eyes. */}\n      <span className=\"sr-only\">\n        {prefix}\n        {format(value)}\n        {suffix}\n      </span>\n      <span aria-hidden=\"true\">\n        {prefix}\n        {format(shown)}\n        {suffix}\n      </span>\n    </span>\n  );\n}\n\nexport default CountUp;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/count-up",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/count-up/index.tsx",
+  "sourceDir": "count-up",
+  "docs": "/components/count-up",
+  "install": "pnpm dlx shadcn@latest add @buildora/count-up"
+}

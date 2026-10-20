@@ -19,6 +19,11 @@ import {
   RubberBand,
   ScrollProgress,
   DragDismiss,
+  ParallaxStack,
+  ScrollLinkedPath,
+  PinnedSection,
+  PhysicsKanban,
+  CountUp,
   TactileLoader,
   CodeEditorLite,
   CommandPalette,
@@ -1111,6 +1116,88 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <div className="w-full">
           <DynamicIsland status="think" />
+        </div>
+      );
+    case "parallax-stack":
+      return wrap(
+        <div className="w-full">
+          <ParallaxStack
+            height={280}
+            layers={[
+              {
+                speed: 0.2,
+                children: (
+                  <div className="flex h-full items-center justify-center">
+                    <span className="rounded-full bg-[color:color-mix(in_oklab,var(--b-iris)_30%,transparent)] blur-3xl" />
+                  </div>
+                ),
+              },
+              {
+                speed: 0.6,
+                children: (
+                  <div className="flex h-full items-center justify-center">
+                    <span className="font-display text-4xl font-black">Parallax</span>
+                  </div>
+                ),
+              },
+            ]}
+          />
+        </div>
+      );
+    case "scroll-linked-path":
+      return wrap(
+        <div className="w-full">
+          <ScrollLinkedPath
+            height={260}
+            path="M20 220 C 90 60, 160 260, 230 110 S 340 20, 390 140"
+          />
+        </div>
+      );
+    case "pinned-section":
+      return wrap(
+        <div className="w-full">
+          <PinnedSection length={1} className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)]">
+            <div className="flex h-48 items-center justify-center">
+              <p className="text-sm text-[color:var(--b-text-secondary)]">
+                This section sticks while its content scrolls.
+              </p>
+            </div>
+          </PinnedSection>
+        </div>
+      );
+    case "physics-kanban":
+      return wrap(
+        <div className="w-full">
+          <PhysicsKanban
+            columns={[
+              {
+                id: "todo",
+                title: "To do",
+                cards: [
+                  { id: "c1", title: "Ship the install matrix", meta: "CI" },
+                  { id: "c2", title: "Write the launch post", meta: "Docs" },
+                ],
+              },
+              {
+                id: "doing",
+                title: "Doing",
+                cards: [{ id: "c3", title: "Audit the registry", meta: "Gate" }],
+              },
+              {
+                id: "done",
+                title: "Done",
+                cards: [{ id: "c4", title: "Contrast gate", meta: "AAA" }],
+              },
+            ]}
+          />
+        </div>
+      );
+    case "count-up":
+      return wrap(
+        <div className="w-full">
+          <p className="font-display text-4xl font-black">
+            <CountUp value={1284} suffix=" components" />
+          </p>
         </div>
       );
     case "split-text":
