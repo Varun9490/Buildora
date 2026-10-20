@@ -20,7 +20,9 @@ export const a11yClaims = {
   contrastChecks: contrast.summary.checks,
   /** How many accent/theme combinations are gated. */
   accents: contrast.summary.accents,
-  /** Components scanned by axe-core in CI. */
+  /** Components scanned by axe-core in CI. This is every export from the
+   *  package barrel, which is a superset of the catalogue: the extra ones
+   *  are context-only sub-components that ship inside a parent's file. */
   axeComponents: a11y.components,
   /** Violations found. Zero, or the build is red. */
   axeViolations: a11y.violations,

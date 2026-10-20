@@ -210,7 +210,7 @@ function AuditCard() {
           </span>
           <span className="flex items-center gap-1.5 font-mono text-[10px] font-semibold text-[color:var(--b-success)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--b-success)]" />
-            {a11yClaims.axeViolations} violations · {a11yClaims.axeComponents} components
+            {a11yClaims.axeViolations} violations · {a11yClaims.axeComponents} exports scanned
           </span>
         </div>
         <div className="mt-2 flex items-center justify-between rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-2.5">
