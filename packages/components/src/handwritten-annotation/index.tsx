@@ -78,7 +78,7 @@ export function HandwrittenAnnotation({
             fontFamily ||
             "var(--b-font-hand, 'Patrick Hand', 'Caveat', cursive)",
           fontSize: "1.05rem",
-          color: "color-mix(in oklab, var(--b-fg, #000) 75%, transparent)",
+          color: "color-mix(in oklab, var(--b-text) 75%, transparent)",
           rotate: `${rotation}deg`,
         }}
         dangerouslySetInnerHTML={{
@@ -95,7 +95,7 @@ export function HandwrittenAnnotation({
             isArrowBelow ? "mt-1" : "mb-1"
           )}
           style={{
-            color: "color-mix(in oklab, var(--b-fg, #000) 70%, transparent)",
+            color: "color-mix(in oklab, var(--b-text) 70%, transparent)",
           }}
         >
           <path

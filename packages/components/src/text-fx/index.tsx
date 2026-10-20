@@ -41,7 +41,7 @@ export function TextFx({ kind = "typewriter", text, speed = 55, className, ...re
         {kind === "typewriter" && <TypewriterLayer words={words} speed={speed} />}
         {kind === "scramble" && <ScrambleLayer text={finalText} speed={Math.max(20, speed / 2)} />}
         {kind === "blur" && <BlurLayer text={finalText} />}
-        {kind === "gradient" && <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(90deg, var(--b-accent), var(--b-iris, #9d8cff), var(--b-text), var(--b-accent))", backgroundSize: "200% auto", animation: "buildora-gradient-pan 8s linear infinite" }}>{finalText}</span>}
+        {kind === "gradient" && <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(90deg, var(--b-accent), var(--b-iris), var(--b-text), var(--b-accent))", backgroundSize: "200% auto", animation: "buildora-gradient-pan 8s linear infinite" }}>{finalText}</span>}
         {kind === "glitch" && <GlitchLayer text={finalText} />}
         {kind === "morph" && <MorphLayer words={words} />}
       </span>

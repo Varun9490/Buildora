@@ -66,9 +66,9 @@ export function VerticalTimeline({
   }, [animated, entries.length]);
 
   const resolvedLineColor =
-    lineColor || "color-mix(in oklab, var(--b-fg, #000) 40%, transparent)";
+    lineColor || "color-mix(in oklab, var(--b-text) 40%, transparent)";
   const resolvedDotColor =
-    dotColor || "color-mix(in oklab, var(--b-fg, #000) 60%, transparent)";
+    dotColor || "color-mix(in oklab, var(--b-text) 60%, transparent)";
 
   return (
     <ol
@@ -130,7 +130,7 @@ export function VerticalTimeline({
                   className="text-sm leading-snug"
                   style={{
                     color:
-                      "color-mix(in oklab, var(--b-fg, #000) 55%, transparent)",
+                      "color-mix(in oklab, var(--b-text) 55%, transparent)",
                   }}
                 >
                   {entry.description}
@@ -141,7 +141,7 @@ export function VerticalTimeline({
                   className="mt-0.5 text-xs"
                   style={{
                     color:
-                      "color-mix(in oklab, var(--b-fg, #000) 40%, transparent)",
+                      "color-mix(in oklab, var(--b-text) 40%, transparent)",
                   }}
                 >
                   {entry.date}

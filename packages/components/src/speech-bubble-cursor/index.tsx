@@ -80,9 +80,9 @@ export function SpeechBubbleCursor({
     };
   }, [selector, defaultText, reduced]);
 
-  const resolvedBg = backgroundColor || "var(--b-surface, #fff)";
-  const resolvedBorder = borderColor || "var(--b-accent, #2E90FA)";
-  const resolvedText = textColor || "var(--b-fg, #000)";
+  const resolvedBg = backgroundColor || "var(--b-surface)";
+  const resolvedBorder = borderColor || "var(--b-accent)";
+  const resolvedText = textColor || "var(--b-text)";
 
   return (
     <>

@@ -42,7 +42,7 @@ export function DiffViewer({
           key={i}
           className={cn(
             "flex gap-2 px-2 py-0.5 font-mono text-xs",
-            l.kind === "add" && "bg-[#4fe08a]/10 text-emerald-100",
+            l.kind === "add" && "bg-[color:color-mix(in_oklab,var(--b-success)_10%,transparent)] text-[color:var(--b-success)]",
             l.kind === "del" && "bg-red-500/10 text-red-200",
             l.kind === "same" && "text-[color-mix(in_oklab,var(--b-text)_60%,transparent)]"
           )}
@@ -56,7 +56,7 @@ export function DiffViewer({
     </div>
   );
   return (
-    <div className={cn("overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#0a0c11]", className)}>
+    <div className={cn("overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color:var(--b-bg)]", className)}>
       <div className="grid md:grid-cols-2">
         <div className="border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] md:border-b-0 md:border-r">
           <p className="border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] px-3 py-1.5 font-mono text-[11px] text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">before</p>

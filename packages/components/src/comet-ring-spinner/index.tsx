@@ -16,7 +16,7 @@ export type CometRingSpinnerProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const TONE: Record<NonNullable<CometRingSpinnerProps["tone"]>, string> = {
   accent: "var(--b-accent)",
-  iris: "var(--b-iris, #9d8cff)",
+  iris: "var(--b-iris)",
   text: "var(--b-text)",
 };
 

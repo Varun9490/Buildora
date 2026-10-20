@@ -48,8 +48,8 @@ export function ProjectShowcaseCard({
         target="_blank"
         rel="noreferrer"
         className={cn(
-          "block overflow-hidden border bg-[color-mix(in_oklab,var(--b-bg,#fafafa)_95%,var(--b-fg,#000))]",
-          "border-[color-mix(in_oklab,var(--b-border,#e5e7eb)_80%,transparent)]"
+          "block overflow-hidden border bg-[color-mix(in_oklab,var(--b-bg)_95%,var(--b-text))]",
+          "border-[color-mix(in_oklab,var(--b-border)_80%,transparent)]"
         )}
         style={{ cursor: liveUrl ? "pointer" : "default" }}
       >
@@ -71,7 +71,7 @@ export function ProjectShowcaseCard({
           {(number || tags.length > 0) && (
             <p
               className="text-xs"
-              style={{ color: "color-mix(in oklab, var(--b-fg, #000) 55%, transparent)" }}
+              style={{ color: "color-mix(in oklab, var(--b-text) 55%, transparent)" }}
             >
               {number && <>{number} / </>}
               {tags.join(" · ")}
@@ -89,7 +89,7 @@ export function ProjectShowcaseCard({
           {/* Description */}
           <p
             className="mt-2 max-w-xl"
-            style={{ color: "color-mix(in oklab, var(--b-fg, #000) 55%, transparent)" }}
+            style={{ color: "color-mix(in oklab, var(--b-text) 55%, transparent)" }}
           >
             {description}
           </p>
@@ -106,8 +106,8 @@ export function ProjectShowcaseCard({
               "inline-flex items-center justify-center border text-sm font-medium",
               "transition-[background-color,color,transform] duration-200",
               "hover:-translate-y-0.5 h-10 w-10 px-0",
-              "border-[var(--b-fg,#000)] bg-[var(--b-bg,#fff)] text-[var(--b-fg,#000)]",
-              "hover:bg-[color-mix(in_oklab,var(--b-bg,#fff)_90%,var(--b-fg,#000))]"
+              "border-[var(--b-text)] bg-[var(--b-bg)] text-[var(--b-text)]",
+              "hover:bg-[color-mix(in_oklab,var(--b-bg)_90%,var(--b-text))]"
             )}
           >
             <svg
@@ -162,7 +162,7 @@ export function ProjectShowcase({
     <section
       className={cn(
         "buildora-project-showcase relative min-h-screen px-5 pb-24 pt-28 sm:px-8",
-        "border-t border-[var(--b-border,#e5e7eb)]",
+        "border-t border-[var(--b-border)]",
         className
       )}
       {...rest}
@@ -175,7 +175,7 @@ export function ProjectShowcase({
             style={{
               fontSize: "26vw",
               transform: "translateY(-38%)",
-              color: "color-mix(in oklab, var(--b-fg, #000) 6%, transparent)",
+              color: "color-mix(in oklab, var(--b-text) 6%, transparent)",
             }}
           >
             {watermark}
@@ -192,7 +192,7 @@ export function ProjectShowcase({
           {subtitle && (
             <p
               className="text-sm"
-              style={{ color: "color-mix(in oklab, var(--b-fg, #000) 55%, transparent)" }}
+              style={{ color: "color-mix(in oklab, var(--b-text) 55%, transparent)" }}
             >
               {subtitle}
             </p>
@@ -208,7 +208,7 @@ export function ProjectShowcase({
           {headingDescription && (
             <p
               className="mt-8 max-w-sm"
-              style={{ color: "color-mix(in oklab, var(--b-fg, #000) 55%, transparent)" }}
+              style={{ color: "color-mix(in oklab, var(--b-text) 55%, transparent)" }}
             >
               {headingDescription}
             </p>
@@ -228,8 +228,8 @@ export function ProjectShowcase({
                       "inline-flex items-center justify-center rounded-full border px-4 py-2 text-sm font-medium",
                       "transition-[background-color,color,transform] duration-200",
                       activeFilter === f
-                        ? "border-[var(--b-fg,#000)] bg-[var(--b-fg,#000)] text-[var(--b-bg,#fff)]"
-                        : "border-[var(--b-border,#e5e7eb)] bg-transparent text-[color-mix(in_oklab,var(--b-fg,#000)_55%,transparent)] hover:border-[var(--b-fg,#000)] hover:text-[var(--b-fg,#000)]"
+                        ? "border-[var(--b-text)] bg-[var(--b-text)] text-[var(--b-bg)]"
+                        : "border-[var(--b-border)] bg-transparent text-[color-mix(in_oklab,var(--b-text)_55%,transparent)] hover:border-[var(--b-text)] hover:text-[var(--b-text)]"
                     )}
                   >
                     {f}

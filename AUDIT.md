@@ -19,42 +19,14 @@
 | Flag | Count | Meaning |
 |---|---:|---|
 | Undeclared third-party import | 0 | the install will not compile |
-| Hardcoded colours | 23 | the component ignores the theme |
-| No theme token | 19 | nothing reads --b-* vars |
+| Hardcoded colours | 0 | the component ignores the theme |
+| No theme token | 0 | nothing reads --b-* vars |
 | `<style jsx>` | 0 | Next-only; breaks elsewhere |
 | `document.execCommand` | 0 | deprecated editor path |
 | Missing ARIA | 0 | a role without the attribute it needs |
 | Name promises more than the code | 0 | the description is not backed |
 | Ambiguous index.tsx target | 0 | two installs can overwrite each other |
 | File shared with another item | 0 | installing it also installs its neighbour |
-
-## 2. Hardcoded colours
-
-| Component | Detail |
-|---|---|
-| Backdrop (`backdrop`) | #9d8cff, #34d399 |
-| Bento Grid (`bento-grid`) | #12141d |
-| Calendar (`calendar`) | #141726 |
-| Comet Ring Spinner (`comet-ring-spinner`) | #9d8cff |
-| Diff Viewer (`diff-viewer`) | #4fe08a, #0a0c11 |
-| Draggable Card Pile (`draggable-card-pile`) | #9d8cff |
-| Dynamic Island (`dynamic-island`) | #16161a, #101014, #1c1c26, #d4ff4f, #7bc86a, #0a84ff |
-| Floating Object (`floating-object`) | #e5e7eb, #fff, #000 |
-| FxButton (`fx-button`) | #9d8cff |
-| Handwritten Annotation (`handwritten-annotation`) | #000 |
-| JSON Viewer (`json-viewer`) | #0a0c11, #c9d1ff |
-| Log Viewer (`log-viewer`) | #ff8a3d |
-| Masonry Layout (`masonry-layout`) | #12141d |
-| Particle Field (`particle-field`) | #d4ff4f |
-| Project Showcase (`project-showcase`) | #fafafa, #000, #e5e7eb, #fff |
-| Site Footer (`site-footer`) | #4fe08a |
-| Slingshot OTP (`slingshot-otp`) | #050505, #d4ff4f, #111 |
-| Speech Bubble Cursor (`speech-bubble-cursor`) | #fff, #2e90fa, #000 |
-| Terminal UI (`terminal-ui`) | #6a9955, #c586c0, #dcdcaa, #4ec9b0, #ce9178, #9cdcfe |
-| TextFx (`text-fx`) | #9d8cff |
-| Tokens (`tokens`) | #faf9f5, #ffffff, #f1efe9, #131316, #52525b, #727277 |
-| Type Wall (`type-wall`) | #000 |
-| Vertical Timeline (`vertical-timeline`) | #000 |
 
 ## Verified clean
 

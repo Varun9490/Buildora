@@ -1,3 +1,11 @@
+/**
+ * buildora:theme-exempt
+ *
+ * These are ANSI terminal palettes, not theme colours. A terminal's colours
+ * are part of its identity — a Solarized shell looks like Solarized
+ * because the palette says so — so they are literal on purpose.
+ */
+
 export interface TerminalColorScheme {
   name: string;
   background: string;

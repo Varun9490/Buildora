@@ -81,7 +81,7 @@ export function FxButton({ effect = "none", rippleMs = 600, className, children,
           aria-hidden
           className="pointer-events-none absolute inset-0 rounded-xl"
           style={{
-            background: "linear-gradient(90deg, var(--b-accent), var(--b-iris, #9d8cff), var(--b-accent))",
+            background: "linear-gradient(90deg, var(--b-accent), var(--b-iris), var(--b-accent))",
             backgroundSize: "300% 100%",
             padding: 2,
             animation: reduced ? undefined : "buildora-gradient-pan 3s linear infinite",
@@ -107,7 +107,7 @@ export function FxButton({ effect = "none", rippleMs = 600, className, children,
           ref={blob}
           aria-hidden
           className="pointer-events-none absolute left-1/2 top-1/2 aspect-square h-[220%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70 blur-md transition-transform duration-300 ease-out"
-          style={{ background: "linear-gradient(135deg, var(--b-iris, #9d8cff), var(--b-accent))" }}
+          style={{ background: "linear-gradient(135deg, var(--b-iris), var(--b-accent))" }}
         />
       )}
       <span className="relative z-10 inline-flex items-center gap-2">{children}</span>

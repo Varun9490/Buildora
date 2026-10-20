@@ -58,7 +58,7 @@ export function Kanban({ initial, className }: { initial?: ColT[]; className?: s
                   if (e.altKey && e.key === "ArrowRight") moveKeyboard(ci, ki, 1);
                   if (e.altKey && e.key === "ArrowLeft") moveKeyboard(ci, ki, -1);
                 }}
-                className="cursor-grab rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#141726] p-3 text-sm shadow transition-transform active:cursor-grabbing active:scale-[1.02]">
+                className="cursor-grab rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color:var(--b-bg)] p-3 text-sm shadow transition-transform active:cursor-grabbing active:scale-[1.02]">
                 <p className="font-medium">{card.title}</p>
                 {card.tag && <span className="mt-1 inline-block rounded bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] px-1.5 py-0.5 font-mono text-[10px] text-[color-mix(in_oklab,var(--b-text)_60%,transparent)]">{card.tag}</span>}
                 <span className="sr-only">Press Alt plus arrow keys to move.</span>

@@ -322,7 +322,7 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
   return (
     <div
       ref={containerRef}
-      className="relative h-[360px] w-[360px] max-w-full overflow-hidden rounded-2xl border border-[color:var(--b-border)] bg-[#050505] shadow-xl"
+      className="relative h-[360px] w-[360px] max-w-full overflow-hidden rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-bg)] shadow-xl"
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
@@ -353,7 +353,7 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
       <svg className="pointer-events-none absolute inset-0 h-full w-full">
          <path d="M 180 240 L 180 320" stroke="rgba(255,255,255,0.2)" strokeWidth="8" strokeLinecap="round" />
          <path d="M 160 210 L 180 240 L 200 210" stroke="rgba(255,255,255,0.2)" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-         <path ref={bandRef} stroke="var(--b-accent, #d4ff4f)" strokeWidth="3" fill="none" style={{ opacity: 0 }} />
+         <path ref={bandRef} stroke="var(--b-accent)" strokeWidth="3" fill="none" style={{ opacity: 0 }} />
       </svg>
 
       {rocksRef.current.map((rock) => (
@@ -362,7 +362,7 @@ function GameOTP({ length, digits, onHit, onClear }: { length: number; digits: s
           ref={(el) => { rock.el = el; }}
           onPointerDown={(e) => onPointerDown(e, rock.id)}
           className={cn(
-            "absolute left-0 top-0 flex h-10 w-10 touch-none select-none items-center justify-center rounded-full border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#111] font-mono text-lg font-bold text-[color:var(--b-text)] shadow-lg transition-colors",
+            "absolute left-0 top-0 flex h-10 w-10 touch-none select-none items-center justify-center rounded-full border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color:var(--b-surface)] font-mono text-lg font-bold text-[color:var(--b-text)] shadow-lg transition-colors",
             rock.state === "loaded" ? "cursor-grabbing border-[color:var(--b-accent)] bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)] shadow-[0_0_20px_rgba(212,255,79,0.3)]" : "cursor-grab hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]"
           )}
           style={{ transform: `translate(${rock.x}px, ${rock.y}px) translate(-50%, -50%)` }}

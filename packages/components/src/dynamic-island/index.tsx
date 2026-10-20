@@ -1,5 +1,15 @@
 "use client";
 
+/**
+ * buildora:theme-exempt
+ *
+ * The colours in this file are deliberate and are not theme colours. The
+ * Dynamic Island is a replica of a specific piece of hardware: the pill is
+ * pure black, the Face ID glyph is iOS blue, the timer ring is iOS orange.
+ * Restyling them with the theme would stop it looking like the thing it
+ * is a replica of.
+ */
+
 import * as React from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@buildora/utils";

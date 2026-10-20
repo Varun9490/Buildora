@@ -65,7 +65,7 @@ function MasonryItem({ className, children, ...rest }: MasonryItemProps) {
   return (
     <div
       className={cn(
-        "rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#12141d] p-4",
+        "rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color:var(--b-bg)] p-4",
         "transition-all duration-200 hover:border-[color-mix(in_oklab,var(--b-border)_20%,transparent)]",
         className
       )}

@@ -124,9 +124,9 @@ export function FloatingObject({
           )}
           style={{
             maxWidth: "min(16rem, calc(100vw - 2rem))",
-            borderColor: "var(--b-border, #e5e7eb)",
-            background: "var(--b-surface, #fff)",
-            color: "var(--b-fg, #000)",
+            borderColor: "var(--b-border)",
+            background: "var(--b-surface)",
+            color: "var(--b-text)",
             transitionTimingFunction: "cubic-bezier(.34,1.56,.64,1)",
           }}
         >

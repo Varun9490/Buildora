@@ -19,7 +19,7 @@ export type DraggableCardPileProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const CARD_TINTS = [
   "color-mix(in oklab, var(--b-accent) 14%, var(--b-panel))",
-  "color-mix(in oklab, var(--b-iris, #9d8cff) 14%, var(--b-panel))",
+  "color-mix(in oklab, var(--b-iris) 14%, var(--b-panel))",
   "color-mix(in oklab, var(--b-success) 12%, var(--b-panel))",
   "color-mix(in oklab, var(--b-warning) 14%, var(--b-panel))",
 ];

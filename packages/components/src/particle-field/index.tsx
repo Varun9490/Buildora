@@ -1,5 +1,14 @@
 "use client";
 
+/**
+ * buildora:theme-exempt
+ *
+ * The only literal colour here is a fallback for the canvas: a canvas
+ * cannot read a CSS variable directly, so the accent is read from the
+ * computed style, and this is what to use if that read fails. The particle
+ * colour itself is the theme's.
+ */
+
 import * as React from "react";
 import { cn } from "@buildora/utils";
 

@@ -53,7 +53,7 @@ function BentoItem({
   return (
     <div
       className={cn(
-        "bento-item rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#12141d] p-6",
+        "bento-item rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color:var(--b-bg)] p-6",
         "transition-all duration-200 hover:border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] hover:shadow-xl",
         className
       )}

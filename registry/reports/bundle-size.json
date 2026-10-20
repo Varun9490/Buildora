@@ -1,11 +1,11 @@
 {
   "note": "gzip level 9, the file content a consumer installs",
   "components": 127,
-  "totalGzipKb": 214.22,
-  "medianGzipKb": 1.45,
+  "totalGzipKb": 214.5,
+  "medianGzipKb": 1.44,
   "heaviest": {
     "slug": "terminal-ui",
-    "gzipKb": 12.2
+    "gzipKb": 12.33
   },
   "results": [
     {
@@ -72,8 +72,8 @@
       "slug": "json-viewer",
       "title": "JSON Viewer",
       "description": "Collapsible JSON viewer with mono styling.",
-      "rawBytes": 1323,
-      "gzipBytes": 691,
+      "rawBytes": 1345,
+      "gzipBytes": 686,
       "gzipKb": 0.67,
       "files": 1,
       "dependencies": [],
@@ -108,6 +108,20 @@
       ]
     },
     {
+      "slug": "log-viewer",
+      "title": "Log Viewer",
+      "description": "Filterable log stream with role=log semantics.",
+      "rawBytes": 1681,
+      "gzipBytes": 801,
+      "gzipKb": 0.78,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
       "slug": "feature-grid",
       "title": "Feature Grid",
       "description": "Three-up feature grid with tags and copy.",
@@ -125,20 +139,6 @@
       ]
     },
     {
-      "slug": "log-viewer",
-      "title": "Log Viewer",
-      "description": "Filterable log stream with role=log semantics.",
-      "rawBytes": 1666,
-      "gzipBytes": 804,
-      "gzipKb": 0.79,
-      "files": 1,
-      "dependencies": [],
-      "registryDependencies": [
-        "utils",
-        "tokens"
-      ]
-    },
-    {
       "slug": "spring",
       "title": "Spring",
       "description": "dt-based springStep + magnet + rafLoop. The physics behind magnetic effects.",
@@ -150,11 +150,11 @@
       "registryDependencies": []
     },
     {
-      "slug": "version-history",
-      "title": "Version History",
-      "description": "Document version list with restore action.",
-      "rawBytes": 2439,
-      "gzipBytes": 877,
+      "slug": "masonry-layout",
+      "title": "Masonry Layout",
+      "description": "Pinterest-style masonry columns.",
+      "rawBytes": 2215,
+      "gzipBytes": 876,
       "gzipKb": 0.86,
       "files": 1,
       "dependencies": [],
@@ -164,11 +164,11 @@
       ]
     },
     {
-      "slug": "masonry-layout",
-      "title": "Masonry Layout",
-      "description": "Pinterest-style masonry columns.",
-      "rawBytes": 2205,
-      "gzipBytes": 879,
+      "slug": "version-history",
+      "title": "Version History",
+      "description": "Document version list with restore action.",
+      "rawBytes": 2439,
+      "gzipBytes": 877,
       "gzipKb": 0.86,
       "files": 1,
       "dependencies": [],
@@ -238,8 +238,8 @@
       "slug": "site-footer",
       "title": "Site Footer",
       "description": "Footer with brand, link columns, and status line.",
-      "rawBytes": 2607,
-      "gzipBytes": 951,
+      "rawBytes": 2622,
+      "gzipBytes": 952,
       "gzipKb": 0.93,
       "files": 1,
       "dependencies": [
@@ -255,9 +255,9 @@
       "slug": "bento-grid",
       "title": "Bento Grid",
       "description": "Configurable grid with per-item spans.",
-      "rawBytes": 2211,
-      "gzipBytes": 978,
-      "gzipKb": 0.96,
+      "rawBytes": 2221,
+      "gzipBytes": 976,
+      "gzipKb": 0.95,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -284,8 +284,8 @@
       "slug": "diff-viewer",
       "title": "Diff Viewer",
       "description": "Side-by-side line comparison with added/removed semantics.",
-      "rawBytes": 2814,
-      "gzipBytes": 996,
+      "rawBytes": 2885,
+      "gzipBytes": 997,
       "gzipKb": 0.97,
       "files": 1,
       "dependencies": [],
@@ -447,20 +447,6 @@
       ]
     },
     {
-      "slug": "particle-field",
-      "title": "Particle Field",
-      "description": "Canvas particle drift with a DPR cap. No Three.js.",
-      "rawBytes": 2475,
-      "gzipBytes": 1144,
-      "gzipKb": 1.12,
-      "files": 1,
-      "dependencies": [],
-      "registryDependencies": [
-        "utils",
-        "tokens"
-      ]
-    },
-    {
       "slug": "horizontal-scroll",
       "title": "Horizontal Scroll",
       "description": "Scroll-driven horizontal panning section with mobile fallback.",
@@ -475,12 +461,12 @@
       ]
     },
     {
-      "slug": "pinned-section",
-      "title": "Pinned Section",
-      "description": "A section that sticks while its content scrolls past, and hands off cleanly.",
-      "rawBytes": 2679,
-      "gzipBytes": 1157,
-      "gzipKb": 1.13,
+      "slug": "comet-ring-spinner",
+      "title": "Comet Ring Spinner",
+      "description": "Comet head racing around a ring of fading trail dots. Pure CSS transforms, role=status, frozen under reduced motion.",
+      "rawBytes": 2622,
+      "gzipBytes": 1150,
+      "gzipKb": 1.12,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -490,11 +476,11 @@
       ]
     },
     {
-      "slug": "comet-ring-spinner",
-      "title": "Comet Ring Spinner",
-      "description": "Comet head racing around a ring of fading trail dots. Pure CSS transforms, role=status, frozen under reduced motion.",
-      "rawBytes": 2631,
-      "gzipBytes": 1159,
+      "slug": "pinned-section",
+      "title": "Pinned Section",
+      "description": "A section that sticks while its content scrolls past, and hands off cleanly.",
+      "rawBytes": 2679,
+      "gzipBytes": 1157,
       "gzipKb": 1.13,
       "files": 1,
       "dependencies": [],
@@ -743,6 +729,20 @@
       ]
     },
     {
+      "slug": "particle-field",
+      "title": "Particle Field",
+      "description": "Canvas particle drift with a DPR cap. No Three.js.",
+      "rawBytes": 2763,
+      "gzipBytes": 1280,
+      "gzipKb": 1.25,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
       "slug": "radio-group",
       "title": "Radio Group",
       "description": "Single-select radio set with keyboard arrow navigation.",
@@ -753,6 +753,21 @@
       "dependencies": [
         "motion@^13.4.0"
       ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "handwritten-annotation",
+      "title": "Handwritten Annotation",
+      "description": "Playful handwritten-style text annotations with hand-drawn arrow SVGs.",
+      "rawBytes": 3525,
+      "gzipBytes": 1306,
+      "gzipKb": 1.28,
+      "files": 1,
+      "dependencies": [],
       "registryDependencies": [
         "utils",
         "tokens",
@@ -771,21 +786,6 @@
       "registryDependencies": [
         "utils",
         "tokens"
-      ]
-    },
-    {
-      "slug": "handwritten-annotation",
-      "title": "Handwritten Annotation",
-      "description": "Playful handwritten-style text annotations with hand-drawn arrow SVGs.",
-      "rawBytes": 3533,
-      "gzipBytes": 1310,
-      "gzipKb": 1.28,
-      "files": 1,
-      "dependencies": [],
-      "registryDependencies": [
-        "utils",
-        "tokens",
-        "use-reduced-motion"
       ]
     },
     {
@@ -913,6 +913,20 @@
       ]
     },
     {
+      "slug": "vertical-timeline",
+      "title": "Vertical Timeline",
+      "description": "Timeline with dots, tick marks, connecting lines, and staggered scroll-reveal.",
+      "rawBytes": 4280,
+      "gzipBytes": 1460,
+      "gzipKb": 1.43,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
       "slug": "slider",
       "title": "Slider",
       "description": "Range slider with value display and keyboard support.",
@@ -930,26 +944,12 @@
       ]
     },
     {
-      "slug": "vertical-timeline",
-      "title": "Vertical Timeline",
-      "description": "Timeline with dots, tick marks, connecting lines, and staggered scroll-reveal.",
-      "rawBytes": 4296,
-      "gzipBytes": 1465,
-      "gzipKb": 1.43,
-      "files": 1,
-      "dependencies": [],
-      "registryDependencies": [
-        "utils",
-        "tokens"
-      ]
-    },
-    {
-      "slug": "pagination",
-      "title": "Pagination",
-      "description": "Page controls with prev/next and numbered buttons.",
-      "rawBytes": 6925,
-      "gzipBytes": 1482,
-      "gzipKb": 1.45,
+      "slug": "speech-bubble-cursor",
+      "title": "Speech Bubble Cursor",
+      "description": "Custom cursor provider that shows speech-bubble tooltips.",
+      "rawBytes": 4033,
+      "gzipBytes": 1470,
+      "gzipKb": 1.44,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -959,11 +959,11 @@
       ]
     },
     {
-      "slug": "speech-bubble-cursor",
-      "title": "Speech Bubble Cursor",
-      "description": "Custom cursor provider that shows speech-bubble tooltips.",
-      "rawBytes": 4052,
-      "gzipBytes": 1489,
+      "slug": "pagination",
+      "title": "Pagination",
+      "description": "Page controls with prev/next and numbered buttons.",
+      "rawBytes": 6925,
+      "gzipBytes": 1482,
       "gzipKb": 1.45,
       "files": 1,
       "dependencies": [],
@@ -1178,6 +1178,21 @@
       ]
     },
     {
+      "slug": "floating-object",
+      "title": "Floating Object",
+      "description": "3D hovering objects with perspective tilt on hover, floating animation, and drop shadow.",
+      "rawBytes": 4463,
+      "gzipBytes": 1712,
+      "gzipKb": 1.67,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
       "slug": "token-meter",
       "title": "Token Meter",
       "description": "Token usage meter with role=meter semantics.",
@@ -1201,21 +1216,6 @@
       "rawBytes": 4543,
       "gzipBytes": 1715,
       "gzipKb": 1.67,
-      "files": 1,
-      "dependencies": [],
-      "registryDependencies": [
-        "utils",
-        "tokens",
-        "use-reduced-motion"
-      ]
-    },
-    {
-      "slug": "floating-object",
-      "title": "Floating Object",
-      "description": "3D hovering objects with perspective tilt on hover, floating animation, and drop shadow.",
-      "rawBytes": 4482,
-      "gzipBytes": 1729,
-      "gzipKb": 1.69,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -1353,9 +1353,9 @@
       "slug": "text-fx",
       "title": "TextFx",
       "description": "Kinetic text in six kinds (typewriter, scramble, blur, gradient, glitch, morph). Screen readers hear the final text once.",
-      "rawBytes": 5842,
-      "gzipBytes": 1993,
-      "gzipKb": 1.95,
+      "rawBytes": 5833,
+      "gzipBytes": 1984,
+      "gzipKb": 1.94,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -1368,9 +1368,9 @@
       "slug": "draggable-card-pile",
       "title": "Draggable Card Pile",
       "description": "Riffled stack: the top card drags out past a threshold and cycles to the back with spring physics. Enter flings for keyboard.",
-      "rawBytes": 5007,
-      "gzipBytes": 2010,
-      "gzipKb": 1.96,
+      "rawBytes": 4998,
+      "gzipBytes": 2000,
+      "gzipKb": 1.95,
       "files": 1,
       "dependencies": [
         "motion@^13.4.0"
@@ -1385,9 +1385,9 @@
       "slug": "fx-button",
       "title": "FxButton",
       "description": "Real button with six finishes (none, shimmer, glow, ripple, gradient-border, liquid). Native semantics throughout.",
-      "rawBytes": 5719,
-      "gzipBytes": 2014,
-      "gzipKb": 1.97,
+      "rawBytes": 5701,
+      "gzipBytes": 2004,
+      "gzipKb": 1.96,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -1400,9 +1400,9 @@
       "slug": "backdrop",
       "title": "Backdrop",
       "description": "One ambient background, nine variants (aurora, grid, dots, noise, mesh, beams, rise, meteors, ripple). CSS-first, decorative, deterministic layout.",
-      "rawBytes": 8113,
-      "gzipBytes": 2055,
-      "gzipKb": 2.01,
+      "rawBytes": 8095,
+      "gzipBytes": 2041,
+      "gzipKb": 1.99,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -1529,6 +1529,20 @@
       ]
     },
     {
+      "slug": "calendar",
+      "title": "Calendar",
+      "description": "Month grid with real dates, gridcell semantics and today marked.",
+      "rawBytes": 6742,
+      "gzipBytes": 2249,
+      "gzipKb": 2.2,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
       "slug": "interactive-dropzone",
       "title": "Interactive Dropzone",
       "description": "Proximity-reactive dropzone with progress visualization and error recovery.",
@@ -1558,12 +1572,12 @@
       ]
     },
     {
-      "slug": "calendar",
-      "title": "Calendar",
-      "description": "Month grid with real dates, gridcell semantics and today marked.",
-      "rawBytes": 6732,
-      "gzipBytes": 2259,
-      "gzipKb": 2.21,
+      "slug": "project-showcase",
+      "title": "Project Showcase",
+      "description": "Project gallery section with filter pills, sticky sidebar, and hover zoom.",
+      "rawBytes": 7352,
+      "gzipBytes": 2256,
+      "gzipKb": 2.2,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -1581,20 +1595,6 @@
       "files": 1,
       "dependencies": [],
       "registryDependencies": []
-    },
-    {
-      "slug": "project-showcase",
-      "title": "Project Showcase",
-      "description": "Project gallery section with filter pills, sticky sidebar, and hover zoom.",
-      "rawBytes": 7446,
-      "gzipBytes": 2283,
-      "gzipKb": 2.23,
-      "files": 1,
-      "dependencies": [],
-      "registryDependencies": [
-        "utils",
-        "tokens"
-      ]
     },
     {
       "slug": "streaming-chat",
@@ -1889,9 +1889,9 @@
       "slug": "dynamic-island",
       "title": "Dynamic Island",
       "description": "Morphing status pill for live app state. A live region, not decoration.",
-      "rawBytes": 12590,
-      "gzipBytes": 3429,
-      "gzipKb": 3.35,
+      "rawBytes": 12946,
+      "gzipBytes": 3596,
+      "gzipKb": 3.51,
       "files": 1,
       "dependencies": [
         "motion@^13.4.0"
@@ -1923,9 +1923,9 @@
       "slug": "slingshot-otp",
       "title": "Slingshot OTP",
       "description": "OTP with real inputs, paste, and SR support. Standard mode by default; slingshot game is opt-in delight.",
-      "rawBytes": 14376,
-      "gzipBytes": 4112,
-      "gzipKb": 4.02,
+      "rawBytes": 14395,
+      "gzipBytes": 4107,
+      "gzipKb": 4.01,
       "files": 1,
       "dependencies": [
         "motion@^13.4.0"
@@ -1939,9 +1939,9 @@
       "slug": "terminal-ui",
       "title": "Terminal UI",
       "description": "Full terminal workspace: tab bar, sidebar tree, panes and a command input.",
-      "rawBytes": 55934,
-      "gzipBytes": 12490,
-      "gzipKb": 12.2,
+      "rawBytes": 56186,
+      "gzipBytes": 12630,
+      "gzipKb": 12.33,
       "files": 6,
       "dependencies": [],
       "registryDependencies": [

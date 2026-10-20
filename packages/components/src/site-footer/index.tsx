@@ -29,7 +29,7 @@ export function SiteFooter({
           <p className="font-display text-xl font-black">{brand}</p>
           <p className="mt-1 font-mono text-xs text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">{tagline}</p>
           <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] px-2.5 py-1 font-mono text-[11px] text-[color-mix(in_oklab,var(--b-text)_60%,transparent)]" role="status">
-            <span aria-hidden className="h-2 w-2 rounded-full bg-[#4fe08a]" />
+            <span aria-hidden className="h-2 w-2 rounded-full bg-[color:var(--b-success)]" />
             {status}
           </p>
         </div>

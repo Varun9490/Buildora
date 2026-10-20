@@ -78,7 +78,12 @@ type Flags = {
 const flags: Flags[] = items.map((item) => {
   const isCss = item.files.every((f) => f.target.endsWith(".css"));
   const code = source(item);
+  // A component can declare that its colours are deliberate product colours
+  // rather than theme colours — an iPhone Dynamic Island, a terminal ANSI
+  // palette. It has to say so, in the file, so the exemption is visible.
+  const exempt = code.includes("buildora:theme-exempt");
   const declared = new Set(item.dependencies.map((d) => d.split("@")[0]));
+  const src = code;
 
   const undeclaredDeps = [
     ...new Set(
@@ -88,11 +93,17 @@ const flags: Flags[] = items.map((item) => {
     ),
   ];
 
-  const hardcodedColors = [
-    ...new Set(
-      (code.match(/#[0-9a-fA-F]{3,8}\b/g) ?? []).map((c) => c.toLowerCase())
-    ),
-  ].slice(0, 6);
+  // Mask colours are not paints: a luminance mask needs black to mean
+  // transparent, whatever the theme is.
+  const paintable = src.replace(/(?:WebkitMaskImage|maskImage|mask)\s*[:=]\s*("[^"]*"|'[^']*')/g, "");
+
+  const hardcodedColors = exempt || isCss
+    ? []
+    : [
+        ...new Set(
+          (paintable.match(/#[0-9a-fA-F]{3,8}\b/g) ?? []).map((c) => c.toLowerCase())
+        ),
+      ].slice(0, 6);
 
   const missingAria: string[] = [];
   if (!isCss) {
@@ -116,6 +127,26 @@ const flags: Flags[] = items.map((item) => {
     .filter((f) => f.target.endsWith("/index.tsx") && f.target !== `components/buildora/${item.name}/index.tsx`)
     .map((f) => f.target);
 
+  /**
+   * A component that paints no colour of its own — a kinetic text effect,
+   * say — is not a problem: it inherits the colour around it. Only flag a
+   * component that paints a colour it did not get from a token.
+   */
+  const PAINTS_COLOUR =
+    /(?:^|["'`\s])(?:text|bg|border|fill|stroke|from|to|via|ring|outline|decoration|accent|caret|divide|placeholder)-(?:\[|white\b|black\b|slate|gray|zinc|neutral|stone|red\b|orange|amber|yellow|lime|green\b|emerald|teal|cyan|sky\b|blue\b|indigo|violet|purple|fuchsia|pink|rose)/m;
+
+  // `currentColor` and `none` are not colours: one inherits, the other is
+  // the absence of paint.
+  const INHERITED =
+    /(?:color|background|backgroundColor|borderColor|fill|stroke)\s*[:=]\s*["'{]?\s*(?:currentColor|none|transparent|inherit)/i;
+
+  const paintsColour =
+    (PAINTS_COLOUR.test(code) && !/inherit|transparent/i.test(code)) ||
+    (/style=\{\{[^}]*\b(color|background|backgroundColor|borderColor|fill|stroke)\s*:/s.test(code) &&
+      !INHERITED.test(code)) ||
+    (/\b(fill|stroke|color|backgroundColor|borderColor)=["'][^"']+["']/.test(code) &&
+      !INHERITED.test(code));
+
   return {
     slug: item.name,
     name: item.title,
@@ -126,7 +157,8 @@ const flags: Flags[] = items.map((item) => {
     // dependency-free clipboard fallback, so only the editor use is flagged.
     styleJsx: !isCss && /<style\s+jsx/.test(code),
     execCommand: !isCss && /document\.execCommand\s*\(\s*["'](?!copy["'])/.test(code),
-    tokenless: !isCss && !/var\(--b-/.test(code) && item.name !== "tokens",
+    tokenless:
+      !isCss && !exempt && !/var\(--b-/.test(code) && paintsColour && item.name !== "tokens",
     missingAria,
     overpromised,
     indexTarget,
@@ -210,7 +242,14 @@ section(
 );
 
 section(
-  "3. Deprecated or Next-only APIs",
+  "3. Paints a colour it did not get from a token",
+  flags
+    .filter((f) => f.tokenless)
+    .map((f) => ({ ...f, detail: "paints a colour with no token behind it" }))
+);
+
+section(
+  "4. Deprecated or Next-only APIs",
   flags
     .filter((f) => f.styleJsx || f.execCommand)
     .map((f) => ({
@@ -222,28 +261,28 @@ section(
 );
 
 section(
-  "4. Missing ARIA",
+  "5. Missing ARIA",
   flags
     .filter((f) => f.missingAria.length)
     .map((f) => ({ ...f, detail: f.missingAria.join("; ") }))
 );
 
 section(
-  "5. Names that promise more than the code",
+  "6. Names that promise more than the code",
   flags
     .filter((f) => f.overpromised.length)
     .map((f) => ({ ...f, detail: f.overpromised.join(", ") }))
 );
 
 section(
-  "6. Ambiguous install targets",
+  "7. Ambiguous install targets",
   flags
     .filter((f) => f.indexTarget.length)
     .map((f) => ({ ...f, detail: f.indexTarget.join(", ") }))
 );
 
 section(
-  "7. Files shared with another item",
+  "8. Files shared with another item",
   flags
     .filter((f) => f.sharedFile)
     .map((f) => ({

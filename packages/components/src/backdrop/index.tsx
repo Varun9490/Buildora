@@ -43,7 +43,7 @@ const NOISE_URI = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='h
  */
 export function Backdrop({
   variant = "aurora",
-  colors = ["var(--b-accent)", "var(--b-iris, #9d8cff)", "var(--b-success, #34d399)"],
+  colors = ["var(--b-accent)", "var(--b-iris)", "var(--b-success)"],
   count = 12,
   className,
   children,
