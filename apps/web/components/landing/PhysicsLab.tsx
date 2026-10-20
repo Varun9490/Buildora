@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@buildora/utils";
 import { useReducedMotionPref } from "@/lib/physics";
@@ -112,6 +113,12 @@ export function PhysicsLab() {
           This is the exact solver the primitives ship with. Pick a damping regime,
           pluck the system, and read the numbers instead of trusting a marketing claim.
         </p>
+        <Link
+          href="/docs/physics"
+          className="mt-5 inline-block text-sm text-[color:var(--b-accent)] underline underline-offset-4"
+        >
+          Why the constants are what they are →
+        </Link>
       </div>
 
       <div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-[1.9fr_1fr]">

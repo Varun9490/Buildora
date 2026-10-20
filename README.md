@@ -80,6 +80,14 @@ it, so a new component cannot ship without passing. The catalogue gate fails
 if the registry, the package barrel and the site ever list different
 components.
 
+## Reading
+
+- [The spring is the whole idea](/docs/physics) — why Buildora animates with
+  springs instead of easing curves, and why the constants are what they are.
+  Every number in it is computed from the shipped constants.
+- [`AUDIT.md`](./AUDIT.md) — the live audit of the shipped registry: what is
+  installable, what is accessible, what is left to fix.
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md). All components are built from scratch.

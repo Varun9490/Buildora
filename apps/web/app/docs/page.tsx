@@ -14,7 +14,8 @@ const docs = [
   { slug: "accessibility", icon: "access", title: "Accessibility", body: "Keyboard + focus + SR + reduced-motion on every component. Creative layers never remove semantic behavior — delight modes ship with a real-input fallback (e.g. OTP standard mode keeps a named input with autocomplete=one-time-code; game mode is opt-in with a Type instead control)." },
   { slug: "responsive", icon: "device", title: "Responsive Behavior", body: "Desktop pointer physics → touch drag/press equivalents → simplified small-screen controls. Larger targets, no hover-only flows." },
   { slug: "customization", icon: "palette", title: "Customization", body: "CSS vars (--b-accent, --b-iris), Tailwind variants, and tree-shakeable exports. Tokens ship as the tokens registry item (styles/buildora/tokens.css) — import once, components inherit your theme." },
-  { slug: "registry", icon: "grid", title: "Registry", body: "Source: registry/components/*.json. Build: pnpm registry:build. Validate: pnpm registry:validate. shadcn items: registry/generated/*.json." }
+  { slug: "registry", icon: "grid", title: "Registry", body: "Source: registry/components/*.json. Build: pnpm registry:build. Validate: pnpm registry:validate. shadcn items: registry/generated/*.json." },
+  { slug: "physics", icon: "wave", title: "Physics", body: "Why springs instead of easing curves, how the damping ratio shapes a movement, and why the magnetic button is set to 260 / 22. Every number is computed from the shipped constants.", href: "/docs/physics" },
 ];
 
 function DocIcon({ name, className }: { name: string; className?: string }) {
@@ -100,6 +101,12 @@ function DocIcon({ name, className }: { name: string; className?: string }) {
           <rect x="3" y="14" width="7" height="7" rx="1" />
         </svg>
       );
+    case "wave":
+      return (
+        <svg {...common}>
+          <path d="M2 12c2.5 0 2.5-6 5-6s2.5 12 5 12 2.5-12 5-12 2.5 6 5 6" />
+        </svg>
+      );
     default:
       return null;
   }
@@ -152,6 +159,14 @@ export default function DocsPage() {
               <h2 className="font-display text-lg font-black">{d.title}</h2>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--b-text-secondary)]">{d.body}</p>
+            {d.href ? (
+              <Link
+                href={d.href}
+                className="mt-3 inline-block text-sm text-[color:var(--b-accent)] underline"
+              >
+                Read the article →
+              </Link>
+            ) : null}
           </motion.article>
         ))}
       </div>
