@@ -155,7 +155,7 @@ export function HoverCard({
         className={cn(
           "fixed z-[150] rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] p-4 shadow-2xl backdrop-blur-xl",
           "focus:outline-none focus:ring-2 focus:ring-[var(--b-accent)] focus:ring-offset-2 focus:ring-offset-[var(--b-bg)]",
-          reducedMotion ? "" : "animate-scale-in",
+          reducedMotion ? "" : "motion-safe:animate-scale-in",
           className
         )}
         onMouseEnter={handleMouseEnter}

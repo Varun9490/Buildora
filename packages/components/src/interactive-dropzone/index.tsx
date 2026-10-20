@@ -58,7 +58,7 @@ export function InteractiveDropzone({ onFiles, simulate = true, accept, classNam
         }}
         onPointerLeave={() => setNear(0)}
         className={cn(
-          "relative cursor-pointer overflow-hidden rounded-2xl border border-dashed p-8 text-center transition-all duration-200",
+          "relative cursor-pointer overflow-hidden rounded-2xl border border-dashed p-8 text-center motion-safe:transition-all motion-safe:duration-200",
           drag ? "border-[color:var(--b-accent)] bg-[color-mix(in_oklab,var(--b-accent)_10%,transparent)] scale-[1.01]" : "border-[color-mix(in_oklab,var(--b-border)_15%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_3%,transparent)] hover:border-[color-mix(in_oklab,var(--b-border)_30%,transparent)]"
         )}
         style={{ boxShadow: near > 0 ? `0 0 ${40 * near}px color-mix(in oklab, var(--b-iris) ${35 * near}%, transparent)` : undefined }}
@@ -77,7 +77,7 @@ export function InteractiveDropzone({ onFiles, simulate = true, accept, classNam
               <div className="min-w-0 flex-1">
                 <div className="flex justify-between text-xs"><span className="truncate font-medium">{f.name}</span><span className="text-[color-mix(in_oklab,var(--b-text)_50%,transparent)]">{formatBytes(f.size)} · {Math.round(f.progress)}%</span></div>
                 <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]">
-                  <div className={cn("h-full rounded-full transition-all", f.status === "done" ? "bg-[color:var(--b-accent)]" : "bg-[color:var(--b-iris)]")} style={{ width: `${f.status === "done" ? 100 : f.progress}%` }} />
+                  <div className={cn("h-full rounded-full motion-safe:transition-all", f.status === "done" ? "bg-[color:var(--b-accent)]" : "bg-[color:var(--b-iris)]")} style={{ width: `${f.status === "done" ? 100 : f.progress}%` }} />
                 </div>
               </div>
               {f.status === "done" ? <span className="text-xs text-[color:var(--b-accent)]">Done</span> : (

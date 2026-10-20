@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type ScrollProgressProps = {
   /** The element to track. Defaults to the window. */
@@ -32,6 +33,7 @@ export function ScrollProgress({
   className,
 }: ScrollProgressProps) {
   const barRef = React.useRef<HTMLDivElement | null>(null);
+  const reduced = useReducedMotion();
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
@@ -88,7 +90,7 @@ export function ScrollProgress({
         style={{
           background: color,
           transform: `scaleX(${progress})`,
-          transition: "transform 80ms linear",
+          transition: reduced ? "none" : "transform 80ms linear",
         }}
       />
     </div>

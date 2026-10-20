@@ -136,7 +136,7 @@ export function StreamingChat({
           >
             <p>
               {inFlight}
-              <span className="ml-0.5 inline-block h-4 w-[2px] animate-pulse bg-[color:var(--b-accent)] align-middle" />
+              <span className="ml-0.5 inline-block h-4 w-[2px] motion-safe:animate-pulse bg-[color:var(--b-accent)] align-middle" />
             </p>
           </div>
         ) : null}

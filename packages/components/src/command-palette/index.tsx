@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn, fuzzyScore } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 import { motion, AnimatePresence } from "motion/react";
 
 export type Command = { id: string; label: string; hint?: string; group?: string };
@@ -22,6 +23,7 @@ export function CommandPalette({
     { id: "c4", label: "Toggle theme", hint: "dark/light", group: "Actions" },
   ];
   const id = React.useId();
+  const reduced = useReducedMotion();
   const [q, setQ] = React.useState("");
   const [active, setActive] = React.useState(0);
   const view = seed
@@ -62,7 +64,9 @@ export function CommandPalette({
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                  transition={
+                    reduced ? { duration: 0 } : { type: "spring", bounce: 0.2, duration: 0.5 }
+                  }
                 />
               )}
             </AnimatePresence>

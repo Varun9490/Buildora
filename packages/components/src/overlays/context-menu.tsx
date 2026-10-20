@@ -154,7 +154,7 @@ export function ContextMenuContent({ children, className }: { children: React.Re
       <div
         className={cn(
           "fixed inset-0 z-[299] bg-[var(--b-scrim)] backdrop-blur-sm",
-          reducedMotion ? "opacity-100" : "animate-fade-in"
+          reducedMotion ? "opacity-100" : "motion-safe:animate-fade-in"
         )}
         aria-hidden="true"
       />
@@ -163,7 +163,7 @@ export function ContextMenuContent({ children, className }: { children: React.Re
         className={cn(
           "fixed z-[300] min-w-[180px] overflow-auto rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] py-2 shadow-2xl backdrop-blur-xl",
           "focus:outline-none focus:ring-2 focus:ring-[var(--b-accent)] focus:ring-offset-2 focus:ring-offset-[var(--b-bg)]",
-          reducedMotion ? "" : "animate-scale-in",
+          reducedMotion ? "" : "motion-safe:animate-scale-in",
           className
         )}
         role="menu"

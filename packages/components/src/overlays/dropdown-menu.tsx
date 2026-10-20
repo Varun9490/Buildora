@@ -173,7 +173,7 @@ export function DropdownMenuContent({ children, className, align = "start" }: {
   const content = (
     <>
       <div
-        className="fixed inset-0 z-[199] bg-[var(--b-scrim)] backdrop-blur-sm animate-fade-in"
+        className="fixed inset-0 z-[199] bg-[var(--b-scrim)] backdrop-blur-sm motion-safe:animate-fade-in"
         aria-hidden="true"
       />
       <div
@@ -182,7 +182,7 @@ export function DropdownMenuContent({ children, className, align = "start" }: {
         aria-labelledby={titleId}
         className={cn(
           "fixed z-[200] min-w-[180px] overflow-auto rounded-xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] py-2 shadow-2xl backdrop-blur-xl",
-          reducedMotion ? "" : "animate-scale-in",
+          reducedMotion ? "" : "motion-safe:animate-scale-in",
           className
         )}
         style={{

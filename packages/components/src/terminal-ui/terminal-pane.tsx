@@ -232,7 +232,7 @@ export function TerminalPane({
           <span
             className={cn(
               "inline-block w-2 h-[1.1em] align-middle",
-              cursorBlink && "animate-[terminal-blink_1s_step-end_infinite]"
+              cursorBlink && "motion-safe:animate-[terminal-blink_1s_step-end_infinite]"
             )}
             style={{ backgroundColor: theme.cursor }}
             aria-hidden

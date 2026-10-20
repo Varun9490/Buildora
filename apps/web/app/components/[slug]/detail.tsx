@@ -10,6 +10,7 @@ import { allComponents, frameworkLabels, frameworks, sizeFor } from "@/lib/regis
 import type { RegistryItem } from "@/lib/registry";
 import { frameworkExample } from "@/lib/framework-code";
 import { agentBrief } from "@/lib/agent-brief";
+import { motionBehaviour, propsOf } from "@/lib/component-facts";
 import { DEFAULT_RENDER_CONTROLS, type Controls } from "@/lib/render-controls";
 import { CodeViewer } from "@/components/CodeViewer";
 
@@ -45,6 +46,8 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
     [slug, summary, framework, item]
   );
   const size = sizeFor(slug);
+  const props = propsOf(slug);
+  const motionFacts = motionBehaviour(slug);
 
   if (!summary) return null;
 
@@ -216,6 +219,53 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
                </AnimatePresence>
              </div>
           </div>
+
+          {/* Props and behaviour — derived from the shipped source */}
+          <section className="mt-8 grid gap-4 md:grid-cols-[1.6fr_1fr]">
+            <div className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-5">
+              <h2 className="font-mono text-[10px] font-bold uppercase tracking-widest text-[color:var(--b-muted)]">
+                Props
+              </h2>
+              {props.length ? (
+                <ul className="mt-3 flex flex-col gap-2">
+                  {props.map((p) => (
+                    <li key={p.prop} className="flex flex-wrap items-baseline gap-2 text-sm">
+                      <code className="rounded bg-[color:var(--b-surface)] px-1.5 py-0.5 font-mono text-[12px] text-[color:var(--b-accent)]">
+                        {p.prop}
+                      </code>
+                      <span className="text-[color:var(--b-muted)]">{p.label}</span>
+                      <span className="font-mono text-[11px] text-[color:var(--b-muted)]">
+                        {p.kind === "slider"
+                          ? `${p.min}–${p.max}${p.step !== 1 ? ` step ${p.step}` : ""}`
+                          : p.kind === "toggle"
+                            ? "on / off"
+                            : p.options.join(" | ")}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-3 text-sm text-[color:var(--b-muted)]">
+                  No tunable props. It renders with its defaults, and takes the
+                  usual HTML attributes.
+                </p>
+              )}
+            </div>
+
+            <div className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-5">
+              <h2 className="font-mono text-[10px] font-bold uppercase tracking-widest text-[color:var(--b-muted)]">
+                Reduced motion
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-[color:var(--b-text-secondary)]">
+                {motionFacts.summary}
+              </p>
+              <p className="mt-3 text-xs leading-relaxed text-[color:var(--b-muted)]">
+                {size ? `${size.gzipKb} KB gzipped, ${size.files} file${size.files === 1 ? "" : "s"}. ` : ""}
+                React is the full implementation; the other framework tabs
+                are snippet ports.
+              </p>
+            </div>
+          </section>
         </motion.div>
       </div>
     </div>

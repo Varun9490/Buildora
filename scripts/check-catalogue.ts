@@ -42,6 +42,25 @@ if (registryIndex.total !== published.length) {
   fail(`registry total is ${registryIndex.total} but it lists ${published.length} components`);
 }
 
+/* ── The shipped source of every item ──────────────────────────────────── */
+const generatedDir = path.join(root, "registry", "generated");
+const registry = new Map<
+  string,
+  { files: Array<{ content?: string; target?: string }> }
+>();
+for (const f of fs.readdirSync(generatedDir)) {
+  if (!f.endsWith(".json") || f === "registry.json" || f === "agent-catalog.json") {
+    continue;
+  }
+  const slug = f.replace(/\.json$/, "");
+  registry.set(
+    slug,
+    JSON.parse(fs.readFileSync(path.join(generatedDir, f), "utf8")) as {
+      files: Array<{ content?: string; target?: string }>;
+    }
+  );
+}
+
 /* ── The site's explorer groups ─────────────────────────────────────────── */
 const explorer = read("apps/web/components/landing/ExplorerWorkspace.tsx");
 const groupsBlock = explorer.slice(
@@ -115,6 +134,21 @@ for (const s of published) {
 for (const s of demoed) {
   if (!publishedSet.has(s)) {
     fail(`the renderer demos "${s}", which is not in the registry`);
+  }
+}
+
+/* ── 6. Reduced motion ───────────────────────────────────────────────────
+   A component that moves on its own must check the motion preference
+   first. Otherwise the site is making an accessibility promise the
+   components do not keep. */
+const MOVES = /requestAnimationFrame|animate-|animation:|motion\.|springStep|useMagnetic|setInterval/;
+const CHECKS = /useReducedMotion|prefers-reduced-motion|motion-safe:/;
+
+for (const [slug, item] of registry) {
+  const code = item.files.map((f) => f.content ?? "").join("\n");
+  if (!MOVES.test(code)) continue;
+  if (!CHECKS.test(code)) {
+    fail(`"${slug}" moves but never checks the motion preference`);
   }
 }
 

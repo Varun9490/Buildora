@@ -1,20 +1,20 @@
 {
   "note": "gzip level 9, the file content a consumer installs",
   "components": 127,
-  "totalGzipKb": 214.5,
+  "totalGzipKb": 214.89,
   "medianGzipKb": 1.44,
   "heaviest": {
     "slug": "terminal-ui",
-    "gzipKb": 12.33
+    "gzipKb": 12.34
   },
   "results": [
     {
       "slug": "tactile-loader",
       "title": "Tactile Loader",
       "description": "Three bouncing dots that announce themselves once.",
-      "rawBytes": 925,
-      "gzipBytes": 526,
-      "gzipKb": 0.51,
+      "rawBytes": 937,
+      "gzipBytes": 534,
+      "gzipKb": 0.52,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -43,9 +43,9 @@
       "slug": "tool-call-viz",
       "title": "Tool Call Visualization",
       "description": "Timeline of agent tool calls with running/done states.",
-      "rawBytes": 1325,
-      "gzipBytes": 616,
-      "gzipKb": 0.6,
+      "rawBytes": 1337,
+      "gzipBytes": 622,
+      "gzipKb": 0.61,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -447,20 +447,6 @@
       ]
     },
     {
-      "slug": "horizontal-scroll",
-      "title": "Horizontal Scroll",
-      "description": "Scroll-driven horizontal panning section with mobile fallback.",
-      "rawBytes": 2943,
-      "gzipBytes": 1145,
-      "gzipKb": 1.12,
-      "files": 1,
-      "dependencies": [],
-      "registryDependencies": [
-        "utils",
-        "tokens"
-      ]
-    },
-    {
       "slug": "comet-ring-spinner",
       "title": "Comet Ring Spinner",
       "description": "Comet head racing around a ring of fading trail dots. Pure CSS transforms, role=status, frozen under reduced motion.",
@@ -566,20 +552,6 @@
       ]
     },
     {
-      "slug": "scroll-progress",
-      "title": "Scroll Progress",
-      "description": "Reading-progress bar that tracks an element, scaled with transforms so scrolling never lays out.",
-      "rawBytes": 2786,
-      "gzipBytes": 1209,
-      "gzipKb": 1.18,
-      "files": 1,
-      "dependencies": [],
-      "registryDependencies": [
-        "utils",
-        "tokens"
-      ]
-    },
-    {
       "slug": "tooltip",
       "title": "Tooltip",
       "description": "Hover/focus description bubble for controls.",
@@ -658,6 +630,21 @@
       "rawBytes": 2786,
       "gzipBytes": 1234,
       "gzipKb": 1.21,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "scroll-progress",
+      "title": "Scroll Progress",
+      "description": "Reading-progress bar that tracks an element, scaled with transforms so scrolling never lays out.",
+      "rawBytes": 2915,
+      "gzipBytes": 1252,
+      "gzipKb": 1.22,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -786,6 +773,21 @@
       "registryDependencies": [
         "utils",
         "tokens"
+      ]
+    },
+    {
+      "slug": "horizontal-scroll",
+      "title": "Horizontal Scroll",
+      "description": "Scroll-driven horizontal panning section with mobile fallback.",
+      "rawBytes": 3371,
+      "gzipBytes": 1314,
+      "gzipKb": 1.28,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
       ]
     },
     {
@@ -1034,28 +1036,29 @@
       ]
     },
     {
-      "slug": "command-palette",
-      "title": "Command Palette",
-      "description": "Keyboard-first command surface with fuzzy matching and combobox semantics.",
-      "rawBytes": 4129,
-      "gzipBytes": 1545,
-      "gzipKb": 1.51,
-      "files": 1,
-      "dependencies": [
-        "motion@^13.4.0"
-      ],
-      "registryDependencies": [
-        "utils",
-        "tokens"
-      ]
-    },
-    {
       "slug": "segmented-control",
       "title": "Segmented Control",
       "description": "iOS-style segmented option picker with a spring-gliding accent pill, radiogroup semantics and full keyboard nav.",
       "rawBytes": 4035,
       "gzipBytes": 1561,
       "gzipKb": 1.52,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "command-palette",
+      "title": "Command Palette",
+      "description": "Keyboard-first command surface with fuzzy matching and combobox semantics.",
+      "rawBytes": 4307,
+      "gzipBytes": 1594,
+      "gzipKb": 1.56,
       "files": 1,
       "dependencies": [
         "motion@^13.4.0"
@@ -1242,9 +1245,9 @@
       "slug": "hover-card",
       "title": "Hover Card",
       "description": "Delayed hover preview card with configurable side.",
-      "rawBytes": 5995,
-      "gzipBytes": 1770,
-      "gzipKb": 1.73,
+      "rawBytes": 6007,
+      "gzipBytes": 1777,
+      "gzipKb": 1.74,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -1289,8 +1292,8 @@
       "slug": "popover",
       "title": "Popover",
       "description": "Anchored floating panel with placement control.",
-      "rawBytes": 6652,
-      "gzipBytes": 1862,
+      "rawBytes": 6664,
+      "gzipBytes": 1868,
       "gzipKb": 1.82,
       "files": 1,
       "dependencies": [],
@@ -1353,8 +1356,8 @@
       "slug": "text-fx",
       "title": "TextFx",
       "description": "Kinetic text in six kinds (typewriter, scramble, blur, gradient, glitch, morph). Screen readers hear the final text once.",
-      "rawBytes": 5833,
-      "gzipBytes": 1984,
+      "rawBytes": 5845,
+      "gzipBytes": 1991,
       "gzipKb": 1.94,
       "files": 1,
       "dependencies": [],
@@ -1543,20 +1546,6 @@
       ]
     },
     {
-      "slug": "interactive-dropzone",
-      "title": "Interactive Dropzone",
-      "description": "Proximity-reactive dropzone with progress visualization and error recovery.",
-      "rawBytes": 6207,
-      "gzipBytes": 2250,
-      "gzipKb": 2.2,
-      "files": 1,
-      "dependencies": [],
-      "registryDependencies": [
-        "utils",
-        "tokens"
-      ]
-    },
-    {
       "slug": "detent-dial",
       "title": "Detent Dial",
       "description": "Rotary knob with Gaussian tick-wave emphasis around the active detent. Drag, wheel, or arrows; role=slider.",
@@ -1586,6 +1575,20 @@
       ]
     },
     {
+      "slug": "interactive-dropzone",
+      "title": "Interactive Dropzone",
+      "description": "Proximity-reactive dropzone with progress visualization and error recovery.",
+      "rawBytes": 6243,
+      "gzipBytes": 2258,
+      "gzipKb": 2.21,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
       "slug": "tokens",
       "title": "Tokens",
       "description": "Light + dark CSS vars + shared keyframes. Import once so components are styled on first paint.",
@@ -1600,9 +1603,9 @@
       "slug": "streaming-chat",
       "title": "Streaming Chat",
       "description": "Chat surface for a token stream. Bring your own transport: it renders the messages you pass and hands the input to onSend.",
-      "rawBytes": 6596,
-      "gzipBytes": 2323,
-      "gzipKb": 2.27,
+      "rawBytes": 6608,
+      "gzipBytes": 2332,
+      "gzipKb": 2.28,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -1614,9 +1617,9 @@
       "slug": "context-menu",
       "title": "Context Menu",
       "description": "Right-click menu with keyboard fallback trigger.",
-      "rawBytes": 8696,
-      "gzipBytes": 2339,
-      "gzipKb": 2.28,
+      "rawBytes": 8720,
+      "gzipBytes": 2346,
+      "gzipKb": 2.29,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -1680,9 +1683,9 @@
       "slug": "dropdown-menu",
       "title": "Dropdown Menu",
       "description": "Trigger-anchored menu with items, labels, and checks.",
-      "rawBytes": 9261,
-      "gzipBytes": 2509,
-      "gzipKb": 2.45,
+      "rawBytes": 9285,
+      "gzipBytes": 2516,
+      "gzipKb": 2.46,
       "files": 1,
       "dependencies": [],
       "registryDependencies": [
@@ -1695,8 +1698,8 @@
       "slug": "button",
       "title": "Primitive Button",
       "description": "Base button with variants and sizes. Foundation for everything clickable.",
-      "rawBytes": 6891,
-      "gzipBytes": 2526,
+      "rawBytes": 6903,
+      "gzipBytes": 2533,
       "gzipKb": 2.47,
       "files": 1,
       "dependencies": [
@@ -1923,25 +1926,26 @@
       "slug": "slingshot-otp",
       "title": "Slingshot OTP",
       "description": "OTP with real inputs, paste, and SR support. Standard mode by default; slingshot game is opt-in delight.",
-      "rawBytes": 14395,
-      "gzipBytes": 4107,
-      "gzipKb": 4.01,
+      "rawBytes": 14631,
+      "gzipBytes": 4162,
+      "gzipKb": 4.06,
       "files": 1,
       "dependencies": [
         "motion@^13.4.0"
       ],
       "registryDependencies": [
         "utils",
-        "tokens"
+        "tokens",
+        "use-reduced-motion"
       ]
     },
     {
       "slug": "terminal-ui",
       "title": "Terminal UI",
       "description": "Full terminal workspace: tab bar, sidebar tree, panes and a command input.",
-      "rawBytes": 56186,
-      "gzipBytes": 12630,
-      "gzipKb": 12.33,
+      "rawBytes": 56198,
+      "gzipBytes": 12638,
+      "gzipKb": 12.34,
       "files": 6,
       "dependencies": [],
       "registryDependencies": [

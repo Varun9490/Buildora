@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 import { motion, AnimatePresence } from "motion/react";
 
 export type SlingshotOTPProps = {
@@ -32,6 +33,7 @@ export function SlingshotOTP({ length = 6, value, onChange, onComplete, label = 
   const controlled = value !== undefined;
   const val = controlled ? value : internal;
   const digits = val.padEnd(length, " ").split("").slice(0, length);
+  const reduced = useReducedMotion();
 
   // Standard input is the default: game mode is opt-in delight, never the auth gate.
   const [mode, setMode] = React.useState<"standard" | "game">("standard");
@@ -64,6 +66,7 @@ export function SlingshotOTP({ length = 6, value, onChange, onComplete, label = 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
+            transition={reduced ? { duration: 0 } : undefined}
             className="relative"
           >
             <StandardOTP length={length} value={val} onChange={commit} />
@@ -74,6 +77,7 @@ export function SlingshotOTP({ length = 6, value, onChange, onComplete, label = 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
+            transition={reduced ? { duration: 0 } : undefined}
           >
             <GameOTP length={length} digits={digits} onHit={(d) => commit((val + d).slice(0, length))} onClear={() => commit("")} />
           </motion.div>

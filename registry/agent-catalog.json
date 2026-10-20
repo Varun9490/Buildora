@@ -166,7 +166,8 @@
       "dependencies": [],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json"
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "collection": "creative",
@@ -877,7 +878,8 @@
       ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json"
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "collection": "creative",
@@ -3929,7 +3931,8 @@
       ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json"
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "collection": "kit",
@@ -4461,7 +4464,8 @@
       "dependencies": [],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
-        "https://buildora-hazel.vercel.app/r/tokens.json"
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
       "collection": "creative",

@@ -89,7 +89,7 @@ function TypewriterLayer({ words, speed }: { words: string[]; speed: number }) {
   return (
     <span>
       {out}
-      <span className="animate-pulse">|</span>
+      <span className="motion-safe:animate-pulse">|</span>
     </span>
   );
 }

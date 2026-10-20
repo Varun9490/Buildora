@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@buildora/utils";
+import { useReducedMotion } from "@buildora/hooks";
 
 export type HorizontalScrollProps = React.HTMLAttributes<HTMLElement> & {
   /** Total width multiplier (e.g. 5 means the inner track is 5x viewport width) */
@@ -23,6 +24,9 @@ export function HorizontalScroll({
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const trackRef = React.useRef<HTMLDivElement | null>(null);
   const [isMobile, setIsMobile] = React.useState(false);
+  // A scroll-driven pan is still motion. Under reduced motion the section
+  // becomes a normal horizontal scroller the reader drives themselves.
+  const reduced = useReducedMotion();
 
   React.useEffect(() => {
     const mq = window.matchMedia(`(max-width: ${mobileBreakpoint}px)`);
@@ -33,7 +37,7 @@ export function HorizontalScroll({
   }, [mobileBreakpoint]);
 
   React.useEffect(() => {
-    if (isMobile) return;
+    if (isMobile || reduced) return;
 
     const section = sectionRef.current;
     const track = trackRef.current;
@@ -66,9 +70,11 @@ export function HorizontalScroll({
       window.removeEventListener("scroll", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [isMobile]);
+  }, [isMobile, reduced]);
 
-  if (isMobile) {
+  if (isMobile || reduced) {
+    // Small screens and reduced motion get the same thing: a plain section
+    // the reader scrolls themselves, with no scroll hijacking.
     return (
       <section
         className={cn("buildora-horizontal-scroll relative", className)}

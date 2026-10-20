@@ -21,7 +21,7 @@ export function TactileLoader({ label = "Loading", className }: TactileLoaderPro
         <span
           key={i}
           aria-hidden
-          className="h-2 w-2 rounded-full bg-[color:var(--b-accent)] animate-bounce"
+          className="h-2 w-2 rounded-full bg-[color:var(--b-accent)] motion-safe:animate-bounce"
           style={{ animationDelay: `${i * 0.15}s` }}
         />
       ))}
