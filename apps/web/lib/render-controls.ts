@@ -17,6 +17,8 @@ export type Controls = {
   pageSize: number;
   tilt: number;
   variant: string;
+  /** FxButton / FxCard effect name. */
+  effect: string;
 };
 
 export const DEFAULT_RENDER_CONTROLS: Controls = {
@@ -31,4 +33,5 @@ export const DEFAULT_RENDER_CONTROLS: Controls = {
   pageSize: 6,
   tilt: 8,
   variant: "accent",
+  effect: "shimmer",
 };

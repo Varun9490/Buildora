@@ -1,24 +1,13 @@
 {
   "note": "gzip level 9, the file content a consumer installs",
   "components": 122,
-  "totalGzipKb": 205.41,
+  "totalGzipKb": 205.79,
   "medianGzipKb": 1.45,
   "heaviest": {
     "slug": "terminal-ui",
     "gzipKb": 12.2
   },
   "results": [
-    {
-      "slug": "use-reduced-motion",
-      "title": "useReducedMotion",
-      "description": "SSR-safe prefers-reduced-motion via useSyncExternalStore. No hydration flash.",
-      "rawBytes": 737,
-      "gzipBytes": 377,
-      "gzipKb": 0.37,
-      "files": 1,
-      "dependencies": [],
-      "registryDependencies": []
-    },
     {
       "slug": "tactile-loader",
       "title": "Tactile Loader",
@@ -92,6 +81,17 @@
         "utils",
         "tokens"
       ]
+    },
+    {
+      "slug": "use-reduced-motion",
+      "title": "useReducedMotion",
+      "description": "SSR-safe prefers-reduced-motion via useSyncExternalStore. No hydration flash.",
+      "rawBytes": 1817,
+      "gzipBytes": 768,
+      "gzipKb": 0.75,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": []
     },
     {
       "slug": "kbd",

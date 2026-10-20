@@ -25,14 +25,16 @@ const componentPresets: Record<string, Preset[]> = {
     { label: "Dense", controls: { count: 150 } },
     { label: "Default", controls: { count: 70 } },
   ],
-  "liquid-button": [
-    { label: "Gentle", controls: { intensity: 0.3 } },
-    { label: "Aggressive", controls: { intensity: 1 } },
-    { label: "Organic", controls: { intensity: 0.7 } },
+  "fx-button": [
+    { label: "Liquid", controls: { effect: "liquid" } },
+    { label: "Ripple", controls: { effect: "ripple" } },
+    { label: "Shimmer", controls: { effect: "shimmer" } },
+    { label: "Gradient border", controls: { effect: "gradient-border" } },
   ],
-  "magnetic-card": [
-    { label: "Subtle", controls: { tilt: 4 } },
-    { label: "Dramatic", controls: { tilt: 14 } },
+  "fx-card": [
+    { label: "Tilt", controls: { effect: "tilt" } },
+    { label: "Holographic", controls: { effect: "holographic" } },
+    { label: "Flip", controls: { effect: "flip" } },
   ],
   "slingshot-otp": [
     { label: "4-digit", controls: { length: 4 } },

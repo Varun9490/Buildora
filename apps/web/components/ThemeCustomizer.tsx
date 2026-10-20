@@ -13,7 +13,7 @@ import { ACCENTS, SURFACES } from "@/lib/design";
 export function ThemeCustomizer() {
   const [open, setOpen] = React.useState(false);
   const wrapRef = React.useRef<HTMLDivElement | null>(null);
-  const { themeAccent, setThemeAccent, surface, setSurface } = useBuildora();
+  const { themeAccent, setThemeAccent, surface, setSurface, motionOverride, setMotionOverride } = useBuildora();
 
   React.useEffect(() => {
     if (!open) return;
@@ -134,6 +134,39 @@ export function ThemeCustomizer() {
                 </div>
                 <p className="mt-2 text-[11px] text-[color:var(--b-muted)]">
                   {SURFACES.find((s) => s.id === surface)?.detail} surface · instant repaint
+                </p>
+              </div>
+
+              <div>
+                <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-[color:var(--b-text-secondary)]">
+                  Motion
+                </p>
+                <div className="grid grid-cols-2 gap-1 rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-1">
+                  {(
+                    [
+                      { id: "auto", label: "Follow OS" },
+                      { id: "reduced", label: "Pause all" },
+                    ] as const
+                  ).map((m) => (
+                    <button
+                      key={m.id}
+                      onClick={() => setMotionOverride(m.id)}
+                      aria-pressed={motionOverride === m.id}
+                      className={cn(
+                        "rounded-lg px-2 py-2 text-[11px] font-medium transition-colors",
+                        motionOverride === m.id
+                          ? "bg-[color:var(--b-panel)] text-[color:var(--b-text)] shadow-sm"
+                          : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text-secondary)]"
+                      )}
+                    >
+                      {m.label}
+                    </button>
+                  ))}
+                </div>
+                <p className="mt-2 text-[11px] text-[color:var(--b-muted)]">
+                  {motionOverride === "reduced"
+                    ? "Every animation on the page is paused, whatever your OS says."
+                    : "Animations follow your system setting."}
                 </p>
               </div>
             </div>

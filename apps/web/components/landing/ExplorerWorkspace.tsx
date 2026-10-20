@@ -8,7 +8,7 @@ import { DEFAULT_RENDER_CONTROLS, type Controls } from "@/lib/render-controls";
 import { ComponentRenderer } from "@/components/ComponentRenderer";
 import { installCommand } from "@/lib/design";
 import { onInspect } from "@/lib/inspect";
-import { SIGNATURE_CODE } from "@/lib/showcase-code";
+import { shippedCode } from "@/lib/showcase-code";
 import { CodeBlock, CopyButton } from "./CodeBlock";
 import { SlingshotOtpStage } from "./bento/SlingshotOtpStage";
 import { KineticButtons } from "./bento/KineticButtons";
@@ -23,7 +23,7 @@ import { ExtraPreview, EXTRA_PREVIEW_SLUGS, EXTRA_CODE } from "./explorer/extra-
 type Tab = "preview" | "code" | "cli";
 
 const VIRTUAL = [
-  { slug: "gaussian-dock", name: "Gaussian Dock", category: "Navigation" },
+  { slug: "magnification-dock", name: "Magnification Dock", category: "Navigation" },
   { slug: "dynamic-island", name: "Dynamic Island", category: "Overlays" },
 ];
 
@@ -103,7 +103,7 @@ const SIGNATURE_DEMOS: Record<string, React.ReactNode> = {
   backdrop: <ParticleForceField />,
   slider: <RubberScrubber />,
   "attachment-prompt": <AiComposer />,
-  "gaussian-dock": <MagnificationDockStage />,
+  "magnification-dock": <MagnificationDockStage />,
   "dynamic-island": <DynamicIslandStage />,
 };
 
@@ -172,7 +172,7 @@ export function ExplorerWorkspace() {
 
   React.useEffect(() => {
     if (tab !== "code") return;
-    if (SIGNATURE_CODE[slug] || EXTRA_CODE[slug]) return;
+    if (shippedCode(slug) || EXTRA_CODE[slug]) return;
     if (codeState[slug]) return;
     let cancelled = false;
     setCodeState((prev) => ({ ...prev, [slug]: { status: "loading" } }));
@@ -196,7 +196,7 @@ export function ExplorerWorkspace() {
   const useRenderer = !isSignature && !isExtra;
   const sliders = useRenderer ? SLIDERS[slug] ?? [] : [];
 
-  const localCode = SIGNATURE_CODE[slug] ?? EXTRA_CODE[slug];
+  const localCode = shippedCode(slug) ?? EXTRA_CODE[slug];
   const codeEntry = codeState[slug];
   const codeText = localCode ?? codeEntry?.text;
   const codeLoading = !localCode && (!codeEntry || codeEntry.status === "loading");

@@ -174,6 +174,7 @@ import {
   LogoCloud,
   SiteFooter,
 } from "@buildora/components";
+import type { FxCardEffect, FxButtonEffect } from "@buildora/components";
 
 export type { Controls } from "@/lib/render-controls";
 export { DEFAULT_RENDER_CONTROLS } from "@/lib/render-controls";
@@ -358,15 +359,17 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       );
     case "fx-card":
       return wrap(
-        <FxCard effect="spotlight" className="w-80">
+        <FxCard effect={(controls.effect as FxCardEffect) || "spotlight"} className="w-80">
           <p className="font-display text-lg font-bold">FxCard</p>
-          <p className="mt-2 text-sm text-[color:var(--b-muted)]">Six effects. Move your pointer across this card.</p>
+          <p className="mt-2 text-sm text-[color:var(--b-muted)]">
+            Seven effects. Move your pointer across this card.
+          </p>
         </FxCard>
       );
     case "fx-button":
       return wrap(
         <div className="flex flex-wrap gap-3">
-          <FxButton effect="shimmer">Shimmer</FxButton>
+          <FxButton effect={(controls.effect as FxButtonEffect) || "shimmer"}>Shimmer</FxButton>
           <FxButton effect="ripple">Ripple</FxButton>
           <FxButton effect="liquid">Liquid</FxButton>
         </div>

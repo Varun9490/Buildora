@@ -4,15 +4,36 @@ import * as React from "react";
 
 /** prefers-reduced-motion — always respect for creative components */
 export function useReducedMotion() {
-  const [reduced, setReduced] = React.useState(false);
-  React.useEffect(() => {
+  // The same contract as the shipped `use-reduced-motion` registry item:
+  // SSR-safe (no hydration flash) and honouring a global `data-motion="reduced"`
+  // so an app can pause motion for everyone, not just people whose OS asks.
+  const subscribe = React.useCallback((cb: () => void) => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+      return () => {};
+    }
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setReduced(e.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
+    mq.addEventListener("change", cb);
+    const observer =
+      typeof MutationObserver === "undefined" ? null : new MutationObserver(cb);
+    observer?.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-motion"],
+    });
+    return () => {
+      mq.removeEventListener("change", cb);
+      observer?.disconnect();
+    };
   }, []);
-  return reduced;
+
+  const getSnapshot = React.useCallback(() => {
+    if (typeof document !== "undefined" && document.documentElement.getAttribute("data-motion") === "reduced") {
+      return true;
+    }
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }, []);
+
+  return React.useSyncExternalStore(subscribe, getSnapshot, () => false);
 }
 
 /** Pointer position relative to a ref element (for magnetic / spotlight effects) */

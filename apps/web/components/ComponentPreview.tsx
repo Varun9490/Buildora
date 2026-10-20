@@ -33,6 +33,7 @@ const DEFAULTS = {
   pageSize: 4,
   tilt: 8,
   variant: "accent",
+  effect: "shimmer",
 };
 
 function PreviewSkeleton() {

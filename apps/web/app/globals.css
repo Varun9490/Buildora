@@ -172,6 +172,19 @@
   --b-accent-glow: rgba(174, 0, 48, 0.22);
 }
 
+/* ── Global motion switch ────────────────────────────────────────────
+   Set by the theme panel ("Pause all"). It stops CSS animations outright
+   and the useReducedMotion hook honours it too, so components that
+   animate in JS stop as well. */
+[data-motion="reduced"] *,
+[data-motion="reduced"] *::before,
+[data-motion="reduced"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
 /* ── Base ── */
 html {
   scroll-behavior: smooth;

@@ -9,6 +9,7 @@ import { useBuildora } from "@/lib/store";
 import { allComponents, frameworkLabels, frameworks, sizeFor } from "@/lib/registry";
 import type { RegistryItem } from "@/lib/registry";
 import { frameworkExample } from "@/lib/framework-code";
+import { agentBrief } from "@/lib/agent-brief";
 import { DEFAULT_RENDER_CONTROLS, type Controls } from "@/lib/render-controls";
 import { CodeViewer } from "@/components/CodeViewer";
 
@@ -96,6 +97,13 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
         </div>
 
         <div className="flex shrink-0 gap-3">
+            <button
+              onClick={() => copy(agentBrief(slug, summary), "agent")}
+              className="flex h-11 items-center gap-2 rounded-[10px] border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-4 font-mono text-[12px] font-bold text-[color:var(--b-text)] transition-colors hover:border-[color:var(--b-border-hover)]"
+              title="Copy a brief an AI agent can act on: install command, props, accessibility contract"
+            >
+              {copied === "agent" ? "Copied" : "Copy for AI"}
+            </button>
             <button
               onClick={() => copy(item?.install ?? `pnpm dlx shadcn@latest add @buildora/${slug}`, "install")}
               className="flex h-11 items-center gap-2 rounded-[10px] bg-[color:var(--b-accent)] px-6 font-mono text-[12px] font-bold text-[color:var(--b-accent-foreground)] transition-transform active:scale-95"

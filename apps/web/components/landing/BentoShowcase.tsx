@@ -1,7 +1,7 @@
 "use client";
 
 import { BentoShell } from "./BentoShell";
-import { SIGNATURE_CODE } from "@/lib/showcase-code";
+import { showcaseCode } from "@/lib/showcase-code";
 import { SlingshotOtpStage } from "./bento/SlingshotOtpStage";
 import { KineticButtons } from "./bento/KineticButtons";
 import { HoloPass } from "./bento/HoloPass";
@@ -31,7 +31,7 @@ export function BentoShowcase() {
           title="Slingshot OTP field"
           slug="slingshot-otp"
           demo={<SlingshotOtpStage />}
-          code={SIGNATURE_CODE["slingshot-otp"]}
+          code={showcaseCode("slingshot-otp")}
           stageClassName="min-h-[400px]"
         />
 
@@ -41,7 +41,7 @@ export function BentoShowcase() {
           title="Kinetic button states"
           slug="fx-button"
           demo={<KineticButtons />}
-          code={SIGNATURE_CODE["fx-button"]}
+          code={showcaseCode("fx-button")}
           stageClassName="min-h-[400px]"
         />
 
@@ -51,7 +51,7 @@ export function BentoShowcase() {
           title="Chromatic holographic pass"
           slug="fx-card"
           demo={<HoloPass />}
-          code={SIGNATURE_CODE["fx-card"]}
+          code={showcaseCode("fx-card")}
         />
 
         <BentoShell
@@ -60,16 +60,16 @@ export function BentoShowcase() {
           title="Particle force-field backdrop"
           slug="backdrop"
           demo={<ParticleForceField />}
-          code={SIGNATURE_CODE.backdrop}
+          code={showcaseCode("backdrop")}
         />
 
         <BentoShell
           span="lg:col-span-4"
           category="Navigation"
           title="Gaussian magnification dock"
-          slug="gaussian-dock"
+          slug="magnification-dock"
           demo={<MagnificationDockStage />}
-          code={SIGNATURE_CODE["gaussian-dock"]}
+          code={showcaseCode("magnification-dock")}
         />
 
         <BentoShell
@@ -78,7 +78,7 @@ export function BentoShowcase() {
           title="Morphing dynamic island"
           slug="dynamic-island"
           demo={<DynamicIslandStage />}
-          code={SIGNATURE_CODE["dynamic-island"]}
+          code={showcaseCode("dynamic-island")}
         />
 
         <BentoShell
@@ -87,7 +87,7 @@ export function BentoShowcase() {
           title="Rubber-band scrubber"
           slug="slider"
           demo={<RubberScrubber />}
-          code={SIGNATURE_CODE.slider}
+          code={showcaseCode("slider")}
         />
 
         <BentoShell
@@ -96,7 +96,7 @@ export function BentoShowcase() {
           title="AI composer surface"
           slug="attachment-prompt"
           demo={<AiComposer />}
-          code={SIGNATURE_CODE["attachment-prompt"]}
+          code={showcaseCode("attachment-prompt")}
         />
 
         <BentoShell
@@ -105,7 +105,7 @@ export function BentoShowcase() {
           title="The kinetic type family"
           slug="type-wall"
           demo={<KineticTypeStage />}
-          code={SIGNATURE_CODE["kinetic-type"]}
+          code={showcaseCode("kinetic-type")}
           stageClassName="min-h-[380px]"
         />
       </div>
