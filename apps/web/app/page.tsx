@@ -38,7 +38,7 @@ export default function HomePage() {
             Start with the primitive that sells it.
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-[color:var(--b-text-secondary)] sm:text-base text-balance">
-            {totalComponents} primitives, one command, nothing else touched.
+            {totalComponents} installable components, one command, nothing else touched.
             The magnetic button is the fastest way to feel the difference.
           </p>
 

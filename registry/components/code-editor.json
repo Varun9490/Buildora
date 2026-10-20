@@ -1,0 +1,124 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "code-editor",
+  "name": "Code Editor Lite",
+  "slug": "code-editor",
+  "description": "Split code/preview surface. A textarea, not an editor engine.",
+  "categories": [
+    "developer"
+  ],
+  "tags": [
+    "code",
+    "editor"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/code-editor/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/code-editor/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/code-editor/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/code-editor/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/code-editor/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/code-editor/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/code-editor/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/code-editor/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/code-editor/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/code-editor/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/code-editor/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/code-editor/index.tsx",
+      "target": "components/buildora/code-editor.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\n\nexport type CodeEditorLiteProps = {\n  initialCode?: string;\n  language?: string;\n  className?: string;\n};\n\n/**\n * CodeEditorLite — a split code/preview surface.\n *\n * Deliberately not a syntax-highlighting editor: it is a textarea and a\n * preview pane, with no editor engine behind it. Use it to show code, not to\n * write it.\n */\nexport function CodeEditorLite({\n  initialCode,\n  language = \"tsx\",\n  className,\n}: CodeEditorLiteProps) {\n  const [code, setCode] = React.useState(\n    initialCode ??\n      `import { MagneticButton } from \"@/components/buildora/magnetic-button\";\\n\\nexport function Demo() {\\n  return <MagneticButton strength={0.35}>Ship it</MagneticButton>;\\n}`\n  );\n\n  return (\n    <div\n      className={cn(\n        \"overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color:var(--b-panel)]\",\n        className\n      )}\n    >\n      <div className=\"flex items-center justify-between border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] px-3 py-1.5 text-[11px] text-[color-mix(in_oklab,var(--b-text)_50%,transparent)]\">\n        <span className=\"font-mono\">Demo.{language} — editable</span>\n        <span>{code.split(\"\\n\").length} lines</span>\n      </div>\n      <div className=\"grid md:grid-cols-2\">\n        <label className=\"sr-only\" htmlFor=\"lite-editor\">\n          Edit code\n        </label>\n        <textarea\n          id=\"lite-editor\"\n          value={code}\n          onChange={(e) => setCode(e.target.value)}\n          spellCheck={false}\n          className=\"code-scroll min-h-40 bg-transparent p-3 font-mono text-xs text-[color-mix(in_oklab,var(--b-text)_85%,transparent)] outline-none\"\n        />\n        <pre\n          className=\"code-scroll max-h-56 overflow-auto border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-3 font-mono text-xs text-[color:var(--b-iris)] md:border-l md:border-t-0\"\n          aria-label=\"Preview\"\n        >\n          <code>{code}</code>\n        </pre>\n      </div>\n    </div>\n  );\n}\n\nexport default CodeEditorLite;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/code-editor",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/code-editor/index.tsx",
+  "sourceDir": "code-editor",
+  "docs": "/components/code-editor",
+  "install": "pnpm dlx shadcn@latest add @buildora/code-editor"
+}

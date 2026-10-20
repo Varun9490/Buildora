@@ -18,7 +18,8 @@
     "registry:verify-install": "tsx scripts/verify-install.ts",
     "registry:verify-install:matrix": "tsx scripts/verify-install.ts --matrix",
     "registry:audit": "tsx scripts/audit-registry.ts",
-    "registry:contrast": "tsx scripts/contrast.ts"
+    "registry:contrast": "tsx scripts/contrast.ts",
+    "registry:catalogue": "tsx scripts/check-catalogue.ts"
   },
   "devDependencies": {
     "@types/glob": "^9.0.0",

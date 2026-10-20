@@ -10,7 +10,7 @@
     "bypass",
     "color-contrast"
   ],
-  "components": 216,
+  "components": 171,
   "componentsWithViolations": 0,
   "violations": 0,
   "allPass": true,
@@ -51,16 +51,6 @@
       "violations": []
     },
     {
-      "component": "AuroraBackground",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "AuroraBeamBackground",
-      "pass": true,
-      "violations": []
-    },
-    {
       "component": "Avatar",
       "pass": true,
       "violations": []
@@ -81,11 +71,6 @@
       "violations": []
     },
     {
-      "component": "BeamBackground",
-      "pass": true,
-      "violations": []
-    },
-    {
       "component": "BentoGrid",
       "pass": true,
       "violations": []
@@ -96,17 +81,7 @@
       "violations": []
     },
     {
-      "component": "BlobCursor",
-      "pass": true,
-      "violations": []
-    },
-    {
       "component": "BlueprintLoader",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "BlurText",
       "pass": true,
       "violations": []
     },
@@ -151,17 +126,17 @@
       "violations": []
     },
     {
-      "component": "CommandBar",
-      "pass": true,
-      "violations": []
-    },
-    {
       "component": "CommandInput",
       "pass": true,
       "violations": []
     },
     {
       "component": "CommandPalette",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CommentThread",
       "pass": true,
       "violations": []
     },
@@ -206,22 +181,12 @@
       "violations": []
     },
     {
-      "component": "CreativeNotifications",
-      "pass": true,
-      "violations": []
-    },
-    {
       "component": "CtaBlock",
       "pass": true,
       "violations": []
     },
     {
       "component": "CursorFx",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "CursorSpotlight",
       "pass": true,
       "violations": []
     },
@@ -262,11 +227,6 @@
     },
     {
       "component": "Divider",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "DotGridBackground",
       "pass": true,
       "violations": []
     },
@@ -332,6 +292,11 @@
     },
     {
       "component": "DropdownMenuTrigger",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DynamicIsland",
       "pass": true,
       "violations": []
     },
@@ -406,36 +371,6 @@
       "violations": []
     },
     {
-      "component": "GhostCursor",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "GlareCard",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "GlassCard",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "GlitchText",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "GlowButton",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "GlowCursor",
-      "pass": true,
-      "violations": []
-    },
-    {
       "component": "GooeyMenu",
       "pass": true,
       "violations": []
@@ -446,37 +381,12 @@
       "violations": []
     },
     {
-      "component": "GradientBorderButton",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "GradientMeshBackground",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "GradientText",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "GridBackground",
-      "pass": true,
-      "violations": []
-    },
-    {
       "component": "HandwrittenAnnotation",
       "pass": true,
       "violations": []
     },
     {
       "component": "HoldButton",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "HolographicCard",
       "pass": true,
       "violations": []
     },
@@ -512,11 +422,6 @@
     },
     {
       "component": "Input",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "Interactive3DCard",
       "pass": true,
       "violations": []
     },
@@ -576,6 +481,11 @@
       "violations": []
     },
     {
+      "component": "MagnificationDock",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "MasonryItem",
       "pass": true,
       "violations": []
@@ -587,11 +497,6 @@
     },
     {
       "component": "MatrixDecode",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "MeteorBackground",
       "pass": true,
       "violations": []
     },
@@ -636,11 +541,6 @@
       "violations": []
     },
     {
-      "component": "MorphingTypography",
-      "pass": true,
-      "violations": []
-    },
-    {
       "component": "MorphSelect",
       "pass": true,
       "violations": []
@@ -667,11 +567,6 @@
     },
     {
       "component": "NavbarRight",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "NoiseBackground",
       "pass": true,
       "violations": []
     },
@@ -751,21 +646,6 @@
       "violations": []
     },
     {
-      "component": "RippleBackground",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "RippleButton",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "ScrambledText",
-      "pass": true,
-      "violations": []
-    },
-    {
       "component": "SegmentedControl",
       "pass": true,
       "violations": []
@@ -802,11 +682,6 @@
     },
     {
       "component": "SheetTitle",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "ShimmerButton",
       "pass": true,
       "violations": []
     },
@@ -862,16 +737,6 @@
     },
     {
       "component": "Spinner",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "SpotlightCard",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "SpotlightCursor",
       "pass": true,
       "violations": []
     },
@@ -976,67 +841,7 @@
       "violations": []
     },
     {
-      "component": "TrailCursor",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUIDiffViewer",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUIFooter",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUIForm",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUIGauge",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUIHeader",
-      "pass": true,
-      "violations": []
-    },
-    {
       "component": "TUIHelpOverlay",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUIList",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUILogViewer",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUIMultiSelect",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUIPanel",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUIProgress",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUISelect",
       "pass": true,
       "violations": []
     },
@@ -1046,32 +851,7 @@
       "violations": []
     },
     {
-      "component": "TUISpinner",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUIStatusBar",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUITable",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "TUITree",
-      "pass": true,
-      "violations": []
-    },
-    {
       "component": "TypeWall",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "Typewriter",
       "pass": true,
       "violations": []
     },
@@ -1087,11 +867,6 @@
     },
     {
       "component": "VerticalTimeline",
-      "pass": true,
-      "violations": []
-    },
-    {
-      "component": "WobbleCard",
       "pass": true,
       "violations": []
     }

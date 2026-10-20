@@ -48,6 +48,9 @@ jobs:
       - name: Contrast gate (WCAG, both themes)
         run: pnpm registry:contrast
 
+      - name: Catalogue gate (registry, package and site agree)
+        run: pnpm registry:catalogue
+
       - name: Registry compile-e2e (generated source)
         run: pnpm registry:e2e
 

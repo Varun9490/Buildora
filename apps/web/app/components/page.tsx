@@ -32,7 +32,7 @@ export default function ComponentsPage() {
         </div>
         <div className="relative mx-auto max-w-7xl px-6 py-16 sm:py-20 text-center">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} className="inline-flex items-center gap-2 rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-glass)] px-3.5 py-1.5 text-[11px] font-medium tracking-wide text-[color:var(--b-text-secondary)] backdrop-blur-md">
-            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--b-accent)] animate-pulse" /> {results.length} primitives · fluid by default
+            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--b-accent)] animate-pulse" /> {results.length} components · fluid by default
           </motion.div>
           <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.62, delay: 0.06, ease: [0.16, 1, 0.3, 1] }} className="mx-auto mt-6 max-w-3xl font-display text-4xl font-bold tracking-[-0.032em] leading-[1.02] sm:text-5xl lg:text-6xl">
             The component registry <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(100deg, var(--b-accent), var(--b-iris))" }}>that moves.</span>

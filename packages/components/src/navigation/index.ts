@@ -92,12 +92,3 @@ export {
   type PaginationPrevProps,
   type PaginationNextProps,
 } from "./pagination";
-
-export {
-  CommandBar,
-  CommandBarItem,
-  CommandBarTrigger,
-  type CommandBarProps,
-  type CommandBarItemProps,
-  type CommandBarTriggerProps,
-} from "./command-bar";

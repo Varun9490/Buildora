@@ -63,7 +63,6 @@ function CommentThread({ threads, onResolve, onReply, className }: CommentThread
             tabIndex={0}
             onFocus={() => setFocusedId(comment.id)}
             onBlur={() => setFocusedId(null)}
-            role="article"
             aria-label={`Comment by ${comment.author}`}
           >
             <header className="mb-2 flex items-center gap-2">

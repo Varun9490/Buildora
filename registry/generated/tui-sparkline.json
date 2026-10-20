@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tui-sparkline",
+  "type": "registry:component",
+  "title": "Sparkline",
+  "description": "Inline value sparkline for dense rows. No primitive equivalent.",
+  "status": "beta",
+  "categories": [
+    "data"
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/tui-sparkline/index.tsx",
+      "target": "components/buildora/tui-sparkline.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\n\nexport interface TUISparklineProps {\n  data: number[];\n  width?: number;\n  height?: number;\n  className?: string;\n  color?: \"default\" | \"success\" | \"warning\" | \"error\";\n  showMinMax?: boolean;\n  label?: string;\n}\n\nconst sparklineChars = {\n  default: [\"▁\", \"▂\", \"▃\", \"▄\", \"▅\", \"▆\", \"▇\", \"█\"],\n  dots: [\"⠁\", \"⠃\", \"⠇\", \"⡇\", \"⡏\", \"⡟\", \"⡿\", \"⣿\"],\n};\n\nconst sparklineColors = {\n  default: \"text-[color:var(--b-accent)]\",\n  success: \"text-[color:var(--b-success)]\",\n  warning: \"text-[color:var(--b-warning)]\",\n  error: \"text-[color:var(--b-danger)]\",\n};\n\nexport function TUISparkline({\n  data,\n  width = 20,\n  height = 1,\n  className,\n  color = \"default\",\n  showMinMax = false,\n  label,\n}: TUISparklineProps) {\n  if (data.length === 0) return null;\n\n  const min = Math.min(...data);\n  const max = Math.max(...data);\n  const range = max - min || 1;\n\n  const chars = sparklineChars.default;\n\n  const normalized = data.map((v) => Math.round(((v - min) / range) * (chars.length - 1)));\n  const paddedData = normalized.slice(-width);\n  const padding = width - paddedData.length;\n  const sparkline = \" \".repeat(Math.max(0, padding)) + \n    paddedData.map((v) => chars[Math.min(v, chars.length - 1)]).join(\"\");\n\n  return (\n    <div className={cn(\"font-mono text-xs inline-flex flex-col\", className)}>\n      {label && (\n        <div className=\"flex items-center justify-between mb-0.5\">\n          <span className=\"text-[color-mix(in_oklab,var(--b-text)_50%,transparent)] text-[10px]\">{label}</span>\n          {showMinMax && (\n            <span className=\"text-[color-mix(in_oklab,var(--b-text)_30%,transparent)] text-[10px]\">\n              {min.toFixed(1)} – {max.toFixed(1)}\n            </span>\n          )}\n        </div>\n      )}\n      <div className={cn(\"flex\", sparklineColors[color])}>\n        {height > 1 ? (\n          <pre className=\"leading-none\">{sparkline}</pre>\n        ) : (\n          <span className={sparklineColors[color]}>{sparkline}</span>\n        )}\n      </div>\n      {!label && showMinMax && (\n        <div className=\"flex justify-between text-[10px] text-[color-mix(in_oklab,var(--b-text)_30%,transparent)] mt-0.5\">\n          <span>-{min.toFixed(0)}</span>\n          <span>+{max.toFixed(0)}</span>\n        </div>\n      )}\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/tui-sparkline/index.tsx"
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "infinite-marquee",
+  "type": "registry:component",
+  "title": "Infinite Marquee",
+  "description": "Seamless scrolling row that pauses on hover.",
+  "status": "beta",
+  "categories": [
+    "primitives"
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/layouts/infinite-marquee.tsx",
+      "target": "components/buildora/infinite-marquee/infinite-marquee.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type InfiniteMarqueeProps = React.HTMLAttributes<HTMLDivElement> & {\n  direction?: \"left\" | \"right\";\n  speed?: \"slow\" | \"normal\" | \"fast\";\n  pauseOnHover?: boolean;\n  gap?: number;\n};\n\nexport function InfiniteMarquee({\n  direction = \"left\",\n  speed = \"normal\",\n  pauseOnHover = true,\n  gap = 48,\n  className,\n  children,\n  ...rest\n}: InfiniteMarqueeProps) {\n  const reduced = useReducedMotion();\n\n  const speedValues = {\n    slow: 50,\n    normal: 30,\n    fast: 15,\n  };\n\n  const duration = speedValues[speed];\n  const items = React.Children.toArray(children);\n\n  if (items.length === 0) return null;\n\n  const renderItems = (ariaHidden: boolean) => (\n    <div\n      aria-hidden={ariaHidden || undefined}\n      className=\"flex shrink-0 items-center\"\n      style={{ gap: `${gap}px`, paddingRight: `${gap}px` }}\n    >\n      {items.map((child, i) => (\n        <React.Fragment key={i}>{child}</React.Fragment>\n      ))}\n    </div>\n  );\n\n  // Static fallbacks: no animation, no duplication.\n  if (reduced) {\n    return (\n      <div className={cn(\"relative overflow-hidden\", className)} {...rest}>\n        <div className=\"flex flex-wrap items-center\" style={{ gap: `${gap}px` }}>\n          {items.map((child, i) => (\n            <React.Fragment key={i}>{child}</React.Fragment>\n          ))}\n        </div>\n      </div>\n    );\n  }\n\n  return (\n    <div\n      className={cn(\n        \"group relative overflow-hidden\",\n        \"[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]\",\n        className\n      )}\n      {...rest}\n    >\n      <div\n        className={cn(\n          \"flex w-max\",\n          pauseOnHover && \"group-hover:[animation-play-state:paused]\"\n        )}\n        style={{\n          animation: `buildora-marquee ${duration}s linear infinite`,\n          animationDirection: direction === \"right\" ? \"reverse\" : \"normal\",\n        }}\n      >\n        {renderItems(false)}\n        {renderItems(true)}\n      </div>\n    </div>\n  );\n}\n\nexport default InfiniteMarquee;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/layouts/infinite-marquee.tsx"
+}

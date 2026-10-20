@@ -71,19 +71,63 @@ export function Kanban({ initial, className }: { initial?: ColT[]; className?: s
   );
 }
 
-export function Calendar({ className }: { className?: string }) {
-  const [day, setDay] = React.useState(14);
-  const days = Array.from({ length: 28 }, (_, i) => i + 1);
+export function Calendar({ className, month, year }: { className?: string; month?: number; year?: number }) {
+  const now = new Date();
+  const viewMonth = month ?? now.getMonth();
+  const viewYear = year ?? now.getFullYear();
+  const first = new Date(viewYear, viewMonth, 1);
+  // Monday-first: getDay() is Sunday-based, so shift it.
+  const leading = (first.getDay() + 6) % 7;
+  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+  const weeks = Math.ceil((leading + daysInMonth) / 7);
+  const today = now.getDate();
+  const isCurrentMonth = viewMonth === now.getMonth() && viewYear === now.getFullYear();
+  const [selected, setSelected] = React.useState(today);
+
+  const label = new Date(viewYear, viewMonth, 1).toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+
   return (
-    <div className={cn("rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] p-4", className)}>
-      <p className="mb-2 text-sm font-bold">February <span className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">— scheduling demo</span></p>
-      <div className="grid grid-cols-7 gap-1" role="grid" aria-label="Calendar">
-        {Array.from({ length: 4 }, (_, week) => (
+    <div className={cn("rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color:var(--b-bg)] p-4", className)}>
+      <p className="mb-2 text-sm font-bold">
+        {label}{" "}
+        <span className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">
+          — {daysInMonth} days
+        </span>
+      </p>
+      <div className="grid grid-cols-7 gap-1" role="grid" aria-label={label}>
+        {Array.from({ length: weeks }, (_, week) => (
           <div key={week} role="row" className="contents">
-            {days.slice(week * 7, week * 7 + 7).map((d) => (
-              <button key={d} role="gridcell" aria-selected={d === day} onClick={() => setDay(d)}
-                className={cn("aspect-square rounded-lg text-sm transition-all", d === day ? "bg-[color:var(--b-accent)] font-bold text-[color:var(--b-accent-foreground)] scale-105" : "text-[color-mix(in_oklab,var(--b-text)_70%,transparent)] hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]")}>{d}</button>
-            ))}
+            {Array.from({ length: 7 }, (_, dow) => {
+              const dayNumber = week * 7 + dow - leading + 1;
+              if (dayNumber < 1 || dayNumber > daysInMonth) {
+                return (
+                  <span key={dow} role="gridcell" aria-disabled className="aspect-square" />
+                );
+              }
+              const isToday = isCurrentMonth && dayNumber === today;
+              const isSelected = isCurrentMonth && dayNumber === selected;
+              return (
+                <button
+                  key={dow}
+                  role="gridcell"
+                  aria-selected={isSelected}
+                  aria-label={new Date(viewYear, viewMonth, dayNumber).toDateString()}
+                  onClick={() => setSelected(dayNumber)}
+                  className={cn(
+                    "aspect-square rounded-lg text-sm transition-all",
+                    isSelected
+                      ? "bg-[color:var(--b-accent)] font-bold text-[color:var(--b-accent-foreground)] scale-105"
+                      : "text-[color-mix(in_oklab,var(--b-text)_70%,transparent)] hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]",
+                    isToday && !isSelected && "ring-1 ring-[color:var(--b-accent)]"
+                  )}
+                >
+                  {dayNumber}
+                </button>
+              );
+            })}
           </div>
         ))}
       </div>

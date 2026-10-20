@@ -164,6 +164,86 @@
       "required": 7,
       "level": "AAA",
       "pass": true
+    },
+    "shipped.terminal.bg_vs_text": {
+      "background": "#0a0a0a",
+      "foreground": "#d7d7d7",
+      "ratio": 13.76,
+      "required": 7,
+      "level": "AAA",
+      "pass": true
+    },
+    "shipped.terminal.panel_vs_text": {
+      "background": "#101010",
+      "foreground": "#d7d7d7",
+      "ratio": 13.22,
+      "required": 7,
+      "level": "AAA",
+      "pass": true
+    },
+    "shipped.terminal.surface_vs_text": {
+      "background": "#161616",
+      "foreground": "#d7d7d7",
+      "ratio": 12.57,
+      "required": 7,
+      "level": "AAA",
+      "pass": true
+    },
+    "shipped.terminal.secondary_vs_bg": {
+      "background": "#0a0a0a",
+      "foreground": "#a0a0a0",
+      "ratio": 7.57,
+      "required": 7,
+      "level": "AAA",
+      "pass": true
+    },
+    "shipped.terminal.muted_vs_bg": {
+      "background": "#0a0a0a",
+      "foreground": "#7a7a7a",
+      "ratio": 4.61,
+      "required": 4.5,
+      "level": "AA",
+      "pass": true
+    },
+    "shipped.terminal.accent_fg_on_accent": {
+      "background": "#d4ff4f",
+      "foreground": "#0a0a0a",
+      "ratio": 17.17,
+      "required": 7,
+      "level": "AAA",
+      "pass": true
+    },
+    "shipped.terminal.iris_fg_on_iris": {
+      "background": "#79c0ff",
+      "foreground": "#0a0a0a",
+      "ratio": 10.18,
+      "required": 7,
+      "level": "AAA",
+      "pass": true
+    },
+    "shipped.terminal.success_vs_bg": {
+      "background": "#0a0a0a",
+      "foreground": "#56d364",
+      "ratio": 10.27,
+      "required": 7,
+      "level": "AAA",
+      "pass": true
+    },
+    "shipped.terminal.warning_vs_bg": {
+      "background": "#0a0a0a",
+      "foreground": "#e3b341",
+      "ratio": 10.17,
+      "required": 7,
+      "level": "AAA",
+      "pass": true
+    },
+    "shipped.terminal.danger_vs_bg": {
+      "background": "#0a0a0a",
+      "foreground": "#ff695e",
+      "ratio": 7.01,
+      "required": 7,
+      "level": "AAA",
+      "pass": true
     }
   },
   "siteTheme": {
@@ -412,7 +492,7 @@
   },
   "summary": {
     "allPass": true,
-    "checks": 50,
+    "checks": 60,
     "accents": 10,
     "themes": 2,
     "worstAccentRatio": 7.03,

@@ -1,0 +1,125 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "bento-grid",
+  "name": "Bento Grid",
+  "slug": "bento-grid",
+  "description": "Configurable grid with per-item spans.",
+  "categories": [
+    "primitives"
+  ],
+  "tags": [
+    "layout",
+    "grid",
+    "bento"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/layouts/bento-grid.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/layouts/bento-grid.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/layouts/bento-grid.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/layouts/bento-grid.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/layouts/bento-grid.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/layouts/bento-grid.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/layouts/bento-grid.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/layouts/bento-grid.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/layouts/bento-grid.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/layouts/bento-grid.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/layouts/bento-grid.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/layouts/bento-grid.tsx",
+      "target": "components/buildora/bento-grid/bento-grid.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\n\nexport type BentoGridProps = React.HTMLAttributes<HTMLDivElement> & {\n  columns?: number;\n  gap?: number;\n  autoFill?: boolean;\n};\n\nexport type BentoItemProps = React.HTMLAttributes<HTMLDivElement> & {\n  rowSpan?: number;\n  colSpan?: number;\n};\n\nfunction BentoGrid({\n  columns = 4,\n  gap = 16,\n  autoFill = false,\n  className,\n  children,\n  ...rest\n}: BentoGridProps) {\n  const rawId = React.useId().replace(/[^a-zA-Z0-9]/g, \"\");\n  const scope = `bento-grid-${rawId}`;\n  const desktopColumns = autoFill\n    ? `repeat(auto-fill, minmax(280px, 1fr))`\n    : `repeat(${columns}, minmax(0, 1fr))`;\n  // Injected via dangerouslySetInnerHTML so server and client emit byte-identical\n  // CSS. A plain <style> text child gets HTML-escaped on the server (`>` -> `&gt;`)\n  // but not on the client, which triggers a hydration mismatch.\n  const css = `.${scope}{display:grid;gap:${gap}px;grid-template-columns:1fr}.${scope}>.bento-item{grid-column:span 1/span 1;grid-row:span 1/span 1}@media(min-width:768px){.${scope}{grid-template-columns:${desktopColumns}}.${scope}>.bento-item{grid-column:span var(--bento-col,1)/span var(--bento-col,1);grid-row:span var(--bento-row,1)/span var(--bento-row,1)}}`;\n\n  return (\n    <>\n      <style dangerouslySetInnerHTML={{ __html: css }} />\n      <div className={cn(scope, className)} {...rest}>\n        {children}\n      </div>\n    </>\n  );\n}\n\nfunction BentoItem({\n  rowSpan = 1,\n  colSpan = 1,\n  className,\n  style,\n  children,\n  ...rest\n}: BentoItemProps) {\n  return (\n    <div\n      className={cn(\n        \"bento-item rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#12141d] p-6\",\n        \"transition-all duration-200 hover:border-[color-mix(in_oklab,var(--b-border)_20%,transparent)] hover:shadow-xl\",\n        className\n      )}\n      style={\n        {\n          ...style,\n          \"--bento-col\": colSpan,\n          \"--bento-row\": rowSpan,\n        } as React.CSSProperties\n      }\n      {...rest}\n    >\n      {children}\n    </div>\n  );\n}\n\nBentoGrid.displayName = \"BentoGrid\";\nBentoItem.displayName = \"BentoGrid.Item\";\n\nexport { BentoGrid, BentoItem };\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/layouts/bento-grid.tsx",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/layouts/bento-grid.tsx",
+  "sourceDir": "layouts/bento-grid.tsx",
+  "docs": "/components/bento-grid",
+  "install": "pnpm dlx shadcn@latest add @buildora/bento-grid"
+}

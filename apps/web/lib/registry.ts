@@ -45,6 +45,25 @@ export const allComponents: ComponentSummary[] = Array.from(
 
 export const totalComponents = allComponents.length;
 
+/**
+ * Foundations are libraries rather than components: tokens, hooks and
+ * helpers. They are installable and documented, but they have no preview.
+ */
+const FOUNDATION_SLUGS = new Set([
+  "utils",
+  "tokens",
+  "spring",
+  "use-reduced-motion",
+  "use-pointer-proximity",
+]);
+
+export const totalFoundations = allComponents.filter((c) =>
+  FOUNDATION_SLUGS.has(c.slug)
+).length;
+
+/** Components that have a live demo on their page. */
+export const totalShowcased = totalComponents - totalFoundations;
+
 export async function getComponent(slug: string): Promise<RegistryItem | null> {
   const { registryComponents } = await import("./registry-data.generated");
   return ((registryComponents as Record<string, RegistryItem>)[slug] ?? null);

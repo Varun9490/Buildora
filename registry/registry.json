@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 105,
+  "total": 117,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -448,18 +448,18 @@
     {
       "slug": "streaming-chat",
       "name": "Streaming Chat",
-      "description": "Demo chat UI with simulated token streaming and citations. No transport yet — do not point at production. Transport-agnostic rebuild planned.",
+      "description": "Chat surface for a token stream. Bring your own transport: it renders the messages you pass and hands the input to onSend.",
       "categories": [
         "ai-llm"
       ],
       "tags": [
         "chat",
-        "demo",
+        "stream",
         "llm"
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "model-selector",
@@ -474,7 +474,7 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "token-meter",
@@ -490,7 +490,7 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "tool-call-viz",
@@ -506,7 +506,7 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "agent-timeline",
@@ -521,7 +521,7 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "attachment-prompt",
@@ -536,7 +536,7 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "ai-review-edit",
@@ -553,7 +553,7 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "advanced-table",
@@ -569,7 +569,7 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "json-viewer",
@@ -616,7 +616,7 @@
       ],
       "difficulty": "advanced",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "diff-viewer",
@@ -650,6 +650,22 @@
       "status": "beta"
     },
     {
+      "slug": "terminal-ui",
+      "name": "Terminal UI",
+      "description": "Full terminal workspace: tab bar, sidebar tree, panes and a command input.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "terminal",
+        "workspace",
+        "tabs"
+      ],
+      "difficulty": "advanced",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
       "slug": "file-tree",
       "name": "File Tree",
       "description": "Accessible tree with expand/collapse and keyboard support.",
@@ -665,9 +681,184 @@
       "status": "beta"
     },
     {
+      "slug": "code-editor",
+      "name": "Code Editor Lite",
+      "description": "Split code/preview surface. A textarea, not an editor engine.",
+      "categories": [
+        "developer"
+      ],
+      "tags": [
+        "code",
+        "editor"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "command-palette",
+      "name": "Command Palette",
+      "description": "Keyboard-first command surface with fuzzy matching and combobox semantics.",
+      "categories": [
+        "navigation"
+      ],
+      "tags": [
+        "command",
+        "palette",
+        "cmdk"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "hold-button",
+      "name": "Hold Button",
+      "description": "Press and hold to confirm, with live progress. A real behaviour, not a finish.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "button",
+        "hold",
+        "confirm"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "particle-field",
+      "name": "Particle Field",
+      "description": "Canvas particle drift with a DPR cap. No Three.js.",
+      "categories": [
+        "backgrounds"
+      ],
+      "tags": [
+        "canvas",
+        "particles",
+        "background"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "magnification-dock",
+      "name": "Magnification Dock",
+      "description": "Dock whose icons grow with cursor proximity, on a continuous spring.",
+      "categories": [
+        "navigation"
+      ],
+      "tags": [
+        "dock",
+        "magnify",
+        "toolbar"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "dynamic-island",
+      "name": "Dynamic Island",
+      "description": "Morphing status pill for live app state. A live region, not decoration.",
+      "categories": [
+        "feedback"
+      ],
+      "tags": [
+        "status",
+        "live-region",
+        "pill"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "tactile-loader",
+      "name": "Tactile Loader",
+      "description": "Three bouncing dots that announce themselves once.",
+      "categories": [
+        "feedback"
+      ],
+      "tags": [
+        "loader",
+        "spinner",
+        "status"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "tui-sparkline",
+      "name": "Sparkline",
+      "description": "Inline value sparkline for dense rows. No primitive equivalent.",
+      "categories": [
+        "data"
+      ],
+      "tags": [
+        "sparkline",
+        "chart",
+        "data"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "tui-help-overlay",
+      "name": "Key Binding Overlay",
+      "description": "Keyboard shortcut cheatsheet overlay. No primitive equivalent.",
+      "categories": [
+        "overlays"
+      ],
+      "tags": [
+        "help",
+        "shortcuts",
+        "keyboard"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "bento-grid",
+      "name": "Bento Grid",
+      "description": "Configurable grid with per-item spans.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "layout",
+        "grid",
+        "bento"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "infinite-marquee",
+      "name": "Infinite Marquee",
+      "description": "Seamless scrolling row that pauses on hover.",
+      "categories": [
+        "primitives"
+      ],
+      "tags": [
+        "marquee",
+        "scroll",
+        "ticker"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
       "slug": "calendar",
       "name": "Calendar",
-      "description": "Scheduling grid with gridcell semantics.",
+      "description": "Month grid with real dates, gridcell semantics and today marked.",
       "categories": [
         "canvas"
       ],
@@ -677,7 +868,7 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "comment-thread",
@@ -696,16 +887,17 @@
     {
       "slug": "rich-text-editor",
       "name": "Rich Text Editor",
-      "description": "Toolbar + contentEditable editor with word count.",
+      "description": "Formatting toolbar over contentEditable. Controlled value, sanitised output, no editor engine.",
       "categories": [
         "editor"
       ],
       "tags": [
-        "rich-text"
+        "rich-text",
+        "editor"
       ],
       "difficulty": "advanced",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "slash-commands",
@@ -1131,7 +1323,7 @@
       ],
       "difficulty": "advanced",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "navbar",
@@ -1161,7 +1353,7 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "sidebar",
@@ -1190,7 +1382,7 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "experimental"
+      "status": "beta"
     },
     {
       "slug": "mobile-nav",

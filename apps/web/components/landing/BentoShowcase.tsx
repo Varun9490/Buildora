@@ -6,8 +6,8 @@ import { SlingshotOtpStage } from "./bento/SlingshotOtpStage";
 import { KineticButtons } from "./bento/KineticButtons";
 import { HoloPass } from "./bento/HoloPass";
 import { ParticleForceField } from "./bento/ParticleForceField";
-import { MagnificationDock } from "./bento/MagnificationDock";
-import { DynamicIsland } from "./bento/DynamicIsland";
+import { MagnificationDockStage } from "./bento/MagnificationDock";
+import { DynamicIslandStage } from "./bento/DynamicIsland";
 import { RubberScrubber } from "./bento/RubberScrubber";
 import { AiComposer } from "./bento/AiComposer";
 import { KineticTypeStage } from "./bento/KineticTypeStage";
@@ -68,7 +68,7 @@ export function BentoShowcase() {
           category="Navigation"
           title="Gaussian magnification dock"
           slug="gaussian-dock"
-          demo={<MagnificationDock />}
+          demo={<MagnificationDockStage />}
           code={SIGNATURE_CODE["gaussian-dock"]}
         />
 
@@ -77,7 +77,7 @@ export function BentoShowcase() {
           category="Overlays"
           title="Morphing dynamic island"
           slug="dynamic-island"
-          demo={<DynamicIsland />}
+          demo={<DynamicIslandStage />}
           code={SIGNATURE_CODE["dynamic-island"]}
         />
 

@@ -45,6 +45,8 @@ const EXPECTED: Record<string, string[]> = {
   // Deliberately more specific than naive PascalCase: the component ships a
   // *Text effect, and that is the name the docs and the site import.
   "rgb-glitch": ["RgbGlitchText"],
+  // Acronyms keep their caps.
+  "terminal-ui": ["TerminalUI"],
   breadcrumb: ["BreadcrumbNav"],
   "terminal-workspace": ["TerminalUI"],
   "tui-panel": ["TUIPanel"],

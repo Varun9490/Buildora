@@ -13,6 +13,29 @@ import {
   DetentDial,
   LiquidGauge,
   CometRingSpinner,
+  ParticleField,
+  TactileLoader,
+  CodeEditorLite,
+  CommandPalette,
+  HoldButton,
+  TerminalUI,
+  TUISparkline,
+  TUIHelpOverlay,
+  BentoGrid,
+  BentoItem,
+  InfiniteMarquee,
+  FloatingObject,
+  HorizontalScroll,
+  ThreadLine,
+  ProjectShowcase,
+  ProjectShowcaseCard,
+  MagnificationDock,
+  DynamicIsland,
+  RevealOnScroll,
+  HandwrittenAnnotation,
+  VerticalTimeline,
+  SpeechBubbleCursor,
+  CommentThread,
   BlueprintLoader,
   FresnelOrb,
   LetterWave,
@@ -35,14 +58,6 @@ import {
   FxButton,
   SlingshotOTP,
   InteractiveDropzone,
-  CreativeNotifications,
-  AuroraBackground,
-  ParticleField,
-  CursorSpotlight,
-  MorphingTypography,
-  HolographicCard,
-  Interactive3DCard,
-  TactileLoader,
   StreamingChat,
   TokenMeter,
   ModelSelector,
@@ -57,10 +72,7 @@ import {
   LogViewer,
   Terminal,
   FileTree,
-  CodeEditorLite,
-  Kanban,
   Calendar,
-  CommandPalette,
   RichTextEditor,
   SlashCommands,
   VersionHistory,
@@ -97,19 +109,19 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-   AlertDialog,
-   Sheet,
-   SheetHeader,
-   SheetTitle,
-   SheetContent,
-   SheetFooter,
-   Drawer,
-   DrawerHeader,
-   DrawerTitle,
-   DrawerContent,
-   SkeletonText,
-   SkeletonAvatar,
-   SkeletonCard,
+  AlertDialog,
+  Sheet,
+  SheetHeader,
+  SheetTitle,
+  SheetContent,
+  SheetFooter,
+  Drawer,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerContent,
+  SkeletonText,
+  SkeletonAvatar,
+  SkeletonCard,
   Popover,
   DropdownMenu,
   DropdownMenuTrigger,
@@ -120,8 +132,6 @@ import {
   ContextMenuContent,
   ContextMenuItem,
   HoverCard,
-  HoverCardTrigger,
-  HoverCardContent,
   ModalStack,
   ModalStackProvider,
   useModalStack,
@@ -152,63 +162,12 @@ import {
   PaginationButton,
   PaginationPrev,
   PaginationNext,
-  CommandBar,
-  CommandBarItem,
-  CommandBarTrigger,
-  TUIPanel,
-  TUIStatusBar,
-  TUIHeader,
-  TUIFooter,
-  TUITable,
-  TUITree,
-  TUIList,
-  TUIForm,
-  TUISelect,
-  TUIMultiSelect,
-  TUIProgress,
-  TUISpinner,
-  TUIGauge,
-  TUISparkline,
-  TUILogViewer,
-  TUIHelpOverlay,
-  TUIDiffViewer,
-  TerminalUI,
-  NoiseBackground,
-  GridBackground,
-  DotGridBackground,
-  GradientMeshBackground,
-  AuroraBeamBackground,
-  RippleBackground,
-  MeteorBackground,
-  BeamBackground,
-  GlowCursor,
-  BlobCursor,
-  TrailCursor,
-  GhostCursor,
-  SpotlightCursor,
-  Typewriter,
-  ScrambledText,
-  BlurText,
-  GradientText,
-  GlitchText,
-  RippleButton,
-  ShimmerButton,
-  GlowButton,
-  GradientBorderButton,
-  HoldButton,
-  GlareCard,
-  SpotlightCard,
-  WobbleCard,
-  GlassCard,
-  BentoGrid,
-  BentoItem,
-  InfiniteMarquee,
   MasonryLayout,
   MasonryItem,
   CtaBlock,
   FeatureGrid,
   LogoCloud,
-  SiteFooter
+  SiteFooter,
 } from "@buildora/components";
 
 export type { Controls } from "@/lib/render-controls";
@@ -598,7 +557,7 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
     case "streaming-chat":
       return wrap(
         <div className="w-full max-w-2xl">
-          <StreamingChat />
+          <StreamingChat demo />
         </div>
       );
     case "token-meter":
@@ -1128,13 +1087,219 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
           <SiteFooter />
         </div>
       );
+    case "magnification-dock":
+      return wrap(
+        <div className="w-full">
+          <MagnificationDock
+            items={[
+              { label: "Foundry", path: "M3 20h18M5 20V9l7-5 7 5v11M9 20v-6h6v6" },
+              { label: "Terminal", path: "M4 17l6-5-6-5M12 19h8" },
+              { label: "Nebula", path: "M12 3a9 9 0 1 0 9 9M12 3a9 9 0 0 1 9 9h-9V3zM3 12h9" },
+            ]}
+          />
+        </div>
+      );
+    case "dynamic-island":
+      return wrap(
+        <div className="w-full">
+          <DynamicIsland status="think" />
+        </div>
+      );
+    case "particle-field":
+      return wrap(
+        <div className="w-full">
+          <ParticleField count={40} />
+        </div>
+      );
+    case "tactile-loader":
+      return wrap(
+        <div className="flex items-center gap-6">
+          <TactileLoader label="Deploying" />
+        </div>
+      );
+    case "code-editor":
+      return wrap(
+        <div className="w-full">
+          <CodeEditorLite />
+        </div>
+      );
+    case "command-palette":
+      return wrap(
+        <div className="w-full">
+          <CommandPalette />
+        </div>
+      );
+    case "hold-button":
+      return wrap(
+        <div className="flex items-center gap-4">
+          <HoldButton onHoldComplete={() => undefined}>Hold to deploy</HoldButton>
+        </div>
+      );
+    case "terminal-ui":
+      return wrap(
+        <div className="h-[420px] w-full overflow-hidden rounded-2xl">
+          <TerminalUI />
+        </div>
+      );
+    case "tui-sparkline":
+      return wrap(
+        <div className="w-full">
+          <TUISparkline data={[12, 18, 14, 22, 19, 27, 24, 31]} />
+        </div>
+      );
+    case "tui-help-overlay":
+      return wrap(
+        <div className="w-full">
+          <TUIHelpOverlay
+            visible
+            bindings={[
+              { key: "Ctrl K", label: "Open command palette" },
+              { key: "Ctrl B", label: "Toggle sidebar" },
+              { key: "Esc", label: "Close overlay" },
+            ]}
+          />
+        </div>
+      );
+    case "bento-grid":
+      return wrap(
+        <BentoGrid columns={3} className="w-full">
+          <BentoItem colSpan={2} rowSpan={2} className="rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-5">
+            <p className="text-sm font-bold">Tall cell</p>
+            <p className="mt-1 text-xs text-[color:var(--b-text-secondary)]">Two columns, two rows.</p>
+          </BentoItem>
+          <BentoItem className="rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-5">
+            <p className="text-sm font-bold">Small</p>
+          </BentoItem>
+          <BentoItem className="rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-5">
+            <p className="text-sm font-bold">Small</p>
+          </BentoItem>
+          <BentoItem colSpan={2} className="rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-5">
+            <p className="text-sm font-bold">Wide cell</p>
+          </BentoItem>
+        </BentoGrid>
+      );
+    case "infinite-marquee":
+      return wrap(
+        <div className="w-full overflow-hidden rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] py-4">
+          <InfiniteMarquee gap={32}>
+            {["Ships fast", "No screenshots", "Tokens included", "SSR safe", "MIT"].map((t) => (
+              <span key={t} className="font-display text-sm font-bold whitespace-nowrap">
+                {t}
+              </span>
+            ))}
+          </InfiniteMarquee>
+        </div>
+      );
+    case "floating-object":
+      return wrap(
+        <div className="flex h-64 w-full items-center justify-center">
+          <FloatingObject
+            src=""
+            alt="A floating product tile"
+            bubbleText="Hover me"
+            className="h-32 w-32 rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)]"
+          />
+        </div>
+      );
+    case "horizontal-scroll":
+      return wrap(
+        <div className="w-full overflow-hidden rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)]">
+          <HorizontalScroll className="flex gap-4 p-6">
+            {["One", "Two", "Three", "Four", "Five"].map((t) => (
+              <div
+                key={t}
+                className="h-32 w-48 shrink-0 rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-4"
+              >
+                <p className="text-sm font-bold">{t}</p>
+              </div>
+            ))}
+          </HorizontalScroll>
+        </div>
+      );
+    case "thread-line":
+      return wrap(
+        <div className="w-full">
+          <ThreadLine path="M10 60 C 40 10, 80 110, 120 40 C 150 0, 190 80, 220 30" className="h-32 w-full" />
+        </div>
+      );
+    case "project-showcase":
+      return wrap(
+        <div className="w-full">
+          <ProjectShowcase heading="Selected work" filters={["Motion"]}>
+            <ProjectShowcaseCard
+              number="01"
+              title="Buildora"
+              description="Creative components with honest physics."
+              imageSrc=""
+              imageAlt="Buildora"
+              tags={["motion", "tokens"]}
+            />
+          </ProjectShowcase>
+        </div>
+      );
+    case "reveal-on-scroll":
+      return wrap(
+        <div className="w-full">
+          <RevealOnScroll variant="fade-up" className="rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-8">
+            <p className="text-sm font-bold">Scroll into view to reveal</p>
+          </RevealOnScroll>
+        </div>
+      );
+    case "handwritten-annotation":
+      return wrap(
+        <div className="w-full">
+          <HandwrittenAnnotation text="Ship it on Friday" arrowDirection="down-right" />
+        </div>
+      );
+    case "vertical-timeline":
+      return wrap(
+        <div className="w-full">
+          <VerticalTimeline
+            entries={[
+              { title: "Kickoff", description: "Scope the build", date: "Mar 4" },
+              { title: "Alpha", description: "First components", date: "Mar 11" },
+              { title: "Launch", description: "Public registry", date: "Mar 18" },
+            ]}
+          />
+        </div>
+      );
+    case "speech-bubble-cursor":
+      return wrap(
+        <div className="w-full">
+          <SpeechBubbleCursor defaultText="Hello">
+            <p className="text-sm">Hover me.</p>
+          </SpeechBubbleCursor>
+        </div>
+      );
+    case "comment-thread":
+      return wrap(
+        <div className="w-full">
+          <CommentThread
+            threads={[
+              {
+                id: "1",
+                author: "Ada",
+                body: "Ship the contrast gate before the launch post.",
+                time: "2m",
+              },
+              {
+                id: "2",
+                author: "Grace",
+                body: "Agreed — the badge should link to the report.",
+                time: "1m",
+                resolved: true,
+              },
+            ]}
+          />
+        </div>
+      );
     default:
       return wrap(
         <div className="w-80 rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-6 shadow-card">
           <p className="font-display text-lg font-bold">{slug}</p>
           <p className="mt-2 text-sm text-[color:var(--b-muted)]">
-            Live React implementation shares patterns with the components above. Open the framework tabs
-            to see the code.
+            This one is a helper rather than a component. Open the source below to
+            read it, or copy the install command to add it to your project.
           </p>
         </div>
       );

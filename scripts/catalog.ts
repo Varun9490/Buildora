@@ -138,31 +138,43 @@ export const catalog: CatalogItem[] = [
   R("magnetic-dropzone", fullWeb, { name: "Magnetic Dropzone", description: "Dropzone that leans toward a file-drag cursor and pulses its field; browse input fallback; dropped files list with removers.", categories: ["forms", "motion"], tags: ["drag-drop", "files", "magnetic"], difficulty: "intermediate" }),
   R("draggable-card-pile", fullWeb, { name: "Draggable Card Pile", description: "Riffled stack: the top card drags out past a threshold and cycles to the back with spring physics. Enter flings for keyboard.", categories: ["motion", "blocks"], tags: ["cards", "stack", "drag"], difficulty: "intermediate" }),
 
-  R("streaming-chat", fullWeb, { name: "Streaming Chat", description: "Demo chat UI with simulated token streaming and citations. No transport yet — do not point at production. Transport-agnostic rebuild planned.", categories: ["ai-llm"], tags: ["chat", "demo", "llm"], difficulty: "intermediate" }),
-  R("model-selector", fullWeb, { name: "Model Selector", description: "Accessible model picker with status dot.", categories: ["ai-llm"], tags: ["model", "selector"], difficulty: "beginner", files: ["packages/components/src/streaming-chat/index.tsx"] }),
-  R("token-meter", fullWeb, { name: "Token Meter", description: "Token usage meter with role=meter semantics.", categories: ["ai-llm"], tags: ["tokens", "usage", "meter"], difficulty: "beginner", files: ["packages/components/src/streaming-chat/index.tsx"] }),
-  R("tool-call-viz", fullWeb, { name: "Tool Call Visualization", description: "Timeline of agent tool calls with running/done states.", categories: ["ai-llm"], tags: ["tools", "agent", "timeline"], difficulty: "intermediate", files: ["packages/components/src/streaming-chat/index.tsx"] }),
+  R("streaming-chat", fullWeb, { name: "Streaming Chat", description: "Chat surface for a token stream. Bring your own transport: it renders the messages you pass and hands the input to onSend.", categories: ["ai-llm"], tags: ["chat", "stream", "llm"], difficulty: "intermediate" }),
+  R("model-selector", fullWeb, { name: "Model Selector", description: "Accessible model picker with status dot.", categories: ["ai-llm"], tags: ["model", "selector"], difficulty: "beginner", files: ["packages/components/src/model-selector/index.tsx"] }),
+  R("token-meter", fullWeb, { name: "Token Meter", description: "Token usage meter with role=meter semantics.", categories: ["ai-llm"], tags: ["tokens", "usage", "meter"], difficulty: "beginner", files: ["packages/components/src/token-meter/index.tsx"] }),
+  R("tool-call-viz", fullWeb, { name: "Tool Call Visualization", description: "Timeline of agent tool calls with running/done states.", categories: ["ai-llm"], tags: ["tools", "agent", "timeline"], difficulty: "intermediate", files: ["packages/components/src/tool-call-viz/index.tsx"] }),
   R("agent-timeline", fullWeb, { name: "Agent Timeline", description: "Agent activity timeline (plan → act → observe) with status semantics.", categories: ["ai-llm"], tags: ["agent", "timeline"], difficulty: "intermediate" }),
   R("attachment-prompt", fullWeb, { name: "Attachment Prompt", description: "Prompt input with removable attachment chips and send.", categories: ["ai-llm"], tags: ["prompt", "attachments"], difficulty: "intermediate" }),
   R("ai-review-edit", fullWeb, { name: "AI Review & Edit", description: "Diff-style review UI for AI-generated content (accept / edit / reject).", categories: ["ai-llm", "editor"], tags: ["review", "diff", "ai"], difficulty: "intermediate" }),
 
   R("advanced-table", fullWeb, { name: "Advanced Table", description: "Sortable, filterable, paginated table with semantic <table> markup.", categories: ["data"], tags: ["table", "sorting", "filter"], difficulty: "intermediate" }),
-  R("json-viewer", fullWeb, { name: "JSON Viewer", description: "Collapsible JSON viewer with mono styling.", categories: ["data", "developer"], tags: ["json", "viewer"], difficulty: "beginner", files: ["packages/components/src/advanced-table/index.tsx"] }),
-  R("log-viewer", fullWeb, { name: "Log Viewer", description: "Filterable log stream with role=log semantics.", categories: ["data", "developer"], tags: ["logs", "viewer"], difficulty: "beginner", files: ["packages/components/src/advanced-table/index.tsx"] }),
+  R("json-viewer", fullWeb, { name: "JSON Viewer", description: "Collapsible JSON viewer with mono styling.", categories: ["data", "developer"], tags: ["json", "viewer"], difficulty: "beginner", files: ["packages/components/src/json-viewer/index.tsx"] }),
+  R("log-viewer", fullWeb, { name: "Log Viewer", description: "Filterable log stream with role=log semantics.", categories: ["data", "developer"], tags: ["logs", "viewer"], difficulty: "beginner", files: ["packages/components/src/log-viewer/index.tsx"] }),
   R("query-builder", fullWeb, { name: "Query Builder", description: "Composable filter rows with field/operator/value and removable chips.", categories: ["data"], tags: ["filter", "query"], difficulty: "advanced" }),
   R("diff-viewer", fullWeb, { name: "Diff Viewer", description: "Side-by-side line comparison with added/removed semantics.", categories: ["data", "editor"], tags: ["diff", "compare"], difficulty: "intermediate" }),
 
   R("terminal", fullWeb, { name: "Terminal", description: "Terminal emulator UI with scrollback + command input.", categories: ["developer"], tags: ["terminal", "cli"], difficulty: "intermediate" }),
-  R("file-tree", fullWeb, { name: "File Tree", description: "Accessible tree with expand/collapse and keyboard support.", categories: ["developer"], tags: ["files", "tree"], difficulty: "beginner", files: ["packages/components/src/terminal/index.tsx"] }),
-  R("calendar", fullWeb, { name: "Calendar", description: "Scheduling grid with gridcell semantics.", categories: ["canvas"], tags: ["calendar", "scheduling"], difficulty: "intermediate", files: ["packages/components/src/kanban/index.tsx"] }),
+  R("terminal-ui", fullWeb, { name: "Terminal UI", description: "Full terminal workspace: tab bar, sidebar tree, panes and a command input.", categories: ["developer"], tags: ["terminal", "workspace", "tabs"], difficulty: "advanced", files: ["packages/components/src/terminal-ui/index.tsx", "packages/components/src/terminal-ui/terminal-pane.tsx", "packages/components/src/terminal-ui/terminal-sidebar.tsx", "packages/components/src/terminal-ui/terminal-tab-bar.tsx", "packages/components/src/terminal-ui/command-input.tsx", "packages/components/src/terminal-ui/terminal-theme.ts"] }),
+  R("file-tree", fullWeb, { name: "File Tree", description: "Accessible tree with expand/collapse and keyboard support.", categories: ["developer"], tags: ["files", "tree"], difficulty: "beginner", files: ["packages/components/src/file-tree/index.tsx"] }),
+  R("code-editor", fullWeb, { name: "Code Editor Lite", description: "Split code/preview surface. A textarea, not an editor engine.", categories: ["developer"], tags: ["code", "editor"], difficulty: "beginner", files: ["packages/components/src/code-editor/index.tsx"] }),
+  R("command-palette", fullWeb, { name: "Command Palette", description: "Keyboard-first command surface with fuzzy matching and combobox semantics.", categories: ["navigation"], tags: ["command", "palette", "cmdk"], difficulty: "intermediate", files: ["packages/components/src/command-palette/index.tsx"] }),
+  R("hold-button", fullWeb, { name: "Hold Button", description: "Press and hold to confirm, with live progress. A real behaviour, not a finish.", categories: ["motion"], tags: ["button", "hold", "confirm"], difficulty: "beginner", files: ["packages/components/src/hold-button/index.tsx"] }),
+  R("particle-field", fullWeb, { name: "Particle Field", description: "Canvas particle drift with a DPR cap. No Three.js.", categories: ["backgrounds"], tags: ["canvas", "particles", "background"], difficulty: "beginner", files: ["packages/components/src/particle-field/index.tsx"] }),
+  R("magnification-dock", fullWeb, { name: "Magnification Dock", description: "Dock whose icons grow with cursor proximity, on a continuous spring.", categories: ["navigation"], tags: ["dock", "magnify", "toolbar"], difficulty: "intermediate", files: ["packages/components/src/magnification-dock/index.tsx"] }),
+  R("dynamic-island", fullWeb, { name: "Dynamic Island", description: "Morphing status pill for live app state. A live region, not decoration.", categories: ["feedback"], tags: ["status", "live-region", "pill"], difficulty: "intermediate", files: ["packages/components/src/dynamic-island/index.tsx"] }),
+  R("tactile-loader", fullWeb, { name: "Tactile Loader", description: "Three bouncing dots that announce themselves once.", categories: ["feedback"], tags: ["loader", "spinner", "status"], difficulty: "beginner", files: ["packages/components/src/tactile-loader/index.tsx"] }),
+  R("tui-sparkline", fullWeb, { name: "Sparkline", description: "Inline value sparkline for dense rows. No primitive equivalent.", categories: ["data"], tags: ["sparkline", "chart", "data"], difficulty: "beginner", files: ["packages/components/src/tui-sparkline/index.tsx"] }),
+  R("tui-help-overlay", fullWeb, { name: "Key Binding Overlay", description: "Keyboard shortcut cheatsheet overlay. No primitive equivalent.", categories: ["overlays"], tags: ["help", "shortcuts", "keyboard"], difficulty: "beginner", files: ["packages/components/src/tui-help-overlay/index.tsx"] }),
+  R("bento-grid", fullWeb, { name: "Bento Grid", description: "Configurable grid with per-item spans.", categories: ["primitives"], tags: ["layout", "grid", "bento"], difficulty: "beginner", files: ["packages/components/src/layouts/bento-grid.tsx"] }),
+  R("infinite-marquee", fullWeb, { name: "Infinite Marquee", description: "Seamless scrolling row that pauses on hover.", categories: ["primitives"], tags: ["marquee", "scroll", "ticker"], difficulty: "beginner", files: ["packages/components/src/layouts/infinite-marquee.tsx"] }),
+  R("calendar", fullWeb, { name: "Calendar", description: "Month grid with real dates, gridcell semantics and today marked.", categories: ["canvas"], tags: ["calendar", "scheduling"], difficulty: "intermediate", files: ["packages/components/src/kanban/index.tsx"] }),
   R("comment-thread", fullWeb, { name: "Comment Thread", description: "Resolve/reopen comment thread.", categories: ["editor"], tags: ["comments"], difficulty: "beginner", files: ["packages/components/src/comment-thread/index.tsx"] }),
-  R("rich-text-editor", fullWeb, { name: "Rich Text Editor", description: "Toolbar + contentEditable editor with word count.", categories: ["editor"], tags: ["rich-text"], difficulty: "advanced" }),
+  R("rich-text-editor", fullWeb, { name: "Rich Text Editor", description: "Formatting toolbar over contentEditable. Controlled value, sanitised output, no editor engine.", categories: ["editor"], tags: ["rich-text", "editor"], difficulty: "advanced" }),
   R("slash-commands", fullWeb, { name: "Slash Commands", description: "Notion-style slash menu with fuzzy filtering.", categories: ["editor"], tags: ["slash", "blocks"], difficulty: "intermediate" }),
   R("version-history", fullWeb, { name: "Version History", description: "Document version list with restore action.", categories: ["editor"], tags: ["versions", "history"], difficulty: "intermediate" }),
 
   R("button", fullWeb, { name: "Primitive Button", description: "Base button with variants and sizes. Foundation for everything clickable.", categories: ["primitives"], tags: ["button", "foundation"], difficulty: "beginner", files: ["packages/components/src/primitives/button/index.tsx"] }),
   R("input", fullWeb, { name: "Primitive Input", description: "Labeled text input with variants, sizes, and error states.", categories: ["forms"], tags: ["input", "field"], difficulty: "beginner", files: ["packages/components/src/primitives/input/index.tsx"] }),
-  R("textarea", fullWeb, { name: "Primitive Textarea", description: "Multiline text field sharing Input styling and semantics.", categories: ["forms"], tags: ["textarea", "field"], difficulty: "beginner", files: ["packages/components/src/primitives/input/index.tsx"] }),
+  R("textarea", fullWeb, { name: "Primitive Textarea", description: "Multiline text field sharing Input styling and semantics.", categories: ["forms"], tags: ["textarea", "field"], difficulty: "beginner", files: ["packages/components/src/primitives/textarea/index.tsx"] }),
   R("badge", fullWeb, { name: "Badge & Chip", description: "Status badges and removable chips with variant tones.", categories: ["primitives"], tags: ["badge", "chip"], difficulty: "beginner", files: ["packages/components/src/primitives/badge/index.tsx"] }),
   R("switch", fullWeb, { name: "Switch", description: "Labeled toggle switch built on a native checkbox.", categories: ["forms"], tags: ["switch", "toggle"], difficulty: "beginner", files: ["packages/components/src/primitives/switch/index.tsx"] }),
   R("checkbox", fullWeb, { name: "Checkbox", description: "Accessible checkbox with label and indeterminate support.", categories: ["forms"], tags: ["checkbox"], difficulty: "beginner", files: ["packages/components/src/primitives/checkbox/index.tsx"] }),
@@ -348,41 +360,21 @@ export const catalog: CatalogItem[] = [
 ];
 
 // ── Phase 1 truth pass ─────────────────────────────────────────────
-// EXPERIMENTAL = fails the Bar today; hidden from the default listing,
-// kept installed via direct URL until its merge/rebuild lands (or deletion).
-const EXPERIMENTAL = new Set([
-  // 19 tui + workspace → one xterm.js Terminal + terminal skin (3.10)
-  "tui-panel", "tui-status-bar", "tui-header", "tui-footer", "tui-table", "tui-tree",
-  "tui-list", "tui-form", "tui-select", "tui-multi-select", "tui-progress", "tui-spinner",
-  "tui-gauge", "tui-sparkline", "tui-log-viewer", "tui-help-overlay", "tui-diff-viewer",
-  "terminal-workspace",
-  // 8 backgrounds (+aurora) → Backdrop
-  "aurora-background", "noise-background", "grid-background", "dot-grid-background",
-  "gradient-mesh-background", "aurora-beam-background", "ripple-background", "meteor-background",
-  "beam-background",
-  // 5 cursors → CursorFx
-  "glow-cursor", "blob-cursor", "trail-cursor", "ghost-cursor", "spotlight-cursor",
-  // 5 fx-buttons → FxButton (HoldButton stays: real behavior)
-  "liquid-button", "ripple-button", "shimmer-button", "glow-button", "gradient-border-button",
-  // 7 fx-cards → FxCard
-  "magnetic-card", "holographic-card", "interactive-3d-card", "glare-card",
-  "spotlight-card", "wobble-card", "glass-card",
-  // 6 text fx → TextFx
-  "typewriter", "scrambled-text", "blur-text", "gradient-text", "glitch-text", "morphing-typography",
-  // 2 command dupes → command-palette until the Command rebuild (3.5)
-  "command-bar", "spatial-command-palette",
-  // 1 toast dupe → toast until NotificationCenter
-  "creative-notifications",
-  // 1 sidebar + 1 navbar variant → base keeps, variants merge in AppShell work
-  "expandable-sidebar", "floating-navbar",
-  // engines → rebuild on real engines (3.10) or delete
-  "code-editor", "markdown-editor", "spreadsheet-grid", "node-editor", "timeline-editor", "workflow-builder",
-  // honesty gaps → rebuilds
-  "query-builder", "calendar", "rich-text-editor", "modal-stack",
-  "streaming-chat", "model-selector", "token-meter", "tool-call-viz",
-  "agent-timeline", "attachment-prompt", "ai-review-edit",
-  "advanced-table",
-]);
+// EXPERIMENTAL = fails the Bar today: hidden from the default listing,
+// kept installable via direct URL until its merge or rebuild lands.
+//
+// The list is empty. The consolidation that used to live here has landed:
+// Backdrop (9 backgrounds), CursorFx (5 cursors), FxButton (4 button
+// finishes), FxCard (7 card effects) and TextFx (6 text kinds) replaced the
+// one-off components, the TUI restyles became the terminal theme, and the
+// rebuilt pieces (calendar, rich text editor, streaming chat) now behave the
+// way their names say.
+//
+// Add a slug here when a component ships with a name that overstates it, or
+// with demo behaviour behind a real-sounding name. The bar is: the name
+// matches what the component does, it renders server-side, and it passes
+// the axe gate.
+const EXPERIMENTAL = new Set<string>();
 
 // Demos, not components → Blocks category (compositions of real primitives).
 const BLOCKS = new Set([

@@ -5,21 +5,26 @@ import { cn } from "@buildora/utils";
 import { useReducedMotion } from "@buildora/hooks";
 
 /**
- * FxCard — six pointer effects, now with fluid spring tilt + liquid glass.
+ * FxCard — seven effects: six pointer treatments plus a CSS 3D flip.
  * All pointer math writes to CSS vars / transform (no re-render per move).
  * Decorative layers are aria-hidden; card is keyboard-focusable.
  */
-export type FxCardEffect = "tilt" | "spotlight" | "glare" | "holographic" | "wobble" | "glass";
+export type FxCardEffect = "tilt" | "spotlight" | "glare" | "holographic" | "wobble" | "glass" | "flip";
 
 export type FxCardProps = React.HTMLAttributes<HTMLDivElement> & {
   effect?: FxCardEffect;
   tiltMax?: number;
   sheen?: string;
+  /** Reverse face for the flip effect. */
+  back?: React.ReactNode;
+  /** Accessible name for the flip control. */
+  flipLabel?: string;
 };
 
-export function FxCard({ effect = "spotlight", tiltMax = 8, sheen = "color-mix(in srgb, var(--b-accent) 22%, transparent)", className, children, ...rest }: FxCardProps) {
+export function FxCard({ effect = "spotlight", tiltMax = 8, sheen = "color-mix(in srgb, var(--b-accent) 22%, transparent)", back, flipLabel = "Flip card", className, children, ...rest }: FxCardProps) {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const reduced = useReducedMotion();
+  const [flipped, setFlipped] = React.useState(false);
   const interactive = !reduced && (effect === "tilt" || effect === "spotlight" || effect === "glare" || effect === "holographic");
   const rafRef = React.useRef<number | null>(null);
   const target = React.useRef({ rx: 0, ry: 0 });
@@ -58,6 +63,42 @@ export function FxCard({ effect = "spotlight", tiltMax = 8, sheen = "color-mix(i
     target.current = { rx: 0, ry: 0 };
     if (!rafRef.current) rafRef.current = requestAnimationFrame(tick);
   };
+
+  if (effect === "flip") {
+    // A flip card is a control, not a pointer surface: the whole face is the
+    // button, and the back face is the second state.
+    return (
+      <div
+        ref={ref}
+        data-effect={effect}
+        className={cn("[perspective:1200px]", className)}
+        {...rest}
+      >
+        <button
+          type="button"
+          onClick={() => setFlipped((f) => !f)}
+          aria-pressed={flipped}
+          aria-label={flipLabel}
+          className="block w-full text-left"
+        >
+          <div
+            className={cn(
+              "relative h-44 transition-transform duration-500 motion-reduce:transition-none",
+              "[transform-style:preserve-3d]"
+            )}
+            style={{ transform: flipped ? "rotateY(180deg)" : undefined }}
+          >
+            <div className="absolute inset-0 rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color:var(--b-surface)] p-5 [backface-visibility:hidden]">
+              {children}
+            </div>
+            <div className="absolute inset-0 rounded-2xl border border-[color-mix(in_oklab,var(--b-accent)_30%,transparent)] bg-[color:var(--b-bg)] p-5 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+              {back}
+            </div>
+          </div>
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div

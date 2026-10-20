@@ -2,9 +2,9 @@
 
 import * as React from "react";
 
-import { cn } from "../utils";
+import { cn } from "@buildora/utils";
 
-export type CursorFxMode = "glow" | "spotlight" | "trail" | "blob";
+export type CursorFxMode = "glow" | "spotlight" | "trail" | "blob" | "ghost";
 
 export type CursorFxProps = {
   mode?: CursorFxMode;
@@ -24,6 +24,8 @@ const EASE: Record<CursorFxMode, number> = {
   spotlight: 0.25,
   trail: 0.35,
   blob: 0.16,
+  // Ghost trails far behind the pointer on purpose: it is the echo, not the cursor.
+  ghost: 0.08,
 };
 
 /**
@@ -36,7 +38,7 @@ function alpha(color: string, pct: number) {
 }
 
 /**
- * CursorFx — one pointer-following effect with four modes.
+ * CursorFx — one pointer-following effect with five modes.
  * Decorative (aria-hidden, pointer-events-none), fine-pointer only,
  * renders nothing under prefers-reduced-motion. A single rAF loop writes
  * transforms to refs (no re-render per pointer move) and goes idle once the
@@ -54,6 +56,7 @@ export function CursorFx({
   const [visible, setVisible] = React.useState(false);
 
   const head = React.useRef<HTMLDivElement | null>(null);
+  const pin = React.useRef<HTMLDivElement | null>(null);
   const dots = React.useRef<Array<HTMLDivElement | null>>([]);
   const seeded = React.useRef(false);
   const target = React.useRef({ x: OFFSCREEN, y: OFFSCREEN });
@@ -124,6 +127,11 @@ export function CursorFx({
     const onMove = (e: PointerEvent) => {
       if (e.pointerType === "touch") return;
       target.current = { x: e.clientX, y: e.clientY };
+      // The pin sits on the real pointer so the user is never lost, even
+      // though the ghost itself lags far behind.
+      if (mode === "ghost" && pin.current) {
+        pin.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+      }
       if (!seeded.current) {
         // First movement: jump there instead of streaking in from off-screen.
         seeded.current = true;
@@ -182,17 +190,40 @@ export function CursorFx({
       )}
       style={{ zIndex: "var(--z-cursor, 200)" }}
     >
-      {(mode === "glow" || mode === "spotlight") && (
+      {(mode === "glow" || mode === "spotlight" || mode === "ghost") && (
         <div
           ref={head}
           className="absolute left-0 top-0 rounded-full will-change-transform"
+          style={
+            mode === "ghost"
+              ? {
+                  width: size * 0.22,
+                  height: size * 0.22,
+                  border: `2px solid ${alpha(color, 70)}`,
+                  background: "transparent",
+                  transform: `translate3d(${OFFSCREEN}px, ${OFFSCREEN}px, 0)`,
+                }
+              : {
+                  width: size,
+                  height: size,
+                  background:
+                    mode === "glow"
+                      ? `radial-gradient(circle, ${alpha(color, 35)} 0%, transparent 70%)`
+                      : `radial-gradient(circle, ${alpha(color, 22)} 0%, ${alpha(color, 8)} 45%, transparent 68%)`,
+                  transform: `translate3d(${OFFSCREEN}px, ${OFFSCREEN}px, 0)`,
+                }
+          }
+        />
+      )}
+
+      {mode === "ghost" && (
+        <div
+          ref={pin}
+          className="absolute left-0 top-0 rounded-full will-change-transform"
           style={{
-            width: size,
-            height: size,
-            background:
-              mode === "glow"
-                ? `radial-gradient(circle, ${alpha(color, 35)} 0%, transparent 70%)`
-                : `radial-gradient(circle, ${alpha(color, 22)} 0%, ${alpha(color, 8)} 45%, transparent 68%)`,
+            width: 8,
+            height: 8,
+            background: color,
             transform: `translate3d(${OFFSCREEN}px, ${OFFSCREEN}px, 0)`,
           }}
         />

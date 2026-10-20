@@ -110,6 +110,42 @@
   --b-accent-glow: rgba(254, 116, 135, 0.24);
 }
 
+/* ── Terminal skin ──────────────────────────────────────────────────
+   The same skin the registry ships, so the site and a consumer project
+   render identically. Apply it to any ancestor: <div data-theme="terminal"> */
+[data-theme="terminal"] {
+  --b-bg: #0a0a0a;
+  --b-panel: #101010;
+  --b-surface: #161616;
+  --b-elevated: #1c1c1c;
+  --b-border: rgba(255, 255, 255, 0.14);
+  --b-border-hover: rgba(255, 255, 255, 0.26);
+  --b-text: #d7d7d7;
+  --b-text-secondary: #a0a0a0;
+  --b-muted: #7a7a7a;
+  --b-ring: rgba(212, 255, 79, 0.45);
+  --b-success: #56d364;
+  --b-warning: #e3b341;
+  --b-danger: #ff695e;
+  --b-accent: #d4ff4f;
+  --b-accent-foreground: #0a0a0a;
+  --b-accent-muted: rgba(212, 255, 79, 0.14);
+  --b-iris: #79c0ff;
+  --b-iris-foreground: #0a0a0a;
+  --b-radius: 0px;
+  --b-radius-sm: 0px;
+  --b-radius-lg: 0px;
+  --b-glass: rgba(16, 16, 16, 0.9);
+  --b-glass-border: rgba(255, 255, 255, 0.16);
+  --b-scrim: rgba(0, 0, 0, 0.72);
+  color-scheme: dark;
+}
+
+[data-theme="terminal"] :is(button, input, textarea, select, [role="dialog"], [role="menu"], [role="listbox"]) {
+  border-radius: 0;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
 /* ── Accent palettes · alabaster light ── */
 [data-theme="light"][data-accent="iris"] {
   --b-accent: #493ddc;

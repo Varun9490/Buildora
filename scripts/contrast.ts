@@ -135,6 +135,7 @@ const failures: string[] = [];
 const shippedCss = fs.readFileSync(path.join(root, "registry/shared/tokens.css"), "utf8");
 const shippedLight = vars(block(shippedCss, ':root,\n[data-theme="light"]'));
 const shippedDark = vars(block(shippedCss, '[data-theme="dark"]'));
+const shippedTerminal = vars(block(shippedCss, '[data-theme="terminal"]'));
 
 /* ── 2. The site's own token engine ─────────────────────────────────────── */
 const siteCss = fs.readFileSync(path.join(root, "apps/web/app/globals.css"), "utf8");
@@ -183,6 +184,7 @@ const report = {
 
 baseThemes("shipped.light", shippedLight, report.shippedTokens);
 baseThemes("shipped.dark", shippedDark, report.shippedTokens);
+baseThemes("shipped.terminal", shippedTerminal, report.shippedTokens);
 baseThemes("site.dark", siteDark, report.siteTheme);
 baseThemes("site.light", siteLight, report.siteTheme);
 
@@ -227,6 +229,7 @@ if (SOLVE) {
   for (const [label, theme, direction] of [
     ["shipped.light", shippedLight, "darker"],
     ["shipped.dark", shippedDark, "lighter"],
+    ["shipped.terminal", shippedTerminal, "lighter"],
     ["site.light", siteLight, "darker"],
     ["site.dark", siteDark, "lighter"],
   ] as const) {

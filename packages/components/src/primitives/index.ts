@@ -1,5 +1,6 @@
 export { Button, type ButtonProps, type ButtonVariant, type ButtonSize } from "./button";
-export { Input, Textarea, type InputProps, type TextareaProps, type InputVariant, type InputSize } from "./input";
+export { Input, type InputProps, type InputVariant, type InputSize } from "./input";
+export { Textarea, type TextareaProps, type TextareaVariant } from "./textarea";
 export { Badge, Chip, type BadgeProps, type ChipProps, type BadgeVariant } from "./badge";
 export { Switch, type SwitchProps } from "./switch";
 export { Checkbox, type CheckboxProps } from "./checkbox";

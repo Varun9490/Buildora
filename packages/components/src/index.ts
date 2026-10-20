@@ -37,28 +37,6 @@ export { TypeWall, type TypeWallProps } from "./type-wall";
 export { FxCard, type FxCardProps, type FxCardEffect } from "./fx-card";
 export { FxButton, type FxButtonProps, type FxButtonEffect } from "./fx-button";
 export {
-  RippleButton,
-  ShimmerButton,
-  GlowButton,
-  GradientBorderButton,
-  HoldButton,
-  type RippleButtonProps,
-  type ShimmerButtonProps,
-  type GlowButtonProps,
-  type GradientBorderButtonProps,
-  type HoldButtonProps,
-} from "./buttons";
-export {
-  GlareCard,
-  SpotlightCard,
-  WobbleCard,
-  GlassCard,
-  type GlareCardProps,
-  type SpotlightCardProps,
-  type WobbleCardProps,
-  type GlassCardProps,
-} from "./cards";
-export {
   BentoGrid,
   BentoItem,
   InfiniteMarquee,
@@ -72,28 +50,41 @@ export {
 } from "./layouts";
 export { SlingshotOTP } from "./slingshot-otp";
 export { InteractiveDropzone } from "./interactive-dropzone";
-export { CreativeNotifications } from "./creative-notifications";
-export {
-  AuroraBackground,
-  ParticleField,
-  CursorSpotlight,
-  MorphingTypography,
-  HolographicCard,
-  Interactive3DCard,
-  TactileLoader,
-} from "./creative-atmosphere";
-export { StreamingChat, TokenMeter, ModelSelector, ToolCallViz } from "./streaming-chat";
+export { StreamingChat, type ChatMessage, type StreamingChatProps } from "./streaming-chat";
+export { TokenMeter, type TokenMeterProps } from "./token-meter";
+export { ModelSelector, type ModelOption, type ModelSelectorProps } from "./model-selector";
+export { ToolCallViz } from "./tool-call-viz";
 export { AgentTimeline, type AgentStep } from "./agent-timeline";
 export { AttachmentPrompt, type Attachment } from "./attachment-prompt";
 export { AIReviewEdit } from "./ai-review-edit";
-export { AdvancedTable, JSONViewer, LogViewer } from "./advanced-table";
+export { AdvancedTable, type Column, type Row } from "./advanced-table";
+export { JSONViewer } from "./json-viewer";
+export { LogViewer } from "./log-viewer";
 export { QueryBuilder, type Filter } from "./query-builder";
 export { DiffViewer, type DiffLine } from "./diff-viewer";
-export { Terminal, FileTree, CodeEditorLite } from "./terminal";
+export { Terminal } from "./terminal";
+export { FileTree, type TreeNode, type FileTreeProps } from "./file-tree";
+export { CodeEditorLite, type CodeEditorLiteProps } from "./code-editor";
+export { HoldButton, type HoldButtonProps } from "./hold-button";
+export { ParticleField, type ParticleFieldProps } from "./particle-field";
+export { TactileLoader, type TactileLoaderProps } from "./tactile-loader";
+export {
+  MagnificationDock,
+  type MagnificationDockProps,
+  type DockItem,
+} from "./magnification-dock";
+export {
+  DynamicIsland,
+  type DynamicIslandProps,
+  type DynamicIslandStatus,
+} from "./dynamic-island";
+export { TUISparkline, type TUISparklineProps } from "./tui-sparkline";
+export { TUIHelpOverlay, type TUIHelpOverlayProps, type TUIKeyBinding } from "./tui-help-overlay";
 export { Kanban, Calendar } from "./kanban";
 export { CommandPalette, type Command } from "./command-palette";
 export { RichTextEditor } from "./rich-text-editor";
 export { SlashCommands, type SlashItem } from "./slash-commands";
+export { CommentThread, type Comment, type CommentThreadProps } from "./comment-thread";
 export { VersionHistory, type DocVersion } from "./version-history";
 export { CtaBlock, type CtaStat } from "./cta-block";
 export { FeatureGrid, type Feature } from "./feature-grid";
@@ -142,6 +133,7 @@ export {
   type ChipProps,
   type InputProps,
   type TextareaProps,
+  type TextareaVariant,
   type InputVariant,
   type InputSize,
   type SwitchProps,
@@ -163,48 +155,6 @@ export {
   type ToastData,
   type TooltipProps,
 } from "./primitives";
-export {
-  Typewriter,
-  ScrambledText,
-  BlurText,
-  GradientText,
-  GlitchText,
-  type TypewriterProps,
-  type ScrambledTextProps,
-  type BlurTextProps,
-  type GradientTextProps,
-  type GlitchTextProps,
-} from "./text-effects";
-export {
-  GlowCursor,
-  BlobCursor,
-  TrailCursor,
-  GhostCursor,
-  SpotlightCursor,
-  type GlowCursorProps,
-  type BlobCursorProps,
-  type TrailCursorProps,
-  type GhostCursorProps,
-  type SpotlightCursorProps,
-} from "./cursor-effects";
-export {
-  NoiseBackground,
-  GridBackground,
-  DotGridBackground,
-  GradientMeshBackground,
-  AuroraBeamBackground,
-  RippleBackground,
-  MeteorBackground,
-  BeamBackground,
-  type NoiseBackgroundProps,
-  type GridBackgroundProps,
-  type DotGridBackgroundProps,
-  type GradientMeshBackgroundProps,
-  type AuroraBeamBackgroundProps,
-  type RippleBackgroundProps,
-  type MeteorBackgroundProps,
-  type BeamBackgroundProps,
-} from "./backgrounds";
 export {
   Dialog,
   DialogHeader,
@@ -255,52 +205,6 @@ export {
   type HoverCardProps,
   type ModalStackProps,
 } from "./overlays";
-export {
-  TUIPanel,
-  TUIStatusBar,
-  TUIHeader,
-  TUIFooter,
-  TUITable,
-  TUITree,
-  TUIList,
-  TUIForm,
-  TUISelect,
-  TUIMultiSelect,
-  TUIProgress,
-  TUISpinner,
-  TUIGauge,
-  TUISparkline,
-  TUILogViewer,
-  TUIHelpOverlay,
-  TUIDiffViewer,
-  type TUIPanelProps,
-  type TUIStatusBarProps,
-  type TUIHeaderProps,
-  type TUIFooterProps,
-  type TUITableProps,
-  type TUITableColumn,
-  type TUITableRow,
-  type TUITreeProps,
-  type TUITreeNode,
-  type TUIListProps,
-  type TUIListItem,
-  type TUIFormProps,
-  type TUIFormField,
-  type TUISelectProps,
-  type TUISelectOption,
-  type TUIMultiSelectProps,
-  type TUIMultiSelectOption,
-  type TUIProgressProps,
-  type TUISpinnerProps,
-  type TUIGaugeProps,
-  type TUISparklineProps,
-  type TUILogViewerProps,
-  type TUILogEntry,
-  type TUIHelpOverlayProps,
-  type TUIKeyBinding,
-  type TUIDiffViewerProps,
-  type TUIDiffHunk,
-} from "./tui";
 export {
   TerminalUI,
   TerminalPane,
@@ -361,9 +265,6 @@ export {
   PaginationEllipsis,
   PaginationPrev,
   PaginationNext,
-  CommandBar,
-  CommandBarItem,
-  CommandBarTrigger,
   type NavbarProps,
   type NavbarLogoProps,
   type NavbarCenterProps,
@@ -398,8 +299,6 @@ export {
   type PaginationEllipsisProps,
   type PaginationPrevProps,
   type PaginationNextProps,
-  type CommandBarProps,
-  type CommandBarItemProps,
 } from "./navigation";
 export { springs, springToLinear, springStep, type SpringConfig } from "./animations/spring";
 export { FloatingObject, type FloatingObjectProps } from "./floating-object";

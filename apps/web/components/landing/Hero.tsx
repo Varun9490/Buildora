@@ -47,7 +47,7 @@ export function Hero() {
           >
             <span className="flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--b-accent)] fx-pulse-soft" />
-              v0.1 · {totalComponents} primitives
+              v0.1 · {totalComponents} installable
             </span>
             <span className="text-[color:var(--b-border-hover)]" aria-hidden="true">|</span>
             <span>MIT</span>

@@ -3,7 +3,7 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@buildora/utils";
-import { allComponents, categoryMeta, totalComponents } from "@/lib/registry";
+import { allComponents, categoryMeta, totalComponents, totalShowcased } from "@/lib/registry";
 import { DEFAULT_RENDER_CONTROLS, type Controls } from "@/lib/render-controls";
 import { ComponentRenderer } from "@/components/ComponentRenderer";
 import { installCommand } from "@/lib/design";
@@ -14,8 +14,8 @@ import { SlingshotOtpStage } from "./bento/SlingshotOtpStage";
 import { KineticButtons } from "./bento/KineticButtons";
 import { HoloPass } from "./bento/HoloPass";
 import { ParticleForceField } from "./bento/ParticleForceField";
-import { MagnificationDock } from "./bento/MagnificationDock";
-import { DynamicIsland } from "./bento/DynamicIsland";
+import { MagnificationDockStage } from "./bento/MagnificationDock";
+import { DynamicIslandStage } from "./bento/DynamicIsland";
 import { RubberScrubber } from "./bento/RubberScrubber";
 import { AiComposer } from "./bento/AiComposer";
 import { ExtraPreview, EXTRA_PREVIEW_SLUGS, EXTRA_CODE } from "./explorer/extra-previews";
@@ -45,12 +45,21 @@ const GROUPS: { id: string; label: string; slugs: string[] }[] = [
   {
     id: "inputs",
     label: "Tactile Inputs",
-    slugs: ["magnetic-button", "slingshot-otp", "fx-button", "button", "input", "textarea", "switch", "checkbox", "radio-group", "slider", "kbd"],
+    slugs: [
+      "magnetic-button", "slingshot-otp", "fx-button", "hold-button", "button", "input",
+      "textarea", "switch", "checkbox", "radio-group", "slider", "kbd", "segmented-control",
+      "elastic-slider", "morph-select", "detent-dial", "confirm-morph", "gooey-menu",
+    ],
   },
   {
     id: "surfaces",
     label: "Surfaces & Cards",
-    slugs: ["fx-card", "interactive-dropzone", "badge", "avatar", "skeleton", "progress", "spinner", "separator", "tokens", "utils"],
+    slugs: [
+      "fx-card", "interactive-dropzone", "badge", "avatar", "skeleton", "progress",
+      "spinner", "separator", "tokens", "utils", "comet-ring-spinner", "tactile-loader",
+      "blueprint-loader", "liquid-gauge", "fresnel-orb", "letter-wave", "focus-blur-list",
+      "grab-roller-strip", "unified-login-field", "magnetic-dropzone", "draggable-card-pile",
+    ],
   },
   {
     id: "overlays",
@@ -58,8 +67,8 @@ const GROUPS: { id: string; label: string; slugs: string[] }[] = [
     slugs: [
       "toast", "tooltip", "dialog", "alert-dialog", "sheet", "drawer", "popover", "dropdown-menu",
       "context-menu", "hover-card", "modal-stack", "tabs", "accordion", "navbar", "floating-navbar",
-      "gaussian-dock", "sidebar", "expandable-sidebar", "mobile-nav", "breadcrumb", "step-nav",
-      "pagination", "dynamic-island",
+      "magnification-dock", "sidebar", "expandable-sidebar", "mobile-nav", "mobile-header",
+      "breadcrumb", "step-nav", "pagination", "dynamic-island", "command-palette", "tui-help-overlay",
     ],
   },
   {
@@ -70,12 +79,19 @@ const GROUPS: { id: string; label: string; slugs: string[] }[] = [
   {
     id: "backgrounds",
     label: "Backgrounds & Blocks",
-    slugs: ["backdrop", "masonry-layout", "cta-block", "feature-grid", "logo-cloud", "site-footer"],
+    slugs: [
+      "backdrop", "particle-field", "masonry-layout", "bento-grid", "infinite-marquee",
+      "cta-block", "feature-grid", "logo-cloud", "site-footer",
+    ],
   },
   {
     id: "data",
     label: "Data & Developer",
-    slugs: ["advanced-table", "json-viewer", "log-viewer", "query-builder", "diff-viewer", "terminal", "file-tree", "calendar", "comment-thread", "rich-text-editor", "slash-commands", "version-history"],
+    slugs: [
+      "advanced-table", "json-viewer", "log-viewer", "query-builder", "diff-viewer", "terminal",
+      "terminal-ui", "file-tree", "code-editor", "calendar", "comment-thread", "rich-text-editor",
+      "slash-commands", "version-history", "tui-sparkline",
+    ],
   },
 ];
 
@@ -86,8 +102,8 @@ const SIGNATURE_DEMOS: Record<string, React.ReactNode> = {
   backdrop: <ParticleForceField />,
   slider: <RubberScrubber />,
   "attachment-prompt": <AiComposer />,
-  "gaussian-dock": <MagnificationDock />,
-  "dynamic-island": <DynamicIsland />,
+  "gaussian-dock": <MagnificationDockStage />,
+  "dynamic-island": <DynamicIslandStage />,
 };
 
 const SLIDERS: Record<string, { key: keyof Controls; label: string; min: number; max: number; step: number }[]> = {
@@ -204,11 +220,12 @@ export function ExplorerWorkspace() {
     >
       <div className="max-w-3xl">
         <h2 className="font-display text-3xl font-bold tracking-tight text-[color:var(--b-text)] sm:text-4xl lg:text-5xl text-balance">
-          Every primitive, live.
+          Every component, live.
         </h2>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-[color:var(--b-text-secondary)] sm:text-base">
-          {totalComponents} components, each rendering its real implementation — with its props, source, and install
-          command one click away. Nothing is a screenshot.
+          {totalComponents} installable components — {totalShowcased} with a live preview, the rest are
+          tokens and hooks. Every one has its props, source, and install command, one click away.
+          Nothing is a screenshot.
         </p>
       </div>
 
