@@ -5,6 +5,7 @@
   "title": "Sheet",
   "description": "Side panel sliding from any edge with focus management.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "overlays"
   ],

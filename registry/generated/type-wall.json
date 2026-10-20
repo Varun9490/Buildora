@@ -5,6 +5,7 @@
   "title": "Type Wall",
   "description": "Alternating solid and outline marquee rows under a fade mask. Pauses on hover, static under reduced motion.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

@@ -14,6 +14,11 @@ import {
   LiquidGauge,
   CometRingSpinner,
   ParticleField,
+  SplitText,
+  SpringCarousel,
+  RubberBand,
+  ScrollProgress,
+  DragDismiss,
   TactileLoader,
   CodeEditorLite,
   CommandPalette,
@@ -1103,6 +1108,67 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(
         <div className="w-full">
           <DynamicIsland status="think" />
+        </div>
+      );
+    case "split-text":
+      return wrap(
+        <div className="w-full">
+          <SplitText
+            as="h2"
+            text="Ship it with real physics"
+            by="word"
+            variant="fade-up"
+            stagger={55}
+            className="font-display text-3xl font-bold tracking-tight"
+          />
+        </div>
+      );
+    case "spring-carousel":
+      return wrap(
+        <div className="w-full">
+          <SpringCarousel visible={1}>
+            {["One", "Two", "Three", "Four"].map((t) => (
+              <div
+                key={t}
+                className="flex h-40 items-center justify-center rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] text-xl font-bold"
+              >
+                {t}
+              </div>
+            ))}
+          </SpringCarousel>
+        </div>
+      );
+    case "rubber-band":
+      return wrap(
+        <div className="w-full">
+          <RubberBand className="rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)]">
+            <div className="flex h-40 items-center justify-center text-sm text-[color:var(--b-muted)]">
+              Pull me down
+            </div>
+          </RubberBand>
+        </div>
+      );
+    case "scroll-progress":
+      return wrap(
+        <div className="w-full">
+          <div className="max-h-40 overflow-auto rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-4">
+            {Array.from({ length: 12 }, (_, i) => (
+              <p key={i} className="py-1 text-sm text-[color:var(--b-text-secondary)]">
+                Scroll line {i + 1}
+              </p>
+            ))}
+          </div>
+        </div>
+      );
+    case "drag-dismiss":
+      return wrap(
+        <div className="w-full">
+          <DragDismiss className="border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-6">
+            <p className="text-sm font-bold">Flick me away</p>
+            <p className="mt-1 text-xs text-[color:var(--b-muted)]">
+              Velocity decides, not distance alone.
+            </p>
+          </DragDismiss>
         </div>
       );
     case "particle-field":

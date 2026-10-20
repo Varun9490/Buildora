@@ -19,6 +19,26 @@ export type RegistryType =
 
 export type Status = "stable" | "beta" | "experimental";
 
+/**
+ * Two collections, because the library is two things:
+ *
+ *   creative — the effects, the physics, the kinetic type. The reason
+ *              anyone would choose Buildora over shadcn.
+ *   kit      — the ordinary primitives, forms, overlays and app blocks.
+ *              Good, well-made, and not the point.
+ *
+ * The site leads with creative. The registry keeps both, because a user
+ * who wants one button should not have to install a design system.
+ */
+export type Collection = "creative" | "kit";
+
+const CREATIVE_CATEGORIES = new Set(["motion", "backgrounds", "ai-llm"]);
+
+const COLLECTIONS: Record<string, Collection> = {
+  creative: "creative",
+  kit: "kit",
+};
+
 export type CatalogItem = {
   id: string;
   name: string;
@@ -40,6 +60,8 @@ export type CatalogItem = {
   registryType?: RegistryType;
   /** beta default; experimental hides from the default listing. */
   status?: Status;
+  /** Which of the two collections this belongs to. */
+  collection?: Collection;
   cssVars?: { light: Record<string, string>; dark: Record<string, string> };
   css?: string;
   demoProps?: Record<string, unknown>;
@@ -159,6 +181,11 @@ export const catalog: CatalogItem[] = [
   R("command-palette", fullWeb, { name: "Command Palette", description: "Keyboard-first command surface with fuzzy matching and combobox semantics.", categories: ["navigation"], tags: ["command", "palette", "cmdk"], difficulty: "intermediate", files: ["packages/components/src/command-palette/index.tsx"] }),
   R("hold-button", fullWeb, { name: "Hold Button", description: "Press and hold to confirm, with live progress. A real behaviour, not a finish.", categories: ["motion"], tags: ["button", "hold", "confirm"], difficulty: "beginner", files: ["packages/components/src/hold-button/index.tsx"] }),
   R("particle-field", fullWeb, { name: "Particle Field", description: "Canvas particle drift with a DPR cap. No Three.js.", categories: ["backgrounds"], tags: ["canvas", "particles", "background"], difficulty: "beginner", files: ["packages/components/src/particle-field/index.tsx"] }),
+  R("split-text", fullWeb, { name: "Split Text", description: "Reveal a headline word by word, character by character or line by line. Real text, one paint.", categories: ["motion"], tags: ["text", "reveal", "kinetic"], difficulty: "beginner", files: ["packages/components/src/split-text/index.tsx"] }),
+  R("spring-carousel", fullWeb, { name: "Spring Carousel", description: "Carousel that snaps on a spring, so a flick carries momentum to the nearest slide.", categories: ["motion"], tags: ["carousel", "spring", "drag"], difficulty: "advanced", files: ["packages/components/src/spring-carousel/index.tsx"] }),
+  R("rubber-band", fullWeb, { name: "Rubber Band", description: "Container that resists being pulled past its edge and snaps back with the velocity you let go at.", categories: ["motion"], tags: ["gesture", "elastic", "resist"], difficulty: "advanced", files: ["packages/components/src/rubber-band/index.tsx"] }),
+  R("scroll-progress", fullWeb, { name: "Scroll Progress", description: "Reading-progress bar that tracks an element, scaled with transforms so scrolling never lays out.", categories: ["motion"], tags: ["scroll", "progress", "reading"], difficulty: "beginner", files: ["packages/components/src/scroll-progress/index.tsx"] }),
+  R("drag-dismiss", fullWeb, { name: "Drag Dismiss", description: "Card you flick away. Velocity decides, not distance alone. Escape works too.", categories: ["motion"], tags: ["gesture", "dismiss", "swipe"], difficulty: "intermediate", files: ["packages/components/src/drag-dismiss/index.tsx"] }),
   R("magnification-dock", fullWeb, { name: "Magnification Dock", description: "Dock whose icons grow with cursor proximity, on a continuous spring.", categories: ["navigation"], tags: ["dock", "magnify", "toolbar"], difficulty: "intermediate", files: ["packages/components/src/magnification-dock/index.tsx"] }),
   R("dynamic-island", fullWeb, { name: "Dynamic Island", description: "Morphing status pill for live app state. A live region, not decoration.", categories: ["feedback"], tags: ["status", "live-region", "pill"], difficulty: "intermediate", files: ["packages/components/src/dynamic-island/index.tsx"] }),
   R("tactile-loader", fullWeb, { name: "Tactile Loader", description: "Three bouncing dots that announce themselves once.", categories: ["feedback"], tags: ["loader", "spinner", "status"], difficulty: "beginner", files: ["packages/components/src/tactile-loader/index.tsx"] }),
@@ -385,6 +412,31 @@ const BLOCKS = new Set([
 
 const STABLE = new Set(["utils", "use-reduced-motion", "spring", "use-pointer-proximity", "tokens"]);
 
+/** Components that are creative regardless of their category. */
+const CREATIVE_OVERRIDES = new Set([
+  // A physics-led interaction, not an app shell.
+  "hold-button",
+  "magnetic-dropzone",
+  "dragglable-card-pile",
+  "grab-roller-strip",
+  "elastic-slider",
+  "detent-dial",
+  "gooey-menu",
+  "confirm-morph",
+  "morph-select",
+  "segmented-control",
+  "liquid-gauge",
+  "tactile-loader",
+  "comet-ring-spinner",
+  "blueprint-loader",
+  "fresnel-orb",
+  "letter-wave",
+  "focus-blur-list",
+  "unified-login-field",
+  "dynamic-island",
+  "magnification-dock",
+]);
+
 for (const item of catalog) {
   if (EXPERIMENTAL.has(item.slug)) item.status = "experimental";
   else if (STABLE.has(item.slug)) item.status = "stable";
@@ -393,6 +445,13 @@ for (const item of catalog) {
     item.categories = ["blocks"];
     item.registryType = "registry:block";
   }
+  // The collection is derived, not hand-written: a component is creative when
+  // it lives in a creative category, unless it is listed as an override.
+  item.collection = CREATIVE_OVERRIDES.has(item.slug)
+    ? "creative"
+    : item.categories.some((c) => CREATIVE_CATEGORIES.has(c))
+      ? "creative"
+      : "kit";
 }
 
 const CANONICAL_REPO = "https://github.com/Varun9490/Buildora";
@@ -515,6 +574,7 @@ export function toRegistryJson(item: CatalogItem) {
     version: item.version,
     license: item.license,
     status: item.status ?? "beta",
+    collection: item.collection ?? "kit",
     states: item.states ?? [],
     implementations: Object.fromEntries(
       Object.entries(item.compat).map(([fw, status]) => [
@@ -556,6 +616,7 @@ export function toShadcnJson(item: CatalogItem) {
     title: item.name,
     description: item.description,
     status: item.status ?? "beta",
+    collection: item.collection ?? "kit",
     categories: item.categories,
     dependencies: inferDependencies(item),
     registryDependencies: inferRegistryDeps(item),
@@ -598,6 +659,7 @@ export function toAgentCatalog(item: CatalogItem) {
     dependencies: inferDependencies(item),
     registryDependencies: inferRegistryDeps(item),
     status: item.status ?? "beta",
+    collection: item.collection ?? "kit",
     provenance: (reg as { provenance?: unknown }).provenance ?? { origin: "original" },
     targets: consumerTargets(item),
     workflow: ["find", "inspect", "install", "customize", "validate"],
@@ -619,7 +681,7 @@ export function buildAll(outDir: string) {
     version: "0.1.0",
     total: comps.length,
     installBase: "pnpm dlx shadcn@latest add @buildora/{component}",
-    components: comps.map((c) => ({ slug: c.slug, name: c.name, description: c.description, categories: c.categories, tags: c.tags, difficulty: c.difficulty, version: c.version, status: (c as { status?: string }).status ?? "beta" })),
+    components: comps.map((c) => ({ slug: c.slug, name: c.name, description: c.description, categories: c.categories, tags: c.tags, difficulty: c.difficulty, version: c.version, status: (c as { status?: string }).status ?? "beta", collection: (c as { collection?: string }).collection ?? "kit" })),
     shadcn: "Compatible — install via shadcn with the @buildora registry pointing at https://buildora-hazel.vercel.app/r/{component}.json, or the local /r/{component}.json endpoint."
   };
   fs.writeFileSync(path.join(outDir, "registry.json"), JSON.stringify(index, null, 2));

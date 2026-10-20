@@ -5,6 +5,7 @@
   "title": "Sidebar",
   "description": "Collapsible app sidebar with sections and active state.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "navigation"
   ],

@@ -5,6 +5,7 @@
   "title": "Rich Text Editor",
   "description": "Formatting toolbar over contentEditable. Controlled value, sanitised output, no editor engine.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "editor"
   ],

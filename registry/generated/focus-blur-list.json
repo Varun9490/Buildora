@@ -5,6 +5,7 @@
   "title": "Focus Blur List",
   "description": "List rows where the hovered/focused one stays crisp and siblings sink back with blur + dim. Focus mirrors hover.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion",
     "blocks"

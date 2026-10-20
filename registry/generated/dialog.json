@@ -5,6 +5,7 @@
   "title": "Dialog",
   "description": "Focus-trapped modal dialog with overlay and escape handling.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "overlays"
   ],

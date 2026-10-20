@@ -5,6 +5,7 @@
   "title": "Particle Field",
   "description": "Canvas particle drift with a DPR cap. No Three.js.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "backgrounds"
   ],

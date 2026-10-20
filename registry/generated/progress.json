@@ -5,6 +5,7 @@
   "title": "Progress",
   "description": "Determinate progress bar with variant tones.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "feedback"
   ],

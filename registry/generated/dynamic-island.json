@@ -5,6 +5,7 @@
   "title": "Dynamic Island",
   "description": "Morphing status pill for live app state. A live region, not decoration.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "feedback"
   ],

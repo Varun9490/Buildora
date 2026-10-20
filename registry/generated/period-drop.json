@@ -5,6 +5,7 @@
   "title": "Period Drop",
   "description": "The full stop falls in with gravity, squashes on impact, and settles. One-shot keyframes when scrolled into view.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

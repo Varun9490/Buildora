@@ -5,6 +5,7 @@
   "title": "Inline Word Roll",
   "description": "Rolling word slot for inline headlines: slot width eases to the measured word as each term slides up, clipped.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

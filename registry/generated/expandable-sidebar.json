@@ -5,6 +5,7 @@
   "title": "Expandable Sidebar",
   "description": "Hover-expanding rail sidebar with delayed reveal.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "navigation"
   ],

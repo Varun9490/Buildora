@@ -5,6 +5,7 @@
   "title": "Thread Line",
   "description": "Animated SVG path that draws itself on scroll or on mount.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

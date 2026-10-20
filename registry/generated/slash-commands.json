@@ -5,6 +5,7 @@
   "title": "Slash Commands",
   "description": "Notion-style slash menu with fuzzy filtering.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "editor"
   ],

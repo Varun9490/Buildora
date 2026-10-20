@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "split-text",
+  "type": "registry:component",
+  "title": "Split Text",
+  "description": "Reveal a headline word by word, character by character or line by line. Real text, one paint.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "motion"
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/split-text/index.tsx",
+      "target": "components/buildora/split-text.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type SplitTextProps = React.HTMLAttributes<HTMLSpanElement> & {\n  /** The text to split. */\n  text: string;\n  /** How to break it apart. */\n  by?: \"word\" | \"char\" | \"line\";\n  /** How each piece enters. */\n  variant?: \"fade-up\" | \"fade\" | \"blur\" | \"slide\" | \"scale\";\n  /** Delay between pieces, in ms. */\n  stagger?: number;\n  /** Delay before the first piece, in ms. */\n  delay?: number;\n  /** Duration of one piece's animation, in ms. */\n  duration?: number;\n  /** Render as a heading instead of a span. */\n  as?: \"span\" | \"h1\" | \"h2\" | \"h3\" | \"p\" | \"div\";\n  /** Change this to replay the animation. */\n  runKey?: string | number;\n};\n\n/** The offset each piece starts from, per variant. */\nconst VARIANT_FROM: Record<NonNullable<SplitTextProps[\"variant\"]>, string> = {\n  \"fade-up\": \"translateY(0.55em)\",\n  fade: \"translateY(0)\",\n  blur: \"translateY(0.15em)\",\n  slide: \"translateX(-0.45em)\",\n  scale: \"scale(0.82)\",\n};\n\n/**\n * SplitText — reveal a headline one piece at a time.\n *\n * What makes this different from a plain fade-in: the pieces are real text\n * nodes, not a masked image, so the headline stays selectable, searchable\n * and translatable. The animation is one shared keyframe with a per-piece\n * delay, so it costs a single paint and survives a server render.\n *\n * The whole string is exposed to assistive technology as one phrase: a\n * screen reader should hear the headline, not read it letter by letter.\n */\nexport function SplitText({\n  text,\n  by = \"word\",\n  variant = \"fade-up\",\n  stagger = 40,\n  delay = 0,\n  duration = 620,\n  as: Tag = \"span\",\n  runKey,\n  className,\n  style,\n  ...rest\n}: SplitTextProps) {\n  const reduced = useReducedMotion();\n  const [run, setRun] = React.useState(0);\n\n  React.useEffect(() => {\n    if (runKey === undefined) return;\n    setRun((r) => r + 1);\n  }, [runKey]);\n\n  const parts = React.useMemo(() => {\n    if (by === \"char\") return Array.from(text);\n    if (by === \"line\") return text.split(\"\\n\");\n    return text.split(\" \");\n  }, [text, by]);\n\n  return (\n    <Tag\n      className={cn(\"inline-block\", className)}\n      style={style}\n      {...rest}\n    >\n      {/* The headline is announced once, as a phrase. The pieces below are\n          the animated copy and are hidden from assistive technology. */}\n      <span className=\"sr-only\">{text}</span>\n      <span aria-hidden className=\"inline-block\">\n        {parts.map((part, i) => (\n          <React.Fragment key={`${part}-${i}`}>\n            <span\n              className=\"inline-block will-change-transform\"\n              style={\n                reduced\n                  ? undefined\n                  : ({\n                      animationName: \"buildora-split-in\",\n                      animationDuration: `${duration}ms`,\n                      animationDelay: `${delay + i * stagger}ms`,\n                      animationTimingFunction: \"cubic-bezier(.22,1,.36,1)\",\n                      animationFillMode: \"both\",\n                      [\"--buildora-split-from\" as string]: VARIANT_FROM[variant],\n                      [\"--buildora-split-blur\" as string]:\n                        variant === \"blur\" ? \"6px\" : \"0px\",\n                    } as React.CSSProperties)\n              }\n            >\n              {part}\n            </span>\n            {by === \"word\" && i < parts.length - 1 ? \" \" : \"\"}\n          </React.Fragment>\n        ))}\n      </span>\n      <style>{`\n@keyframes buildora-split-in {\n  from {\n    opacity: 0;\n    transform: var(--buildora-split-from, translateY(0.55em));\n    filter: blur(var(--buildora-split-blur, 0px));\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0) translateX(0) scale(1);\n    filter: blur(0px);\n  }\n}\n`}</style>\n    </Tag>\n  );\n}\n\nexport default SplitText;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/split-text/index.tsx"
+}

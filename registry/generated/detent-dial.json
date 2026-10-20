@@ -5,6 +5,7 @@
   "title": "Detent Dial",
   "description": "Rotary knob with Gaussian tick-wave emphasis around the active detent. Drag, wheel, or arrows; role=slider.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "forms",
     "motion"

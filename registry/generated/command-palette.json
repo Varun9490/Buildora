@@ -5,6 +5,7 @@
   "title": "Command Palette",
   "description": "Keyboard-first command surface with fuzzy matching and combobox semantics.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "navigation"
   ],

@@ -5,6 +5,7 @@
   "title": "Gooey Menu",
   "description": "FAB whose actions fan out as fused SVG-goo blobs with crisp labels riding on top. Escape and outside-click close.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion",
     "overlays"

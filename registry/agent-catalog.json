@@ -2,7 +2,7 @@
   "$schema": "https://buildora-hazel.vercel.app/schema/agent-catalog.json",
   "name": "buildora",
   "version": "0.1.0",
-  "total": 117,
+  "total": 122,
   "workflow": [
     "find component",
     "inspect metadata",
@@ -82,6 +82,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -168,6 +169,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -255,6 +257,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -341,6 +344,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -428,6 +432,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -515,6 +520,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -601,6 +607,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -688,6 +695,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -781,6 +789,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -871,6 +880,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -958,6 +968,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1049,6 +1060,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1140,6 +1152,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1231,6 +1244,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1322,6 +1336,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1413,6 +1428,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1502,6 +1518,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1591,6 +1608,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1679,6 +1697,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1768,6 +1787,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1857,6 +1877,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -1945,6 +1966,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2034,6 +2056,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2125,6 +2148,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2215,6 +2239,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2306,6 +2331,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2397,6 +2423,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2484,6 +2511,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2573,6 +2601,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2663,6 +2692,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2751,6 +2781,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2837,6 +2868,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -2923,6 +2955,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3011,6 +3044,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3098,6 +3132,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3185,6 +3220,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3272,6 +3308,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3358,6 +3395,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3445,6 +3483,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3531,6 +3570,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3623,6 +3663,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3714,6 +3755,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3800,6 +3842,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3889,6 +3932,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -3977,6 +4021,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4064,6 +4109,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4071,6 +4117,450 @@
       },
       "targets": [
         "components/buildora/particle-field.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "split-text",
+      "name": "Split Text",
+      "description": "Reveal a headline word by word, character by character or line by line. Real text, one paint.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "text",
+        "reveal",
+        "kinetic"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/split-text",
+      "docs": "/components/split-text",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/split-text",
+      "files": [
+        "packages/components/src/split-text/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "collection": "creative",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/split-text.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "spring-carousel",
+      "name": "Spring Carousel",
+      "description": "Carousel that snaps on a spring, so a flick carries momentum to the nearest slide.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "carousel",
+        "spring",
+        "drag"
+      ],
+      "difficulty": "advanced",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/spring-carousel",
+      "docs": "/components/spring-carousel",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/spring-carousel",
+      "files": [
+        "packages/components/src/spring-carousel/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "collection": "creative",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/spring-carousel.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "rubber-band",
+      "name": "Rubber Band",
+      "description": "Container that resists being pulled past its edge and snaps back with the velocity you let go at.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "gesture",
+        "elastic",
+        "resist"
+      ],
+      "difficulty": "advanced",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/rubber-band",
+      "docs": "/components/rubber-band",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/rubber-band",
+      "files": [
+        "packages/components/src/rubber-band/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "collection": "creative",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/rubber-band.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "scroll-progress",
+      "name": "Scroll Progress",
+      "description": "Reading-progress bar that tracks an element, scaled with transforms so scrolling never lays out.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "scroll",
+        "progress",
+        "reading"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/scroll-progress",
+      "docs": "/components/scroll-progress",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/scroll-progress",
+      "files": [
+        "packages/components/src/scroll-progress/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json"
+      ],
+      "status": "beta",
+      "collection": "creative",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/scroll-progress.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "drag-dismiss",
+      "name": "Drag Dismiss",
+      "description": "Card you flick away. Velocity decides, not distance alone. Escape works too.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "gesture",
+        "dismiss",
+        "swipe"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/drag-dismiss",
+      "docs": "/components/drag-dismiss",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/drag-dismiss",
+      "files": [
+        "packages/components/src/drag-dismiss/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "collection": "creative",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/drag-dismiss.tsx"
       ],
       "workflow": [
         "find",
@@ -4154,6 +4644,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4244,6 +4735,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4331,6 +4823,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4418,6 +4911,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4505,6 +4999,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4592,6 +5087,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4680,6 +5176,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4766,6 +5263,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4851,6 +5349,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -4937,6 +5436,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5023,6 +5523,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5109,6 +5610,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5198,6 +5700,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5287,6 +5790,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5376,6 +5880,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5462,6 +5967,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5551,6 +6057,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5639,6 +6146,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5727,6 +6235,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5816,6 +6325,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5904,6 +6414,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -5993,6 +6504,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6082,6 +6594,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6170,6 +6683,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6256,6 +6770,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6342,6 +6857,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6430,6 +6946,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6518,6 +7035,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6606,6 +7124,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6694,6 +7213,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6783,6 +7303,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6870,6 +7391,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -6959,6 +7481,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7048,6 +7571,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7134,6 +7658,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7221,6 +7746,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7308,6 +7834,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7395,6 +7922,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7484,6 +8012,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7573,6 +8102,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7660,6 +8190,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7748,6 +8279,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7835,6 +8367,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -7926,6 +8459,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8018,6 +8552,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8104,6 +8639,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8191,6 +8727,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8278,6 +8815,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8364,6 +8902,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8453,6 +8992,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8542,6 +9082,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8631,6 +9172,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8720,6 +9262,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8807,6 +9350,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8893,6 +9437,7 @@
         "https://buildora-hazel.vercel.app/r/tokens.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -8980,6 +9525,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9069,6 +9615,7 @@
         "https://buildora-hazel.vercel.app/r/spring.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9157,6 +9704,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9245,6 +9793,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9333,6 +9882,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9421,6 +9971,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9509,6 +10060,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9597,6 +10149,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9685,6 +10238,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9772,6 +10326,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9859,6 +10414,7 @@
         "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
       ],
       "status": "beta",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -9946,6 +10502,7 @@
       ],
       "registryDependencies": [],
       "status": "stable",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10030,6 +10587,7 @@
       "dependencies": [],
       "registryDependencies": [],
       "status": "stable",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10114,6 +10672,7 @@
       "dependencies": [],
       "registryDependencies": [],
       "status": "stable",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10199,6 +10758,7 @@
       "dependencies": [],
       "registryDependencies": [],
       "status": "stable",
+      "collection": "creative",
       "provenance": {
         "origin": "original",
         "license": "MIT",
@@ -10283,6 +10843,7 @@
       "dependencies": [],
       "registryDependencies": [],
       "status": "stable",
+      "collection": "kit",
       "provenance": {
         "origin": "original",
         "license": "MIT",

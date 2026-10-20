@@ -5,6 +5,7 @@
   "title": "Dropdown Menu",
   "description": "Trigger-anchored menu with items, labels, and checks.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "overlays"
   ],

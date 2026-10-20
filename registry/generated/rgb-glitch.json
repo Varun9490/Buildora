@@ -5,6 +5,7 @@
   "title": "RGB Glitch",
   "description": "Channel-split glitch bursts with clip-path slices and skew in theme-adaptive colors. Pure CSS, deterministic burst cycle.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

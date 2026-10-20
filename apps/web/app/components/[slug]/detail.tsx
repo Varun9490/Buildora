@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "motion/react";
 import { cn, copyToClipboard } from "@buildora/utils";
 import { useBuildora } from "@/lib/store";
-import { allComponents, frameworkLabels, frameworks } from "@/lib/registry";
+import { allComponents, frameworkLabels, frameworks, sizeFor } from "@/lib/registry";
 import type { RegistryItem } from "@/lib/registry";
 import { frameworkExample } from "@/lib/framework-code";
 import { DEFAULT_RENDER_CONTROLS, type Controls } from "@/lib/render-controls";
@@ -43,6 +43,7 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
     () => frameworkExample(slug, summary?.name ?? slug, framework, item),
     [slug, summary, framework, item]
   );
+  const size = sizeFor(slug);
 
   if (!summary) return null;
 
@@ -83,6 +84,14 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
             <span className="b-badge">v{summary.version}</span>
             <span className="b-badge">{summary.difficulty}</span>
             <span className="b-badge">{summary.status ?? "beta"}</span>
+            {size ? (
+              <span
+                className="b-badge font-mono"
+                title={`${size.rawBytes} bytes raw, ${size.gzipBytes} bytes gzipped (level 9)`}
+              >
+                {size.gzipKb} KB gzip
+              </span>
+            ) : null}
           </div>
         </div>
 

@@ -5,6 +5,7 @@
   "title": "Grab Roller Strip",
   "description": "Physical roller strip you drag sideways; it settles on the nearest label under a fixed marker with flanks in fade flow.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "forms",
     "motion"

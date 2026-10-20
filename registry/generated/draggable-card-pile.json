@@ -5,6 +5,7 @@
   "title": "Draggable Card Pile",
   "description": "Riffled stack: the top card drags out past a threshold and cycles to the back with spring physics. Enter flings for keyboard.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion",
     "blocks"

@@ -5,6 +5,7 @@
   "title": "Speech Bubble Cursor",
   "description": "Custom cursor provider that shows speech-bubble tooltips.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

@@ -5,6 +5,7 @@
   "title": "useReducedMotion",
   "description": "SSR-safe prefers-reduced-motion via useSyncExternalStore. No hydration flash.",
   "status": "stable",
+  "collection": "kit",
   "categories": [
     "primitives"
   ],

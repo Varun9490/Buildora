@@ -5,6 +5,7 @@
   "title": "Elastic Slider",
   "description": "Rubber-band slider: the knob over-stretches at the rails and snaps back with spring physics. role=slider + arrows/Home/End.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "forms",
     "motion"

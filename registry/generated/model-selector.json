@@ -5,6 +5,7 @@
   "title": "Model Selector",
   "description": "Accessible model picker with status dot.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "ai-llm"
   ],

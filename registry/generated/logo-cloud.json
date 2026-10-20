@@ -5,6 +5,7 @@
   "title": "Logo Cloud",
   "description": "Customer logo row with label. Logos only, no taglines.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "blocks"
   ],

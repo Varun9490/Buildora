@@ -5,6 +5,7 @@
   "title": "Popover",
   "description": "Anchored floating panel with placement control.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "overlays"
   ],

@@ -5,6 +5,7 @@
   "title": "Floating Navbar",
   "description": "Scroll-aware floating navigation pill.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "navigation"
   ],

@@ -5,6 +5,7 @@
   "title": "Switch",
   "description": "Labeled toggle switch built on a native checkbox.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "forms"
   ],

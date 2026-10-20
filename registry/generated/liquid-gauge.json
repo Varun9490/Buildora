@@ -5,6 +5,7 @@
   "title": "Liquid Gauge",
   "description": "Ring meter filled with two out-of-phase liquid waves, clipped and animated. role=meter with valuetext.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "feedback",
     "motion"

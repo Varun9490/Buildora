@@ -5,6 +5,7 @@
   "title": "Echo Stack",
   "description": "Outlined echo copies drift above the word and intensify on hover. Pure CSS, zero re-renders.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

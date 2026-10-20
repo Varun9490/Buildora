@@ -5,6 +5,7 @@
   "title": "Advanced Table",
   "description": "Sortable, filterable, paginated table with semantic <table> markup.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "data"
   ],

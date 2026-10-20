@@ -5,6 +5,7 @@
   "title": "Interactive Dropzone",
   "description": "Proximity-reactive dropzone with progress visualization and error recovery.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

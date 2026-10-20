@@ -69,11 +69,16 @@ before the claim can go stale.
 | Contrast is AAA on body + accents | `pnpm registry:contrast` | [`registry/reports/contrast.json`](./registry/reports/contrast.json) |
 | Every component is axe-clean | `pnpm --filter @buildora/components test` | [`registry/reports/a11y.json`](./registry/reports/a11y.json) |
 | Every component server-renders | same test run | `packages/components/src/ssr.test.tsx` |
+| The registry, the package and the site agree | `pnpm registry:catalogue` | — |
+| The bundle is what we say it is | `pnpm registry:size` | [`registry/reports/bundle-size.json`](./registry/reports/bundle-size.json) |
+| Nothing is overstated | `pnpm exec tsx scripts/audit.ts` | [`AUDIT.md`](./AUDIT.md) |
 
 The contrast gate measures the colours that actually ship — the token file a
-consumer installs and the site's own theme — in both light and dark. The axe
-gate renders every component exported from the barrel and scans it, so a new
-component cannot ship without passing.
+consumer installs and the site's own theme — in light, dark and the terminal
+skin. The axe gate renders every component exported from the barrel and scans
+it, so a new component cannot ship without passing. The catalogue gate fails
+if the registry, the package barrel and the site ever list different
+components.
 
 ## Contributing
 

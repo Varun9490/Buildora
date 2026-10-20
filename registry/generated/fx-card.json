@@ -5,6 +5,7 @@
   "title": "FxCard",
   "description": "Card shell with six pointer effects (tilt, spotlight, glare, holographic, wobble, glass). Ref-driven, no re-render per move.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

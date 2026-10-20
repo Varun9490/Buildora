@@ -5,6 +5,7 @@
   "title": "Magnetic Dropzone",
   "description": "Dropzone that leans toward a file-drag cursor and pulses its field; browse input fallback; dropped files list with removers.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "forms",
     "motion"

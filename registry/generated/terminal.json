@@ -5,6 +5,7 @@
   "title": "Terminal",
   "description": "Terminal emulator UI with scrollback + command input.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "developer"
   ],

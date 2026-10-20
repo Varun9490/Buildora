@@ -35,6 +35,7 @@ const GROUPS: { id: string; label: string; slugs: string[] }[] = [
       "text-fx", "cursor-fx", "floating-object", "horizontal-scroll", "thread-line",
       "project-showcase", "reveal-on-scroll", "handwritten-annotation", "vertical-timeline",
       "speech-bubble-cursor", "spring", "use-pointer-proximity", "use-reduced-motion",
+      "split-text", "scroll-progress", "spring-carousel", "rubber-band", "drag-dismiss",
     ],
   },
   {

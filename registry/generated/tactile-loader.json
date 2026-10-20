@@ -5,6 +5,7 @@
   "title": "Tactile Loader",
   "description": "Three bouncing dots that announce themselves once.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "feedback"
   ],

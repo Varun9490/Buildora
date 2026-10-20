@@ -5,6 +5,7 @@
   "title": "Infinite Marquee",
   "description": "Seamless scrolling row that pauses on hover.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "primitives"
   ],

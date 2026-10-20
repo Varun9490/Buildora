@@ -5,6 +5,7 @@
   "title": "Navbar",
   "description": "Sticky header bar with logo, center, and actions slots.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "navigation"
   ],

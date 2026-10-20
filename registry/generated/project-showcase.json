@@ -5,6 +5,7 @@
   "title": "Project Showcase",
   "description": "Project gallery section with filter pills, sticky sidebar, and hover zoom.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "blocks"
   ],

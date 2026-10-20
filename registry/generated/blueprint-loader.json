@@ -5,6 +5,7 @@
   "title": "Blueprint Loader",
   "description": "Drafting-sheet placeholder that draws its dashed frame while ghost rows ghost in behind a scanning beam. Progress and indeterminate.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "feedback",
     "motion"

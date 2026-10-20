@@ -51,6 +51,15 @@ jobs:
       - name: Catalogue gate (registry, package and site agree)
         run: pnpm registry:catalogue
 
+      - name: Bundle size report
+        run: pnpm registry:size
+
+      - name: Library audit (AUDIT.md)
+        run: pnpm exec tsx scripts/audit.ts
+
+      - name: Generated artifacts committed
+        run: git diff --exit-code -- registry/ AUDIT.md
+
       - name: Registry compile-e2e (generated source)
         run: pnpm registry:e2e
 

@@ -5,6 +5,7 @@
   "title": "Code Editor Lite",
   "description": "Split code/preview surface. A textarea, not an editor engine.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "developer"
   ],

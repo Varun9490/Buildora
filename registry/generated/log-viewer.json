@@ -5,6 +5,7 @@
   "title": "Log Viewer",
   "description": "Filterable log stream with role=log semantics.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "data",
     "developer"

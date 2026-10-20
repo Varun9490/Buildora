@@ -5,6 +5,7 @@
   "title": "Vertical Timeline",
   "description": "Timeline with dots, tick marks, connecting lines, and staggered scroll-reveal.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "data"
   ],

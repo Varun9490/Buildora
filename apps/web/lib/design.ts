@@ -56,10 +56,8 @@ export function installCommand(manager: PackageManager, slug: string): string {
   }
 }
 
-/** Representative shipped-weights for the CLI inspector proof card. */
-export const BUNDLE_WEIGHTS: Record<string, string> = {
-  "magnetic-button": "1.4 KB",
-  "slingshot-otp": "1.8 KB",
-  "fx-button": "0.9 KB",
-  tokens: "0.4 KB",
-};
+/**
+ * Bundle weights are measured, not asserted: `pnpm registry:size` gzips every
+ * shipped file and writes registry/reports/bundle-size.json. Read the number
+ * from there rather than keeping a second copy here.
+ */

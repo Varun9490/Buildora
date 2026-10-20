@@ -5,6 +5,7 @@
   "title": "Selection Snap",
   "description": "Text snaps from hairline to black weight under a designer-style selection box with corner handles.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

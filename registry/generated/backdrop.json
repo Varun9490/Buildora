@@ -5,6 +5,7 @@
   "title": "Backdrop",
   "description": "One ambient background, nine variants (aurora, grid, dots, noise, mesh, beams, rise, meteors, ripple). CSS-first, decorative, deterministic layout.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "backgrounds"
   ],

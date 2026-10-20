@@ -5,6 +5,7 @@
   "title": "Tabs",
   "description": "Keyboard-navigable tab set with panels.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "primitives"
   ],

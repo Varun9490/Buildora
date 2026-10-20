@@ -5,6 +5,7 @@
   "title": "Modal Stack",
   "description": "Stacked modal manager with push/pop/replace semantics.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "overlays"
   ],

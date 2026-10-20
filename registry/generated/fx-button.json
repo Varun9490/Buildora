@@ -5,6 +5,7 @@
   "title": "FxButton",
   "description": "Real button with six finishes (none, shimmer, glow, ripple, gradient-border, liquid). Native semantics throughout.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

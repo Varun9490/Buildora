@@ -5,6 +5,7 @@
   "title": "Spring",
   "description": "dt-based springStep + magnet + rafLoop. The physics behind magnetic effects.",
   "status": "stable",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

@@ -5,6 +5,7 @@
   "title": "Version History",
   "description": "Document version list with restore action.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "editor"
   ],

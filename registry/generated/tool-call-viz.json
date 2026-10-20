@@ -5,6 +5,7 @@
   "title": "Tool Call Visualization",
   "description": "Timeline of agent tool calls with running/done states.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "ai-llm"
   ],

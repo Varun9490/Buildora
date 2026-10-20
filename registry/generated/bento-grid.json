@@ -5,6 +5,7 @@
   "title": "Bento Grid",
   "description": "Configurable grid with per-item spans.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "primitives"
   ],

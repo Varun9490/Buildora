@@ -5,6 +5,7 @@
   "title": "Context Menu",
   "description": "Right-click menu with keyboard fallback trigger.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "overlays"
   ],

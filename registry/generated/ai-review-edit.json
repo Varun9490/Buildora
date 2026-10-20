@@ -5,6 +5,7 @@
   "title": "AI Review & Edit",
   "description": "Diff-style review UI for AI-generated content (accept / edit / reject).",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "ai-llm",
     "editor"

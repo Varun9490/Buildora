@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rubber-band",
+  "type": "registry:component",
+  "title": "Rubber Band",
+  "description": "Container that resists being pulled past its edge and snaps back with the velocity you let go at.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "motion"
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/rubber-band/index.tsx",
+      "target": "components/buildora/rubber-band.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type RubberBandProps = {\n  children: React.ReactNode;\n  /** How far the content can be pulled, in px. */\n  pull?: number;\n  /** Spring stiffness on release. */\n  stiffness?: number;\n  /** Spring damping on release. */\n  damping?: number;\n  className?: string;\n  /** Called when the pull is released past the threshold. */\n  onRelease?: (velocity: number) => void;\n};\n\n/**\n * RubberBand — a container that resists being pulled past its edges.\n *\n * What makes this different from `overflow: auto`: the pull is tracked in\n * a spring, so the content follows the finger, resists with a force that\n * grows the further you go, and snaps back with the velocity you let go\n * at. It is the gesture every native app uses for \"there is nothing more\n * here\", implemented without a scroll library.\n */\nexport function RubberBand({\n  children,\n  pull = 120,\n  stiffness = 260,\n  damping = 24,\n  className,\n  onRelease,\n}: RubberBandProps) {\n  const reduced = useReducedMotion();\n  const [offset, setOffset] = React.useState(0);\n  const offsetRef = React.useRef(0);\n  const velocityRef = React.useRef(0);\n  const drag = React.useRef<{ y: number; last: number; lastT: number } | null>(null);\n  const raf = React.useRef<number | null>(null);\n\n  offsetRef.current = offset;\n\n  const spring = React.useCallback(\n    (target: number) => {\n      if (reduced) {\n        offsetRef.current = target;\n        setOffset(target);\n        return;\n      }\n      let last = performance.now();\n      const tick = (now: number) => {\n        const dt = Math.min(0.05, (now - last) / 1000);\n        last = now;\n        const accel = -stiffness * (offsetRef.current - target) - damping * velocityRef.current;\n        velocityRef.current += accel * dt;\n        const next = offsetRef.current + velocityRef.current * dt;\n        if (Math.abs(next - target) < 0.2 && Math.abs(velocityRef.current) < 0.5) {\n          offsetRef.current = target;\n          velocityRef.current = 0;\n          setOffset(target);\n          raf.current = null;\n          return;\n        }\n        offsetRef.current = next;\n        setOffset(next);\n        raf.current = requestAnimationFrame(tick);\n      };\n      if (raf.current) cancelAnimationFrame(raf.current);\n      raf.current = requestAnimationFrame(tick);\n    },\n    [reduced, stiffness, damping]\n  );\n\n  React.useEffect(() => () => { if (raf.current) cancelAnimationFrame(raf.current); }, []);\n\n  const onPointerDown = (e: React.PointerEvent) => {\n    if (reduced) return;\n    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);\n    drag.current = { y: e.clientY, last: e.clientY, lastT: performance.now() };\n  };\n\n  const onPointerMove = (e: React.PointerEvent) => {\n    const d = drag.current;\n    if (!d) return;\n    const dy = e.clientY - d.y;\n    // Resistance: the further you pull, the less it moves.\n    const resisted = Math.sign(dy) * Math.min(Math.abs(dy), pull) * (1 - Math.min(Math.abs(dy), pull) / (pull * 2));\n\n    const now = performance.now();\n    const dt = Math.max(1, now - d.lastT);\n    velocityRef.current = ((e.clientY - d.last) / dt) * 1000;\n    d.last = e.clientY;\n    d.lastT = now;\n\n    offsetRef.current = resisted;\n    setOffset(resisted);\n  };\n\n  const onPointerUp = () => {\n    const d = drag.current;\n    drag.current = null;\n    if (!d) return;\n    onRelease?.(velocityRef.current);\n    spring(0);\n  };\n\n  return (\n    <div\n      onPointerDown={onPointerDown}\n      onPointerMove={onPointerMove}\n      onPointerUp={onPointerUp}\n      onPointerCancel={onPointerUp}\n      className={cn(\"relative overflow-hidden\", className)}\n      style={{ touchAction: \"pan-y\" }}\n    >\n      <div\n        style={{\n          transform: `translate3d(0, ${offset}px, 0)`,\n          transition: reduced ? \"none\" : undefined,\n        }}\n      >\n        {children}\n      </div>\n    </div>\n  );\n}\n\nexport default RubberBand;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/rubber-band/index.tsx"
+}

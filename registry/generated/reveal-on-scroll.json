@@ -5,6 +5,7 @@
   "title": "Reveal on Scroll",
   "description": "Intersection Observer-based reveal wrapper with multiple animation variants.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

@@ -5,6 +5,7 @@
   "title": "Magnetic Button",
   "description": "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

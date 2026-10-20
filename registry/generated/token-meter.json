@@ -5,6 +5,7 @@
   "title": "Token Meter",
   "description": "Token usage meter with role=meter semantics.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "ai-llm"
   ],

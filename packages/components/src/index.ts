@@ -67,6 +67,11 @@ export { FileTree, type TreeNode, type FileTreeProps } from "./file-tree";
 export { CodeEditorLite, type CodeEditorLiteProps } from "./code-editor";
 export { HoldButton, type HoldButtonProps } from "./hold-button";
 export { ParticleField, type ParticleFieldProps } from "./particle-field";
+export { SplitText, type SplitTextProps } from "./split-text";
+export { SpringCarousel, type SpringCarouselProps } from "./spring-carousel";
+export { RubberBand, type RubberBandProps } from "./rubber-band";
+export { ScrollProgress, type ScrollProgressProps } from "./scroll-progress";
+export { DragDismiss, type DragDismissProps } from "./drag-dismiss";
 export { TactileLoader, type TactileLoaderProps } from "./tactile-loader";
 export {
   MagnificationDock,

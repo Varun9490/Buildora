@@ -5,6 +5,7 @@
   "title": "Primitive Input",
   "description": "Labeled text input with variants, sizes, and error states.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "forms"
   ],

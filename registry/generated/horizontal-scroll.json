@@ -5,6 +5,7 @@
   "title": "Horizontal Scroll",
   "description": "Scroll-driven horizontal panning section with mobile fallback.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

@@ -5,6 +5,7 @@
   "title": "Key Binding Overlay",
   "description": "Keyboard shortcut cheatsheet overlay. No primitive equivalent.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "overlays"
   ],

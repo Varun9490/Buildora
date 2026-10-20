@@ -5,6 +5,7 @@
   "title": "Morph Select",
   "description": "Select whose trigger stretches into the options list and seals back into a pill. Listbox semantics, arrow nav, outside close.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "forms",
     "motion"

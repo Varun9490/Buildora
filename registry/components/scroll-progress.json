@@ -1,0 +1,126 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "scroll-progress",
+  "name": "Scroll Progress",
+  "slug": "scroll-progress",
+  "description": "Reading-progress bar that tracks an element, scaled with transforms so scrolling never lays out.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "scroll",
+    "progress",
+    "reading"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/scroll-progress/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/scroll-progress/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/scroll-progress/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/scroll-progress/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/scroll-progress/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/scroll-progress/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/scroll-progress/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/scroll-progress/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/scroll-progress/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/scroll-progress/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/scroll-progress/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/scroll-progress/index.tsx",
+      "target": "components/buildora/scroll-progress.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\n\nexport type ScrollProgressProps = {\n  /** The element to track. Defaults to the window. */\n  target?: React.RefObject<HTMLElement>;\n  /** Thickness of the bar, in px. */\n  height?: number;\n  /** Where the bar sits. */\n  position?: \"top\" | \"bottom\";\n  /** Colour of the filled part. */\n  color?: string;\n  className?: string;\n};\n\n/**\n * ScrollProgress — a reading-progress bar.\n *\n * What makes this different from a naive scroll listener: the value is\n * written to a CSS custom property inside a rAF tick, and the bar is\n * scaled with `transform`, so scrolling never triggers a layout. It also\n * tracks a specific element rather than always the page, which is what you\n * want inside a long scroll container.\n */\nexport function ScrollProgress({\n  target,\n  height = 3,\n  position = \"top\",\n  color = \"var(--b-accent)\",\n  className,\n}: ScrollProgressProps) {\n  const barRef = React.useRef<HTMLDivElement | null>(null);\n  const [progress, setProgress] = React.useState(0);\n\n  React.useEffect(() => {\n    const el = target?.current ?? null;\n    let frame = 0;\n\n    const read = () => {\n      frame = 0;\n      let ratio = 0;\n      if (el) {\n        const scrollable = el.scrollHeight - el.clientHeight;\n        ratio = scrollable > 0 ? el.scrollTop / scrollable : 0;\n      } else if (typeof window !== \"undefined\") {\n        const scrollable = document.documentElement.scrollHeight - window.innerHeight;\n        ratio = scrollable > 0 ? window.scrollY / scrollable : 0;\n      }\n      const clamped = Math.min(1, Math.max(0, ratio));\n      setProgress(clamped);\n      if (barRef.current) {\n        barRef.current.style.transform = `scaleX(${clamped})`;\n      }\n    };\n\n    const onScroll = () => {\n      if (frame) return;\n      frame = requestAnimationFrame(read);\n    };\n\n    read();\n    const scroller = el ?? (typeof window !== \"undefined\" ? window : null);\n    scroller?.addEventListener(\"scroll\", onScroll, { passive: true });\n    window.addEventListener(\"resize\", onScroll);\n\n    return () => {\n      if (frame) cancelAnimationFrame(frame);\n      scroller?.removeEventListener(\"scroll\", onScroll);\n      window.removeEventListener(\"resize\", onScroll);\n    };\n  }, [target]);\n\n  return (\n    <div\n      className={cn(\n        \"pointer-events-none fixed inset-x-0 z-40\",\n        position === \"top\" ? \"top-0\" : \"bottom-0\",\n        className\n      )}\n      style={{ height }}\n      aria-hidden=\"true\"\n    >\n      <div\n        ref={barRef}\n        className=\"h-full w-full origin-left\"\n        style={{\n          background: color,\n          transform: `scaleX(${progress})`,\n          transition: \"transform 80ms linear\",\n        }}\n      />\n    </div>\n  );\n}\n\nexport default ScrollProgress;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/scroll-progress",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/scroll-progress/index.tsx",
+  "sourceDir": "scroll-progress",
+  "docs": "/components/scroll-progress",
+  "install": "pnpm dlx shadcn@latest add @buildora/scroll-progress"
+}

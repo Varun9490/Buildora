@@ -5,6 +5,7 @@
   "title": "Slingshot OTP",
   "description": "OTP with real inputs, paste, and SR support. Standard mode by default; slingshot game is opt-in delight.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

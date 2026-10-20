@@ -5,6 +5,7 @@
   "title": "JSON Viewer",
   "description": "Collapsible JSON viewer with mono styling.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "data",
     "developer"

@@ -5,6 +5,7 @@
   "title": "Letter Wave",
   "description": "Hover, focus or optional autoloop sends a sine wave rippling through the letters. Real text in aria-label.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

@@ -5,6 +5,7 @@
   "title": "Streaming Chat",
   "description": "Chat surface for a token stream. Bring your own transport: it renders the messages you pass and hands the input to onSend.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "ai-llm"
   ],

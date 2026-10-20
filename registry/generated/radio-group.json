@@ -5,6 +5,7 @@
   "title": "Radio Group",
   "description": "Single-select radio set with keyboard arrow navigation.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "forms"
   ],

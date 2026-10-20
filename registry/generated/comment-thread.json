@@ -5,6 +5,7 @@
   "title": "Comment Thread",
   "description": "Resolve/reopen comment thread.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "editor"
   ],

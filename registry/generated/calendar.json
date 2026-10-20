@@ -5,6 +5,7 @@
   "title": "Calendar",
   "description": "Month grid with real dates, gridcell semantics and today marked.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "canvas"
   ],

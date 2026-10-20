@@ -5,6 +5,7 @@
   "title": "Terminal UI",
   "description": "Full terminal workspace: tab bar, sidebar tree, panes and a command input.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "developer"
   ],

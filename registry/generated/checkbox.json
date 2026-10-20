@@ -5,6 +5,7 @@
   "title": "Checkbox",
   "description": "Accessible checkbox with label and indeterminate support.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "forms"
   ],

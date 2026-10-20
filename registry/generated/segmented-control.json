@@ -5,6 +5,7 @@
   "title": "Segmented Control",
   "description": "iOS-style segmented option picker with a spring-gliding accent pill, radiogroup semantics and full keyboard nav.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "primitives",
     "motion"

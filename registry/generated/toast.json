@@ -5,6 +5,7 @@
   "title": "Toast",
   "description": "Transient notifications via provider and toast API.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "feedback"
   ],

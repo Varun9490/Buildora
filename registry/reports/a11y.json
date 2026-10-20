@@ -10,7 +10,7 @@
     "bypass",
     "color-contrast"
   ],
-  "components": 171,
+  "components": 176,
   "componentsWithViolations": 0,
   "violations": 0,
   "allPass": true,
@@ -227,6 +227,11 @@
     },
     {
       "component": "Divider",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DragDismiss",
       "pass": true,
       "violations": []
     },
@@ -646,6 +651,16 @@
       "violations": []
     },
     {
+      "component": "RubberBand",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ScrollProgress",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "SegmentedControl",
       "pass": true,
       "violations": []
@@ -737,6 +752,16 @@
     },
     {
       "component": "Spinner",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SplitText",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SpringCarousel",
       "pass": true,
       "violations": []
     },

@@ -5,6 +5,7 @@
   "title": "Slider",
   "description": "Range slider with value display and keyboard support.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "forms"
   ],

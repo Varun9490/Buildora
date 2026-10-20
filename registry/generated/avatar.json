@@ -5,6 +5,7 @@
   "title": "Avatar",
   "description": "Identity avatar with fallback initials and group stacking.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "primitives"
   ],

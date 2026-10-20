@@ -5,6 +5,7 @@
   "title": "Unified Login Field",
   "description": "One bordered container that morphs between email and password stages instead of juggling boxes. Shake on invalid email, Escape steps back.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "forms"
   ],

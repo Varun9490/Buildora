@@ -5,6 +5,7 @@
   "title": "Hover Card",
   "description": "Delayed hover preview card with configurable side.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "overlays"
   ],

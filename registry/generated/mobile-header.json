@@ -5,6 +5,7 @@
   "title": "Mobile Header",
   "description": "iOS-style screen header: back bar, centered title, collapsing large title, section headers, and inset settings groups.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "navigation",
     "mobile"

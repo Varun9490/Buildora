@@ -5,6 +5,7 @@
   "title": "Sparkline",
   "description": "Inline value sparkline for dense rows. No primitive equivalent.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "data"
   ],

@@ -5,6 +5,7 @@
   "title": "Hold Button",
   "description": "Press and hold to confirm, with live progress. A real behaviour, not a finish.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

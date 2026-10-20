@@ -5,6 +5,7 @@
   "title": "Attachment Prompt",
   "description": "Prompt input with removable attachment chips and send.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "ai-llm"
   ],

@@ -5,6 +5,7 @@
   "title": "Confirm Morph",
   "description": "One button, two identities: idle → confirm strip → animated check. aria-live, auto-revert, danger variant.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "primitives",
     "motion"

@@ -5,6 +5,7 @@
   "title": "CTA Block",
   "description": "Centered call-to-action with actions and optional stats.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "blocks"
   ],

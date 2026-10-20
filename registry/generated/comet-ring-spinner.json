@@ -5,6 +5,7 @@
   "title": "Comet Ring Spinner",
   "description": "Comet head racing around a ring of fading trail dots. Pure CSS transforms, role=status, frozen under reduced motion.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "feedback"
   ],

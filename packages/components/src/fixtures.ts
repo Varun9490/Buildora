@@ -134,6 +134,11 @@ export const PROPS: Record<string, Record<string, unknown>> = {
     ],
   },
   DynamicIsland: { status: "idle" },
+  SplitText: { text: "Ship it with real physics" },
+  SpringCarousel: { children: ["One", "Two"] },
+  RubberBand: { children: "Pull me" },
+  ScrollProgress: {},
+  DragDismiss: { children: "Flick me away" },
   // Terminal parts need the data and the theme they display.
   TUISparkline: { data: [1, 2, 3] },
   TUIHelpOverlay: { bindings: [], visible: false },

@@ -5,6 +5,7 @@
   "title": "Drawer",
   "description": "Bottom-anchored drawer panel for mobile-first flows.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "overlays"
   ],

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "drag-dismiss",
+  "name": "Drag Dismiss",
+  "slug": "drag-dismiss",
+  "description": "Card you flick away. Velocity decides, not distance alone. Escape works too.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "gesture",
+    "dismiss",
+    "swipe"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/drag-dismiss/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/drag-dismiss/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/drag-dismiss/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/drag-dismiss/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/drag-dismiss/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/drag-dismiss/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/drag-dismiss/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/drag-dismiss/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/drag-dismiss/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/drag-dismiss/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/drag-dismiss/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/drag-dismiss/index.tsx",
+      "target": "components/buildora/drag-dismiss.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type DragDismissProps = {\n  children: React.ReactNode;\n  /** Direction the card can be dragged. */\n  axis?: \"x\" | \"y\";\n  /** How far you must drag, as a fraction of the card's size, to dismiss. */\n  threshold?: number;\n  /** Called when the card is dismissed. */\n  onDismiss?: () => void;\n  /** Called when the drag is released without dismissing. */\n  onSettle?: () => void;\n  className?: string;\n};\n\n/**\n * DragDismiss — a card you flick away.\n *\n * What makes this different from a swipe-to-dismiss built on transforms:\n * the dismissal is decided by velocity, not distance alone, so a quick\n * flick dismisses and a slow long drag past the threshold also does —\n * which is how every phone feels, and how almost no web component does.\n *\n * The card is a button, so it is reachable by keyboard and announces\n * itself; Escape dismisses it.\n */\nexport function DragDismiss({\n  children,\n  axis = \"x\",\n  threshold = 0.3,\n  onDismiss,\n  onSettle,\n  className,\n}: DragDismissProps) {\n  const reduced = useReducedMotion();\n  const ref = React.useRef<HTMLDivElement | null>(null);\n  const [offset, setOffset] = React.useState(0);\n  const offsetRef = React.useRef(0);\n  const velocityRef = React.useRef(0);\n  const drag = React.useRef<{ at: number; origin: number; last: number; lastT: number } | null>(null);\n  const raf = React.useRef<number | null>(null);\n\n  offsetRef.current = offset;\n\n  const spring = React.useCallback(\n    (target: number) => {\n      if (reduced) {\n        offsetRef.current = target;\n        setOffset(target);\n        return;\n      }\n      let last = performance.now();\n      const tick = (now: number) => {\n        const dt = Math.min(0.05, (now - last) / 1000);\n        last = now;\n        const accel = -320 * (offsetRef.current - target) - 26 * velocityRef.current;\n        velocityRef.current += accel * dt;\n        const next = offsetRef.current + velocityRef.current * dt;\n        if (Math.abs(next - target) < 0.5 && Math.abs(velocityRef.current) < 2) {\n          offsetRef.current = target;\n          velocityRef.current = 0;\n          setOffset(target);\n          raf.current = null;\n          return;\n        }\n        offsetRef.current = next;\n        setOffset(next);\n        raf.current = requestAnimationFrame(tick);\n      };\n      if (raf.current) cancelAnimationFrame(raf.current);\n      raf.current = requestAnimationFrame(tick);\n    },\n    [reduced]\n  );\n\n  React.useEffect(() => () => { if (raf.current) cancelAnimationFrame(raf.current); }, []);\n\n  const onPointerDown = (e: React.PointerEvent) => {\n    if (reduced) return;\n    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);\n    drag.current = {\n      at: axis === \"x\" ? e.clientX : e.clientY,\n      origin: offsetRef.current,\n      last: axis === \"x\" ? e.clientX : e.clientY,\n      lastT: performance.now(),\n    };\n  };\n\n  const onPointerMove = (e: React.PointerEvent) => {\n    const d = drag.current;\n    if (!d) return;\n    const at = axis === \"x\" ? e.clientX : e.clientY;\n    const next = d.origin + (at - d.at);\n\n    const now = performance.now();\n    const dt = Math.max(1, now - d.lastT);\n    velocityRef.current = ((at - d.last) / dt) * 1000;\n    d.last = at;\n    d.lastT = now;\n\n    offsetRef.current = next;\n    setOffset(next);\n  };\n\n  const onPointerUp = () => {\n    const d = drag.current;\n    drag.current = null;\n    if (!d) return;\n\n    const el = ref.current;\n    const size = axis === \"x\" ? (el?.clientWidth ?? 1) : (el?.clientHeight ?? 1);\n    const travelled = Math.abs(offsetRef.current);\n    const flicked = Math.abs(velocityRef.current) > 450;\n\n    if (travelled > size * threshold || flicked) {\n      // Dismiss in the direction it was thrown.\n      const target = Math.sign(offsetRef.current || 1) * size * 1.4;\n      spring(target);\n      window.setTimeout(() => onDismiss?.(), reduced ? 0 : 180);\n      return;\n    }\n    spring(0);\n    onSettle?.();\n  };\n\n  const onKeyDown = (e: React.KeyboardEvent) => {\n    if (e.key === \"Escape\") {\n      e.preventDefault();\n      onDismiss?.();\n    }\n  };\n\n  return (\n    <div\n      ref={ref}\n      role=\"button\"\n      tabIndex={0}\n      onKeyDown={onKeyDown}\n      onPointerDown={onPointerDown}\n      onPointerMove={onPointerMove}\n      onPointerUp={onPointerUp}\n      onPointerCancel={onPointerUp}\n      aria-label=\"Drag to dismiss\"\n      className={cn(\n        \"cursor-grab touch-pan-y select-none rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)]\",\n        className\n      )}\n      style={{\n        transform: `translate3d(${axis === \"x\" ? offset : 0}px, ${axis === \"y\" ? offset : 0}px, 0)`,\n        transition: reduced ? \"none\" : undefined,\n      }}\n    >\n      {children}\n    </div>\n  );\n}\n\nexport default DragDismiss;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/drag-dismiss",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/drag-dismiss/index.tsx",
+  "sourceDir": "drag-dismiss",
+  "docs": "/components/drag-dismiss",
+  "install": "pnpm dlx shadcn@latest add @buildora/drag-dismiss"
+}

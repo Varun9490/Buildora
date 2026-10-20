@@ -5,6 +5,7 @@
   "title": "Handwritten Annotation",
   "description": "Playful handwritten-style text annotations with hand-drawn arrow SVGs.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "primitives"
   ],

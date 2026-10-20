@@ -5,6 +5,7 @@
   "title": "Floating Object",
   "description": "3D hovering objects with perspective tilt on hover, floating animation, and drop shadow.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

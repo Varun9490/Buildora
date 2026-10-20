@@ -5,6 +5,7 @@
   "title": "TextFx",
   "description": "Kinetic text in six kinds (typewriter, scramble, blur, gradient, glitch, morph). Screen readers hear the final text once.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

@@ -1,0 +1,1878 @@
+{
+  "note": "gzip level 9, the file content a consumer installs",
+  "components": 122,
+  "totalGzipKb": 205.41,
+  "medianGzipKb": 1.45,
+  "heaviest": {
+    "slug": "terminal-ui",
+    "gzipKb": 12.2
+  },
+  "results": [
+    {
+      "slug": "use-reduced-motion",
+      "title": "useReducedMotion",
+      "description": "SSR-safe prefers-reduced-motion via useSyncExternalStore. No hydration flash.",
+      "rawBytes": 737,
+      "gzipBytes": 377,
+      "gzipKb": 0.37,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "slug": "tactile-loader",
+      "title": "Tactile Loader",
+      "description": "Three bouncing dots that announce themselves once.",
+      "rawBytes": 925,
+      "gzipBytes": 526,
+      "gzipKb": 0.51,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "logo-cloud",
+      "title": "Logo Cloud",
+      "description": "Customer logo row with label. Logos only, no taglines.",
+      "rawBytes": 1173,
+      "gzipBytes": 584,
+      "gzipKb": 0.57,
+      "files": 1,
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "tool-call-viz",
+      "title": "Tool Call Visualization",
+      "description": "Timeline of agent tool calls with running/done states.",
+      "rawBytes": 1325,
+      "gzipBytes": 616,
+      "gzipKb": 0.6,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "separator",
+      "title": "Separator",
+      "description": "Thematic break and divider rules for grouping content.",
+      "rawBytes": 1763,
+      "gzipBytes": 673,
+      "gzipKb": 0.66,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "json-viewer",
+      "title": "JSON Viewer",
+      "description": "Collapsible JSON viewer with mono styling.",
+      "rawBytes": 1323,
+      "gzipBytes": 691,
+      "gzipKb": 0.67,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "kbd",
+      "title": "Kbd",
+      "description": "Keyboard shortcut glyphs with chord composition.",
+      "rawBytes": 1887,
+      "gzipBytes": 782,
+      "gzipKb": 0.76,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "feature-grid",
+      "title": "Feature Grid",
+      "description": "Three-up feature grid with tags and copy.",
+      "rawBytes": 1793,
+      "gzipBytes": 802,
+      "gzipKb": 0.78,
+      "files": 1,
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "log-viewer",
+      "title": "Log Viewer",
+      "description": "Filterable log stream with role=log semantics.",
+      "rawBytes": 1666,
+      "gzipBytes": 804,
+      "gzipKb": 0.79,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "spring",
+      "title": "Spring",
+      "description": "dt-based springStep + magnet + rafLoop. The physics behind magnetic effects.",
+      "rawBytes": 1860,
+      "gzipBytes": 837,
+      "gzipKb": 0.82,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "slug": "version-history",
+      "title": "Version History",
+      "description": "Document version list with restore action.",
+      "rawBytes": 2439,
+      "gzipBytes": 877,
+      "gzipKb": 0.86,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "masonry-layout",
+      "title": "Masonry Layout",
+      "description": "Pinterest-style masonry columns.",
+      "rawBytes": 2205,
+      "gzipBytes": 879,
+      "gzipKb": 0.86,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "infinite-marquee",
+      "title": "Infinite Marquee",
+      "description": "Seamless scrolling row that pauses on hover.",
+      "rawBytes": 2161,
+      "gzipBytes": 916,
+      "gzipKb": 0.89,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "breadcrumb",
+      "title": "Breadcrumb",
+      "description": "Ancestor trail with current-page semantics.",
+      "rawBytes": 2424,
+      "gzipBytes": 919,
+      "gzipKb": 0.9,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "code-editor",
+      "title": "Code Editor Lite",
+      "description": "Split code/preview surface. A textarea, not an editor engine.",
+      "rawBytes": 2145,
+      "gzipBytes": 931,
+      "gzipKb": 0.91,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "tui-sparkline",
+      "title": "Sparkline",
+      "description": "Inline value sparkline for dense rows. No primitive equivalent.",
+      "rawBytes": 2372,
+      "gzipBytes": 947,
+      "gzipKb": 0.92,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "site-footer",
+      "title": "Site Footer",
+      "description": "Footer with brand, link columns, and status line.",
+      "rawBytes": 2607,
+      "gzipBytes": 951,
+      "gzipKb": 0.93,
+      "files": 1,
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "bento-grid",
+      "title": "Bento Grid",
+      "description": "Configurable grid with per-item spans.",
+      "rawBytes": 2211,
+      "gzipBytes": 978,
+      "gzipKb": 0.96,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "echo-stack",
+      "title": "Echo Stack",
+      "description": "Outlined echo copies drift above the word and intensify on hover. Pure CSS, zero re-renders.",
+      "rawBytes": 2201,
+      "gzipBytes": 990,
+      "gzipKb": 0.97,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "diff-viewer",
+      "title": "Diff Viewer",
+      "description": "Side-by-side line comparison with added/removed semantics.",
+      "rawBytes": 2814,
+      "gzipBytes": 996,
+      "gzipKb": 0.97,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "selection-snap",
+      "title": "Selection Snap",
+      "description": "Text snaps from hairline to black weight under a designer-style selection box with corner handles.",
+      "rawBytes": 2427,
+      "gzipBytes": 1012,
+      "gzipKb": 0.99,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "cta-block",
+      "title": "CTA Block",
+      "description": "Centered call-to-action with actions and optional stats.",
+      "rawBytes": 2784,
+      "gzipBytes": 1054,
+      "gzipKb": 1.03,
+      "files": 1,
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "matrix-decode",
+      "title": "Matrix Decode",
+      "description": "Characters scramble through glyphs and lock in left-to-right with stochastic jitter. rAF-driven, resolves once.",
+      "rawBytes": 2454,
+      "gzipBytes": 1062,
+      "gzipKb": 1.04,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion",
+        "spring"
+      ]
+    },
+    {
+      "slug": "floating-navbar",
+      "title": "Floating Navbar",
+      "description": "Scroll-aware floating navigation pill.",
+      "rawBytes": 2962,
+      "gzipBytes": 1067,
+      "gzipKb": 1.04,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "period-drop",
+      "title": "Period Drop",
+      "description": "The full stop falls in with gravity, squashes on impact, and settles. One-shot keyframes when scrolled into view.",
+      "rawBytes": 2333,
+      "gzipBytes": 1077,
+      "gzipKb": 1.05,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "agent-timeline",
+      "title": "Agent Timeline",
+      "description": "Agent activity timeline (plan → act → observe) with status semantics.",
+      "rawBytes": 2914,
+      "gzipBytes": 1078,
+      "gzipKb": 1.05,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "switch",
+      "title": "Switch",
+      "description": "Labeled toggle switch built on a native checkbox.",
+      "rawBytes": 2785,
+      "gzipBytes": 1099,
+      "gzipKb": 1.07,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "letter-wave",
+      "title": "Letter Wave",
+      "description": "Hover, focus or optional autoloop sends a sine wave rippling through the letters. Real text in aria-label.",
+      "rawBytes": 2557,
+      "gzipBytes": 1118,
+      "gzipKb": 1.09,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "badge",
+      "title": "Badge & Chip",
+      "description": "Status badges and removable chips with variant tones.",
+      "rawBytes": 5242,
+      "gzipBytes": 1123,
+      "gzipKb": 1.1,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "query-builder",
+      "title": "Query Builder",
+      "description": "Composable filter rows with field/operator/value and removable chips.",
+      "rawBytes": 3829,
+      "gzipBytes": 1123,
+      "gzipKb": 1.1,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "particle-field",
+      "title": "Particle Field",
+      "description": "Canvas particle drift with a DPR cap. No Three.js.",
+      "rawBytes": 2475,
+      "gzipBytes": 1144,
+      "gzipKb": 1.12,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "horizontal-scroll",
+      "title": "Horizontal Scroll",
+      "description": "Scroll-driven horizontal panning section with mobile fallback.",
+      "rawBytes": 2943,
+      "gzipBytes": 1145,
+      "gzipKb": 1.12,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "comet-ring-spinner",
+      "title": "Comet Ring Spinner",
+      "description": "Comet head racing around a ring of fading trail dots. Pure CSS transforms, role=status, frozen under reduced motion.",
+      "rawBytes": 2631,
+      "gzipBytes": 1159,
+      "gzipKb": 1.13,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "rgb-glitch",
+      "title": "RGB Glitch",
+      "description": "Channel-split glitch bursts with clip-path slices and skew in theme-adaptive colors. Pure CSS, deterministic burst cycle.",
+      "rawBytes": 3746,
+      "gzipBytes": 1163,
+      "gzipKb": 1.14,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "attachment-prompt",
+      "title": "Attachment Prompt",
+      "description": "Prompt input with removable attachment chips and send.",
+      "rawBytes": 3365,
+      "gzipBytes": 1169,
+      "gzipKb": 1.14,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "textarea",
+      "title": "Primitive Textarea",
+      "description": "Multiline text field sharing Input styling and semantics.",
+      "rawBytes": 3187,
+      "gzipBytes": 1185,
+      "gzipKb": 1.16,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "inline-word-roll",
+      "title": "Inline Word Roll",
+      "description": "Rolling word slot for inline headlines: slot width eases to the measured word as each term slides up, clipped.",
+      "rawBytes": 2712,
+      "gzipBytes": 1190,
+      "gzipKb": 1.16,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "slash-commands",
+      "title": "Slash Commands",
+      "description": "Notion-style slash menu with fuzzy filtering.",
+      "rawBytes": 3002,
+      "gzipBytes": 1203,
+      "gzipKb": 1.17,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "scroll-progress",
+      "title": "Scroll Progress",
+      "description": "Reading-progress bar that tracks an element, scaled with transforms so scrolling never lays out.",
+      "rawBytes": 2786,
+      "gzipBytes": 1209,
+      "gzipKb": 1.18,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "tooltip",
+      "title": "Tooltip",
+      "description": "Hover/focus description bubble for controls.",
+      "rawBytes": 3098,
+      "gzipBytes": 1209,
+      "gzipKb": 1.18,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "reveal-on-scroll",
+      "title": "Reveal on Scroll",
+      "description": "Intersection Observer-based reveal wrapper with multiple animation variants.",
+      "rawBytes": 3832,
+      "gzipBytes": 1212,
+      "gzipKb": 1.18,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "use-pointer-proximity",
+      "title": "usePointerProximity",
+      "description": "Window-level pointer proximity with rAF throttle. Attracts from radius away; fine-pointer only; zero cost under reduced motion.",
+      "rawBytes": 3096,
+      "gzipBytes": 1222,
+      "gzipKb": 1.19,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "slug": "number-wheel",
+      "title": "Number Wheel",
+      "description": "Odometer counters: digits roll on vertical reels with staggered cascades. Locale grouping, prefix, suffix, count-up.",
+      "rawBytes": 2979,
+      "gzipBytes": 1224,
+      "gzipKb": 1.2,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "utils",
+      "title": "Utils",
+      "description": "cn + clamp + fuzzyScore + formatBytes. Shared class-name helper for every component.",
+      "rawBytes": 2680,
+      "gzipBytes": 1228,
+      "gzipKb": 1.2,
+      "files": 1,
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "slug": "type-wall",
+      "title": "Type Wall",
+      "description": "Alternating solid and outline marquee rows under a fade mask. Pauses on hover, static under reduced motion.",
+      "rawBytes": 2786,
+      "gzipBytes": 1234,
+      "gzipKb": 1.21,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "navbar",
+      "title": "Navbar",
+      "description": "Sticky header bar with logo, center, and actions slots.",
+      "rawBytes": 4194,
+      "gzipBytes": 1255,
+      "gzipKb": 1.23,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "spinner",
+      "title": "Spinner",
+      "description": "Activity spinner with sizes and live-region label.",
+      "rawBytes": 3316,
+      "gzipBytes": 1257,
+      "gzipKb": 1.23,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "file-tree",
+      "title": "File Tree",
+      "description": "Accessible tree with expand/collapse and keyboard support.",
+      "rawBytes": 3021,
+      "gzipBytes": 1270,
+      "gzipKb": 1.24,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "tui-help-overlay",
+      "title": "Key Binding Overlay",
+      "description": "Keyboard shortcut cheatsheet overlay. No primitive equivalent.",
+      "rawBytes": 4120,
+      "gzipBytes": 1275,
+      "gzipKb": 1.25,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "radio-group",
+      "title": "Radio Group",
+      "description": "Single-select radio set with keyboard arrow navigation.",
+      "rawBytes": 3328,
+      "gzipBytes": 1292,
+      "gzipKb": 1.26,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "terminal",
+      "title": "Terminal",
+      "description": "Terminal emulator UI with scrollback + command input.",
+      "rawBytes": 3256,
+      "gzipBytes": 1307,
+      "gzipKb": 1.28,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "handwritten-annotation",
+      "title": "Handwritten Annotation",
+      "description": "Playful handwritten-style text annotations with hand-drawn arrow SVGs.",
+      "rawBytes": 3533,
+      "gzipBytes": 1310,
+      "gzipKb": 1.28,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "magnetic-button",
+      "title": "Magnetic Button",
+      "description": "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.",
+      "rawBytes": 3154,
+      "gzipBytes": 1366,
+      "gzipKb": 1.33,
+      "files": 1,
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "zod"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "input",
+      "title": "Primitive Input",
+      "description": "Labeled text input with variants, sizes, and error states.",
+      "rawBytes": 3995,
+      "gzipBytes": 1369,
+      "gzipKb": 1.34,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "hold-button",
+      "title": "Hold Button",
+      "description": "Press and hold to confirm, with live progress. A real behaviour, not a finish.",
+      "rawBytes": 3544,
+      "gzipBytes": 1373,
+      "gzipKb": 1.34,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "focus-blur-list",
+      "title": "Focus Blur List",
+      "description": "List rows where the hovered/focused one stays crisp and siblings sink back with blur + dim. Focus mirrors hover.",
+      "rawBytes": 3521,
+      "gzipBytes": 1386,
+      "gzipKb": 1.35,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "comment-thread",
+      "title": "Comment Thread",
+      "description": "Resolve/reopen comment thread.",
+      "rawBytes": 4732,
+      "gzipBytes": 1405,
+      "gzipKb": 1.37,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "ai-review-edit",
+      "title": "AI Review & Edit",
+      "description": "Diff-style review UI for AI-generated content (accept / edit / reject).",
+      "rawBytes": 4912,
+      "gzipBytes": 1417,
+      "gzipKb": 1.38,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "slider",
+      "title": "Slider",
+      "description": "Range slider with value display and keyboard support.",
+      "rawBytes": 3655,
+      "gzipBytes": 1462,
+      "gzipKb": 1.43,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "vertical-timeline",
+      "title": "Vertical Timeline",
+      "description": "Timeline with dots, tick marks, connecting lines, and staggered scroll-reveal.",
+      "rawBytes": 4296,
+      "gzipBytes": 1465,
+      "gzipKb": 1.43,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "pagination",
+      "title": "Pagination",
+      "description": "Page controls with prev/next and numbered buttons.",
+      "rawBytes": 6925,
+      "gzipBytes": 1482,
+      "gzipKb": 1.45,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "speech-bubble-cursor",
+      "title": "Speech Bubble Cursor",
+      "description": "Custom cursor provider that shows speech-bubble tooltips.",
+      "rawBytes": 4052,
+      "gzipBytes": 1489,
+      "gzipKb": 1.45,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "rubber-band",
+      "title": "Rubber Band",
+      "description": "Container that resists being pulled past its edge and snaps back with the velocity you let go at.",
+      "rawBytes": 4024,
+      "gzipBytes": 1490,
+      "gzipKb": 1.46,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "thread-line",
+      "title": "Thread Line",
+      "description": "Animated SVG path that draws itself on scroll or on mount.",
+      "rawBytes": 3822,
+      "gzipBytes": 1490,
+      "gzipKb": 1.46,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "fresnel-orb",
+      "title": "Fresnel Orb",
+      "description": "Iridescent orb of layered conic and radial gradients with drifting orientation, rim highlight and caustic core. Pure CSS.",
+      "rawBytes": 3824,
+      "gzipBytes": 1498,
+      "gzipKb": 1.46,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "expandable-sidebar",
+      "title": "Expandable Sidebar",
+      "description": "Hover-expanding rail sidebar with delayed reveal.",
+      "rawBytes": 5874,
+      "gzipBytes": 1534,
+      "gzipKb": 1.5,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "command-palette",
+      "title": "Command Palette",
+      "description": "Keyboard-first command surface with fuzzy matching and combobox semantics.",
+      "rawBytes": 4129,
+      "gzipBytes": 1545,
+      "gzipKb": 1.51,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "segmented-control",
+      "title": "Segmented Control",
+      "description": "iOS-style segmented option picker with a spring-gliding accent pill, radiogroup semantics and full keyboard nav.",
+      "rawBytes": 4035,
+      "gzipBytes": 1561,
+      "gzipKb": 1.52,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "split-text",
+      "title": "Split Text",
+      "description": "Reveal a headline word by word, character by character or line by line. Real text, one paint.",
+      "rawBytes": 3881,
+      "gzipBytes": 1631,
+      "gzipKb": 1.59,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "blueprint-loader",
+      "title": "Blueprint Loader",
+      "description": "Drafting-sheet placeholder that draws its dashed frame while ghost rows ghost in behind a scanning beam. Progress and indeterminate.",
+      "rawBytes": 4131,
+      "gzipBytes": 1650,
+      "gzipKb": 1.61,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "checkbox",
+      "title": "Checkbox",
+      "description": "Accessible checkbox with label and indeterminate support.",
+      "rawBytes": 4785,
+      "gzipBytes": 1664,
+      "gzipKb": 1.63,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "avatar",
+      "title": "Avatar",
+      "description": "Identity avatar with fallback initials and group stacking.",
+      "rawBytes": 4218,
+      "gzipBytes": 1670,
+      "gzipKb": 1.63,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "confirm-morph",
+      "title": "Confirm Morph",
+      "description": "One button, two identities: idle → confirm strip → animated check. aria-live, auto-revert, danger variant.",
+      "rawBytes": 5063,
+      "gzipBytes": 1671,
+      "gzipKb": 1.63,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "step-nav",
+      "title": "Step Nav",
+      "description": "Stepper navigation with current-step state.",
+      "rawBytes": 5628,
+      "gzipBytes": 1690,
+      "gzipKb": 1.65,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "liquid-gauge",
+      "title": "Liquid Gauge",
+      "description": "Ring meter filled with two out-of-phase liquid waves, clipped and animated. role=meter with valuetext.",
+      "rawBytes": 4247,
+      "gzipBytes": 1705,
+      "gzipKb": 1.67,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "token-meter",
+      "title": "Token Meter",
+      "description": "Token usage meter with role=meter semantics.",
+      "rawBytes": 5563,
+      "gzipBytes": 1713,
+      "gzipKb": 1.67,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "floating-object",
+      "title": "Floating Object",
+      "description": "3D hovering objects with perspective tilt on hover, floating animation, and drop shadow.",
+      "rawBytes": 4482,
+      "gzipBytes": 1729,
+      "gzipKb": 1.69,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "advanced-table",
+      "title": "Advanced Table",
+      "description": "Sortable, filterable, paginated table with semantic <table> markup.",
+      "rawBytes": 5366,
+      "gzipBytes": 1751,
+      "gzipKb": 1.71,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "hover-card",
+      "title": "Hover Card",
+      "description": "Delayed hover preview card with configurable side.",
+      "rawBytes": 5995,
+      "gzipBytes": 1770,
+      "gzipKb": 1.73,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "drag-dismiss",
+      "title": "Drag Dismiss",
+      "description": "Card you flick away. Velocity decides, not distance alone. Escape works too.",
+      "rawBytes": 4933,
+      "gzipBytes": 1793,
+      "gzipKb": 1.75,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "progress",
+      "title": "Progress",
+      "description": "Determinate progress bar with variant tones.",
+      "rawBytes": 5336,
+      "gzipBytes": 1851,
+      "gzipKb": 1.81,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "popover",
+      "title": "Popover",
+      "description": "Anchored floating panel with placement control.",
+      "rawBytes": 6652,
+      "gzipBytes": 1862,
+      "gzipKb": 1.82,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "tabs",
+      "title": "Tabs",
+      "description": "Keyboard-navigable tab set with panels.",
+      "rawBytes": 5506,
+      "gzipBytes": 1908,
+      "gzipKb": 1.86,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "alert-dialog",
+      "title": "Alert Dialog",
+      "description": "Confirm/cancel dialog with destructive variant.",
+      "rawBytes": 5467,
+      "gzipBytes": 1919,
+      "gzipKb": 1.87,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "accordion",
+      "title": "Accordion",
+      "description": "Disclosure stack with expanded-state semantics.",
+      "rawBytes": 6271,
+      "gzipBytes": 1934,
+      "gzipKb": 1.89,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "text-fx",
+      "title": "TextFx",
+      "description": "Kinetic text in six kinds (typewriter, scramble, blur, gradient, glitch, morph). Screen readers hear the final text once.",
+      "rawBytes": 5842,
+      "gzipBytes": 1993,
+      "gzipKb": 1.95,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "draggable-card-pile",
+      "title": "Draggable Card Pile",
+      "description": "Riffled stack: the top card drags out past a threshold and cycles to the back with spring physics. Enter flings for keyboard.",
+      "rawBytes": 5007,
+      "gzipBytes": 2010,
+      "gzipKb": 1.96,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "fx-button",
+      "title": "FxButton",
+      "description": "Real button with six finishes (none, shimmer, glow, ripple, gradient-border, liquid). Native semantics throughout.",
+      "rawBytes": 5719,
+      "gzipBytes": 2014,
+      "gzipKb": 1.97,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "backdrop",
+      "title": "Backdrop",
+      "description": "One ambient background, nine variants (aurora, grid, dots, noise, mesh, beams, rise, meteors, ripple). CSS-first, decorative, deterministic layout.",
+      "rawBytes": 8113,
+      "gzipBytes": 2055,
+      "gzipKb": 2.01,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "elastic-slider",
+      "title": "Elastic Slider",
+      "description": "Rubber-band slider: the knob over-stretches at the rails and snaps back with spring physics. role=slider + arrows/Home/End.",
+      "rawBytes": 5524,
+      "gzipBytes": 2078,
+      "gzipKb": 2.03,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "magnification-dock",
+      "title": "Magnification Dock",
+      "description": "Dock whose icons grow with cursor proximity, on a continuous spring.",
+      "rawBytes": 5432,
+      "gzipBytes": 2099,
+      "gzipKb": 2.05,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "fx-card",
+      "title": "FxCard",
+      "description": "Card shell with six pointer effects (tilt, spotlight, glare, holographic, wobble, glass). Ref-driven, no re-render per move.",
+      "rawBytes": 6525,
+      "gzipBytes": 2142,
+      "gzipKb": 2.09,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "gooey-menu",
+      "title": "Gooey Menu",
+      "description": "FAB whose actions fan out as fused SVG-goo blobs with crisp labels riding on top. Escape and outside-click close.",
+      "rawBytes": 6648,
+      "gzipBytes": 2169,
+      "gzipKb": 2.12,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "sidebar",
+      "title": "Sidebar",
+      "description": "Collapsible app sidebar with sections and active state.",
+      "rawBytes": 9425,
+      "gzipBytes": 2203,
+      "gzipKb": 2.15,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "grab-roller-strip",
+      "title": "Grab Roller Strip",
+      "description": "Physical roller strip you drag sideways; it settles on the nearest label under a fixed marker with flanks in fade flow.",
+      "rawBytes": 6568,
+      "gzipBytes": 2237,
+      "gzipKb": 2.18,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "mobile-nav",
+      "title": "Mobile Nav",
+      "description": "Bottom mobile tab bar with labeled items, active pill, badges, and safe-area padding.",
+      "rawBytes": 6983,
+      "gzipBytes": 2244,
+      "gzipKb": 2.19,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "interactive-dropzone",
+      "title": "Interactive Dropzone",
+      "description": "Proximity-reactive dropzone with progress visualization and error recovery.",
+      "rawBytes": 6207,
+      "gzipBytes": 2250,
+      "gzipKb": 2.2,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "detent-dial",
+      "title": "Detent Dial",
+      "description": "Rotary knob with Gaussian tick-wave emphasis around the active detent. Drag, wheel, or arrows; role=slider.",
+      "rawBytes": 5913,
+      "gzipBytes": 2253,
+      "gzipKb": 2.2,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "calendar",
+      "title": "Calendar",
+      "description": "Month grid with real dates, gridcell semantics and today marked.",
+      "rawBytes": 6732,
+      "gzipBytes": 2259,
+      "gzipKb": 2.21,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "tokens",
+      "title": "Tokens",
+      "description": "Light + dark CSS vars + shared keyframes. Import once so components are styled on first paint.",
+      "rawBytes": 7863,
+      "gzipBytes": 2276,
+      "gzipKb": 2.22,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "slug": "project-showcase",
+      "title": "Project Showcase",
+      "description": "Project gallery section with filter pills, sticky sidebar, and hover zoom.",
+      "rawBytes": 7446,
+      "gzipBytes": 2283,
+      "gzipKb": 2.23,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "streaming-chat",
+      "title": "Streaming Chat",
+      "description": "Chat surface for a token stream. Bring your own transport: it renders the messages you pass and hands the input to onSend.",
+      "rawBytes": 6596,
+      "gzipBytes": 2323,
+      "gzipKb": 2.27,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "context-menu",
+      "title": "Context Menu",
+      "description": "Right-click menu with keyboard fallback trigger.",
+      "rawBytes": 8696,
+      "gzipBytes": 2339,
+      "gzipKb": 2.28,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "skeleton",
+      "title": "Skeleton",
+      "description": "Content placeholder matching final layout shape.",
+      "rawBytes": 7244,
+      "gzipBytes": 2371,
+      "gzipKb": 2.32,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "morph-select",
+      "title": "Morph Select",
+      "description": "Select whose trigger stretches into the options list and seals back into a pill. Listbox semantics, arrow nav, outside close.",
+      "rawBytes": 7357,
+      "gzipBytes": 2397,
+      "gzipKb": 2.34,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "magnetic-dropzone",
+      "title": "Magnetic Dropzone",
+      "description": "Dropzone that leans toward a file-drag cursor and pulses its field; browse input fallback; dropped files list with removers.",
+      "rawBytes": 6903,
+      "gzipBytes": 2484,
+      "gzipKb": 2.43,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "dropdown-menu",
+      "title": "Dropdown Menu",
+      "description": "Trigger-anchored menu with items, labels, and checks.",
+      "rawBytes": 9261,
+      "gzipBytes": 2509,
+      "gzipKb": 2.45,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "button",
+      "title": "Primitive Button",
+      "description": "Base button with variants and sizes. Foundation for everything clickable.",
+      "rawBytes": 6891,
+      "gzipBytes": 2526,
+      "gzipKb": 2.47,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "spring-carousel",
+      "title": "Spring Carousel",
+      "description": "Carousel that snaps on a spring, so a flick carries momentum to the nearest slide.",
+      "rawBytes": 7448,
+      "gzipBytes": 2571,
+      "gzipKb": 2.51,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "unified-login-field",
+      "title": "Unified Login Field",
+      "description": "One bordered container that morphs between email and password stages instead of juggling boxes. Shake on invalid email, Escape steps back.",
+      "rawBytes": 9498,
+      "gzipBytes": 2587,
+      "gzipKb": 2.53,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "modal-stack",
+      "title": "Modal Stack",
+      "description": "Stacked modal manager with push/pop/replace semantics.",
+      "rawBytes": 8781,
+      "gzipBytes": 2627,
+      "gzipKb": 2.57,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "drawer",
+      "title": "Drawer",
+      "description": "Bottom-anchored drawer panel for mobile-first flows.",
+      "rawBytes": 8400,
+      "gzipBytes": 2655,
+      "gzipKb": 2.59,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "model-selector",
+      "title": "Model Selector",
+      "description": "Accessible model picker with status dot.",
+      "rawBytes": 8565,
+      "gzipBytes": 2686,
+      "gzipKb": 2.62,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "rich-text-editor",
+      "title": "Rich Text Editor",
+      "description": "Formatting toolbar over contentEditable. Controlled value, sanitised output, no editor engine.",
+      "rawBytes": 7472,
+      "gzipBytes": 2840,
+      "gzipKb": 2.77,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "dialog",
+      "title": "Dialog",
+      "description": "Focus-trapped modal dialog with overlay and escape handling.",
+      "rawBytes": 9177,
+      "gzipBytes": 2887,
+      "gzipKb": 2.82,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "cursor-fx",
+      "title": "CursorFx",
+      "description": "Pointer-following glow in four modes (glow, spotlight, trail, blob). One rAF loop, pointer-fine only, silent under reduced motion.",
+      "rawBytes": 8254,
+      "gzipBytes": 2892,
+      "gzipKb": 2.82,
+      "files": 1,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "sheet",
+      "title": "Sheet",
+      "description": "Side panel sliding from any edge with focus management.",
+      "rawBytes": 9620,
+      "gzipBytes": 3017,
+      "gzipKb": 2.95,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "mobile-header",
+      "title": "Mobile Header",
+      "description": "iOS-style screen header: back bar, centered title, collapsing large title, section headers, and inset settings groups.",
+      "rawBytes": 10122,
+      "gzipBytes": 3064,
+      "gzipKb": 2.99,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "dynamic-island",
+      "title": "Dynamic Island",
+      "description": "Morphing status pill for live app state. A live region, not decoration.",
+      "rawBytes": 12590,
+      "gzipBytes": 3429,
+      "gzipKb": 3.35,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "toast",
+      "title": "Toast",
+      "description": "Transient notifications via provider and toast API.",
+      "rawBytes": 13438,
+      "gzipBytes": 3978,
+      "gzipKb": 3.88,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens",
+        "use-reduced-motion"
+      ]
+    },
+    {
+      "slug": "slingshot-otp",
+      "title": "Slingshot OTP",
+      "description": "OTP with real inputs, paste, and SR support. Standard mode by default; slingshot game is opt-in delight.",
+      "rawBytes": 14376,
+      "gzipBytes": 4112,
+      "gzipKb": 4.02,
+      "files": 1,
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    },
+    {
+      "slug": "terminal-ui",
+      "title": "Terminal UI",
+      "description": "Full terminal workspace: tab bar, sidebar tree, panes and a command input.",
+      "rawBytes": 55934,
+      "gzipBytes": 12490,
+      "gzipKb": 12.2,
+      "files": 6,
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "tokens"
+      ]
+    }
+  ]
+}

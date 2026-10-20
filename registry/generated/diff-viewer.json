@@ -5,6 +5,7 @@
   "title": "Diff Viewer",
   "description": "Side-by-side line comparison with added/removed semantics.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "data",
     "editor"

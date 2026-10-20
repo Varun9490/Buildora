@@ -5,6 +5,7 @@
   "title": "CursorFx",
   "description": "Pointer-following glow in four modes (glow, spotlight, trail, blob). One rAF loop, pointer-fine only, silent under reduced motion.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

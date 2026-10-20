@@ -5,6 +5,7 @@
   "title": "Fresnel Orb",
   "description": "Iridescent orb of layered conic and radial gradients with drifting orientation, rim highlight and caustic core. Pure CSS.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "backgrounds",
     "motion"

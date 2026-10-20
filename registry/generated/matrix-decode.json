@@ -5,6 +5,7 @@
   "title": "Matrix Decode",
   "description": "Characters scramble through glyphs and lock in left-to-right with stochastic jitter. rAF-driven, resolves once.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

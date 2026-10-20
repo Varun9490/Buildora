@@ -1,0 +1,127 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "spring-carousel",
+  "name": "Spring Carousel",
+  "slug": "spring-carousel",
+  "description": "Carousel that snaps on a spring, so a flick carries momentum to the nearest slide.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "carousel",
+    "spring",
+    "drag"
+  ],
+  "difficulty": "advanced",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/spring-carousel/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/spring-carousel/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/spring-carousel/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/spring-carousel/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/spring-carousel/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/spring-carousel/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/spring-carousel/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/spring-carousel/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/spring-carousel/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/spring-carousel/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/spring-carousel/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/spring-carousel/index.tsx",
+      "target": "components/buildora/spring-carousel.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type SpringCarouselProps = {\n  /** The slides. Anything renderable. */\n  children: React.ReactNode[];\n  /** How many slides are visible at once. */\n  visible?: number;\n  /** Spring stiffness. Higher is snappier. */\n  stiffness?: number;\n  /** Spring damping. Higher settles sooner. */\n  damping?: number;\n  /** Gap between slides, in px. */\n  gap?: number;\n  className?: string;\n};\n\n/**\n * SpringCarousel — a carousel that snaps with physics instead of easing.\n *\n * What makes this different from a CSS scroll-snap carousel: the position\n * is a spring, so a flick carries momentum and settles on the nearest\n * slide rather than stopping at a hard boundary. Drag it, use the arrow\n * keys, or press the buttons.\n *\n * Under prefers-reduced-motion the spring is replaced by an instant jump\n * and the carousel becomes a plain scroll container.\n */\nexport function SpringCarousel({\n  children,\n  visible = 1,\n  stiffness = 220,\n  damping = 26,\n  gap = 16,\n  className,\n}: SpringCarouselProps) {\n  const reduced = useReducedMotion();\n  const count = children.length;\n  const maxIndex = Math.max(0, count - visible);\n\n  const railRef = React.useRef<HTMLDivElement | null>(null);\n  const [railWidth, setRailWidth] = React.useState(0);\n  const [index, setIndex] = React.useState(0);\n  const [offset, setOffset] = React.useState(0);\n\n  // Refs mirror the state so the rAF loop never closes over a stale value.\n  const offsetRef = React.useRef(0);\n  const indexRef = React.useRef(0);\n  const velocityRef = React.useRef(0);\n  const dragRef = React.useRef<{ x: number; offset: number; last: number; lastT: number } | null>(null);\n\n  offsetRef.current = offset;\n  indexRef.current = index;\n\n  React.useEffect(() => {\n    const rail = railRef.current;\n    if (!rail) return;\n    const measure = () => setRailWidth(rail.clientWidth);\n    measure();\n    if (typeof ResizeObserver === \"undefined\") {\n      window.addEventListener(\"resize\", measure);\n      return () => window.removeEventListener(\"resize\", measure);\n    }\n    const ro = new ResizeObserver(measure);\n    ro.observe(rail);\n    return () => ro.disconnect();\n  }, []);\n\n  const slideWidth = railWidth ? (railWidth - gap * (visible - 1)) / visible : 0;\n\n  const goTo = React.useCallback(\n    (next: number) => {\n      const clamped = Math.min(maxIndex, Math.max(0, next));\n      setIndex(clamped);\n      setOffset(clamped);\n      offsetRef.current = clamped;\n      indexRef.current = clamped;\n    },\n    [maxIndex]\n  );\n\n  // The spring: pull the rail toward the target, carrying velocity across\n  // frames so a flick keeps its momentum.\n  React.useEffect(() => {\n    if (reduced) return;\n    let last = performance.now();\n    let raf = 0;\n    const tick = (now: number) => {\n      const dt = Math.min(0.05, (now - last) / 1000);\n      last = now;\n\n      const current = offsetRef.current;\n      const target = indexRef.current;\n      const accel = -stiffness * (current - target) - damping * velocityRef.current;\n      velocityRef.current += accel * dt;\n      const next = current + velocityRef.current * dt;\n\n      if (Math.abs(next - target) < 0.001 && Math.abs(velocityRef.current) < 0.01) {\n        offsetRef.current = target;\n        velocityRef.current = 0;\n        setOffset(target);\n        return;\n      }\n      offsetRef.current = next;\n      setOffset(next);\n      raf = requestAnimationFrame(tick);\n    };\n    raf = requestAnimationFrame(tick);\n    return () => cancelAnimationFrame(raf);\n  }, [index, reduced, stiffness, damping]);\n\n  const onPointerDown = (e: React.PointerEvent) => {\n    if (reduced) return;\n    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);\n    dragRef.current = {\n      x: e.clientX,\n      offset: offsetRef.current,\n      last: e.clientX,\n      lastT: performance.now(),\n    };\n    velocityRef.current = 0;\n  };\n\n  const onPointerMove = (e: React.PointerEvent) => {\n    const d = dragRef.current;\n    if (!d || !slideWidth) return;\n    const dx = e.clientX - d.x;\n    const next = d.offset - dx / (slideWidth + gap);\n\n    const now = performance.now();\n    const dt = Math.max(1, now - d.lastT);\n    velocityRef.current = ((e.clientX - d.last) / dt) * 1000;\n    d.last = e.clientX;\n    d.lastT = now;\n\n    // Rubber band at the ends.\n    const bounded =\n      next < 0\n        ? next * 0.35\n        : next > maxIndex\n          ? maxIndex + (next - maxIndex) * 0.35\n          : next;\n    offsetRef.current = bounded;\n    setOffset(bounded);\n  };\n\n  const onPointerUp = () => {\n    const d = dragRef.current;\n    dragRef.current = null;\n    if (!d) return;\n    // Flick: project the velocity forward and land on the nearest slide.\n    const projected = offsetRef.current + (velocityRef.current / 1000) * 0.25;\n    goTo(Math.round(projected));\n  };\n\n  const onKeyDown = (e: React.KeyboardEvent) => {\n    if (e.key === \"ArrowRight\") {\n      e.preventDefault();\n      goTo(index + 1);\n    } else if (e.key === \"ArrowLeft\") {\n      e.preventDefault();\n      goTo(index - 1);\n    }\n  };\n\n  const shift = slideWidth ? -offset * (slideWidth + gap) : 0;\n\n  return (\n    <div className={cn(\"relative\", className)}>\n      <div\n        ref={railRef}\n        role=\"group\"\n        aria-roledescription=\"carousel\"\n        aria-label=\"Slides\"\n        tabIndex={0}\n        onKeyDown={onKeyDown}\n        onPointerDown={onPointerDown}\n        onPointerMove={onPointerMove}\n        onPointerUp={onPointerUp}\n        onPointerCancel={onPointerUp}\n        className=\"overflow-hidden rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)]\"\n        style={{ cursor: reduced ? \"auto\" : \"grab\", touchAction: \"pan-y\" }}\n      >\n        <div\n          className=\"flex\"\n          style={{\n            gap,\n            transform: `translate3d(${shift}px, 0, 0)`,\n            transition: reduced ? \"none\" : undefined,\n          }}\n        >\n          {children.map((child, i) => (\n            <div\n              key={i}\n              aria-hidden={i < index || i >= index + visible}\n              className=\"shrink-0\"\n              style={{ width: slideWidth ? `${slideWidth}px` : undefined }}\n            >\n              {child}\n            </div>\n          ))}\n        </div>\n      </div>\n\n      <div className=\"mt-3 flex items-center justify-center gap-2\">\n        <button\n          type=\"button\"\n          onClick={() => goTo(index - 1)}\n          disabled={index === 0}\n          aria-label=\"Previous slide\"\n          className=\"rounded-full border border-[color:var(--b-border)] px-3 py-1 text-xs text-[color:var(--b-text-secondary)] transition-colors hover:text-[color:var(--b-text)] disabled:opacity-40\"\n        >\n          ←\n        </button>\n        <span className=\"font-mono text-[11px] tabular-nums text-[color:var(--b-muted)]\">\n          {Math.min(index + 1, count)} / {count}\n        </span>\n        <button\n          type=\"button\"\n          onClick={() => goTo(index + 1)}\n          disabled={index >= maxIndex}\n          aria-label=\"Next slide\"\n          className=\"rounded-full border border-[color:var(--b-border)] px-3 py-1 text-xs text-[color:var(--b-text-secondary)] transition-colors hover:text-[color:var(--b-text)] disabled:opacity-40\"\n        >\n          →\n        </button>\n      </div>\n    </div>\n  );\n}\n\nexport default SpringCarousel;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/spring-carousel",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/spring-carousel/index.tsx",
+  "sourceDir": "spring-carousel",
+  "docs": "/components/spring-carousel",
+  "install": "pnpm dlx shadcn@latest add @buildora/spring-carousel"
+}

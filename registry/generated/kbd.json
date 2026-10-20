@@ -5,6 +5,7 @@
   "title": "Kbd",
   "description": "Keyboard shortcut glyphs with chord composition.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "primitives"
   ],

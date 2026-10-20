@@ -5,6 +5,7 @@
   "title": "Separator",
   "description": "Thematic break and divider rules for grouping content.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "primitives"
   ],

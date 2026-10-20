@@ -5,6 +5,7 @@
   "title": "Number Wheel",
   "description": "Odometer counters: digits roll on vertical reels with staggered cascades. Locale grouping, prefix, suffix, count-up.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "motion"
   ],

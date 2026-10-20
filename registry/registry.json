@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 117,
+  "total": 122,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -19,7 +19,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "horizontal-scroll",
@@ -34,7 +35,8 @@
       ],
       "difficulty": "advanced",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "thread-line",
@@ -49,7 +51,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "project-showcase",
@@ -64,7 +67,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "reveal-on-scroll",
@@ -79,7 +83,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "handwritten-annotation",
@@ -94,7 +99,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "vertical-timeline",
@@ -109,7 +115,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "speech-bubble-cursor",
@@ -124,7 +131,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "magnetic-button",
@@ -141,7 +149,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "slingshot-otp",
@@ -158,7 +167,8 @@
       ],
       "difficulty": "advanced",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "interactive-dropzone",
@@ -174,7 +184,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "segmented-control",
@@ -191,7 +202,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "gooey-menu",
@@ -208,7 +220,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "elastic-slider",
@@ -225,7 +238,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "morph-select",
@@ -242,7 +256,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "confirm-morph",
@@ -259,7 +274,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "detent-dial",
@@ -276,7 +292,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "liquid-gauge",
@@ -293,7 +310,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "comet-ring-spinner",
@@ -309,7 +327,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "blueprint-loader",
@@ -326,7 +345,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "fresnel-orb",
@@ -343,7 +363,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "letter-wave",
@@ -359,7 +380,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "focus-blur-list",
@@ -376,7 +398,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "grab-roller-strip",
@@ -393,7 +416,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "unified-login-field",
@@ -409,7 +433,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "magnetic-dropzone",
@@ -426,7 +451,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "draggable-card-pile",
@@ -443,7 +469,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "streaming-chat",
@@ -459,7 +486,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "model-selector",
@@ -474,7 +502,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "token-meter",
@@ -490,7 +519,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "tool-call-viz",
@@ -506,7 +536,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "agent-timeline",
@@ -521,7 +552,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "attachment-prompt",
@@ -536,7 +568,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "ai-review-edit",
@@ -553,7 +586,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "advanced-table",
@@ -569,7 +603,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "json-viewer",
@@ -585,7 +620,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "log-viewer",
@@ -601,7 +637,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "query-builder",
@@ -616,7 +653,8 @@
       ],
       "difficulty": "advanced",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "diff-viewer",
@@ -632,7 +670,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "terminal",
@@ -647,7 +686,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "terminal-ui",
@@ -663,7 +703,8 @@
       ],
       "difficulty": "advanced",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "file-tree",
@@ -678,7 +719,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "code-editor",
@@ -693,7 +735,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "command-palette",
@@ -709,7 +752,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "hold-button",
@@ -725,7 +769,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "particle-field",
@@ -741,7 +786,93 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "split-text",
+      "name": "Split Text",
+      "description": "Reveal a headline word by word, character by character or line by line. Real text, one paint.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "text",
+        "reveal",
+        "kinetic"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "spring-carousel",
+      "name": "Spring Carousel",
+      "description": "Carousel that snaps on a spring, so a flick carries momentum to the nearest slide.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "carousel",
+        "spring",
+        "drag"
+      ],
+      "difficulty": "advanced",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "rubber-band",
+      "name": "Rubber Band",
+      "description": "Container that resists being pulled past its edge and snaps back with the velocity you let go at.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "gesture",
+        "elastic",
+        "resist"
+      ],
+      "difficulty": "advanced",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "scroll-progress",
+      "name": "Scroll Progress",
+      "description": "Reading-progress bar that tracks an element, scaled with transforms so scrolling never lays out.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "scroll",
+        "progress",
+        "reading"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "drag-dismiss",
+      "name": "Drag Dismiss",
+      "description": "Card you flick away. Velocity decides, not distance alone. Escape works too.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "gesture",
+        "dismiss",
+        "swipe"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "magnification-dock",
@@ -757,7 +888,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "dynamic-island",
@@ -773,7 +905,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "tactile-loader",
@@ -789,7 +922,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "tui-sparkline",
@@ -805,7 +939,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "tui-help-overlay",
@@ -821,7 +956,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "bento-grid",
@@ -837,7 +973,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "infinite-marquee",
@@ -853,7 +990,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "calendar",
@@ -868,7 +1006,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "comment-thread",
@@ -882,7 +1021,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "rich-text-editor",
@@ -897,7 +1037,8 @@
       ],
       "difficulty": "advanced",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "slash-commands",
@@ -912,7 +1053,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "version-history",
@@ -927,7 +1069,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "button",
@@ -942,7 +1085,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "input",
@@ -957,7 +1101,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "textarea",
@@ -972,7 +1117,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "badge",
@@ -987,7 +1133,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "switch",
@@ -1002,7 +1149,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "checkbox",
@@ -1016,7 +1164,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "radio-group",
@@ -1030,7 +1179,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "slider",
@@ -1045,7 +1195,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "progress",
@@ -1059,7 +1210,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "spinner",
@@ -1074,7 +1226,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "skeleton",
@@ -1089,7 +1242,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "avatar",
@@ -1103,7 +1257,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "kbd",
@@ -1118,7 +1273,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "separator",
@@ -1133,7 +1289,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "tabs",
@@ -1147,7 +1304,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "accordion",
@@ -1161,7 +1319,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "toast",
@@ -1175,7 +1334,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "tooltip",
@@ -1189,7 +1349,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "dialog",
@@ -1204,7 +1365,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "alert-dialog",
@@ -1219,7 +1381,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "sheet",
@@ -1234,7 +1397,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "drawer",
@@ -1249,7 +1413,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "popover",
@@ -1263,7 +1428,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "dropdown-menu",
@@ -1278,7 +1444,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "context-menu",
@@ -1293,7 +1460,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "hover-card",
@@ -1308,7 +1476,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "modal-stack",
@@ -1323,7 +1492,8 @@
       ],
       "difficulty": "advanced",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "navbar",
@@ -1338,7 +1508,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "floating-navbar",
@@ -1353,7 +1524,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "sidebar",
@@ -1367,7 +1539,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "expandable-sidebar",
@@ -1382,7 +1555,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "mobile-nav",
@@ -1399,7 +1573,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "mobile-header",
@@ -1417,7 +1592,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "breadcrumb",
@@ -1432,7 +1608,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "step-nav",
@@ -1447,7 +1624,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "pagination",
@@ -1462,7 +1640,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "masonry-layout",
@@ -1477,7 +1656,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "cta-block",
@@ -1492,7 +1672,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "feature-grid",
@@ -1507,7 +1688,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "logo-cloud",
@@ -1522,7 +1704,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "site-footer",
@@ -1537,7 +1720,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "kit"
     },
     {
       "slug": "backdrop",
@@ -1552,7 +1736,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "cursor-fx",
@@ -1567,7 +1752,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "text-fx",
@@ -1582,7 +1768,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "matrix-decode",
@@ -1598,7 +1785,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "rgb-glitch",
@@ -1614,7 +1802,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "number-wheel",
@@ -1630,7 +1819,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "inline-word-roll",
@@ -1646,7 +1836,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "echo-stack",
@@ -1662,7 +1853,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "selection-snap",
@@ -1678,7 +1870,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "period-drop",
@@ -1694,7 +1887,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "type-wall",
@@ -1710,7 +1904,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "fx-card",
@@ -1725,7 +1920,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "fx-button",
@@ -1740,7 +1936,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "beta"
+      "status": "beta",
+      "collection": "creative"
     },
     {
       "slug": "utils",
@@ -1756,7 +1953,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "stable"
+      "status": "stable",
+      "collection": "kit"
     },
     {
       "slug": "use-reduced-motion",
@@ -1772,7 +1970,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "stable"
+      "status": "stable",
+      "collection": "kit"
     },
     {
       "slug": "spring",
@@ -1788,7 +1987,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "stable"
+      "status": "stable",
+      "collection": "creative"
     },
     {
       "slug": "use-pointer-proximity",
@@ -1805,7 +2005,8 @@
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",
-      "status": "stable"
+      "status": "stable",
+      "collection": "creative"
     },
     {
       "slug": "tokens",
@@ -1821,7 +2022,8 @@
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
-      "status": "stable"
+      "status": "stable",
+      "collection": "kit"
     }
   ],
   "shadcn": "Compatible — install via shadcn with the @buildora registry pointing at https://buildora-hazel.vercel.app/r/{component}.json, or the local /r/{component}.json endpoint."

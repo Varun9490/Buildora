@@ -3,7 +3,14 @@
 import Link from "next/link";
 import * as React from "react";
 import { motion, type Variants } from "motion/react";
-import { allComponents, searchComponents } from "@/lib/registry";
+import { cn } from "@buildora/utils";
+import {
+  allComponents,
+  searchComponents,
+  collectionCounts,
+  totalComponents,
+  COLLECTION_META,
+} from "@/lib/registry";
 import { LazyPreview } from "@/components/LazyPreview";
 
 const stagger: Variants = {
@@ -17,9 +24,10 @@ const rise: Variants = {
 
 export default function ComponentsPage() {
   const [query, setQuery] = React.useState("");
+  const [collection, setCollection] = React.useState<"all" | "creative" | "kit">("all");
   const results = React.useMemo(
-    () => searchComponents(allComponents, { query, category: "all", framework: "all", tag: "all", difficulty: "all", status: "all", sort: "featured" }),
-    [query]
+    () => searchComponents(allComponents, { query, category: "all", framework: "all", tag: "all", difficulty: "all", status: "all", collection, sort: "featured" }),
+    [query, collection]
   );
 
   return (
@@ -54,8 +62,32 @@ export default function ComponentsPage() {
 
       {/* Filter strip */}
       <div className="sticky top-0 z-10 border-b border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-bg)_88%,transparent)] backdrop-blur-xl">
-        <div className="mx-auto max-w-[1400px] px-6 py-3 flex items-center justify-between gap-4">
+        <div className="mx-auto max-w-[1400px] px-6 py-3 flex flex-wrap items-center justify-between gap-4">
           <span className="font-mono text-[11px] tracking-widest uppercase text-[color:var(--b-muted)]">{results.length} results{query ? ` for “${query}”` : ""}</span>
+          <div className="flex items-center gap-1 rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-0.5" role="group" aria-label="Collection">
+            {(["all", "creative", "kit"] as const).map((id) => {
+              const label = id === "all" ? "All" : COLLECTION_META[id].label;
+              const count = id === "all" ? totalComponents : collectionCounts[id];
+              const active = collection === id;
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setCollection(id)}
+                  aria-pressed={active}
+                  className={cn(
+                    "rounded-full px-3 py-1 text-[11px] transition-colors",
+                    active
+                      ? "bg-[color:var(--b-accent)] font-semibold text-[color:var(--b-accent-foreground)]"
+                      : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text)]"
+                  )}
+                >
+                  {label}
+                  <span className="ml-1.5 opacity-60">{count}</span>
+                </button>
+              );
+            })}
+          </div>
           <span className="hidden sm:inline-flex items-center gap-2 text-xs text-[color:var(--b-muted)]">Each card is a live preview — hover to feel the spring <span className="h-1 w-1 rounded-full bg-[color:var(--b-accent)]" /></span>
         </div>
       </div>

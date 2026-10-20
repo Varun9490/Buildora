@@ -5,6 +5,7 @@
   "title": "Magnification Dock",
   "description": "Dock whose icons grow with cursor proximity, on a continuous spring.",
   "status": "beta",
+  "collection": "creative",
   "categories": [
     "navigation"
   ],

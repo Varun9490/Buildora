@@ -5,6 +5,7 @@
   "title": "Mobile Nav",
   "description": "Bottom mobile tab bar with labeled items, active pill, badges, and safe-area padding.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "navigation",
     "mobile"

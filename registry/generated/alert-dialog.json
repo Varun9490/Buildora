@@ -5,6 +5,7 @@
   "title": "Alert Dialog",
   "description": "Confirm/cancel dialog with destructive variant.",
   "status": "beta",
+  "collection": "kit",
   "categories": [
     "overlays"
   ],
