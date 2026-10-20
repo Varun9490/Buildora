@@ -20,7 +20,8 @@
     "registry:audit": "tsx scripts/audit-registry.ts",
     "registry:contrast": "tsx scripts/contrast.ts",
     "registry:catalogue": "tsx scripts/check-catalogue.ts",
-    "registry:size": "tsx scripts/bundle-size.ts"
+    "registry:size": "tsx scripts/bundle-size.ts",
+    "registry:css": "tsx scripts/build-css-variants.ts"
   },
   "devDependencies": {
     "@types/glob": "^9.0.0",

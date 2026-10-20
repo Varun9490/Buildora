@@ -30,9 +30,9 @@ function PreviewSkeleton() {
   );
 }
 
-export function ComponentDetail({ slug, item }: { slug: string; item: RegistryItem }) {
+export function ComponentDetail({ slug, item, css }: { slug: string; item: RegistryItem; css?: string | null }) {
   const { framework, setFramework, pushRecent } = useBuildora();
-  const [activeTab, setActiveTab] = React.useState<"preview" | "code">("preview");
+  const [activeTab, setActiveTab] = React.useState<"preview" | "code" | "css">("preview");
   const [controls, setControls] = React.useState<Controls>({ ...DEFAULT_RENDER_CONTROLS });
   const [copied, setCopied] = React.useState<string | null>(null);
 
@@ -171,8 +171,45 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
                     />
                   )}
                 </motion.button>
+                {css ? (
+                  <motion.button
+                    onClick={() => setActiveTab("css")}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                    className={cn(
+                      "relative pb-4 font-mono text-[12px] font-bold uppercase tracking-widest transition-colors",
+                      activeTab === "css" ? "text-[color:var(--b-accent)]" : "text-[color:var(--b-muted)] hover:text-[color:var(--b-text)]"
+                    )}
+                  >
+                    CSS
+                    {activeTab === "css" && (
+                      <motion.div
+                        layoutId="detail-tab-underline"
+                        transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8 }}
+                        className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[color:var(--b-accent)]"
+                      />
+                    )}
+                  </motion.button>
+                ) : null}
              </div>
-          </div>
+              {css && activeTab === "css" ? (
+                <div className="flex items-center gap-3">
+                  <a
+                    href={`/css/${slug}.css`}
+                    download
+                    className="rounded-lg border border-[color:var(--b-border)] px-3 py-1.5 font-mono text-[10px] text-[color:var(--b-text-secondary)] transition-colors hover:text-[color:var(--b-text)]"
+                  >
+                    Download .css
+                  </a>
+                  <button
+                    onClick={() => copy(css, "css")}
+                    className="rounded-lg border border-[color:var(--b-border)] px-3 py-1.5 font-mono text-[10px] text-[color:var(--b-text-secondary)] transition-colors hover:text-[color:var(--b-text)]"
+                  >
+                    {copied === "css" ? "Copied" : "Copy CSS"}
+                  </button>
+                </div>
+              ) : null}
+            </div>
 
           {/* Tab Content — theme-aware preview surface */}
           <div className="relative rounded-2xl border border-[color:var(--b-border)] bg-[color:var(--b-panel)] shadow-card overflow-hidden">
@@ -180,12 +217,30 @@ export function ComponentDetail({ slug, item }: { slug: string; item: RegistryIt
               {/* Window header — real metadata, not decorative traffic lights */}
           <div className="flex h-12 items-center justify-between border-b border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-4">
             <span className="font-mono text-[11px] text-[color:var(--b-muted)]">@buildora/{slug}</span>
-            <span className="b-badge">{activeTab === "preview" ? "live preview" : frameworkLabels[framework]}</span>
+            <span className="b-badge">{activeTab === "preview" ? "live preview" : activeTab === "css" ? "css variant" : frameworkLabels[framework]}</span>
           </div>
 
               <div className="relative min-h-[500px] w-full">
                 <AnimatePresence mode="wait">
-                  {activeTab === "preview" ? (
+                  {activeTab === "css" && css ? (
+                    <motion.div
+                      key="css"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="absolute inset-0 h-full w-full overflow-auto scroll-sleek bg-[color:var(--b-panel)]"
+                    >
+                      <div className="p-4">
+                        <p className="mb-3 rounded-lg border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-2 font-mono text-[11px] leading-relaxed text-[color:var(--b-muted)]">
+                          <span className="font-bold text-[color:var(--b-text-secondary)]">No Tailwind.</span>{" "}
+                          Generated from the same source the Tailwind variant ships, so it cannot drift.
+                          Link it after the Buildora tokens file.
+                        </p>
+                        <CodeViewer files={[{ path: `styles/buildora/${slug}.css`, code: css, language: "css" }]} />
+                      </div>
+                    </motion.div>
+                  ) : activeTab === "preview" ? (
                     <motion.div
                       key="preview"
                       initial={{ opacity: 0, y: 8 }}

@@ -35,6 +35,7 @@ const results = items
   .map((item) => {
     const raw = Buffer.from(item.files.map((f) => f.content).join("\n"), "utf8");
     const gz = gzipSync(raw, { level: 9 });
+    const needsMotion = item.dependencies.some((d) => d.startsWith("motion"));
     return {
       slug: item.name,
       title: item.title,
@@ -43,6 +44,7 @@ const results = items
       gzipBytes: gz.length,
       gzipKb: kb(gz.length),
       files: item.files.length,
+      needsMotion,
       dependencies: item.dependencies,
       registryDependencies: item.registryDependencies.map((d) => {
         const m = d.match(/\/r\/([^/]+)\.json$/);
@@ -52,16 +54,53 @@ const results = items
   })
   .sort((a, b) => a.gzipBytes - b.gzipBytes);
 
-const totalGzip = results.reduce((n, r) => n + r.gzipBytes, 0);
-const median = results[Math.floor(results.length / 2)]?.gzipKb ?? 0;
-const heaviest = results[results.length - 1];
+/**
+ * What a consumer pays for the animation library, if they use a component
+ * that needs it. It is one dependency, paid once, however many components
+ * they install.
+ */
+function motionCostKb(): number | null {
+  const pnpmDir = path.join(root, "node_modules", ".pnpm");
+  if (!fs.existsSync(pnpmDir)) return null;
+
+  const wanted: Array<[string, string]> = [
+    ["framer-motion@", "framer-motion/dist/framer-motion.js"],
+    ["motion-dom@", "motion-dom/dist/motion-dom.js"],
+    ["motion-utils@", "motion-utils/dist/motion-utils.js"],
+  ];
+
+  let total = 0;
+  let found = 0;
+  for (const [prefix, rel] of wanted) {
+    const dir = fs.readdirSync(pnpmDir).find((d) => d.startsWith(prefix));
+    if (!dir) continue;
+    const file = path.join(pnpmDir, dir, "node_modules", rel);
+    if (!fs.existsSync(file)) continue;
+    total += gzipSync(fs.readFileSync(file), { level: 9 }).length;
+    found++;
+  }
+  return found ? kb(total) : null;
+}
+
+const motionKb = motionCostKb();
+const withMotion = results.filter((r) => r.needsMotion);
 
 const report = {
   note: "gzip level 9, the file content a consumer installs",
   components: results.length,
-  totalGzipKb: kb(totalGzip),
-  medianGzipKb: median,
-  heaviest: { slug: heaviest.slug, gzipKb: heaviest.gzipKb },
+  totalGzipKb: kb(results.reduce((n, r) => n + r.gzipBytes, 0)),
+  medianGzipKb: results[Math.floor(results.length / 2)]?.gzipKb ?? 0,
+  heaviest: { slug: results[results.length - 1].slug, gzipKb: results[results.length - 1].gzipKb },
+  motion: {
+    /** The animation library is one dependency, paid once. */
+    gzipKb: motionKb,
+    componentsNeedingIt: withMotion.length,
+    /** The rest work without any animation library at all. */
+    componentsWithoutIt: results.length - withMotion.length,
+    note: motionKb
+      ? `motion is ${motionKb} KB gzipped, paid once per project, not per component`
+      : "motion is a shared dependency, paid once per project, not per component",
+  },
   results,
 };
 
@@ -69,6 +108,11 @@ const outDir = path.join(root, "registry", "reports");
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, "bundle-size.json"), `${JSON.stringify(report, null, 2)}\n`);
 
+const heaviest = results[results.length - 1];
+
 console.log(
-  `Bundle size: ${results.length} components · median ${median} KB gzip · heaviest ${heaviest.slug} ${heaviest.gzipKb} KB → registry/reports/bundle-size.json`
+  `Bundle size: ${results.length} components · median ${report.medianGzipKb} KB gzip · heaviest ${heaviest.slug} ${heaviest.gzipKb} KB`
+);
+console.log(
+  `  animation library: ${withMotion.length} components need motion (${motionKb ?? "?"} KB gzipped, paid once), ${results.length - withMotion.length} need nothing`
 );

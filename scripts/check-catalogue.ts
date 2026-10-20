@@ -152,9 +152,27 @@ for (const [slug, item] of registry) {
   }
 }
 
+/* ── 7. CSS variants ─────────────────────────────────────────────────────
+   Every component with a TSX file must have a generated CSS variant, and
+   the file must parse. The CSS is generated from the same source the
+   Tailwind variant ships, so it cannot drift — but a missing one would
+   leave a consumer without Tailwind stuck. */
+const cssDir = path.join(root, "public", "css");
+const cssFiles = fs.existsSync(cssDir)
+  ? fs.readdirSync(cssDir).filter((f) => f.endsWith(".css"))
+  : [];
+
+for (const [slug] of registry) {
+  const item = registry.get(slug)!;
+  if (!item.files.some((f) => f.path.endsWith(".tsx"))) continue;
+  if (!cssFiles.includes(`${slug}.css`)) {
+    fail(`"${slug}" has no CSS variant — run pnpm registry:css`);
+  }
+}
+
 /* ── Report ─────────────────────────────────────────────────────────────── */
 console.log(
-  `Catalogue: ${published.length} published · ${groupSlugs.length} grouped · ${exported.size} exports · ${demoed.size} demos`
+  `Catalogue: ${published.length} published · ${groupSlugs.length} grouped · ${exported.size} exports · ${demoed.size} demos · ${cssFiles.length} css variants`
 );
 
 if (failures.length) {

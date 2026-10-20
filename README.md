@@ -47,6 +47,30 @@ export function Demo() {
 }
 ```
 
+## Not using Tailwind
+
+Every component also has a CSS variant, generated from the same source the
+Tailwind variant ships — so the two cannot drift. Install the component, then
+link the token file and the component's CSS:
+
+```css
+@import "@/styles/buildora/tokens.css";
+@import "@/styles/buildora/magnetic-button.css";
+```
+
+Each component page has a **CSS** tab with copy and download. The generator
+is `pnpm registry:css`; the catalogue gate fails if a component loses its
+CSS variant.
+
+## What it costs
+
+Measured, not estimated — see [`registry/reports/bundle-size.json`](./registry/reports/bundle-size.json).
+
+- The median component is **1.4 KB gzipped**.
+- **89 of 127** components need no animation library at all.
+- The 38 that do share one dependency, paid **once per project**, not per
+  component.
+
 ## Registry
 
 - Source: `registry/components/*.json`

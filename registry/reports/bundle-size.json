@@ -7,6 +7,12 @@
     "slug": "terminal-ui",
     "gzipKb": 12.34
   },
+  "motion": {
+    "gzipKb": 107.95,
+    "componentsNeedingIt": 38,
+    "componentsWithoutIt": 89,
+    "note": "motion is 107.95 KB gzipped, paid once per project, not per component"
+  },
   "results": [
     {
       "slug": "tactile-loader",
@@ -16,6 +22,7 @@
       "gzipBytes": 534,
       "gzipKb": 0.52,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -30,6 +37,7 @@
       "gzipBytes": 584,
       "gzipKb": 0.57,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [
         "clsx",
         "tailwind-merge"
@@ -47,6 +55,7 @@
       "gzipBytes": 622,
       "gzipKb": 0.61,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -62,6 +71,7 @@
       "gzipBytes": 673,
       "gzipKb": 0.66,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -76,6 +86,7 @@
       "gzipBytes": 686,
       "gzipKb": 0.67,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -90,6 +101,7 @@
       "gzipBytes": 768,
       "gzipKb": 0.75,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": []
     },
@@ -101,6 +113,7 @@
       "gzipBytes": 782,
       "gzipKb": 0.76,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -115,6 +128,7 @@
       "gzipBytes": 801,
       "gzipKb": 0.78,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -129,6 +143,7 @@
       "gzipBytes": 802,
       "gzipKb": 0.78,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [
         "clsx",
         "tailwind-merge"
@@ -146,6 +161,7 @@
       "gzipBytes": 837,
       "gzipKb": 0.82,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": []
     },
@@ -157,6 +173,7 @@
       "gzipBytes": 876,
       "gzipKb": 0.86,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -171,6 +188,7 @@
       "gzipBytes": 877,
       "gzipKb": 0.86,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -185,6 +203,7 @@
       "gzipBytes": 916,
       "gzipKb": 0.89,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -200,6 +219,7 @@
       "gzipBytes": 919,
       "gzipKb": 0.9,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -214,6 +234,7 @@
       "gzipBytes": 931,
       "gzipKb": 0.91,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -228,6 +249,7 @@
       "gzipBytes": 947,
       "gzipKb": 0.92,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -242,6 +264,7 @@
       "gzipBytes": 952,
       "gzipKb": 0.93,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [
         "clsx",
         "tailwind-merge"
@@ -259,6 +282,7 @@
       "gzipBytes": 976,
       "gzipKb": 0.95,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -273,6 +297,7 @@
       "gzipBytes": 990,
       "gzipKb": 0.97,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -288,6 +313,7 @@
       "gzipBytes": 997,
       "gzipKb": 0.97,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -302,6 +328,7 @@
       "gzipBytes": 1012,
       "gzipKb": 0.99,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -317,6 +344,7 @@
       "gzipBytes": 1054,
       "gzipKb": 1.03,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [
         "clsx",
         "tailwind-merge"
@@ -334,6 +362,7 @@
       "gzipBytes": 1062,
       "gzipKb": 1.04,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -350,6 +379,7 @@
       "gzipBytes": 1067,
       "gzipKb": 1.04,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -365,6 +395,7 @@
       "gzipBytes": 1077,
       "gzipKb": 1.05,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -380,6 +411,7 @@
       "gzipBytes": 1078,
       "gzipKb": 1.05,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -394,6 +426,7 @@
       "gzipBytes": 1099,
       "gzipKb": 1.07,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -411,6 +444,7 @@
       "gzipBytes": 1118,
       "gzipKb": 1.09,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -426,6 +460,7 @@
       "gzipBytes": 1123,
       "gzipKb": 1.1,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -440,6 +475,7 @@
       "gzipBytes": 1123,
       "gzipKb": 1.1,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -454,6 +490,7 @@
       "gzipBytes": 1150,
       "gzipKb": 1.12,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -469,6 +506,7 @@
       "gzipBytes": 1157,
       "gzipKb": 1.13,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -484,6 +522,7 @@
       "gzipBytes": 1163,
       "gzipKb": 1.14,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -499,6 +538,7 @@
       "gzipBytes": 1169,
       "gzipKb": 1.14,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -513,6 +553,7 @@
       "gzipBytes": 1185,
       "gzipKb": 1.16,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -530,6 +571,7 @@
       "gzipBytes": 1190,
       "gzipKb": 1.16,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -545,6 +587,7 @@
       "gzipBytes": 1203,
       "gzipKb": 1.17,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -559,6 +602,7 @@
       "gzipBytes": 1209,
       "gzipKb": 1.18,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -576,6 +620,7 @@
       "gzipBytes": 1212,
       "gzipKb": 1.18,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -591,6 +636,7 @@
       "gzipBytes": 1222,
       "gzipKb": 1.19,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": []
     },
@@ -602,6 +648,7 @@
       "gzipBytes": 1224,
       "gzipKb": 1.2,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -617,6 +664,7 @@
       "gzipBytes": 1228,
       "gzipKb": 1.2,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [
         "clsx",
         "tailwind-merge"
@@ -631,6 +679,7 @@
       "gzipBytes": 1234,
       "gzipKb": 1.21,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -646,6 +695,7 @@
       "gzipBytes": 1252,
       "gzipKb": 1.22,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -661,6 +711,7 @@
       "gzipBytes": 1255,
       "gzipKb": 1.23,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -678,6 +729,7 @@
       "gzipBytes": 1257,
       "gzipKb": 1.23,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -695,6 +747,7 @@
       "gzipBytes": 1270,
       "gzipKb": 1.24,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -709,6 +762,7 @@
       "gzipBytes": 1275,
       "gzipKb": 1.25,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -723,6 +777,7 @@
       "gzipBytes": 1280,
       "gzipKb": 1.25,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -737,6 +792,7 @@
       "gzipBytes": 1292,
       "gzipKb": 1.26,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -754,6 +810,7 @@
       "gzipBytes": 1306,
       "gzipKb": 1.28,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -769,6 +826,7 @@
       "gzipBytes": 1307,
       "gzipKb": 1.28,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -783,6 +841,7 @@
       "gzipBytes": 1314,
       "gzipKb": 1.28,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -798,6 +857,7 @@
       "gzipBytes": 1314,
       "gzipKb": 1.28,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -813,6 +873,7 @@
       "gzipBytes": 1366,
       "gzipKb": 1.33,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [
         "clsx",
         "tailwind-merge",
@@ -832,6 +893,7 @@
       "gzipBytes": 1369,
       "gzipKb": 1.34,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -849,6 +911,7 @@
       "gzipBytes": 1373,
       "gzipKb": 1.34,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -864,6 +927,7 @@
       "gzipBytes": 1386,
       "gzipKb": 1.35,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -879,6 +943,7 @@
       "gzipBytes": 1405,
       "gzipKb": 1.37,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -893,6 +958,7 @@
       "gzipBytes": 1417,
       "gzipKb": 1.38,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -907,6 +973,7 @@
       "gzipBytes": 1442,
       "gzipKb": 1.41,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -922,6 +989,7 @@
       "gzipBytes": 1460,
       "gzipKb": 1.43,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -936,6 +1004,7 @@
       "gzipBytes": 1462,
       "gzipKb": 1.43,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -953,6 +1022,7 @@
       "gzipBytes": 1470,
       "gzipKb": 1.44,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -968,6 +1038,7 @@
       "gzipBytes": 1482,
       "gzipKb": 1.45,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -983,6 +1054,7 @@
       "gzipBytes": 1490,
       "gzipKb": 1.46,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -998,6 +1070,7 @@
       "gzipBytes": 1490,
       "gzipKb": 1.46,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1013,6 +1086,7 @@
       "gzipBytes": 1498,
       "gzipKb": 1.46,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1028,6 +1102,7 @@
       "gzipBytes": 1534,
       "gzipKb": 1.5,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1043,6 +1118,7 @@
       "gzipBytes": 1561,
       "gzipKb": 1.52,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1060,6 +1136,7 @@
       "gzipBytes": 1594,
       "gzipKb": 1.56,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1077,6 +1154,7 @@
       "gzipBytes": 1631,
       "gzipKb": 1.59,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1092,6 +1170,7 @@
       "gzipBytes": 1650,
       "gzipKb": 1.61,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1107,6 +1186,7 @@
       "gzipBytes": 1664,
       "gzipKb": 1.63,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1124,6 +1204,7 @@
       "gzipBytes": 1670,
       "gzipKb": 1.63,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1141,6 +1222,7 @@
       "gzipBytes": 1671,
       "gzipKb": 1.63,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1158,6 +1240,7 @@
       "gzipBytes": 1690,
       "gzipKb": 1.65,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1173,6 +1256,7 @@
       "gzipBytes": 1705,
       "gzipKb": 1.67,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1188,6 +1272,7 @@
       "gzipBytes": 1712,
       "gzipKb": 1.67,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1203,6 +1288,7 @@
       "gzipBytes": 1713,
       "gzipKb": 1.67,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1220,6 +1306,7 @@
       "gzipBytes": 1715,
       "gzipKb": 1.67,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1235,6 +1322,7 @@
       "gzipBytes": 1751,
       "gzipKb": 1.71,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1249,6 +1337,7 @@
       "gzipBytes": 1777,
       "gzipKb": 1.74,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1264,6 +1353,7 @@
       "gzipBytes": 1793,
       "gzipKb": 1.75,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1279,6 +1369,7 @@
       "gzipBytes": 1851,
       "gzipKb": 1.81,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1296,6 +1387,7 @@
       "gzipBytes": 1868,
       "gzipKb": 1.82,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1311,6 +1403,7 @@
       "gzipBytes": 1908,
       "gzipKb": 1.86,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1328,6 +1421,7 @@
       "gzipBytes": 1919,
       "gzipKb": 1.87,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1343,6 +1437,7 @@
       "gzipBytes": 1934,
       "gzipKb": 1.89,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1360,6 +1455,7 @@
       "gzipBytes": 1991,
       "gzipKb": 1.94,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1375,6 +1471,7 @@
       "gzipBytes": 2000,
       "gzipKb": 1.95,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1392,6 +1489,7 @@
       "gzipBytes": 2004,
       "gzipKb": 1.96,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1407,6 +1505,7 @@
       "gzipBytes": 2041,
       "gzipKb": 1.99,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1422,6 +1521,7 @@
       "gzipBytes": 2078,
       "gzipKb": 2.03,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1439,6 +1539,7 @@
       "gzipBytes": 2099,
       "gzipKb": 2.05,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1456,6 +1557,7 @@
       "gzipBytes": 2142,
       "gzipKb": 2.09,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1471,6 +1573,7 @@
       "gzipBytes": 2169,
       "gzipKb": 2.12,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1488,6 +1591,7 @@
       "gzipBytes": 2203,
       "gzipKb": 2.15,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1505,6 +1609,7 @@
       "gzipBytes": 2237,
       "gzipKb": 2.18,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1522,6 +1627,7 @@
       "gzipBytes": 2244,
       "gzipKb": 2.19,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1539,6 +1645,7 @@
       "gzipBytes": 2249,
       "gzipKb": 2.2,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1553,6 +1660,7 @@
       "gzipBytes": 2253,
       "gzipKb": 2.2,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1568,6 +1676,7 @@
       "gzipBytes": 2256,
       "gzipKb": 2.2,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1582,6 +1691,7 @@
       "gzipBytes": 2258,
       "gzipKb": 2.21,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1596,6 +1706,7 @@
       "gzipBytes": 2276,
       "gzipKb": 2.22,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": []
     },
@@ -1607,6 +1718,7 @@
       "gzipBytes": 2332,
       "gzipKb": 2.28,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1621,6 +1733,7 @@
       "gzipBytes": 2346,
       "gzipKb": 2.29,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1636,6 +1749,7 @@
       "gzipBytes": 2371,
       "gzipKb": 2.32,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1653,6 +1767,7 @@
       "gzipBytes": 2397,
       "gzipKb": 2.34,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1670,6 +1785,7 @@
       "gzipBytes": 2484,
       "gzipKb": 2.43,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1687,6 +1803,7 @@
       "gzipBytes": 2516,
       "gzipKb": 2.46,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1702,6 +1819,7 @@
       "gzipBytes": 2533,
       "gzipKb": 2.47,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1719,6 +1837,7 @@
       "gzipBytes": 2571,
       "gzipKb": 2.51,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1734,6 +1853,7 @@
       "gzipBytes": 2587,
       "gzipKb": 2.53,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1751,6 +1871,7 @@
       "gzipBytes": 2627,
       "gzipKb": 2.57,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1768,6 +1889,7 @@
       "gzipBytes": 2655,
       "gzipKb": 2.59,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1785,6 +1907,7 @@
       "gzipBytes": 2686,
       "gzipKb": 2.62,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1802,6 +1925,7 @@
       "gzipBytes": 2840,
       "gzipKb": 2.77,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1816,6 +1940,7 @@
       "gzipBytes": 2887,
       "gzipKb": 2.82,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1833,6 +1958,7 @@
       "gzipBytes": 2892,
       "gzipKb": 2.82,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1847,6 +1973,7 @@
       "gzipBytes": 2996,
       "gzipKb": 2.93,
       "files": 1,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
@@ -1862,6 +1989,7 @@
       "gzipBytes": 3017,
       "gzipKb": 2.95,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1879,6 +2007,7 @@
       "gzipBytes": 3064,
       "gzipKb": 2.99,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1896,6 +2025,7 @@
       "gzipBytes": 3596,
       "gzipKb": 3.51,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1913,6 +2043,7 @@
       "gzipBytes": 3978,
       "gzipKb": 3.88,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1930,6 +2061,7 @@
       "gzipBytes": 4162,
       "gzipKb": 4.06,
       "files": 1,
+      "needsMotion": true,
       "dependencies": [
         "motion@^13.4.0"
       ],
@@ -1947,6 +2079,7 @@
       "gzipBytes": 12638,
       "gzipKb": 12.34,
       "files": 6,
+      "needsMotion": false,
       "dependencies": [],
       "registryDependencies": [
         "utils",
