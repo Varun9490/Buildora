@@ -175,7 +175,6 @@ const Toast = React.forwardRef<HTMLDivElement, ToastItemProps>(
           initial="hidden"
           animate="shown"
           exit="gone"
-          role={variant === "danger" ? "alert" : "status"}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
           onFocus={() => setHovered(true)}
@@ -190,7 +189,7 @@ const Toast = React.forwardRef<HTMLDivElement, ToastItemProps>(
           style={reduced ? undefined : { cursor: "grab" }}
         >
           {/* live wire */}
-          <div className={cn("flex items-start gap-2.5 p-3.5", VARIANT_STYLES[variant].tint)}>
+          <div role={variant === "danger" ? "alert" : "status"} className={cn("flex items-start gap-2.5 p-3.5", VARIANT_STYLES[variant].tint)}>
             <VariantIcon variant={variant} />
             <div className="min-w-0 flex-1">
               <div className="text-[13px] font-semibold leading-snug">{title}</div>
@@ -231,14 +230,13 @@ const Toast = React.forwardRef<HTMLDivElement, ToastItemProps>(
         initial="hidden"
         animate="shown"
         exit="gone"
-        role={variant === "danger" ? "alert" : "status"}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onFocus={() => setHovered(true)}
         onBlur={() => setHovered(false)}
         className="pointer-events-auto relative w-72 overflow-hidden rounded-2xl border shadow-[0_18px_50px_-18px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:w-80"
       >
-        <div className={cn("flex items-start gap-2.5 p-3.5", VARIANT_STYLES[variant].tint)}>
+        <div role={variant === "danger" ? "alert" : "status"} className={cn("flex items-start gap-2.5 p-3.5", VARIANT_STYLES[variant].tint)}>
           <VariantIcon variant={variant} />
           <div className="min-w-0 flex-1">
             <div className="text-[13px] font-semibold leading-snug">{title}</div>

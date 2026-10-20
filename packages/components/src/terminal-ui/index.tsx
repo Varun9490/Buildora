@@ -223,42 +223,50 @@ export function TerminalUI({
           onTabClose={handleTabClose}
           onTabAdd={handleTabAdd}
           theme={theme}
+          panelIds={tabs.map((t) => `panel-${t.id}`)}
         />
-        
-        <TerminalPane
-          lines={activeLines}
-          theme={theme}
-          scrollback={scrollback}
-          fontSize={fontSize}
-          fontFamily={fontFamily}
-          className="flex-1"
-        />
-        
-        {showCommandInput && (
-          <div className="border-t" style={{ borderColor: theme.brightBlack, padding: "8px" }}>
-            <CommandInput
-              theme={theme}
-              history={commandHistory}
-              onSubmit={handleCommandSubmit}
-              multiline={multilineInput}
-              showLineNumbers={multilineInput}
-              highlight={highlightSyntax}
-              autoFocus={autoFocus}
-              suggestions={[
-                { text: "npm install", description: "Install dependencies" },
-                { text: "npm run dev", description: "Start dev server" },
-                { text: "npm run build", description: "Build project" },
-                { text: "npm run test", description: "Run tests" },
-                { text: "git status", description: "Check git status" },
-                { text: "git diff", description: "Show changes" },
-                { text: "pnpm install", description: "Install with pnpm" },
-                { text: "pnpm dev", description: "Start dev server" },
-                { text: "clear", description: "Clear terminal" },
-                { text: "ls -la", description: "List files" },
-              ]}
-            />
-          </div>
-        )}
+
+        <div
+          id={`panel-${activeTab}`}
+          aria-labelledby={`tab-${activeTab}`}
+          className="flex flex-col flex-1 overflow-hidden"
+        >
+          <TerminalPane
+            lines={activeLines}
+            theme={theme}
+            scrollback={scrollback}
+            fontSize={fontSize}
+            fontFamily={fontFamily}
+            className="flex-1"
+          />
+
+          {showCommandInput && (
+            <div className="border-t" style={{ borderColor: theme.brightBlack, padding: "8px" }}>
+              <CommandInput
+                theme={theme}
+                history={commandHistory}
+                onSubmit={handleCommandSubmit}
+                multiline={multilineInput}
+                showLineNumbers={multilineInput}
+                highlight={highlightSyntax}
+                autoFocus={autoFocus}
+                suggestions={[
+                  { text: "npm install", description: "Install dependencies" },
+                  { text: "npm run dev", description: "Start dev server" },
+                  { text: "npm run build", description: "Build project" },
+                  { text: "npm run test", description: "Run tests" },
+                  { text: "git status", description: "Check git status" },
+                  { text: "git diff", description: "Show changes" },
+                  { text: "pnpm install", description: "Install with pnpm" },
+                  { text: "pnpm dev", description: "Start dev server" },
+                  { text: "pnpm build", description: "Build project" },
+                  { text: "clear", description: "Clear terminal" },
+                  { text: "ls -la", description: "List files" },
+                ]}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

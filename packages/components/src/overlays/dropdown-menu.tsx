@@ -268,7 +268,7 @@ export function DropdownMenuCheckboxItem({
         className
       )}
       role="menuitemcheckbox"
-      aria-checked={checked}
+      aria-checked={Boolean(checked)}
       onClick={() => {
         onChange(!checked);
         context?.setOpen(false);

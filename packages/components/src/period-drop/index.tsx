@@ -50,7 +50,8 @@ export function PeriodDrop({ text, delay = 300, className, ...rest }: PeriodDrop
   }, [reduced, delay]);
 
   return (
-    <span ref={ref} aria-label={`${text}.`} className={cn("inline", className)} {...rest}>
+    <span ref={ref} className={cn("inline", className)} {...rest}>
+      <span className="sr-only">{`${text}.`}</span>
       <style>{DROP_CSS}</style>
       <span aria-hidden className="inline">
         {text}

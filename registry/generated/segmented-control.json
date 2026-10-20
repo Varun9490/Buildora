@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "segmented-control",
+  "type": "registry:component",
+  "title": "Segmented Control",
+  "description": "iOS-style segmented option picker with a spring-gliding accent pill, radiogroup semantics and full keyboard nav.",
+  "status": "beta",
+  "categories": [
+    "primitives",
+    "motion"
+  ],
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/segmented-control/index.tsx",
+      "target": "components/buildora/segmented-control.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { motion } from \"motion/react\";\n\nexport type SegmentedControlSize = \"sm\" | \"md\" | \"lg\";\n\nexport type SegmentedItem = {\n  value: string;\n  label: string;\n  icon?: React.ReactNode;\n};\n\nexport type SegmentedControlProps = Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"defaultValue\"> & {\n  items: SegmentedItem[];\n  value?: string;\n  defaultValue?: string;\n  onChange?: (value: string) => void;\n  size?: SegmentedControlSize;\n  /** Accessible name for the radiogroup. */\n  label?: string;\n};\n\nconst SIZES: Record<SegmentedControlSize, string> = {\n  sm: \"h-7 px-2.5 text-xs gap-1\",\n  md: \"h-9 px-3 text-sm gap-1.5\",\n  lg: \"h-11 px-4 text-[15px] gap-2\",\n};\n\n/**\n * SegmentedControl — one-axis option picker with a spring-gliding pill.\n * Radiogroup semantics: roving focus, arrow keys move + commit, Space toggles.\n */\nexport function SegmentedControl({\n  items,\n  value,\n  defaultValue,\n  onChange,\n  size = \"md\",\n  label = \"Options\",\n  className,\n  ...rest\n}: SegmentedControlProps) {\n  const reduced = useReducedMotion();\n  const [internal, setInternal] = React.useState(defaultValue ?? items[0]?.value);\n  const active = value ?? internal;\n  const [focusIdx, setFocusIdx] = React.useState(-1);\n  const groupId = React.useId();\n\n  const commit = (v: string) => {\n    if (value === undefined) setInternal(v);\n    onChange?.(v);\n  };\n\n  const onKey = (e: React.KeyboardEvent) => {\n    const idx = items.findIndex((it) => it.value === active);\n    let next = idx;\n    if (e.key === \"ArrowRight\" || e.key === \"ArrowDown\") next = (idx + 1) % items.length;\n    else if (e.key === \"ArrowLeft\" || e.key === \"ArrowUp\") next = (idx - 1 + items.length) % items.length;\n    else if (e.key === \"Home\") next = 0;\n    else if (e.key === \"End\") next = items.length - 1;\n    else if (e.key === \" \" || e.key === \"Enter\") {\n      e.preventDefault();\n      commit(items[idx].value);\n      return;\n    } else return;\n    e.preventDefault();\n    commit(items[next].value);\n    document.getElementById(`${groupId}-opt-${next}`)?.focus();\n  };\n\n  return (\n    <div\n      role=\"radiogroup\"\n      aria-label={label}\n      id={groupId}\n      onKeyDown={onKey}\n      className={cn(\n        \"inline-flex max-w-full items-center gap-1 rounded-full border p-1\",\n        \"border-[color:var(--b-border)] bg-[color:var(--b-surface)]\",\n        className\n      )}\n      {...rest}\n    >\n      {items.map((item, i) => {\n        const isActive = item.value === active;\n        return (\n          <button\n            key={item.value}\n            id={`${groupId}-opt-${i}`}\n            type=\"button\"\n            role=\"radio\"\n            aria-checked={isActive}\n            tabIndex={isActive || focusIdx === i ? 0 : -1}\n            onFocus={() => setFocusIdx(i)}\n            onClick={() => commit(item.value)}\n            className={cn(\n              \"relative inline-flex shrink-0 items-center justify-center rounded-full outline-none\",\n              \"font-medium transition-colors focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)]\",\n              SIZES[size],\n              isActive\n                ? \"text-[color:var(--b-accent-foreground)]\"\n                : \"text-[color:var(--b-text-secondary)] hover:text-[color:var(--b-text)]\"\n            )}\n          >\n            {isActive && (\n              <motion.span\n                layoutId={reduced ? undefined : `${groupId}-pill`}\n                transition={reduced ? { duration: 0 } : { type: \"spring\", bounce: 0.2, duration: 0.5 }}\n                className=\"absolute inset-0 rounded-full bg-[color:var(--b-accent)]\"\n                aria-hidden=\"true\"\n              />\n            )}\n            <span className=\"relative z-10 inline-flex items-center gap-1.5\">\n              {item.icon}\n              {item.label}\n            </span>\n          </button>\n        );\n      })}\n    </div>\n  );\n}\n\nexport default SegmentedControl;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/segmented-control/index.tsx"
+}

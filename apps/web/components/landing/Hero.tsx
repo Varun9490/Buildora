@@ -52,7 +52,7 @@ export function Hero() {
             <span className="text-[color:var(--b-border-hover)]" aria-hidden="true">|</span>
             <span>MIT</span>
             <span className="text-[color:var(--b-border-hover)]" aria-hidden="true">|</span>
-            <span>WCAG AAA</span>
+            <span>WCAG AAA body</span>
             <span className="text-[color:var(--b-border-hover)]" aria-hidden="true">|</span>
             <span>SSR-safe</span>
           </motion.div>

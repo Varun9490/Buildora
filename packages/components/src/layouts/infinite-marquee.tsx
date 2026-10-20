@@ -69,31 +69,17 @@ export function InfiniteMarquee({
     >
       <div
         className={cn(
-          "flex w-max animate-marquee",
+          "flex w-max",
           pauseOnHover && "group-hover:[animation-play-state:paused]"
         )}
         style={{
-          animationDuration: `${duration}s`,
+          animation: `buildora-marquee ${duration}s linear infinite`,
           animationDirection: direction === "right" ? "reverse" : "normal",
         }}
       >
         {renderItems(false)}
         {renderItems(true)}
       </div>
-      <style jsx global>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee linear infinite;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .animate-marquee {
-            animation: none;
-          }
-        }
-      `}</style>
     </div>
   );
 }

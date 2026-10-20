@@ -1,0 +1,129 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "grab-roller-strip",
+  "name": "Grab Roller Strip",
+  "slug": "grab-roller-strip",
+  "description": "Physical roller strip you drag sideways; it settles on the nearest label under a fixed marker with flanks in fade flow.",
+  "categories": [
+    "forms",
+    "motion"
+  ],
+  "tags": [
+    "roller",
+    "drag",
+    "snap"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/grab-roller-strip/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/grab-roller-strip/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/grab-roller-strip/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/grab-roller-strip/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/grab-roller-strip/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/grab-roller-strip/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/grab-roller-strip/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/grab-roller-strip/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/grab-roller-strip/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/grab-roller-strip/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/grab-roller-strip/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/grab-roller-strip/index.tsx",
+      "target": "components/buildora/grab-roller-strip.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { motion } from \"motion/react\";\n\nexport type GrabRollerStripProps = Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"defaultValue\"> & {\n  labels: string[];\n  value?: number;\n  defaultValue?: number;\n  onChange?: (index: number) => void;\n  itemWidth?: number;\n  label?: string;\n};\n\nconst SNAP_CSS = `\n@keyframes bk-roller-flank{0%,100%{opacity:.38}50%{opacity:.7}}\n`;\n\n/**\n * GrabRollerStrip — a physical roller of labels you drag sideways; it settles\n * on the nearest label under a fixed center marker, with flanks flowing\n * under a fade. role=\"slider\" (index-based), keyboard + drag.\n */\nexport function GrabRollerStrip({\n  labels,\n  value,\n  defaultValue,\n  onChange,\n  itemWidth = 128,\n  label = \"Selector\",\n  className,\n  ...rest\n}: GrabRollerStripProps) {\n  const reduced = useReducedMotion();\n  const [internal, setInternal] = React.useState(defaultValue ?? Math.floor(labels.length / 2));\n  const active = value ?? internal;\n  const dragging = React.useRef(false);\n  const startX = React.useRef(0);\n  const baseIdx = React.useRef(0);\n  const trackRef = React.useRef<HTMLDivElement | null>(null);\n\n  const clamp = (v: number) => Math.max(0, Math.min(labels.length - 1, v));\n  const commit = (idx: number) => {\n    const n = clamp(Math.round(idx));\n    if (value === undefined) setInternal(n);\n    if (n !== active) onChange?.(n);\n  };\n\n  const onPointerDown = (e: React.PointerEvent) => {\n    dragging.current = true;\n    startX.current = e.clientX;\n    baseIdx.current = active;\n    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);\n  };\n  const onPointerMove = (e: React.PointerEvent) => {\n    if (!dragging.current) return;\n    commit(baseIdx.current - (e.clientX - startX.current) / itemWidth);\n  };\n  const onPointerUp = () => {\n    dragging.current = false;\n    commit(active);\n  };\n\n  const onKey = (e: React.KeyboardEvent) => {\n    if (e.key === \"ArrowRight\" || e.key === \"ArrowUp\") commit(active + 1);\n    else if (e.key === \"ArrowLeft\" || e.key === \"ArrowDown\") commit(active - 1);\n    else if (e.key === \"Home\") commit(0);\n    else if (e.key === \"End\") commit(labels.length - 1);\n    else return;\n    e.preventDefault();\n  };\n\n  const x = active * itemWidth;\n\n  return (\n    <div className={cn(\"flex w-full max-w-sm flex-col items-center gap-2\", className)} onKeyDown={onKey} {...rest}>\n      <style>{SNAP_CSS}</style>\n      <div\n        ref={trackRef}\n        role=\"slider\"\n        tabIndex={0}\n        aria-valuemin={0}\n        aria-valuemax={labels.length - 1}\n        aria-valuenow={active}\n        aria-valuetext={labels[active] ?? String(active)}\n        aria-label={label}\n        aria-orientation=\"horizontal\"\n        onPointerDown={onPointerDown}\n        onPointerMove={onPointerMove}\n        onPointerUp={onPointerUp}\n        onPointerCancel={onPointerUp}\n        className={cn(\n          \"relative h-16 w-full cursor-grab touch-none select-none overflow-hidden outline-none\",\n          \"bg-[color:color-mix(in_oklab,var(--b-text)_4%,transparent)]\",\n          \"border-y border-[color:var(--b-border)] focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)]\",\n          dragging.current ? \"cursor-grabbing\" : \"\"\n        )}\n      >\n        <div\n          aria-hidden=\"true\"\n          className=\"pointer-events-none absolute inset-0 z-10\"\n        >\n          <div className=\"absolute inset-x-0 top-0 h-6\" style={{ background: \"linear-gradient(to bottom, var(--b-surface), transparent)\", opacity: 0.9 }} />\n          <div className=\"absolute inset-x-0 bottom-0 h-6\" style={{ background: \"linear-gradient(to top, var(--b-surface), transparent)\", opacity: 0.9 }} />\n        </div>\n\n        <motion.div\n          className=\"absolute inset-y-0 left-1/2 flex items-center will-change-transform\"\n          animate={reduced ? { x: 0 } : { x: -x }}\n          transition={\n            dragging.current\n              ? { duration: 0 }\n              : reduced\n                ? { duration: 0 }\n                : { type: \"spring\", bounce: 0.14, duration: 0.5 }\n          }\n          style={{ originX: 0 }}\n        >\n          <div className=\"flex h-full items-center\" style={{ gap: 0 }}>\n            {labels.map((l, i) => {\n              const dist = Math.abs(i - active);\n              const isCenter = dist === 0;\n              const near = dist === 1;\n              return (\n                <span\n                  key={l + i}\n                  aria-hidden=\"true\"\n                  className={cn(\n                    \"flex shrink-0 items-center justify-center font-display font-bold transition-colors\",\n                    isCenter ? \"text-[color:var(--b-accent)]\" : \"text-[color:var(--b-text)]\"\n                  )}\n                  style={{\n                    width: itemWidth,\n                    fontSize: isCenter ? 22 : near ? 16 : 14,\n                    opacity: isCenter ? 1 : dist === 1 ? 0.55 : 0.28,\n                    ...(near && !reduced ? { animation: `bk-roller-flank ${1.8}s ease-in-out infinite` } : undefined),\n                  }}\n                >\n                  {l}\n                </span>\n              );\n            })}\n          </div>\n        </motion.div>\n\n        {/* center marker */}\n        <div aria-hidden=\"true\" className=\"pointer-events-none absolute left-1/2 top-0 z-20 h-full w-px -translate-x-1/2 bg-[color:var(--b-accent)]\" />\n      </div>\n      <div className=\"flex items-center justify-center gap-2\" aria-hidden=\"true\">\n        <button type=\"button\" tabIndex={-1} onClick={() => commit(active - 1)} className=\"flex h-6 w-6 items-center justify-center rounded-full border border-[color:var(--b-border)] text-[color:var(--b-muted)] hover:text-[color:var(--b-text)]\" aria-label=\"Previous\">\n          <svg width=\"10\" height=\"10\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2.4\" strokeLinecap=\"round\"><path d=\"M10 3.5 5.5 8 10 12.5\" /></svg>\n        </button>\n        <button type=\"button\" tabIndex={-1} onClick={() => commit(active + 1)} className=\"flex h-6 w-6 items-center justify-center rounded-full border border-[color:var(--b-border)] text-[color:var(--b-muted)] hover:text-[color:var(--b-text)]\" aria-label=\"Next\">\n          <svg width=\"10\" height=\"10\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2.4\" strokeLinecap=\"round\"><path d=\"m5.5 3.5 4.5 4.5L5.5 12.5\" /></svg>\n        </button>\n      </div>\n    </div>\n  );\n}\n\nexport default GrabRollerStrip;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/grab-roller-strip",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/grab-roller-strip/index.tsx",
+  "sourceDir": "grab-roller-strip",
+  "docs": "/components/grab-roller-strip",
+  "install": "pnpm dlx shadcn@latest add @buildora/grab-roller-strip"
+}

@@ -48,6 +48,21 @@ for (const slug of slugs) {
   registry.set(slug, JSON.parse(fs.readFileSync(path.join(genDir, `${slug}.json`), "utf8")));
 }
 
+/** A registryDependency is published as an absolute URL ("…/r/{slug}.json");
+ *  compare it as a slug, not as a URL. */
+function registrySlug(dep: string): string {
+  const m = dep.match(/\/r\/([^/]+)\.json$/);
+  if (m) return m[1];
+  return dep.replace(/\.json$/, "");
+}
+
+/** "motion@^13.4.0" -> "motion" */
+function packageName(dep: string): string {
+  const at = dep.lastIndexOf("@");
+  if (at > 0) return dep.slice(0, at);
+  return dep;
+}
+
 let failed = 0;
 const fail = (msg: string) => { failed++; console.error(`✗ ${msg}`); };
 
@@ -72,10 +87,8 @@ for (const [slug, item] of registry) {
     // 1. no unpublished imports
     for (const m of content.matchAll(/@buildora\/[\w-]+/g)) fail(`${slug}: ships unpublished import ${m[0]} in ${f.target}`);
     // 2. third-party imports declared
-    const declared = new Set([...(item.dependencies ?? []), ...(item.registryDependencies ?? []).flatMap((r) => {
-      // registryDeps provide @/ paths, not bare packages — nothing to add here
-      return [] as string[];
-    })]);
+    const declared = new Set((item.dependencies ?? []).map(packageName));
+    const declaredRegistry = new Set((item.registryDependencies ?? []).map(registrySlug));
     for (const m of content.matchAll(/from\s+['"]([^'"]+)['"]/g)) {
       const bare = barePackage(m[1]);
       if (!bare) continue;
@@ -87,7 +100,7 @@ for (const [slug, item] of registry) {
           : m[1].includes("/hooks/buildora/use-pointer-proximity") ? "use-pointer-proximity"
           : m[1].includes("/components/buildora/") ? null // same-registry component path (demo strings)
           : null;
-        if (need && !(item.registryDependencies ?? []).includes(need)) fail(`${slug}: imports ${m[1]} but missing registryDependency ${need}`);
+        if (need && !declaredRegistry.has(need)) fail(`${slug}: imports ${m[1]} but missing registryDependency ${need}`);
         continue;
       }
       if (!declared.has(bare) && !["react", "react-dom"].includes(bare)) fail(`${slug}: imports ${bare} (via '${m[1]}') not in dependencies [${item.dependencies?.join(",")}]`);
@@ -95,11 +108,12 @@ for (const [slug, item] of registry) {
   }
   // 3. registryDependencies resolve
   for (const r of item.registryDependencies ?? []) {
-    if (!registry.has(r)) fail(`${slug}: registryDependency ${r} does not exist`);
+    if (!registry.has(registrySlug(r))) fail(`${slug}: registryDependency ${r} does not exist`);
   }
   // tokens on every visual item
   const isFoundation = ["utils", "use-reduced-motion", "spring", "use-pointer-proximity", "tokens"].includes(slug);
-  if (!isFoundation && !(item.registryDependencies ?? []).includes("tokens")) fail(`${slug}: missing tokens registryDependency`);
+  const registrySlugs = new Set((item.registryDependencies ?? []).map(registrySlug));
+  if (!isFoundation && !registrySlugs.has("tokens")) fail(`${slug}: missing tokens registryDependency`);
   // 6. components/ vs generated/ drift
   const compPath = path.join(compDir, `${slug}.json`);
   if (fs.existsSync(compPath)) {

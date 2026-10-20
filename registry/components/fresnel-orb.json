@@ -1,0 +1,127 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "fresnel-orb",
+  "name": "Fresnel Orb",
+  "slug": "fresnel-orb",
+  "description": "Iridescent orb of layered conic and radial gradients with drifting orientation, rim highlight and caustic core. Pure CSS.",
+  "categories": [
+    "backgrounds",
+    "motion"
+  ],
+  "tags": [
+    "orb",
+    "iridescent",
+    "gradient"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/fresnel-orb/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/fresnel-orb/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/fresnel-orb/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/fresnel-orb/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/fresnel-orb/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/fresnel-orb/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/fresnel-orb/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/fresnel-orb/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/fresnel-orb/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/fresnel-orb/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/fresnel-orb/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/fresnel-orb/index.tsx",
+      "target": "components/buildora/fresnel-orb.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type FresnelOrbProps = React.HTMLAttributes<HTMLSpanElement> & {\n  size?: number;\n  /** Base and shifted hue in degrees; defaults pick the brand-adjacent range. */\n  hueA?: number;\n  hueB?: number;\n  /** Slows the iridescence drift. 1 = default. */\n  drift?: number;\n  ariaLabel?: string;\n};\n\nconst ORB_CSS = `\n@keyframes bk-fresnel-spil{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}\n@keyframes bk-fresnel-breath{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}\n`;\n\n/**\n * FresnelOrb — a hand-drawn iridescent orb: layered conic + radial\n * gradients with a drifting orientation, Fresnel-style rim highlight and\n * caustic core. Pure CSS, decorative by default (pass ariaLabel to expose\n * it as a status ornament).\n */\nexport function FresnelOrb({\n  size = 120,\n  hueA = 196,\n  hueB = 320,\n  drift = 1,\n  ariaLabel,\n  className,\n  style,\n  ...rest\n}: FresnelOrbProps) {\n  const reduced = useReducedMotion();\n  const id = React.useId();\n  const roleProps = ariaLabel ? ({ role: \"status\" as const, \"aria-label\": ariaLabel } as const) : ({ \"aria-hidden\": true } as const);\n\n  return (\n    <span className={cn(\"relative inline-block\", className)} style={{ width: size, height: size, ...style }} {...roleProps} {...rest}>\n      <style>{ORB_CSS}</style>\n\n      {/* spill glow */}\n      <span\n        aria-hidden\n        className=\"absolute -inset-[18%] rounded-full\"\n        style={{\n          background: `radial-gradient(closest-side, hsla(${hueA},90%,60%,.22), transparent 70%)`,\n          filter: \"blur(14px)\",\n        }}\n      />\n\n      {/* the orb */}\n      <span\n        aria-hidden\n        className=\"absolute inset-0 overflow-hidden rounded-full\"\n        style={{\n          background: \"var(--b-panel)\",\n          border: \"1px solid color-mix(in oklab, var(--b-border) 80%, transparent)\",\n          boxShadow: \"inset 0 0 0 1px rgba(255,255,255,.04), 0 18px 40px -18px color-mix(in oklab, var(--b-text) 35%, transparent)\",\n          animation: reduced ? undefined : `bk-fresnel-breath ${6 / drift}s ease-in-out infinite`,\n        }}\n      >\n        <span\n          className=\"absolute -inset-[24%]\"\n          style={{\n            background: `conic-gradient(from 40deg, hsl(${hueA} 90% 58%), hsl(${hueB} 85% 62%), hsl(${(hueA + hueB) / 2 + 40} 92% 55%), hsl(${hueA} 90% 58%))`,\n            filter: \"blur(calc(1px + 0.07 * \" + size + \"px))\",\n            opacity: 0.9,\n            animation: reduced ? undefined : `bk-fresnel-spil ${14 / drift}s linear infinite`,\n          }}\n        />\n        {/* core caustic */}\n        <span\n          aria-hidden\n          className=\"absolute\"\n          style={{\n            left: \"22%\",\n            top: \"16%\",\n            width: \"56%\",\n            height: \"56%\",\n            background: `radial-gradient(closest-side, hsla(${hueB},95%,72%,.85), hsla(${hueA},90%,55%,.35) 55%, transparent 75%)`,\n            filter: \"blur(10px)\",\n          }}\n        />\n        {/* fresnel rim */}\n        <span\n          aria-hidden\n          className=\"absolute inset-[3%] rounded-full\"\n          style={{\n            background:\n              \"radial-gradient(120% 120% at 30% 22%, rgba(255,255,255,.75), rgba(255,255,255,.12) 26%, transparent 42%), radial-gradient(110% 110% at 72% 84%, rgba(255,255,255,.28), transparent 34%)\",\n            mixBlendMode: \"screen\",\n          }}\n        />\n        <span\n          aria-hidden\n          className=\"absolute inset-0 rounded-full\"\n          style={{ boxShadow: \"inset -4px -8px 20px -6px rgba(255,255,255,.28), inset 6px 10px 24px -10px hsla(\" + hueA + \",90%,60%,.55)\", border: \"0\" }}\n        />\n      </span>\n    </span>\n  );\n}\n\nexport default FresnelOrb;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/fresnel-orb",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/fresnel-orb/index.tsx",
+  "sourceDir": "fresnel-orb",
+  "docs": "/components/fresnel-orb",
+  "install": "pnpm dlx shadcn@latest add @buildora/fresnel-orb"
+}

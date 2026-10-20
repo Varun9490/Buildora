@@ -1,0 +1,129 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "gooey-menu",
+  "name": "Gooey Menu",
+  "slug": "gooey-menu",
+  "description": "FAB whose actions fan out as fused SVG-goo blobs with crisp labels riding on top. Escape and outside-click close.",
+  "categories": [
+    "motion",
+    "overlays"
+  ],
+  "tags": [
+    "fab",
+    "gooey",
+    "menu"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/gooey-menu/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/gooey-menu/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/gooey-menu/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/gooey-menu/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/gooey-menu/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/gooey-menu/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/gooey-menu/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/gooey-menu/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/gooey-menu/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/gooey-menu/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/gooey-menu/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/gooey-menu/index.tsx",
+      "target": "components/buildora/gooey-menu.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { motion, AnimatePresence } from \"motion/react\";\n\nexport type GooeyItem = {\n  label: string;\n  href?: string;\n  onSelect?: () => void;\n  icon?: React.ReactNode;\n};\n\nexport type GooeyMenuProps = React.HTMLAttributes<HTMLDivElement> & {\n  items: GooeyItem[];\n  /** Fan half-angle in degrees. Items spread around the bottom arc. */\n  spread?: number;\n  /** Radius of the fan in px. */\n  radius?: number;\n  openLabel?: string;\n  label?: string;\n  onItemSelect?: (item: GooeyItem, index: number) => void;\n};\n\n/**\n * GooeyMenu — an action button whose children fan out as fused blobs\n * (SVG goo filter) with crisp labels riding on top. Escape closes,\n * labels are real buttons, decorative blobs are aria-hidden.\n */\nexport function GooeyMenu({\n  items,\n  spread = 64,\n  radius = 108,\n  openLabel = \"+\",\n  label = \"Actions\",\n  onItemSelect,\n  className,\n  ...rest\n}: GooeyMenuProps) {\n  const reduced = useReducedMotion();\n  const [open, setOpen] = React.useState(false);\n  const id = React.useId();\n  const rootRef = React.useRef<HTMLDivElement | null>(null);\n\n  React.useEffect(() => {\n    if (!open) return;\n    const onPointer = (e: PointerEvent) => {\n      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false);\n    };\n    const onKey = (e: KeyboardEvent) => {\n      if (e.key === \"Escape\") setOpen(false);\n    };\n    window.addEventListener(\"pointerdown\", onPointer);\n    window.addEventListener(\"keydown\", onKey);\n    return () => {\n      window.removeEventListener(\"pointerdown\", onPointer);\n      window.removeEventListener(\"keydown\", onKey);\n    };\n  }, [open]);\n\n  const positions = items.map((_, i) => {\n    const t = items.length === 1 ? 0 : i / (items.length - 1) - 0.5;\n    const deg = t * spread * 2 * 0.5 + 90; // fan around the top arc\n    const rad = (deg * Math.PI) / 180;\n    return { x: Math.cos(rad) * -radius, y: -Math.sin(rad) * radius };\n  });\n\n  const size = 56;\n\n  return (\n    <div ref={rootRef} className={cn(\"relative inline-block\", className)} {...rest}>\n      <svg width=\"0\" height=\"0\" aria-hidden=\"true\" className=\"absolute\">\n        <filter id={`${id}-goo`}>\n          <feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"7\" result=\"blur\" />\n          <feColorMatrix in=\"blur\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9\" result=\"goo\" />\n          <feBlend in=\"SourceGraphic\" in2=\"goo\" />\n        </filter>\n      </svg>\n\n      <div className=\"relative\" style={{ width: radius * 2 + size, height: radius + size + 6 }}>\n        <div\n          aria-hidden=\"true\"\n          className=\"pointer-events-none absolute bottom-1.5 left-1/2 -translate-x-1/2\"\n          style={{ filter: reduced ? undefined : `url(#${id}-goo)`, width: radius * 2 + size, height: radius + size }}\n        >\n          {open &&\n            positions.map((p, i) => (\n              <motion.span\n                key={i}\n                initial={{ scale: 0.2, opacity: 0, x: 0, y: 0 }}\n                animate={{ scale: 1, opacity: 0.92, x: p.x, y: p.y }}\n                exit={{ scale: 0.2, opacity: 0, x: 0, y: 0 }}\n                transition={reduced ? { duration: 0 } : { type: \"spring\", bounce: 0.32, duration: 0.55, delay: i * 0.03 }}\n                className=\"absolute bottom-3 left-1/2 -ml-6 h-12 w-12 rounded-full bg-[color:var(--b-accent)]\"\n              />\n            ))}\n        </div>\n\n        <AnimatePresence>\n          {open &&\n            items.map((item, i) => (\n              <motion.span\n                key={item.label}\n                initial={{ opacity: 0, scale: 0.6, x: 0, y: 0 }}\n                animate={{ opacity: 1, scale: 1, x: positions[i].x, y: positions[i].y }}\n                exit={{ opacity: 0, scale: 0.6, x: 0, y: 0 }}\n                transition={reduced ? { duration: 0 } : { type: \"spring\", bounce: 0.3, duration: 0.5, delay: (items.length - i) * 0.02 }}\n                className=\"absolute bottom-1.5 left-1/2 z-10 -ml-6\"\n              >\n                {item.href ? (\n                  <a\n                    href={item.href}\n                    onClick={() => onItemSelect?.(item, i)}\n                    className=\"flex h-12 w-12 flex-col items-center justify-center gap-0.5 rounded-full text-[color:var(--b-accent-foreground)] outline-none transition-transform focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent-foreground)]\"\n                    title={item.label}\n                  >\n                    {item.icon}\n                    <span className=\"text-[9px] font-semibold leading-none\">{item.label}</span>\n                  </a>\n                ) : (\n                  <button\n                    type=\"button\"\n                    onClick={() => {\n                      onItemSelect?.(item, i);\n                      item.onSelect?.();\n                      setOpen(false);\n                    }}\n                    className=\"flex h-12 w-12 flex-col items-center justify-center gap-0.5 rounded-full text-[color:var(--b-accent-foreground)] outline-none transition-transform hover:scale-105 focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent-foreground)]\"\n                    title={item.label}\n                  >\n                    {item.icon}\n                    <span className=\"text-[9px] font-semibold leading-none\">{item.label}</span>\n                  </button>\n                )}\n              </motion.span>\n            ))}\n        </AnimatePresence>\n\n        <button\n          type=\"button\"\n          aria-expanded={open}\n          aria-haspopup=\"true\"\n          aria-label={label}\n          onClick={() => setOpen((v) => !v)}\n          className=\"absolute bottom-1 left-1/2 z-20 flex h-14 w-14 -translate-x-1/2 items-center justify-center rounded-full border border-[color:color-mix(in_oklab,var(--b-border)_20%,transparent)] bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)] shadow-lg outline-none transition-transform focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)] focus-visible:ring-offset-2\"\n        >\n          <motion.svg\n            width=\"20\"\n            height=\"20\"\n            viewBox=\"0 0 20 20\"\n            fill=\"none\"\n            stroke=\"currentColor\"\n            strokeWidth=\"2.2\"\n            strokeLinecap=\"round\"\n            animate={reduced ? undefined : { rotate: open ? 45 : 0 }}\n            transition={{ type: \"spring\", bounce: 0.3, duration: 0.45 }}\n          >\n            <path d=\"M10 3v14M3 10h14\" />\n          </motion.svg>\n        </button>\n      </div>\n    </div>\n  );\n}\n\nexport default GooeyMenu;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/gooey-menu",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/gooey-menu/index.tsx",
+  "sourceDir": "gooey-menu",
+  "docs": "/components/gooey-menu",
+  "install": "pnpm dlx shadcn@latest add @buildora/gooey-menu"
+}

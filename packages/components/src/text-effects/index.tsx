@@ -213,7 +213,7 @@ export type GradientTextProps = React.HTMLAttributes<HTMLSpanElement> & {
 };
 
 function GradientText({
-  colors = ["#d4ff4f", "#9d8cff", "#ffffff", "#d4ff4f"],
+  colors = ["var(--b-accent)", "var(--b-iris)", "var(--b-text)", "var(--b-accent)"],
   animationDuration = 8,
   className,
   children,
@@ -222,7 +222,7 @@ function GradientText({
   const gradientStyle = {
     backgroundImage: `linear-gradient(90deg, ${colors.join(", ")})`,
     backgroundSize: `${colors.length * 50}% auto`,
-    animation: `gradient-shift ${animationDuration}s linear infinite`,
+    animation: `buildora-gradient-shift ${animationDuration}s linear infinite`,
   };
 
   return (
@@ -232,13 +232,6 @@ function GradientText({
       {...props}
     >
       {children}
-      <style jsx global>{`
-        @keyframes gradient-shift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-      `}</style>
     </span>
   );
 }
@@ -266,10 +259,10 @@ function GlitchText({
     <div className={cn("relative inline-block", className)} {...props}>
       <span className="relative z-10">{text}</span>
       <span
-        className="absolute inset-0 -z-10 text-red-500 opacity-70"
+        className="absolute inset-0 -z-10 text-[color:var(--b-danger)] opacity-70"
         style={{
           clipPath: `inset(${skew}% 0 ${skew}% 0)`,
-          animation: `glitch-1 ${duration}s infinite`,
+          animation: `buildora-glitch-a ${duration}s infinite`,
           transform: "translateX(-2px)",
         }}
         aria-hidden="true"
@@ -277,32 +270,16 @@ function GlitchText({
         {text}
       </span>
       <span
-        className="absolute inset-0 -z-10 text-cyan-500 opacity-70"
+        className="absolute inset-0 -z-10 text-[color:var(--b-iris)] opacity-70"
         style={{
           clipPath: `inset(${100 - skew}% 0 ${100 - skew}% 0)`,
-          animation: `glitch-2 ${duration}s infinite`,
+          animation: `buildora-glitch-b ${duration}s infinite`,
           transform: "translateX(2px)",
         }}
         aria-hidden="true"
       >
         {text}
       </span>
-      <style jsx global>{`
-        @keyframes glitch-1 {
-          0%, 100% { clip-path: inset(40% 0 60% 0); opacity: 0.5; }
-          20% { clip-path: inset(92% 0 1% 0); opacity: 0.7; }
-          40% { clip-path: inset(43% 0 1% 0); opacity: 0.3; }
-          60% { clip-path: inset(25% 0 58% 0); opacity: 0.6; }
-          80% { clip-path: inset(54% 0 7% 0); opacity: 0.4; }
-        }
-        @keyframes glitch-2 {
-          0%, 100% { clip-path: inset(50% 0 30% 0); opacity: 0.6; }
-          20% { clip-path: inset(7% 0 85% 0); opacity: 0.4; }
-          40% { clip-path: inset(89% 0 3% 0); opacity: 0.7; }
-          60% { clip-path: inset(23% 0 69% 0); opacity: 0.5; }
-          80% { clip-path: inset(2% 0 91% 0); opacity: 0.3; }
-        }
-      `}</style>
     </div>
   );
 }

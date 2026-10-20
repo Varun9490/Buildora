@@ -1,0 +1,1099 @@
+{
+  "tool": "axe-core",
+  "scope": "every component exported from @buildora/components",
+  "excludedRules": [
+    "region",
+    "landmark-one-main",
+    "page-has-heading-one",
+    "html-has-lang",
+    "document-title",
+    "bypass",
+    "color-contrast"
+  ],
+  "components": 216,
+  "componentsWithViolations": 0,
+  "violations": 0,
+  "allPass": true,
+  "results": [
+    {
+      "component": "Accordion",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AccordionContent",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AdvancedTable",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AgentTimeline",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AIReviewEdit",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AlertDialog",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AttachmentPrompt",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AuroraBackground",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AuroraBeamBackground",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Avatar",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AvatarGroup",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Backdrop",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Badge",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "BeamBackground",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "BentoGrid",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "BentoItem",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "BlobCursor",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "BlueprintLoader",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "BlurText",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "BreadcrumbItem",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "BreadcrumbNav",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Button",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Calendar",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Checkbox",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Chip",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CodeEditorLite",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CometRingSpinner",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CommandBar",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CommandInput",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CommandPalette",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ConfirmMorph",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ContextMenu",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ContextMenuCheckboxItem",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ContextMenuContent",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ContextMenuItem",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ContextMenuLabel",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ContextMenuSeparator",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ContextMenuTrigger",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CreativeNotifications",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CtaBlock",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CursorFx",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CursorSpotlight",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DetentDial",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Dialog",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DialogDescription",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DialogFooter",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DialogHeader",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DialogTitle",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DiffViewer",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Divider",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DotGridBackground",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DraggableCardPile",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Drawer",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DrawerContent",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DrawerFooter",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DrawerHeader",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DrawerTitle",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DropdownMenu",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DropdownMenuCheckboxItem",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DropdownMenuContent",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DropdownMenuItem",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DropdownMenuLabel",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DropdownMenuSeparator",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DropdownMenuTrigger",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "EchoStack",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ElasticSlider",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ExpandableSidebar",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ExpandableSidebarContent",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ExpandableSidebarFooter",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "FeatureGrid",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "FileTree",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "FloatingNavbar",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "FloatingNavbarItem",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "FloatingObject",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "FocusBlurList",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "FresnelOrb",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "FxButton",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "FxCard",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "GhostCursor",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "GlareCard",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "GlassCard",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "GlitchText",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "GlowButton",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "GlowCursor",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "GooeyMenu",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "GrabRollerStrip",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "GradientBorderButton",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "GradientMeshBackground",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "GradientText",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "GridBackground",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "HandwrittenAnnotation",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "HoldButton",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "HolographicCard",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "HorizontalScroll",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "HoverCard",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "HoverCardContent",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "HoverCardTrigger",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "InfiniteMarquee",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "InlineWordRoll",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Input",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Interactive3DCard",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "InteractiveDropzone",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "JSONViewer",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Kanban",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Kbd",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "KbdShortcut",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "LetterWave",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "LiquidGauge",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "LogoCloud",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "LogViewer",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MagneticButton",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MagneticDropzone",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MasonryItem",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MasonryLayout",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MatrixDecode",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MeteorBackground",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MobileGroup",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MobileGroupRow",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MobileHeader",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MobileNav",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MobileSectionHeader",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ModalStack",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ModalStackProvider",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ModelSelector",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MorphingTypography",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MorphSelect",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Navbar",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "NavbarCenter",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "NavbarItem",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "NavbarLogo",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "NavbarRight",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "NoiseBackground",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "NumberWheel",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Pagination",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "PaginationEllipsis",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ParticleField",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "PeriodDrop",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Popover",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Progress",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ProjectShowcase",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ProjectShowcaseCard",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "QueryBuilder",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Radio",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "RadioGroup",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "RevealOnScroll",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "RgbGlitchText",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "RichTextEditor",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "RippleBackground",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "RippleButton",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ScrambledText",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SegmentedControl",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SelectionSnap",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Separator",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Sheet",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SheetContent",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SheetFooter",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SheetHeader",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SheetTitle",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ShimmerButton",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Sidebar",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SiteFooter",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Skeleton",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SkeletonAvatar",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SkeletonCard",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SkeletonText",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SlashCommands",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Slider",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SlingshotOTP",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SpeechBubbleCursor",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Spinner",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SpotlightCard",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SpotlightCursor",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "springToLinear",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "StepNav",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "StreamingChat",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Switch",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Tabs",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TabsList",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TactileLoader",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Terminal",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TerminalPane",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TerminalSidebar",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TerminalTabBar",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TerminalUI",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Textarea",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TextFx",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ThreadLine",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Toast",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ToastProvider",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TokenMeter",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ToolCallViz",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Tooltip",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TrailCursor",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUIDiffViewer",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUIFooter",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUIForm",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUIGauge",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUIHeader",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUIHelpOverlay",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUIList",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUILogViewer",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUIMultiSelect",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUIPanel",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUIProgress",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUISelect",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUISparkline",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUISpinner",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUIStatusBar",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUITable",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TUITree",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TypeWall",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "Typewriter",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "UnifiedLoginField",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "VersionHistory",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "VerticalTimeline",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "WobbleCard",
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

@@ -65,8 +65,13 @@ if (typeof HTMLCanvasElement !== "undefined") {
 }
 
 // jsdom lacks ResizeObserver/IntersectionObserver, which several components observe.
-if (typeof globalThis.ResizeObserver === "undefined") {
-  globalThis.ResizeObserver = class {
+// jsdom does not implement scrollTo; components that keep a scroll position
+// (terminal output, virtualised lists) call it on mount.
+if (typeof Element !== "undefined" && !Element.prototype.scrollTo) {
+  Element.prototype.scrollTo = function scrollTo() {} as Element["scrollTo"];
+}
+
+if (typeof globalThis.ResizeObserver === "undefined") {  globalThis.ResizeObserver = class {
     observe() {}
     unobserve() {}
     disconnect() {}

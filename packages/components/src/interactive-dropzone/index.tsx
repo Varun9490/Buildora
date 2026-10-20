@@ -61,13 +61,15 @@ export function InteractiveDropzone({ onFiles, simulate = true, accept, classNam
           "relative cursor-pointer overflow-hidden rounded-2xl border border-dashed p-8 text-center transition-all duration-200",
           drag ? "border-[color:var(--b-accent)] bg-[color-mix(in_oklab,var(--b-accent)_10%,transparent)] scale-[1.01]" : "border-[color-mix(in_oklab,var(--b-border)_15%,transparent)] bg-[color-mix(in_oklab,var(--b-text)_3%,transparent)] hover:border-[color-mix(in_oklab,var(--b-border)_30%,transparent)]"
         )}
-        style={{ boxShadow: near > 0 ? `0 0 ${40 * near}px rgba(157,140,255,${0.35 * near})` : undefined }}
+        style={{ boxShadow: near > 0 ? `0 0 ${40 * near}px color-mix(in oklab, var(--b-iris) ${35 * near}%, transparent)` : undefined }}
       >
-        <div aria-hidden className="pointer-events-none absolute inset-0 opacity-60" style={{ background: `radial-gradient(300px circle at 50% ${50 - near * 20}%, rgba(212,255,79,${0.12 * near + (drag ? 0.15 : 0)}), transparent 70%)` }} />
+        <div aria-hidden className="pointer-events-none absolute inset-0 opacity-60" style={{ background: `radial-gradient(300px circle at 50% ${50 - near * 20}%, color-mix(in oklab, var(--b-accent) ${12 * near + (drag ? 15 : 0)}%, transparent), transparent 70%)` }} />
         <p className="font-display text-lg font-bold">Drop files here <span className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">or click to browse</span></p>
         <p className="mt-1 text-xs text-[color-mix(in_oklab,var(--b-text)_50%,transparent)]">Proximity-reactive · progress visualization · keyboard accessible</p>
-        <input ref={input} type="file" multiple accept={accept} className="hidden" onChange={(e) => { if (e.target.files?.length) addFiles(e.target.files); e.target.value = ""; }} />
       </div>
+      {/* Outside the role="button" region: a focusable control inside one is
+          never announced reliably and traps focus. */}
+      <input ref={input} type="file" multiple accept={accept} tabIndex={-1} aria-label="Choose files" className="hidden" onChange={(e) => { if (e.target.files?.length) addFiles(e.target.files); e.target.value = ""; }} />
       {files.length > 0 && (
         <ul className="mt-3 space-y-2" aria-live="polite">
           {files.map((f) => (

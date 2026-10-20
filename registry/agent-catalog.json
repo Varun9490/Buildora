@@ -2,7 +2,7 @@
   "$schema": "https://buildora-hazel.vercel.app/schema/agent-catalog.json",
   "name": "buildora",
   "version": "0.1.0",
-  "total": 94,
+  "total": 105,
   "workflow": [
     "find component",
     "inspect metadata",
@@ -11,406 +11,6 @@
     "validate registry"
   ],
   "components": [
-    {
-      "slug": "utils",
-      "name": "utils",
-      "description": "Utility functions",
-      "categories": [
-        "primitives"
-      ],
-      "tags": [],
-      "difficulty": "intermediate",
-      "version": "0.1.0",
-      "install": "pnpm dlx shadcn@latest add @buildora/utils",
-      "docs": "/components/utils",
-      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/utils/index.ts",
-      "files": [
-        "packages/components/src/utils/index.ts"
-      ],
-      "frameworks": {
-        "react": {
-          "status": "Full"
-        },
-        "javascript": {
-          "status": "Partial",
-          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
-        },
-        "vue": {
-          "status": "Partial",
-          "note": "Composition API snippet port. React is the source of truth."
-        },
-        "svelte": {
-          "status": "Partial",
-          "note": "Svelte runes snippet port. React is the source of truth."
-        },
-        "angular": {
-          "status": "Partial",
-          "note": "Angular @Input snippet port. React is the source of truth."
-        },
-        "html": {
-          "status": "Partial",
-          "note": "Static markup snippet. Interactive behavior requires the React implementation."
-        },
-        "tailwind": {
-          "status": "Partial",
-          "note": "Tailwind variant snippet, not a standalone component."
-        },
-        "reactNative": {
-          "status": "Partial",
-          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
-        },
-        "flutter": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped to gestures."
-        },
-        "swiftUI": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        },
-        "compose": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        }
-      },
-      "dependencies": [],
-      "registryDependencies": [],
-      "status": "stable",
-      "provenance": {
-        "origin": "original",
-        "license": "MIT",
-        "adapted": false
-      },
-      "targets": [
-        "components/buildora/utils/index.ts"
-      ],
-      "workflow": [
-        "find",
-        "inspect",
-        "install",
-        "customize",
-        "validate"
-      ]
-    },
-    {
-      "slug": "use-reduced-motion",
-      "name": "use-reduced-motion",
-      "description": "Hook for reduced motion",
-      "categories": [
-        "primitives"
-      ],
-      "tags": [],
-      "difficulty": "intermediate",
-      "version": "0.1.0",
-      "install": "pnpm dlx shadcn@latest add @buildora/use-reduced-motion",
-      "docs": "/components/use-reduced-motion",
-      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/hooks/use-reduced-motion.ts",
-      "files": [
-        "packages/components/src/hooks/use-reduced-motion.ts"
-      ],
-      "frameworks": {
-        "react": {
-          "status": "Full"
-        },
-        "javascript": {
-          "status": "Partial",
-          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
-        },
-        "vue": {
-          "status": "Partial",
-          "note": "Composition API snippet port. React is the source of truth."
-        },
-        "svelte": {
-          "status": "Partial",
-          "note": "Svelte runes snippet port. React is the source of truth."
-        },
-        "angular": {
-          "status": "Partial",
-          "note": "Angular @Input snippet port. React is the source of truth."
-        },
-        "html": {
-          "status": "Partial",
-          "note": "Static markup snippet. Interactive behavior requires the React implementation."
-        },
-        "tailwind": {
-          "status": "Partial",
-          "note": "Tailwind variant snippet, not a standalone component."
-        },
-        "reactNative": {
-          "status": "Partial",
-          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
-        },
-        "flutter": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped to gestures."
-        },
-        "swiftUI": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        },
-        "compose": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        }
-      },
-      "dependencies": [],
-      "registryDependencies": [],
-      "status": "stable",
-      "provenance": {
-        "origin": "original",
-        "license": "MIT",
-        "adapted": false
-      },
-      "targets": [
-        "components/buildora/use-reduced-motion/use-reduced-motion.ts"
-      ],
-      "workflow": [
-        "find",
-        "inspect",
-        "install",
-        "customize",
-        "validate"
-      ]
-    },
-    {
-      "slug": "use-pointer-proximity",
-      "name": "use-pointer-proximity",
-      "description": "Hook for pointer proximity",
-      "categories": [
-        "primitives"
-      ],
-      "tags": [],
-      "difficulty": "intermediate",
-      "version": "0.1.0",
-      "install": "pnpm dlx shadcn@latest add @buildora/use-pointer-proximity",
-      "docs": "/components/use-pointer-proximity",
-      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/hooks/use-pointer-proximity.ts",
-      "files": [
-        "packages/components/src/hooks/use-pointer-proximity.ts"
-      ],
-      "frameworks": {
-        "react": {
-          "status": "Full"
-        },
-        "javascript": {
-          "status": "Partial",
-          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
-        },
-        "vue": {
-          "status": "Partial",
-          "note": "Composition API snippet port. React is the source of truth."
-        },
-        "svelte": {
-          "status": "Partial",
-          "note": "Svelte runes snippet port. React is the source of truth."
-        },
-        "angular": {
-          "status": "Partial",
-          "note": "Angular @Input snippet port. React is the source of truth."
-        },
-        "html": {
-          "status": "Partial",
-          "note": "Static markup snippet. Interactive behavior requires the React implementation."
-        },
-        "tailwind": {
-          "status": "Partial",
-          "note": "Tailwind variant snippet, not a standalone component."
-        },
-        "reactNative": {
-          "status": "Partial",
-          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
-        },
-        "flutter": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped to gestures."
-        },
-        "swiftUI": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        },
-        "compose": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        }
-      },
-      "dependencies": [],
-      "registryDependencies": [],
-      "status": "stable",
-      "provenance": {
-        "origin": "original",
-        "license": "MIT",
-        "adapted": false
-      },
-      "targets": [
-        "components/buildora/use-pointer-proximity/use-pointer-proximity.ts"
-      ],
-      "workflow": [
-        "find",
-        "inspect",
-        "install",
-        "customize",
-        "validate"
-      ]
-    },
-    {
-      "slug": "spring",
-      "name": "spring",
-      "description": "Spring animation utility",
-      "categories": [
-        "primitives"
-      ],
-      "tags": [],
-      "difficulty": "intermediate",
-      "version": "0.1.0",
-      "install": "pnpm dlx shadcn@latest add @buildora/spring",
-      "docs": "/components/spring",
-      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/animations/spring.ts",
-      "files": [
-        "packages/components/src/animations/spring.ts"
-      ],
-      "frameworks": {
-        "react": {
-          "status": "Full"
-        },
-        "javascript": {
-          "status": "Partial",
-          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
-        },
-        "vue": {
-          "status": "Partial",
-          "note": "Composition API snippet port. React is the source of truth."
-        },
-        "svelte": {
-          "status": "Partial",
-          "note": "Svelte runes snippet port. React is the source of truth."
-        },
-        "angular": {
-          "status": "Partial",
-          "note": "Angular @Input snippet port. React is the source of truth."
-        },
-        "html": {
-          "status": "Partial",
-          "note": "Static markup snippet. Interactive behavior requires the React implementation."
-        },
-        "tailwind": {
-          "status": "Partial",
-          "note": "Tailwind variant snippet, not a standalone component."
-        },
-        "reactNative": {
-          "status": "Partial",
-          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
-        },
-        "flutter": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped to gestures."
-        },
-        "swiftUI": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        },
-        "compose": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        }
-      },
-      "dependencies": [],
-      "registryDependencies": [],
-      "status": "stable",
-      "provenance": {
-        "origin": "original",
-        "license": "MIT",
-        "adapted": false
-      },
-      "targets": [
-        "components/buildora/spring/spring.ts"
-      ],
-      "workflow": [
-        "find",
-        "inspect",
-        "install",
-        "customize",
-        "validate"
-      ]
-    },
-    {
-      "slug": "tokens",
-      "name": "tokens",
-      "description": "Design tokens",
-      "categories": [
-        "primitives"
-      ],
-      "tags": [],
-      "difficulty": "intermediate",
-      "version": "0.1.0",
-      "install": "pnpm dlx shadcn@latest add @buildora/tokens",
-      "docs": "/components/tokens",
-      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/tokens/index.css",
-      "files": [
-        "packages/components/src/tokens/index.css"
-      ],
-      "frameworks": {
-        "react": {
-          "status": "Full"
-        },
-        "javascript": {
-          "status": "Partial",
-          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
-        },
-        "vue": {
-          "status": "Partial",
-          "note": "Composition API snippet port. React is the source of truth."
-        },
-        "svelte": {
-          "status": "Partial",
-          "note": "Svelte runes snippet port. React is the source of truth."
-        },
-        "angular": {
-          "status": "Partial",
-          "note": "Angular @Input snippet port. React is the source of truth."
-        },
-        "html": {
-          "status": "Partial",
-          "note": "Static markup snippet. Interactive behavior requires the React implementation."
-        },
-        "tailwind": {
-          "status": "Partial",
-          "note": "Tailwind variant snippet, not a standalone component."
-        },
-        "reactNative": {
-          "status": "Partial",
-          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
-        },
-        "flutter": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped to gestures."
-        },
-        "swiftUI": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        },
-        "compose": {
-          "status": "Experimental",
-          "note": "Experimental snippet port; pointer interactions remapped."
-        }
-      },
-      "dependencies": [],
-      "registryDependencies": [],
-      "status": "stable",
-      "provenance": {
-        "origin": "original",
-        "license": "MIT",
-        "adapted": false
-      },
-      "targets": [
-        "components/buildora/tokens/index.css"
-      ],
-      "workflow": [
-        "find",
-        "inspect",
-        "install",
-        "customize",
-        "validate"
-      ]
-    },
     {
       "slug": "floating-object",
       "name": "Floating Object",
@@ -1264,7 +864,7 @@
         }
       },
       "dependencies": [
-        "motion"
+        "motion@^13.4.0"
       ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
@@ -1375,6 +975,1445 @@
       ]
     },
     {
+      "slug": "segmented-control",
+      "name": "Segmented Control",
+      "description": "iOS-style segmented option picker with a spring-gliding accent pill, radiogroup semantics and full keyboard nav.",
+      "categories": [
+        "primitives",
+        "motion"
+      ],
+      "tags": [
+        "segmented",
+        "tabs",
+        "pill"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/segmented-control",
+      "docs": "/components/segmented-control",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/segmented-control",
+      "files": [
+        "packages/components/src/segmented-control/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/segmented-control.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "gooey-menu",
+      "name": "Gooey Menu",
+      "description": "FAB whose actions fan out as fused SVG-goo blobs with crisp labels riding on top. Escape and outside-click close.",
+      "categories": [
+        "motion",
+        "overlays"
+      ],
+      "tags": [
+        "fab",
+        "gooey",
+        "menu"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/gooey-menu",
+      "docs": "/components/gooey-menu",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/gooey-menu",
+      "files": [
+        "packages/components/src/gooey-menu/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/gooey-menu.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "elastic-slider",
+      "name": "Elastic Slider",
+      "description": "Rubber-band slider: the knob over-stretches at the rails and snaps back with spring physics. role=slider + arrows/Home/End.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "slider",
+        "elastic",
+        "spring"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/elastic-slider",
+      "docs": "/components/elastic-slider",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/elastic-slider",
+      "files": [
+        "packages/components/src/elastic-slider/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/elastic-slider.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "morph-select",
+      "name": "Morph Select",
+      "description": "Select whose trigger stretches into the options list and seals back into a pill. Listbox semantics, arrow nav, outside close.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "select",
+        "morph",
+        "listbox"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/morph-select",
+      "docs": "/components/morph-select",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/morph-select",
+      "files": [
+        "packages/components/src/morph-select/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/morph-select.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "confirm-morph",
+      "name": "Confirm Morph",
+      "description": "One button, two identities: idle → confirm strip → animated check. aria-live, auto-revert, danger variant.",
+      "categories": [
+        "primitives",
+        "motion"
+      ],
+      "tags": [
+        "confirm",
+        "destructive",
+        "button"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/confirm-morph",
+      "docs": "/components/confirm-morph",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/confirm-morph",
+      "files": [
+        "packages/components/src/confirm-morph/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/confirm-morph.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "detent-dial",
+      "name": "Detent Dial",
+      "description": "Rotary knob with Gaussian tick-wave emphasis around the active detent. Drag, wheel, or arrows; role=slider.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "dial",
+        "knob",
+        "rotary"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/detent-dial",
+      "docs": "/components/detent-dial",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/detent-dial",
+      "files": [
+        "packages/components/src/detent-dial/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/detent-dial.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "liquid-gauge",
+      "name": "Liquid Gauge",
+      "description": "Ring meter filled with two out-of-phase liquid waves, clipped and animated. role=meter with valuetext.",
+      "categories": [
+        "feedback",
+        "motion"
+      ],
+      "tags": [
+        "gauge",
+        "liquid",
+        "wave"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/liquid-gauge",
+      "docs": "/components/liquid-gauge",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/liquid-gauge",
+      "files": [
+        "packages/components/src/liquid-gauge/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/liquid-gauge.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "comet-ring-spinner",
+      "name": "Comet Ring Spinner",
+      "description": "Comet head racing around a ring of fading trail dots. Pure CSS transforms, role=status, frozen under reduced motion.",
+      "categories": [
+        "feedback"
+      ],
+      "tags": [
+        "spinner",
+        "comet",
+        "loader"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/comet-ring-spinner",
+      "docs": "/components/comet-ring-spinner",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/comet-ring-spinner",
+      "files": [
+        "packages/components/src/comet-ring-spinner/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/comet-ring-spinner.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "blueprint-loader",
+      "name": "Blueprint Loader",
+      "description": "Drafting-sheet placeholder that draws its dashed frame while ghost rows ghost in behind a scanning beam. Progress and indeterminate.",
+      "categories": [
+        "feedback",
+        "motion"
+      ],
+      "tags": [
+        "loader",
+        "blueprint",
+        "drafting"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/blueprint-loader",
+      "docs": "/components/blueprint-loader",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/blueprint-loader",
+      "files": [
+        "packages/components/src/blueprint-loader/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/blueprint-loader.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "fresnel-orb",
+      "name": "Fresnel Orb",
+      "description": "Iridescent orb of layered conic and radial gradients with drifting orientation, rim highlight and caustic core. Pure CSS.",
+      "categories": [
+        "backgrounds",
+        "motion"
+      ],
+      "tags": [
+        "orb",
+        "iridescent",
+        "gradient"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/fresnel-orb",
+      "docs": "/components/fresnel-orb",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/fresnel-orb",
+      "files": [
+        "packages/components/src/fresnel-orb/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/fresnel-orb.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "letter-wave",
+      "name": "Letter Wave",
+      "description": "Hover, focus or optional autoloop sends a sine wave rippling through the letters. Real text in aria-label.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "type",
+        "kinetic",
+        "wave"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/letter-wave",
+      "docs": "/components/letter-wave",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/letter-wave",
+      "files": [
+        "packages/components/src/letter-wave/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/letter-wave.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "focus-blur-list",
+      "name": "Focus Blur List",
+      "description": "List rows where the hovered/focused one stays crisp and siblings sink back with blur + dim. Focus mirrors hover.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "list",
+        "blur",
+        "focus"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/focus-blur-list",
+      "docs": "/components/focus-blur-list",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/focus-blur-list",
+      "files": [
+        "packages/components/src/focus-blur-list/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/focus-blur-list.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "grab-roller-strip",
+      "name": "Grab Roller Strip",
+      "description": "Physical roller strip you drag sideways; it settles on the nearest label under a fixed marker with flanks in fade flow.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "roller",
+        "drag",
+        "snap"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/grab-roller-strip",
+      "docs": "/components/grab-roller-strip",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/grab-roller-strip",
+      "files": [
+        "packages/components/src/grab-roller-strip/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/grab-roller-strip.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "unified-login-field",
+      "name": "Unified Login Field",
+      "description": "One bordered container that morphs between email and password stages instead of juggling boxes. Shake on invalid email, Escape steps back.",
+      "categories": [
+        "forms"
+      ],
+      "tags": [
+        "login",
+        "email",
+        "password"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/unified-login-field",
+      "docs": "/components/unified-login-field",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/unified-login-field",
+      "files": [
+        "packages/components/src/unified-login-field/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/unified-login-field.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "magnetic-dropzone",
+      "name": "Magnetic Dropzone",
+      "description": "Dropzone that leans toward a file-drag cursor and pulses its field; browse input fallback; dropped files list with removers.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "drag-drop",
+        "files",
+        "magnetic"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/magnetic-dropzone",
+      "docs": "/components/magnetic-dropzone",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/magnetic-dropzone",
+      "files": [
+        "packages/components/src/magnetic-dropzone/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/magnetic-dropzone.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
+      "slug": "draggable-card-pile",
+      "name": "Draggable Card Pile",
+      "description": "Riffled stack: the top card drags out past a threshold and cycles to the back with spring physics. Enter flings for keyboard.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "cards",
+        "stack",
+        "drag"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "install": "pnpm dlx shadcn@latest add @buildora/draggable-card-pile",
+      "docs": "/components/draggable-card-pile",
+      "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/draggable-card-pile",
+      "files": [
+        "packages/components/src/draggable-card-pile/index.tsx"
+      ],
+      "frameworks": {
+        "react": {
+          "status": "Full"
+        },
+        "javascript": {
+          "status": "Partial",
+          "note": "Snippet-level port. React is the source of truth; no dedicated JS runtime."
+        },
+        "vue": {
+          "status": "Partial",
+          "note": "Composition API snippet port. React is the source of truth."
+        },
+        "svelte": {
+          "status": "Partial",
+          "note": "Svelte runes snippet port. React is the source of truth."
+        },
+        "angular": {
+          "status": "Partial",
+          "note": "Angular @Input snippet port. React is the source of truth."
+        },
+        "html": {
+          "status": "Partial",
+          "note": "Static markup snippet. Interactive behavior requires the React implementation."
+        },
+        "tailwind": {
+          "status": "Partial",
+          "note": "Tailwind variant snippet, not a standalone component."
+        },
+        "reactNative": {
+          "status": "Partial",
+          "note": "No hover/cursor on mobile; use press + haptics. Snippet port."
+        },
+        "flutter": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped to gestures."
+        },
+        "swiftUI": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        },
+        "compose": {
+          "status": "Experimental",
+          "note": "Experimental snippet port; pointer interactions remapped."
+        }
+      },
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
+      "registryDependencies": [
+        "https://buildora-hazel.vercel.app/r/utils.json",
+        "https://buildora-hazel.vercel.app/r/tokens.json",
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+      ],
+      "status": "beta",
+      "provenance": {
+        "origin": "original",
+        "license": "MIT",
+        "adapted": false
+      },
+      "targets": [
+        "components/buildora/draggable-card-pile.tsx"
+      ],
+      "workflow": [
+        "find",
+        "inspect",
+        "install",
+        "customize",
+        "validate"
+      ]
+    },
+    {
       "slug": "streaming-chat",
       "name": "Streaming Chat",
       "description": "Demo chat UI with simulated token streaming and citations. No transport yet — do not point at production. Transport-agnostic rebuild planned.",
@@ -1439,7 +2478,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -1526,7 +2567,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -1614,7 +2657,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -1702,7 +2747,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -3083,7 +4130,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -3170,7 +4219,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -3257,7 +4308,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -3430,7 +4483,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -3516,7 +4571,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -3602,7 +4659,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -3690,7 +4749,7 @@
         }
       },
       "dependencies": [
-        "motion"
+        "motion@^13.4.0"
       ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
@@ -3778,7 +4837,7 @@
         }
       },
       "dependencies": [
-        "motion"
+        "motion@^13.4.0"
       ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
@@ -3866,7 +4925,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -3953,7 +5014,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -4039,7 +5102,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -4298,7 +5363,7 @@
         }
       },
       "dependencies": [
-        "motion"
+        "motion@^13.4.0"
       ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
@@ -4385,7 +5450,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -4471,7 +5538,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -4557,7 +5626,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -4644,7 +5715,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -4818,7 +5891,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -4905,7 +5980,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -5339,7 +6416,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
@@ -5427,7 +6506,7 @@
         }
       },
       "dependencies": [
-        "motion"
+        "motion@^13.4.0"
       ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
@@ -5602,7 +6681,7 @@
         }
       },
       "dependencies": [
-        "motion"
+        "motion@^13.4.0"
       ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
@@ -5780,7 +6859,7 @@
         }
       },
       "dependencies": [
-        "motion"
+        "motion@^13.4.0"
       ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
@@ -5871,7 +6950,9 @@
           "note": "Experimental snippet port; pointer interactions remapped."
         }
       },
-      "dependencies": [],
+      "dependencies": [
+        "motion@^13.4.0"
+      ],
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",

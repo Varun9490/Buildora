@@ -42,6 +42,9 @@ const EXPECTED: Record<string, string[]> = {
   "interactive-3d-card": ["Interactive3DCard"],
   "json-viewer": ["JSONViewer"],
   "log-viewer": ["LogViewer"],
+  // Deliberately more specific than naive PascalCase: the component ships a
+  // *Text effect, and that is the name the docs and the site import.
+  "rgb-glitch": ["RgbGlitchText"],
   breadcrumb: ["BreadcrumbNav"],
   "terminal-workspace": ["TerminalUI"],
   "tui-panel": ["TUIPanel"],

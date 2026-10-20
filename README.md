@@ -56,6 +56,25 @@ export function Demo() {
 
 No custom domain is required — the registry is GitHub-hosted.
 
+## Evidence
+
+Every claim on the site is backed by a committed report that CI regenerates.
+If a colour, an ARIA attribute or a dependency changes, the build goes red
+before the claim can go stale.
+
+| Claim | Gate | Report |
+|---|---|---|
+| Components install cleanly | `pnpm registry:verify-install` | — (static check over all items) |
+| `shadcn add` works in a real app | `pnpm registry:verify-install:matrix` | nightly CI: Next 15, Vite, React Router 7, TanStack Start |
+| Contrast is AAA on body + accents | `pnpm registry:contrast` | [`registry/reports/contrast.json`](./registry/reports/contrast.json) |
+| Every component is axe-clean | `pnpm --filter @buildora/components test` | [`registry/reports/a11y.json`](./registry/reports/a11y.json) |
+| Every component server-renders | same test run | `packages/components/src/ssr.test.tsx` |
+
+The contrast gate measures the colours that actually ship — the token file a
+consumer installs and the site's own theme — in both light and dark. The axe
+gate renders every component exported from the barrel and scans it, so a new
+component cannot ship without passing.
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md). All components are built from scratch.

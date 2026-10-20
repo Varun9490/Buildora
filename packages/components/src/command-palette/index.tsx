@@ -53,7 +53,7 @@ export function CommandPalette({
       </div>
       <ul id="cmd-list" role="listbox" aria-label="Commands" className="max-h-56 overflow-auto p-1.5 space-y-0.5">
         {view.map((c, i) => (
-          <li key={c.id} id={`cmd-${c.id}`} role="option" aria-selected={i === active} className="relative">
+          <li key={c.id} id={`cmd-${c.id}`} role="presentation" className="relative">
             <AnimatePresence>
               {i === active && (
                 <motion.div
@@ -67,6 +67,8 @@ export function CommandPalette({
               )}
             </AnimatePresence>
             <button
+              role="option"
+              aria-selected={i === active}
               onClick={() => onSelect?.(c.id)}
               onMouseEnter={() => setActive(i)}
               className={cn(

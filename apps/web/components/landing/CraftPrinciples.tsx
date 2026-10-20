@@ -4,6 +4,7 @@ import * as React from "react";
 import { cn } from "@buildora/utils";
 import { useBuildora } from "@/lib/store";
 import { ACCENTS, SURFACES } from "@/lib/design";
+import { a11yClaims } from "@/lib/claims";
 import { CopyButton } from "./CodeBlock";
 
 /* ─────────────────────────────────────────────────────
@@ -176,7 +177,6 @@ function CliInspectorCard() {
 const AUDITS = [
   { k: "Keyboard maps", v: "Tab · arrows · Enter · Escape on every primitive" },
   { k: "Focus-visible", v: "rings restyled, never removed" },
-  { k: "Contrast", v: "≥ 7:1 across all five accents — AAA" },
   { k: "Reduced motion", v: "honored at the provider level, not per-component" },
   { k: "Screen readers", v: "roles + aria-live on every async state" },
 ];
@@ -210,7 +210,16 @@ function AuditCard() {
           </span>
           <span className="flex items-center gap-1.5 font-mono text-[10px] font-semibold text-[color:var(--b-success)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--b-success)]" />
-            0 violations
+            {a11yClaims.axeViolations} violations · {a11yClaims.axeComponents} components
+          </span>
+        </div>
+        <div className="mt-2 flex items-center justify-between rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-2.5">
+          <span className="font-mono text-[10px] uppercase tracking-wider text-[color:var(--b-muted)]">
+            contrast · CI gate
+          </span>
+          <span className="flex items-center gap-1.5 font-mono text-[10px] font-semibold text-[color:var(--b-success)]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--b-success)]" />
+            ≥ {a11yClaims.worstAccentRatio}:1 accents · {a11yClaims.contrastChecks} checks
           </span>
         </div>
       </div>
@@ -251,7 +260,7 @@ function ProofBadges() {
         </span>
         <div>
           <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-[color:var(--b-text)]">Cross-target</p>
-          <p className="font-mono text-[9px] text-[color:var(--b-muted)]">6 runtimes</p>
+          <p className="font-mono text-[9px] text-[color:var(--b-muted)]">React full · 5 ports</p>
         </div>
       </div>
 
@@ -263,7 +272,9 @@ function ProofBadges() {
         </svg>
         <div>
           <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-[color:var(--b-text)]">WCAG AAA</p>
-          <p className="font-mono text-[9px] text-[color:var(--b-muted)]">contrast audited</p>
+          <p className="font-mono text-[9px] text-[color:var(--b-muted)]">
+            body + accents ≥ {a11yClaims.worstAccentRatio}:1
+          </p>
         </div>
       </div>
 

@@ -56,7 +56,6 @@ export function RgbGlitchText({ text, intensity = 1, cycle = 3400, className, st
 
   return (
     <span
-      aria-label={text}
       className={cn("bk-glitch relative inline-block", className)}
       data-on={on ? "true" : "false"}
       style={{
@@ -66,6 +65,7 @@ export function RgbGlitchText({ text, intensity = 1, cycle = 3400, className, st
       } as React.CSSProperties}
       {...rest}
     >
+      <span className="sr-only">{text}</span>
       <style>{GLITCH_CSS}</style>
       <span aria-hidden className="inline-block whitespace-nowrap">
         {text}

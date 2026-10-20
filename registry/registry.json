@@ -3,69 +3,9 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 94,
+  "total": 105,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
-    {
-      "slug": "utils",
-      "name": "utils",
-      "description": "Utility functions",
-      "categories": [
-        "primitives"
-      ],
-      "tags": [],
-      "difficulty": "intermediate",
-      "version": "0.1.0",
-      "status": "stable"
-    },
-    {
-      "slug": "use-reduced-motion",
-      "name": "use-reduced-motion",
-      "description": "Hook for reduced motion",
-      "categories": [
-        "primitives"
-      ],
-      "tags": [],
-      "difficulty": "intermediate",
-      "version": "0.1.0",
-      "status": "stable"
-    },
-    {
-      "slug": "use-pointer-proximity",
-      "name": "use-pointer-proximity",
-      "description": "Hook for pointer proximity",
-      "categories": [
-        "primitives"
-      ],
-      "tags": [],
-      "difficulty": "intermediate",
-      "version": "0.1.0",
-      "status": "stable"
-    },
-    {
-      "slug": "spring",
-      "name": "spring",
-      "description": "Spring animation utility",
-      "categories": [
-        "primitives"
-      ],
-      "tags": [],
-      "difficulty": "intermediate",
-      "version": "0.1.0",
-      "status": "stable"
-    },
-    {
-      "slug": "tokens",
-      "name": "tokens",
-      "description": "Design tokens",
-      "categories": [
-        "primitives"
-      ],
-      "tags": [],
-      "difficulty": "intermediate",
-      "version": "0.1.0",
-      "status": "stable"
-    },
     {
       "slug": "floating-object",
       "name": "Floating Object",
@@ -231,6 +171,275 @@
         "upload",
         "dropzone",
         "magnetic"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "segmented-control",
+      "name": "Segmented Control",
+      "description": "iOS-style segmented option picker with a spring-gliding accent pill, radiogroup semantics and full keyboard nav.",
+      "categories": [
+        "primitives",
+        "motion"
+      ],
+      "tags": [
+        "segmented",
+        "tabs",
+        "pill"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "gooey-menu",
+      "name": "Gooey Menu",
+      "description": "FAB whose actions fan out as fused SVG-goo blobs with crisp labels riding on top. Escape and outside-click close.",
+      "categories": [
+        "motion",
+        "overlays"
+      ],
+      "tags": [
+        "fab",
+        "gooey",
+        "menu"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "elastic-slider",
+      "name": "Elastic Slider",
+      "description": "Rubber-band slider: the knob over-stretches at the rails and snaps back with spring physics. role=slider + arrows/Home/End.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "slider",
+        "elastic",
+        "spring"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "morph-select",
+      "name": "Morph Select",
+      "description": "Select whose trigger stretches into the options list and seals back into a pill. Listbox semantics, arrow nav, outside close.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "select",
+        "morph",
+        "listbox"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "confirm-morph",
+      "name": "Confirm Morph",
+      "description": "One button, two identities: idle → confirm strip → animated check. aria-live, auto-revert, danger variant.",
+      "categories": [
+        "primitives",
+        "motion"
+      ],
+      "tags": [
+        "confirm",
+        "destructive",
+        "button"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "detent-dial",
+      "name": "Detent Dial",
+      "description": "Rotary knob with Gaussian tick-wave emphasis around the active detent. Drag, wheel, or arrows; role=slider.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "dial",
+        "knob",
+        "rotary"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "liquid-gauge",
+      "name": "Liquid Gauge",
+      "description": "Ring meter filled with two out-of-phase liquid waves, clipped and animated. role=meter with valuetext.",
+      "categories": [
+        "feedback",
+        "motion"
+      ],
+      "tags": [
+        "gauge",
+        "liquid",
+        "wave"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "comet-ring-spinner",
+      "name": "Comet Ring Spinner",
+      "description": "Comet head racing around a ring of fading trail dots. Pure CSS transforms, role=status, frozen under reduced motion.",
+      "categories": [
+        "feedback"
+      ],
+      "tags": [
+        "spinner",
+        "comet",
+        "loader"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "blueprint-loader",
+      "name": "Blueprint Loader",
+      "description": "Drafting-sheet placeholder that draws its dashed frame while ghost rows ghost in behind a scanning beam. Progress and indeterminate.",
+      "categories": [
+        "feedback",
+        "motion"
+      ],
+      "tags": [
+        "loader",
+        "blueprint",
+        "drafting"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "fresnel-orb",
+      "name": "Fresnel Orb",
+      "description": "Iridescent orb of layered conic and radial gradients with drifting orientation, rim highlight and caustic core. Pure CSS.",
+      "categories": [
+        "backgrounds",
+        "motion"
+      ],
+      "tags": [
+        "orb",
+        "iridescent",
+        "gradient"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "letter-wave",
+      "name": "Letter Wave",
+      "description": "Hover, focus or optional autoloop sends a sine wave rippling through the letters. Real text in aria-label.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "type",
+        "kinetic",
+        "wave"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "focus-blur-list",
+      "name": "Focus Blur List",
+      "description": "List rows where the hovered/focused one stays crisp and siblings sink back with blur + dim. Focus mirrors hover.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "list",
+        "blur",
+        "focus"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "grab-roller-strip",
+      "name": "Grab Roller Strip",
+      "description": "Physical roller strip you drag sideways; it settles on the nearest label under a fixed marker with flanks in fade flow.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "roller",
+        "drag",
+        "snap"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "unified-login-field",
+      "name": "Unified Login Field",
+      "description": "One bordered container that morphs between email and password stages instead of juggling boxes. Shake on invalid email, Escape steps back.",
+      "categories": [
+        "forms"
+      ],
+      "tags": [
+        "login",
+        "email",
+        "password"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "magnetic-dropzone",
+      "name": "Magnetic Dropzone",
+      "description": "Dropzone that leans toward a file-drag cursor and pulses its field; browse input fallback; dropped files list with removers.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "drag-drop",
+        "files",
+        "magnetic"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta"
+    },
+    {
+      "slug": "draggable-card-pile",
+      "name": "Draggable Card Pile",
+      "description": "Riffled stack: the top card drags out past a threshold and cycles to the back with spring physics. Enter flings for keyboard.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "cards",
+        "stack",
+        "drag"
       ],
       "difficulty": "intermediate",
       "version": "0.1.0",

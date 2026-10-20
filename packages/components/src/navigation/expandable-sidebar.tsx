@@ -43,7 +43,6 @@ const ExpandableSidebar = React.forwardRef<HTMLElement, ExpandableSidebarProps>(
       <ExpandableSidebarContext.Provider value={{ expanded, activeItem, setActiveItem }}>
         <aside
           ref={ref}
-          role="navigation"
           aria-label="Expandable sidebar navigation"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}

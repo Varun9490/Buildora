@@ -6,10 +6,14 @@ import { cn } from "@buildora/utils";
 import { CodeBlock } from "./CodeBlock";
 
 /* ─────────────────────────────────────────────────────
-   FRAMEWORK STUDIO — one behavior, six runtimes.
-   Authentic implementations of the same magnetic
-   button: React 19, Vue 3.5, Svelte 5, SolidJS,
-   React Native, SwiftUI. Split view + runtime contract.
+   FRAMEWORK STUDIO — one shipped implementation, five
+   hand-written ports.
+
+   The React tab shows the code you actually install: it is
+   the shipped source of @buildora/magnetic-button, unchanged.
+   The other tabs are snippet ports — readable starting
+   points, not maintained packages. The registry says the
+   same thing: React is "Full", the rest are "Partial".
    ───────────────────────────────────────────────────── */
 
 type Target = {
@@ -18,6 +22,8 @@ type Target = {
   file: string;
   runtime: string;
   weight: string;
+  /** "Full" ships in the registry; "Partial" is a snippet port. */
+  status: "Full" | "Partial" | "Experimental";
   bullets: string[];
   code: string;
 };
@@ -27,43 +33,50 @@ const TARGETS: Target[] = [
     id: "react",
     label: "React 19",
     file: "MagneticButton.tsx",
-    runtime: "motion/react · hooks",
+    runtime: "useMagnetic hook · spring 260/22",
     weight: "1.4 KB gzip",
+    status: "Full",
     bullets: [
-      "Listeners torn down in the effect cleanup",
-      "useSpring(220/18) — release velocity preserved",
-      "Works as an RSC island (\"use client\" at the seam)",
+      "Attraction starts before the cursor arrives — pointermove is watched globally",
+      "Spring 260/22 solved in-house: no animation library in the bundle",
+      "Real <button> semantics; reduced motion short-circuits the pull",
     ],
     code: `"use client";
-import { useEffect, useRef } from "react";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import * as React from "react";
+import { cn } from "@/lib/buildora/utils";
+import { useReducedMotion, useMagnetic } from "@/hooks/buildora/use-reduced-motion";
 
-export function MagneticButton({ children, strength = 24, ...rest }) {
-  const ref = useRef<HTMLButtonElement>(null);
-  const x = useSpring(useMotionValue(0), { stiffness: 220, damping: 18 });
-  const y = useSpring(useMotionValue(0), { stiffness: 220, damping: 18 });
+export function MagneticButton({
+  strength = 0.38,
+  radius = 180,
+  glow = true,
+  variant = "accent",
+  className,
+  children,
+  ...rest
+}) {
+  const ref = React.useRef<HTMLButtonElement | null>(null);
+  const reduced = useReducedMotion();
+  const { reset } = useMagnetic(ref, { strength, radius, disabled: !!reduced });
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const move = (e: PointerEvent) => {
-      const r = el.getBoundingClientRect();
-      x.set(((e.clientX - r.left - r.width / 2) / r.width) * strength * 2);
-      y.set(((e.clientY - r.top - r.height / 2) / r.height) * strength * 2);
-    };
-    const leave = () => { x.set(0); y.set(0); };
-    el.addEventListener("pointermove", move);
-    el.addEventListener("pointerleave", leave);
-    return () => {
-      el.removeEventListener("pointermove", move);
-      el.removeEventListener("pointerleave", leave);
-    };
-  }, [strength, x, y]);
+  const styles =
+    variant === "accent"
+      ? "bg-[color:var(--b-accent)] text-[color:var(--b-accent-foreground)]"
+      : "bg-[color:var(--b-surface)] text-[color:var(--b-text-secondary)]";
 
   return (
-    <motion.button ref={ref} style={{ x, y }} {...rest}>
-      {children}
-    </motion.button>
+    <button
+      ref={ref}
+      onPointerLeave={reset}
+      onBlur={reset}
+      className={cn("relative inline-flex items-center rounded-[12px] px-6 py-3", styles, className)}
+      {...rest}
+    >
+      {glow && variant === "accent" && !reduced && (
+        <span aria-hidden className="pointer-events-none absolute -inset-6 opacity-60 blur-2xl" />
+      )}
+      <span className="relative z-10 inline-flex items-center gap-2">{children}</span>
+    </button>
   );
 }`,
   },
@@ -72,7 +85,8 @@ export function MagneticButton({ children, strength = 24, ...rest }) {
     label: "Vue 3.5",
     file: "MagneticButton.vue",
     runtime: "Composition API · refs",
-    weight: "1.6 KB gzip",
+    weight: "snippet port",
+    status: "Partial",
     bullets: [
       "Pointer math in plain refs — no animation lib",
       "CSS transition carries the spring on release",
@@ -124,7 +138,8 @@ onBeforeUnmount(() => {
     label: "Svelte 5",
     file: "MagneticButton.svelte",
     runtime: "Runes · $state/$effect",
-    weight: "1.1 KB gzip",
+    weight: "snippet port",
+    status: "Partial",
     bullets: [
       "dx/dy are runes — updates are surgical",
       "$effect returns its own teardown closure",
@@ -168,7 +183,8 @@ onBeforeUnmount(() => {
     label: "SolidJS",
     file: "MagneticButton.tsx",
     runtime: "Signals · fine-grained",
-    weight: "0.9 KB gzip",
+    weight: "snippet port",
+    status: "Partial",
     bullets: [
       "createSignal updates a single style binding",
       "JSX handlers attach natively — zero delegation",
@@ -213,7 +229,8 @@ export function MagneticButton(props: {
     label: "React Native",
     file: "MagneticButton.tsx",
     runtime: "Animated · PanResponder",
-    weight: "native driver",
+    weight: "snippet port",
+    status: "Experimental",
     bullets: [
       "useNativeDriver keeps the spring on the UI thread",
       "Drag capped at ±2× strength, releases to origin",
@@ -261,7 +278,8 @@ export function MagneticButton({ children, strength = 24, onPress }) {
     label: "SwiftUI",
     file: "MagneticButton.swift",
     runtime: "@GestureState · spring",
-    weight: "zero deps",
+    weight: "snippet port",
+    status: "Experimental",
     bullets: [
       "Pull state resets automatically on gesture end",
       "reduceMotion environment flag short-circuits pull",
@@ -311,11 +329,12 @@ export function FrameworkStudio() {
           Portability
         </span>
         <h2 className="mt-5 font-display text-3xl font-bold tracking-tight text-[color:var(--b-text)] sm:text-4xl lg:text-5xl text-balance">
-          Design once. Ship it in every runtime.
+          One shipped implementation. Five honest ports.
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[color:var(--b-text-secondary)] sm:text-base">
-          Same magnetic button, six honest implementations — not translations of each other,
-          but natives of each ecosystem with identical physics.
+          The React tab is the code you install, unchanged. The other five are
+          hand-written snippet ports, not maintained packages. The registry marks
+          them Partial for the same reason.
         </p>
       </div>
 
@@ -379,8 +398,20 @@ export function FrameworkStudio() {
               <h3 className="font-display text-lg font-bold tracking-tight text-[color:var(--b-text)]">
                 Runtime contract
               </h3>
-              <span className="rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-[color:var(--b-accent)]">
-                {target.weight}
+              <span className="flex items-center gap-2">
+                <span
+                  className={cn(
+                    "rounded-full border px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-wider",
+                    target.status === "Full"
+                      ? "border-[color:var(--b-accent)] text-[color:var(--b-accent)]"
+                      : "border-[color:var(--b-border)] bg-[color:var(--b-surface)] text-[color:var(--b-muted)]"
+                  )}
+                >
+                  {target.status === "Full" ? "shipped" : "snippet port"}
+                </span>
+                <span className="rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-[color:var(--b-accent)]">
+                  {target.weight}
+                </span>
               </span>
             </div>
             <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--b-muted)]">

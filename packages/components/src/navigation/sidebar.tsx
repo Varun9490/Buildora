@@ -41,7 +41,6 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       <SidebarContext.Provider value={{ id, collapsed, setCollapsed: handleSetCollapsed, activeItem, setActiveItem }}>
         <aside
           ref={ref}
-          role="navigation"
           aria-label="Sidebar navigation"
           className={cn(
             "flex flex-col h-full border-r border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)]",

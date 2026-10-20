@@ -67,7 +67,8 @@ export function MatrixDecode({ text, speed = 1, delay = 0, charset = DEFAULT_CHA
   }, [text, speed, delay, charset, reduced]);
 
   return (
-    <span aria-label={text} className={cn("inline", className)} {...rest}>
+    <span className={cn("inline", className)} {...rest}>
+      <span className="sr-only">{text}</span>
       <span aria-hidden className="inline-block">
         {view.join("")}
       </span>

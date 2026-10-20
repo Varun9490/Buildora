@@ -55,7 +55,8 @@ export function TUIProgress({
       <div
         className="flex items-center h-4 bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded"
         role="progressbar"
-        aria-valuenow={percentage}
+        aria-label={label ?? "Progress"}
+        aria-valuenow={Math.round(percentage)}
         aria-valuemin={0}
         aria-valuemax={100}
       >

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "focus-blur-list",
+  "name": "Focus Blur List",
+  "slug": "focus-blur-list",
+  "description": "List rows where the hovered/focused one stays crisp and siblings sink back with blur + dim. Focus mirrors hover.",
+  "categories": [
+    "motion",
+    "blocks"
+  ],
+  "tags": [
+    "list",
+    "blur",
+    "focus"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/focus-blur-list/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/focus-blur-list/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/focus-blur-list/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/focus-blur-list/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/focus-blur-list/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/focus-blur-list/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/focus-blur-list/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/focus-blur-list/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/focus-blur-list/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/focus-blur-list/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/focus-blur-list/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/focus-blur-list/index.tsx",
+      "target": "components/buildora/focus-blur-list.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type FocusBlurItem = {\n  title: string;\n  meta?: string;\n  href?: string;\n};\n\nexport type FocusBlurListProps = React.HTMLAttributes<HTMLUListElement> & {\n  items: FocusBlurItem[];\n  /** Hovering/focusing one item dims + blurs the rest this much. */\n  depth?: number;\n  onSelect?: (item: FocusBlurItem, index: number) => void;\n};\n\n/**\n * FocusBlurList — a list where the hovered/focused row stays crisp while\n * siblings sink back (blur + dim). Keyboard focus produces the same\n * behavior; motion-reduced users get dim-only.\n */\nexport function FocusBlurList({\n  items,\n  depth = 2.2,\n  onSelect,\n  className,\n  ...rest\n}: FocusBlurListProps) {\n  const reduced = useReducedMotion();\n  const [active, setActive] = React.useState<number | null>(null);\n\n  const sink = (i: number) => active != null && active !== i;\n\n  return (\n    <ul className={cn(\"flex flex-col\", className)} {...rest}>\n      {items.map((item, i) => {\n        const isSink = sink(i);\n        const isActive = active === i;\n        const Tag = (item.href ? \"a\" : \"button\") as React.ElementType;\n        const row = (\n          <>\n            <span className=\"flex-1 min-w-0\">\n              <span\n                className={cn(\n                  \"block truncate text-[15px] font-semibold transition-colors duration-200\",\n                  isActive ? \"text-[color:var(--b-text)]\" : \"text-[color:var(--b-text-secondary)]\"\n                )}\n              >\n                {item.title}\n              </span>\n              {item.meta && (\n                <span className=\"mt-0.5 block truncate text-xs text-[color:var(--b-muted)]\">{item.meta}</span>\n              )}\n            </span>\n            <svg\n              className=\"shrink-0 transition-all duration-200\"\n              style={{ transform: isActive ? \"translateX(2px)\" : undefined, opacity: isActive ? 1 : 0.35 }}\n              width=\"14\"\n              height=\"14\"\n              viewBox=\"0 0 16 16\"\n              fill=\"none\"\n              stroke=\"currentColor\"\n              strokeWidth=\"2\"\n              strokeLinecap=\"round\"\n              strokeLinejoin=\"round\"\n              aria-hidden=\"true\"\n            >\n              <path d=\"M6 3.5 10.5 8 6 12.5\" />\n            </svg>\n          </>\n        );\n\n        return (\n          <li key={item.title}>\n            <Tag\n              href={item.href}\n              onClick={item.href ? undefined : () => onSelect?.(item, i)}\n              onPointerEnter={() => setActive(i)}\n              onPointerLeave={() => setActive(null)}\n              onFocus={() => setActive(i)}\n              onBlur={() => setActive(null)}\n              className={cn(\n                \"flex w-full items-center justify-between gap-4 px-4 py-3.5 outline-none transition-all duration-250\",\n                \"border-b border-[color:var(--b-border)] last:border-b-0\",\n                !isActive && \"hover:bg-[color:color-mix(in_oklab,var(--b-text)_4%,transparent)]\",\n                item.href ? \"group cursor-pointer\" : \"cursor-pointer text-left\"\n              )}\n              style={{\n                filter: !reduced && isSink ? `blur(${depth}px)` : undefined,\n                opacity: isSink ? 0.45 : 1,\n                transitionFilter: \"260ms\",\n              }}\n            >\n              {row}\n            </Tag>\n          </li>\n        );\n      })}\n    </ul>\n  );\n}\n\nexport default FocusBlurList;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/focus-blur-list",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/focus-blur-list/index.tsx",
+  "sourceDir": "focus-blur-list",
+  "docs": "/components/focus-blur-list",
+  "install": "pnpm dlx shadcn@latest add @buildora/focus-blur-list"
+}

@@ -78,9 +78,13 @@ export function Calendar({ className }: { className?: string }) {
     <div className={cn("rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[var(--b-bg)] p-4", className)}>
       <p className="mb-2 text-sm font-bold">February <span className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">— scheduling demo</span></p>
       <div className="grid grid-cols-7 gap-1" role="grid" aria-label="Calendar">
-        {days.map((d) => (
-          <button key={d} role="gridcell" aria-selected={d === day} onClick={() => setDay(d)}
-            className={cn("aspect-square rounded-lg text-sm transition-all", d === day ? "bg-[color:var(--b-accent)] font-bold text-[color:var(--b-accent-foreground)] scale-105" : "text-[color-mix(in_oklab,var(--b-text)_70%,transparent)] hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]")}>{d}</button>
+        {Array.from({ length: 4 }, (_, week) => (
+          <div key={week} role="row" className="contents">
+            {days.slice(week * 7, week * 7 + 7).map((d) => (
+              <button key={d} role="gridcell" aria-selected={d === day} onClick={() => setDay(d)}
+                className={cn("aspect-square rounded-lg text-sm transition-all", d === day ? "bg-[color:var(--b-accent)] font-bold text-[color:var(--b-accent-foreground)] scale-105" : "text-[color-mix(in_oklab,var(--b-text)_70%,transparent)] hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)]")}>{d}</button>
+            ))}
+          </div>
         ))}
       </div>
     </div>

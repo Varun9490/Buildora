@@ -63,11 +63,11 @@ export function NumberWheel({
 
   return (
     <span
-      aria-label={`${prefix}${fmt(value)}${suffix}`}
       className={cn("inline-flex items-center leading-[1]", className)}
       style={{ fontVariantNumeric: "tabular-nums" }}
       {...rest}
     >
+      <span className="sr-only">{`${prefix}${fmt(value)}${suffix}`}</span>
       <span aria-hidden className="inline-flex items-center leading-[1]">
         {prefix}
         {parts.map((part, i) =>

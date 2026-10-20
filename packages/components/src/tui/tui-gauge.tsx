@@ -74,9 +74,11 @@ export function TUIGauge({
     <div
       className={cn("font-mono inline-flex flex-col items-center", className)}
       role="meter"
+      aria-label={label ?? "Gauge"}
       aria-valuenow={value}
       aria-valuemin={0}
       aria-valuemax={max}
+      aria-valuetext={`${Math.round(percentage)}${unit}`}
     >
       <pre className={cn(gaugeStyles[color], "leading-tight")}>
         {gaugeArt.join("\n")}

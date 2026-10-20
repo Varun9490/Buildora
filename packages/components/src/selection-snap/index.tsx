@@ -31,7 +31,6 @@ export function SelectionSnap({ text, weightFrom = 250, weightTo = 900, classNam
   return (
     <span
       tabIndex={0}
-      aria-label={text}
       className={cn("relative inline-block cursor-default outline-none", className)}
       style={{ ...style, fontWeight: reduced ? weightTo : active ? weightTo : weightFrom, transition: "font-weight 240ms ease" }}
       onPointerEnter={() => setOn(true)}
@@ -40,6 +39,7 @@ export function SelectionSnap({ text, weightFrom = 250, weightTo = 900, classNam
       onBlur={() => setOn(false)}
       {...rest}
     >
+      <span className="sr-only">{text}</span>
       <span aria-hidden className="inline-block">
         {text}
         <span

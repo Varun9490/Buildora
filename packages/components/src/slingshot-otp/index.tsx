@@ -119,6 +119,7 @@ function StandardOTP({ length, value, onChange }: { length: number; value: strin
         maxLength={length}
         value={value}
         onChange={(e) => onChange(e.target.value.replace(/\D/g, ""))}
+        aria-label="One-time code"
         className="absolute inset-0 z-10 cursor-text opacity-0"
       />
     </div>

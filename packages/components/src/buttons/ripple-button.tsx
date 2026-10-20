@@ -10,7 +10,7 @@ export type RippleButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & 
 };
 
 export function RippleButton({
-  rippleColor = "rgba(255, 255, 255, 0.35)",
+  rippleColor = "color-mix(in oklab, var(--b-text) 35%, transparent)",
   duration = 600,
   className,
   children,
@@ -53,9 +53,9 @@ export function RippleButton({
       ref={ref}
       onClick={handleClick}
       className={cn(
-        "relative overflow-hidden rounded-xl bg-gradient-to-br from-[#7c6cf6] to-[#5a4ad1] px-6 py-2.5 text-sm font-semibold text-[color:var(--b-text)]",
+        "relative overflow-hidden rounded-xl bg-gradient-to-br from-[color:var(--b-accent)] to-[color:var(--b-iris)] px-6 py-2.5 text-sm font-semibold text-[color:var(--b-accent-foreground)]",
         "transition-all duration-200 hover:brightness-110 active:scale-95",
-        "focus:outline-none focus:ring-2 focus:ring-[#7c6cf6]/50 focus:ring-offset-2 focus:ring-offset-[#0a0b10]",
+        "focus:outline-none focus:ring-2 focus:ring-[color:var(--b-accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--b-bg)]",
         "disabled:opacity-50 disabled:pointer-events-none",
         className
       )}
@@ -66,34 +66,17 @@ export function RippleButton({
         <span
           key={ripple.id}
           aria-hidden
-          className="absolute rounded-full animate-ripple pointer-events-none"
+          className="absolute rounded-full pointer-events-none"
           style={{
             left: ripple.x,
             top: ripple.y,
             width: "10px",
             height: "10px",
-            marginLeft: "-5px",
-            marginTop: "-5px",
             background: rippleColor,
-            animationDuration: `${duration}ms`,
+            animation: `buildora-ripple-dot ${duration}ms ease-out forwards`,
           }}
         />
       ))}
-      <style jsx global>{`
-        @keyframes ripple {
-          0% {
-            transform: scale(0);
-            opacity: 1;
-          }
-          100% {
-            transform: scale(20);
-            opacity: 0;
-          }
-        }
-        .animate-ripple {
-          animation: ripple ease-out forwards;
-        }
-      `}</style>
     </button>
   );
 }

@@ -36,13 +36,31 @@ export function FileTree({ tree, className }: { tree?: TreeNode; className?: str
     const p = `${path}/${n.name}`;
     const isOpen = open.has(n.name) || open.has(p);
     const hasKids = !!n.children?.length;
+    // The treeitem itself is the focusable control (ARIA tree pattern): a
+    // button inside a treeitem would nest two interactive elements.
     return (
-      <li key={p}>
-        <button onClick={() => hasKids && toggle(n.name)} aria-expanded={hasKids ? isOpen : undefined} className="flex w-full items-center gap-1.5 rounded px-2 py-1 text-left font-mono text-xs hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]" style={{ paddingLeft: 8 + depth * 14 }}>
+      <li
+        key={p}
+        role="treeitem"
+        aria-expanded={hasKids ? isOpen : undefined}
+        tabIndex={0}
+        onClick={() => hasKids && toggle(n.name)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            if (hasKids) toggle(n.name);
+          }
+        }}
+        className="list-none rounded outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)]"
+      >
+        <span
+          className="flex w-full cursor-pointer items-center gap-1.5 rounded px-2 py-1 text-left font-mono text-xs hover:bg-[color-mix(in_oklab,var(--b-text)_5%,transparent)]"
+          style={{ paddingLeft: 8 + depth * 14 }}
+        >
           <span aria-hidden className="text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]">{hasKids ? (isOpen ? "▾" : "▸") : "·"}</span>
           <span className={hasKids ? "text-[color:var(--b-iris)]" : "text-[color-mix(in_oklab,var(--b-text)_75%,transparent)]"}>{n.name}</span>
-        </button>
-        {hasKids && isOpen && <ul>{n.children!.map((c) => render(c, p, depth + 1))}</ul>}
+        </span>
+        {hasKids && isOpen && <ul role="group">{n.children!.map((c) => render(c, p, depth + 1))}</ul>}
       </li>
     );
   };
@@ -53,14 +71,14 @@ export function CodeEditorLite({ initialCode, language = "tsx", className }: { i
   const [code, setCode] = React.useState(initialCode ?? `import { MagneticButton } from "@buildora/magnetic-button";\n\nexport function Demo() {\n  return <MagneticButton strength={0.35}>Ship it</MagneticButton>;\n}`);
   const [lines] = React.useState(true);
   return (
-    <div className={cn("overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[#0a0c11]", className)}>
+    <div className={cn("overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] bg-[color:var(--b-panel)]", className)}>
       <div className="flex items-center justify-between border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] px-3 py-1.5 text-[11px] text-[color-mix(in_oklab,var(--b-text)_50%,transparent)]">
         <span className="font-mono">Demo.{language} — editable</span><span>{code.split("\n").length} lines</span>
       </div>
       <div className="grid md:grid-cols-2">
         <label className="sr-only" htmlFor="lite-editor">Edit code</label>
         <textarea id="lite-editor" value={code} onChange={(e) => setCode(e.target.value)} spellCheck={false} className="code-scroll min-h-40 bg-transparent p-3 font-mono text-xs text-[color-mix(in_oklab,var(--b-text)_85%,transparent)] outline-none" />
-        <pre className="code-scroll max-h-56 overflow-auto border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-3 font-mono text-xs text-[#c9d1ff] md:border-l md:border-t-0" aria-label="Preview">
+        <pre className="code-scroll max-h-56 overflow-auto border-t border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-3 font-mono text-xs text-[color:var(--b-iris)] md:border-l md:border-t-0" aria-label="Preview">
           {lines && <code>{code}</code>}
         </pre>
       </div>

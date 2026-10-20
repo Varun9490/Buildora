@@ -11,7 +11,7 @@ export type GradientBorderButtonProps = React.ButtonHTMLAttributes<HTMLButtonEle
 };
 
 export function GradientBorderButton({
-  gradientColors = ["#d4ff4f", "#7c6cf6", "#9d8cff", "#d4ff4f"],
+  gradientColors = ["var(--b-accent)", "var(--b-iris)", "var(--b-accent)"],
   borderWidth = 2,
   animationDuration = 3,
   className,
@@ -33,33 +33,20 @@ export function GradientBorderButton({
     >
       <span
         aria-hidden
-        className={cn(
-          "absolute inset-0 rounded-xl",
-          !reduced && "animate-gradient-border"
-        )}
+        className="absolute inset-0 rounded-xl"
         style={{
           background: `linear-gradient(90deg, ${gradientColors.join(", ")})`,
           backgroundSize: "300% 300%",
           padding: borderWidth,
-          animationDuration: `${animationDuration}s`,
+          animation: reduced ? undefined : `buildora-gradient-shift ${animationDuration}s ease infinite`,
         }}
       >
         <span
-          className="flex h-full w-full items-center justify-center rounded-[calc(0.75rem-2px)] bg-[#12141d]"
+          className="flex h-full w-full items-center justify-center rounded-[calc(0.75rem-2px)] bg-[color:var(--b-panel)]"
           style={{ borderRadius: `calc(0.75rem - ${borderWidth}px)` }}
         />
       </span>
       <span className="relative z-10">{children}</span>
-      <style jsx global>{`
-        @keyframes gradient-border {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-gradient-border {
-          animation: gradient-border ease infinite;
-        }
-      `}</style>
     </button>
   );
 }

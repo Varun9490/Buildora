@@ -189,6 +189,8 @@ export type ModelSelectorProps = {
   defaultValue?: string;
   onValueChange?: (id: string) => void;
   className?: string;
+  /** Accessible name for the combobox. */
+  label?: string;
 };
 
 const GRADE_STYLES: Record<NonNullable<ModelOption["grade"]>, string> = {
@@ -205,7 +207,7 @@ const GRADE_LABELS: Record<NonNullable<ModelOption["grade"]>, string> = {
   custom: "CUSTOM",
 };
 
-export function ModelSelector({ models, value, defaultValue, onValueChange, className }: ModelSelectorProps) {
+export function ModelSelector({ models, value, defaultValue, onValueChange, className, label }: ModelSelectorProps) {
   const opts: ModelOption[] = (models ?? ["buildora-1-pro", "buildora-1-flash", "oss-70b"]).map((raw) =>
     typeof raw === "string"
       ? {
@@ -280,6 +282,7 @@ export function ModelSelector({ models, value, defaultValue, onValueChange, clas
         role="combobox"
         aria-expanded={open}
         aria-haspopup="listbox"
+        aria-label={label ?? "Model"}
         aria-controls={listId}
         aria-activedescendant={open ? `${listId}-${activeId}` : undefined}
         className={cn(

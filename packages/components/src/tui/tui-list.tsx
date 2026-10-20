@@ -20,6 +20,8 @@ export interface TUIListProps {
   className?: string;
   focusable?: boolean;
   showShortcuts?: boolean;
+  /** Accessible name for the listbox. */
+  label?: string;
 }
 
 export function TUIList({
@@ -30,6 +32,7 @@ export function TUIList({
   className,
   focusable = true,
   showShortcuts = true,
+  label,
 }: TUIListProps) {
   const [focused, setFocused] = React.useState(false);
   const [focusedIndex, setFocusedIndex] = React.useState(-1);
@@ -64,6 +67,7 @@ export function TUIList({
     <div
       className={cn("font-mono text-xs bg-[var(--b-bg)] overflow-auto", className)}
       role="listbox"
+      aria-label={label ?? "List"}
       tabIndex={focusable ? 0 : -1}
       onFocus={() => setFocused(true)}
       onBlur={() => setFocused(false)}

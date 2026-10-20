@@ -49,8 +49,10 @@ export function SlashCommands({
       </div>
       <ul id="slash-list" role="listbox" aria-label="Slash commands" className="p-1.5">
         {view.map((x, i) => (
-          <li key={x.id} role="option" aria-selected={i === active}>
+          <li key={x.id} role="presentation">
             <button
+              role="option"
+              aria-selected={i === active}
               onClick={() => onPick?.(x.cmd)}
               onMouseEnter={() => setActive(i)}
               className={cn(
@@ -59,7 +61,7 @@ export function SlashCommands({
               )}
             >
               <span className="font-mono text-sm font-bold">{x.cmd}</span>
-              <span className={cn("text-xs", i === active ? "text-black/60" : "text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]")}>{x.desc}</span>
+              <span className={cn("text-xs", i === active ? "opacity-60" : "text-[color-mix(in_oklab,var(--b-text)_40%,transparent)]")}>{x.desc}</span>
             </button>
           </li>
         ))}

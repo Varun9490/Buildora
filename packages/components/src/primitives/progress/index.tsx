@@ -66,7 +66,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
             {label ? (
               <span className="truncate text-xs font-medium text-[color:var(--b-text-secondary)] antialiased">{label}</span>
             ) : (
-              <span className="sr-only" role="text">Progress</span>
+              <span className="sr-only">Progress</span>
             )}
             {showValue && !indeterminate && (
               <motion.span
@@ -84,6 +84,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
         )}
         <div
           role="progressbar"
+          aria-label={label ?? "Progress"}
           aria-valuemin={0}
           aria-valuemax={max}
           aria-valuenow={indeterminate ? undefined : pctP}

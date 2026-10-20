@@ -11,23 +11,23 @@
 
 :root,
 [data-theme="light"] {
-  --b-bg: #faf9f7;
+  --b-bg: #faf9f5;
   --b-panel: #ffffff;
-  --b-surface: #f1efeb;
+  --b-surface: #f1efe9;
   --b-elevated: #ffffff;
   --b-border: rgba(19, 19, 22, 0.08);
-  --b-border-hover: rgba(19, 19, 22, 0.16);
+  --b-border-hover: rgba(19, 19, 22, 0.18);
   --b-text: #131316;
   --b-text-secondary: #52525b;
-  --b-muted: #8e8e93;
+  --b-muted: #727277;
   --b-ring: rgba(19, 19, 22, 0.16);
-  --b-success: #047857;
-  --b-warning: #b45309;
-  --b-danger: #be123c;
-  --b-accent: #4d7c0f;
+  --b-success: #006243;
+  --b-warning: #963700;
+  --b-danger: #ae0030;
+  --b-accent: #376400;
   --b-accent-foreground: #ffffff;
-  --b-accent-muted: rgba(77, 124, 15, 0.1);
-  --b-iris: #4f46e5;
+  --b-accent-muted: rgba(55, 100, 0, 0.1);
+  --b-iris: #493ddc;
   --b-iris-foreground: #ffffff;
   --b-radius: 12px;
   --b-radius-sm: 10px;
@@ -57,25 +57,25 @@
 }
 
 [data-theme="dark"] {
-  --b-bg: #0e0e0c;
-  --b-panel: #161614;
-  --b-surface: #1d1d1a;
-  --b-elevated: #242422;
-  --b-border: rgba(255, 255, 255, 0.08);
-  --b-border-hover: rgba(255, 255, 255, 0.16);
-  --b-text: #ededec;
-  --b-text-secondary: #a1a1aa;
-  --b-muted: #6e6e73;
+  --b-bg: #050507;
+  --b-panel: #0a0a0e;
+  --b-surface: #101015;
+  --b-elevated: #16161c;
+  --b-border: rgba(255, 255, 255, 0.06);
+  --b-border-hover: rgba(255, 255, 255, 0.18);
+  --b-text: #ededf0;
+  --b-text-secondary: #a5a5b2;
+  --b-muted: #767684;
   --b-ring: rgba(255, 255, 255, 0.16);
   --b-success: #34d399;
   --b-warning: #fbbf24;
-  --b-danger: #f87171;
-  --b-accent: #d4ff4f;
+  --b-danger: #fe7487;
+  --b-accent: #ccff00;
   --b-accent-foreground: #131305;
-  --b-accent-muted: rgba(212, 255, 79, 0.12);
-  --b-iris: #9d8cff;
-  --b-iris-foreground: #1e1b4b;
-  --b-scrim: rgba(0, 0, 0, 0.66);
+  --b-accent-muted: rgba(204, 255, 0, 0.12);
+  --b-iris: #8b97ff;
+  --b-iris-foreground: #10102a;
+  --b-scrim: rgba(0, 0, 0, 0.62);
   color-scheme: dark;
 
   --background: var(--b-bg);
@@ -169,6 +169,11 @@
 @keyframes buildora-gradient-pan {
   from { background-position: 0% 50%; }
   to { background-position: 200% 50%; }
+}
+@keyframes buildora-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 @keyframes buildora-ripple-dot {
   from { transform: translate(-50%, -50%) scale(0); opacity: 0.9; }

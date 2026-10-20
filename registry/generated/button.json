@@ -8,7 +8,9 @@
   "categories": [
     "primitives"
   ],
-  "dependencies": [],
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
   "registryDependencies": [
     "https://buildora-hazel.vercel.app/r/utils.json",
     "https://buildora-hazel.vercel.app/r/tokens.json",

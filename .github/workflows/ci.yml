@@ -5,6 +5,9 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
 
 jobs:
   buildora:
@@ -39,14 +42,48 @@ jobs:
       - name: Registry smoke (install-clean)
         run: pnpm registry:smoke
 
+      - name: Registry verify-install (static)
+        run: pnpm registry:verify-install
+
+      - name: Contrast gate (WCAG, both themes)
+        run: pnpm registry:contrast
+
       - name: Registry compile-e2e (generated source)
         run: pnpm registry:e2e
 
       - name: Typecheck (web)
         run: pnpm --filter @buildora/web exec tsc --noEmit
 
-      - name: Tests (components)
+      - name: Tests (components, SSR + axe gate)
         run: pnpm --filter @buildora/components test
 
-      - name: Production build (web, 138 routes)
+      - name: Production build (web)
         run: pnpm build:web
+
+  # The real proof of "it installs": scaffold Next 15, Vite, React Router 7
+  # and TanStack Start, run `shadcn add @buildora/<component>` in each, type
+  # check and build. Needs the network, so it runs nightly and on demand
+  # rather than on every push.
+  install-matrix:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Registry build
+        run: pnpm registry:build
+
+      - name: Install matrix (next15, vite, react-router-v7, tanstack-start)
+        run: pnpm registry:verify-install:matrix

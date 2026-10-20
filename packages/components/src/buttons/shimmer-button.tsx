@@ -12,10 +12,10 @@ export type ShimmerButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
 };
 
 export function ShimmerButton({
-  shimmerColor = "#d4ff4f",
+  shimmerColor = "var(--b-accent)",
   shimmerSize = 0.08,
   shimmerDuration = 2.5,
-  background = "linear-gradient(135deg, #1a1c25, #12141d)",
+  background = "linear-gradient(135deg, color-mix(in oklab, var(--b-text) 8%, var(--b-panel)), var(--b-panel))",
   className,
   children,
   ...rest
@@ -36,27 +36,15 @@ export function ShimmerButton({
     >
       <div
         aria-hidden
-        className={cn(
-          "absolute inset-0 pointer-events-none",
-          !reduced && "animate-shimmer"
-        )}
+        className="absolute inset-0 pointer-events-none"
         style={{
           background: `linear-gradient(90deg, transparent 0%, ${shimmerColor} 50%, transparent 100%)`,
           backgroundSize: `${shimmerSize * 100}% 100%`,
           opacity: 0.15,
-          animationDuration: `${shimmerDuration}s`,
+          animation: reduced ? undefined : `buildora-shimmer ${shimmerDuration}s linear infinite`,
         }}
       />
       <span className="relative z-10">{children}</span>
-      <style jsx global>{`
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(300%); }
-        }
-        .animate-shimmer {
-          animation: shimmer linear infinite;
-        }
-      `}</style>
     </button>
   );
 }

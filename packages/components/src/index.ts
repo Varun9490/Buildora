@@ -1,4 +1,28 @@
 export { MagneticButton } from "./magnetic-button";
+export {
+  SegmentedControl,
+  type SegmentedControlProps,
+  type SegmentedControlSize,
+  type SegmentedItem,
+} from "./segmented-control";
+export { GooeyMenu, type GooeyMenuProps, type GooeyItem } from "./gooey-menu";
+export {
+  ElasticSlider,
+  type ElasticSliderProps,
+} from "./elastic-slider";
+export { MorphSelect, type MorphSelectProps, type MorphOption } from "./morph-select";
+export { ConfirmMorph, type ConfirmMorphProps } from "./confirm-morph";
+export { DetentDial, type DetentDialProps } from "./detent-dial";
+export { LiquidGauge, type LiquidGaugeProps } from "./liquid-gauge";
+export { CometRingSpinner, type CometRingSpinnerProps } from "./comet-ring-spinner";
+export { BlueprintLoader, type BlueprintLoaderProps } from "./blueprint-loader";
+export { FresnelOrb, type FresnelOrbProps } from "./fresnel-orb";
+export { LetterWave, type LetterWaveProps } from "./letter-wave";
+export { FocusBlurList, type FocusBlurListProps, type FocusBlurItem } from "./focus-blur-list";
+export { GrabRollerStrip, type GrabRollerStripProps } from "./grab-roller-strip";
+export { UnifiedLoginField, type UnifiedLoginFieldProps } from "./unified-login-field";
+export { MagneticDropzone, type MagneticDropzoneProps } from "./magnetic-dropzone";
+export { DraggableCardPile, type DraggableCardPileProps, type PileCard } from "./draggable-card-pile";
 export { Backdrop, type BackdropProps, type BackdropVariant } from "./backdrop";
 export { CursorFx, type CursorFxProps, type CursorFxMode } from "./cursor-fx";
 export { TextFx, type TextFxProps, type TextFxKind } from "./text-fx";

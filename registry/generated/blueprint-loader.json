@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "blueprint-loader",
+  "type": "registry:component",
+  "title": "Blueprint Loader",
+  "description": "Drafting-sheet placeholder that draws its dashed frame while ghost rows ghost in behind a scanning beam. Progress and indeterminate.",
+  "status": "beta",
+  "categories": [
+    "feedback",
+    "motion"
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/blueprint-loader/index.tsx",
+      "target": "components/buildora/blueprint-loader.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type BlueprintLoaderProps = React.HTMLAttributes<HTMLDivElement> & {\n  /** 0..1; omit for indeterminate. */\n  progress?: number;\n  label?: string;\n  rows?: number;\n  width?: number;\n};\n\nconst BP_CSS = `\n.bk-bp-grid{\n  background-image:\n    linear-gradient(color-mix(in oklab, var(--b-accent) 9%, transparent) 1px, transparent 1px),\n    linear-gradient(90deg, color-mix(in oklab, var(--b-accent) 9%, transparent) 1px, transparent 1px);\n  background-size: 18px 18px;\n}\n@keyframes bk-bp-draw{from{stroke-dashoffset:var(--bk-bp-len,900)}to{stroke-dashoffset:0}}\n@keyframes bk-bp-scan{from{transform:translateY(0)}to{transform:translateY(var(--bk-bp-h,120px))}}\n@keyframes bk-bp-pulse{0%,100%{opacity:.5}50%{opacity:1}}\n`;\n\n/**\n * BlueprintLoader — a drafting-sheet placeholder that draws its dashed\n * frame while rows ghost in behind a scanning beam. aria-busy. Progress\n * mode wraps the frame in a filling outline; indeterminate scans forever.\n */\nexport function BlueprintLoader({\n  progress,\n  label,\n  rows = 4,\n  width = 300,\n  className,\n  ...rest\n}: BlueprintLoaderProps) {\n  const reduced = useReducedMotion();\n  const h = rows * 34 + 26;\n  const per = progress != null ? Math.max(0, Math.min(1, progress)) : null;\n  const id = React.useId();\n\n  return (\n    <div\n      role=\"status\"\n      aria-busy=\"true\"\n      aria-label={label ?? \"Loading content\"}\n      className={cn(\"relative overflow-hidden rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)]\", className)}\n      style={{ width, height: h }}\n      {...rest}\n    >\n      <style>{BP_CSS}</style>\n      <div className=\"bk-bp-grid absolute inset-0\" aria-hidden=\"true\" />\n\n      {/* dashed frame that draws itself */}\n      <svg\n        aria-hidden=\"true\"\n        className=\"absolute inset-0\"\n        width={width}\n        height={h}\n        style={{ \"--bk-bp-len\": String((width + h) * 2) } as React.CSSProperties}\n      >\n        <rect\n          x=\"6\"\n          y=\"6\"\n          width={width - 12}\n          height={h - 12}\n          rx=\"8\"\n          fill=\"none\"\n          stroke=\"color-mix(in oklab, var(--b-accent) 55%, transparent)\"\n          strokeWidth=\"1.6\"\n          strokeDasharray=\"7 5\"\n          style={{\n            strokeDashoffset: 0,\n            animation: reduced ? undefined : `bk-bp-draw ${1.6}s cubic-bezier(.22,1,.36,1) both`,\n          }}\n        />\n        {per != null && (\n          <rect\n            x=\"6\"\n            y={h - 12}\n            width={(width - 12) * per}\n            height=\"6\"\n            rx=\"3\"\n            fill=\"color-mix(in oklab, var(--b-accent) 55%, transparent)\"\n          />\n        )}\n      </svg>\n\n      {/* ghost rows */}\n      <div className=\"absolute inset-x-3.5 top-4 flex flex-col gap-[17px]\" aria-hidden=\"true\">\n        {Array.from({ length: rows }, (_, i) => (\n          <div\n            key={i}\n            className=\"h-2 rounded-sm bg-[color:color-mix(in_oklab,var(--b-text)_12%,transparent)]\"\n            style={{\n              width: `${88 - (i % 3) * 22}%`,\n              opacity: 0.6 - i * 0.08,\n            }}\n          />\n        ))}\n      </div>\n\n      {/* scanning beam */}\n      {per == null && !reduced && (\n        <div\n          className=\"absolute inset-x-0 top-0 h-9\"\n          style={{\n            animation: `bk-bp-scan ${2.2}s cubic-bezier(.4,0,.6,1) infinite alternate`,\n            \"--bk-bp-h\": `${h - 36}px`,\n            background: \"linear-gradient(to bottom, transparent, color-mix(in oklab, var(--b-accent) 14%, transparent))\",\n          } as React.CSSProperties}\n          aria-hidden=\"true\"\n        />\n      )}\n\n      {label && (\n        <span className=\"absolute bottom-1.5 right-2.5 font-mono text-[10px] uppercase tracking-widest text-[color:var(--b-accent)]\" style={{ animation: reduced ? undefined : `bk-bp-pulse ${2}s ease-in-out infinite` }}>\n          {per != null ? `${Math.round(per * 100)}%` : \"drafting\"}\n        </span>\n      )}\n    </div>\n  );\n}\n\nexport default BlueprintLoader;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/blueprint-loader/index.tsx"
+}

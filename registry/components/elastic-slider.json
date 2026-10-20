@@ -1,0 +1,129 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "elastic-slider",
+  "name": "Elastic Slider",
+  "slug": "elastic-slider",
+  "description": "Rubber-band slider: the knob over-stretches at the rails and snaps back with spring physics. role=slider + arrows/Home/End.",
+  "categories": [
+    "forms",
+    "motion"
+  ],
+  "tags": [
+    "slider",
+    "elastic",
+    "spring"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/elastic-slider/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/elastic-slider/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/elastic-slider/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/elastic-slider/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/elastic-slider/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/elastic-slider/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/elastic-slider/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/elastic-slider/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/elastic-slider/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/elastic-slider/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/elastic-slider/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/elastic-slider/index.tsx",
+      "target": "components/buildora/elastic-slider.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { motion } from \"motion/react\";\n\nexport type ElasticSliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"defaultValue\"> & {\n  min?: number;\n  max?: number;\n  step?: number;\n  value?: number;\n  defaultValue?: number;\n  onChange?: (value: number) => void;\n  /** Optional suffix rendered next to the numeric readout. */\n  unit?: string;\n  label?: string;\n  /** Minimum pixel width of the free-moving track. */\n  trackWidth?: number;\n};\n\n/**\n * ElasticSlider — a slider whose knob over-stretches at the edges and\n * snaps back with rubber-band physics. Keyboard: arrows step, Home/End,\n * PageUp/PageDown. Announced via role=\"slider\".\n */\nexport function ElasticSlider({\n  min = 0,\n  max = 100,\n  step = 1,\n  value,\n  defaultValue,\n  onChange,\n  unit = \"\",\n  label = \"Value\",\n  trackWidth = 260,\n  className,\n  ...rest\n}: ElasticSliderProps) {\n  const reduced = useReducedMotion();\n  const [internal, setInternal] = React.useState(defaultValue ?? min);\n  const active = value ?? internal;\n  const trackRef = React.useRef<HTMLDivElement | null>(null);\n  const [stretch, setStretch] = React.useState(0); // overshoot px beyond bounds\n\n  const pct = (active - min) / (max - min);\n\n  const commit = (v: number) => {\n    const clamped = Math.min(max, Math.max(min, v));\n    const snapped = Math.round(clamped / step) * step;\n    if (value === undefined) setInternal(snapped);\n    onChange?.(snapped);\n  };\n\n  const posToValue = (clientX: number) => {\n    const track = trackRef.current;\n    if (!track) return min;\n    const r = track.getBoundingClientRect();\n    return min + Math.max(0, Math.min(1, (clientX - r.left) / r.width)) * (max - min);\n  };\n\n  const onPointer = (e: React.PointerEvent) => {\n    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);\n    const v = posToValue(e.clientX);\n    if (v < min) setStretch(Math.min(28, (min - v) * 2.2));\n    else if (v > max) setStretch(Math.min(28, (v - max) * 2.2));\n    else setStretch(0);\n    commit(v);\n  };\n\n  const onKey = (e: React.KeyboardEvent) => {\n    const big = Math.max(step, (max - min) / 8);\n    const map: Record<string, number> = {\n      ArrowRight: active + step,\n      ArrowUp: active + step,\n      ArrowLeft: active - step,\n      ArrowDown: active - step,\n      PageUp: active + big,\n      PageDown: active - big,\n      Home: min,\n      End: max,\n    };\n    if (!(e.key in map)) return;\n    e.preventDefault();\n    const v = map[e.key];\n    if (v < min || v > max) setStretch(Math.min(28, (v < min ? min - v : v - max) * 0.5));\n    commit(v);\n  };\n\n  const release = () => setStretch(0);\n\n  const readout = `${Math.round(active * 100) / 100}${unit ? unit : \"\"}`;\n\n  return (\n    <div\n      className={cn(\"flex w-full max-w-md flex-col gap-3\", className)}\n      onKeyDown={onKey}\n      {...rest}\n    >\n      <div className=\"flex items-baseline justify-between gap-4\">\n        <span className=\"text-xs font-medium uppercase tracking-widest text-[color:var(--b-muted)]\">{label}</span>\n        <span className=\"font-display text-lg font-bold tabular-nums text-[color:var(--b-text)]\">\n          {readout}\n          {unit ? <span className=\"ml-0.5 text-xs font-medium text-[color:var(--b-muted)]\">{unit}</span> : null}\n        </span>\n      </div>\n      <div\n        ref={trackRef}\n        role=\"slider\"\n        aria-valuemin={min}\n        aria-valuemax={max}\n        aria-valuenow={active}\n        aria-valuetext={readout}\n        aria-label={label}\n        tabIndex={0}\n        onPointerDown={onPointer}\n        onPointerMove={(e) => {\n          if (e.buttons & 1) onPointer(e);\n        }}\n        onPointerUp={release}\n        onPointerCancel={release}\n        onPointerLeave={release}\n        className={cn(\n          \"relative w-full cursor-pointer touch-none rounded-full outline-none\",\n          \"h-2 border-[color:var(--b-border)] bg-[color:color-mix(in_oklab,var(--b-text)_8%,transparent)]\",\n          \"focus-visible:ring-2 focus-visible:ring-[color:var(--b-accent)]\"\n        )}\n        style={{ maxWidth: trackWidth }}\n      >\n        <motion.div\n          className=\"absolute inset-y-0 left-0 rounded-full bg-[color:var(--b-accent)]\"\n          style={{ width: `${Math.max(0, Math.min(1, pct)) * 100}%` }}\n          aria-hidden=\"true\"\n        />\n        <motion.div\n          className=\"absolute top-1/2 flex h-8 w-8 items-center justify-center rounded-full border bg-[color:var(--b-panel)] shadow-md -translate-y-1/2 outline-none\"\n          style={{ left: `${Math.max(0, Math.min(1, pct)) * 100}%` }}\n          animate={\n            reduced\n              ? { x: stretch > 0 ? (stretch > 0 ? (pct <= 0 ? -Math.min(10, stretch / 3) : Math.min(10, stretch / 3)) : 0) : 0, scaleX: 1 }\n              : { x: pct <= 0 ? -Math.min(12, stretch / 2.2) : pct >= 1 ? Math.min(12, stretch / 2.2) : 0, scaleX: stretch > 0 ? 1 + Math.min(0.28, stretch / 90) : 1 }\n          }\n          transition={reduced ? { duration: 0 } : { type: \"spring\", bounce: 0.5, duration: 0.5 }}\n          aria-hidden=\"true\"\n        >\n          <span className=\"h-3 w-[3px] rounded-full bg-[color:var(--b-accent)]\" />\n        </motion.div>\n      </div>\n      <div className=\"flex justify-between font-mono text-[10px] text-[color:var(--b-muted)]\" aria-hidden=\"true\">\n        <span>{min}{unit}</span>\n        <span>{max}{unit}</span>\n      </div>\n    </div>\n  );\n}\n\nexport default ElasticSlider;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/elastic-slider",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/elastic-slider/index.tsx",
+  "sourceDir": "elastic-slider",
+  "docs": "/components/elastic-slider",
+  "install": "pnpm dlx shadcn@latest add @buildora/elastic-slider"
+}

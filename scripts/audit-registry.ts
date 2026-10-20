@@ -6,11 +6,11 @@ const fail = (m: string) => { console.error("✗", m); failed++; };
 
 for (const f of readdirSync(dir).filter((f) => f.endsWith(".json") && f !== "registry.json" && f !== "agent-catalog.json")) {
   const item = JSON.parse(readFileSync(`${dir}/${f}`, "utf8"));
-  const declared = new Set<string>(item.dependencies ?? []);
+  const declared = new Set<string>((item.dependencies ?? []).map((d: string) => d.split("@").slice(0, d.startsWith("@") ? 2 : 1).join("@")));
   const src: string = (item.files ?? []).map((x: { content: string }) => x.content).join("\n");
-  
+   
   if (src.includes("\r")) fail(`${item.name}: CRLF line endings`);
-  
+   
   for (const [, spec] of src.matchAll(/from\s+["']([^"']+)["']/g)) {
     if (spec.startsWith("@buildora/")) { fail(`${item.name}: workspace import ${spec}`); continue; }
     if (spec.startsWith(".") || spec.startsWith("@/") || spec === "react" || spec === "react-dom") continue;

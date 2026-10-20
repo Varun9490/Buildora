@@ -86,18 +86,10 @@ const R = (slug: string, compat: Partial<Record<string, Compat>>, extra: Partial
     ...compat
   },
   notes: { ...HONEST_SNIPPET_NOTES, ...extra.notes },
-  dependencies: [
-    ...(extra.dependencies ?? []),
-    ...(
-      [
-        "command-palette", "mobile-nav", "navbar", "onboarding-checklist",
-        "pricing-table", "progress", "sidebar", "slider", "tabs",
-        "team-switcher", "usage-dashboard", "slingshot-otp"
-      ].includes(slug) && !(extra.dependencies ?? []).includes("motion")
-        ? ["motion"]
-        : []
-    )
-  ],
+  // Extra deps are declared by hand; the real list is derived from the
+  // source imports at emit time (see inferDependencies) so it can never
+  // drift out of sync with the code.
+  dependencies: [...(extra.dependencies ?? [])],
   registryDependencies: Array.from(new Set([...(extra.registryDependencies ?? []), "utils", "tokens"])),
   files: extra.files ?? [`packages/components/src/${slug}/index.tsx`],
   targets: extra.targets ?? extra.files?.map(f => f.endsWith('index.tsx') ? `components/buildora/${slug}.tsx` : `components/buildora/${slug}/${path.basename(f)}`),
@@ -111,17 +103,12 @@ const R = (slug: string, compat: Partial<Record<string, Compat>>, extra: Partial
 const fullWeb = {};
 const noMobile3D: Partial<Record<string, Compat>> = { reactNative: "Partial", flutter: "Experimental", swiftUI: "Experimental", compose: "Experimental" };
 
-
-const baseItems: CatalogItem[] = [
-  R("utils", {}, { name: "utils", description: "Utility functions", registryType: "registry:lib", files: ["packages/components/src/utils/index.ts"] }),
-  R("use-reduced-motion", {}, { name: "use-reduced-motion", description: "Hook for reduced motion", registryType: "registry:hook", files: ["packages/components/src/hooks/use-reduced-motion.ts"] }),
-  R("use-pointer-proximity", {}, { name: "use-pointer-proximity", description: "Hook for pointer proximity", registryType: "registry:hook", files: ["packages/components/src/hooks/use-pointer-proximity.ts"] }),
-  R("spring", {}, { name: "spring", description: "Spring animation utility", registryType: "registry:lib", files: ["packages/components/src/animations/spring.ts"] }),
-  R("tokens", {}, { name: "tokens", description: "Design tokens", registryType: "registry:theme", files: ["packages/components/src/tokens/index.css"], cssVars: { light: {}, dark: {} } })
-];
+// NOTE: the shared foundations (utils, use-reduced-motion, use-pointer-proximity,
+// spring, tokens) are declared once, in full, in the "Shared foundations" block
+// below. They used to also live here, which published every one of them twice:
+// the registry index claimed 110 components for 105 unique slugs.
 
 export const catalog: CatalogItem[] = [
-  ...baseItems,
   R("floating-object", fullWeb, { name: "Floating Object", description: "3D hovering objects with perspective tilt on hover, floating animation, and drop shadow.", categories: ["motion"], tags: ["3d", "hover"], difficulty: "intermediate" }),
   R("horizontal-scroll", fullWeb, { name: "Horizontal Scroll", description: "Scroll-driven horizontal panning section with mobile fallback.", categories: ["motion"], tags: ["scroll", "horizontal"], difficulty: "advanced" }),
   R("thread-line", fullWeb, { name: "Thread Line", description: "Animated SVG path that draws itself on scroll or on mount.", categories: ["motion"], tags: ["scroll", "svg"], difficulty: "beginner" }),
@@ -133,6 +120,23 @@ export const catalog: CatalogItem[] = [
   R("magnetic-button", fullWeb, { name: "Magnetic Button", description: "A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.", categories: ["motion"], tags: ["button", "magnetic", "spring", "cursor"], difficulty: "beginner", dependencies: ["clsx", "tailwind-merge", "zod"], demoProps: { strength: 0.35, radius: 120 } }),
   R("slingshot-otp", fullWeb, { name: "Slingshot OTP", description: "OTP with real inputs, paste, and SR support. Standard mode by default; slingshot game is opt-in delight.", categories: ["motion"], tags: ["otp", "slingshot", "spring", "signature"], difficulty: "advanced", states: ["empty", "filled", "error"], dependencies: ["motion"] }),
   R("interactive-dropzone", fullWeb, { name: "Interactive Dropzone", description: "Proximity-reactive dropzone with progress visualization and error recovery.", categories: ["motion"], tags: ["upload", "dropzone", "magnetic"], difficulty: "intermediate" }),
+
+  R("segmented-control", fullWeb, { name: "Segmented Control", description: "iOS-style segmented option picker with a spring-gliding accent pill, radiogroup semantics and full keyboard nav.", categories: ["primitives", "motion"], tags: ["segmented", "tabs", "pill"], difficulty: "beginner" }),
+  R("gooey-menu", fullWeb, { name: "Gooey Menu", description: "FAB whose actions fan out as fused SVG-goo blobs with crisp labels riding on top. Escape and outside-click close.", categories: ["motion", "overlays"], tags: ["fab", "gooey", "menu"], difficulty: "intermediate" }),
+  R("elastic-slider", fullWeb, { name: "Elastic Slider", description: "Rubber-band slider: the knob over-stretches at the rails and snaps back with spring physics. role=slider + arrows/Home/End.", categories: ["forms", "motion"], tags: ["slider", "elastic", "spring"], difficulty: "intermediate" }),
+  R("morph-select", fullWeb, { name: "Morph Select", description: "Select whose trigger stretches into the options list and seals back into a pill. Listbox semantics, arrow nav, outside close.", categories: ["forms", "motion"], tags: ["select", "morph", "listbox"], difficulty: "intermediate" }),
+  R("confirm-morph", fullWeb, { name: "Confirm Morph", description: "One button, two identities: idle → confirm strip → animated check. aria-live, auto-revert, danger variant.", categories: ["primitives", "motion"], tags: ["confirm", "destructive", "button"], difficulty: "beginner" }),
+  R("detent-dial", fullWeb, { name: "Detent Dial", description: "Rotary knob with Gaussian tick-wave emphasis around the active detent. Drag, wheel, or arrows; role=slider.", categories: ["forms", "motion"], tags: ["dial", "knob", "rotary"], difficulty: "intermediate" }),
+  R("liquid-gauge", fullWeb, { name: "Liquid Gauge", description: "Ring meter filled with two out-of-phase liquid waves, clipped and animated. role=meter with valuetext.", categories: ["feedback", "motion"], tags: ["gauge", "liquid", "wave"], difficulty: "intermediate" }),
+  R("comet-ring-spinner", fullWeb, { name: "Comet Ring Spinner", description: "Comet head racing around a ring of fading trail dots. Pure CSS transforms, role=status, frozen under reduced motion.", categories: ["feedback"], tags: ["spinner", "comet", "loader"], difficulty: "beginner" }),
+  R("blueprint-loader", fullWeb, { name: "Blueprint Loader", description: "Drafting-sheet placeholder that draws its dashed frame while ghost rows ghost in behind a scanning beam. Progress and indeterminate.", categories: ["feedback", "motion"], tags: ["loader", "blueprint", "drafting"], difficulty: "beginner" }),
+  R("fresnel-orb", fullWeb, { name: "Fresnel Orb", description: "Iridescent orb of layered conic and radial gradients with drifting orientation, rim highlight and caustic core. Pure CSS.", categories: ["backgrounds", "motion"], tags: ["orb", "iridescent", "gradient"], difficulty: "beginner" }),
+  R("letter-wave", fullWeb, { name: "Letter Wave", description: "Hover, focus or optional autoloop sends a sine wave rippling through the letters. Real text in aria-label.", categories: ["motion"], tags: ["type", "kinetic", "wave"], difficulty: "beginner" }),
+  R("focus-blur-list", fullWeb, { name: "Focus Blur List", description: "List rows where the hovered/focused one stays crisp and siblings sink back with blur + dim. Focus mirrors hover.", categories: ["motion", "blocks"], tags: ["list", "blur", "focus"], difficulty: "beginner" }),
+  R("grab-roller-strip", fullWeb, { name: "Grab Roller Strip", description: "Physical roller strip you drag sideways; it settles on the nearest label under a fixed marker with flanks in fade flow.", categories: ["forms", "motion"], tags: ["roller", "drag", "snap"], difficulty: "intermediate" }),
+  R("unified-login-field", fullWeb, { name: "Unified Login Field", description: "One bordered container that morphs between email and password stages instead of juggling boxes. Shake on invalid email, Escape steps back.", categories: ["forms"], tags: ["login", "email", "password"], difficulty: "intermediate" }),
+  R("magnetic-dropzone", fullWeb, { name: "Magnetic Dropzone", description: "Dropzone that leans toward a file-drag cursor and pulses its field; browse input fallback; dropped files list with removers.", categories: ["forms", "motion"], tags: ["drag-drop", "files", "magnetic"], difficulty: "intermediate" }),
+  R("draggable-card-pile", fullWeb, { name: "Draggable Card Pile", description: "Riffled stack: the top card drags out past a threshold and cycles to the back with spring physics. Enter flings for keyboard.", categories: ["motion", "blocks"], tags: ["cards", "stack", "drag"], difficulty: "intermediate" }),
 
   R("streaming-chat", fullWeb, { name: "Streaming Chat", description: "Demo chat UI with simulated token streaming and citations. No transport yet — do not point at production. Transport-agnostic rebuild planned.", categories: ["ai-llm"], tags: ["chat", "demo", "llm"], difficulty: "intermediate" }),
   R("model-selector", fullWeb, { name: "Model Selector", description: "Accessible model picker with status dot.", categories: ["ai-llm"], tags: ["model", "selector"], difficulty: "beginner", files: ["packages/components/src/streaming-chat/index.tsx"] }),
@@ -420,6 +424,41 @@ export function toConsumerContent(content: string) {
   return out;
 }
 
+/** Versions pinned for registry consumers. `shadcn add` reads `name@range`.
+ * Only motion is pinned: it is the one dependency whose public API moves
+ * between majors, and the rest are stable enough to inherit from the host. */
+const DEP_VERSIONS: Record<string, string> = {
+  motion: "^13.4.0",
+};
+
+/** Packages the consumer must have for this item's source to compile.
+ * Derived from the real import specifiers so the manifest can never claim a
+ * dependency the code does not use, or omit one it does. */
+const PEER_PACKAGES = new Set(["react", "react-dom"]);
+
+export function inferDependencies(item: CatalogItem): string[] {
+  const declared = new Set(item.dependencies ?? []);
+  let src = "";
+  for (const f of item.files) {
+    try {
+      src += "\n" + fs.readFileSync(path.join(process.cwd(), f), "utf8");
+    } catch { /* ignore */ }
+  }
+  const specs = [
+    ...src.matchAll(/(?:from|import)\s+["']([^"']+)["']/g),
+  ].map((m) => m[1]);
+  for (const spec of specs) {
+    if (spec.startsWith(".") || spec.startsWith("@/") || spec.startsWith("node:")) continue;
+    if (spec.startsWith("@buildora/")) continue;
+    const pkg = spec.startsWith("@") ? spec.split("/").slice(0, 2).join("/") : spec.split("/")[0];
+    if (!pkg || PEER_PACKAGES.has(pkg)) continue;
+    declared.add(pkg);
+  }
+  return [...declared].sort().map((pkg) =>
+    DEP_VERSIONS[pkg] ? `${pkg}@${DEP_VERSIONS[pkg]}` : pkg
+  );
+}
+
 /** Infer registryDependencies from workspace imports in source. */
 export function inferRegistryDeps(item: CatalogItem): string[] {
   if (["utils", "use-reduced-motion", "spring", "use-pointer-proximity", "tokens"].includes(item.slug)) {
@@ -496,7 +535,7 @@ export function toRegistryJson(item: CatalogItem) {
       ])
     ),
     accessibility: { keyboard: true, screenReader: true, reducedMotion: true },
-    dependencies: item.dependencies ?? [],
+    dependencies: inferDependencies(item),
     registryDependencies: inferRegistryDeps(item),
     provenance: { origin: "original", license: "MIT", adapted: false },
     files: item.files.map((f, i) => {
@@ -526,7 +565,7 @@ export function toShadcnJson(item: CatalogItem) {
     description: item.description,
     status: item.status ?? "beta",
     categories: item.categories,
-    dependencies: item.dependencies ?? [],
+    dependencies: inferDependencies(item),
     registryDependencies: inferRegistryDeps(item),
     files: item.files.map((f, i) => {
       try {
@@ -564,7 +603,7 @@ export function toAgentCatalog(item: CatalogItem) {
     frameworks: Object.fromEntries(
       Object.entries(item.compat).map(([fw, status]) => [fw, { status, note: item.notes?.[fw] }])
     ),
-    dependencies: item.dependencies ?? [],
+    dependencies: inferDependencies(item),
     registryDependencies: inferRegistryDeps(item),
     status: item.status ?? "beta",
     provenance: (reg as { provenance?: unknown }).provenance ?? { origin: "original" },

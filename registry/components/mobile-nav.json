@@ -102,7 +102,7 @@
     "reducedMotion": true
   },
   "dependencies": [
-    "motion"
+    "motion@^13.4.0"
   ],
   "registryDependencies": [
     "https://buildora-hazel.vercel.app/r/utils.json",

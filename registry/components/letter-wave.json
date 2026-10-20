@@ -1,0 +1,126 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "letter-wave",
+  "name": "Letter Wave",
+  "slug": "letter-wave",
+  "description": "Hover, focus or optional autoloop sends a sine wave rippling through the letters. Real text in aria-label.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "type",
+    "kinetic",
+    "wave"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/letter-wave/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/letter-wave/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/letter-wave/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/letter-wave/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/letter-wave/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/letter-wave/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/letter-wave/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/letter-wave/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/letter-wave/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/letter-wave/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/letter-wave/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/letter-wave/index.tsx",
+      "target": "components/buildora/letter-wave.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type LetterWaveProps = React.HTMLAttributes<HTMLSpanElement> & {\n  text: string;\n  /** Per-letter hover bob amplitude in px. */\n  lift?: number;\n  /** Stagger between letters, ms. */\n  stagger?: number;\n  /** Period of the autoloop in ms; omit to react to hover/focus only. */\n  waveEvery?: number;\n};\n\n/**\n * LetterWave — hover (or focus, or an optional autoloop) sends a sine\n * wave rippling through the letters. Real text exposed via aria-label,\n * glyphs decorative. Static under reduced motion.\n */\nexport function LetterWave({\n  text,\n  lift = 8,\n  stagger = 34,\n  waveEvery,\n  className,\n  ...rest\n}: LetterWaveProps) {\n  const reduced = useReducedMotion();\n  const [tick, setTick] = React.useState(0);\n  const [hovering, setHovering] = React.useState(false);\n\n  React.useEffect(() => {\n    if (!waveEvery || reduced || hovering) return;\n    const on = () => setTick((t) => t + 1);\n    const id = window.setInterval(on, waveEvery);\n    return () => window.clearInterval(id);\n  }, [waveEvery, reduced, hovering]);\n\n  const play = hovering || tick > 0;\n\n  return (\n    <span\n      onPointerEnter={() => setHovering(true)}\n      onPointerLeave={() => setHovering(false)}\n      onFocus={() => setHovering(true)}\n      onBlur={() => setHovering(false)}\n      tabIndex={waveEvery ? undefined : 0}\n      className={cn(\"inline-block whitespace-pre select-none\", className)}\n      {...rest}\n    >\n      <span className=\"sr-only\">{text}</span>\n      <span aria-hidden className=\"inline-block\">\n        {text.split(\"\").map((ch, i) => (\n        <span key={`${i}-${tick > 0 ? \"T\" : \"H\"}`} className=\"inline-block\" style={{ willChange: \"transform\" }}>\n          <span\n            aria-hidden\n            className=\"inline-block\"\n            style={\n              reduced\n                ? undefined\n                : play\n                  ? {\n                      animation: `bk-letter-bob ${620 + i * 24}ms cubic-bezier(.34,1.56,.64,1) ${i * stagger}ms both`,\n                    }\n                  : undefined\n            }\n          >\n            {ch === \" \" ? \"\\u00A0\" : ch}\n          </span>\n        </span>\n      ))}\n      </span>\n      <style>\n        {`@keyframes bk-letter-bob{0%{transform:translateY(0)}40%{transform:translateY(-${lift}px)}72%{transform:translateY(${lift * 0.18}px)}100%{transform:translateY(0)}}`}\n      </style>\n    </span>\n  );\n}\n\nexport default LetterWave;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/letter-wave",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/letter-wave/index.tsx",
+  "sourceDir": "letter-wave",
+  "docs": "/components/letter-wave",
+  "install": "pnpm dlx shadcn@latest add @buildora/letter-wave"
+}

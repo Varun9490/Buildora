@@ -5,6 +5,22 @@ import { DEFAULT_RENDER_CONTROLS, type Controls } from "@/lib/render-controls";
 import {
   MagneticButton,
   Backdrop,
+  SegmentedControl,
+  GooeyMenu,
+  ElasticSlider,
+  MorphSelect,
+  ConfirmMorph,
+  DetentDial,
+  LiquidGauge,
+  CometRingSpinner,
+  BlueprintLoader,
+  FresnelOrb,
+  LetterWave,
+  FocusBlurList,
+  GrabRollerStrip,
+  UnifiedLoginField,
+  MagneticDropzone,
+  DraggableCardPile,
   CursorFx,
   TextFx,
   MatrixDecode,
@@ -389,6 +405,173 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
           <FxButton effect="shimmer">Shimmer</FxButton>
           <FxButton effect="ripple">Ripple</FxButton>
           <FxButton effect="liquid">Liquid</FxButton>
+        </div>
+      );
+    case "segmented-control":
+      return wrap(
+        <div className="flex w-full flex-col items-center gap-4">
+          <SegmentedControl
+            label="Billing cycle"
+            items={[
+              { value: "monthly", label: "Monthly" },
+              { value: "quarterly", label: "Quarterly" },
+              { value: "yearly", label: "Yearly" },
+            ]}
+          />
+          <SegmentedControl
+            size="sm"
+            label="View"
+            items={[
+              { value: "list", label: "List" },
+              { value: "board", label: "Board" },
+              { value: "timeline", label: "Timeline" },
+            ]}
+          />
+        </div>
+      );
+    case "gooey-menu":
+      return wrap(
+        <div className="flex w-full items-start justify-center pt-2">
+          <GooeyMenu
+            openLabel="+"
+            label="Quick actions"
+            onItemSelect={() => undefined}
+            items={[
+              { label: "Share", onSelect: () => undefined, icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 15V3m0 0L7 8m5-5 5 5" /><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" /></svg> },
+              { label: "Link", onSelect: () => undefined, icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.7 1.7" /><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.7-1.7" /></svg> },
+              { label: "Edit", onSelect: () => undefined, icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 20l4.5-1 9-9a2.1 2.1 0 0 0-3-3l-9 9L4 20z" /></svg> },
+            ]}
+          />
+        </div>
+      );
+    case "elastic-slider":
+      return wrap(
+        <div className="flex w-full max-w-md flex-col gap-7 px-2 py-4">
+          <ElasticSlider label="Volume" defaultValue={64} unit="%" />
+          <ElasticSlider label="Thread count" min={1} max={16} defaultValue={8} />
+        </div>
+      );
+    case "morph-select":
+      return wrap(
+        <div className="flex w-full flex-wrap items-start justify-center gap-6 py-2">
+          <MorphSelect
+            label="Deploy preset"
+            defaultValue="fast"
+            onChange={() => undefined}
+            options={[
+              { value: "fast", label: "Fast", desc: "2 no-hold edge targets" },
+              { value: "full", label: "Full", desc: "All 8 regions, warmed caches" },
+              { value: "canary", label: "Canary", desc: "5% traffic, auto-rollback" },
+            ]}
+          />
+        </div>
+      );
+    case "confirm-morph":
+      return wrap(
+        <div className="flex w-full flex-wrap items-center justify-center gap-4 py-2">
+          <ConfirmMorph
+            label="Rotate keys"
+            confirmLabel="Rotate for real?"
+            variant="danger"
+            onSuccess={async () => undefined}
+          />
+        </div>
+      );
+    case "detent-dial":
+      return wrap(
+        <div className="flex w-full items-start justify-center gap-8 py-2">
+          <DetentDial
+            detents={21}
+            defaultValue={17}
+            format={(v) => `${v * 5}°C`}
+            label="Oven temperature"
+          />
+        </div>
+      );
+    case "liquid-gauge":
+      return wrap(
+        <div className="flex w-full flex-wrap items-center justify-center gap-5 py-2">
+          <LiquidGauge value={68} size={112} label="Buffer" />
+          <LiquidGauge value={92} size={112} variant="warning" label="Queue" />
+          <LiquidGauge value={34} size={112} variant="danger" label="Disk" />
+        </div>
+      );
+    case "comet-ring-spinner":
+      return wrap(
+        <div className="flex w-full flex-wrap items-center justify-center gap-8 py-4">
+          <CometRingSpinner size={36} label="Loading" />
+          <CometRingSpinner size={48} tone="iris" label="Deploying" />
+          <CometRingSpinner size={60} dots={18} tone="text" label="Verifying" />
+        </div>
+      );
+    case "blueprint-loader":
+      return wrap(
+        <div className="flex w-full flex-wrap items-start justify-center gap-6 py-2">
+          <BlueprintLoader label="Redeploying workspace" rows={4} />
+          <BlueprintLoader progress={0.62} label="Attaching volume" rows={4} width={300} />
+        </div>
+      );
+    case "fresnel-orb":
+      return wrap(
+        <div className="flex w-full flex-wrap items-center justify-center gap-10 py-4">
+          <FresnelOrb size={112} />
+          <FresnelOrb size={112} hueA={80} hueB={160} drift={1.6} />
+          <FresnelOrb size={112} hueA={330} hueB={20} ariaLabel="decorative orb" />
+        </div>
+      );
+    case "letter-wave":
+      return wrap(
+        <div className="flex w-full flex-col items-center gap-3 py-4">
+          <LetterWave text="Hover this word" lift={9} className="font-display text-4xl font-black" />
+          <LetterWave text="then this one" lift={6} stagger={44} className="font-display text-2xl font-bold text-[color:var(--b-text-secondary)]" />
+        </div>
+      );
+    case "focus-blur-list":
+      return wrap(
+        <div className="w-full max-w-md">
+          <FocusBlurList
+            items={[
+              { title: "Cover Flow", meta: "iOS-style carousel in React · useplanes.com" },
+              { title: "Xenon", meta: "The lightest memory your Mac can have" },
+              { title: "Oopsly", meta: "404 page builder for the web" },
+              { title: "LangOS", meta: "Localization-first product surface" },
+              { title: "BlinkJs", meta: "Instant JS playground for drills" },
+            ]}
+          />
+        </div>
+      );
+    case "grab-roller-strip":
+      return wrap(
+        <div className="flex w-full max-w-sm flex-col items-center gap-3 py-6">
+          <GrabRollerStrip
+            label="Region"
+            defaultValue={2}
+            labels={["iad1", "sfo1", "fra1", "syd1", "sin1"]}
+          />
+        </div>
+      );
+    case "unified-login-field":
+      return wrap(
+        <div className="flex w-full max-w-sm flex-col items-center gap-3 py-4">
+          <UnifiedLoginField onSubmit={async () => undefined} />
+        </div>
+      );
+    case "magnetic-dropzone":
+      return wrap(
+        <div className="flex w-full max-w-sm flex-col items-center pt-2">
+          <MagneticDropzone onFiles={() => undefined} label="Drop uploads here" />
+        </div>
+      );
+    case "draggable-card-pile":
+      return wrap(
+        <div className="flex w-full items-start justify-center pt-2">
+          <DraggableCardPile
+            cards={[
+              { title: "Ship console", sub: "Multi-carrier logistics for enterprise" },
+              { title: "Planes UI", sub: "Components people stop scrolling for" },
+              { title: "Buildora", sub: "One system. Any product." },
+            ]}
+          />
         </div>
       );
     // removed magnetic-card

@@ -24,6 +24,9 @@ export interface TerminalTabBarProps {
   onTabSplit?: (tabId: string) => void;
   theme: TerminalColorScheme;
   className?: string;
+  /** Ids of the tab panels that actually exist. A tab only points at a
+   *  panel that is rendered — a dangling aria-controls is an ARIA error. */
+  panelIds?: string[];
 }
 
 const typeIcons: Record<string, React.ReactNode> = {
@@ -59,6 +62,7 @@ export function TerminalTabBar({
   onTabSplit,
   theme,
   className,
+  panelIds,
 }: TerminalTabBarProps) {
   const [dragIndex, setDragIndex] = React.useState<number | null>(null);
   const [dropIndex, setDropIndex] = React.useState<number | null>(null);
@@ -101,68 +105,66 @@ export function TerminalTabBar({
         backgroundColor: theme.background,
         borderBottom: `1px solid ${theme.brightBlack}`,
       }}
-      role="tablist"
+      role="toolbar"
       aria-label="Terminal tabs"
     >
       {tabs.map((tab, idx) => {
         const isActive = tab.id === activeTab;
         const icon = tab.icon ?? typeIcons[tab.type ?? "terminal"];
-        
+
+        // A tablist may only contain tabs, so the close/split actions cannot
+        // live next to one inside it. The strip is a toolbar of buttons: the
+        // active tab is aria-pressed, and every control has its own name.
         return (
-          <div
-            key={tab.id}
-            className={cn(
-              "group flex items-center gap-1 px-2 h-6 rounded-t cursor-pointer",
-              "transition-colors duration-150",
-              "focus-within:outline-none"
-            )}
-            style={{
-              backgroundColor: isActive ? theme.black : "transparent",
-              borderLeft: dropIndex === idx && dragIndex !== null ? `2px solid ${theme.cyan}` : "none",
-            }}
-            role="tab"
-            aria-selected={isActive}
-            aria-controls={`panel-${tab.id}`}
-            tabIndex={isActive ? 0 : -1}
-            draggable={onTabReorder !== undefined}
-            onClick={() => onTabChange(tab.id)}
-            onDragStart={(e) => handleDragStart(e, idx)}
-            onDragOver={(e) => handleDragOver(e, idx)}
-            onDrop={(e) => handleDrop(e, idx)}
-            onDragEnd={handleDragEnd}
-          >
-            {icon && (
-              <span
-                className="shrink-0"
-                style={{ color: isActive ? theme.foreground : theme.brightBlack }}
-              >
-                {icon}
-              </span>
-            )}
-            <span
-              className="text-xs truncate max-w-[120px]"
+          <React.Fragment key={tab.id}>
+            <button
+              type="button"
+              id={`tab-${tab.id}`}
+              aria-pressed={isActive}
+              aria-controls={panelIds?.includes(`panel-${tab.id}`) ? `panel-${tab.id}` : undefined}
+              tabIndex={isActive ? 0 : -1}
+              draggable={onTabReorder !== undefined}
+              onClick={() => onTabChange(tab.id)}
+              onDragStart={(e) => handleDragStart(e, idx)}
+              onDragOver={(e) => handleDragOver(e, idx)}
+              onDrop={(e) => handleDrop(e, idx)}
+              onDragEnd={handleDragEnd}
               style={{
-                color: isActive ? theme.foreground : theme.brightBlack,
-                fontFamily: "'JetBrains Mono', 'Fira Code', Menlo, monospace",
+                backgroundColor: isActive ? theme.black : "transparent",
+                borderLeft: dropIndex === idx && dragIndex !== null ? `2px solid ${theme.cyan}` : "none",
               }}
+              className="flex items-center gap-1 px-2 h-6 rounded-t cursor-pointer transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[color:var(--b-accent)]"
             >
-              {tab.title}
-            </span>
+              {icon && (
+                <span
+                  className="shrink-0"
+                  style={{ color: isActive ? theme.foreground : theme.brightBlack }}
+                >
+                  {icon}
+                </span>
+              )}
+              <span
+                className="text-xs truncate max-w-[120px]"
+                style={{
+                  color: isActive ? theme.foreground : theme.brightBlack,
+                  fontFamily: "'JetBrains Mono', 'Fira Code', Menlo, monospace",
+                }}
+              >
+                {tab.title}
+              </span>
+            </button>
             {tab.closable !== false && (
               <button
                 type="button"
                 className={cn(
-                  "ml-1 p-0.5 rounded opacity-0 group-hover:opacity-100",
+                  "p-0.5 rounded opacity-50 hover:opacity-100",
                   "hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] transition-opacity"
                 )}
                 style={{ color: theme.brightBlack }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onTabClose(tab.id);
-                }}
+                onClick={() => onTabClose(tab.id)}
                 aria-label={`Close ${tab.title}`}
               >
-                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                   <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
               </button>
@@ -171,22 +173,19 @@ export function TerminalTabBar({
               <button
                 type="button"
                 className={cn(
-                  "p-0.5 rounded opacity-0 group-hover:opacity-100",
+                  "p-0.5 rounded opacity-50 hover:opacity-100",
                   "hover:bg-[color-mix(in_oklab,var(--b-text)_10%,transparent)] transition-opacity"
                 )}
                 style={{ color: theme.brightBlack }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onTabSplit(tab.id);
-                }}
+                onClick={() => onTabSplit(tab.id)}
                 aria-label={`Split ${tab.title}`}
               >
-                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
                 </svg>
               </button>
             )}
-          </div>
+          </React.Fragment>
         );
       })}
       <button

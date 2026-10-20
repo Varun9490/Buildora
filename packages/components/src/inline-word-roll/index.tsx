@@ -51,7 +51,8 @@ export function InlineWordRoll({
   const word = list[i] ?? "";
 
   return (
-    <span aria-label={`${prefix}${word}${suffix}`} className={cn("inline", className)} {...rest}>
+    <span className={cn("inline", className)} {...rest}>
+      <span className="sr-only">{`${prefix}${word}${suffix}`}</span>
       <style>{ROLL_CSS}</style>
       <span aria-hidden className="inline">
         {prefix}

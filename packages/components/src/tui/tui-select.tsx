@@ -19,6 +19,8 @@ export interface TUISelectProps {
   className?: string;
   disabled?: boolean;
   searchable?: boolean;
+  /** Accessible name for the combobox. */
+  label?: string;
 }
 
 export function TUISelect({
@@ -29,6 +31,7 @@ export function TUISelect({
   className,
   disabled = false,
   searchable = false,
+  label,
 }: TUISelectProps) {
   const [open, setOpen] = React.useState(false);
   const [focusedIndex, setFocusedIndex] = React.useState(0);
@@ -85,14 +88,16 @@ export function TUISelect({
     <div
       ref={containerRef}
       className={cn("relative font-mono text-xs", className)}
-      tabIndex={disabled ? -1 : 0}
       onKeyDown={handleKeyDown}
-      role="combobox"
-      aria-expanded={open}
-      aria-disabled={disabled}
     >
       <button
         type="button"
+        role="combobox"
+        aria-expanded={open}
+        aria-disabled={disabled}
+        aria-haspopup="listbox"
+        aria-label={label}
+        tabIndex={disabled ? -1 : 0}
         onClick={() => !disabled && setOpen(!open)}
         className={cn(
           "w-full flex items-center justify-between gap-2 px-2 py-1.5 border rounded bg-[var(--b-bg)] text-left",
@@ -116,6 +121,7 @@ export function TUISelect({
         <div
           className="absolute z-50 w-full mt-1 bg-[var(--b-bg)] border border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] rounded shadow-lg overflow-hidden"
           role="listbox"
+          aria-label={label ?? "Options"}
         >
           {searchable && (
             <div className="border-b border-[color-mix(in_oklab,var(--b-border)_10%,transparent)] p-1">

@@ -26,7 +26,6 @@ export function EchoStack({ text, layers = 2, spread = 14, className, style, ...
 
   return (
     <span
-      aria-label={text}
       className={cn("bk-echo-root relative inline-block", className)}
       style={{
         ...style,
@@ -36,6 +35,7 @@ export function EchoStack({ text, layers = 2, spread = 14, className, style, ...
       {...rest}
     >
       <style>{ECHO_CSS}</style>
+      <span className="sr-only">{text}</span>
       <span aria-hidden className="relative inline-block">
         <span className="relative">{text}</span>
         {Array.from({ length: n }, (_, i) => (
