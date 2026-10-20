@@ -63,6 +63,30 @@ const templates = [
     uses: ["masonry-layout", "magnetic-button", "cursor-fx", "logo-cloud"],
     blurb: "An independent digital design practice template focused on highly technical tools and spatial interfaces.",
   },
+  {
+    slug: "product-landing",
+    name: "Product Landing",
+    icon: "layout",
+    gradient: "from-[color-mix(in_oklab,var(--b-accent)_15%,transparent)] via-transparent to-[color-mix(in_oklab,var(--b-accent)_5%,transparent)]",
+    uses: ["split-text", "count-up", "fx-card", "magnetic-button"],
+    blurb: "A product page that leads with a kinetic headline and proves the numbers with counters that arrive.",
+  },
+  {
+    slug: "launch",
+    name: "Product Launch",
+    icon: "spark",
+    gradient: "from-[color-mix(in_oklab,var(--b-accent)_15%,transparent)] via-transparent to-[color-mix(in_oklab,var(--b-accent)_5%,transparent)]",
+    uses: ["pinned-section", "scroll-linked-path", "dynamic-island", "split-text"],
+    blurb: "An announcement page built around a pinned scroll through the phases, with a live status island.",
+  },
+  {
+    slug: "link-in-bio",
+    name: "Link in Bio",
+    icon: "book",
+    gradient: "from-[color-mix(in_oklab,var(--b-accent)_15%,transparent)] via-transparent to-[color-mix(in_oklab,var(--b-accent)_5%,transparent)]",
+    uses: ["text-fx", "magnification-dock", "magnetic-button"],
+    blurb: "One page, one name, and a dock that magnifies under the cursor. Built for people with one link.",
+  },
 ];
 
 function TemplateIcon({ name, className }: { name: string; className?: string }) {
