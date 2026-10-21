@@ -44,6 +44,12 @@ function advertisedUrls(): Set<string> {
     if (typeof doc.$schema === "string") urls.add(doc.$schema);
   }
 
+  // The social cards. They are generated per component, and the metadata
+  // points at them, so a broken card is a broken page — it used to point at
+  // an /og.jpg that was never in the repository.
+  urls.add(`${ORIGIN}/opengraph-image`);
+  urls.add(`${ORIGIN}/components/magnetic-button/opengraph-image`);
+
   return urls;
 }
 

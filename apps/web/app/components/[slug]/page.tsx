@@ -16,8 +16,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title,
     description,
-    openGraph: { title, description, type: "website", images: ["/og.jpg"] },
-    twitter: { card: "summary_large_image", title, description, images: ["/og.jpg"] },
+    // The card is generated per component by opengraph-image.tsx, so there
+    // is no single static file to point at.
+    openGraph: { title, description, type: "website" },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
