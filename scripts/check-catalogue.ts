@@ -170,6 +170,16 @@ for (const [slug] of registry) {
   }
 }
 
+/* ── 8. The advertised schemas exist ──────────────────────────────────────
+   Every registry item carries a $schema URL. If the file behind it is
+   missing, the site is advertising a schema it does not have. */
+const schemaDir = path.join(root, "apps", "web", "public", "schema");
+for (const name of ["registry-item.json", "agent-catalog.json"]) {
+  if (!fs.existsSync(path.join(schemaDir, name))) {
+    fail(`the advertised schema ${name} is missing — run pnpm registry:schema`);
+  }
+}
+
 /* ── Report ─────────────────────────────────────────────────────────────── */
 console.log(
   `Catalogue: ${published.length} published · ${groupSlugs.length} grouped · ${exported.size} exports · ${demoed.size} demos · ${cssFiles.length} css variants`

@@ -1,0 +1,410 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://buildora-hazel.vercel.app/schema/agent-catalog.json",
+  "title": "Buildora agent catalogue",
+  "description": "Every component with its install command, framework support, docs and source, as served from /api/agent-catalog.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "collection": {
+            "type": "string",
+            "enum": [
+              "creative",
+              "kit"
+            ]
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "intermediate",
+              "advanced",
+              "beginner"
+            ]
+          },
+          "docs": {
+            "type": "string"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "frameworks": {
+            "type": "object",
+            "properties": {
+              "angular": {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Partial",
+                      "Full"
+                    ]
+                  }
+                },
+                "required": [
+                  "note",
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              "compose": {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Experimental",
+                      "Unsupported",
+                      "Partial"
+                    ]
+                  }
+                },
+                "required": [
+                  "note",
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              "flutter": {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Experimental",
+                      "Unsupported",
+                      "Partial"
+                    ]
+                  }
+                },
+                "required": [
+                  "note",
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              "html": {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Partial",
+                      "Full"
+                    ]
+                  }
+                },
+                "required": [
+                  "note",
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              "javascript": {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Partial",
+                      "Full"
+                    ]
+                  }
+                },
+                "required": [
+                  "note",
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              "react": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              "reactNative": {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string",
+                    "enum": [
+                      "No hover/cursor on mobile; use press + haptics. Snippet port.",
+                      "No cursor on touch devices."
+                    ]
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Partial",
+                      "Unsupported"
+                    ]
+                  }
+                },
+                "required": [
+                  "note",
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              "svelte": {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Partial",
+                      "Full"
+                    ]
+                  }
+                },
+                "required": [
+                  "note",
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              "swiftUI": {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Experimental",
+                      "Unsupported",
+                      "Partial"
+                    ]
+                  }
+                },
+                "required": [
+                  "note",
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              "tailwind": {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Partial",
+                      "Full",
+                      "Unsupported"
+                    ]
+                  }
+                },
+                "required": [
+                  "note",
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              "vue": {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Partial",
+                      "Full"
+                    ]
+                  }
+                },
+                "required": [
+                  "note",
+                  "status"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "angular",
+              "compose",
+              "flutter",
+              "html",
+              "javascript",
+              "react",
+              "reactNative",
+              "svelte",
+              "swiftUI",
+              "tailwind",
+              "vue"
+            ],
+            "additionalProperties": false
+          },
+          "github": {
+            "type": "string"
+          },
+          "install": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "provenance": {
+            "type": "object",
+            "properties": {
+              "adapted": {
+                "type": "boolean"
+              },
+              "license": {
+                "type": "string"
+              },
+              "origin": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "adapted",
+              "license",
+              "origin"
+            ],
+            "additionalProperties": false
+          },
+          "registryDependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "slug": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "beta",
+              "stable"
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "targets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "version": {
+            "type": "string"
+          },
+          "workflow": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "categories",
+          "collection",
+          "dependencies",
+          "description",
+          "difficulty",
+          "docs",
+          "files",
+          "frameworks",
+          "github",
+          "install",
+          "name",
+          "provenance",
+          "registryDependencies",
+          "slug",
+          "status",
+          "tags",
+          "targets",
+          "version",
+          "workflow"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "total": {
+      "type": "number"
+    },
+    "version": {
+      "type": "string"
+    },
+    "workflow": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "components",
+    "name",
+    "total",
+    "version",
+    "workflow"
+  ],
+  "additionalProperties": false
+}

@@ -57,11 +57,14 @@ jobs:
       - name: CSS variants (generated)
         run: pnpm registry:css
 
+      - name: JSON schemas (generated, and checked against the data)
+        run: pnpm registry:schema
+
       - name: Library audit (AUDIT.md)
         run: pnpm exec tsx scripts/audit.ts
 
       - name: Generated artifacts committed
-        run: git diff --exit-code -- registry/ apps/web/public/css apps/web/public/llms.txt AUDIT.md
+        run: git diff --exit-code -- registry/ apps/web/public/css apps/web/public/schema apps/web/public/llms.txt AUDIT.md
 
       - name: Registry compile-e2e (generated source)
         run: pnpm registry:e2e
@@ -102,3 +105,31 @@ jobs:
 
       - name: Install matrix (next15, vite, react-router-v7, tanstack-start)
         run: pnpm registry:verify-install:matrix
+
+  # Does the deployed site actually serve what it advertises?
+  #
+  # The registry shipped a $schema URL that 404'd for months: every item
+  # referenced a schema that had never been written, and nothing noticed.
+  # This job fetches every absolute URL the site publishes and fails if one
+  # does not resolve. It runs against the live site, so it waits for the
+  # deployment to settle rather than racing it on every push.
+  live-links:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Advertised links resolve
+        run: pnpm registry:links

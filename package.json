@@ -22,7 +22,9 @@
     "registry:catalogue": "tsx scripts/check-catalogue.ts",
     "registry:size": "tsx scripts/bundle-size.ts",
     "registry:css": "tsx scripts/build-css-variants.ts",
-    "registry:llms": "tsx scripts/build-llms.ts"
+    "registry:llms": "tsx scripts/build-llms.ts",
+    "registry:schema": "tsx scripts/build-schema.ts",
+    "registry:links": "tsx scripts/check-links.ts"
   },
   "devDependencies": {
     "@types/glob": "^9.0.0",

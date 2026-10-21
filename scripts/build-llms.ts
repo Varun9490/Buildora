@@ -241,8 +241,10 @@ ${costLines()}
 - Site: https://buildora-hazel.vercel.app
 - Components: https://buildora-hazel.vercel.app/components/{slug}
 - Registry item: https://buildora-hazel.vercel.app/r/{component}.json
-- Registry index: https://buildora-hazel.vercel.app/schema/registry-item.json
-- Agent catalog: https://buildora-hazel.vercel.app/schema/agent-catalog.json
+- Registry item (API): https://buildora-hazel.vercel.app/api/registry/{component}
+- Agent catalogue: https://buildora-hazel.vercel.app/api/agent-catalog
+- Registry item schema: https://buildora-hazel.vercel.app/schema/registry-item.json
+- Agent catalogue schema: https://buildora-hazel.vercel.app/schema/agent-catalog.json
 - GitHub: https://github.com/Varun9490/Buildora
 - Docs: docs/registry.md, README.md, CONTRIBUTING.md
 `;
