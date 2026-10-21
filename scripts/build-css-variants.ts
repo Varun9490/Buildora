@@ -144,7 +144,8 @@ function headerFor(name: string, slug: string): string {
 
 async function main() {
   const catalog = await loadCatalog();
-  const outDir = path.join(root, "public", "css");
+  // Next serves the app's own public directory, not the repo root.
+  const outDir = path.join(root, "apps", "web", "public", "css");
   fs.mkdirSync(outDir, { recursive: true });
 
   const shared = sharedKeyframes();
@@ -187,7 +188,7 @@ async function main() {
   }
 
   console.log(
-    `CSS variants: ${written} written, ${skipped} skipped (no TSX) → public/css`
+    `CSS variants: ${written} written, ${skipped} skipped (no TSX) → apps/web/public/css`
   );
 }
 

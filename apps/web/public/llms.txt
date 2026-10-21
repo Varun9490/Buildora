@@ -40,9 +40,21 @@ Rebuild / validate (source of truth is `scripts/catalog.ts`):
 ```bash
 pnpm registry:build     # emits registry/components/*.json, registry/generated/*.json, registry/registry.json, apps/web/lib/registry-data.generated.ts
 pnpm registry:validate  # schema + status check
+pnpm registry:llms      # regenerates this file
 ```
 
-## Components (72 unique slugs, 82 registry entries; one line each)
+## Not using Tailwind
+
+Every component with a TSX source also ships a CSS variant, generated from
+that same source by `pnpm registry:css` — so the two cannot drift. Link the
+token file and the component's CSS and it looks the same with no Tailwind setup:
+
+```css
+@import "@/styles/buildora/tokens.css";
+@import "@/styles/buildora/magnetic-button.css";
+```
+
+## Components (127 unique slugs, 127 registry entries; one line each)
 
 - accordion: Disclosure stack with expanded-state semantics.
 - advanced-table: Sortable, filterable, paginated table with semantic <table> markup.
@@ -53,43 +65,87 @@ pnpm registry:validate  # schema + status check
 - avatar: Identity avatar with fallback initials and group stacking.
 - backdrop: One ambient background, nine variants (aurora, grid, dots, noise, mesh, beams, rise, meteors, ripple). CSS-first, decorative, deterministic layout.
 - badge: Status badges and removable chips with variant tones.
+- bento-grid: Configurable grid with per-item spans.
+- blueprint-loader: Drafting-sheet placeholder that draws its dashed frame while ghost rows ghost in behind a scanning beam. Progress and indeterminate.
 - breadcrumb: Ancestor trail with current-page semantics.
 - button: Base button with variants and sizes. Foundation for everything clickable.
-- calendar: Scheduling grid with gridcell semantics.
+- calendar: Month grid with real dates, gridcell semantics and today marked.
 - checkbox: Accessible checkbox with label and indeterminate support.
+- code-editor: Split code/preview surface. A textarea, not an editor engine.
+- comet-ring-spinner: Comet head racing around a ring of fading trail dots. Pure CSS transforms, role=status, frozen under reduced motion.
+- command-palette: Keyboard-first command surface with fuzzy matching and combobox semantics.
 - comment-thread: Resolve/reopen comment thread.
+- confirm-morph: One button, two identities: idle → confirm strip → animated check. aria-live, auto-revert, danger variant.
 - context-menu: Right-click menu with keyboard fallback trigger.
+- count-up: A number that counts to its value when it scrolls into view. Announced once.
 - cta-block: Centered call-to-action with actions and optional stats.
 - cursor-fx: Pointer-following glow in four modes (glow, spotlight, trail, blob). One rAF loop, pointer-fine only, silent under reduced motion.
+- detent-dial: Rotary knob with Gaussian tick-wave emphasis around the active detent. Drag, wheel, or arrows; role=slider.
 - dialog: Focus-trapped modal dialog with overlay and escape handling.
 - diff-viewer: Side-by-side line comparison with added/removed semantics.
+- drag-dismiss: Card you flick away. Velocity decides, not distance alone. Escape works too.
+- draggable-card-pile: Riffled stack: the top card drags out past a threshold and cycles to the back with spring physics. Enter flings for keyboard.
 - drawer: Bottom-anchored drawer panel for mobile-first flows.
 - dropdown-menu: Trigger-anchored menu with items, labels, and checks.
+- dynamic-island: Morphing status pill for live app state. A live region, not decoration.
+- echo-stack: Outlined echo copies drift above the word and intensify on hover. Pure CSS, zero re-renders.
+- elastic-slider: Rubber-band slider: the knob over-stretches at the rails and snaps back with spring physics. role=slider + arrows/Home/End.
 - expandable-sidebar: Hover-expanding rail sidebar with delayed reveal.
 - feature-grid: Three-up feature grid with tags and copy.
 - file-tree: Accessible tree with expand/collapse and keyboard support.
 - floating-navbar: Scroll-aware floating navigation pill.
+- floating-object: 3D hovering objects with perspective tilt on hover, floating animation, and drop shadow.
+- focus-blur-list: List rows where the hovered/focused one stays crisp and siblings sink back with blur + dim. Focus mirrors hover.
+- fresnel-orb: Iridescent orb of layered conic and radial gradients with drifting orientation, rim highlight and caustic core. Pure CSS.
 - fx-button: Real button with six finishes (none, shimmer, glow, ripple, gradient-border, liquid). Native semantics throughout.
 - fx-card: Card shell with six pointer effects (tilt, spotlight, glare, holographic, wobble, glass). Ref-driven, no re-render per move.
+- gooey-menu: FAB whose actions fan out as fused SVG-goo blobs with crisp labels riding on top. Escape and outside-click close.
+- grab-roller-strip: Physical roller strip you drag sideways; it settles on the nearest label under a fixed marker with flanks in fade flow.
+- handwritten-annotation: Playful handwritten-style text annotations with hand-drawn arrow SVGs.
+- hold-button: Press and hold to confirm, with live progress. A real behaviour, not a finish.
+- horizontal-scroll: Scroll-driven horizontal panning section with mobile fallback.
 - hover-card: Delayed hover preview card with configurable side.
+- infinite-marquee: Seamless scrolling row that pauses on hover.
+- inline-word-roll: Rolling word slot for inline headlines: slot width eases to the measured word as each term slides up, clipped.
 - input: Labeled text input with variants, sizes, and error states.
 - interactive-dropzone: Proximity-reactive dropzone with progress visualization and error recovery.
 - json-viewer: Collapsible JSON viewer with mono styling.
 - kbd: Keyboard shortcut glyphs with chord composition.
+- letter-wave: Hover, focus or optional autoloop sends a sine wave rippling through the letters. Real text in aria-label.
+- liquid-gauge: Ring meter filled with two out-of-phase liquid waves, clipped and animated. role=meter with valuetext.
 - log-viewer: Filterable log stream with role=log semantics.
 - logo-cloud: Customer logo row with label. Logos only, no taglines.
 - magnetic-button: A real <button> with spring magnetic attraction to the cursor. Tactile, accessible, production-ready.
+- magnetic-dropzone: Dropzone that leans toward a file-drag cursor and pulses its field; browse input fallback; dropped files list with removers.
+- magnification-dock: Dock whose icons grow with cursor proximity, on a continuous spring.
 - masonry-layout: Pinterest-style masonry columns.
-- mobile-nav: Bottom mobile navigation with labeled items.
+- matrix-decode: Characters scramble through glyphs and lock in left-to-right with stochastic jitter. rAF-driven, resolves once.
+- mobile-header: iOS-style screen header: back bar, centered title, collapsing large title, section headers, and inset settings groups.
+- mobile-nav: Bottom mobile tab bar with labeled items, active pill, badges, and safe-area padding.
 - modal-stack: Stacked modal manager with push/pop/replace semantics.
 - model-selector: Accessible model picker with status dot.
+- morph-select: Select whose trigger stretches into the options list and seals back into a pill. Listbox semantics, arrow nav, outside close.
 - navbar: Sticky header bar with logo, center, and actions slots.
+- number-wheel: Odometer counters: digits roll on vertical reels with staggered cascades. Locale grouping, prefix, suffix, count-up.
 - pagination: Page controls with prev/next and numbered buttons.
+- parallax-stack: Layers that move at different rates as you scroll, computed once per frame.
+- particle-field: Canvas particle drift with a DPR cap. No Three.js.
+- period-drop: The full stop falls in with gravity, squashes on impact, and settles. One-shot keyframes when scrolled into view.
+- physics-kanban: A board whose cards are thrown, not teleported. The card keeps its momentum.
+- pinned-section: A section that sticks while its content scrolls past, and hands off cleanly.
 - popover: Anchored floating panel with placement control.
 - progress: Determinate progress bar with variant tones.
+- project-showcase: Project gallery section with filter pills, sticky sidebar, and hover zoom.
 - query-builder: Composable filter rows with field/operator/value and removable chips.
 - radio-group: Single-select radio set with keyboard arrow navigation.
-- rich-text-editor: Toolbar + contentEditable editor with word count.
+- reveal-on-scroll: Intersection Observer-based reveal wrapper with multiple animation variants.
+- rgb-glitch: Channel-split glitch bursts with clip-path slices and skew in theme-adaptive colors. Pure CSS, deterministic burst cycle.
+- rich-text-editor: Formatting toolbar over contentEditable. Controlled value, sanitised output, no editor engine.
+- rubber-band: Container that resists being pulled past its edge and snaps back with the velocity you let go at.
+- scroll-linked-path: An SVG path drawn by scroll position. Scrolling back up un-draws it.
+- scroll-progress: Reading-progress bar that tracks an element, scaled with transforms so scrolling never lays out.
+- segmented-control: iOS-style segmented option picker with a spring-gliding accent pill, radiogroup semantics and full keyboard nav.
+- selection-snap: Text snaps from hairline to black weight under a designer-style selection box with corner handles.
 - separator: Thematic break and divider rules for grouping content.
 - sheet: Side panel sliding from any edge with focus management.
 - sidebar: Collapsible app sidebar with sections and active state.
@@ -98,34 +154,61 @@ pnpm registry:validate  # schema + status check
 - slash-commands: Notion-style slash menu with fuzzy filtering.
 - slider: Range slider with value display and keyboard support.
 - slingshot-otp: OTP with real inputs, paste, and SR support. Standard mode by default; slingshot game is opt-in delight.
+- speech-bubble-cursor: Custom cursor provider that shows speech-bubble tooltips.
 - spinner: Activity spinner with sizes and live-region label.
+- split-text: Reveal a headline word by word, character by character or line by line. Real text, one paint.
 - spring: dt-based springStep + magnet + rafLoop. The physics behind magnetic effects.
+- spring-carousel: Carousel that snaps on a spring, so a flick carries momentum to the nearest slide.
 - step-nav: Stepper navigation with current-step state.
-- streaming-chat: Demo chat UI with simulated token streaming and citations. No transport yet — do not point at production. Transport-agnostic rebuild planned.
+- streaming-chat: Chat surface for a token stream. Bring your own transport: it renders the messages you pass and hands the input to onSend.
 - switch: Labeled toggle switch built on a native checkbox.
 - tabs: Keyboard-navigable tab set with panels.
+- tactile-loader: Three bouncing dots that announce themselves once.
 - terminal: Terminal emulator UI with scrollback + command input.
+- terminal-ui: Full terminal workspace: tab bar, sidebar tree, panes and a command input.
 - text-fx: Kinetic text in six kinds (typewriter, scramble, blur, gradient, glitch, morph). Screen readers hear the final text once.
 - textarea: Multiline text field sharing Input styling and semantics.
+- thread-line: Animated SVG path that draws itself on scroll or on mount.
 - toast: Transient notifications via provider and toast API.
 - token-meter: Token usage meter with role=meter semantics.
 - tokens: Light + dark CSS vars + shared keyframes. Import once so components are styled on first paint.
 - tool-call-viz: Timeline of agent tool calls with running/done states.
 - tooltip: Hover/focus description bubble for controls.
+- tui-help-overlay: Keyboard shortcut cheatsheet overlay. No primitive equivalent.
+- tui-sparkline: Inline value sparkline for dense rows. No primitive equivalent.
+- type-wall: Alternating solid and outline marquee rows under a fade mask. Pauses on hover, static under reduced motion.
+- unified-login-field: One bordered container that morphs between email and password stages instead of juggling boxes. Shake on invalid email, Escape steps back.
 - use-pointer-proximity: Window-level pointer proximity with rAF throttle. Attracts from radius away; fine-pointer only; zero cost under reduced motion.
 - use-reduced-motion: SSR-safe prefers-reduced-motion via useSyncExternalStore. No hydration flash.
 - utils: cn + clamp + fuzzyScore + formatBytes. Shared class-name helper for every component.
 - version-history: Document version list with restore action.
+- vertical-timeline: Timeline with dots, tick marks, connecting lines, and staggered scroll-reveal.
+
+Collections: 60 creative, 67 kit.
 
 Full machine-readable metadata: `registry/registry.json` (index), `registry/agent-catalog.json` (install + frameworks + docs + github per component), `registry/components/*.json`, `registry/generated/*.json`.
 Per-component docs: `/components/{slug}`. Per-component source: `https://github.com/Varun9490/Buildora/tree/main/packages/components/src/{slug}`.
 
-## Framework support (honest)
+## Framework support (honest, generated from the catalogue)
 
-- React: Full. React is the source of truth and the only tested full implementation. Install via shadcn above.
-- JavaScript / Vue (Composition API) / Svelte (runes) / Angular (@Input) / HTML / Tailwind / React Native: Partial — snippet-level ports only, no dedicated runtime. Interactive behavior requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
-- Flutter / SwiftUI / Jetpack Compose: Experimental — snippet ports only; pointer interactions remapped to gestures.
-- Exceptions: `utils` and `tokens` are broader (Full across JS/Vue/Svelte/Angular/HTML/Tailwind); `cursor-fx` / pointer hooks are pointer-fine only and Unsupported on touch/native targets. Check `registry/agent-catalog.json` `frameworks` per component before promising support.
+- React: Full on all 127 components. React is the source of truth and the only tested full implementation. Install via shadcn above.
+- JavaScript: 3 Full, 124 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Vue (Composition API): 3 Full, 124 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Svelte (runes): 3 Full, 124 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Angular (@Input): 3 Full, 124 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- HTML: 2 Full, 125 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Tailwind: 2 Full, 122 Partial, 3 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- React Native: 123 Partial, 4 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Flutter: 2 Partial, 121 Experimental, 4 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- SwiftUI: 2 Partial, 121 Experimental, 4 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Jetpack Compose: 2 Partial, 121 Experimental, 4 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Exceptions (generated): Full outside React: spring (JavaScript, Vue (Composition API), Svelte (runes), Angular (@Input)); tokens (JavaScript, Vue (Composition API), Svelte (runes), Angular (@Input), HTML, Tailwind); utils (JavaScript, Vue (Composition API), Svelte (runes), Angular (@Input), HTML, Tailwind). Unsupported: cursor-fx (React Native, Flutter, SwiftUI, Jetpack Compose); spring (Tailwind); use-pointer-proximity (Tailwind, React Native, Flutter, SwiftUI, Jetpack Compose); use-reduced-motion (Tailwind, React Native, Flutter, SwiftUI, Jetpack Compose); utils (React Native, Flutter, SwiftUI, Jetpack Compose). Check `registry/agent-catalog.json` `frameworks` per component before promising support.
+
+## Cost (measured, not estimated)
+
+- Median component: 1.44 KB gzipped. Per-component numbers in `registry/reports/bundle-size.json`.
+- 89 of 127 components need no animation library at all.
+- The 38 that do share one dependency (107.95 KB gzipped), paid once per project rather than per component.
 
 ## Links
 

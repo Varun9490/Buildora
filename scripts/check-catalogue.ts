@@ -157,7 +157,7 @@ for (const [slug, item] of registry) {
    the file must parse. The CSS is generated from the same source the
    Tailwind variant ships, so it cannot drift — but a missing one would
    leave a consumer without Tailwind stuck. */
-const cssDir = path.join(root, "public", "css");
+const cssDir = path.join(root, "apps", "web", "public", "css");
 const cssFiles = fs.existsSync(cssDir)
   ? fs.readdirSync(cssDir).filter((f) => f.endsWith(".css"))
   : [];

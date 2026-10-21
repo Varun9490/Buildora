@@ -21,7 +21,8 @@
     "registry:contrast": "tsx scripts/contrast.ts",
     "registry:catalogue": "tsx scripts/check-catalogue.ts",
     "registry:size": "tsx scripts/bundle-size.ts",
-    "registry:css": "tsx scripts/build-css-variants.ts"
+    "registry:css": "tsx scripts/build-css-variants.ts",
+    "registry:llms": "tsx scripts/build-llms.ts"
   },
   "devDependencies": {
     "@types/glob": "^9.0.0",

@@ -61,7 +61,7 @@ jobs:
         run: pnpm exec tsx scripts/audit.ts
 
       - name: Generated artifacts committed
-        run: git diff --exit-code -- registry/ public/css AUDIT.md
+        run: git diff --exit-code -- registry/ apps/web/public/css apps/web/public/llms.txt AUDIT.md
 
       - name: Registry compile-e2e (generated source)
         run: pnpm registry:e2e
