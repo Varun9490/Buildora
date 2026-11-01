@@ -67,50 +67,72 @@ export function useMagnetic(
   {
     strength = 0.35,
     radius = 180,
-    spring = { stiffness: 260, damping: 22 },
+    spring = { stiffness: 260, damping: 22, mass: 1 },
     disabled = false,
-  }: { strength?: number; radius?: number; spring?: { stiffness: number; damping: number }; disabled?: boolean } = {}
+  }: {
+    strength?: number;
+    radius?: number;
+    spring?: { stiffness?: number; damping?: number; mass?: number };
+    disabled?: boolean;
+  } = {}
 ) {
+  const { stiffness = 260, damping = 22, mass = 1 } = spring;
   const state = React.useRef({ x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0 });
   const rafRef = React.useRef<number | null>(null);
   const ticking = React.useRef(false);
+  const last = React.useRef<number | null>(null);
 
-  const tick = React.useCallback(() => {
+  const stop = React.useCallback(() => {
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    rafRef.current = null;
+    ticking.current = false;
+    last.current = null;
+  }, []);
+
+  const tick = React.useCallback((now: number) => {
     const el = ref.current;
-    if (!el || disabled) return;
+    if (!el || disabled) {
+      stop();
+      return;
+    }
     const s = state.current;
-    // spring toward tx/ty
-    const axX = -spring.stiffness * (s.x - s.tx) - spring.damping * s.vx;
-    const axY = -spring.stiffness * (s.y - s.ty) - spring.damping * s.vx;
-    // use vy for Y axis
-    const ay = -spring.stiffness * (s.y - s.ty) - spring.damping * s.vy;
-    s.vx += (axX / 1) * (1 / 60);
-    s.vy += (ay / 1) * (1 / 60);
-    s.x += s.vx * (1 / 60);
-    s.y += s.vy * (1 / 60);
-    // snap when tiny
-    if (Math.abs(s.x - s.tx) < 0.08 && Math.abs(s.vx) < 0.08 && Math.abs(s.y - s.ty) < 0.08 && Math.abs(s.vy) < 0.08) {
-      if (s.tx === 0 && s.ty === 0) {
-        s.x = 0; s.y = 0; s.vx = 0; s.vy = 0;
-        el.style.transform = "";
-        ticking.current = false;
-        return;
-      }
+    if (last.current === null) last.current = now;
+    const dt = Math.min(0.05, Math.max(0, (now - last.current) / 1000));
+    last.current = now;
+    if (dt > 0) {
+      // Semi-implicit Euler per axis (mass-aware, dt-based instead of a
+      // hardcoded 1/60 step) keeps the spring stable at high stiffness.
+      const ax = (-stiffness * (s.x - s.tx) - damping * s.vx) / mass;
+      const ay = (-stiffness * (s.y - s.ty) - damping * s.vy) / mass;
+      s.vx += ax * dt;
+      s.vy += ay * dt;
+      s.x += s.vx * dt;
+      s.y += s.vy * dt;
+    }
+    // Snap to rest when the spring has settled at the origin.
+    if (
+      s.tx === 0 && s.ty === 0 &&
+      Math.abs(s.x) < 0.05 && Math.abs(s.vx) < 0.05 &&
+      Math.abs(s.y) < 0.05 && Math.abs(s.vy) < 0.05
+    ) {
+      s.x = 0; s.y = 0; s.vx = 0; s.vy = 0;
+      el.style.transform = "";
+      stop();
+      return;
     }
     el.style.transform = `translate3d(${s.x.toFixed(2)}px, ${s.y.toFixed(2)}px, 0)`;
     rafRef.current = requestAnimationFrame(tick);
-  }, [ref, disabled, spring.stiffness, spring.damping]);
+  }, [ref, disabled, stiffness, damping, mass, stop]);
 
   const ensureTicking = React.useCallback(() => {
-    if (!ticking.current) {
-      ticking.current = true;
-      rafRef.current = requestAnimationFrame(tick);
-    }
-  }, [tick]);
+    if (disabled || ticking.current) return;
+    ticking.current = true;
+    last.current = null;
+    rafRef.current = requestAnimationFrame(tick);
+  }, [disabled, tick]);
 
   React.useEffect(() => {
     if (disabled) return;
-    // track pointer globally so radius works at distance
     const onMove = (e: PointerEvent) => {
       const el = ref.current;
       if (!el) return;
@@ -119,7 +141,7 @@ export function useMagnetic(
       const cy = r.top + r.height / 2;
       const dx = e.clientX - cx;
       const dy = e.clientY - cy;
-      const dist = Math.hypot(dx, dy) || 1;
+      const dist = Math.hypot(dx, dy);
       const inside = dist < radius + Math.max(r.width, r.height) / 2;
       if (!inside) {
         state.current.tx = 0;
@@ -142,12 +164,13 @@ export function useMagnetic(
     return () => {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerleave", onLeave);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      stop();
     };
-  }, [ref, radius, strength, disabled, ensureTicking]);
+  }, [ref, radius, strength, disabled, ensureTicking, stop]);
 
   const reset = React.useCallback(() => {
-    state.current.tx = 0; state.current.ty = 0;
+    state.current.tx = 0;
+    state.current.ty = 0;
     ensureTicking();
   }, [ensureTicking]);
 
