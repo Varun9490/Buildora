@@ -8,10 +8,19 @@ export function springStep(
   dt = 1 / 60
 ) {
   const { stiffness = 220, damping = 24, mass = 1 } = opts;
+  // Clamp the timestep so a stalled tab or a long frame cannot blow the
+  // spring up; semi-implicit Euler keeps it stable at high stiffness.
+  const step = Math.min(0.05, Math.max(0, dt));
+  if (step === 0) return { x, v };
   const F = -stiffness * (x - target) - damping * v;
   const a = F / mass;
-  const nv = v + a * dt;
-  const nx = x + nv * dt;
+  const nv = v + a * step;
+  const nx = x + nv * step;
+  // Snap to rest once the spring has effectively settled, so callers do not
+  // keep integrating noise around the target.
+  if (Math.abs(nx - target) < 0.001 && Math.abs(nv) < 0.001) {
+    return { x: target, v: 0 };
+  }
   return { x: nx, v: nv };
 }
 
