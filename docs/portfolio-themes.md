@@ -13,7 +13,7 @@ notes record tokens only and are used as study material for Buildora templates.
 - Motion: fade-up hero, parallax-less; magnetic CTAs
 - Vibe: developer portfolio, high contrast, yellow accent pop
 
-Buildora mapping: would suit a "developer-portfolio" template with slate base + amber accent preset.
+Buildora mapping: implemented as `apps/web/app/templates/developer-portfolio/page.tsx`.
 
 ## 2. Rauno Freiberg — rauno.me (ultra-minimal light)
 

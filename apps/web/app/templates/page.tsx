@@ -72,6 +72,14 @@ const templates = [
     blurb: "Warm dark editorial layout with serif typography, reverse-engineered from leerob.io. Restrained motion, content first.",
   },
   {
+    slug: "developer-portfolio",
+    name: "Developer Portfolio",
+    icon: "spark",
+    gradient: "from-[color-mix(in_oklab,var(--b-accent)_15%,transparent)] via-transparent to-[color-mix(in_oklab,var(--b-accent)_5%,transparent)]",
+    uses: ["magnetic-button", "count-up"],
+    blurb: "Slate + amber developer portfolio reverse-engineered from brittanychiang.com. High-contrast, accessible, keyboard-first.",
+  },
+  {
     slug: "product-landing",
     name: "Product Landing",
     icon: "layout",
