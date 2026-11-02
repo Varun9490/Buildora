@@ -64,6 +64,14 @@ const templates = [
     blurb: "An independent digital design practice template focused on highly technical tools and spatial interfaces.",
   },
   {
+    slug: "editorial-portfolio",
+    name: "Editorial Portfolio",
+    icon: "book",
+    gradient: "from-[color-mix(in_oklab,var(--b-accent)_10%,transparent)] via-transparent to-[color-mix(in_oklab,var(--b-accent)_5%,transparent)]",
+    uses: ["magnetic-button", "text-fx", "count-up"],
+    blurb: "Warm dark editorial layout with serif typography, reverse-engineered from leerob.io. Restrained motion, content first.",
+  },
+  {
     slug: "product-landing",
     name: "Product Landing",
     icon: "layout",
