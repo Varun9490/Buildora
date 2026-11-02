@@ -73,6 +73,12 @@
       "skillPath": "skills/minimalist-skill/SKILL.md",
       "computedHash": "7e88897e0371184e97a82b8d9ef080323c13f21eb067b58ef71eb05173a08ac2"
     },
+    "reanimate": {
+      "source": "NiazMorshed2007/reanimate",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/reanimate/SKILL.md",
+      "computedHash": "bc74a03cb26b0e7963ea265a46771e8ec0e32ccd7cd2b7aac89876b523fbc911"
+    },
     "redesign-existing-projects": {
       "source": "Leonxlnx/taste-skill",
       "sourceType": "github",
