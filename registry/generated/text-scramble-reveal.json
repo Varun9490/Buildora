@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-scramble-reveal",
+  "type": "registry:component",
+  "title": "Text Scramble Reveal",
+  "description": "Text that scrambles through glyphs and resolves on scroll into view.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "motion"
+  ],
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/text-scramble-reveal/index.tsx",
+      "target": "components/buildora/text-scramble-reveal.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type TextScrambleRevealProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nconst GLYPHS = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\";\nexport function TextScrambleReveal({ className, children, ...rest }: TextScrambleRevealProps) {\n  const text = typeof children === \"string\" ? children : \"HELLO\";\n  const [out, setOut] = React.useState(text.split(\"\").map(() => \" \"));\n  const ref = React.useRef<HTMLSpanElement>(null);\n  const reduced = useReducedMotion();\n  const inView = useInView(ref as React.RefObject<Element>, { once: true });\n  React.useEffect(() => {\n    if (!inView || reduced) { setOut(text.split(\"\")); return; }\n    let frame = 0; const total = 24;\n    const id = setInterval(() => {\n      frame++;\n      setOut(text.split(\"\").map((ch, i) => (frame / total > i / text.length ? ch : GLYPHS[Math.floor(Math.random() * GLYPHS.length)])));\n      if (frame >= total) clearInterval(id);\n    }, 40);\n    return () => clearInterval(id);\n  }, [inView, reduced, text]);\n  return <span ref={ref} className={cn(\"font-mono text-[color:var(--b-text)]\", className)} {...rest}>{out.join(\"\")}</span>;\n}\nexport default TextScrambleReveal;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/text-scramble-reveal/index.tsx"
+}

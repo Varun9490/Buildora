@@ -1,0 +1,129 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "parallax-text",
+  "name": "Parallax Text",
+  "slug": "parallax-text",
+  "description": "Headline that drifts at a different rate than scroll for depth.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "parallax",
+    "text",
+    "depth"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/parallax-text/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/parallax-text/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/parallax-text/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/parallax-text/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/parallax-text/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/parallax-text/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/parallax-text/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/parallax-text/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/parallax-text/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/parallax-text/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/parallax-text/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/parallax-text/index.tsx",
+      "target": "components/buildora/parallax-text.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type ParallaxTextProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function ParallaxText({ className, children, ...rest }: ParallaxTextProps) {\n  const ref = React.useRef<HTMLDivElement>(null);\n  const reduced = useReducedMotion();\n  const { scrollYProgress } = useScroll({ target: ref, offset: [\"start end\", \"end start\"] });\n  const y = useTransform(scrollYProgress, [0, 1], reduced ? [\"0%\", \"0%\"] : [\"-12%\", \"12%\"]);\n  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.3, 1, 1, 0.3]);\n  return (\n    <motion.div ref={ref} style={{ y, opacity }} className={cn(\"text-[color:var(--b-text)]\", className)} {...rest}>\n      {children}\n    </motion.div>\n  );\n}\nexport default ParallaxText;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/parallax-text",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/parallax-text/index.tsx",
+  "sourceDir": "parallax-text",
+  "docs": "/components/parallax-text",
+  "install": "pnpm dlx shadcn@latest add @buildora/parallax-text"
+}

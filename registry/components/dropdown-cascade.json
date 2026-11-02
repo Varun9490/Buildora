@@ -1,0 +1,130 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "dropdown-cascade",
+  "name": "Dropdown Cascade",
+  "slug": "dropdown-cascade",
+  "description": "Dropdown menu whose items cascade in with staggered fade.",
+  "categories": [
+    "overlays",
+    "motion"
+  ],
+  "tags": [
+    "dropdown",
+    "cascade",
+    "stagger"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/dropdown-cascade/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/dropdown-cascade/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/dropdown-cascade/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/dropdown-cascade/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/dropdown-cascade/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/dropdown-cascade/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/dropdown-cascade/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/dropdown-cascade/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/dropdown-cascade/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/dropdown-cascade/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/dropdown-cascade/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/dropdown-cascade/index.tsx",
+      "target": "components/buildora/dropdown-cascade.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type DropdownCascadeProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function DropdownCascade({ className, children, ...rest }: DropdownCascadeProps) {\n  const [open, setOpen] = React.useState(false);\n  const reduced = useReducedMotion();\n  const items = React.Children.toArray(children);\n  return (\n    <div className={cn(\"relative inline-block\", className)} {...rest}>\n      <button onClick={() => setOpen((v) => !v)} className=\"rounded-[var(--b-radius-sm)] border border-[color:var(--b-border)] px-3 py-1.5 text-sm text-[color:var(--b-text)]\">Menu</button>\n      <AnimatePresence>\n        {open && (\n          <motion.ul\n            initial={reduced ? {} : { opacity: 0, y: 6 }}\n            animate={{ opacity: 1, y: 0 }}\n            exit={reduced ? {} : { opacity: 0, y: 6 }}\n            transition={{ duration: 0.18 }}\n            className=\"absolute left-0 top-full z-50 mt-2 w-52 rounded-[var(--b-radius)] border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-1 shadow-lg\"\n          >\n            {items.map((c, i) => (\n              <motion.li\n                key={i}\n                initial={reduced ? {} : { opacity: 0, x: -8 }}\n                animate={{ opacity: 1, x: 0 }}\n                transition={{ delay: i * 0.03 }}\n                className=\"rounded-[var(--b-radius-sm)] px-3 py-1.5 text-sm text-[color:var(--b-text)] hover:bg-[color:var(--b-surface)]\"\n              >\n                {c}\n              </motion.li>\n            ))}\n          </motion.ul>\n        )}\n      </AnimatePresence>\n    </div>\n  );\n}\nexport default DropdownCascade;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/dropdown-cascade",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/dropdown-cascade/index.tsx",
+  "sourceDir": "dropdown-cascade",
+  "docs": "/components/dropdown-cascade",
+  "install": "pnpm dlx shadcn@latest add @buildora/dropdown-cascade"
+}

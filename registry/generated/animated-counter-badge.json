@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-counter-badge",
+  "type": "registry:component",
+  "title": "Animated Counter Badge",
+  "description": "Badge that increments a counter with a spring pop when its value changes.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "motion",
+    "primitives"
+  ],
+  "dependencies": [
+    "motion@^13.4.0",
+    "zod"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/animated-counter-badge/index.tsx",
+      "target": "components/buildora/animated-counter-badge.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { z } from \"zod\";\n\nconst AnimatedCounterBadgeSchema = z.object({\n  className: z.string().optional(),\n});\n\nexport type AnimatedCounterBadgeProps = React.HTMLAttributes<HTMLDivElement> & {\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function AnimatedCounterBadge({ className, children, ...rest }: AnimatedCounterBadgeProps) {\n  const reduced = useReducedMotion();\n  const [key, setKey] = React.useState(0);\n  React.useEffect(() => { setKey((k) => k + 1); }, [children]);\n  return (\n    <motion.span\n      key={key}\n      initial={reduced ? false : { scale: 0.6, opacity: 0 }}\n      animate={{ scale: 1, opacity: 1 }}\n      transition={{ type: \"spring\", stiffness: 420, damping: 18 }}\n      className={cn(\"inline-flex items-center rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-2.5 py-0.5 text-xs font-medium text-[color:var(--b-text)]\", className)}\n      {...rest}\n    >\n      {children}\n    </motion.span>\n  );\n}\nexport default AnimatedCounterBadge;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/animated-counter-badge/index.tsx"
+}

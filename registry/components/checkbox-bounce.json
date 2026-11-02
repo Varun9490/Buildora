@@ -1,0 +1,130 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "checkbox-bounce",
+  "name": "Checkbox Bounce",
+  "slug": "checkbox-bounce",
+  "description": "Checkbox with a bouncing checkmark on toggle.",
+  "categories": [
+    "forms",
+    "motion"
+  ],
+  "tags": [
+    "checkbox",
+    "bounce",
+    "check"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/checkbox-bounce/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/checkbox-bounce/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/checkbox-bounce/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/checkbox-bounce/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/checkbox-bounce/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/checkbox-bounce/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/checkbox-bounce/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/checkbox-bounce/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/checkbox-bounce/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/checkbox-bounce/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/checkbox-bounce/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/checkbox-bounce/index.tsx",
+      "target": "components/buildora/checkbox-bounce.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type CheckboxBounceProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function CheckboxBounce({ className, ...rest }: CheckboxBounceProps) {\n  const [checked, setChecked] = React.useState(false);\n  const reduced = useReducedMotion();\n  return (\n    <button\n      role=\"checkbox\"\n      aria-checked={checked}\n      onClick={() => setChecked((v) => !v)}\n      className={cn(\"flex h-5 w-5 items-center justify-center rounded border border-[color:var(--b-border)] bg-[color:var(--b-surface)]\", checked && \"bg-[color:var(--b-accent)] border-[color:var(--b-accent)]\", className)}\n      {...rest}\n    >\n      <AnimatePresence>\n        {checked && (\n          <motion.svg\n            initial={reduced ? {} : { scale: 0 }}\n            animate={{ scale: 1 }}\n            exit={reduced ? {} : { scale: 0 }}\n            className=\"h-3.5 w-3.5 text-[color:var(--b-accent-foreground)]\"\n            viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"3\"\n          >\n            <motion.path d=\"M5 13l4 4L19 7\" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.2 }} />\n          </motion.svg>\n        )}\n      </AnimatePresence>\n    </button>\n  );\n}\nexport default CheckboxBounce;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/checkbox-bounce",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/checkbox-bounce/index.tsx",
+  "sourceDir": "checkbox-bounce",
+  "docs": "/components/checkbox-bounce",
+  "install": "pnpm dlx shadcn@latest add @buildora/checkbox-bounce"
+}

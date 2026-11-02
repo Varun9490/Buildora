@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge-pulse",
+  "type": "registry:component",
+  "title": "Badge Pulse",
+  "description": "Badge with a pulsing dot indicator for live status.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "primitives",
+    "motion"
+  ],
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/badge-pulse/index.tsx",
+      "target": "components/buildora/badge-pulse.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type BadgePulseProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function BadgePulse({ className, children, ...rest }: BadgePulseProps) {\n  const reduced = useReducedMotion();\n  return (\n    <span className={cn(\"relative inline-flex items-center gap-1.5 rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-2.5 py-0.5 text-xs text-[color:var(--b-text)]\", className)} {...rest}>\n      <span className=\"relative flex h-2 w-2\">\n        {!reduced && <span className=\"absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--b-accent)] opacity-60\" />}\n        <span className=\"relative inline-flex h-2 w-2 rounded-full bg-[color:var(--b-accent)]\" />\n      </span>\n      {children}\n    </span>\n  );\n}\nexport default BadgePulse;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/badge-pulse/index.tsx"
+}

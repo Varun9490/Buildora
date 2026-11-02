@@ -1,0 +1,130 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "accordion-smooth",
+  "name": "Smooth Accordion",
+  "slug": "accordion-smooth",
+  "description": "Accordion with animated height transition and rotating chevron.",
+  "categories": [
+    "primitives",
+    "motion"
+  ],
+  "tags": [
+    "accordion",
+    "smooth",
+    "height"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/accordion-smooth/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/accordion-smooth/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/accordion-smooth/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/accordion-smooth/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/accordion-smooth/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/accordion-smooth/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/accordion-smooth/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/accordion-smooth/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/accordion-smooth/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/accordion-smooth/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/accordion-smooth/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/accordion-smooth/index.tsx",
+      "target": "components/buildora/accordion-smooth.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type AccordionSmoothProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function AccordionSmooth({ className, children, ...rest }: AccordionSmoothProps) {\n  const [open, setOpen] = React.useState(false);\n  const reduced = useReducedMotion();\n  return (\n    <div className={cn(\"border border-[color:var(--b-border)] rounded-[var(--b-radius)] bg-[color:var(--b-panel)]\", className)} {...rest}>\n      <button\n        onClick={() => setOpen((v) => !v)}\n        aria-expanded={open}\n        className=\"flex w-full items-center justify-between px-4 py-3 text-[color:var(--b-text)]\"\n      >\n        <span>{children}</span>\n        <motion.span animate={reduced ? {} : { rotate: open ? 180 : 0 }} transition={{ duration: 0.25 }}>▾</motion.span>\n      </button>\n      <AnimatePresence initial={false}>\n        {open && (\n          <motion.div\n            initial={reduced ? {} : { height: 0, opacity: 0 }}\n            animate={{ height: \"auto\", opacity: 1 }}\n            exit={reduced ? {} : { height: 0, opacity: 0 }}\n            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}\n            className=\"overflow-hidden px-4 pb-3 text-sm text-[color:var(--b-text-secondary)]\"\n          >\n            Details\n          </motion.div>\n        )}\n      </AnimatePresence>\n    </div>\n  );\n}\nexport default AccordionSmooth;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/accordion-smooth",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/accordion-smooth/index.tsx",
+  "sourceDir": "accordion-smooth",
+  "docs": "/components/accordion-smooth",
+  "install": "pnpm dlx shadcn@latest add @buildora/accordion-smooth"
+}

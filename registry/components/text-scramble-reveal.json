@@ -1,0 +1,129 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "text-scramble-reveal",
+  "name": "Text Scramble Reveal",
+  "slug": "text-scramble-reveal",
+  "description": "Text that scrambles through glyphs and resolves on scroll into view.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "text",
+    "scramble",
+    "reveal"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/text-scramble-reveal/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/text-scramble-reveal/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/text-scramble-reveal/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/text-scramble-reveal/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/text-scramble-reveal/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/text-scramble-reveal/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/text-scramble-reveal/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/text-scramble-reveal/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/text-scramble-reveal/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/text-scramble-reveal/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/text-scramble-reveal/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/text-scramble-reveal/index.tsx",
+      "target": "components/buildora/text-scramble-reveal.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type TextScrambleRevealProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nconst GLYPHS = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\";\nexport function TextScrambleReveal({ className, children, ...rest }: TextScrambleRevealProps) {\n  const text = typeof children === \"string\" ? children : \"HELLO\";\n  const [out, setOut] = React.useState(text.split(\"\").map(() => \" \"));\n  const ref = React.useRef<HTMLSpanElement>(null);\n  const reduced = useReducedMotion();\n  const inView = useInView(ref as React.RefObject<Element>, { once: true });\n  React.useEffect(() => {\n    if (!inView || reduced) { setOut(text.split(\"\")); return; }\n    let frame = 0; const total = 24;\n    const id = setInterval(() => {\n      frame++;\n      setOut(text.split(\"\").map((ch, i) => (frame / total > i / text.length ? ch : GLYPHS[Math.floor(Math.random() * GLYPHS.length)])));\n      if (frame >= total) clearInterval(id);\n    }, 40);\n    return () => clearInterval(id);\n  }, [inView, reduced, text]);\n  return <span ref={ref} className={cn(\"font-mono text-[color:var(--b-text)]\", className)} {...rest}>{out.join(\"\")}</span>;\n}\nexport default TextScrambleReveal;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/text-scramble-reveal",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/text-scramble-reveal/index.tsx",
+  "sourceDir": "text-scramble-reveal",
+  "docs": "/components/text-scramble-reveal",
+  "install": "pnpm dlx shadcn@latest add @buildora/text-scramble-reveal"
+}

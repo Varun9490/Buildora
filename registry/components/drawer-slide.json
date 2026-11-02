@@ -1,0 +1,130 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "drawer-slide",
+  "name": "Drawer Slide",
+  "slug": "drawer-slide",
+  "description": "Side drawer that slides in from the edge with spring easing.",
+  "categories": [
+    "overlays",
+    "motion"
+  ],
+  "tags": [
+    "drawer",
+    "slide",
+    "spring"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/drawer-slide/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/drawer-slide/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/drawer-slide/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/drawer-slide/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/drawer-slide/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/drawer-slide/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/drawer-slide/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/drawer-slide/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/drawer-slide/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/drawer-slide/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/drawer-slide/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/drawer-slide/index.tsx",
+      "target": "components/buildora/drawer-slide.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type DrawerSlideProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function DrawerSlide({ className, children, ...rest }: DrawerSlideProps) {\n  const [open, setOpen] = React.useState(false);\n  const reduced = useReducedMotion();\n  return (\n    <div className={className} {...rest}>\n      <button onClick={() => setOpen(true)} className=\"rounded-[var(--b-radius-sm)] border border-[color:var(--b-border)] px-4 py-2 text-sm text-[color:var(--b-text)]\">Open drawer</button>\n      <AnimatePresence>\n        {open && (\n          <motion.div\n            initial={reduced ? {} : { x: \"100%\" }}\n            animate={{ x: 0 }}\n            exit={reduced ? {} : { x: \"100%\" }}\n            transition={{ type: \"spring\", stiffness: 320, damping: 30 }}\n            className=\"fixed right-0 top-0 z-50 h-full w-80 border-l border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-6 text-[color:var(--b-text)] shadow-xl\"\n          >\n            <button onClick={() => setOpen(false)} className=\"mb-4 text-sm text-[color:var(--b-muted)]\">Close</button>\n            {children}\n          </motion.div>\n        )}\n      </AnimatePresence>\n    </div>\n  );\n}\nexport default DrawerSlide;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/drawer-slide",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/drawer-slide/index.tsx",
+  "sourceDir": "drawer-slide",
+  "docs": "/components/drawer-slide",
+  "install": "pnpm dlx shadcn@latest add @buildora/drawer-slide"
+}

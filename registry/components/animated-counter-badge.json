@@ -1,0 +1,131 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "animated-counter-badge",
+  "name": "Animated Counter Badge",
+  "slug": "animated-counter-badge",
+  "description": "Badge that increments a counter with a spring pop when its value changes.",
+  "categories": [
+    "motion",
+    "primitives"
+  ],
+  "tags": [
+    "badge",
+    "counter",
+    "pop"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/animated-counter-badge/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/animated-counter-badge/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/animated-counter-badge/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/animated-counter-badge/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/animated-counter-badge/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/animated-counter-badge/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/animated-counter-badge/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/animated-counter-badge/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/animated-counter-badge/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/animated-counter-badge/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/animated-counter-badge/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0",
+    "zod"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/animated-counter-badge/index.tsx",
+      "target": "components/buildora/animated-counter-badge.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { z } from \"zod\";\n\nconst AnimatedCounterBadgeSchema = z.object({\n  className: z.string().optional(),\n});\n\nexport type AnimatedCounterBadgeProps = React.HTMLAttributes<HTMLDivElement> & {\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function AnimatedCounterBadge({ className, children, ...rest }: AnimatedCounterBadgeProps) {\n  const reduced = useReducedMotion();\n  const [key, setKey] = React.useState(0);\n  React.useEffect(() => { setKey((k) => k + 1); }, [children]);\n  return (\n    <motion.span\n      key={key}\n      initial={reduced ? false : { scale: 0.6, opacity: 0 }}\n      animate={{ scale: 1, opacity: 1 }}\n      transition={{ type: \"spring\", stiffness: 420, damping: 18 }}\n      className={cn(\"inline-flex items-center rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-2.5 py-0.5 text-xs font-medium text-[color:var(--b-text)]\", className)}\n      {...rest}\n    >\n      {children}\n    </motion.span>\n  );\n}\nexport default AnimatedCounterBadge;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/animated-counter-badge",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/animated-counter-badge/index.tsx",
+  "sourceDir": "animated-counter-badge",
+  "docs": "/components/animated-counter-badge",
+  "install": "pnpm dlx shadcn@latest add @buildora/animated-counter-badge"
+}

@@ -1,0 +1,130 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "cursor-trail-dot",
+  "name": "Cursor Trail Dot",
+  "slug": "cursor-trail-dot",
+  "description": "Small trailing dot that follows the pointer with spring lag and fades when idle.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "cursor",
+    "trail",
+    "dot"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/cursor-trail-dot/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/cursor-trail-dot/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cursor-trail-dot/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cursor-trail-dot/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/cursor-trail-dot/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/cursor-trail-dot/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/cursor-trail-dot/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/cursor-trail-dot/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/cursor-trail-dot/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/cursor-trail-dot/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/cursor-trail-dot/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0",
+    "zod"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/cursor-trail-dot/index.tsx",
+      "target": "components/buildora/cursor-trail-dot.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { z } from \"zod\";\n\nconst CursorTrailDotSchema = z.object({\n  className: z.string().optional(),\n});\n\nexport type CursorTrailDotProps = React.HTMLAttributes<HTMLDivElement> & {\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function CursorTrailDot({ className, ...rest }: CursorTrailDotProps) {\n  const reduced = useReducedMotion();\n  const [pos, setPos] = React.useState({ x: 0, y: 0 });\n  const [visible, setVisible] = React.useState(false);\n  React.useEffect(() => {\n    if (reduced) return;\n    let raf = 0; let target = { x: 0, y: 0 }; let cur = { x: 0, y: 0 };\n    const onMove = (e: MouseEvent) => { target = { x: e.clientX, y: e.clientY }; setVisible(true); };\n    const onLeave = () => setVisible(false);\n    const loop = () => {\n      cur.x += (target.x - cur.x) * 0.18;\n      cur.y += (target.y - cur.y) * 0.18;\n      setPos({ x: cur.x, y: cur.y });\n      raf = requestAnimationFrame(loop);\n    };\n    window.addEventListener(\"pointermove\", onMove);\n    window.addEventListener(\"pointerleave\", onLeave);\n    raf = requestAnimationFrame(loop);\n    return () => { window.removeEventListener(\"pointermove\", onMove); window.removeEventListener(\"pointerleave\", onLeave); cancelAnimationFrame(raf); };\n  }, [reduced]);\n  if (reduced) return null;\n  return (\n    <motion.span\n      aria-hidden\n      className={cn(\"pointer-events-none fixed left-0 top-0 z-50 h-3 w-3 rounded-full bg-[color:var(--b-accent)] mix-blend-difference\", className)}\n      style={{ x: pos.x - 6, y: pos.y - 6, opacity: visible ? 1 : 0 }}\n      {...rest}\n    />\n  );\n}\nexport default CursorTrailDot;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/cursor-trail-dot",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/cursor-trail-dot/index.tsx",
+  "sourceDir": "cursor-trail-dot",
+  "docs": "/components/cursor-trail-dot",
+  "install": "pnpm dlx shadcn@latest add @buildora/cursor-trail-dot"
+}

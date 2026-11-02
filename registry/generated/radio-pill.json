@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-pill",
+  "type": "registry:component",
+  "title": "Radio Pill",
+  "description": "Radio group rendered as a sliding pill selector.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "forms",
+    "motion"
+  ],
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/radio-pill/index.tsx",
+      "target": "components/buildora/radio-pill.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type RadioPillProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function RadioPill({ className, ...rest }: RadioPillProps) {\n  const items = [\"One\", \"Two\", \"Three\"];\n  const [active, setActive] = React.useState(0);\n  const reduced = useReducedMotion();\n  return (\n    <div className={cn(\"relative inline-flex rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-1\", className)} {...rest}>\n      <motion.div\n        className=\"absolute top-1 bottom-1 rounded-full bg-[color:var(--b-accent)]\"\n        animate={reduced ? {} : { left: `${(active / items.length) * 100}%`, width: `${100 / items.length}%` }}\n        transition={{ type: \"spring\", stiffness: 320, damping: 28 }}\n      />\n      {items.map((it, i) => (\n        <button\n          key={it}\n          onClick={() => setActive(i)}\n          className={cn(\"relative z-10 px-4 py-1.5 text-sm\", active === i ? \"text-[color:var(--b-accent-foreground)]\" : \"text-[color:var(--b-text-secondary)]\")}\n        >\n          {it}\n        </button>\n      ))}\n    </div>\n  );\n}\nexport default RadioPill;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/radio-pill/index.tsx"
+}

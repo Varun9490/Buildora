@@ -1,0 +1,131 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "parallax-image-layer",
+  "name": "Parallax Image Layer",
+  "slug": "parallax-image-layer",
+  "description": "Image layer that translates at a different rate than scroll for depth, rAF-throttled.",
+  "categories": [
+    "motion",
+    "blocks"
+  ],
+  "tags": [
+    "parallax",
+    "image",
+    "depth"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/parallax-image-layer/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/parallax-image-layer/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/parallax-image-layer/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/parallax-image-layer/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/parallax-image-layer/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/parallax-image-layer/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/parallax-image-layer/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/parallax-image-layer/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/parallax-image-layer/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/parallax-image-layer/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/parallax-image-layer/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0",
+    "zod"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/parallax-image-layer/index.tsx",
+      "target": "components/buildora/parallax-image-layer.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { z } from \"zod\";\n\nconst ParallaxImageLayerSchema = z.object({\n  className: z.string().optional(),\n});\n\nexport type ParallaxImageLayerProps = React.HTMLAttributes<HTMLDivElement> & {\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function ParallaxImageLayer({ className, children, ...rest }: ParallaxImageLayerProps) {\n  const ref = React.useRef<HTMLDivElement>(null);\n  const reduced = useReducedMotion();\n  const { scrollYProgress } = useScroll({ target: ref, offset: [\"start end\", \"end start\"] });\n  const y = useTransform(scrollYProgress, [0, 1], reduced ? [\"0%\", \"0%\"] : [\"-8%\", \"8%\"]);\n  return (\n    <motion.div ref={ref} style={{ y }} className={cn(\"overflow-hidden\", className)} {...rest}>\n      {children}\n    </motion.div>\n  );\n}\nexport default ParallaxImageLayer;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/parallax-image-layer",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/parallax-image-layer/index.tsx",
+  "sourceDir": "parallax-image-layer",
+  "docs": "/components/parallax-image-layer",
+  "install": "pnpm dlx shadcn@latest add @buildora/parallax-image-layer"
+}

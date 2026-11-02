@@ -1,0 +1,131 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "testimonial-carousel",
+  "name": "Testimonial Carousel",
+  "slug": "testimonial-carousel",
+  "description": "Auto-advancing testimonial carousel with spring snap and pause on hover.",
+  "categories": [
+    "motion",
+    "blocks"
+  ],
+  "tags": [
+    "carousel",
+    "testimonial",
+    "auto"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/testimonial-carousel/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/testimonial-carousel/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/testimonial-carousel/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/testimonial-carousel/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/testimonial-carousel/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/testimonial-carousel/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/testimonial-carousel/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/testimonial-carousel/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/testimonial-carousel/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/testimonial-carousel/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/testimonial-carousel/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0",
+    "zod"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/testimonial-carousel/index.tsx",
+      "target": "components/buildora/testimonial-carousel.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { z } from \"zod\";\n\nconst TestimonialCarouselSchema = z.object({\n  className: z.string().optional(),\n});\n\nexport type TestimonialCarouselProps = React.HTMLAttributes<HTMLDivElement> & {\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function TestimonialCarousel({ className, children, ...rest }: TestimonialCarouselProps) {\n  const items = React.Children.toArray(children);\n  const [i, setI] = React.useState(0);\n  const reduced = useReducedMotion();\n  React.useEffect(() => {\n    if (reduced || items.length < 2) return;\n    const id = setInterval(() => setI((v) => (v + 1) % items.length), 4000);\n    return () => clearInterval(id);\n  }, [items.length, reduced]);\n  return (\n    <div className={cn(\"relative overflow-hidden\", className)} {...rest}>\n      <AnimatePresence mode=\"wait\">\n        <motion.div\n          key={i}\n          initial={reduced ? {} : { opacity: 0, x: 24 }}\n          animate={{ opacity: 1, x: 0 }}\n          exit={reduced ? {} : { opacity: 0, x: -24 }}\n          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}\n          className=\"text-[color:var(--b-text)]\"\n        >\n          {items[i]}\n        </motion.div>\n      </AnimatePresence>\n    </div>\n  );\n}\nexport default TestimonialCarousel;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/testimonial-carousel",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/testimonial-carousel/index.tsx",
+  "sourceDir": "testimonial-carousel",
+  "docs": "/components/testimonial-carousel",
+  "install": "pnpm dlx shadcn@latest add @buildora/testimonial-carousel"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-cascade",
+  "type": "registry:component",
+  "title": "Dropdown Cascade",
+  "description": "Dropdown menu whose items cascade in with staggered fade.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "overlays",
+    "motion"
+  ],
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/dropdown-cascade/index.tsx",
+      "target": "components/buildora/dropdown-cascade.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type DropdownCascadeProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function DropdownCascade({ className, children, ...rest }: DropdownCascadeProps) {\n  const [open, setOpen] = React.useState(false);\n  const reduced = useReducedMotion();\n  const items = React.Children.toArray(children);\n  return (\n    <div className={cn(\"relative inline-block\", className)} {...rest}>\n      <button onClick={() => setOpen((v) => !v)} className=\"rounded-[var(--b-radius-sm)] border border-[color:var(--b-border)] px-3 py-1.5 text-sm text-[color:var(--b-text)]\">Menu</button>\n      <AnimatePresence>\n        {open && (\n          <motion.ul\n            initial={reduced ? {} : { opacity: 0, y: 6 }}\n            animate={{ opacity: 1, y: 0 }}\n            exit={reduced ? {} : { opacity: 0, y: 6 }}\n            transition={{ duration: 0.18 }}\n            className=\"absolute left-0 top-full z-50 mt-2 w-52 rounded-[var(--b-radius)] border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-1 shadow-lg\"\n          >\n            {items.map((c, i) => (\n              <motion.li\n                key={i}\n                initial={reduced ? {} : { opacity: 0, x: -8 }}\n                animate={{ opacity: 1, x: 0 }}\n                transition={{ delay: i * 0.03 }}\n                className=\"rounded-[var(--b-radius-sm)] px-3 py-1.5 text-sm text-[color:var(--b-text)] hover:bg-[color:var(--b-surface)]\"\n              >\n                {c}\n              </motion.li>\n            ))}\n          </motion.ul>\n        )}\n      </AnimatePresence>\n    </div>\n  );\n}\nexport default DropdownCascade;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/dropdown-cascade/index.tsx"
+}

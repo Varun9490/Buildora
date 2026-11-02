@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-snap-section",
+  "type": "registry:component",
+  "title": "Scroll Snap Section",
+  "description": "Section that snaps into place on scroll with smooth easing.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "motion",
+    "blocks"
+  ],
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/scroll-snap-section/index.tsx",
+      "target": "components/buildora/scroll-snap-section.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type ScrollSnapSectionProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function ScrollSnapSection({ className, children, ...rest }: ScrollSnapSectionProps) {\n  return (\n    <section className={cn(\"snap-start min-h-screen flex items-center justify-center text-[color:var(--b-text)]\", className)} {...rest}>\n      {children}\n    </section>\n  );\n}\nexport default ScrollSnapSection;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/scroll-snap-section/index.tsx"
+}

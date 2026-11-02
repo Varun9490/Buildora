@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-stack-hover",
+  "type": "registry:component",
+  "title": "Avatar Stack Hover",
+  "description": "Stacked avatars that spread apart on hover with spring.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "primitives",
+    "motion"
+  ],
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/avatar-stack-hover/index.tsx",
+      "target": "components/buildora/avatar-stack-hover.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type AvatarStackHoverProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function AvatarStackHover({ className, ...rest }: AvatarStackHoverProps) {\n  const [hover, setHover] = React.useState(false);\n  const reduced = useReducedMotion();\n  const items = [1, 2, 3, 4];\n  return (\n    <div className={cn(\"flex\", className)} onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)} {...rest}>\n      {items.map((n, i) => (\n        <motion.div\n          key={n}\n          className=\"h-10 w-10 -ml-3 first:ml-0 rounded-full border-2 border-[color:var(--b-panel)] bg-[color:var(--b-surface)] flex items-center justify-center text-xs text-[color:var(--b-text)]\"\n          animate={reduced ? {} : hover ? { x: i * 6 } : { x: 0 }}\n          transition={{ type: \"spring\", stiffness: 260, damping: 20 }}\n        >\n          {n}\n        </motion.div>\n      ))}\n    </div>\n  );\n}\nexport default AvatarStackHover;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/avatar-stack-hover/index.tsx"
+}

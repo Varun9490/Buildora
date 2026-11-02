@@ -1,0 +1,130 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "toast-slide",
+  "name": "Toast Slide",
+  "slug": "toast-slide",
+  "description": "Toast notification that slides in from the side and auto-dismisses.",
+  "categories": [
+    "feedback",
+    "motion"
+  ],
+  "tags": [
+    "toast",
+    "slide",
+    "auto"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/toast-slide/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/toast-slide/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/toast-slide/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/toast-slide/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/toast-slide/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/toast-slide/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/toast-slide/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/toast-slide/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/toast-slide/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/toast-slide/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/toast-slide/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/toast-slide/index.tsx",
+      "target": "components/buildora/toast-slide.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type ToastSlideProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function ToastSlide({ className, children, ...rest }: ToastSlideProps) {\n  const [show, setShow] = React.useState(false);\n  const reduced = useReducedMotion();\n  return (\n    <div className={className} {...rest}>\n      <button onClick={() => { setShow(true); setTimeout(() => setShow(false), 2500); }} className=\"rounded-[var(--b-radius-sm)] bg-[color:var(--b-accent)] px-4 py-2 text-sm text-[color:var(--b-accent-foreground)]\">Show toast</button>\n      <AnimatePresence>\n        {show && (\n          <motion.div\n            role=\"status\"\n            initial={reduced ? {} : { opacity: 0, x: 40 }}\n            animate={{ opacity: 1, x: 0 }}\n            exit={reduced ? {} : { opacity: 0, x: 40 }}\n            transition={{ type: \"spring\", stiffness: 300, damping: 24 }}\n            className=\"fixed bottom-4 right-4 z-50 rounded-[var(--b-radius)] border border-[color:var(--b-border)] bg-[color:var(--b-panel)] px-4 py-3 text-sm text-[color:var(--b-text)] shadow-lg\"\n          >\n            {children}\n          </motion.div>\n        )}\n      </AnimatePresence>\n    </div>\n  );\n}\nexport default ToastSlide;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/toast-slide",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/toast-slide/index.tsx",
+  "sourceDir": "toast-slide",
+  "docs": "/components/toast-slide",
+  "install": "pnpm dlx shadcn@latest add @buildora/toast-slide"
+}

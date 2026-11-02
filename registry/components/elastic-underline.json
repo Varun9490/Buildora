@@ -1,0 +1,130 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "elastic-underline",
+  "name": "Elastic Underline",
+  "slug": "elastic-underline",
+  "description": "Link underline that stretches and snaps back on hover with spring physics.",
+  "categories": [
+    "motion",
+    "primitives"
+  ],
+  "tags": [
+    "underline",
+    "elastic",
+    "hover"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/elastic-underline/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/elastic-underline/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/elastic-underline/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/elastic-underline/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/elastic-underline/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/elastic-underline/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/elastic-underline/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/elastic-underline/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/elastic-underline/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/elastic-underline/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/elastic-underline/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/elastic-underline/index.tsx",
+      "target": "components/buildora/elastic-underline.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type ElasticUnderlineProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function ElasticUnderline({ className, children, ...rest }: ElasticUnderlineProps) {\n  const reduced = useReducedMotion();\n  return (\n    <span className={cn(\"relative inline-block cursor-pointer text-[color:var(--b-text)]\", className)} {...rest}>\n      {children}\n      <motion.span\n        aria-hidden\n        className=\"absolute left-0 -bottom-0.5 h-[2px] w-full origin-left bg-[color:var(--b-accent)]\"\n        initial={{ scaleX: 0.4 }}\n        whileHover={reduced ? {} : { scaleX: 1 }}\n        transition={{ type: \"spring\", stiffness: 300, damping: 20 }}\n      />\n    </span>\n  );\n}\nexport default ElasticUnderline;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/elastic-underline",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/elastic-underline/index.tsx",
+  "sourceDir": "elastic-underline",
+  "docs": "/components/elastic-underline",
+  "install": "pnpm dlx shadcn@latest add @buildora/elastic-underline"
+}

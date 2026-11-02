@@ -1,0 +1,131 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "scroll-progress-bar",
+  "name": "Scroll Progress Bar",
+  "slug": "scroll-progress-bar",
+  "description": "Top reading-progress bar driven by scroll position, transform-scaled.",
+  "categories": [
+    "motion",
+    "primitives"
+  ],
+  "tags": [
+    "scroll",
+    "progress",
+    "bar"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/scroll-progress-bar/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/scroll-progress-bar/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/scroll-progress-bar/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/scroll-progress-bar/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/scroll-progress-bar/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/scroll-progress-bar/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/scroll-progress-bar/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/scroll-progress-bar/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/scroll-progress-bar/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/scroll-progress-bar/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/scroll-progress-bar/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0",
+    "zod"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/scroll-progress-bar/index.tsx",
+      "target": "components/buildora/scroll-progress-bar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { z } from \"zod\";\n\nconst ScrollProgressBarSchema = z.object({\n  className: z.string().optional(),\n});\n\nexport type ScrollProgressBarProps = React.HTMLAttributes<HTMLDivElement> & {\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function ScrollProgressBar({ className, ...rest }: ScrollProgressBarProps) {\n  const { scrollYProgress } = useScroll();\n  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);\n  return (\n    <motion.div\n      className={cn(\"fixed left-0 top-0 z-50 h-[2px] w-full origin-left bg-[color:var(--b-accent)]\", className)}\n      style={{ scaleX }}\n      {...rest}\n    />\n  );\n}\nexport default ScrollProgressBar;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/scroll-progress-bar",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/scroll-progress-bar/index.tsx",
+  "sourceDir": "scroll-progress-bar",
+  "docs": "/components/scroll-progress-bar",
+  "install": "pnpm dlx shadcn@latest add @buildora/scroll-progress-bar"
+}

@@ -1,0 +1,130 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "avatar-stack-hover",
+  "name": "Avatar Stack Hover",
+  "slug": "avatar-stack-hover",
+  "description": "Stacked avatars that spread apart on hover with spring.",
+  "categories": [
+    "primitives",
+    "motion"
+  ],
+  "tags": [
+    "avatar",
+    "stack",
+    "hover"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/avatar-stack-hover/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/avatar-stack-hover/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/avatar-stack-hover/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/avatar-stack-hover/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/avatar-stack-hover/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/avatar-stack-hover/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/avatar-stack-hover/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/avatar-stack-hover/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/avatar-stack-hover/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/avatar-stack-hover/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/avatar-stack-hover/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/avatar-stack-hover/index.tsx",
+      "target": "components/buildora/avatar-stack-hover.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type AvatarStackHoverProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function AvatarStackHover({ className, ...rest }: AvatarStackHoverProps) {\n  const [hover, setHover] = React.useState(false);\n  const reduced = useReducedMotion();\n  const items = [1, 2, 3, 4];\n  return (\n    <div className={cn(\"flex\", className)} onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)} {...rest}>\n      {items.map((n, i) => (\n        <motion.div\n          key={n}\n          className=\"h-10 w-10 -ml-3 first:ml-0 rounded-full border-2 border-[color:var(--b-panel)] bg-[color:var(--b-surface)] flex items-center justify-center text-xs text-[color:var(--b-text)]\"\n          animate={reduced ? {} : hover ? { x: i * 6 } : { x: 0 }}\n          transition={{ type: \"spring\", stiffness: 260, damping: 20 }}\n        >\n          {n}\n        </motion.div>\n      ))}\n    </div>\n  );\n}\nexport default AvatarStackHover;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/avatar-stack-hover",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/avatar-stack-hover/index.tsx",
+  "sourceDir": "avatar-stack-hover",
+  "docs": "/components/avatar-stack-hover",
+  "install": "pnpm dlx shadcn@latest add @buildora/avatar-stack-hover"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "blur-text-entrance",
+  "type": "registry:component",
+  "title": "Blur Text Entrance",
+  "description": "Headline that resolves from a blurred, scaled state into sharp focus on view.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "motion"
+  ],
+  "dependencies": [
+    "motion@^13.4.0",
+    "zod"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/blur-text-entrance/index.tsx",
+      "target": "components/buildora/blur-text-entrance.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { z } from \"zod\";\n\nconst BlurTextEntranceSchema = z.object({\n  className: z.string().optional(),\n});\n\nexport type BlurTextEntranceProps = React.HTMLAttributes<HTMLDivElement> & {\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function BlurTextEntrance({ className, children, ...rest }: BlurTextEntranceProps) {\n  const ref = React.useRef<HTMLDivElement>(null);\n  const reduced = useReducedMotion();\n  const inView = useInView(ref, { once: true, margin: \"-80px\" });\n  return (\n    <motion.div\n      ref={ref}\n      initial={reduced ? false : { opacity: 0, filter: \"blur(12px)\", scale: 0.96 }}\n      animate={reduced ? {} : inView ? { opacity: 1, filter: \"blur(0px)\", scale: 1 } : { opacity: 0, filter: \"blur(12px)\", scale: 0.96 }}\n      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}\n      className={cn(\"text-[color:var(--b-text)]\", className)}\n      {...rest}\n    >\n      {children}\n    </motion.div>\n  );\n}\nexport default BlurTextEntrance;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/blur-text-entrance/index.tsx"
+}

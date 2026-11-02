@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "parallax-text",
+  "type": "registry:component",
+  "title": "Parallax Text",
+  "description": "Headline that drifts at a different rate than scroll for depth.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "motion"
+  ],
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/parallax-text/index.tsx",
+      "target": "components/buildora/parallax-text.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type ParallaxTextProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function ParallaxText({ className, children, ...rest }: ParallaxTextProps) {\n  const ref = React.useRef<HTMLDivElement>(null);\n  const reduced = useReducedMotion();\n  const { scrollYProgress } = useScroll({ target: ref, offset: [\"start end\", \"end start\"] });\n  const y = useTransform(scrollYProgress, [0, 1], reduced ? [\"0%\", \"0%\"] : [\"-12%\", \"12%\"]);\n  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.3, 1, 1, 0.3]);\n  return (\n    <motion.div ref={ref} style={{ y, opacity }} className={cn(\"text-[color:var(--b-text)]\", className)} {...rest}>\n      {children}\n    </motion.div>\n  );\n}\nexport default ParallaxText;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/parallax-text/index.tsx"
+}

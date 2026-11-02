@@ -1,0 +1,131 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "fade-stagger-list",
+  "name": "Fade Stagger List",
+  "slug": "fade-stagger-list",
+  "description": "List whose items fade and slide up in staggered sequence on view.",
+  "categories": [
+    "motion",
+    "blocks"
+  ],
+  "tags": [
+    "list",
+    "stagger",
+    "fade"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/fade-stagger-list/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/fade-stagger-list/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/fade-stagger-list/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/fade-stagger-list/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/fade-stagger-list/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/fade-stagger-list/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/fade-stagger-list/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/fade-stagger-list/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/fade-stagger-list/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/fade-stagger-list/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/fade-stagger-list/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0",
+    "zod"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/fade-stagger-list/index.tsx",
+      "target": "components/buildora/fade-stagger-list.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { z } from \"zod\";\n\nconst FadeStaggerListSchema = z.object({\n  className: z.string().optional(),\n});\n\nexport type FadeStaggerListProps = React.HTMLAttributes<HTMLDivElement> & {\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function FadeStaggerList({ className, children, ...rest }: FadeStaggerListProps) {\n  const ref = React.useRef<HTMLUListElement>(null);\n  const reduced = useReducedMotion();\n  const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: \"-80px\" });\n  const items = React.Children.toArray(children);\n  return (\n    <ul ref={ref} className={cn(\"flex flex-col gap-2\", className)} {...rest}>\n      {items.map((c, i) => (\n        <motion.li\n          key={i}\n          initial={reduced ? false : { opacity: 0, x: -12 }}\n          animate={reduced ? {} : inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -12 }}\n          transition={{ duration: 0.4, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}\n          className=\"text-[color:var(--b-text)]\"\n        >\n          {c}\n        </motion.li>\n      ))}\n    </ul>\n  );\n}\nexport default FadeStaggerList;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/fade-stagger-list",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/fade-stagger-list/index.tsx",
+  "sourceDir": "fade-stagger-list",
+  "docs": "/components/fade-stagger-list",
+  "install": "pnpm dlx shadcn@latest add @buildora/fade-stagger-list"
+}

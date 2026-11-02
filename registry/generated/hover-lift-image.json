@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-lift-image",
+  "type": "registry:component",
+  "title": "Hover Lift Image",
+  "description": "Image that lifts with shadow and slight zoom on hover, with smooth easing.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "motion",
+    "blocks"
+  ],
+  "dependencies": [
+    "motion@^13.4.0",
+    "zod"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/hover-lift-image/index.tsx",
+      "target": "components/buildora/hover-lift-image.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { z } from \"zod\";\n\nconst HoverLiftImageSchema = z.object({\n  className: z.string().optional(),\n});\n\nexport type HoverLiftImageProps = React.HTMLAttributes<HTMLDivElement> & {\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function HoverLiftImage({ className, children, ...rest }: HoverLiftImageProps) {\n  const reduced = useReducedMotion();\n  return (\n    <motion.div\n      whileHover={reduced ? {} : { y: -6, boxShadow: \"0 12px 32px -12px var(--b-accent-glow)\" }}\n      transition={{ type: \"spring\", stiffness: 260, damping: 22 }}\n      className={cn(\"overflow-hidden rounded-[var(--b-radius-lg)] border border-[color:var(--b-border)] bg-[color:var(--b-panel)] text-[color:var(--b-text)]\", className)}\n      {...rest}\n    >\n      {children}\n    </motion.div>\n  );\n}\nexport default HoverLiftImage;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/hover-lift-image/index.tsx"
+}

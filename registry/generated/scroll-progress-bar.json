@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-progress-bar",
+  "type": "registry:component",
+  "title": "Scroll Progress Bar",
+  "description": "Top reading-progress bar driven by scroll position, transform-scaled.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "motion",
+    "primitives"
+  ],
+  "dependencies": [
+    "motion@^13.4.0",
+    "zod"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/scroll-progress-bar/index.tsx",
+      "target": "components/buildora/scroll-progress-bar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { z } from \"zod\";\n\nconst ScrollProgressBarSchema = z.object({\n  className: z.string().optional(),\n});\n\nexport type ScrollProgressBarProps = React.HTMLAttributes<HTMLDivElement> & {\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function ScrollProgressBar({ className, ...rest }: ScrollProgressBarProps) {\n  const { scrollYProgress } = useScroll();\n  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);\n  return (\n    <motion.div\n      className={cn(\"fixed left-0 top-0 z-50 h-[2px] w-full origin-left bg-[color:var(--b-accent)]\", className)}\n      style={{ scaleX }}\n      {...rest}\n    />\n  );\n}\nexport default ScrollProgressBar;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/scroll-progress-bar/index.tsx"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover-bounce",
+  "type": "registry:component",
+  "title": "Popover Bounce",
+  "description": "Popover that pops in with a spring bounce and fades out.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "overlays",
+    "motion"
+  ],
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/popover-bounce/index.tsx",
+      "target": "components/buildora/popover-bounce.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type PopoverBounceProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function PopoverBounce({ className, children, ...rest }: PopoverBounceProps) {\n  const [open, setOpen] = React.useState(false);\n  const reduced = useReducedMotion();\n  return (\n    <div className={cn(\"relative inline-block\", className)} {...rest}>\n      <button onClick={() => setOpen((v) => !v)} className=\"rounded-[var(--b-radius-sm)] border border-[color:var(--b-border)] px-3 py-1.5 text-sm text-[color:var(--b-text)]\">Toggle</button>\n      <AnimatePresence>\n        {open && (\n          <motion.div\n            initial={reduced ? {} : { opacity: 0, scale: 0.9, y: 6 }}\n            animate={{ opacity: 1, scale: 1, y: 0 }}\n            exit={reduced ? {} : { opacity: 0, scale: 0.9, y: 6 }}\n            transition={{ type: \"spring\", stiffness: 380, damping: 24 }}\n            className=\"absolute left-0 top-full z-50 mt-2 w-64 rounded-[var(--b-radius)] border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-4 text-sm text-[color:var(--b-text)] shadow-lg\"\n          >\n            {children}\n          </motion.div>\n        )}\n      </AnimatePresence>\n    </div>\n  );\n}\nexport default PopoverBounce;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/popover-bounce/index.tsx"
+}

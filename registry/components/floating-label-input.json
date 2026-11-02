@@ -1,0 +1,130 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "floating-label-input",
+  "name": "Floating Label Input",
+  "slug": "floating-label-input",
+  "description": "Input whose label floats up on focus with a spring, themed border.",
+  "categories": [
+    "forms",
+    "motion"
+  ],
+  "tags": [
+    "input",
+    "label",
+    "float"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/floating-label-input/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/floating-label-input/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/floating-label-input/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/floating-label-input/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/floating-label-input/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/floating-label-input/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/floating-label-input/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/floating-label-input/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/floating-label-input/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/floating-label-input/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/floating-label-input/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/floating-label-input/index.tsx",
+      "target": "components/buildora/floating-label-input.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type FloatingLabelInputProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function FloatingLabelInput({ className, children, ...rest }: FloatingLabelInputProps) {\n  const [focused, setFocused] = React.useState(false);\n  const [hasValue, setHasValue] = React.useState(false);\n  const reduced = useReducedMotion();\n  const up = focused || hasValue;\n  return (\n    <label className={cn(\"relative block\", className)} {...rest}>\n      <motion.span\n        animate={reduced ? {} : { y: up ? -22 : 0, scale: up ? 0.85 : 1, color: up ? \"var(--b-accent)\" : \"var(--b-muted)\" }}\n        transition={{ type: \"spring\", stiffness: 300, damping: 24 }}\n        className=\"absolute left-3 top-3 origin-left text-sm pointer-events-none\"\n      >\n        {children}\n      </motion.span>\n      <input\n        onFocus={() => setFocused(true)}\n        onBlur={(e) => { setFocused(false); setHasValue(!!e.target.value); }}\n        onChange={(e) => setHasValue(!!e.target.value)}\n        className=\"w-full rounded-[var(--b-radius-sm)] border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-3 text-[color:var(--b-text)] focus:border-[color:var(--b-accent)] focus:outline-none\"\n      />\n    </label>\n  );\n}\nexport default FloatingLabelInput;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/floating-label-input",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/floating-label-input/index.tsx",
+  "sourceDir": "floating-label-input",
+  "docs": "/components/floating-label-input",
+  "install": "pnpm dlx shadcn@latest add @buildora/floating-label-input"
+}

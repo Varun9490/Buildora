@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reveal-mask-image",
+  "type": "registry:component",
+  "title": "Reveal Mask Image",
+  "description": "Image revealed by an animated mask that wipes across on scroll.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "motion",
+    "blocks"
+  ],
+  "dependencies": [
+    "motion@^13.4.0",
+    "zod"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/reveal-mask-image/index.tsx",
+      "target": "components/buildora/reveal-mask-image.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { z } from \"zod\";\n\nconst RevealMaskImageSchema = z.object({\n  className: z.string().optional(),\n});\n\nexport type RevealMaskImageProps = React.HTMLAttributes<HTMLDivElement> & {\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function RevealMaskImage({ className, children, ...rest }: RevealMaskImageProps) {\n  const ref = React.useRef<HTMLDivElement>(null);\n  const reduced = useReducedMotion();\n  const inView = useInView(ref, { once: true, margin: \"-80px\" });\n  return (\n    <div ref={ref} className={cn(\"relative overflow-hidden\", className)} {...rest}>\n      <motion.div\n        initial={reduced ? false : { clipPath: \"inset(0 100% 0 0)\" }}\n        animate={reduced ? {} : inView ? { clipPath: \"inset(0 0% 0 0)\" } : { clipPath: \"inset(0 100% 0 0)\" }}\n        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}\n      >\n        {children}\n      </motion.div>\n    </div>\n  );\n}\nexport default RevealMaskImage;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/reveal-mask-image/index.tsx"
+}

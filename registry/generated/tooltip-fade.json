@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip-fade",
+  "type": "registry:component",
+  "title": "Tooltip Fade",
+  "description": "Tooltip that fades and lifts in on hover with delay and reduced-motion support.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "primitives",
+    "motion"
+  ],
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/tooltip-fade/index.tsx",
+      "target": "components/buildora/tooltip-fade.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, AnimatePresence, useInView } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type TooltipFadeProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function TooltipFade({ className, children, ...rest }: TooltipFadeProps) {\n  const [show, setShow] = React.useState(false);\n  const reduced = useReducedMotion();\n  return (\n    <span className={cn(\"relative inline-block\", className)} {...rest}>\n      <span onPointerEnter={() => setShow(true)} onPointerLeave={() => setShow(false)} onFocus={() => setShow(true)} onBlur={() => setShow(false)} tabIndex={0} className=\"text-[color:var(--b-text)]\">\n        {children}\n      </span>\n      <AnimatePresence>\n        {show && (\n          <motion.span\n            role=\"tooltip\"\n            initial={reduced ? {} : { opacity: 0, y: 4 }}\n            animate={{ opacity: 1, y: 0 }}\n            exit={reduced ? {} : { opacity: 0, y: 4 }}\n            transition={{ duration: 0.15 }}\n            className=\"absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 whitespace-nowrap rounded-[var(--b-radius-sm)] border border-[color:var(--b-border)] bg-[color:var(--b-panel)] px-2 py-1 text-xs text-[color:var(--b-text)] shadow-lg\"\n          >\n            Tooltip\n          </motion.span>\n        )}\n      </AnimatePresence>\n    </span>\n  );\n}\nexport default TooltipFade;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/tooltip-fade/index.tsx"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-triggered-counter",
+  "type": "registry:component",
+  "title": "Scroll Triggered Counter",
+  "description": "Counter that animates from zero to target on scroll into view.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "motion",
+    "data"
+  ],
+  "dependencies": [
+    "motion@^13.4.0"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/scroll-triggered-counter/index.tsx",
+      "target": "components/buildora/scroll-triggered-counter.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type ScrollTriggeredCounterProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };\n\nexport function ScrollTriggeredCounter({ className, ...rest }: ScrollTriggeredCounterProps) {\n  const ref = React.useRef<HTMLDivElement>(null);\n  const reduced = useReducedMotion();\n  const inView = useInView(ref as React.RefObject<Element>, { once: true });\n  const [val, setVal] = React.useState(0);\n  React.useEffect(() => {\n    if (!inView) return;\n    if (reduced) { setVal(1234); return; }\n    let raf = 0; const start = performance.now();\n    const tick = (t: number) => { const pp = Math.min(1, (t - start) / 1400); setVal(Math.round(pp * 1234)); if (pp < 1) raf = requestAnimationFrame(tick); };\n    raf = requestAnimationFrame(tick);\n    return () => cancelAnimationFrame(raf);\n  }, [inView, reduced]);\n  return <div ref={ref} className={cn(\"font-mono text-5xl font-bold tabular-nums text-[color:var(--b-accent)]\", className)} {...rest}>{val.toLocaleString()}</div>;\n}\nexport default ScrollTriggeredCounter;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/scroll-triggered-counter/index.tsx"
+}

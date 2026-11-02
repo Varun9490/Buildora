@@ -1,0 +1,131 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "rotate-card-stack",
+  "name": "Rotate Card Stack",
+  "slug": "rotate-card-stack",
+  "description": "Stacked cards that fan out and rotate on hover with spring physics.",
+  "categories": [
+    "motion",
+    "blocks"
+  ],
+  "tags": [
+    "cards",
+    "stack",
+    "rotate"
+  ],
+  "difficulty": "intermediate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/rotate-card-stack/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/rotate-card-stack/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/rotate-card-stack/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/rotate-card-stack/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/rotate-card-stack/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/rotate-card-stack/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/rotate-card-stack/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/rotate-card-stack/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/rotate-card-stack/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/rotate-card-stack/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/rotate-card-stack/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [
+    "motion@^13.4.0",
+    "zod"
+  ],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/rotate-card-stack/index.tsx",
+      "target": "components/buildora/rotate-card-stack.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useInView, useScroll, useTransform, AnimatePresence } from \"motion/react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\nimport { z } from \"zod\";\n\nconst RotateCardStackSchema = z.object({\n  className: z.string().optional(),\n});\n\nexport type RotateCardStackProps = React.HTMLAttributes<HTMLDivElement> & {\n  className?: string;\n  children?: React.ReactNode;\n};\n\nexport function RotateCardStack({ className, children, ...rest }: RotateCardStackProps) {\n  const items = React.Children.toArray(children);\n  const [hover, setHover] = React.useState(false);\n  const reduced = useReducedMotion();\n  return (\n    <div\n      className={cn(\"relative h-64 w-48\", className)}\n      onPointerEnter={() => setHover(true)}\n      onPointerLeave={() => setHover(false)}\n      {...rest}\n    >\n      {items.map((c, i) => (\n        <motion.div\n          key={i}\n          className=\"absolute inset-0 rounded-[var(--b-radius-lg)] border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-4 shadow-sm text-[color:var(--b-text)]\"\n          animate={reduced ? {} : hover ? { rotate: (i - (items.length-1)/2) * 8, y: i * -6 } : { rotate: 0, y: 0 }}\n          transition={{ type: \"spring\", stiffness: 200, damping: 22 }}\n          style={{ zIndex: items.length - i }}\n        >\n          {c}\n        </motion.div>\n      ))}\n    </div>\n  );\n}\nexport default RotateCardStack;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/rotate-card-stack",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/rotate-card-stack/index.tsx",
+  "sourceDir": "rotate-card-stack",
+  "docs": "/components/rotate-card-stack",
+  "install": "pnpm dlx shadcn@latest add @buildora/rotate-card-stack"
+}

@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 127,
+  "total": 177,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -2109,6 +2109,900 @@
       "version": "0.1.0",
       "status": "stable",
       "collection": "kit"
+    },
+    {
+      "slug": "portfolio-hero-entrance",
+      "name": "Portfolio Hero Entrance",
+      "description": "Staggered hero entrance: eyebrow, headline, subcopy and CTA arrive in sequence with spring easing.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "hero",
+        "entrance",
+        "stagger"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "scroll-fade-section",
+      "name": "Scroll Fade Section",
+      "description": "Section that fades and lifts into view once, driven by IntersectionObserver and reduced-motion aware.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "scroll",
+        "fade",
+        "reveal"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "project-card-tilt",
+      "name": "Project Card Tilt",
+      "description": "Project card with 3D perspective tilt following the pointer and a glare highlight that tracks.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "card",
+        "tilt",
+        "hover"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "magnetic-nav-pill",
+      "name": "Magnetic Nav Pill",
+      "description": "Floating nav pill that slides to the active item with a spring and attracts the cursor.",
+      "categories": [
+        "navigation",
+        "motion"
+      ],
+      "tags": [
+        "nav",
+        "pill",
+        "magnetic"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "gradient-border-card",
+      "name": "Gradient Border Card",
+      "description": "Card with an animated conic-gradient border that rotates and pauses on hover.",
+      "categories": [
+        "motion",
+        "primitives"
+      ],
+      "tags": [
+        "card",
+        "gradient",
+        "border"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "spotlight-hover-card",
+      "name": "Spotlight Hover Card",
+      "description": "Card lit by a radial spotlight that follows the pointer across its surface.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "card",
+        "spotlight",
+        "hover"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "marquee-logo-strip",
+      "name": "Marquee Logo Strip",
+      "description": "Infinite horizontal logo marquee that pauses on hover and freezes under reduced motion.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "marquee",
+        "logo",
+        "strip"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "number-counter-reveal",
+      "name": "Number Counter Reveal",
+      "description": "Animated counter that counts to its value when scrolled into view, announced once.",
+      "categories": [
+        "motion",
+        "data"
+      ],
+      "tags": [
+        "number",
+        "counter",
+        "reveal"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "parallax-image-layer",
+      "name": "Parallax Image Layer",
+      "description": "Image layer that translates at a different rate than scroll for depth, rAF-throttled.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "parallax",
+        "image",
+        "depth"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "cursor-trail-dot",
+      "name": "Cursor Trail Dot",
+      "description": "Small trailing dot that follows the pointer with spring lag and fades when idle.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "cursor",
+        "trail",
+        "dot"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "section-divider-line",
+      "name": "Section Divider Line",
+      "description": "Horizontal rule that draws itself from center on scroll into view.",
+      "categories": [
+        "motion",
+        "primitives"
+      ],
+      "tags": [
+        "divider",
+        "line",
+        "draw"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "testimonial-carousel",
+      "name": "Testimonial Carousel",
+      "description": "Auto-advancing testimonial carousel with spring snap and pause on hover.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "carousel",
+        "testimonial",
+        "auto"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "contact-form-reveal",
+      "name": "Contact Form Reveal",
+      "description": "Contact form whose fields stagger in on scroll with focus-driven lift.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "form",
+        "contact",
+        "reveal"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "blur-text-entrance",
+      "name": "Blur Text Entrance",
+      "description": "Headline that resolves from a blurred, scaled state into sharp focus on view.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "text",
+        "blur",
+        "entrance"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "rotate-card-stack",
+      "name": "Rotate Card Stack",
+      "description": "Stacked cards that fan out and rotate on hover with spring physics.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "cards",
+        "stack",
+        "rotate"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "scroll-progress-bar",
+      "name": "Scroll Progress Bar",
+      "description": "Top reading-progress bar driven by scroll position, transform-scaled.",
+      "categories": [
+        "motion",
+        "primitives"
+      ],
+      "tags": [
+        "scroll",
+        "progress",
+        "bar"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "hover-lift-image",
+      "name": "Hover Lift Image",
+      "description": "Image that lifts with shadow and slight zoom on hover, with smooth easing.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "image",
+        "hover",
+        "lift"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "animated-counter-badge",
+      "name": "Animated Counter Badge",
+      "description": "Badge that increments a counter with a spring pop when its value changes.",
+      "categories": [
+        "motion",
+        "primitives"
+      ],
+      "tags": [
+        "badge",
+        "counter",
+        "pop"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "fade-stagger-list",
+      "name": "Fade Stagger List",
+      "description": "List whose items fade and slide up in staggered sequence on view.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "list",
+        "stagger",
+        "fade"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "reveal-mask-image",
+      "name": "Reveal Mask Image",
+      "description": "Image revealed by an animated mask that wipes across on scroll.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "image",
+        "mask",
+        "reveal"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "elastic-underline",
+      "name": "Elastic Underline",
+      "description": "Link underline that stretches and snaps back on hover with spring physics.",
+      "categories": [
+        "motion",
+        "primitives"
+      ],
+      "tags": [
+        "underline",
+        "elastic",
+        "hover"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "image-zoom-pan",
+      "name": "Image Zoom Pan",
+      "description": "Image that zooms and pans toward the cursor on hover, clamped to bounds.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "image",
+        "zoom",
+        "pan"
+      ],
+      "difficulty": "intermediate",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "text-scramble-reveal",
+      "name": "Text Scramble Reveal",
+      "description": "Text that scrambles through glyphs and resolves on scroll into view.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "text",
+        "scramble",
+        "reveal"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "floating-label-input",
+      "name": "Floating Label Input",
+      "description": "Input whose label floats up on focus with a spring, themed border.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "input",
+        "label",
+        "float"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "accordion-smooth",
+      "name": "Smooth Accordion",
+      "description": "Accordion with animated height transition and rotating chevron.",
+      "categories": [
+        "primitives",
+        "motion"
+      ],
+      "tags": [
+        "accordion",
+        "smooth",
+        "height"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "tabs-sliding-indicator",
+      "name": "Tabs Sliding Indicator",
+      "description": "Tab bar with a sliding pill indicator that springs between items.",
+      "categories": [
+        "primitives",
+        "motion"
+      ],
+      "tags": [
+        "tabs",
+        "indicator",
+        "slide"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "tooltip-fade",
+      "name": "Tooltip Fade",
+      "description": "Tooltip that fades and lifts in on hover with delay and reduced-motion support.",
+      "categories": [
+        "primitives",
+        "motion"
+      ],
+      "tags": [
+        "tooltip",
+        "fade",
+        "hover"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "modal-fade-scale",
+      "name": "Modal Fade Scale",
+      "description": "Modal dialog that fades and scales in with backdrop blur.",
+      "categories": [
+        "overlays",
+        "motion"
+      ],
+      "tags": [
+        "modal",
+        "fade",
+        "scale"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "drawer-slide",
+      "name": "Drawer Slide",
+      "description": "Side drawer that slides in from the edge with spring easing.",
+      "categories": [
+        "overlays",
+        "motion"
+      ],
+      "tags": [
+        "drawer",
+        "slide",
+        "spring"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "popover-bounce",
+      "name": "Popover Bounce",
+      "description": "Popover that pops in with a spring bounce and fades out.",
+      "categories": [
+        "overlays",
+        "motion"
+      ],
+      "tags": [
+        "popover",
+        "bounce",
+        "spring"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "dropdown-cascade",
+      "name": "Dropdown Cascade",
+      "description": "Dropdown menu whose items cascade in with staggered fade.",
+      "categories": [
+        "overlays",
+        "motion"
+      ],
+      "tags": [
+        "dropdown",
+        "cascade",
+        "stagger"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "toast-slide",
+      "name": "Toast Slide",
+      "description": "Toast notification that slides in from the side and auto-dismisses.",
+      "categories": [
+        "feedback",
+        "motion"
+      ],
+      "tags": [
+        "toast",
+        "slide",
+        "auto"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "skeleton-shimmer",
+      "name": "Skeleton Shimmer",
+      "description": "Skeleton placeholder with an animated shimmer sweep.",
+      "categories": [
+        "feedback",
+        "motion"
+      ],
+      "tags": [
+        "skeleton",
+        "shimmer",
+        "loading"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "progress-ring",
+      "name": "Progress Ring",
+      "description": "Circular progress ring that animates to value on view.",
+      "categories": [
+        "feedback",
+        "motion"
+      ],
+      "tags": [
+        "progress",
+        "ring",
+        "circle"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "toggle-switch-anim",
+      "name": "Animated Toggle Switch",
+      "description": "Toggle switch with a sliding knob and color transition.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "toggle",
+        "switch",
+        "animate"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "checkbox-bounce",
+      "name": "Checkbox Bounce",
+      "description": "Checkbox with a bouncing checkmark on toggle.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "checkbox",
+        "bounce",
+        "check"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "radio-pill",
+      "name": "Radio Pill",
+      "description": "Radio group rendered as a sliding pill selector.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "radio",
+        "pill",
+        "slide"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "slider-glow",
+      "name": "Slider Glow",
+      "description": "Range slider with a glowing thumb and value tooltip.",
+      "categories": [
+        "forms",
+        "motion"
+      ],
+      "tags": [
+        "slider",
+        "glow",
+        "range"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "avatar-stack-hover",
+      "name": "Avatar Stack Hover",
+      "description": "Stacked avatars that spread apart on hover with spring.",
+      "categories": [
+        "primitives",
+        "motion"
+      ],
+      "tags": [
+        "avatar",
+        "stack",
+        "hover"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "badge-pulse",
+      "name": "Badge Pulse",
+      "description": "Badge with a pulsing dot indicator for live status.",
+      "categories": [
+        "primitives",
+        "motion"
+      ],
+      "tags": [
+        "badge",
+        "pulse",
+        "status"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "parallax-text",
+      "name": "Parallax Text",
+      "description": "Headline that drifts at a different rate than scroll for depth.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "parallax",
+        "text",
+        "depth"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "magnetic-cursor-ring",
+      "name": "Magnetic Cursor Ring",
+      "description": "Ring that follows the cursor with magnetic lag and scales on click.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "cursor",
+        "ring",
+        "magnetic"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "scroll-triggered-counter",
+      "name": "Scroll Triggered Counter",
+      "description": "Counter that animates from zero to target on scroll into view.",
+      "categories": [
+        "motion",
+        "data"
+      ],
+      "tags": [
+        "counter",
+        "scroll",
+        "number"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "hover-reveal-overlay",
+      "name": "Hover Reveal Overlay",
+      "description": "Card with an overlay that slides up on hover to reveal details.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "hover",
+        "overlay",
+        "reveal"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "animated-gradient-text",
+      "name": "Animated Gradient Text",
+      "description": "Text filled with an animated shifting gradient.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "text",
+        "gradient",
+        "animated"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "staggered-grid",
+      "name": "Staggered Grid",
+      "description": "Grid whose cells fade and scale in with stagger on view.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "grid",
+        "stagger",
+        "fade"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "bounce-button",
+      "name": "Bounce Button",
+      "description": "Button that bounces with a spring on click.",
+      "categories": [
+        "motion",
+        "primitives"
+      ],
+      "tags": [
+        "button",
+        "bounce",
+        "spring"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "fade-in-image",
+      "name": "Fade In Image",
+      "description": "Image that fades and scales in on load with blur placeholder.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "image",
+        "fade",
+        "load"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "scroll-snap-section",
+      "name": "Scroll Snap Section",
+      "description": "Section that snaps into place on scroll with smooth easing.",
+      "categories": [
+        "motion",
+        "blocks"
+      ],
+      "tags": [
+        "scroll",
+        "snap",
+        "section"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "animated-border",
+      "name": "Animated Border",
+      "description": "Border that traces itself around the element on view.",
+      "categories": [
+        "motion",
+        "primitives"
+      ],
+      "tags": [
+        "border",
+        "trace",
+        "animate"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
     }
   ],
   "shadcn": "Compatible — install via shadcn with the @buildora registry pointing at https://buildora-hazel.vercel.app/r/{component}.json, or the local /r/{component}.json endpoint."
