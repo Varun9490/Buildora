@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
 
 /**
@@ -11,13 +11,6 @@ import Link from "next/link";
  * Motion: gentle fade-up, no parallax gimmicks — editorial restraint.
  */
 export default function EditorialPortfolioTemplate() {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-
-  const scrollTo = React.useCallback((id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, []);
-
   return (
     <div
       className="min-h-screen bg-[#1B1A19] text-[#E8E5DF] selection:bg-[#E8E5DF] selection:text-[#1B1A19]"
@@ -35,9 +28,7 @@ export default function EditorialPortfolioTemplate() {
 
       {/* Hero */}
       <header className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-16 overflow-hidden">
-        <motion.div style={{ y }} className="absolute inset-0 z-0 opacity-40">
-          <div className="w-full h-full bg-[radial-gradient(ellipse_at_top,#2A2826_0%,#1B1A19_70%)]" />
-        </motion.div>
+        <div aria-hidden className="absolute inset-0 z-0 opacity-40 bg-[radial-gradient(ellipse_at_top,#2A2826_0%,#1B1A19_70%)]" />
 
         <div className="relative z-10 max-w-4xl">
           <motion.p
@@ -145,7 +136,7 @@ export default function EditorialPortfolioTemplate() {
 
       {/* Footer */}
       <footer className="px-6 md:px-12 py-16 border-t border-white/5 text-sm text-[#AAA59E] flex flex-col md:flex-row justify-between gap-4">
-        <span>© {new Date().getFullYear()} Lee R. Built with Buildora.</span>
+        <span>&copy; {new Date().getFullYear()} Lee R. Built with Buildora.</span>
         <div className="flex gap-6">
           <a href="https://twitter.com" className="hover:text-[#E8E5DF] transition-colors">Twitter</a>
           <a href="https://github.com" className="hover:text-[#E8E5DF] transition-colors">GitHub</a>
