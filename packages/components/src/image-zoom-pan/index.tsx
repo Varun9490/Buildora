@@ -20,7 +20,6 @@ export function ImageZoomPan({ className, children, ...rest }: ImageZoomPanProps
       onPointerMove={onMove}
       onPointerLeave={() => setPos({ x: 50, y: 50, scale: 1 })}
       className={cn("overflow-hidden rounded-[var(--b-radius-lg)]", className)}
-      {...rest}
     >
       <motion.div
         animate={reduced ? {} : pos}

@@ -41,7 +41,6 @@ export function CursorTrailDot({ className, ...rest }: CursorTrailDotProps) {
       aria-hidden
       className={cn("pointer-events-none fixed left-0 top-0 z-50 h-3 w-3 rounded-full bg-[color:var(--b-accent)] mix-blend-difference", className)}
       style={{ x: pos.x - 6, y: pos.y - 6, opacity: visible ? 1 : 0 }}
-      {...rest}
     />
   );
 }

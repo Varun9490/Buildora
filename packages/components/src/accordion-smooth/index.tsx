@@ -11,7 +11,7 @@ export function AccordionSmooth({ className, children, ...rest }: AccordionSmoot
   const [open, setOpen] = React.useState(false);
   const reduced = useReducedMotion();
   return (
-    <div className={cn("border border-[color:var(--b-border)] rounded-[var(--b-radius)] bg-[color:var(--b-panel)]", className)} {...rest}>
+    <div className={cn("border border-[color:var(--b-border)] rounded-[var(--b-radius)] bg-[color:var(--b-panel)]", className)}>
       <button
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}

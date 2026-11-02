@@ -5,13 +5,13 @@ import { motion, AnimatePresence, useInView } from "motion/react";
 import { cn } from "@buildora/utils";
 import { useReducedMotion } from "@buildora/hooks";
 
-export type TooltipFadeProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };
+export type TooltipFadeProps = React.HTMLAttributes<HTMLSpanElement> & { className?: string; children?: React.ReactNode };
 
 export function TooltipFade({ className, children, ...rest }: TooltipFadeProps) {
   const [show, setShow] = React.useState(false);
   const reduced = useReducedMotion();
   return (
-    <span className={cn("relative inline-block", className)} {...rest}>
+    <span className={cn("relative inline-block", className)}>
       <span onPointerEnter={() => setShow(true)} onPointerLeave={() => setShow(false)} onFocus={() => setShow(true)} onBlur={() => setShow(false)} tabIndex={0} className="text-[color:var(--b-text)]">
         {children}
       </span>

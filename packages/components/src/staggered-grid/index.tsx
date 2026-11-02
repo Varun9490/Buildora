@@ -13,7 +13,7 @@ export function StaggeredGrid({ className, children, ...rest }: StaggeredGridPro
   const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-80px" });
   const items = React.Children.toArray(children);
   return (
-    <div ref={ref} className={cn("grid grid-cols-2 gap-4 md:grid-cols-3", className)} {...rest}>
+    <div ref={ref} className={cn("grid grid-cols-2 gap-4 md:grid-cols-3", className)}>
       {items.map((c, i) => (
         <motion.div
           key={i}

@@ -25,7 +25,7 @@ export function TestimonialCarousel({ className, children, ...rest }: Testimonia
     return () => clearInterval(id);
   }, [items.length, reduced]);
   return (
-    <div className={cn("relative overflow-hidden", className)} {...rest}>
+    <div className={cn("relative overflow-hidden", className)}>
       <AnimatePresence mode="wait">
         <motion.div
           key={i}

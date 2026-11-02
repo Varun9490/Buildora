@@ -21,7 +21,7 @@ export function FadeStaggerList({ className, children, ...rest }: FadeStaggerLis
   const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-80px" });
   const items = React.Children.toArray(children);
   return (
-    <ul ref={ref} className={cn("flex flex-col gap-2", className)} {...rest}>
+    <ul ref={ref} className={cn("flex flex-col gap-2", className)}>
       {items.map((c, i) => (
         <motion.li
           key={i}

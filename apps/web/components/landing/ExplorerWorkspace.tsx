@@ -95,6 +95,11 @@ const GROUPS: { id: string; label: string; slugs: string[] }[] = [
       "slash-commands", "version-history", "tui-sparkline",
     ],
   },
+  {
+    id: "portfolio-motion",
+    label: "Portfolio Motion",
+    slugs: ["portfolio-hero-entrance","scroll-fade-section","project-card-tilt","magnetic-nav-pill","gradient-border-card","spotlight-hover-card","marquee-logo-strip","number-counter-reveal","parallax-image-layer","cursor-trail-dot","section-divider-line","testimonial-carousel","contact-form-reveal","blur-text-entrance","rotate-card-stack","scroll-progress-bar","hover-lift-image","animated-counter-badge","fade-stagger-list","reveal-mask-image","elastic-underline","image-zoom-pan","text-scramble-reveal","floating-label-input","accordion-smooth","tabs-sliding-indicator","tooltip-fade","modal-fade-scale","drawer-slide","popover-bounce","dropdown-cascade","toast-slide","skeleton-shimmer","progress-ring","toggle-switch-anim","checkbox-bounce","radio-pill","slider-glow","avatar-stack-hover","badge-pulse","parallax-text","magnetic-cursor-ring","scroll-triggered-counter","hover-reveal-overlay","animated-gradient-text","staggered-grid","bounce-button","fade-in-image","scroll-snap-section","animated-border"],
+  },
 ];
 
 const SIGNATURE_DEMOS: Record<string, React.ReactNode> = {

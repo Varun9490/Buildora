@@ -27,7 +27,7 @@ export function ProgressRing({ className, ...rest }: ProgressRingProps) {
   const r = 40; const c = 2 * Math.PI * r;
   const dash = (pct / 100) * c;
   return (
-    <div ref={ref} className={cn("inline-flex items-center justify-center", className)} {...rest}>
+    <div ref={ref} className={cn("inline-flex items-center justify-center", className)}>
       <svg width="100" height="100" viewBox="0 0 100 100" aria-hidden>
         <circle cx="50" cy="50" r={r} fill="none" stroke="var(--b-border)" strokeWidth="8" />
         <motion.circle

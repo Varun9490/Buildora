@@ -12,7 +12,7 @@ export function RadioPill({ className, ...rest }: RadioPillProps) {
   const [active, setActive] = React.useState(0);
   const reduced = useReducedMotion();
   return (
-    <div className={cn("relative inline-flex rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-1", className)} {...rest}>
+    <div className={cn("relative inline-flex rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-1", className)}>
       <motion.div
         className="absolute top-1 bottom-1 rounded-full bg-[color:var(--b-accent)]"
         animate={reduced ? {} : { left: `${(active / items.length) * 100}%`, width: `${100 / items.length}%` }}

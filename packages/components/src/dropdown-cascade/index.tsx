@@ -12,7 +12,7 @@ export function DropdownCascade({ className, children, ...rest }: DropdownCascad
   const reduced = useReducedMotion();
   const items = React.Children.toArray(children);
   return (
-    <div className={cn("relative inline-block", className)} {...rest}>
+    <div className={cn("relative inline-block", className)}>
       <button onClick={() => setOpen((v) => !v)} className="rounded-[var(--b-radius-sm)] border border-[color:var(--b-border)] px-3 py-1.5 text-sm text-[color:var(--b-text)]">Menu</button>
       <AnimatePresence>
         {open && (

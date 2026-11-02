@@ -180,6 +180,59 @@ import {
   SiteFooter,
 } from "@buildora/components";
 import type { FxCardEffect, FxButtonEffect } from "@buildora/components";
+import {
+  PortfolioHeroEntrance,
+  ScrollFadeSection,
+  ProjectCardTilt,
+  MagneticNavPill,
+  GradientBorderCard,
+  SpotlightHoverCard,
+  MarqueeLogoStrip,
+  NumberCounterReveal,
+  ParallaxImageLayer,
+  CursorTrailDot,
+  SectionDividerLine,
+  TestimonialCarousel,
+  ContactFormReveal,
+  BlurTextEntrance,
+  RotateCardStack,
+  ScrollProgressBar,
+  HoverLiftImage,
+  AnimatedCounterBadge,
+  FadeStaggerList,
+  RevealMaskImage,
+  ElasticUnderline,
+  ImageZoomPan,
+  TextScrambleReveal,
+  FloatingLabelInput,
+  AccordionSmooth,
+  TabsSlidingIndicator,
+  TooltipFade,
+  ModalFadeScale,
+  DrawerSlide,
+  PopoverBounce,
+  DropdownCascade,
+  ToastSlide,
+  SkeletonShimmer,
+  ProgressRing,
+  ToggleSwitchAnim,
+  CheckboxBounce,
+  RadioPill,
+  SliderGlow,
+  AvatarStackHover,
+  BadgePulse,
+  ParallaxText,
+  MagneticCursorRing,
+  ScrollTriggeredCounter,
+  HoverRevealOverlay,
+  AnimatedGradientText,
+  StaggeredGrid,
+  BounceButton,
+  FadeInImage,
+  ScrollSnapSection,
+  AnimatedBorder,
+} from "@buildora/components";
+
 
 export type { Controls } from "@/lib/render-controls";
 export { DEFAULT_RENDER_CONTROLS } from "@/lib/render-controls";
@@ -1449,6 +1502,107 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
           />
         </div>
       );
+    case "portfolio-hero-entrance":
+      return wrap(<PortfolioHeroEntrance className="w-72" />);
+    case "scroll-fade-section":
+      return wrap(<ScrollFadeSection className="w-72" />);
+    case "project-card-tilt":
+      return wrap(<ProjectCardTilt className="w-72" />);
+    case "magnetic-nav-pill":
+      return wrap(<MagneticNavPill className="w-72" />);
+    case "gradient-border-card":
+      return wrap(<GradientBorderCard className="w-72" />);
+    case "spotlight-hover-card":
+      return wrap(<SpotlightHoverCard className="w-72" />);
+    case "marquee-logo-strip":
+      return wrap(<MarqueeLogoStrip className="w-72" />);
+    case "number-counter-reveal":
+      return wrap(<NumberCounterReveal className="w-72" />);
+    case "parallax-image-layer":
+      return wrap(<ParallaxImageLayer className="w-72" />);
+    case "cursor-trail-dot":
+      return wrap(<CursorTrailDot className="w-72" />);
+    case "section-divider-line":
+      return wrap(<SectionDividerLine className="w-72" />);
+    case "testimonial-carousel":
+      return wrap(<TestimonialCarousel className="w-72" />);
+    case "contact-form-reveal":
+      return wrap(<ContactFormReveal className="w-72" />);
+    case "blur-text-entrance":
+      return wrap(<BlurTextEntrance className="w-72" />);
+    case "rotate-card-stack":
+      return wrap(<RotateCardStack className="w-72" />);
+    case "scroll-progress-bar":
+      return wrap(<ScrollProgressBar className="w-72" />);
+    case "hover-lift-image":
+      return wrap(<HoverLiftImage className="w-72" />);
+    case "animated-counter-badge":
+      return wrap(<AnimatedCounterBadge className="w-72" />);
+    case "fade-stagger-list":
+      return wrap(<FadeStaggerList className="w-72" />);
+    case "reveal-mask-image":
+      return wrap(<RevealMaskImage className="w-72" />);
+    case "elastic-underline":
+      return wrap(<ElasticUnderline className="w-72" />);
+    case "image-zoom-pan":
+      return wrap(<ImageZoomPan className="w-72" />);
+    case "text-scramble-reveal":
+      return wrap(<TextScrambleReveal className="w-72" />);
+    case "floating-label-input":
+      return wrap(<FloatingLabelInput className="w-72" />);
+    case "accordion-smooth":
+      return wrap(<AccordionSmooth className="w-72" />);
+    case "tabs-sliding-indicator":
+      return wrap(<TabsSlidingIndicator className="w-72" />);
+    case "tooltip-fade":
+      return wrap(<TooltipFade className="w-72" />);
+    case "modal-fade-scale":
+      return wrap(<ModalFadeScale className="w-72" />);
+    case "drawer-slide":
+      return wrap(<DrawerSlide className="w-72" />);
+    case "popover-bounce":
+      return wrap(<PopoverBounce className="w-72" />);
+    case "dropdown-cascade":
+      return wrap(<DropdownCascade className="w-72" />);
+    case "toast-slide":
+      return wrap(<ToastSlide className="w-72" />);
+    case "skeleton-shimmer":
+      return wrap(<SkeletonShimmer className="w-72" />);
+    case "progress-ring":
+      return wrap(<ProgressRing className="w-72" />);
+    case "toggle-switch-anim":
+      return wrap(<ToggleSwitchAnim className="w-72" />);
+    case "checkbox-bounce":
+      return wrap(<CheckboxBounce className="w-72" />);
+    case "radio-pill":
+      return wrap(<RadioPill className="w-72" />);
+    case "slider-glow":
+      return wrap(<SliderGlow className="w-72" />);
+    case "avatar-stack-hover":
+      return wrap(<AvatarStackHover className="w-72" />);
+    case "badge-pulse":
+      return wrap(<BadgePulse className="w-72" />);
+    case "parallax-text":
+      return wrap(<ParallaxText className="w-72" />);
+    case "magnetic-cursor-ring":
+      return wrap(<MagneticCursorRing className="w-72" />);
+    case "scroll-triggered-counter":
+      return wrap(<ScrollTriggeredCounter className="w-72" />);
+    case "hover-reveal-overlay":
+      return wrap(<HoverRevealOverlay className="w-72" />);
+    case "animated-gradient-text":
+      return wrap(<AnimatedGradientText className="w-72" />);
+    case "staggered-grid":
+      return wrap(<StaggeredGrid className="w-72" />);
+    case "bounce-button":
+      return wrap(<BounceButton className="w-72" />);
+    case "fade-in-image":
+      return wrap(<FadeInImage className="w-72" />);
+    case "scroll-snap-section":
+      return wrap(<ScrollSnapSection className="w-72" />);
+    case "animated-border":
+      return wrap(<AnimatedBorder className="w-72" />);
+
     default:
       return wrap(
         <div className="w-80 rounded-xl border border-[color:var(--b-border)] bg-[color:var(--b-surface)] p-6 shadow-card">

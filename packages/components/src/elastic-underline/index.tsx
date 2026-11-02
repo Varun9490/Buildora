@@ -5,12 +5,12 @@ import { motion, AnimatePresence, useInView } from "motion/react";
 import { cn } from "@buildora/utils";
 import { useReducedMotion } from "@buildora/hooks";
 
-export type ElasticUnderlineProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };
+export type ElasticUnderlineProps = React.HTMLAttributes<HTMLSpanElement> & { className?: string; children?: React.ReactNode };
 
 export function ElasticUnderline({ className, children, ...rest }: ElasticUnderlineProps) {
   const reduced = useReducedMotion();
   return (
-    <span className={cn("relative inline-block cursor-pointer text-[color:var(--b-text)]", className)} {...rest}>
+    <span className={cn("relative inline-block cursor-pointer text-[color:var(--b-text)]", className)}>
       {children}
       <motion.span
         aria-hidden

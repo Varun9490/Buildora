@@ -21,7 +21,7 @@ export function ParallaxImageLayer({ className, children, ...rest }: ParallaxIma
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], reduced ? ["0%", "0%"] : ["-8%", "8%"]);
   return (
-    <motion.div ref={ref} style={{ y }} className={cn("overflow-hidden", className)} {...rest}>
+    <motion.div ref={ref} style={{ y }} className={cn("overflow-hidden", className)}>
       {children}
     </motion.div>
   );

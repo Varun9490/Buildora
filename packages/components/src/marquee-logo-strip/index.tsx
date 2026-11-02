@@ -18,7 +18,7 @@ export type MarqueeLogoStripProps = React.HTMLAttributes<HTMLDivElement> & {
 export function MarqueeLogoStrip({ className, children, ...rest }: MarqueeLogoStripProps) {
   const reduced = useReducedMotion();
   return (
-    <div className={cn("overflow-hidden border-y border-[color:var(--b-border)] py-6 text-[color:var(--b-text)]", className)} {...rest}>
+    <div className={cn("overflow-hidden border-y border-[color:var(--b-border)] py-6 text-[color:var(--b-text)]", className)}>
       <motion.div
         className="flex gap-12 whitespace-nowrap"
         animate={reduced ? {} : { x: ["0%", "-50%"] }}

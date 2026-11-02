@@ -24,6 +24,6 @@ export function TextScrambleReveal({ className, children, ...rest }: TextScrambl
     }, 40);
     return () => clearInterval(id);
   }, [inView, reduced, text]);
-  return <span ref={ref} className={cn("font-mono text-[color:var(--b-text)]", className)} {...rest}>{out.join("")}</span>;
+  return <span ref={ref} className={cn("font-mono text-[color:var(--b-text)]", className)}>{out.join("")}</span>;
 }
 export default TextScrambleReveal;

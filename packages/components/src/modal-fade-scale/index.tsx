@@ -11,7 +11,7 @@ export function ModalFadeScale({ className, children, ...rest }: ModalFadeScaleP
   const [open, setOpen] = React.useState(false);
   const reduced = useReducedMotion();
   return (
-    <div className={className} {...rest}>
+    <div className={className}>
       <button onClick={() => setOpen(true)} className="rounded-[var(--b-radius-sm)] bg-[color:var(--b-accent)] px-4 py-2 text-sm text-[color:var(--b-accent-foreground)]">Open</button>
       <AnimatePresence>
         {open && (

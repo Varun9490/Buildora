@@ -11,7 +11,7 @@ export function PopoverBounce({ className, children, ...rest }: PopoverBouncePro
   const [open, setOpen] = React.useState(false);
   const reduced = useReducedMotion();
   return (
-    <div className={cn("relative inline-block", className)} {...rest}>
+    <div className={cn("relative inline-block", className)}>
       <button onClick={() => setOpen((v) => !v)} className="rounded-[var(--b-radius-sm)] border border-[color:var(--b-border)] px-3 py-1.5 text-sm text-[color:var(--b-text)]">Toggle</button>
       <AnimatePresence>
         {open && (

@@ -14,7 +14,7 @@ export function ParallaxText({ className, children, ...rest }: ParallaxTextProps
   const y = useTransform(scrollYProgress, [0, 1], reduced ? ["0%", "0%"] : ["-12%", "12%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.3, 1, 1, 0.3]);
   return (
-    <motion.div ref={ref} style={{ y, opacity }} className={cn("text-[color:var(--b-text)]", className)} {...rest}>
+    <motion.div ref={ref} style={{ y, opacity }} className={cn("text-[color:var(--b-text)]", className)}>
       {children}
     </motion.div>
   );

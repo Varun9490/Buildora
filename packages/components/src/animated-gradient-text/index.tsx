@@ -5,7 +5,7 @@ import { motion, useInView, useScroll, useTransform, AnimatePresence } from "mot
 import { cn } from "@buildora/utils";
 import { useReducedMotion } from "@buildora/hooks";
 
-export type AnimatedGradientTextProps = React.HTMLAttributes<HTMLDivElement> & { className?: string; children?: React.ReactNode };
+export type AnimatedGradientTextProps = React.HTMLAttributes<HTMLSpanElement> & { className?: string; children?: React.ReactNode };
 
 export function AnimatedGradientText({ className, children, ...rest }: AnimatedGradientTextProps) {
   const reduced = useReducedMotion();
@@ -15,7 +15,6 @@ export function AnimatedGradientText({ className, children, ...rest }: AnimatedG
       style={{ backgroundImage: "linear-gradient(90deg, var(--b-accent), var(--b-iris), var(--b-accent))", backgroundSize: "200% 100%" }}
       animate={reduced ? {} : { backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
       transition={reduced ? {} : { duration: 4, repeat: Infinity, ease: "linear" }}
-      {...rest}
     >
       {children}
     </motion.span>

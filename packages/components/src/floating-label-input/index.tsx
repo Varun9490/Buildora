@@ -13,7 +13,7 @@ export function FloatingLabelInput({ className, children, ...rest }: FloatingLab
   const reduced = useReducedMotion();
   const up = focused || hasValue;
   return (
-    <label className={cn("relative block", className)} {...rest}>
+    <label className={cn("relative block", className)}>
       <motion.span
         animate={reduced ? {} : { y: up ? -22 : 0, scale: up ? 0.85 : 1, color: up ? "var(--b-accent)" : "var(--b-muted)" }}
         transition={{ type: "spring", stiffness: 300, damping: 24 }}
@@ -25,7 +25,7 @@ export function FloatingLabelInput({ className, children, ...rest }: FloatingLab
         onFocus={() => setFocused(true)}
         onBlur={(e) => { setFocused(false); setHasValue(!!e.target.value); }}
         onChange={(e) => setHasValue(!!e.target.value)}
-        className="w-full rounded-[var(--b-radius-sm)] border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-3 text-[color:var(--b-text)] focus:border-[color:var(--b-accent)] focus:outline-none"
+        className="w-full rounded-[var(--b-radius-sm)] border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-3 py-3 text-[color:var(--b-text)] focus:border-[color:var(--b-accent)] focus:outline-none" aria-label="Full name"
       />
     </label>
   );

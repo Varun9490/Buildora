@@ -10,7 +10,7 @@ const AnimatedCounterBadgeSchema = z.object({
   className: z.string().optional(),
 });
 
-export type AnimatedCounterBadgeProps = React.HTMLAttributes<HTMLDivElement> & {
+export type AnimatedCounterBadgeProps = React.HTMLAttributes<HTMLSpanElement> & {
   className?: string;
   children?: React.ReactNode;
 };
@@ -26,7 +26,6 @@ export function AnimatedCounterBadge({ className, children, ...rest }: AnimatedC
       animate={{ scale: 1, opacity: 1 }}
       transition={{ type: "spring", stiffness: 420, damping: 18 }}
       className={cn("inline-flex items-center rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-2.5 py-0.5 text-xs font-medium text-[color:var(--b-text)]", className)}
-      {...rest}
     >
       {children}
     </motion.span>

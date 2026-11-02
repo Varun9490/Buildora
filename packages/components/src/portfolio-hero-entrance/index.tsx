@@ -21,7 +21,7 @@ export function PortfolioHeroEntrance({ className, children, ...rest }: Portfoli
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const items = React.Children.toArray(children);
   return (
-    <div ref={ref} className={cn("flex flex-col gap-4", className)} {...rest}>
+    <div ref={ref} className={cn("flex flex-col gap-4", className)}>
       {items.map((c, i) => (
         <motion.div
           key={i}

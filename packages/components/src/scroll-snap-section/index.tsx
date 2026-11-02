@@ -9,7 +9,7 @@ export type ScrollSnapSectionProps = React.HTMLAttributes<HTMLDivElement> & { cl
 
 export function ScrollSnapSection({ className, children, ...rest }: ScrollSnapSectionProps) {
   return (
-    <section className={cn("snap-start min-h-screen flex items-center justify-center text-[color:var(--b-text)]", className)} {...rest}>
+    <section className={cn("snap-start min-h-screen flex items-center justify-center text-[color:var(--b-text)]", className)}>
       {children}
     </section>
   );

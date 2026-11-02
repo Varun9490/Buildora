@@ -15,8 +15,7 @@ export function ToggleSwitchAnim({ className, ...rest }: ToggleSwitchAnimProps) 
       role="switch"
       aria-checked={on}
       onClick={() => setOn((v) => !v)}
-      className={cn("relative h-7 w-12 rounded-full border border-[color:var(--b-border)] transition-colors", on ? "bg-[color:var(--b-accent)]" : "bg-[color:var(--b-surface)]", className)}
-      {...rest}
+      className={cn("relative h-7 w-12 rounded-full border border-[color:var(--b-border)] transition-colors", on ? "bg-[color:var(--b-accent)]" : "bg-[color:var(--b-surface)]", className)} aria-label="Toggle"
     >
       <motion.span
         className="absolute top-0.5 h-6 w-6 rounded-full bg-[color:var(--b-panel)] shadow"

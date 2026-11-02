@@ -12,7 +12,7 @@ export function AnimatedBorder({ className, children, ...rest }: AnimatedBorderP
   const reduced = useReducedMotion();
   const inView = useInView(ref as React.RefObject<Element>, { once: true });
   return (
-    <div ref={ref} className={cn("relative rounded-[var(--b-radius-lg)] p-[2px]", className)} {...rest}>
+    <div ref={ref} className={cn("relative rounded-[var(--b-radius-lg)] p-[2px]", className)}>
       <motion.div
         aria-hidden
         className="absolute inset-0 rounded-[var(--b-radius-lg)]"

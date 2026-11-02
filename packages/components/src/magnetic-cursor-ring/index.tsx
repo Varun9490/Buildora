@@ -29,7 +29,6 @@ export function MagneticCursorRing({ className, ...rest }: MagneticCursorRingPro
       aria-hidden
       className={cn("pointer-events-none fixed left-0 top-0 z-50 rounded-full border-2 border-[color:var(--b-accent)]", className)}
       style={{ x: pos.x - (pos.down ? 12 : 18), y: pos.y - (pos.down ? 12 : 18), width: pos.down ? 24 : 36, height: pos.down ? 24 : 36 }}
-      {...rest}
     />
   );
 }

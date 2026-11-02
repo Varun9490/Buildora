@@ -21,7 +21,7 @@ export function ContactFormReveal({ className, children, ...rest }: ContactFormR
   const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-80px" });
   const items = React.Children.toArray(children);
   return (
-    <form ref={ref} className={cn("flex flex-col gap-4", className)} {...rest}>
+    <form ref={ref} className={cn("flex flex-col gap-4", className)}>
       {items.map((c, i) => (
         <motion.div
           key={i}

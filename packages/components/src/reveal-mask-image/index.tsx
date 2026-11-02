@@ -20,7 +20,7 @@ export function RevealMaskImage({ className, children, ...rest }: RevealMaskImag
   const reduced = useReducedMotion();
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <div ref={ref} className={cn("relative overflow-hidden", className)} {...rest}>
+    <div ref={ref} className={cn("relative overflow-hidden", className)}>
       <motion.div
         initial={reduced ? false : { clipPath: "inset(0 100% 0 0)" }}
         animate={reduced ? {} : inView ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}

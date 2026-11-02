@@ -22,7 +22,6 @@ export function HoverLiftImage({ className, children, ...rest }: HoverLiftImageP
       whileHover={reduced ? {} : { y: -6, boxShadow: "0 12px 32px -12px var(--b-accent-glow)" }}
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
       className={cn("overflow-hidden rounded-[var(--b-radius-lg)] border border-[color:var(--b-border)] bg-[color:var(--b-panel)] text-[color:var(--b-text)]", className)}
-      {...rest}
     >
       {children}
     </motion.div>

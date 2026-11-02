@@ -36,7 +36,6 @@ export function ProjectCardTilt({ className, children, ...rest }: ProjectCardTil
       transition={{ type: "spring", stiffness: 220, damping: 20 }}
       style={{ transformStyle: "preserve-3d", perspective: 900 }}
       className={cn("rounded-[var(--b-radius-lg)] border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-6 shadow-sm", className)}
-      {...rest}
     >
       {children}
     </motion.div>

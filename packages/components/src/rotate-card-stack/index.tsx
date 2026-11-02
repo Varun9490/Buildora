@@ -24,7 +24,6 @@ export function RotateCardStack({ className, children, ...rest }: RotateCardStac
       className={cn("relative h-64 w-48", className)}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
-      {...rest}
     >
       {items.map((c, i) => (
         <motion.div

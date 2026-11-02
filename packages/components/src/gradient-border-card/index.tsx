@@ -18,7 +18,7 @@ export type GradientBorderCardProps = React.HTMLAttributes<HTMLDivElement> & {
 export function GradientBorderCard({ className, children, ...rest }: GradientBorderCardProps) {
   const reduced = useReducedMotion();
   return (
-    <div className={cn("relative rounded-[var(--b-radius-lg)] p-[1.5px] overflow-hidden", className)} {...rest}>
+    <div className={cn("relative rounded-[var(--b-radius-lg)] p-[1.5px] overflow-hidden", className)}>
       {!reduced && (
         <motion.span
           aria-hidden

@@ -22,7 +22,6 @@ export function ScrollProgressBar({ className, ...rest }: ScrollProgressBarProps
     <motion.div
       className={cn("fixed left-0 top-0 z-50 h-[2px] w-full origin-left bg-[color:var(--b-accent)]", className)}
       style={{ scaleX }}
-      {...rest}
     />
   );
 }

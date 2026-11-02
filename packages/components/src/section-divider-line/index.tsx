@@ -20,7 +20,7 @@ export function SectionDividerLine({ className, ...rest }: SectionDividerLinePro
   const reduced = useReducedMotion();
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <div ref={ref} className={cn("h-px w-full overflow-hidden", className)} {...rest}>
+    <div ref={ref} className={cn("h-px w-full overflow-hidden", className)}>
       <motion.div
         className="h-full w-full origin-center bg-[color:var(--b-border-hover)]"
         initial={reduced ? false : { scaleX: 0 }}

@@ -26,7 +26,6 @@ export function ScrollFadeSection({ className, children, ...rest }: ScrollFadeSe
       animate={reduced ? {} : inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={cn("text-[color:var(--b-text)]", className)}
-      {...rest}
     >
       {children}
     </motion.div>

@@ -26,7 +26,6 @@ export function BlurTextEntrance({ className, children, ...rest }: BlurTextEntra
       animate={reduced ? {} : inView ? { opacity: 1, filter: "blur(0px)", scale: 1 } : { opacity: 0, filter: "blur(12px)", scale: 0.96 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={cn("text-[color:var(--b-text)]", className)}
-      {...rest}
     >
       {children}
     </motion.div>

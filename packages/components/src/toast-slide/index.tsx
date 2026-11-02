@@ -11,7 +11,7 @@ export function ToastSlide({ className, children, ...rest }: ToastSlideProps) {
   const [show, setShow] = React.useState(false);
   const reduced = useReducedMotion();
   return (
-    <div className={className} {...rest}>
+    <div className={className}>
       <button onClick={() => { setShow(true); setTimeout(() => setShow(false), 2500); }} className="rounded-[var(--b-radius-sm)] bg-[color:var(--b-accent)] px-4 py-2 text-sm text-[color:var(--b-accent-foreground)]">Show toast</button>
       <AnimatePresence>
         {show && (

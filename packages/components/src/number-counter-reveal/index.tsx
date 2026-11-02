@@ -32,7 +32,7 @@ export function NumberCounterReveal({ className, children, ...rest }: NumberCoun
     return () => cancelAnimationFrame(raf);
   }, [inView, reduced]);
   return (
-    <div ref={ref} className={cn("font-mono text-4xl font-bold text-[color:var(--b-accent)] tabular-nums", className)} {...rest}>
+    <div ref={ref} className={cn("font-mono text-4xl font-bold text-[color:var(--b-accent)] tabular-nums", className)}>
       {val}
       {children}
     </div>

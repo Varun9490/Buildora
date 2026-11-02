@@ -10,7 +10,7 @@
     "bypass",
     "color-contrast"
   ],
-  "components": 181,
+  "components": 231,
   "componentsWithViolations": 0,
   "violations": 0,
   "allPass": true,
@@ -22,6 +22,11 @@
     },
     {
       "component": "AccordionContent",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AccordionSmooth",
       "pass": true,
       "violations": []
     },
@@ -46,6 +51,21 @@
       "violations": []
     },
     {
+      "component": "AnimatedBorder",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AnimatedCounterBadge",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AnimatedGradientText",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "AttachmentPrompt",
       "pass": true,
       "violations": []
@@ -61,12 +81,22 @@
       "violations": []
     },
     {
+      "component": "AvatarStackHover",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "Backdrop",
       "pass": true,
       "violations": []
     },
     {
       "component": "Badge",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "BadgePulse",
       "pass": true,
       "violations": []
     },
@@ -82,6 +112,16 @@
     },
     {
       "component": "BlueprintLoader",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "BlurTextEntrance",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "BounceButton",
       "pass": true,
       "violations": []
     },
@@ -107,6 +147,11 @@
     },
     {
       "component": "Checkbox",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CheckboxBounce",
       "pass": true,
       "violations": []
     },
@@ -142,6 +187,11 @@
     },
     {
       "component": "ConfirmMorph",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ContactFormReveal",
       "pass": true,
       "violations": []
     },
@@ -192,6 +242,11 @@
     },
     {
       "component": "CursorFx",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "CursorTrailDot",
       "pass": true,
       "violations": []
     },
@@ -266,7 +321,17 @@
       "violations": []
     },
     {
+      "component": "DrawerSlide",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "DrawerTitle",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "DropdownCascade",
       "pass": true,
       "violations": []
     },
@@ -321,6 +386,11 @@
       "violations": []
     },
     {
+      "component": "ElasticUnderline",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "ExpandableSidebar",
       "pass": true,
       "violations": []
@@ -336,12 +406,27 @@
       "violations": []
     },
     {
+      "component": "FadeInImage",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "FadeStaggerList",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "FeatureGrid",
       "pass": true,
       "violations": []
     },
     {
       "component": "FileTree",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "FloatingLabelInput",
       "pass": true,
       "violations": []
     },
@@ -391,6 +476,11 @@
       "violations": []
     },
     {
+      "component": "GradientBorderCard",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "HandwrittenAnnotation",
       "pass": true,
       "violations": []
@@ -417,6 +507,21 @@
     },
     {
       "component": "HoverCardTrigger",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "HoverLiftImage",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "HoverRevealOverlay",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ImageZoomPan",
       "pass": true,
       "violations": []
     },
@@ -486,12 +591,27 @@
       "violations": []
     },
     {
+      "component": "MagneticCursorRing",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "MagneticDropzone",
       "pass": true,
       "violations": []
     },
     {
+      "component": "MagneticNavPill",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "MagnificationDock",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MarqueeLogoStrip",
       "pass": true,
       "violations": []
     },
@@ -532,6 +652,11 @@
     },
     {
       "component": "MobileSectionHeader",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ModalFadeScale",
       "pass": true,
       "violations": []
     },
@@ -581,6 +706,11 @@
       "violations": []
     },
     {
+      "component": "NumberCounterReveal",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "NumberWheel",
       "pass": true,
       "violations": []
@@ -596,7 +726,17 @@
       "violations": []
     },
     {
+      "component": "ParallaxImageLayer",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "ParallaxStack",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ParallaxText",
       "pass": true,
       "violations": []
     },
@@ -626,7 +766,27 @@
       "violations": []
     },
     {
+      "component": "PopoverBounce",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "PortfolioHeroEntrance",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "Progress",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ProgressRing",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ProjectCardTilt",
       "pass": true,
       "violations": []
     },
@@ -656,6 +816,16 @@
       "violations": []
     },
     {
+      "component": "RadioPill",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "RevealMaskImage",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "RevealOnScroll",
       "pass": true,
       "violations": []
@@ -671,7 +841,17 @@
       "violations": []
     },
     {
+      "component": "RotateCardStack",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "RubberBand",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ScrollFadeSection",
       "pass": true,
       "violations": []
     },
@@ -682,6 +862,26 @@
     },
     {
       "component": "ScrollProgress",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ScrollProgressBar",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ScrollSnapSection",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ScrollTriggeredCounter",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SectionDividerLine",
       "pass": true,
       "violations": []
     },
@@ -751,6 +951,11 @@
       "violations": []
     },
     {
+      "component": "SkeletonShimmer",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "SkeletonText",
       "pass": true,
       "violations": []
@@ -762,6 +967,11 @@
     },
     {
       "component": "Slider",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "SliderGlow",
       "pass": true,
       "violations": []
     },
@@ -786,12 +996,22 @@
       "violations": []
     },
     {
+      "component": "SpotlightHoverCard",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "SpringCarousel",
       "pass": true,
       "violations": []
     },
     {
       "component": "springToLinear",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "StaggeredGrid",
       "pass": true,
       "violations": []
     },
@@ -817,6 +1037,11 @@
     },
     {
       "component": "TabsList",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TabsSlidingIndicator",
       "pass": true,
       "violations": []
     },
@@ -851,12 +1076,22 @@
       "violations": []
     },
     {
+      "component": "TestimonialCarousel",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "Textarea",
       "pass": true,
       "violations": []
     },
     {
       "component": "TextFx",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TextScrambleReveal",
       "pass": true,
       "violations": []
     },
@@ -876,6 +1111,16 @@
       "violations": []
     },
     {
+      "component": "ToastSlide",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "ToggleSwitchAnim",
+      "pass": true,
+      "violations": []
+    },
+    {
       "component": "TokenMeter",
       "pass": true,
       "violations": []
@@ -887,6 +1132,11 @@
     },
     {
       "component": "Tooltip",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TooltipFade",
       "pass": true,
       "violations": []
     },

@@ -15,8 +15,7 @@ export function CheckboxBounce({ className, ...rest }: CheckboxBounceProps) {
       role="checkbox"
       aria-checked={checked}
       onClick={() => setChecked((v) => !v)}
-      className={cn("flex h-5 w-5 items-center justify-center rounded border border-[color:var(--b-border)] bg-[color:var(--b-surface)]", checked && "bg-[color:var(--b-accent)] border-[color:var(--b-accent)]", className)}
-      {...rest}
+      className={cn("flex h-5 w-5 items-center justify-center rounded border border-[color:var(--b-border)] bg-[color:var(--b-surface)]", checked && "bg-[color:var(--b-accent)] border-[color:var(--b-accent)]", className)} aria-label="Checkbox"
     >
       <AnimatePresence>
         {checked && (

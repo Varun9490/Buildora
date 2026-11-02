@@ -171,6 +171,12 @@ export const PROPS: Record<string, Record<string, unknown>> = {
     initialTabs: [{ id: "1", title: "bash" }],
     sessions: [{ id: "1", name: "bash" }],
   },
+  FloatingLabelInput: { "aria-label": "Full name" },
+  ToggleSwitchAnim: { "aria-label": "Toggle notifications" },
+  CheckboxBounce: { "aria-label": "Accept terms" },
+  SliderGlow: { "aria-label": "Volume" },
+  BounceButton: { children: "Press" },
+  FadeInImage: { src: "", alt: "Preview image" },
   // The popover trigger is a button; it needs a name of its own.
   Popover: { anchor: "Open" },
 };

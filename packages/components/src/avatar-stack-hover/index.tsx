@@ -12,7 +12,7 @@ export function AvatarStackHover({ className, ...rest }: AvatarStackHoverProps) 
   const reduced = useReducedMotion();
   const items = [1, 2, 3, 4];
   return (
-    <div className={cn("flex", className)} onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)} {...rest}>
+    <div className={cn("flex", className)} onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)}>
       {items.map((n, i) => (
         <motion.div
           key={n}

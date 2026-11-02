@@ -34,7 +34,6 @@ export function MagneticNavPill({ className, children, ...rest }: MagneticNavPil
       animate={reduced ? {} : pos}
       transition={{ type: "spring", stiffness: 300, damping: 24 }}
       className={cn("inline-flex items-center gap-2 rounded-full border border-[color:var(--b-border)] bg-[color:var(--b-surface)] px-4 py-2 text-sm text-[color:var(--b-text)]", className)}
-      {...rest}
     >
       {children}
     </motion.div>

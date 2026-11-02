@@ -30,7 +30,6 @@ export function SpotlightHoverCard({ className, children, ...rest }: SpotlightHo
       onPointerMove={onMove}
       onPointerLeave={() => setPos({ x: 50, y: 50 })}
       className={cn("relative overflow-hidden rounded-[var(--b-radius-lg)] border border-[color:var(--b-border)] bg-[color:var(--b-panel)] p-6 text-[color:var(--b-text)]", className)}
-      {...rest}
     >
       {!reduced && (
         <span

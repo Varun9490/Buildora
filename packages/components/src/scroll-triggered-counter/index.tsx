@@ -20,6 +20,6 @@ export function ScrollTriggeredCounter({ className, ...rest }: ScrollTriggeredCo
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [inView, reduced]);
-  return <div ref={ref} className={cn("font-mono text-5xl font-bold tabular-nums text-[color:var(--b-accent)]", className)} {...rest}>{val.toLocaleString()}</div>;
+  return <div ref={ref} className={cn("font-mono text-5xl font-bold tabular-nums text-[color:var(--b-accent)]", className)}>{val.toLocaleString()}</div>;
 }
 export default ScrollTriggeredCounter;

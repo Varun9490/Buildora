@@ -15,7 +15,6 @@ export function BounceButton({ className, children, ...rest }: BounceButtonProps
       whileHover={reduced ? {} : { y: -2 }}
       transition={{ type: "spring", stiffness: 420, damping: 14 }}
       className={cn("rounded-[var(--b-radius)] bg-[color:var(--b-accent)] px-5 py-2.5 text-sm font-semibold text-[color:var(--b-accent-foreground)]", className)}
-      {...rest}
     >
       {children}
     </motion.button>

@@ -11,7 +11,7 @@ export function HoverRevealOverlay({ className, children, ...rest }: HoverReveal
   const [hover, setHover] = React.useState(false);
   const reduced = useReducedMotion();
   return (
-    <div className={cn("relative overflow-hidden rounded-[var(--b-radius-lg)]", className)} onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)} {...rest}>
+    <div className={cn("relative overflow-hidden rounded-[var(--b-radius-lg)]", className)} onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)}>
       <div className="text-[color:var(--b-text)]">{children}</div>
       <motion.div
         className="absolute inset-0 flex items-end bg-[color:var(--b-accent)]/80 p-4 text-[color:var(--b-accent-foreground)]"

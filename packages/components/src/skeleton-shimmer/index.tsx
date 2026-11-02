@@ -10,7 +10,7 @@ export type SkeletonShimmerProps = React.HTMLAttributes<HTMLDivElement> & { clas
 export function SkeletonShimmer({ className, ...rest }: SkeletonShimmerProps) {
   const reduced = useReducedMotion();
   return (
-    <div className={cn("relative overflow-hidden rounded-[var(--b-radius)] bg-[color:var(--b-surface)]", className)} {...rest}>
+    <div className={cn("relative overflow-hidden rounded-[var(--b-radius)] bg-[color:var(--b-surface)]", className)}>
       <div className="h-4 w-3/4 rounded bg-[color:var(--b-border)]" />
       {!reduced && (
         <motion.div
