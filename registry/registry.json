@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 177,
+  "total": 178,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -2821,6 +2821,25 @@
         "badge",
         "pulse",
         "status"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "pulse-ring",
+      "name": "Pulse Ring",
+      "description": "Status indicator: a solid dot wrapped by an expanding, fading ring. Reduced-motion aware.",
+      "categories": [
+        "primitives",
+        "motion"
+      ],
+      "tags": [
+        "status",
+        "pulse",
+        "ring",
+        "live"
       ],
       "difficulty": "beginner",
       "version": "0.1.0",

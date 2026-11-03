@@ -61,6 +61,7 @@ const GROUPS: { id: string; label: string; slugs: string[] }[] = [
       "spinner", "separator", "tokens", "utils", "comet-ring-spinner", "tactile-loader",
       "blueprint-loader", "liquid-gauge", "fresnel-orb", "letter-wave", "focus-blur-list",
       "grab-roller-strip", "unified-login-field", "magnetic-dropzone", "draggable-card-pile",
+      "pulse-ring",
     ],
   },
   {

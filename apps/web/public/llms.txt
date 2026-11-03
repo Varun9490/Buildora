@@ -54,7 +54,7 @@ token file and the component's CSS and it looks the same with no Tailwind setup:
 @import "@/styles/buildora/magnetic-button.css";
 ```
 
-## Components (177 unique slugs, 177 registry entries; one line each)
+## Components (178 unique slugs, 178 registry entries; one line each)
 
 - accordion: Disclosure stack with expanded-state semantics.
 - accordion-smooth: Accordion with animated height transition and rotating chevron.
@@ -168,6 +168,7 @@ token file and the component's CSS and it looks the same with no Tailwind setup:
 - progress-ring: Circular progress ring that animates to value on view.
 - project-card-tilt: Project card with 3D perspective tilt following the pointer and a glare highlight that tracks.
 - project-showcase: Project gallery section with filter pills, sticky sidebar, and hover zoom.
+- pulse-ring: Status indicator: a solid dot wrapped by an expanding, fading ring. Reduced-motion aware.
 - query-builder: Composable filter rows with field/operator/value and removable chips.
 - radio-group: Single-select radio set with keyboard arrow navigation.
 - radio-pill: Radio group rendered as a sliding pill selector.
@@ -234,30 +235,30 @@ token file and the component's CSS and it looks the same with no Tailwind setup:
 - version-history: Document version list with restore action.
 - vertical-timeline: Timeline with dots, tick marks, connecting lines, and staggered scroll-reveal.
 
-Collections: 110 creative, 67 kit.
+Collections: 111 creative, 67 kit.
 
 Full machine-readable metadata: `registry/registry.json` (index), `registry/agent-catalog.json` (install + frameworks + docs + github per component), `registry/components/*.json`, `registry/generated/*.json`.
 Per-component docs: `/components/{slug}`. Per-component source: `https://github.com/Varun9490/Buildora/tree/main/packages/components/src/{slug}`.
 
 ## Framework support (honest, generated from the catalogue)
 
-- React: Full on all 177 components. React is the source of truth and the only tested full implementation. Install via shadcn above.
-- JavaScript: 3 Full, 174 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
-- Vue (Composition API): 3 Full, 174 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
-- Svelte (runes): 3 Full, 174 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
-- Angular (@Input): 3 Full, 174 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
-- HTML: 2 Full, 175 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
-- Tailwind: 2 Full, 172 Partial, 3 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
-- React Native: 173 Partial, 4 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
-- Flutter: 2 Partial, 171 Experimental, 4 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
-- SwiftUI: 2 Partial, 171 Experimental, 4 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
-- Jetpack Compose: 2 Partial, 171 Experimental, 4 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- React: Full on all 178 components. React is the source of truth and the only tested full implementation. Install via shadcn above.
+- JavaScript: 3 Full, 175 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Vue (Composition API): 3 Full, 175 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Svelte (runes): 3 Full, 175 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Angular (@Input): 3 Full, 175 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- HTML: 2 Full, 176 Partial — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Tailwind: 2 Full, 173 Partial, 3 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- React Native: 174 Partial, 4 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Flutter: 2 Partial, 172 Experimental, 4 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- SwiftUI: 2 Partial, 172 Experimental, 4 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
+- Jetpack Compose: 2 Partial, 172 Experimental, 4 Unsupported — snippet-level ports, not a dedicated runtime. Interactive behaviour requires the React implementation. On mobile there is no hover/cursor — use press + haptics.
 - Exceptions (generated): Full outside React: spring (JavaScript, Vue (Composition API), Svelte (runes), Angular (@Input)); tokens (JavaScript, Vue (Composition API), Svelte (runes), Angular (@Input), HTML, Tailwind); utils (JavaScript, Vue (Composition API), Svelte (runes), Angular (@Input), HTML, Tailwind). Unsupported: cursor-fx (React Native, Flutter, SwiftUI, Jetpack Compose); spring (Tailwind); use-pointer-proximity (Tailwind, React Native, Flutter, SwiftUI, Jetpack Compose); use-reduced-motion (Tailwind, React Native, Flutter, SwiftUI, Jetpack Compose); utils (React Native, Flutter, SwiftUI, Jetpack Compose). Check `registry/agent-catalog.json` `frameworks` per component before promising support.
 
 ## Cost (measured, not estimated)
 
 - Median component: 1.44 KB gzipped. Per-component numbers in `registry/reports/bundle-size.json`.
-- 89 of 177 components need no animation library at all.
+- 89 of 178 components need no animation library at all.
 - The 38 that do share one dependency (107.95 KB gzipped), paid once per project rather than per component.
 
 ## Links

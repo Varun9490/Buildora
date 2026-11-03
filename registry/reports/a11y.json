@@ -10,7 +10,7 @@
     "bypass",
     "color-contrast"
   ],
-  "components": 231,
+  "components": 232,
   "componentsWithViolations": 0,
   "violations": 0,
   "allPass": true,
@@ -797,6 +797,11 @@
     },
     {
       "component": "ProjectShowcaseCard",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "PulseRing",
       "pass": true,
       "violations": []
     },

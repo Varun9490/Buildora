@@ -1,0 +1,129 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "pulse-ring",
+  "name": "Pulse Ring",
+  "slug": "pulse-ring",
+  "description": "Status indicator: a solid dot wrapped by an expanding, fading ring. Reduced-motion aware.",
+  "categories": [
+    "primitives",
+    "motion"
+  ],
+  "tags": [
+    "status",
+    "pulse",
+    "ring",
+    "live"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/pulse-ring/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/pulse-ring/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/pulse-ring/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/pulse-ring/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/pulse-ring/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/pulse-ring/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/pulse-ring/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/pulse-ring/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/pulse-ring/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/pulse-ring/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/pulse-ring/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/pulse-ring/index.tsx",
+      "target": "components/buildora/pulse-ring.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type PulseRingProps = React.HTMLAttributes<HTMLSpanElement> & {\n  size?: number;\n  variant?: \"accent\" | \"success\" | \"danger\" | \"muted\";\n  label?: string;\n  pulse?: boolean;\n};\n\nconst VARIANT_COLOR: Record<NonNullable<PulseRingProps[\"variant\"]>, string> = {\n  accent: \"var(--b-accent)\",\n  success: \"var(--b-success)\",\n  danger: \"var(--b-danger)\",\n  muted: \"var(--b-muted)\",\n};\n\n/**\n * PulseRing — a status indicator: a solid dot wrapped by an expanding,\n * fading ring. Useful for \"live\", \"online\", \"recording\" states. The ring\n * animation is disabled under reduced motion; the dot remains visible.\n */\nexport function PulseRing({\n  size = 10,\n  variant = \"accent\",\n  label,\n  pulse = true,\n  className,\n  ...rest\n}: PulseRingProps) {\n  const reduced = useReducedMotion();\n  const color = VARIANT_COLOR[variant];\n  const animate = pulse && !reduced;\n\n  return (\n    <span\n      role=\"status\"\n      aria-label={label ?? \"Live\"}\n      className={cn(\"relative inline-flex items-center gap-2\", className)}\n      {...rest}\n    >\n      <span className=\"relative inline-flex\" style={{ width: size, height: size }}>\n        {animate && (\n          <span\n            aria-hidden\n            className=\"absolute inset-0 animate-ping rounded-full\"\n            style={{ background: color, opacity: 0.5 }}\n          />\n        )}\n        <span\n          aria-hidden\n          className=\"relative inline-flex rounded-full\"\n          style={{ width: size, height: size, background: color }}\n        />\n      </span>\n      {label && <span className=\"text-xs text-[color:var(--b-text-secondary)]\">{label}</span>}\n    </span>\n  );\n}\n\nexport default PulseRing;"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/pulse-ring",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/pulse-ring/index.tsx",
+  "sourceDir": "pulse-ring",
+  "docs": "/components/pulse-ring",
+  "install": "pnpm dlx shadcn@latest add @buildora/pulse-ring"
+}

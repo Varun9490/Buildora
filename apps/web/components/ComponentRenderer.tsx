@@ -221,6 +221,7 @@ import {
   SliderGlow,
   AvatarStackHover,
   BadgePulse,
+  PulseRing,
   ParallaxText,
   MagneticCursorRing,
   ScrollTriggeredCounter,
@@ -1582,6 +1583,8 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(<AvatarStackHover className="w-72" />);
     case "badge-pulse":
       return wrap(<BadgePulse className="w-72" />);
+    case "pulse-ring":
+      return wrap(<PulseRing className="w-72" />);
     case "parallax-text":
       return wrap(<ParallaxText className="w-72" />);
     case "magnetic-cursor-ring":
