@@ -373,6 +373,7 @@ export { SliderGlow, type SliderGlowProps } from "./slider-glow";
 export { AvatarStackHover, type AvatarStackHoverProps } from "./avatar-stack-hover";
 export { BadgePulse, type BadgePulseProps } from "./badge-pulse";
 export { PulseRing, type PulseRingProps } from "./pulse-ring";
+export { TypingIndicator, type TypingIndicatorProps } from "./typing-indicator";
 export { ParallaxText, type ParallaxTextProps } from "./parallax-text";
 export { MagneticCursorRing, type MagneticCursorRingProps } from "./magnetic-cursor-ring";
 export { ScrollTriggeredCounter, type ScrollTriggeredCounterProps } from "./scroll-triggered-counter";

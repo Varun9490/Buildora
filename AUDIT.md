@@ -14,7 +14,7 @@
 > | Accessibility | `pnpm --filter @buildora/components test` |
 > | Catalogue coherence | `pnpm registry:catalogue` |
 
-## 0. Summary (n=178)
+## 0. Summary (n=179)
 
 | Flag | Count | Meaning |
 |---|---:|---|

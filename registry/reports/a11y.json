@@ -10,7 +10,7 @@
     "bypass",
     "color-contrast"
   ],
-  "components": 232,
+  "components": 233,
   "componentsWithViolations": 0,
   "violations": 0,
   "allPass": true,
@@ -1157,6 +1157,11 @@
     },
     {
       "component": "TypeWall",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "TypingIndicator",
       "pass": true,
       "violations": []
     },

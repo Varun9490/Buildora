@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typing-indicator",
+  "type": "registry:component",
+  "title": "Typing Indicator",
+  "description": "Staggered bouncing dots, the classic 'someone is typing' affordance. Static under reduced motion. role=status.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "primitives",
+    "motion",
+    "feedback"
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/typing-indicator/index.tsx",
+      "target": "components/buildora/typing-indicator.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type TypingIndicatorProps = React.HTMLAttributes<HTMLSpanElement> & {\n  size?: number;\n  variant?: \"accent\" | \"success\" | \"danger\" | \"muted\";\n  label?: string;\n  typing?: boolean;\n  dots?: number;\n};\n\nconst VARIANT_COLOR: Record<NonNullable<TypingIndicatorProps[\"variant\"]>, string> = {\n  accent: \"var(--b-accent)\",\n  success: \"var(--b-success)\",\n  danger: \"var(--b-danger)\",\n  muted: \"var(--b-muted)\",\n};\n\n/**\n * TypingIndicator — three (or N) dots that bounce in a staggered wave,\n * the classic \"someone is typing\" affordance. Reduced-motion users get a\n * static row of dots instead of the bouncing animation. role=status so\n * screen readers announce it once.\n */\nexport function TypingIndicator({\n  size = 6,\n  variant = \"muted\",\n  label,\n  typing = true,\n  dots = 3,\n  className,\n  ...rest\n}: TypingIndicatorProps) {\n  const reduced = useReducedMotion();\n  const color = VARIANT_COLOR[variant];\n  const animate = typing && !reduced;\n  const count = Math.max(1, Math.min(dots, 6));\n\n  return (\n    <span\n      role=\"status\"\n      aria-label={label ?? \"Typing\"}\n      className={cn(\"inline-flex items-center gap-2\", className)}\n      {...rest}\n    >\n      <span className=\"inline-flex items-center gap-1\" aria-hidden>\n        {Array.from({ length: count }).map((_, i) => (\n          <span\n            key={i}\n            className={cn(\"inline-block rounded-full\", animate && \"animate-bounce\")}\n            style={{\n              width: size,\n              height: size,\n              background: color,\n              animationDelay: animate ? `${i * 0.15}s` : undefined,\n              animationDuration: animate ? \"0.9s\" : undefined,\n            }}\n          />\n        ))}\n      </span>\n      {label && <span className=\"text-xs text-[color:var(--b-text-secondary)]\">{label}</span>}\n    </span>\n  );\n}\n\nexport default TypingIndicator;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/typing-indicator/index.tsx"
+}

@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 178,
+  "total": 179,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -2840,6 +2840,26 @@
         "pulse",
         "ring",
         "live"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "typing-indicator",
+      "name": "Typing Indicator",
+      "description": "Staggered bouncing dots, the classic 'someone is typing' affordance. Static under reduced motion. role=status.",
+      "categories": [
+        "primitives",
+        "motion",
+        "feedback"
+      ],
+      "tags": [
+        "typing",
+        "status",
+        "chat",
+        "dots"
       ],
       "difficulty": "beginner",
       "version": "0.1.0",
