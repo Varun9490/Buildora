@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-checkmark",
+  "type": "registry:component",
+  "title": "Animated Checkmark",
+  "description": "SVG checkmark that draws itself in with a stroke transition, the classic success affordance. Reduced-motion aware.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "primitives",
+    "motion"
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/animated-checkmark/index.tsx",
+      "target": "components/buildora/animated-checkmark.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type AnimatedCheckmarkProps = React.HTMLAttributes<HTMLSpanElement> & {\n  size?: number;\n  variant?: \"accent\" | \"success\" | \"danger\" | \"muted\";\n  checked?: boolean;\n  label?: string;\n};\n\nconst VARIANT_COLOR: Record<NonNullable<AnimatedCheckmarkProps[\"variant\"]>, string> = {\n  accent: \"var(--b-accent)\",\n  success: \"var(--b-success)\",\n  danger: \"var(--b-danger)\",\n  muted: \"var(--b-muted)\",\n};\n\n/**\n * AnimatedCheckmark — an SVG checkmark that draws itself in with a\n * stroke-dashoffset transition, the classic \"success\" affordance. The\n * draw-in is disabled under reduced motion (the final state shows\n * immediately). `checked` toggles the drawn state so it can be reused\n * for confirmations, payments, and form submissions.\n */\nexport function AnimatedCheckmark({\n  size = 24,\n  variant = \"success\",\n  checked = true,\n  label,\n  className,\n  ...rest\n}: AnimatedCheckmarkProps) {\n  const reduced = useReducedMotion();\n  const [mounted, setMounted] = React.useState(false);\n  React.useEffect(() => {\n    setMounted(true);\n  }, []);\n\n  const color = VARIANT_COLOR[variant];\n  const drawn = checked && (reduced || mounted);\n\n  return (\n    <span\n      role=\"img\"\n      aria-label={label ?? \"Success\"}\n      className={cn(\"inline-flex items-center gap-2\", className)}\n      {...rest}\n    >\n      <svg\n        width={size}\n        height={size}\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        aria-hidden\n        className=\"shrink-0\"\n      >\n        <circle\n          cx=\"12\"\n          cy=\"12\"\n          r=\"10\"\n          stroke={color}\n          strokeWidth=\"2\"\n          fill=\"none\"\n          pathLength={1}\n          strokeDasharray={1}\n          strokeDashoffset={drawn ? 0 : 1}\n          style={{ transition: reduced ? \"none\" : \"stroke-dashoffset 320ms ease-out\" }}\n        />\n        <path\n          d=\"M7 12.5 L10.5 16 L17 9\"\n          stroke={color}\n          strokeWidth=\"2.2\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n          fill=\"none\"\n          pathLength={1}\n          strokeDasharray={1}\n          strokeDashoffset={drawn ? 0 : 1}\n          style={{ transition: reduced ? \"none\" : \"stroke-dashoffset 360ms ease-out 120ms\" }}\n        />\n      </svg>\n      {label && (\n        <span className=\"text-xs text-[color:var(--b-text-secondary)]\">{label}</span>\n      )}\n    </span>\n  );\n}\n\nexport default AnimatedCheckmark;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/animated-checkmark/index.tsx"
+}

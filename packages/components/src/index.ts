@@ -384,4 +384,5 @@ export { BounceButton, type BounceButtonProps } from "./bounce-button";
 export { FadeInImage, type FadeInImageProps } from "./fade-in-image";
 export { ScrollSnapSection, type ScrollSnapSectionProps } from "./scroll-snap-section";
 export { AnimatedBorder, type AnimatedBorderProps } from "./animated-border";
+export { AnimatedCheckmark, type AnimatedCheckmarkProps } from "./animated-checkmark";
 

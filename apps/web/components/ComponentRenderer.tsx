@@ -199,6 +199,7 @@ import {
   ScrollProgressBar,
   HoverLiftImage,
   AnimatedCounterBadge,
+  AnimatedCheckmark,
   FadeStaggerList,
   RevealMaskImage,
   ElasticUnderline,
@@ -1584,6 +1585,8 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(<AvatarStackHover className="w-72" />);
     case "badge-pulse":
       return wrap(<BadgePulse className="w-72" />);
+    case "animated-checkmark":
+      return wrap(<AnimatedCheckmark className="w-72" />);
     case "pulse-ring":
       return wrap(<PulseRing className="w-72" />);
     case "typing-indicator":

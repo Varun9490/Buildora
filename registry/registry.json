@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 179,
+  "total": 180,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -2840,6 +2840,25 @@
         "pulse",
         "ring",
         "live"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "animated-checkmark",
+      "name": "Animated Checkmark",
+      "description": "SVG checkmark that draws itself in with a stroke transition, the classic success affordance. Reduced-motion aware.",
+      "categories": [
+        "primitives",
+        "motion"
+      ],
+      "tags": [
+        "success",
+        "checkmark",
+        "draw",
+        "status"
       ],
       "difficulty": "beginner",
       "version": "0.1.0",

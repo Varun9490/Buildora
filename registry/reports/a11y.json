@@ -10,7 +10,7 @@
     "bypass",
     "color-contrast"
   ],
-  "components": 233,
+  "components": 234,
   "componentsWithViolations": 0,
   "violations": 0,
   "allPass": true,
@@ -52,6 +52,11 @@
     },
     {
       "component": "AnimatedBorder",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "AnimatedCheckmark",
       "pass": true,
       "violations": []
     },
