@@ -234,6 +234,7 @@ import {
   FadeInImage,
   ScrollSnapSection,
   AnimatedBorder,
+  MagneticText,
 } from "@buildora/components";
 
 
@@ -1611,6 +1612,12 @@ export function ComponentRenderer({ slug, controls }: { slug: string; controls: 
       return wrap(<ScrollSnapSection className="w-72" />);
     case "animated-border":
       return wrap(<AnimatedBorder className="w-72" />);
+    case "magnetic-text":
+      return wrap(
+        <MagneticText className="text-4xl font-black tracking-tight" strength={controls.strength} radius={controls.radius}>
+          Buildora
+        </MagneticText>
+      );
 
     default:
       return wrap(

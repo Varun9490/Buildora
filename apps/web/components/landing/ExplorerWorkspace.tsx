@@ -48,7 +48,7 @@ const GROUPS: { id: string; label: string; slugs: string[] }[] = [
     id: "inputs",
     label: "Tactile Inputs",
     slugs: [
-      "magnetic-button", "slingshot-otp", "fx-button", "hold-button", "button", "input",
+      "magnetic-button", "magnetic-text", "slingshot-otp", "fx-button", "hold-button", "button", "input",
       "textarea", "switch", "checkbox", "radio-group", "slider", "kbd", "segmented-control",
       "elastic-slider", "morph-select", "detent-dial", "confirm-morph", "gooey-menu",
     ],
@@ -119,6 +119,10 @@ const SIGNATURE_DEMOS: Record<string, React.ReactNode> = {
 const SLIDERS: Record<string, { key: keyof Controls; label: string; min: number; max: number; step: number }[]> = {
   "magnetic-button": [
     { key: "strength", label: "Strength", min: 0.1, max: 0.8, step: 0.05 },
+    { key: "radius", label: "Radius", min: 60, max: 240, step: 10 },
+  ],
+  "magnetic-text": [
+    { key: "strength", label: "Strength", min: 0.05, max: 0.8, step: 0.05 },
     { key: "radius", label: "Radius", min: 60, max: 240, step: 10 },
   ],
   "slingshot-otp": [{ key: "length", label: "Digits", min: 4, max: 8, step: 1 }],

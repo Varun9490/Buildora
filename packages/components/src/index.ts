@@ -1,4 +1,5 @@
 export { MagneticButton } from "./magnetic-button";
+export { MagneticText, type MagneticTextProps } from "./magnetic-text";
 export {
   SegmentedControl,
   type SegmentedControlProps,

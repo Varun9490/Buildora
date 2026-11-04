@@ -1,0 +1,128 @@
+{
+  "$schema": "https://buildora-hazel.vercel.app/schema/registry-item.json",
+  "id": "magnetic-text",
+  "name": "Magnetic Text",
+  "slug": "magnetic-text",
+  "description": "Display text that leans toward the cursor with spring physics. The text-level sibling of MagneticButton, reduced-motion aware.",
+  "categories": [
+    "motion"
+  ],
+  "tags": [
+    "text",
+    "magnetic",
+    "spring",
+    "cursor"
+  ],
+  "difficulty": "beginner",
+  "version": "0.1.0",
+  "license": "MIT",
+  "status": "beta",
+  "collection": "creative",
+  "states": [],
+  "implementations": {
+    "react": {
+      "status": "Full",
+      "files": [
+        "packages/components/src/magnetic-text/index.tsx"
+      ]
+    },
+    "javascript": {
+      "status": "Partial",
+      "notes": "Snippet-level port. React is the source of truth; no dedicated JS runtime.",
+      "files": [
+        "packages/components/src/magnetic-text/index.tsx"
+      ]
+    },
+    "vue": {
+      "status": "Partial",
+      "notes": "Composition API snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/magnetic-text/index.tsx"
+      ]
+    },
+    "svelte": {
+      "status": "Partial",
+      "notes": "Svelte runes snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/magnetic-text/index.tsx"
+      ]
+    },
+    "angular": {
+      "status": "Partial",
+      "notes": "Angular @Input snippet port. React is the source of truth.",
+      "files": [
+        "packages/components/src/magnetic-text/index.tsx"
+      ]
+    },
+    "html": {
+      "status": "Partial",
+      "notes": "Static markup snippet. Interactive behavior requires the React implementation.",
+      "files": [
+        "packages/components/src/magnetic-text/index.tsx"
+      ]
+    },
+    "tailwind": {
+      "status": "Partial",
+      "notes": "Tailwind variant snippet, not a standalone component.",
+      "files": [
+        "packages/components/src/magnetic-text/index.tsx"
+      ]
+    },
+    "reactNative": {
+      "status": "Partial",
+      "notes": "No hover/cursor on mobile; use press + haptics. Snippet port.",
+      "files": [
+        "packages/components/src/magnetic-text/index.tsx"
+      ]
+    },
+    "flutter": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped to gestures.",
+      "files": [
+        "packages/components/src/magnetic-text/index.tsx"
+      ]
+    },
+    "swiftUI": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/magnetic-text/index.tsx"
+      ]
+    },
+    "compose": {
+      "status": "Experimental",
+      "notes": "Experimental snippet port; pointer interactions remapped.",
+      "files": [
+        "packages/components/src/magnetic-text/index.tsx"
+      ]
+    }
+  },
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "reducedMotion": true
+  },
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "provenance": {
+    "origin": "original",
+    "license": "MIT",
+    "adapted": false
+  },
+  "files": [
+    {
+      "path": "packages/components/src/magnetic-text/index.tsx",
+      "target": "components/buildora/magnetic-text.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion, useMagnetic } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type MagneticTextProps = React.HTMLAttributes<HTMLSpanElement> & {\n  /** Pull strength, 0 (none) to 1 (full). */\n  strength?: number;\n  /** Attraction radius in px — the cursor feels the pull before it arrives. */\n  radius?: number;\n};\n\n/**\n * MagneticText — the text-level sibling of MagneticButton. Display type\n * leans toward the cursor with spring physics (shared rAF spring via\n * useMagnetic, transform written directly, no re-renders). Under reduced\n * motion the text sits still; the spring never arms.\n */\nexport function MagneticText({\n  strength = 0.22,\n  radius = 160,\n  className,\n  children,\n  ...rest\n}: MagneticTextProps) {\n  const ref = React.useRef<HTMLSpanElement | null>(null);\n  const reduced = useReducedMotion();\n  const { reset } = useMagnetic(ref as React.RefObject<HTMLElement>, { strength, radius, disabled: !!reduced });\n\n  return (\n    <span\n      ref={ref}\n      onPointerLeave={reset}\n      onBlur={reset}\n      className={cn(\"relative inline-block will-change-transform\", className)}\n      {...rest}\n    >\n      {children}\n    </span>\n  );\n}\n\nexport default MagneticText;\n"
+    }
+  ],
+  "github": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/magnetic-text",
+  "githubFile": "https://github.com/Varun9490/Buildora/blob/main/packages/components/src/magnetic-text/index.tsx",
+  "sourceDir": "magnetic-text",
+  "docs": "/components/magnetic-text",
+  "install": "pnpm dlx shadcn@latest add @buildora/magnetic-text"
+}

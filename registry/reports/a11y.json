@@ -10,7 +10,7 @@
     "bypass",
     "color-contrast"
   ],
-  "components": 234,
+  "components": 235,
   "componentsWithViolations": 0,
   "violations": 0,
   "allPass": true,
@@ -607,6 +607,11 @@
     },
     {
       "component": "MagneticNavPill",
+      "pass": true,
+      "violations": []
+    },
+    {
+      "component": "MagneticText",
       "pass": true,
       "violations": []
     },

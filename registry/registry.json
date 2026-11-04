@@ -3,7 +3,7 @@
   "name": "buildora",
   "tagline": "Build. Remix. Ship.",
   "version": "0.1.0",
-  "total": 180,
+  "total": 181,
   "installBase": "pnpm dlx shadcn@latest add @buildora/{component}",
   "components": [
     {
@@ -143,6 +143,24 @@
       ],
       "tags": [
         "button",
+        "magnetic",
+        "spring",
+        "cursor"
+      ],
+      "difficulty": "beginner",
+      "version": "0.1.0",
+      "status": "beta",
+      "collection": "creative"
+    },
+    {
+      "slug": "magnetic-text",
+      "name": "Magnetic Text",
+      "description": "Display text that leans toward the cursor with spring physics. The text-level sibling of MagneticButton, reduced-motion aware.",
+      "categories": [
+        "motion"
+      ],
+      "tags": [
+        "text",
         "magnetic",
         "spring",
         "cursor"

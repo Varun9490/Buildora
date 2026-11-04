@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "magnetic-text",
+  "type": "registry:component",
+  "title": "Magnetic Text",
+  "description": "Display text that leans toward the cursor with spring physics. The text-level sibling of MagneticButton, reduced-motion aware.",
+  "status": "beta",
+  "collection": "creative",
+  "categories": [
+    "motion"
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "https://buildora-hazel.vercel.app/r/utils.json",
+    "https://buildora-hazel.vercel.app/r/tokens.json",
+    "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "packages/components/src/magnetic-text/index.tsx",
+      "target": "components/buildora/magnetic-text.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/buildora/utils\";\nimport { useReducedMotion, useMagnetic } from \"@/hooks/buildora/use-reduced-motion\";\n\nexport type MagneticTextProps = React.HTMLAttributes<HTMLSpanElement> & {\n  /** Pull strength, 0 (none) to 1 (full). */\n  strength?: number;\n  /** Attraction radius in px — the cursor feels the pull before it arrives. */\n  radius?: number;\n};\n\n/**\n * MagneticText — the text-level sibling of MagneticButton. Display type\n * leans toward the cursor with spring physics (shared rAF spring via\n * useMagnetic, transform written directly, no re-renders). Under reduced\n * motion the text sits still; the spring never arms.\n */\nexport function MagneticText({\n  strength = 0.22,\n  radius = 160,\n  className,\n  children,\n  ...rest\n}: MagneticTextProps) {\n  const ref = React.useRef<HTMLSpanElement | null>(null);\n  const reduced = useReducedMotion();\n  const { reset } = useMagnetic(ref as React.RefObject<HTMLElement>, { strength, radius, disabled: !!reduced });\n\n  return (\n    <span\n      ref={ref}\n      onPointerLeave={reset}\n      onBlur={reset}\n      className={cn(\"relative inline-block will-change-transform\", className)}\n      {...rest}\n    >\n      {children}\n    </span>\n  );\n}\n\nexport default MagneticText;\n",
+      "type": "registry:component"
+    }
+  ],
+  "docs": "https://github.com/Varun9490/Buildora/tree/main/packages/components/src/magnetic-text/index.tsx"
+}
