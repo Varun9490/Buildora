@@ -3,6 +3,8 @@
 import * as React from "react";
 import { cn } from "@buildora/utils";
 import { useReducedMotion, useMagnetic } from "@buildora/hooks";
+import { springs } from "@buildora/animations";
+export type MagneticTextSpring = { stiffness?: number; damping?: number; mass?: number };
 
 export type MagneticTextProps = React.HTMLAttributes<HTMLSpanElement> & {
   /** Pull strength, 0 (none) to 1 (full). */
@@ -11,6 +13,8 @@ export type MagneticTextProps = React.HTMLAttributes<HTMLSpanElement> & {
   radius?: number;
   /** Turn the pointer attraction off. Overrides reduced motion. */
   disabled?: boolean;
+  /** Spring feel override (stiffness / damping / mass). Defaults to the magnetic preset. */
+  spring?: MagneticTextSpring;
 };
 
 /**
@@ -18,19 +22,21 @@ export type MagneticTextProps = React.HTMLAttributes<HTMLSpanElement> & {
  * leans toward the cursor with spring physics (shared rAF spring via
  * useMagnetic, transform written directly, no re-renders). Under reduced
  * motion the text sits still; the spring never arms. Pass `disabled` to opt
- * out entirely.
+ * out entirely. Pass `spring` to retune the feel (stiffness / damping / mass);
+ * it defaults to the shared magnetic preset.
  */
 export function MagneticText({
   strength = 0.22,
   radius = 160,
   disabled = false,
+  spring,
   className,
   children,
   ...rest
 }: MagneticTextProps) {
   const ref = React.useRef<HTMLSpanElement | null>(null);
   const reduced = useReducedMotion();
-  const { reset } = useMagnetic(ref as React.RefObject<HTMLElement>, { strength, radius, disabled: !!reduced || !!disabled });
+  const { reset } = useMagnetic(ref as React.RefObject<HTMLElement>, { strength, radius, disabled: !!reduced || !!disabled, spring: spring ?? springs.magnetic });
 
   return (
     <span

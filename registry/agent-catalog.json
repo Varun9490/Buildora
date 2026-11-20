@@ -877,7 +877,8 @@
       "registryDependencies": [
         "https://buildora-hazel.vercel.app/r/utils.json",
         "https://buildora-hazel.vercel.app/r/tokens.json",
-        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json"
+        "https://buildora-hazel.vercel.app/r/use-reduced-motion.json",
+        "https://buildora-hazel.vercel.app/r/spring.json"
       ],
       "status": "beta",
       "collection": "creative",

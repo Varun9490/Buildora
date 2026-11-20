@@ -67,7 +67,7 @@ export function useMagnetic(
   {
     strength = 0.35,
     radius = 180,
-    spring = { stiffness: 260, damping: 22, mass: 1 },
+    spring = { stiffness: 260, damping: 22, mass: 0.7 },
     disabled = false,
   }: {
     strength?: number;
@@ -76,7 +76,7 @@ export function useMagnetic(
     disabled?: boolean;
   } = {}
 ) {
-  const { stiffness = 260, damping = 22, mass = 1 } = spring;
+  const { stiffness = 260, damping = 22, mass = 0.7 } = spring;
   const state = React.useRef({ x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0 });
   const rafRef = React.useRef<number | null>(null);
   const ticking = React.useRef(false);
